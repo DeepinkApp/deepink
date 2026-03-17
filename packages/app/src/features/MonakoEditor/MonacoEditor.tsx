@@ -273,20 +273,15 @@ export const MonacoEditor = ({
 		if (!editor) return;
 
 		if (editor.getValue() !== value) {
-			// Save the cursor position before calling setValue, because it resets the cursor to 0:0
-			const position = editor.getPosition();
-			editor.setValue(value);
+			const model = editor.getModel();
+			if (!model) return;
 
-			if (position) {
-				const model = editor.getModel();
-				if (!model) return;
-
-				// Keep the cursor within valid bounds in case the new value is shorter than the previous one
-				const line = Math.min(position.lineNumber, model.getLineCount());
-				const column = Math.min(position.column, model.getLineMaxColumn(line));
-
-				editor.setPosition({ lineNumber: line, column });
-			}
+			// Update content without resetting cursor position
+			model.pushEditOperations(
+				[],
+				[{ range: model.getFullModelRange(), text: value }],
+				() => null,
+			);
 		}
 	});
 
