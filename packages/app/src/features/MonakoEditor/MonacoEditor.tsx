@@ -278,7 +278,7 @@ export const MonacoEditor = ({
 
 			// Update content without resetting cursor position
 			model.pushEditOperations(
-				[],
+				editor.getSelections(),
 				[{ range: model.getFullModelRange(), text: value }],
 				() => null,
 			);
