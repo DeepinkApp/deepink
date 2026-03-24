@@ -6,7 +6,6 @@ import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
-import { useNoteActions } from '@hooks/notes/useNoteActions';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
@@ -17,6 +16,7 @@ export type TopBarProps = {
 	activeTab: NoteId | null;
 	onPick: (id: NoteId) => void;
 	onClose: (id: NoteId) => void;
+	onOpenPersistent: (id: NoteId) => void;
 
 	notes: INote[];
 };
@@ -28,9 +28,9 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	activeTab,
 	onClose,
 	onPick,
+	onOpenPersistent,
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
-	const noteActions = useNoteActions();
 
 	const openNoteContextMenu = useNoteContextMenu('tabs');
 
@@ -122,9 +122,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 									getContextMenuCoords(evt.nativeEvent),
 								);
 							}}
-							onDoubleClick={() => {
-								noteActions.click(note.id, { temporary: false });
-							}}
+							onDoubleClick={() => onOpenPersistent(note.id)}
 						>
 							<HStack gap=".5rem" w="100%" justifyContent="space-between">
 								<Text
