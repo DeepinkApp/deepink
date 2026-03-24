@@ -29,12 +29,21 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId) => {
+		(id: NoteId, { temporary = true }: { temporary?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
+
+				if (!temporary) {
+					dispatch(
+						workspacesApi.setTemporaryNote({
+							...workspaceData,
+							noteId: null,
+						}),
+					);
+				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
 					if (note) openNote(note);

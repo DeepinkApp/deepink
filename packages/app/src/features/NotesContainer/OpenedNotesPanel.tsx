@@ -6,11 +6,11 @@ import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
-import { useAppDispatch } from '@state/redux/hooks';
-import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/profiles/hooks';
-import { selectTemporaryNoteId, workspacesApi } from '@state/redux/profiles/profiles';
+import { useNoteActions } from '@hooks/notes/useNoteActions';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
+import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { selectTemporaryNoteId } from '@state/redux/vaults/vaults';
 
 export type TopBarProps = {
 	tabs: NoteId[];
@@ -30,6 +30,8 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	onPick,
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
+	const noteActions = useNoteActions();
+
 	const openNoteContextMenu = useNoteContextMenu('tabs');
 
 	const existsTabs = useMemo(
@@ -121,12 +123,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 								);
 							}}
 							onDoubleClick={() => {
-								dispatch(
-									workspacesApi.setTemporaryNote({
-										...workspaceData,
-										noteId: null,
-									}),
-								);
+								noteActions.click(note.id, { temporary: false });
 							}}
 						>
 							<HStack gap=".5rem" w="100%" justifyContent="space-between">
