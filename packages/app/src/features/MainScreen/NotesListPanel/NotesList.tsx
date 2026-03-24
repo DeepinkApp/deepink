@@ -198,6 +198,14 @@ export const NotesList: FC<NotesListProps> = () => {
 											},
 										);
 									}}
+									onDoubleClick={() => {
+										dispatch(
+											workspacesApi.setTemporaryNote({
+												...workspaceData,
+												noteId: null,
+											}),
+										);
+									}}
 								/>
 							);
 						})}

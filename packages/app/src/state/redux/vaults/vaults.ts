@@ -75,6 +75,7 @@ export const createWorkspaceObject = ({
 	activeNote: null,
 	recentlyClosedNotes: [],
 	openedNotes: [],
+	temporaryNoteId: null,
 
 	noteIds: [],
 
@@ -136,6 +137,7 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
+	temporaryNoteId: NoteId | null;
 
 	noteIds: NoteId[];
 
@@ -373,6 +375,25 @@ export const vaultsSlice = createSlice({
 			}
 		},
 
+		setTemporaryNote: (
+			state,
+			{
+				payload: { profileId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId | null }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { profileId, workspaceId });
+			if (!workspace) return;
+
+			// Delete the old temporary note only if we open a new one
+			if (workspace.temporaryNoteId && noteId !== null) {
+				workspace.openedNotes = workspace.openedNotes.filter(
+					(n) => n.id !== workspace.temporaryNoteId,
+				);
+			}
+
+			workspace.temporaryNoteId = noteId;
+		},
+
 		removeOpenedNote: (
 			state,
 			{
@@ -394,6 +415,10 @@ export const vaultsSlice = createSlice({
 				filteredNotes.length !== openedNotes.length ? filteredNotes : openedNotes;
 
 			workspace.recentlyClosedNotes.push(noteId);
+
+			if (workspace.temporaryNoteId === noteId) {
+				workspace.temporaryNoteId = null;
+			}
 		},
 
 		closeNotes: (
@@ -501,6 +526,10 @@ export const vaultsSlice = createSlice({
 				note,
 				...openedNotes.slice(noteIndex + 1),
 			];
+
+			if (workspace.temporaryNoteId === note.id) {
+				workspace.temporaryNoteId = null;
+			}
 		},
 
 		setOpenedNotes: (

@@ -6,6 +6,9 @@ import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
+import { useAppDispatch } from '@state/redux/hooks';
+import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/profiles/hooks';
+import { selectTemporaryNoteId, workspacesApi } from '@state/redux/profiles/profiles';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 
@@ -44,6 +47,8 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		activeTabRef.current?.scrollIntoView();
 	}, [tabIndex]);
 
+	const temporaryNoteId = useWorkspaceSelector(selectTemporaryNoteId);
+
 	return (
 		<Tabs
 			index={tabIndex}
@@ -80,6 +85,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 							border="none"
 							fontWeight="600"
 							fontSize="14"
+							fontStyle={temporaryNoteId === note.id ? 'italic' : undefined}
 							maxW="250px"
 							minW="150px"
 							whiteSpace="nowrap"
@@ -112,6 +118,14 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 								openNoteContextMenu(
 									note,
 									getContextMenuCoords(evt.nativeEvent),
+								);
+							}}
+							onDoubleClick={() => {
+								dispatch(
+									workspacesApi.setTemporaryNote({
+										...workspaceData,
+										noteId: null,
+									}),
 								);
 							}}
 						>

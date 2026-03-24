@@ -81,10 +81,16 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 			<WorkspaceProvider
 				{...workspace}
 				notesApi={{
-					openNote: (note: INote, focus = true) => {
+					openNote: (note: INote, focus = true, temporary = true) => {
 						dispatch(workspaceActions.addOpenedNote({ note }));
 						if (focus) {
 							dispatch(workspaceActions.setActiveNote({ noteId: note.id }));
+						}
+
+						if (temporary) {
+							dispatch(
+								workspaceActions.setTemporaryNote({ noteId: note.id }),
+							);
 						}
 					},
 					noteUpdated: (note: INote) =>
