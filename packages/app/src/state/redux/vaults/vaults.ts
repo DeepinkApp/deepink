@@ -385,7 +385,11 @@ export const vaultsSlice = createSlice({
 			if (!workspace) return;
 
 			// Remove the old temporary note from openedNotes, only if we open a temporary note again
-			if (workspace.temporaryNoteId && noteId !== null) {
+			if (
+				workspace.temporaryNoteId &&
+				noteId !== null &&
+				workspace.temporaryNoteId !== noteId
+			) {
 				workspace.openedNotes = workspace.openedNotes.filter(
 					(n) => n.id !== workspace.temporaryNoteId,
 				);
