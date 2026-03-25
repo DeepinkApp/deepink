@@ -16,7 +16,7 @@ export type TopBarProps = {
 	activeTab: NoteId | null;
 	onPick: (id: NoteId) => void;
 	onClose: (id: NoteId) => void;
-	onOpenPersistent: (id: NoteId) => void;
+	onOpenPersistently: (id: NoteId) => void;
 
 	notes: INote[];
 };
@@ -28,7 +28,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	activeTab,
 	onClose,
 	onPick,
-	onOpenPersistent,
+	onOpenPersistently,
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 
@@ -122,7 +122,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 									getContextMenuCoords(evt.nativeEvent),
 								);
 							}}
-							onDoubleClick={() => onOpenPersistent(note.id)}
+							onDoubleClick={() => onOpenPersistently(note.id)}
 						>
 							<HStack gap=".5rem" w="100%" justifyContent="space-between">
 								<Text
