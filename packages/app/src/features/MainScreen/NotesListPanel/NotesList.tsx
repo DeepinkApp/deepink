@@ -195,19 +195,11 @@ export const NotesList: FC<NotesListProps> = () => {
 											TELEMETRY_EVENT_NAME.NOTE_OPENED,
 											{
 												context: 'notes list',
-												mode: 'temporary',
 											},
 										);
 									}}
 									onDoubleClick={() => {
 										noteActions.click(note.id, { temporary: false });
-										telemetry.track(
-											TELEMETRY_EVENT_NAME.NOTE_OPENED,
-											{
-												context: 'notes list',
-												mode: 'persistent',
-											},
-										);
 									}}
 								/>
 							);

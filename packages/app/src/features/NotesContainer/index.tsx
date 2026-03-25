@@ -122,15 +122,10 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 								noteActions.click(id);
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
-									mode: 'temporary',
 								});
 							},
 							onOpenPersistent(id) {
 								noteActions.click(id, { temporary: false });
-								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
-									context: 'top bar',
-									mode: 'persistent',
-								});
 							},
 						}}
 					/>
