@@ -10,17 +10,18 @@ import {
 } from '@features/App/Workspace/WorkspaceProvider';
 import { useAppDispatch } from '@state/redux/hooks';
 import { RootState } from '@state/redux/store';
-import { useVaultSelector, useWorkspaceData } from '@state/redux/vaults/hooks';
-import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import {
-	selectIsNoteOpened,
-	selectWorkspace,
-	workspacesApi,
-} from '@state/redux/vaults/vaults';
+	useVaultSelector,
+	useWorkspaceActions,
+	useWorkspaceData,
+} from '@state/redux/vaults/hooks';
+import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
+import { selectIsNoteOpened, selectWorkspace } from '@state/redux/vaults/vaults';
 
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();
 	const workspaceData = useWorkspaceData();
+	const workspaceActions = useWorkspaceActions();
 
 	const { openNote, noteClosed } = useNotesContext();
 
@@ -34,12 +35,11 @@ export const useNoteActions = () => {
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
 
 			if (isNoteOpened) {
-				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
+				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
-				if (!temporary) {
+				if (!temporary && workspace?.temporaryNoteId === id) {
 					dispatch(
-						workspacesApi.setTemporaryNote({
-							...workspaceData,
+						workspaceActions.setTemporaryNote({
 							noteId: null,
 						}),
 					);
@@ -50,7 +50,7 @@ export const useNoteActions = () => {
 				});
 			}
 		},
-		[dispatch, notesRegistry, openNote, store, workspaceData],
+		[dispatch, notesRegistry, openNote, store, workspaceActions, workspaceData],
 	);
 
 	const eventBus = useEventBus();
