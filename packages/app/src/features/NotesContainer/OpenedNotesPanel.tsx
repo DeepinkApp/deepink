@@ -78,6 +78,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					}
 
 					const title = getNoteTitle(note.content, 50);
+					const isTemporary = temporaryNoteId === note.id;
 
 					return (
 						<Tab
@@ -85,9 +86,9 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 							ref={isActiveTab ? activeTabRef : undefined}
 							padding="0.4rem 0.7rem"
 							border="none"
-							fontWeight="600"
+							fontStyle={isTemporary ? 'italic' : undefined}
+							fontWeight={!isTemporary ? '600' : undefined}
 							fontSize="14"
-							fontStyle={temporaryNoteId === note.id ? 'italic' : undefined}
 							maxW="250px"
 							minW="150px"
 							whiteSpace="nowrap"
