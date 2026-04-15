@@ -193,22 +193,21 @@ export const NotesList: FC<NotesListProps> = () => {
 										const isSingleClick = e.detail === 1;
 
 										if (isSingleClick) {
-											// Open note in temporary mode on single click
+											// Single click - open note temporarily
 											noteActions.click(note.id);
-
-											telemetry.track(
-												TELEMETRY_EVENT_NAME.NOTE_OPENED,
-												{
-													context: 'notes list',
-												},
-											);
-											return;
+										} else {
+											// Double click - open note persistently
+											noteActions.click(note.id, {
+												temporary: false,
+											});
 										}
 
-										// Open note in persistent mode on double click
-										noteActions.click(note.id, {
-											temporary: false,
-										});
+										telemetry.track(
+											TELEMETRY_EVENT_NAME.NOTE_OPENED,
+											{
+												context: 'notes list',
+											},
+										);
 									}}
 								/>
 							);
