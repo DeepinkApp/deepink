@@ -88,9 +88,14 @@ export const WorkspaceStateInitializer = () => {
 						);
 
 						// Restore the temporarily opened note
+						const isTemporaryNoteExists = openedNoteList.some(
+							(n) => n.id === state.temporaryNoteId,
+						);
 						dispatch(
 							workspaceActions.replaceTemporaryNote({
-								noteId: state.temporaryNodeId,
+								noteId: isTemporaryNoteExists
+									? state.temporaryNoteId
+									: null,
 							}),
 						);
 					}
