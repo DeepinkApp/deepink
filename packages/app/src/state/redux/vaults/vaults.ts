@@ -532,7 +532,12 @@ export const vaultsSlice = createSlice({
 			];
 
 			if (workspace.temporaryNoteId === note.id) {
-				workspace.temporaryNoteId = null;
+				const oldNote = openedNotes[noteIndex];
+				const isContentChanged =
+					oldNote.content.text !== note.content.text ||
+					oldNote.content.title !== note.content.title;
+
+				if (isContentChanged) workspace.temporaryNoteId = null;
 			}
 		},
 
