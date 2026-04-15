@@ -46,7 +46,7 @@ export const useNoteActions = () => {
 				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
-					if (note) openNote(note);
+					if (note) openNote(note, { temporary });
 				});
 			}
 		},
