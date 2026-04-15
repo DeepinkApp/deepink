@@ -30,14 +30,14 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId, { temporary = true }: { temporary?: boolean } = {}) => {
+		(id: NoteId, { isTemporary = true }: { isTemporary?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
-				if (!temporary && workspace?.temporaryNoteId === id) {
+				if (!isTemporary && workspace?.temporaryNoteId === id) {
 					dispatch(
 						workspaceActions.replaceTemporaryNote({
 							noteId: null,
@@ -46,7 +46,7 @@ export const useNoteActions = () => {
 				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
-					if (note) openNote(note, { temporary });
+					if (note) openNote(note, { isTemporary });
 				});
 			}
 		},

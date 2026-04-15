@@ -198,7 +198,7 @@ export const NotesList: FC<NotesListProps> = () => {
 										} else {
 											// Double click - open note persistently
 											noteActions.click(note.id, {
-												temporary: false,
+												isTemporary: false,
 											});
 										}
 
