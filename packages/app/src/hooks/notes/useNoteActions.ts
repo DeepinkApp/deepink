@@ -39,7 +39,7 @@ export const useNoteActions = () => {
 
 				if (!temporary && workspace?.temporaryNoteId === id) {
 					dispatch(
-						workspaceActions.setTemporaryNote({
+						workspaceActions.replaceTemporaryNote({
 							noteId: null,
 						}),
 					);

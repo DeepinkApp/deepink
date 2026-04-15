@@ -375,7 +375,10 @@ export const vaultsSlice = createSlice({
 			}
 		},
 
-		setTemporaryNote: (
+		/**
+		 * Set a temporary note id, closing the previous one
+		 */
+		replaceTemporaryNote: (
 			state,
 			{
 				payload: { profileId, workspaceId, noteId },

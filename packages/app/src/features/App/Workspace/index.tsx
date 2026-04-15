@@ -95,7 +95,9 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 
 						if (temporary) {
 							dispatch(
-								workspaceActions.setTemporaryNote({ noteId: note.id }),
+								workspaceActions.replaceTemporaryNote({
+									noteId: note.id,
+								}),
 							);
 						}
 					},
