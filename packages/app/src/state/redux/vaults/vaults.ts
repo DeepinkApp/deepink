@@ -384,10 +384,10 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { profileId, workspaceId });
 			if (!workspace) return;
 
-			// Remove the old temporary note from openedNotes, only if we open a temporary note again
+			// Remove the old temporary note from the opened notes list when another note is opened in temporary mode
 			if (
-				workspace.temporaryNoteId &&
 				noteId !== null &&
+				workspace.temporaryNoteId &&
 				workspace.temporaryNoteId !== noteId
 			) {
 				workspace.openedNotes = workspace.openedNotes.filter(
@@ -420,6 +420,7 @@ export const vaultsSlice = createSlice({
 
 			workspace.recentlyClosedNotes.push(noteId);
 
+			// Reset temporary note
 			if (workspace.temporaryNoteId === noteId) {
 				workspace.temporaryNoteId = null;
 			}
@@ -532,6 +533,7 @@ export const vaultsSlice = createSlice({
 			];
 
 			if (workspace.temporaryNoteId === note.id) {
+				// Reset the temporary note only if the note content has updated; ignore all other updates
 				const oldNote = openedNotes[noteIndex];
 				const isContentChanged =
 					oldNote.content.text !== note.content.text ||
