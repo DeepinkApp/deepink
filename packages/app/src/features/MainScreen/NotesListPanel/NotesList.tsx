@@ -189,17 +189,26 @@ export const NotesList: FC<NotesListProps> = () => {
 											getContextMenuCoords(evt.nativeEvent),
 										);
 									}}
-									onClick={() => {
-										noteActions.click(note.id);
-										telemetry.track(
-											TELEMETRY_EVENT_NAME.NOTE_OPENED,
-											{
-												context: 'notes list',
-											},
-										);
-									}}
-									onDoubleClick={() => {
-										noteActions.click(note.id, { temporary: false });
+									onClick={(e) => {
+										const isSingleClick = e.detail === 1;
+
+										if (isSingleClick) {
+											// Open note in temporary mode on single click
+											noteActions.click(note.id);
+
+											telemetry.track(
+												TELEMETRY_EVENT_NAME.NOTE_OPENED,
+												{
+													context: 'notes list',
+												},
+											);
+											return;
+										}
+
+										// Open note in persistent mode on double click
+										noteActions.click(note.id, {
+											temporary: false,
+										});
 									}}
 								/>
 							);
