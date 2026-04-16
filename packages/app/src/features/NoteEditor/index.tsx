@@ -169,7 +169,12 @@ export const Note: FC<NoteEditorProps> = memo(
 					debouncedUpdateNote({ title, text });
 				});
 			}
-		}, [title, text, debouncedUpdateNote]);
+
+			// When note content changed open reset note temporary status
+			dispatch(
+				workspacesApi.resetTemporaryNote({ ...workspaceData, noteId: note.id }),
+			);
+		}, [title, text, debouncedUpdateNote, dispatch, workspaceData, note.id]);
 
 		const attachments = useAttachmentsController();
 
