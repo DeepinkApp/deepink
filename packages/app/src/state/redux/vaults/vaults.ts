@@ -75,7 +75,6 @@ export const createWorkspaceObject = ({
 	activeNote: null,
 	recentlyClosedNotes: [],
 	openedNotes: [],
-	temporaryNoteId: null,
 
 	noteIds: [],
 
@@ -121,6 +120,10 @@ export type LoadingStatus = {
 	isTagsLoaded: boolean;
 };
 
+export type IOpenedNote = INote & {
+	isTemporary: boolean;
+};
+
 export type WorkspaceData = {
 	id: string;
 	name: string;
@@ -136,8 +139,7 @@ export type WorkspaceData = {
 
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
-	openedNotes: INote[];
-	temporaryNoteId: NoteId | null;
+	openedNotes: IOpenedNote[];
 
 	noteIds: NoteId[];
 
@@ -349,7 +351,7 @@ export const vaultsSlice = createSlice({
 			workspace.noteIds = noteIds;
 		},
 
-		addOpenedNote: (
+		addTemporaryOpenedNote: (
 			state,
 			{
 				payload: { vaultId, workspaceId, note },
@@ -358,15 +360,15 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			const foundNoteInList = workspace.openedNotes.find(
-				({ id }) => id === note.id,
-			);
+			const existingNote = workspace.openedNotes.find(({ id }) => id === note.id);
+			if (existingNote && !existingNote.isTemporary) return;
 
-			// Ignore already exists note
-			if (foundNoteInList) return;
+			// Replace old temporary note
+			workspace.openedNotes = workspace.openedNotes.filter((n) => !n.isTemporary);
 
-			workspace.openedNotes.push(note);
+			workspace.openedNotes.push({ ...note, isTemporary: true });
 
+			// Delete opened note from recently closed note
 			const filteredClosedNotes = workspace.recentlyClosedNotes.filter(
 				(id) => id !== note.id,
 			);
@@ -375,30 +377,44 @@ export const vaultsSlice = createSlice({
 			}
 		},
 
-		/**
-		 * Set a temporary note id, closing the previous one
-		 */
-		replaceTemporaryNote: (
+		addPersistentOpenedNote: (
 			state,
 			{
-				payload: { profileId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId | null }>>,
+				payload: { vaultId, workspaceId, note },
+			}: PayloadAction<WorkspaceScoped<{ note: INote }>>,
 		) => {
-			const workspace = selectWorkspaceObject(state, { profileId, workspaceId });
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			// Remove the old temporary note from the opened notes list when another note is opened in temporary mode
-			if (
-				noteId !== null &&
-				workspace.temporaryNoteId &&
-				workspace.temporaryNoteId !== noteId
-			) {
-				workspace.openedNotes = workspace.openedNotes.filter(
-					(n) => n.id !== workspace.temporaryNoteId,
-				);
+			const existingNote = workspace.openedNotes.find(({ id }) => id === note.id);
+			if (existingNote) {
+				if (existingNote.isTemporary) existingNote.isTemporary = false;
+			} else {
+				workspace.openedNotes.push({ ...note, isTemporary: false });
 			}
 
-			workspace.temporaryNoteId = noteId;
+			// Delete opened note from recently closed note
+			const filteredClosedNotes = workspace.recentlyClosedNotes.filter(
+				(id) => id !== note.id,
+			);
+			if (workspace.recentlyClosedNotes.length !== filteredClosedNotes.length) {
+				workspace.recentlyClosedNotes = filteredClosedNotes;
+			}
+		},
+
+		resetTemporaryNote: (
+			state,
+			{
+				payload: { vaultId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			if (!workspace) return;
+
+			const note = workspace.openedNotes.find(({ id }) => id === noteId);
+			if (!note) return;
+
+			note.isTemporary = false;
 		},
 
 		removeOpenedNote: (
@@ -422,11 +438,6 @@ export const vaultsSlice = createSlice({
 				filteredNotes.length !== openedNotes.length ? filteredNotes : openedNotes;
 
 			workspace.recentlyClosedNotes.push(noteId);
-
-			// Reset temporary note
-			if (workspace.temporaryNoteId === noteId) {
-				workspace.temporaryNoteId = null;
-			}
 		},
 
 		closeNotes: (
@@ -529,21 +540,19 @@ export const vaultsSlice = createSlice({
 			const noteIndex = openedNotes.findIndex(({ id }) => id === note.id);
 			if (noteIndex === -1) return;
 
+			const oldNote = openedNotes[noteIndex];
+			const isContentChanged =
+				oldNote.content.text !== note.content.text ||
+				oldNote.content.title !== note.content.title;
+
 			workspace.openedNotes = [
 				...openedNotes.slice(0, noteIndex),
-				note,
+				{
+					...note,
+					isTemporary: isContentChanged ? false : oldNote.isTemporary,
+				},
 				...openedNotes.slice(noteIndex + 1),
 			];
-
-			if (workspace.temporaryNoteId === note.id) {
-				// Reset the temporary note only if the note content has updated; ignore all other updates
-				const oldNote = openedNotes[noteIndex];
-				const isContentChanged =
-					oldNote.content.text !== note.content.text ||
-					oldNote.content.title !== note.content.title;
-
-				if (isContentChanged) workspace.temporaryNoteId = null;
-			}
 		},
 
 		setOpenedNotes: (

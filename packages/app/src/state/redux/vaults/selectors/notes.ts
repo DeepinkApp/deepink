@@ -45,7 +45,7 @@ export const selectTemporaryNoteId = createWorkspaceSelector(
 	(workspace) => {
 		if (!workspace) return null;
 
-		return workspace.temporaryNoteId ?? null;
+		return workspace.openedNotes.find((n) => n.isTemporary)?.id ?? null;
 	},
 );
 

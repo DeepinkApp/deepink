@@ -73,8 +73,15 @@ export const WorkspaceStateInitializer = () => {
 					);
 
 					if (openedNoteList && openedNoteList.length > 0) {
+						// Restore the temporary flag
+						const notesWithTemporaryFlag = openedNoteList.map((note) => ({
+							...note,
+							isTemporary: note.id === state.temporaryNoteId,
+						}));
 						dispatch(
-							workspaceActions.setOpenedNotes({ notes: openedNoteList }),
+							workspaceActions.setOpenedNotes({
+								notes: notesWithTemporaryFlag,
+							}),
 						);
 
 						let activeNote = openedNoteList[0];
@@ -85,18 +92,6 @@ export const WorkspaceStateInitializer = () => {
 						}
 						dispatch(
 							workspaceActions.setActiveNote({ noteId: activeNote.id }),
-						);
-
-						// Restore the temporarily opened note
-						const isTemporaryNoteExists = openedNoteList.some(
-							(n) => n.id === state.temporaryNoteId,
-						);
-						dispatch(
-							workspaceActions.replaceTemporaryNote({
-								noteId: isTemporaryNoteExists
-									? state.temporaryNoteId
-									: null,
-							}),
 						);
 					}
 				}
