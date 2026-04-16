@@ -91,7 +91,7 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 						if (isTemporary) {
 							dispatch(workspaceActions.addTemporaryOpenedNote({ note }));
 						} else {
-							workspaceActions.addPersistentOpenedNote({ note });
+							dispatch(workspaceActions.addPersistentOpenedNote({ note }));
 						}
 
 						if (focus) {
