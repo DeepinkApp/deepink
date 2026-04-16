@@ -45,7 +45,7 @@ export const useNotesShortcutActions = () => {
 	useWorkspaceCommandCallback(GLOBAL_COMMANDS.RESTORE_CLOSED_NOTE, () => {
 		const lastClosedNote = recentlyClosedNotes[recentlyClosedNotes.length - 1];
 		if (!lastClosedNote) return;
-		noteActions.click(lastClosedNote);
+		noteActions.click(lastClosedNote, { isTemporary: false });
 	});
 
 	const focusNoteInDirection = (direction: 'next' | 'previous') => {
