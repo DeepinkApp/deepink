@@ -564,8 +564,9 @@ export const vaultsSlice = createSlice({
 
 			const oldNote = openedNotes[noteIndex];
 			if (
-				note.content.title === oldNote.content.title ||
-				note.content.text === oldNote.content.text
+				note.isDeleted === oldNote.isDeleted &&
+				(note.content.title === oldNote.content.title ||
+					note.content.text === oldNote.content.text)
 			) {
 				return;
 			}
