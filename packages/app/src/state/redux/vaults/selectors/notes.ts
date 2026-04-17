@@ -46,7 +46,7 @@ export const selectTemporaryNotesId = createWorkspaceSelector(
 		if (!workspace) return null;
 
 		return Object.entries(workspace.openedNotesMeta)
-			.filter(([_, value]) => value.isTemporary)
+			.filter(([, meta]) => meta.isTemporary)
 			.map(([id]) => id);
 	},
 );

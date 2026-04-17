@@ -380,14 +380,14 @@ export const vaultsSlice = createSlice({
 		setTemporaryNotes: (
 			state,
 			{
-				payload: { vaultId, workspaceId, note },
-			}: PayloadAction<WorkspaceScoped<{ note: INote }>>,
+				payload: { vaultId, workspaceId, noteIds },
+			}: PayloadAction<WorkspaceScoped<{ noteIds: NoteId[] }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
 			workspace.openedNotesMeta = Object.fromEntries(
-				notesId.map((id) => [id, { isTemporary: true }]),
+				noteIds.map((id) => [id, { isTemporary: true }]),
 			);
 		},
 
@@ -401,7 +401,7 @@ export const vaultsSlice = createSlice({
 			if (!workspace) return;
 
 			// Ignore if the note is not open
-			const isNoteOpen = workspace.openedNotes.find(({ id }) => id === noteId);
+			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
 			if (!isNoteOpen) return;
 
 			if (isTemporary) {
@@ -558,26 +558,24 @@ export const vaultsSlice = createSlice({
 				...openedNotes.slice(noteIndex + 1),
 			];
 
-			// Update temporary status to permanent if title or text was modified
-			const meta = workspace.openedNotesMeta[note.id];
-			if (!meta?.isTemporary) return;
-
+			// Update temporary note permanent if content or delete state changes
+			const openedNoteMeta = workspace.openedNotesMeta[note.id];
 			const oldNote = openedNotes[noteIndex];
-			if (
-				note.isDeleted === oldNote.isDeleted &&
-				(note.content.title === oldNote.content.title ||
-					note.content.text === oldNote.content.text)
-			) {
-				return;
+			const hasNoteChanged =
+				note.isDeleted !== oldNote.isDeleted ||
+				note.content.title !== oldNote.content.title ||
+				note.content.text !== oldNote.content.text;
+
+			if (openedNoteMeta && openedNoteMeta.isTemporary && hasNoteChanged) {
+				openedNoteMeta.isTemporary = false;
 			}
-			meta.isTemporary = false;
 		},
 
 		setOpenedNotes: (
 			state,
 			{
 				payload: { vaultId, workspaceId, notes },
-			}: PayloadAction<WorkspaceScoped<{ notes: IOpenedNote[] }>>,
+			}: PayloadAction<WorkspaceScoped<{ notes: INote[] }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
