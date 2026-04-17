@@ -19,7 +19,7 @@ export const selectWorkspaceState = ({ vaultId, workspaceId }: WorkspaceScoped) 
 				openedNoteIds: workspace.openedNotes.map((n) => n.id),
 				activeNoteId: workspace.activeNote,
 				temporaryNotesId: Array.from(
-					Object.entries(workspace.openedNotesState)
+					Object.entries(workspace.openedNotesMeta)
 						.filter(([_, value]) => value.isTemporary)
 						.map(([id]) => id),
 				),
