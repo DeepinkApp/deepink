@@ -558,17 +558,18 @@ export const vaultsSlice = createSlice({
 				...openedNotes.slice(noteIndex + 1),
 			];
 
-			if (workspace.openedNotesMeta[note.id]) {
-				// Clear temporary status only when note content changes
-				const oldNote = openedNotes[noteIndex];
-				const isContentChanged =
-					oldNote.content.text !== note.content.text ||
-					oldNote.content.title !== note.content.title;
+			// Update temporary status to permanent if title or text was modified
+			const meta = workspace.openedNotesMeta[note.id];
+			if (!meta?.isTemporary) return;
 
-				if (isContentChanged) {
-					workspace.openedNotesMeta[note.id] = { isTemporary: false };
-				}
+			const oldNote = openedNotes[noteIndex];
+			if (
+				note.content.title === oldNote.content.title ||
+				note.content.text === oldNote.content.text
+			) {
+				return;
 			}
+			meta.isTemporary = false;
 		},
 
 		setOpenedNotes: (

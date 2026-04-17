@@ -171,15 +171,27 @@ export const Note: FC<NoteEditorProps> = memo(
 					debouncedUpdateNote({ title, text });
 				});
 			}
+		}, [title, text, debouncedUpdateNote]);
 
-			// When note content changed open note like persistent
+		// Update note temporary status when note content changes
+		const isNoteTemporary = useWorkspaceSelector(selectIsNoteTemporary(note.id));
+		const isFirstRunRef = useRef(true);
+		useEffect(() => {
+			if (isFirstRunRef.current) {
+				isFirstRunRef.current = false;
+				return;
+			}
+
+			// Update status only if the note is in temporary mode
+			if (!isNoteTemporary) return;
+
 			dispatch(
 				workspaceAction.setNoteTemporaryState({
 					noteId: note.id,
 					isTemporary: false,
 				}),
 			);
-		}, [title, text, debouncedUpdateNote, dispatch, note.id, workspaceAction]);
+		}, [title, text, isNoteTemporary, dispatch, workspaceAction, note.id]);
 
 		const attachments = useAttachmentsController();
 
