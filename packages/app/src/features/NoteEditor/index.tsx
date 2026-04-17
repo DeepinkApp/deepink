@@ -174,7 +174,7 @@ export const Note: FC<NoteEditorProps> = memo(
 
 			// When note content changed open note like persistent
 			dispatch(
-				workspaceAction.updateTemporaryNote({
+				workspaceAction.setNoteTemporaryState({
 					noteId: note.id,
 					isTemporary: false,
 				}),

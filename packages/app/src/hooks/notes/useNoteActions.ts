@@ -38,7 +38,7 @@ export const useNoteActions = () => {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
 				dispatch(
-					workspaceActions.updateTemporaryNote({
+					workspaceActions.setNoteTemporaryState({
 						noteId: id,
 						isTemporary,
 					}),

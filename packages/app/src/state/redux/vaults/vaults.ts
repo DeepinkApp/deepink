@@ -391,7 +391,7 @@ export const vaultsSlice = createSlice({
 			);
 		},
 
-		updateTemporaryNote: (
+		setNoteTemporaryState: (
 			state,
 			{
 				payload: { vaultId, workspaceId, noteId, isTemporary },
@@ -399,6 +399,10 @@ export const vaultsSlice = createSlice({
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
+
+			// Ignore if the note is not open
+			const isNoteOpen = workspace.openedNotes.find(({ id }) => id === noteId);
+			if (!isNoteOpen) return;
 
 			if (isTemporary) {
 				const oldTemporaryNoteIds = new Set<NoteId>();
@@ -409,7 +413,7 @@ export const vaultsSlice = createSlice({
 					}
 				});
 
-				// Remove old temporary note from opened notes - only one note can be open like temporary
+				// Remove old temporary note from opened notes - only one note can be open in temporary mode
 				if (oldTemporaryNoteIds.size) {
 					workspace.openedNotes = workspace.openedNotes.filter(
 						(note) => !oldTemporaryNoteIds.has(note.id),
