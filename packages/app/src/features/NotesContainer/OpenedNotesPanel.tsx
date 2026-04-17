@@ -9,7 +9,6 @@ import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
-import { selectTemporaryNoteId } from '@state/redux/vaults/vaults';
 
 export type TopBarProps = {
 	tabs: NoteId[];
@@ -49,7 +48,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		activeTabRef.current?.scrollIntoView();
 	}, [tabIndex]);
 
-	const temporaryNoteId = useWorkspaceSelector(selectTemporaryNoteId);
+	const temporaryNoteIds = useWorkspaceSelector(selectTemporaryNotesId);
 
 	return (
 		<Tabs
@@ -78,7 +77,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					}
 
 					const title = getNoteTitle(note.content, 50);
-					const isTemporary = temporaryNoteId === note.id;
+					const isTemporary = temporaryNoteIds?.includes(note.id);
 
 					return (
 						<Tab

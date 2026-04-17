@@ -37,9 +37,12 @@ export const useNoteActions = () => {
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
-				if (!isTemporary) {
-					dispatch(workspaceActions.resetTemporaryNote({ noteId: id }));
-				}
+				dispatch(
+					workspaceActions.updateTemporaryNote({
+						noteId: id,
+						isTemporary,
+					}),
+				);
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
 					if (note) openNote(note, { isTemporary });

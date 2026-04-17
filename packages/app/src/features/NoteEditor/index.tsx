@@ -44,6 +44,7 @@ import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommand
 import { useAppDispatch } from '@state/redux/hooks';
 import {
 	useVaultSelector,
+	useWorkspaceActions,
 	useWorkspaceData,
 	useWorkspaceSelector,
 } from '@state/redux/vaults/hooks';
@@ -77,6 +78,7 @@ export const Note: FC<NoteEditorProps> = memo(
 		const telemetry = useTelemetryTracker();
 		const dispatch = useAppDispatch();
 		const workspaceData = useWorkspaceData();
+		const workspaceAction = useWorkspaceActions();
 
 		const eventBus = useEventBus();
 		const notesRegistry = useNotesRegistry();
@@ -170,11 +172,14 @@ export const Note: FC<NoteEditorProps> = memo(
 				});
 			}
 
-			// When note content changed open reset note temporary status
+			// When note content changed open note like persistent
 			dispatch(
-				workspacesApi.resetTemporaryNote({ ...workspaceData, noteId: note.id }),
+				workspaceAction.updateTemporaryNote({
+					noteId: note.id,
+					isTemporary: false,
+				}),
 			);
-		}, [title, text, debouncedUpdateNote, dispatch, workspaceData, note.id]);
+		}, [title, text, debouncedUpdateNote, dispatch, note.id, workspaceAction]);
 
 		const attachments = useAttachmentsController();
 

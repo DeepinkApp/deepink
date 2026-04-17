@@ -40,12 +40,14 @@ export const selectActiveNoteId = createWorkspaceSelector(
 	},
 );
 
-export const selectTemporaryNoteId = createWorkspaceSelector(
+export const selectTemporaryNotesId = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
 		if (!workspace) return null;
 
-		return workspace.openedNotes.find((n) => n.isTemporary)?.id ?? null;
+		return Object.entries(workspace.openedNotesState)
+			.filter(([_, value]) => value.isTemporary)
+			.map(([id]) => id);
 	},
 );
 
