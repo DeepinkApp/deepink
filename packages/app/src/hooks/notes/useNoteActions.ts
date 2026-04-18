@@ -38,6 +38,7 @@ export const useNoteActions = () => {
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
+				// Update temporary note to permanent
 				if (!isTemporary && isOpenedNoteTemporary) {
 					dispatch(
 						workspaceActions.setNoteTemporaryState({
