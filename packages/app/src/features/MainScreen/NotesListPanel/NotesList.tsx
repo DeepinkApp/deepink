@@ -195,19 +195,19 @@ export const NotesList: FC<NotesListProps> = () => {
 										if (isSingleClick) {
 											// Single click - open note temporarily
 											noteActions.click(note.id);
+
+											telemetry.track(
+												TELEMETRY_EVENT_NAME.NOTE_OPENED,
+												{
+													context: 'notes list',
+												},
+											);
 										} else {
 											// Double click - open note persistently
 											noteActions.click(note.id, {
 												isTemporary: false,
 											});
 										}
-
-										telemetry.track(
-											TELEMETRY_EVENT_NAME.NOTE_OPENED,
-											{
-												context: 'notes list',
-											},
-										);
 									}}
 								/>
 							);
