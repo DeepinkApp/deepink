@@ -33,11 +33,12 @@ export const useNoteActions = () => {
 		(id: NoteId, { isTemporary = true }: { isTemporary?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
+			const isOpenedNoteTemporary = selectIsNoteTemporary(id)(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
-				if (!isTemporary) {
+				if (!isTemporary && isOpenedNoteTemporary) {
 					dispatch(
 						workspaceActions.setNoteTemporaryState({
 							noteId: id,
