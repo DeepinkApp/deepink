@@ -411,7 +411,7 @@ export const vaultsSlice = createSlice({
 						previousTemporaryIds.add(id);
 
 						// Only one temporary note is allowed
-						workspace.openedNotesMeta[id] = { isTemporary: false };
+						delete workspace.openedNotesMeta[id];
 					}
 				});
 
