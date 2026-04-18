@@ -40,7 +40,7 @@ export const selectActiveNoteId = createWorkspaceSelector(
 	},
 );
 
-export const selectTemporaryNotesId = createWorkspaceSelector(
+export const selectTemporaryNoteIds = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
 		if (!workspace) return null;

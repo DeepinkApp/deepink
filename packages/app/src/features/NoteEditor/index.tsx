@@ -173,7 +173,7 @@ export const Note: FC<NoteEditorProps> = memo(
 			}
 		}, [title, text, debouncedUpdateNote]);
 
-		// Update note temporary status when note content changes
+		// Update temporary note to permanent if content has changed
 		const isNoteTemporary = useWorkspaceSelector(selectIsNoteTemporary(note.id));
 		const isFirstRunRef = useRef(true);
 		useEffect(() => {

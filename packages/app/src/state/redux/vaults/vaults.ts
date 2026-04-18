@@ -405,18 +405,20 @@ export const vaultsSlice = createSlice({
 			if (!isNoteOpen) return;
 
 			if (isTemporary) {
-				const oldTemporaryNoteIds = new Set<NoteId>();
+				const previousTemporaryIds = new Set<NoteId>();
 				Object.entries(workspace.openedNotesMeta).forEach(([id, meta]) => {
 					if (meta.isTemporary && id !== noteId) {
-						oldTemporaryNoteIds.add(id);
+						previousTemporaryIds.add(id);
+
+						// Only one temporary note is allowed
 						workspace.openedNotesMeta[id] = { isTemporary: false };
 					}
 				});
 
 				// Remove old temporary note from opened notes - only one note can be open in temporary mode
-				if (oldTemporaryNoteIds.size) {
+				if (previousTemporaryIds.size) {
 					workspace.openedNotes = workspace.openedNotes.filter(
-						(note) => !oldTemporaryNoteIds.has(note.id),
+						(note) => !previousTemporaryIds.has(note.id),
 					);
 				}
 			}
@@ -558,16 +560,16 @@ export const vaultsSlice = createSlice({
 				...openedNotes.slice(noteIndex + 1),
 			];
 
-			// Update temporary note permanent if content or delete state changes
-			const openedNoteMeta = workspace.openedNotesMeta[note.id];
-			const oldNote = openedNotes[noteIndex];
+			// Update temporary note to permanent if content or deleted status has changed
+			const previousNote = openedNotes[noteIndex];
 			const hasNoteChanged =
-				note.isDeleted !== oldNote.isDeleted ||
-				note.content.title !== oldNote.content.title ||
-				note.content.text !== oldNote.content.text;
+				note.isDeleted !== previousNote.isDeleted ||
+				note.content.title !== previousNote.content.title ||
+				note.content.text !== previousNote.content.text;
 
-			if (openedNoteMeta && openedNoteMeta.isTemporary && hasNoteChanged) {
-				openedNoteMeta.isTemporary = false;
+			const noteMeta = workspace.openedNotesMeta[note.id];
+			if (noteMeta && noteMeta.isTemporary && hasNoteChanged) {
+				noteMeta.isTemporary = false;
 			}
 		},
 

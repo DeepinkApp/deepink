@@ -48,7 +48,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		activeTabRef.current?.scrollIntoView();
 	}, [tabIndex]);
 
-	const temporaryNoteIds = useWorkspaceSelector(selectTemporaryNotesId);
+	const temporaryNoteIds = useWorkspaceSelector(selectTemporaryNoteIds);
 
 	return (
 		<Tabs
