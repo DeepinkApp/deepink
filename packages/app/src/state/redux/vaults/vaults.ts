@@ -377,20 +377,6 @@ export const vaultsSlice = createSlice({
 			}
 		},
 
-		setTemporaryNotes: (
-			state,
-			{
-				payload: { vaultId, workspaceId, noteIds },
-			}: PayloadAction<WorkspaceScoped<{ noteIds: NoteId[] }>>,
-		) => {
-			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
-			if (!workspace) return;
-
-			workspace.openedNotesMeta = Object.fromEntries(
-				noteIds.map((id) => [id, { isTemporary: true }]),
-			);
-		},
-
 		markNoteAsTemporary: (
 			state,
 			{

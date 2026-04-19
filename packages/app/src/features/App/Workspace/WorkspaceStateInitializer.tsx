@@ -88,10 +88,10 @@ export const WorkspaceStateInitializer = () => {
 						);
 
 						// Restore the temporary opened notes
-						if (state.temporaryNotesId.length) {
+						if (state.temporaryNoteId) {
 							dispatch(
-								workspaceActions.setTemporaryNotes({
-									noteIds: state.temporaryNotesId,
+								workspaceActions.markNoteAsTemporary({
+									noteId: state.temporaryNoteId,
 								}),
 							);
 						}
