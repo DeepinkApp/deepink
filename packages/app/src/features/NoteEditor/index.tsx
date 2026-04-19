@@ -187,7 +187,7 @@ export const Note: FC<NoteEditorProps> = memo(
 			}
 
 			// Update status only if the note is in temporary mode
-			if (temporaryNote === note.id) return;
+			if (temporaryNote !== note.id) return;
 
 			dispatch(workspaceAction.markNoteAsPermanent({ noteId: note.id }));
 		}, [title, text, temporaryNote, dispatch, workspaceAction, note.id]);
