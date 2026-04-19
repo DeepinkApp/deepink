@@ -391,11 +391,11 @@ export const vaultsSlice = createSlice({
 			);
 		},
 
-		setNoteTemporaryState: (
+		markNoteAsTemporary: (
 			state,
 			{
-				payload: { vaultId, workspaceId, noteId, isTemporary },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId; isTemporary: boolean }>>,
+				payload: { vaultId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
@@ -404,26 +404,36 @@ export const vaultsSlice = createSlice({
 			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
 			if (!isNoteOpen) return;
 
-			if (isTemporary) {
-				const previousTemporaryIds = new Set<NoteId>();
-				Object.entries(workspace.openedNotesMeta).forEach(([id, meta]) => {
-					if (meta.isTemporary && id !== noteId) {
-						previousTemporaryIds.add(id);
+			const previousTemporaryIds = new Set<NoteId>();
+			Object.entries(workspace.openedNotesMeta).forEach(([id, meta]) => {
+				if (meta.isTemporary && id !== noteId) {
+					previousTemporaryIds.add(id);
 
-						// Only one temporary note is allowed
-						delete workspace.openedNotesMeta[id];
-					}
-				});
-
-				// Remove old temporary note from opened notes - only one note can be open in temporary mode
-				if (previousTemporaryIds.size) {
-					workspace.openedNotes = workspace.openedNotes.filter(
-						(note) => !previousTemporaryIds.has(note.id),
-					);
+					// Only one temporary note is allowed
+					delete workspace.openedNotesMeta[id];
 				}
+			});
+
+			// Remove old temporary note from opened notes - only one note can be open in temporary mode
+			if (previousTemporaryIds.size) {
+				workspace.openedNotes = workspace.openedNotes.filter(
+					(note) => !previousTemporaryIds.has(note.id),
+				);
 			}
 
-			workspace.openedNotesMeta[noteId] = { isTemporary };
+			workspace.openedNotesMeta[noteId] = { isTemporary: true };
+		},
+
+		markNoteAsPermanent: (
+			state,
+			{
+				payload: { vaultId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			if (!workspace) return;
+
+			delete workspace.openedNotesMeta[noteId];
 		},
 
 		removeOpenedNote: (

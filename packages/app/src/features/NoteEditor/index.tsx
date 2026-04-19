@@ -189,12 +189,7 @@ export const Note: FC<NoteEditorProps> = memo(
 			// Update status only if the note is in temporary mode
 			if (!isNoteTemporary) return;
 
-			dispatch(
-				workspaceAction.setNoteTemporaryState({
-					noteId: note.id,
-					isTemporary: false,
-				}),
-			);
+			dispatch(workspaceAction.markNoteAsPermanent({ noteId: note.id }));
 		}, [title, text, isNoteTemporary, dispatch, workspaceAction, note.id]);
 
 		const attachments = useAttachmentsController();
