@@ -31,7 +31,6 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	onOpenPersistently,
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
-
 	const openNoteContextMenu = useNoteContextMenu('tabs');
 
 	const existsTabs = useMemo(
