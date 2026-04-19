@@ -93,12 +93,14 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 							dispatch(workspaceActions.setActiveNote({ noteId: note.id }));
 						}
 
-						dispatch(
-							workspaceActions.setNoteTemporaryState({
-								noteId: note.id,
-								isTemporary,
-							}),
-						);
+						if (isTemporary) {
+							dispatch(
+								workspaceActions.setNoteTemporaryState({
+									noteId: note.id,
+									isTemporary: true,
+								}),
+							);
+						}
 					},
 					noteUpdated: (note: INote) =>
 						dispatch(workspaceActions.updateOpenedNote({ note })),
