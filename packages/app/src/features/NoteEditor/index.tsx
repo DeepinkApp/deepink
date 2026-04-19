@@ -49,7 +49,11 @@ import {
 	useWorkspaceSelector,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import { selectTags, workspacesApi } from '@state/redux/vaults/vaults';
+import {
+	selectIsNoteTemporary,
+	selectTags,
+	workspacesApi,
+} from '@state/redux/vaults/vaults';
 
 import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';

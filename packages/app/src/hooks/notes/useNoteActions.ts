@@ -16,7 +16,11 @@ import {
 	useWorkspaceData,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import { selectIsNoteOpened, selectWorkspace } from '@state/redux/vaults/vaults';
+import {
+	selectIsNoteOpened,
+	selectIsNoteTemporary,
+	selectWorkspace,
+} from '@state/redux/vaults/vaults';
 
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();

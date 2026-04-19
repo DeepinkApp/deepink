@@ -6,9 +6,10 @@ import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
+import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { selectTemporaryNoteIds } from '@state/redux/vaults/vaults';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
-import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 
 export type TopBarProps = {
 	tabs: NoteId[];
