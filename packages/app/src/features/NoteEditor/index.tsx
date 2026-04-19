@@ -50,8 +50,8 @@ import {
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import {
-	selectIsNoteTemporary,
 	selectTags,
+	selectTemporaryNoteId,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
@@ -178,7 +178,7 @@ export const Note: FC<NoteEditorProps> = memo(
 		}, [title, text, debouncedUpdateNote]);
 
 		// Immediately update a temporary note to permanent if content has changed, without waiting for debounce
-		const isNoteTemporary = useWorkspaceSelector(selectIsNoteTemporary(note.id));
+		const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
 		const isFirstRunRef = useRef(true);
 		useEffect(() => {
 			if (isFirstRunRef.current) {
@@ -187,10 +187,10 @@ export const Note: FC<NoteEditorProps> = memo(
 			}
 
 			// Update status only if the note is in temporary mode
-			if (!isNoteTemporary) return;
+			if (temporaryNote === note.id) return;
 
 			dispatch(workspaceAction.markNoteAsPermanent({ noteId: note.id }));
-		}, [title, text, isNoteTemporary, dispatch, workspaceAction, note.id]);
+		}, [title, text, temporaryNote, dispatch, workspaceAction, note.id]);
 
 		const attachments = useAttachmentsController();
 

@@ -40,23 +40,18 @@ export const selectActiveNoteId = createWorkspaceSelector(
 	},
 );
 
-export const selectTemporaryNoteIds = createWorkspaceSelector(
+export const selectTemporaryNoteId = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
 		if (!workspace) return null;
 
-		return Object.entries(workspace.openedNotesMeta)
-			.filter(([, meta]) => meta.isTemporary)
-			.map(([id]) => id);
+		return (
+			Object.keys(workspace.openedNotesMeta).find(
+				(id) => workspace.openedNotesMeta[id].isTemporary,
+			) ?? null
+		);
 	},
 );
-
-export const selectIsNoteTemporary = (noteId: string) =>
-	createWorkspaceSelector([selectWorkspaceRoot], (workspace) => {
-		if (!workspace) return false;
-
-		return workspace.openedNotesMeta[noteId]?.isTemporary ?? false;
-	});
 
 export const selectSearch = createWorkspaceSelector(
 	[selectWorkspaceRoot],
