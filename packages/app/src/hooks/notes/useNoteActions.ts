@@ -16,11 +16,7 @@ import {
 	useWorkspaceData,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import {
-	selectIsNoteOpened,
-	selectIsNoteTemporary,
-	selectWorkspace,
-} from '@state/redux/vaults/vaults';
+import { selectIsNoteOpened, selectWorkspace } from '@state/redux/vaults/vaults';
 
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();
@@ -37,13 +33,12 @@ export const useNoteActions = () => {
 		(id: NoteId, { isTemporary = true }: { isTemporary?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
-			const isOpenedNoteTemporary = selectIsNoteTemporary(id)(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
 
 				// Update temporary note to permanent
-				if (!isTemporary && isOpenedNoteTemporary) {
+				if (!isTemporary) {
 					dispatch(workspaceActions.markNoteAsPermanent({ noteId: id }));
 				}
 			} else {
