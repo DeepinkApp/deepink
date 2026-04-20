@@ -18,7 +18,7 @@ export const defaultVaultConfig = {
 		interval: ms('30s'),
 	},
 	deletion: {
-		confirm: false,
+		confirm: true,
 		permanentDeletion: false,
 		bin: {
 			autoClean: false,
