@@ -18,13 +18,7 @@ export const WelcomeScreen = ({ onConfirm }: { onConfirm: () => void }) => {
 		<CenterBox maxWidth="600px">
 			<VStack alignItems="start" gap="2rem">
 				<VStack width="100%" gap="1rem">
-					<Text
-						as="h3"
-						color="typography.secondary"
-						fontSize="2rem"
-						w="100%"
-						textAlign="center"
-					>
+					<Text as="h3" fontSize="2rem" w="100%" textAlign="center">
 						{t('welcome.title')}
 					</Text>
 					<Text color="typography.secondary">{t('welcome.description')}</Text>
