@@ -22,6 +22,7 @@ import {
 	VaultOpenErrorCode,
 } from './Vaults/hooks/useVaultContainers';
 import { VaultScreen } from './VaultScreen';
+import { WelcomeScreen } from './WelcomeScreen';
 
 export const App: FC = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.vault);
@@ -119,9 +120,21 @@ export const App: FC = () => {
 	// Skip splash while encrypted vault is opening
 	const isVaultLoading = screenName === 'loading' && !currentVault?.encryption;
 
+	const isEmptyVaultsList = vaultsList.vaults.length === 0;
+	const [isConfigured, setIsConfigured] = useState(false);
+
 	if (isInitialLoading || isVaultLoading) {
 		return <SplashScreen />;
 	}
+
+	if (isEmptyVaultsList && !isConfigured)
+		return (
+			<WelcomeScreen
+				onConfirm={() => {
+					setIsConfigured(true);
+				}}
+			/>
+		);
 
 	if (vaultContainers.activeVault) {
 		return <VaultScreen vaultContainers={vaultContainers} />;
@@ -139,8 +152,7 @@ export const App: FC = () => {
 		);
 	}
 
-	const hasNoVaults = vaultsList.vaults.length === 0;
-	if (screenName === 'create' || hasNoVaults) {
+	if (screenName === 'create' || isEmptyVaultsList) {
 		return (
 			<CenterBox>
 				<VaultCreator
@@ -148,7 +160,9 @@ export const App: FC = () => {
 						const newVault = await vaultsList.createVault(vault);
 						await onOpenVault(newVault, vault.password || undefined);
 					}}
-					onCancel={hasNoVaults ? undefined : () => setScreenName('choose')}
+					onCancel={
+						isEmptyVaultsList ? undefined : () => setScreenName('choose')
+					}
 					defaultVaultName={getRandomItem(
 						Object.values(
 							t('creator.field.name.suggests', {
