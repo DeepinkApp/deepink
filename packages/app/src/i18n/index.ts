@@ -50,3 +50,24 @@ export const supportedLanguages = [
 	'zh-CN',
 	'zh-TW',
 ];
+
+export const getPreferredLanguage = (
+	languages: readonly string[],
+	defaultLanguage = sourceLanguage,
+) => {
+	const languagesList = new Map(supportedLanguages.map((lng, index) => [lng, index]));
+
+	const foundLanguages = languages
+		.map((language) => {
+			if (languagesList.has(language)) return language;
+
+			const languageBase = language.split('-')[0];
+			if (languagesList.has(languageBase)) return languageBase;
+
+			return null;
+		})
+		.filter((l) => l !== null)
+		.sort((a, b) => (languagesList.get(b) ?? -1) - (languagesList.get(a) ?? -1));
+
+	return foundLanguages.length > 0 ? foundLanguages[0] : defaultLanguage;
+};

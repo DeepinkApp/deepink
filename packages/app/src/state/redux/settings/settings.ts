@@ -1,3 +1,4 @@
+import { getPreferredLanguage } from 'src/i18n';
 import z from 'zod';
 import { accentColorsMap } from '@features/accentColorsMap';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
@@ -42,7 +43,7 @@ export const settingsScheme = z.object({
 export type GlobalSettings = z.output<typeof settingsScheme>;
 
 export const defaultSettings = {
-	language: 'en',
+	language: getPreferredLanguage(navigator.languages),
 	checkForUpdates: true,
 	theme: {
 		name: 'zen',
