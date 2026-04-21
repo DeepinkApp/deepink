@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`State support the custom Zod codecs 1`] = `"{"buffer":"44003925778b9da674943f19e768b8a8cea0911f3dd05216cae88d785b18c0863421544059422d56d16f7abbc1f68489626635a50563f7777d13012b00c05639fde378de1340b9d2c81838725c08d2c78fdf0d94b9334ea27700329e9e3642f0962cc8a4"}"`;
