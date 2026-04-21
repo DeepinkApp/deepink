@@ -178,7 +178,7 @@ export const Note: FC<NoteEditorProps> = memo(
 		}, [title, text, debouncedUpdateNote]);
 
 		// Immediately update a temporary note to permanent if content has changed, without waiting for debounce
-		const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
+		const temporaryNoteId = useWorkspaceSelector(selectTemporaryNoteId);
 		const isFirstRunRef = useRef(true);
 		useEffect(() => {
 			if (isFirstRunRef.current) {
@@ -187,10 +187,10 @@ export const Note: FC<NoteEditorProps> = memo(
 			}
 
 			// Update status only if the note is in temporary mode
-			if (temporaryNote !== note.id) return;
+			if (temporaryNoteId !== note.id) return;
 
 			dispatch(workspaceAction.markNoteAsPermanent({ noteId: note.id }));
-		}, [title, text, temporaryNote, dispatch, workspaceAction, note.id]);
+		}, [title, text, temporaryNoteId, dispatch, workspaceAction, note.id]);
 
 		const attachments = useAttachmentsController();
 
