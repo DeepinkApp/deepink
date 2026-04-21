@@ -1,41 +1,9 @@
-import z from 'zod';
 import { IEncryptionProcessor, RandomBytesGenerator } from '@core/encryption';
 import { KEY_SALT_BYTES } from '@core/encryption/utils/keys';
 import { DerivedBitsGenerator, EncryptionConfig } from '@core/features/encryption/worker';
 import { consumeDisposable, DisposableBox } from '@utils/disposable';
 
-import { bytesToHex, hexToBytes } from './hex';
 import { VaultConfigController } from './VaultConfigController';
-
-export const VaultEncryptionConfigScheme = z.object({
-	algorithm: z.string(),
-
-	/**
-	 * Master key encrypted with a key derived from user password
-	 */
-	encryptedMasterKey: z.object({
-		ciphertext: z.string(),
-		salt: z.string(),
-	}),
-
-	/**
-	 * Params to derive the intermediate encryption key for the master key,
-	 * from the user's master password
-	 */
-	passwordKDF: z.object({
-		salt: z.string(),
-		params: z.object({
-			memory: z.number(),
-			ops: z.number(),
-		}),
-	}),
-});
-
-export const VaultPublicConfigScheme = z.object({
-	encryption: VaultEncryptionConfigScheme.nullable(),
-});
-
-export type VaultPublicConfig = z.output<typeof VaultPublicConfigScheme>;
 
 export type DisposableEncryption = (
 	config: EncryptionConfig,
@@ -107,12 +75,10 @@ export class VaultController {
 		await this.config.set({
 			encryption: {
 				algorithm,
-				encryptedMasterKey: {
-					ciphertext: bytesToHex(new Uint8Array(encryptedKey)),
-					salt: bytesToHex(new Uint8Array(keySalt)),
-				},
+				encryptedMasterKey: new Uint8Array(encryptedKey),
+				salt: new Uint8Array(keySalt),
 				passwordKDF: {
-					salt: bytesToHex(new Uint8Array(passwordSalt)),
+					salt: new Uint8Array(passwordSalt),
 					params: {
 						memory: argonMemoryInBytes,
 						ops,
@@ -134,10 +100,10 @@ export class VaultController {
 		}
 
 		// Init encrypted vault
-		const { algorithm, encryptedMasterKey, passwordKDF } = config.encryption;
+		const { algorithm, encryptedMasterKey, salt, passwordKDF } = config.encryption;
 
 		const derivedPassword = await consumeDisposable(this.disposableKDF(), (kdf) =>
-			kdf(new TextEncoder().encode(password), hexToBytes(passwordKDF.salt), 256, {
+			kdf(new TextEncoder().encode(password), passwordKDF.salt, 256, {
 				memory: passwordKDF.params.memory,
 				ops: passwordKDF.params.ops,
 			}),
@@ -147,11 +113,11 @@ export class VaultController {
 			this.disposableEncryption({
 				algorithm,
 				key: derivedPassword,
-				salt: hexToBytes(encryptedMasterKey.salt),
+				salt: salt,
 			}),
-			(cipher) => cipher.decrypt(hexToBytes(encryptedMasterKey.ciphertext).buffer),
+			(cipher) => cipher.decrypt(encryptedMasterKey.buffer),
 		);
 
-		return masterKey;
+		return new Uint8Array(masterKey);
 	}
 }
