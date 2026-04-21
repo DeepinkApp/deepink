@@ -195,7 +195,6 @@ export const NotesList: FC<NotesListProps> = () => {
 										if (isSingleClick) {
 											// Single click - open note temporarily
 											noteActions.click(note.id);
-
 											telemetry.track(
 												TELEMETRY_EVENT_NAME.NOTE_OPENED,
 												{
