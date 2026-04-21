@@ -1,0 +1,23 @@
+import { EncryptionController } from '@core/encryption/EncryptionController';
+import { DerivedBitsGenerator } from '@core/features/encryption/worker';
+import { CryptographyUtils } from '@core/features/encryption/worker/CryptographyUtils';
+import { WorkerEncryptionProcessor } from '@core/features/encryption/worker/WorkerEncryptionProcessor';
+import { DisposableBox } from '@utils/disposable';
+
+import { DisposableEncryption } from './VaultController';
+
+export const disposableEncryption: DisposableEncryption = (config) => {
+	const workerEncryption = new WorkerEncryptionProcessor(config);
+	const encryptionController = new EncryptionController(workerEncryption);
+
+	return new DisposableBox(encryptionController, async () => {
+		await workerEncryption.terminate();
+	});
+};
+
+export const disposableKDF = (): DisposableBox<DerivedBitsGenerator> => {
+	const cryptoUtils = new CryptographyUtils();
+	return new DisposableBox(cryptoUtils.deriveBits.bind(cryptoUtils), async () => {
+		await cryptoUtils.dispose();
+	});
+};

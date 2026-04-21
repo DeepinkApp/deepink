@@ -2,7 +2,7 @@ import z from 'zod';
 import { IEncryptionProcessor, RandomBytesGenerator } from '@core/encryption';
 import { KEY_SALT_BYTES } from '@core/encryption/utils/keys';
 import { DerivedBitsGenerator, EncryptionConfig } from '@core/features/encryption/worker';
-import { DisposableBox } from '@utils/disposable';
+import { consumeDisposable, DisposableBox } from '@utils/disposable';
 
 import { bytesToHex, hexToBytes } from './hex';
 import { VaultConfigController } from './VaultConfigController';
@@ -41,11 +41,13 @@ export type DisposableEncryption = (
 	config: EncryptionConfig,
 ) => DisposableBox<IEncryptionProcessor>;
 
+export type DisposableKDF = () => DisposableBox<DerivedBitsGenerator>;
+
 export class VaultController {
 	constructor(
 		private readonly config: VaultConfigController,
 		private readonly disposableEncryption: DisposableEncryption,
-		private readonly deriveBits: DerivedBitsGenerator,
+		private readonly disposableKDF: DisposableKDF,
 		private readonly getRandomBytes: RandomBytesGenerator,
 	) {}
 
@@ -80,26 +82,27 @@ export class VaultController {
 
 		const passwordSalt = this.getRandomBytes(16);
 		const argonMemoryInBytes = 1024 ** 2 * memory;
-		const derivedPassword = await this.deriveBits(
-			new TextEncoder().encode(password),
-			passwordSalt,
-			256,
-			{ memory: argonMemoryInBytes, ops },
+
+		const derivedPassword = await consumeDisposable(this.disposableKDF(), (kdf) =>
+			kdf(new TextEncoder().encode(password), passwordSalt, 256, {
+				memory: argonMemoryInBytes,
+				ops,
+			}),
 		);
+
+		console.log('Derived pass');
 
 		const key = this.getRandomBytes(32);
 		const keySalt = this.getRandomBytes(KEY_SALT_BYTES);
 
-		const encryptionWorker = this.disposableEncryption({
-			algorithm,
-			key: derivedPassword,
-			salt: keySalt,
-		});
-
-		const encryptedKey = await encryptionWorker
-			.getContent()
-			.encrypt(key.buffer)
-			.finally(() => encryptionWorker.dispose());
+		const encryptedKey = await consumeDisposable(
+			this.disposableEncryption({
+				algorithm,
+				key: derivedPassword,
+				salt: keySalt,
+			}),
+			(cipher) => cipher.encrypt(key.buffer),
+		);
 
 		await this.config.set({
 			encryption: {
@@ -133,23 +136,21 @@ export class VaultController {
 		// Init encrypted vault
 		const { algorithm, encryptedMasterKey, passwordKDF } = config.encryption;
 
-		const derivedPassword = await this.deriveBits(
-			new TextEncoder().encode(password),
-			hexToBytes(passwordKDF.salt),
-			256,
-			{ memory: passwordKDF.params.memory, ops: passwordKDF.params.ops },
+		const derivedPassword = await consumeDisposable(this.disposableKDF(), (kdf) =>
+			kdf(new TextEncoder().encode(password), hexToBytes(passwordKDF.salt), 256, {
+				memory: passwordKDF.params.memory,
+				ops: passwordKDF.params.ops,
+			}),
 		);
 
-		const encryptionWorker = this.disposableEncryption({
-			algorithm,
-			key: derivedPassword,
-			salt: hexToBytes(encryptedMasterKey.salt),
-		});
-
-		const masterKey = await encryptionWorker
-			.getContent()
-			.decrypt(hexToBytes(encryptedMasterKey.ciphertext).buffer)
-			.finally(() => encryptionWorker.dispose());
+		const masterKey = await consumeDisposable(
+			this.disposableEncryption({
+				algorithm,
+				key: derivedPassword,
+				salt: hexToBytes(encryptedMasterKey.salt),
+			}),
+			(cipher) => cipher.decrypt(hexToBytes(encryptedMasterKey.ciphertext).buffer),
+		);
 
 		return masterKey;
 	}
