@@ -506,6 +506,10 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
+			// Ignore if note not opened or already permanent
+			const meta = workspace.openedNotesMeta[noteId];
+			if (!meta || !meta.isTemporary) return;
+
 			workspace.openedNotesMeta[noteId].isTemporary = false;
 		},
 
