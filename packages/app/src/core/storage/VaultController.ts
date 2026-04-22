@@ -1,9 +1,10 @@
 import { IEncryptionProcessor, RandomBytesGenerator } from '@core/encryption';
-import { KEY_SALT_BYTES } from '@core/encryption/utils/keys';
 import { DerivedBitsGenerator, EncryptionConfig } from '@core/features/encryption/worker';
 import { consumeDisposable, DisposableBox } from '@utils/disposable';
 
 import { VaultConfigController } from './VaultConfigController';
+
+export const KEY_SALT_BYTES = 32;
 
 export type DisposableEncryption = (
 	config: EncryptionConfig,
