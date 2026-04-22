@@ -4,7 +4,9 @@ import { NOTES_VIEW } from '@state/redux/vaults/vaults';
 export const WorkspaceStateScheme = z.object({
 	openedNoteIds: z.array(z.string()).nullable(),
 	activeNoteId: z.string().nullable(),
-	temporaryNoteId: z.string().nullable(),
+	openedNotesMeta: z
+		.record(z.string(), z.object({ isTemporary: z.boolean() }))
+		.nullable(),
 	selectedTagId: z.string().nullable(),
 	view: z.enum(NOTES_VIEW),
 	search: z.string(),
