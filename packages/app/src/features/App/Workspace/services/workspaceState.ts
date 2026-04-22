@@ -1,12 +1,10 @@
 import z from 'zod';
-import { NOTES_VIEW } from '@state/redux/vaults/vaults';
+import { NOTES_VIEW, OpenedNotesMetaSchema } from '@state/redux/vaults/vaults';
 
 export const WorkspaceStateScheme = z.object({
 	openedNoteIds: z.array(z.string()).nullable(),
 	activeNoteId: z.string().nullable(),
-	openedNotesMeta: z
-		.record(z.string(), z.object({ isTemporary: z.boolean() }))
-		.nullable(),
+	openedNotesMeta: OpenedNotesMetaSchema,
 	selectedTagId: z.string().nullable(),
 	view: z.enum(NOTES_VIEW),
 	search: z.string(),

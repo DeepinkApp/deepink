@@ -121,7 +121,13 @@ export type LoadingStatus = {
 	isTagsLoaded: boolean;
 };
 
-type OpenedNotesMeta = Record<NoteId, { isTemporary: boolean }>;
+export const OpenedNotesMetaSchema = z.record(
+	z.string(),
+	z.object({
+		isTemporary: z.boolean(),
+	}),
+);
+export type OpenedNotesMeta = z.output<typeof OpenedNotesMetaSchema>;
 
 export type WorkspaceData = {
 	id: string;
