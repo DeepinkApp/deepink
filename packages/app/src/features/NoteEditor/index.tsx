@@ -173,7 +173,7 @@ export const Note: FC<NoteEditorProps> = memo(
 			}
 		}, [title, text, debouncedUpdateNote]);
 
-		// Immediately update a temporary note to permanent if content has changed, without waiting for debounce
+		// Immediately update a temporary note to permanent if content has changed
 		const isFirstRunRef = useRef(true);
 		useEffect(() => {
 			if (isFirstRunRef.current) {
