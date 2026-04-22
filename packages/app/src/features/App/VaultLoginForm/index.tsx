@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Button, Input, useToast, VStack } from '@chakra-ui/react';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
-import { VaultObject } from '@core/storage/VaultsManager';
+import { VaultSummary } from '@core/storage/VaultsList';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useFocusableRef } from '@hooks/useFocusableRef';
 
@@ -11,7 +11,7 @@ import { OnPickVault } from '../types';
 import { VaultsForm } from '../VaultsForm';
 
 export type VaultLoginFormProps = {
-	vault: VaultObject;
+	vault: VaultSummary;
 	onLogin: OnPickVault;
 	onPickAnotherVault: () => void;
 };

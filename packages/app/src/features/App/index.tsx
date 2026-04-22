@@ -53,7 +53,7 @@ export const App: FC = () => {
 			setScreenName('loading');
 
 			try {
-				if (vault.encryption !== null && password === undefined) {
+				if (vault.isEncrypted !== null && password === undefined) {
 					return {
 						status: 'error',
 						message: t('login.errors.passwordRequired'),
@@ -102,7 +102,7 @@ export const App: FC = () => {
 				(vault) => vault.id === recentVault.vaultId,
 			);
 
-			if (!vault || vault.encryption) return;
+			if (!vault || vault.isEncrypted) return;
 
 			// Automatically open vault with no encryption
 			onOpenVault(vault);
@@ -118,7 +118,7 @@ export const App: FC = () => {
 	);
 
 	// Skip splash while encrypted vault is opening
-	const isVaultLoading = screenName === 'loading' && !currentVault?.encryption;
+	const isVaultLoading = screenName === 'loading' && !currentVault?.isEncrypted;
 
 	const isEmptyVaultsList = vaultsList.vaults.length === 0;
 	const [isConfigured, setIsConfigured] = useState(false);
@@ -140,7 +140,7 @@ export const App: FC = () => {
 		return <VaultScreen vaultContainers={vaultContainers} />;
 	}
 
-	if (currentVault && currentVault.encryption) {
+	if (currentVault && currentVault.isEncrypted) {
 		return (
 			<CenterBox>
 				<VaultLoginForm

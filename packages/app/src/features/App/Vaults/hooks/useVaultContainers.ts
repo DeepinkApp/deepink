@@ -7,15 +7,16 @@ import { SQLiteDB } from '@core/database/sqlite';
 import { openSQLite } from '@core/database/sqlite/openSQLite';
 import { EncryptionController } from '@core/encryption/EncryptionController';
 import { PlaceholderEncryptionController } from '@core/encryption/PlaceholderEncryptionController';
-import { base64ToBytes } from '@core/encryption/utils/encoding';
-import { deriveBitsFromPassword, KEY_SALT_BYTES } from '@core/encryption/utils/keys';
-import { createEncryption } from '@core/features/encryption/createEncryption';
+import { getRandomBytes } from '@core/encryption/utils/random';
 import { IFilesStorage } from '@core/features/files';
 import { EncryptedFS } from '@core/features/files/EncryptedFS';
 import { FileController } from '@core/features/files/FileController';
 import { RootedFS } from '@core/features/files/RootedFS';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
-import { VaultObject } from '@core/storage/VaultsManager';
+import { disposableEncryption, disposableKDF } from '@core/storage/cryptography';
+import { VaultConfigController } from '@core/storage/VaultConfigController';
+import { VaultController } from '@core/storage/VaultController';
+import { VaultSummary } from '@core/storage/VaultsList';
 import { useFilesStorage } from '@features/files';
 import { DisposableBox } from '@utils/disposable';
 
@@ -28,34 +29,8 @@ export type VaultContainer = {
 	files: IFilesStorage;
 };
 
-const decryptKey = async ({
-	encryptedKey,
-	password,
-	salt,
-	algorithm,
-}: {
-	encryptedKey: ArrayBuffer;
-	password: string;
-	salt: Uint8Array<ArrayBuffer>;
-	algorithm: string;
-}) => {
-	const keyPassword = await deriveBitsFromPassword(password, salt);
-	const encryption = await createEncryption({
-		key: keyPassword,
-		salt: new Uint8Array(encryptedKey).slice(0, KEY_SALT_BYTES),
-		algorithm,
-	});
-
-	return encryption
-		.getContent()
-		.decrypt(encryptedKey.slice(KEY_SALT_BYTES))
-		.finally(() => {
-			encryption.dispose();
-		})
-		.then((buffer) => new Uint8Array(buffer));
-};
-
 export const enum VaultOpenErrorCode {
+	CORRUPTED_CONFIG = 'CORRUPTED_CONFIG',
 	INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
 	KEY_FILE_NOT_FOUND = 'KEY_FILE_NOT_FOUND',
 }
@@ -89,7 +64,7 @@ export const useVaultContainers = () => {
 	const { vaultOpened, activeVaultChanged } = api.events;
 	const openVault = useCallback(
 		async (
-			{ vault, password }: { vault: VaultObject; password?: string },
+			{ vault, password }: { vault: VaultSummary; password?: string },
 			changeActiveVault = false,
 		) => {
 			const cleanups: (() => void)[] = [];
@@ -113,7 +88,7 @@ export const useVaultContainers = () => {
 				// Setup encryption
 				let encryptionController: EncryptionController;
 
-				if (vault.encryption === null) {
+				if (!vault.isEncrypted) {
 					encryptionController = new EncryptionController(
 						new PlaceholderEncryptionController(),
 					);
@@ -124,23 +99,27 @@ export const useVaultContainers = () => {
 							'Empty password for encrypted vault',
 						);
 
-					const encryptedKeyBuffer = await vaultFilesController.get('key');
-					if (!encryptedKeyBuffer) {
-						throw new VaultOpenError(
-							VaultOpenErrorCode.KEY_FILE_NOT_FOUND,
-							'Key file is not found in vault directory',
-						);
-					}
+					const configController = new VaultConfigController(
+						vaultFilesController,
+					);
 
-					const salt = new Uint8Array(base64ToBytes(vault.encryption.salt));
+					const vaultConfig = await configController.get();
+					if (!vaultConfig || !vaultConfig.encryption)
+						throw new VaultOpenError(
+							VaultOpenErrorCode.CORRUPTED_CONFIG,
+							'Corrupted vault. The encryption config is not found',
+						);
+
+					const vaultController = new VaultController(
+						configController,
+						disposableEncryption,
+						disposableKDF,
+						getRandomBytes,
+					);
+
 					let key;
 					try {
-						key = await decryptKey({
-							encryptedKey: encryptedKeyBuffer,
-							password,
-							salt,
-							algorithm: vault.encryption.algorithm,
-						});
+						key = await vaultController.getMasterKey(password);
 					} catch (error) {
 						throw new VaultOpenError(
 							VaultOpenErrorCode.INCORRECT_PASSWORD,
@@ -149,14 +128,16 @@ export const useVaultContainers = () => {
 						);
 					}
 
-					const encryption = await createEncryption({
+					const encryption = disposableEncryption({
+						algorithm: vaultConfig.encryption.algorithm,
 						key,
-						salt: new Uint8Array(encryptedKeyBuffer).slice(KEY_SALT_BYTES),
-						algorithm: vault.encryption.algorithm,
+						salt: vaultConfig.encryption.salt,
 					});
 
 					cleanups.push(() => encryption.dispose());
-					encryptionController = encryption.getContent();
+					encryptionController = new EncryptionController(
+						encryption.getContent(),
+					);
 				}
 
 				const encryptedVaultFS = new EncryptedFS(
@@ -186,7 +167,7 @@ export const useVaultContainers = () => {
 				const vaultEntry: VaultEntry = {
 					id: vault.id,
 					name: vault.name,
-					isEncrypted: vault.encryption !== null,
+					isEncrypted: vault.isEncrypted !== null,
 				};
 
 				const newVault = new DisposableBox(

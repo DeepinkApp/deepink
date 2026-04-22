@@ -1,8 +1,8 @@
-import { VaultObject } from '@core/storage/VaultsManager';
+import { VaultSummary } from '@core/storage/VaultsList';
 
 type PickVaultResponse = { status: 'ok' } | { status: 'error'; message: string };
 
 export type OnPickVault = (
-	vault: VaultObject,
+	vault: VaultSummary,
 	password?: string,
 ) => Promise<PickVaultResponse>;
