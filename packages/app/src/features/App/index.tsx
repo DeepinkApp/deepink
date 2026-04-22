@@ -4,7 +4,10 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebounce } from 'use-debounce';
 import { useToast } from '@chakra-ui/react';
 import { ConfigStorage } from '@core/storage/ConfigStorage';
-import { VaultOpenError, VaultOpenErrorCode } from '@core/storage/VaultController';
+import {
+	VaultOpenError,
+	VaultOpenErrorCode,
+} from '@core/storage/VaultEncryptionController';
 import { useFilesStorage } from '@features/files';
 import { SplashScreen } from '@features/SplashScreen';
 import { getRandomItem } from '@utils/collections/getRandomItem';

@@ -2,8 +2,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getRandomBytes } from '@core/encryption/utils/random';
 import { RootedFS } from '@core/features/files/RootedFS';
 import { disposableEncryption, disposableKDF } from '@core/storage/cryptography';
-import { VaultConfigController } from '@core/storage/VaultConfigController';
-import { VaultController } from '@core/storage/VaultController';
+import { VaultEncryptionConfig } from '@core/storage/VaultConfigController';
+import { VaultEncryptionController } from '@core/storage/VaultEncryptionController';
 import { VaultsList, VaultSummary } from '@core/storage/VaultsList';
 import { useFilesStorage } from '@features/files';
 
@@ -46,27 +46,25 @@ export const useVaultsList = (): VaultsListApi => {
 				isEncrypted: vault.password !== null,
 			});
 
-			const vaultConfig = new VaultConfigController(
-				new RootedFS(files, `/vaults/${summary.id}`),
-			);
+			// Setup encryption
+			if (vault.password) {
+				const vaultConfig = new VaultEncryptionConfig(
+					new RootedFS(files, `/vaults/${summary.id}`),
+				);
 
-			const vaultController = new VaultController(
-				vaultConfig,
-				disposableEncryption,
-				disposableKDF,
-				getRandomBytes,
-			);
+				const vaultController = new VaultEncryptionController(
+					vaultConfig,
+					disposableEncryption,
+					disposableKDF,
+					getRandomBytes,
+				);
 
-			await vaultController.init({
-				encryption:
-					vault.password === null
-						? undefined
-						: {
-								password: vault.password,
-								algorithm: vault.algorithm,
-								keyDerivation: { memory: 128, ops: 2 },
-							},
-			});
+				await vaultController.init({
+					password: vault.password,
+					algorithm: vault.algorithm,
+					keyDerivation: { memory: 128, ops: 2 },
+				});
+			}
 
 			await updateVaults();
 

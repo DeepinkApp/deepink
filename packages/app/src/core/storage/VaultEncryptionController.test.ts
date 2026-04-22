@@ -8,8 +8,11 @@ import { DisposableBox } from '@utils/disposable';
 
 import { disposableEncryption, disposableKDF } from './cryptography';
 import { bytesToHex } from './hex';
-import { VaultConfigController } from './VaultConfigController';
-import { VaultController, VaultOpenErrorCode } from './VaultController';
+import { VaultEncryptionConfig } from './VaultConfigController';
+import {
+	VaultEncryptionController,
+	VaultOpenErrorCode,
+} from './VaultEncryptionController';
 
 vi.stubGlobal('self', {
 	crypto: webcrypto,
@@ -19,10 +22,10 @@ describe('Vault life cycle', () => {
 	const seededRandomBytes = createFakeRandomBytesGenerator(0);
 
 	const fs = new InMemoryFS();
-	const vaultConfig = new VaultConfigController(fs);
+	const vaultConfig = new VaultEncryptionConfig(fs);
 
 	test('Vault can be initialized with user password', async () => {
-		const vaultController = new VaultController(
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			disposableEncryption,
 			disposableKDF,
@@ -31,20 +34,18 @@ describe('Vault life cycle', () => {
 
 		await expect(
 			vaultController.init({
-				encryption: {
-					password: 'secret password',
-					algorithm: ENCRYPTION_ALGORITHM.AES,
-					keyDerivation: {
-						ops: 2,
-						memory: 32,
-					},
+				password: 'secret password',
+				algorithm: ENCRYPTION_ALGORITHM.AES,
+				keyDerivation: {
+					ops: 2,
+					memory: 32,
 				},
 			}),
 		).resolves.toBeUndefined();
 	});
 
 	test('Vault cannot be re-initialized if config does exist', async () => {
-		const vaultController = new VaultController(
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			disposableEncryption,
 			disposableKDF,
@@ -53,13 +54,11 @@ describe('Vault life cycle', () => {
 
 		await expect(
 			vaultController.init({
-				encryption: {
-					password: 'secret password',
-					algorithm: ENCRYPTION_ALGORITHM.AES,
-					keyDerivation: {
-						ops: 2,
-						memory: 32,
-					},
+				password: 'secret password',
+				algorithm: ENCRYPTION_ALGORITHM.AES,
+				keyDerivation: {
+					ops: 2,
+					memory: 32,
 				},
 			}),
 		).rejects.toThrow(
@@ -68,7 +67,7 @@ describe('Vault life cycle', () => {
 	});
 
 	test('Master key may be decrypted with correct password', async () => {
-		const vaultController = new VaultController(
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			disposableEncryption,
 			disposableKDF,
@@ -83,7 +82,7 @@ describe('Vault life cycle', () => {
 	});
 
 	test('Master key decryption with incorrect password throws error', async () => {
-		const vaultController = new VaultController(
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			disposableEncryption,
 			disposableKDF,
@@ -119,8 +118,8 @@ describe('Crypto material must dispose just in time', () => {
 		});
 
 		const fs = new InMemoryFS();
-		const vaultConfig = new VaultConfigController(fs);
-		const vaultController = new VaultController(
+		const vaultConfig = new VaultEncryptionConfig(fs);
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			encryptionSpy,
 			kdfSpy,
@@ -129,13 +128,11 @@ describe('Crypto material must dispose just in time', () => {
 
 		await expect(
 			vaultController.init({
-				encryption: {
-					password: 'secret password',
-					algorithm: ENCRYPTION_ALGORITHM.AES,
-					keyDerivation: {
-						ops: 2,
-						memory: 32,
-					},
+				password: 'secret password',
+				algorithm: ENCRYPTION_ALGORITHM.AES,
+				keyDerivation: {
+					ops: 2,
+					memory: 32,
 				},
 			}),
 		).resolves.toBeUndefined();
@@ -171,8 +168,8 @@ describe('Crypto material must dispose just in time', () => {
 		});
 
 		const fs = new InMemoryFS();
-		const vaultConfig = new VaultConfigController(fs);
-		const vaultController = new VaultController(
+		const vaultConfig = new VaultEncryptionConfig(fs);
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			encryptionSpy,
 			kdfSpy,
@@ -181,13 +178,11 @@ describe('Crypto material must dispose just in time', () => {
 
 		await expect(
 			vaultController.init({
-				encryption: {
-					password: 'secret password',
-					algorithm: ENCRYPTION_ALGORITHM.AES,
-					keyDerivation: {
-						ops: 2,
-						memory: 32,
-					},
+				password: 'secret password',
+				algorithm: ENCRYPTION_ALGORITHM.AES,
+				keyDerivation: {
+					ops: 2,
+					memory: 32,
 				},
 			}),
 		).rejects.toThrow('test error in KDF');
@@ -205,8 +200,8 @@ describe('Encryption instance', () => {
 
 	test('One instance may decrypt the ciphertext product of another instance', async () => {
 		const fs = new InMemoryFS();
-		const vaultConfig = new VaultConfigController(fs);
-		const vaultController = new VaultController(
+		const vaultConfig = new VaultEncryptionConfig(fs);
+		const vaultController = new VaultEncryptionController(
 			vaultConfig,
 			disposableEncryption,
 			disposableKDF,
@@ -215,13 +210,11 @@ describe('Encryption instance', () => {
 
 		await expect(
 			vaultController.init({
-				encryption: {
-					password: 'secret password',
-					algorithm: ENCRYPTION_ALGORITHM.AES,
-					keyDerivation: {
-						ops: 2,
-						memory: 32,
-					},
+				password: 'secret password',
+				algorithm: ENCRYPTION_ALGORITHM.AES,
+				keyDerivation: {
+					ops: 2,
+					memory: 32,
 				},
 			}),
 			'encryption is configured',

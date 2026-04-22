@@ -1,10 +1,13 @@
+import { IEncryptionProcessor } from '@core/encryption';
 import { EncryptionController } from '@core/encryption/EncryptionController';
-import { DerivedBitsGenerator } from '@core/features/encryption/worker';
+import { DerivedBitsGenerator, EncryptionConfig } from '@core/features/encryption/worker';
 import { CryptographyUtils } from '@core/features/encryption/worker/CryptographyUtils';
 import { WorkerEncryptionProcessor } from '@core/features/encryption/worker/WorkerEncryptionProcessor';
 import { DisposableBox } from '@utils/disposable';
 
-import { DisposableEncryption } from './VaultController';
+export type DisposableEncryption = (
+	config: EncryptionConfig,
+) => DisposableBox<IEncryptionProcessor>;
 
 export const disposableEncryption: DisposableEncryption = (config) => {
 	const workerEncryption = new WorkerEncryptionProcessor(config);
@@ -14,6 +17,8 @@ export const disposableEncryption: DisposableEncryption = (config) => {
 		await workerEncryption.terminate();
 	});
 };
+
+export type DisposableKDF = () => DisposableBox<DerivedBitsGenerator>;
 
 export const disposableKDF = (): DisposableBox<DerivedBitsGenerator> => {
 	const cryptoUtils = new CryptographyUtils();

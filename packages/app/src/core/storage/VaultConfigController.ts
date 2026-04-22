@@ -39,27 +39,12 @@ export const VaultEncryptionConfigScheme = z.object({
 	}),
 });
 
-export const VaultPublicConfigScheme = z.object({
-	encryption: VaultEncryptionConfigScheme.nullable(),
-});
-
-export type VaultPublicConfig = z.output<typeof VaultPublicConfigScheme>;
-
-export class VaultConfigController {
-	private readonly configFile = '/vault-config.json';
-	private readonly configState;
+export class VaultEncryptionConfig extends StateFile<
+	typeof VaultEncryptionConfigScheme,
+	void
+> {
 	constructor(files: IFilesStorage) {
-		this.configState = new StateFile(
-			new FileController(this.configFile, files),
-			VaultPublicConfigScheme,
-		);
-	}
-
-	public async set(config: VaultPublicConfig) {
-		await this.configState.set(config);
-	}
-
-	public async get() {
-		return this.configState.get();
+		const configFile = '/encryption.json';
+		super(new FileController(configFile, files), VaultEncryptionConfigScheme);
 	}
 }

@@ -1,19 +1,13 @@
-import { IEncryptionProcessor, RandomBytesGenerator } from '@core/encryption';
-import { DerivedBitsGenerator, EncryptionConfig } from '@core/features/encryption/worker';
-import { consumeDisposable, DisposableBox } from '@utils/disposable';
+import { RandomBytesGenerator } from '@core/encryption';
+import { consumeDisposable } from '@utils/disposable';
 
-import { VaultConfigController } from './VaultConfigController';
+import { DisposableEncryption, DisposableKDF } from './cryptography';
+import { VaultEncryptionConfig } from './VaultConfigController';
 
 export const KEY_SALT_BYTES = 32;
 
-export type DisposableEncryption = (
-	config: EncryptionConfig,
-) => DisposableBox<IEncryptionProcessor>;
-
-export type DisposableKDF = () => DisposableBox<DerivedBitsGenerator>;
-
 export const enum VaultOpenErrorCode {
-	CORRUPTED_CONFIG = 'CORRUPTED_CONFIG',
+	NO_ENCRYPTION_CONFIG = 'NO_ENCRYPTION_CONFIG',
 	INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
 	CONFIG_DOES_EXIST = 'CONFIG_DOES_EXIST',
 }
@@ -28,43 +22,32 @@ export class VaultOpenError extends Error {
 	}
 }
 
-export class VaultController {
+export class VaultEncryptionController {
 	constructor(
-		private readonly config: VaultConfigController,
+		private readonly config: VaultEncryptionConfig,
 		private readonly disposableEncryption: DisposableEncryption,
 		private readonly disposableKDF: DisposableKDF,
 		private readonly getRandomBytes: RandomBytesGenerator,
 	) {}
 
-	public async init(config: {
-		encryption?: {
-			password: string;
-			algorithm: string;
-			keyDerivation: {
-				memory: number;
-				ops: number;
-			};
+	public async init({
+		password,
+		keyDerivation: { memory, ops },
+		algorithm,
+	}: {
+		password: string;
+		algorithm: string;
+		keyDerivation: {
+			memory: number;
+			ops: number;
 		};
 	}) {
-		const hasConfigFile = await this.config.get().then((config) => config !== null);
-		if (hasConfigFile)
+		const currentConfig = await this.config.get();
+		if (currentConfig)
 			throw new VaultOpenError(
 				VaultOpenErrorCode.CONFIG_DOES_EXIST,
 				'Vault config file is already exist. Cannot override a file implicitly',
 			);
-
-		// Init vault with no encryption
-		if (!config.encryption) {
-			await this.config.set({ encryption: null });
-			return;
-		}
-
-		// Init encrypted vault
-		const {
-			password,
-			keyDerivation: { memory, ops },
-			algorithm,
-		} = config.encryption;
 
 		const passwordSalt = this.getRandomBytes(16);
 		const argonMemoryInBytes = 1024 ** 2 * memory;
@@ -89,34 +72,24 @@ export class VaultController {
 		);
 
 		await this.config.set({
-			encryption: {
-				algorithm,
-				encryptedMasterKey: new Uint8Array(encryptedKey),
-				salt: new Uint8Array(keySalt),
-				passwordKDF: {
-					salt: new Uint8Array(passwordSalt),
-					params: {
-						memory: argonMemoryInBytes,
-						ops,
-					},
+			algorithm,
+			encryptedMasterKey: new Uint8Array(encryptedKey),
+			salt: new Uint8Array(keySalt),
+			passwordKDF: {
+				salt: new Uint8Array(passwordSalt),
+				params: {
+					memory: argonMemoryInBytes,
+					ops,
 				},
 			},
 		});
 	}
 
 	public async getMasterKey(password: string) {
-		const config = await this.config.get();
-		if (!config)
-			throw new Error(
-				'The file with a vault config does not exist. It seems the vault data is corrupted',
-			);
-
-		if (!config.encryption) {
-			throw new Error('The encryption config is not set for this vault');
-		}
+		const config = await this.getConfig();
 
 		// Init encrypted vault
-		const { algorithm, encryptedMasterKey, salt, passwordKDF } = config.encryption;
+		const { algorithm, encryptedMasterKey, salt, passwordKDF } = config;
 
 		const derivedPassword = await consumeDisposable(
 			this.disposableKDF(),
@@ -168,19 +141,7 @@ export class VaultController {
 	}
 
 	public async getEncryption(password: string) {
-		const config = await this.config.get();
-		if (!config)
-			throw new Error(
-				'The file with a vault config does not exist. It seems the vault data is corrupted',
-			);
-
-		if (!config.encryption) {
-			throw new Error('The encryption config is not set for this vault');
-		}
-
-		// Init encrypted vault
-		const { algorithm, salt } = config.encryption;
-
+		const { algorithm, salt } = await this.getConfig();
 		const masterKey = await this.getMasterKey(password);
 
 		return this.disposableEncryption({
@@ -188,5 +149,16 @@ export class VaultController {
 			key: masterKey,
 			salt: salt,
 		});
+	}
+
+	public async getConfig() {
+		const config = await this.config.get();
+		if (!config)
+			throw new VaultOpenError(
+				VaultOpenErrorCode.NO_ENCRYPTION_CONFIG,
+				'Encryption config is not found. You see this error because vault encryption has not been initialized, or vault data is corrupted',
+			);
+
+		return config;
 	}
 }

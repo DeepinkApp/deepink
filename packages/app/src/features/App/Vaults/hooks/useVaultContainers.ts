@@ -14,12 +14,12 @@ import { FileController } from '@core/features/files/FileController';
 import { RootedFS } from '@core/features/files/RootedFS';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
 import { disposableEncryption, disposableKDF } from '@core/storage/cryptography';
-import { VaultConfigController } from '@core/storage/VaultConfigController';
+import { VaultEncryptionConfig } from '@core/storage/VaultConfigController';
 import {
-	VaultController,
+	VaultEncryptionController,
 	VaultOpenError,
 	VaultOpenErrorCode,
-} from '@core/storage/VaultController';
+} from '@core/storage/VaultEncryptionController';
 import { VaultSummary } from '@core/storage/VaultsList';
 import { useFilesStorage } from '@features/files';
 import { DisposableBox } from '@utils/disposable';
@@ -87,8 +87,8 @@ export const useVaultContainers = () => {
 							'Empty password for encrypted vault',
 						);
 
-					const vaultController = new VaultController(
-						new VaultConfigController(vaultFilesController),
+					const vaultController = new VaultEncryptionController(
+						new VaultEncryptionConfig(vaultFilesController),
 						disposableEncryption,
 						disposableKDF,
 						getRandomBytes,
