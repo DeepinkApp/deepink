@@ -556,22 +556,16 @@ export const vaultsSlice = createSlice({
 			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
 			if (!isNoteOpen) return;
 
-			const previousTemporaryIds = new Set<NoteId>();
-			Object.entries(workspace.openedNotesMeta).forEach(([id, meta]) => {
-				if (meta.isTemporary && id !== noteId) {
-					previousTemporaryIds.add(id);
-
-					// Cleanup note meta
+			// Only one note can be open in temporary mode — remove all previous temporary notes
+			workspace.openedNotes = workspace.openedNotes.filter(({ id }) => {
+				if (id !== noteId && workspace.openedNotesMeta[id]?.isTemporary) {
+					// Cleanup meta so it stays in sync with openedNotes after filtering
 					delete workspace.openedNotesMeta[id];
-				}
-			});
 
-			// Remove old temporary note from opened notes - only one note can be open in temporary mode
-			if (previousTemporaryIds.size) {
-				workspace.openedNotes = workspace.openedNotes.filter(
-					(note) => !previousTemporaryIds.has(note.id),
-				);
-			}
+					return false;
+				}
+				return true;
+			});
 
 			workspace.openedNotesMeta[noteId].isTemporary = true;
 		},
