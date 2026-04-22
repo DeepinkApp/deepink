@@ -59,8 +59,6 @@ export class VaultController {
 			}),
 		);
 
-		console.log('Derived pass');
-
 		const key = this.getRandomBytes(32);
 		const keySalt = this.getRandomBytes(KEY_SALT_BYTES);
 
@@ -120,5 +118,28 @@ export class VaultController {
 		);
 
 		return new Uint8Array(masterKey);
+	}
+
+	public async getEncryption(password: string) {
+		const config = await this.config.get();
+		if (!config)
+			throw new Error(
+				'The file with a vault config does not exist. It seems the vault data is corrupted',
+			);
+
+		if (!config.encryption) {
+			throw new Error('The encryption config is not set for this vault');
+		}
+
+		// Init encrypted vault
+		const { algorithm, salt } = config.encryption;
+
+		const masterKey = await this.getMasterKey(password);
+
+		return this.disposableEncryption({
+			algorithm,
+			key: masterKey,
+			salt: salt,
+		});
 	}
 }

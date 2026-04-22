@@ -1,8 +1,10 @@
 import { webcrypto } from 'node:crypto';
 
+import { noop } from 'lodash';
 import { createFakeRandomBytesGenerator } from '@core/encryption/__tests__/random';
 import { ENCRYPTION_ALGORITHM } from '@core/features/encryption';
 import { InMemoryFS } from '@core/features/files/InMemoryFS';
+import { DisposableBox } from '@utils/disposable';
 
 import { disposableEncryption, disposableKDF } from './cryptography';
 import { bytesToHex } from './hex';
@@ -11,22 +13,6 @@ import { VaultController } from './VaultController';
 
 vi.stubGlobal('self', {
 	crypto: webcrypto,
-});
-
-const encryptionSpy = vi.fn((...args: Parameters<typeof disposableEncryption>) => {
-	const box = disposableEncryption(...args);
-	vi.spyOn(box, 'dispose');
-	return box;
-});
-
-const kdfSpy = vi.fn((...args: Parameters<typeof disposableKDF>) => {
-	const box = disposableKDF(...args);
-	vi.spyOn(box, 'dispose');
-	return box;
-});
-
-beforeEach(() => {
-	vi.resetAllMocks();
 });
 
 describe('Vault life cycle', () => {
@@ -38,8 +24,8 @@ describe('Vault life cycle', () => {
 	test('Vault can be initialized with user password', async () => {
 		const vaultController = new VaultController(
 			vaultConfig,
-			encryptionSpy,
-			kdfSpy,
+			disposableEncryption,
+			disposableKDF,
 			seededRandomBytes,
 		);
 
@@ -60,8 +46,8 @@ describe('Vault life cycle', () => {
 	test('Vault cannot be re-initialized if config does exist', async () => {
 		const vaultController = new VaultController(
 			vaultConfig,
-			encryptionSpy,
-			kdfSpy,
+			disposableEncryption,
+			disposableKDF,
 			seededRandomBytes,
 		);
 
@@ -82,8 +68,8 @@ describe('Vault life cycle', () => {
 	test('Master key may be decrypted with correct password', async () => {
 		const vaultController = new VaultController(
 			vaultConfig,
-			encryptionSpy,
-			kdfSpy,
+			disposableEncryption,
+			disposableKDF,
 			seededRandomBytes,
 		);
 
@@ -97,8 +83,8 @@ describe('Vault life cycle', () => {
 	test('Master key decryption with incorrect password throws error', async () => {
 		const vaultController = new VaultController(
 			vaultConfig,
-			encryptionSpy,
-			kdfSpy,
+			disposableEncryption,
+			disposableKDF,
 			seededRandomBytes,
 		);
 
@@ -113,7 +99,21 @@ describe('Vault life cycle', () => {
 describe('Crypto material must dispose just in time', () => {
 	const seededRandomBytes = createFakeRandomBytesGenerator(0);
 
-	test('Dispose after init', async () => {
+	test('All disposable containers must be disposed after successful init', async () => {
+		const encryptionSpy = vi.fn(
+			(...args: Parameters<typeof disposableEncryption>) => {
+				const box = disposableEncryption(...args);
+				vi.spyOn(box, 'dispose');
+				return box;
+			},
+		);
+
+		const kdfSpy = vi.fn((...args: Parameters<typeof disposableKDF>) => {
+			const box = disposableKDF(...args);
+			vi.spyOn(box, 'dispose');
+			return box;
+		});
+
 		const fs = new InMemoryFS();
 		const vaultConfig = new VaultConfigController(fs);
 		const vaultController = new VaultController(
@@ -149,12 +149,19 @@ describe('Crypto material must dispose just in time', () => {
 		).toHaveBeenCalledOnce();
 	});
 
-	test('Dispose after init', async () => {
-		const kdfSpy = vi.fn((...args: Parameters<typeof disposableKDF>) => {
-			const box = disposableKDF(...args);
-			vi.spyOn(box, 'getContent').mockReturnValue(async () => {
+	test('Disposable containers must be disposed while errors', async () => {
+		const encryptionSpy = vi.fn(
+			(...args: Parameters<typeof disposableEncryption>) => {
+				const box = disposableEncryption(...args);
+				vi.spyOn(box, 'dispose');
+				return box;
+			},
+		);
+
+		const kdfSpy = vi.fn(() => {
+			const box = new DisposableBox(async () => {
 				throw new Error('test error in KDF');
-			});
+			}, noop);
 			vi.spyOn(box, 'dispose');
 			return box;
 		});
@@ -186,5 +193,50 @@ describe('Crypto material must dispose just in time', () => {
 			kdfSpy.mock.results[0].value.dispose,
 			'Dispose must be called',
 		).toHaveBeenCalledOnce();
+	});
+});
+
+describe('Encryption instance', () => {
+	const seededRandomBytes = createFakeRandomBytesGenerator(0);
+
+	test('One instance may decrypt the ciphertext product of another instance', async () => {
+		const fs = new InMemoryFS();
+		const vaultConfig = new VaultConfigController(fs);
+		const vaultController = new VaultController(
+			vaultConfig,
+			disposableEncryption,
+			disposableKDF,
+			seededRandomBytes,
+		);
+
+		await expect(
+			vaultController.init({
+				encryption: {
+					password: 'secret password',
+					algorithm: ENCRYPTION_ALGORITHM.AES,
+					keyDerivation: {
+						ops: 2,
+						memory: 32,
+					},
+				},
+			}),
+			'encryption is configured',
+		).resolves.toBeUndefined();
+
+		const plaintext = seededRandomBytes(128);
+
+		const encryption1 = await vaultController.getEncryption('secret password');
+		onTestFinished(() => encryption1.dispose());
+
+		const ciphertext1 = await encryption1
+			.getContent()
+			.encrypt(plaintext.buffer.slice());
+
+		const encryption2 = await vaultController.getEncryption('secret password');
+		onTestFinished(() => encryption2.dispose());
+
+		await expect(
+			encryption2.getContent().decrypt(ciphertext1),
+		).resolves.toStrictEqual(plaintext.buffer.slice());
 	});
 });
