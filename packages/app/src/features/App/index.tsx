@@ -4,6 +4,7 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebounce } from 'use-debounce';
 import { useToast } from '@chakra-ui/react';
 import { ConfigStorage } from '@core/storage/ConfigStorage';
+import { VaultOpenError, VaultOpenErrorCode } from '@core/storage/VaultController';
 import { useFilesStorage } from '@features/files';
 import { SplashScreen } from '@features/SplashScreen';
 import { getRandomItem } from '@utils/collections/getRandomItem';
@@ -16,11 +17,7 @@ import { useRecentVault } from './useRecentVault';
 import { useVaultsList } from './useVaultsList';
 import { VaultCreator } from './VaultCreator';
 import { VaultLoginForm } from './VaultLoginForm';
-import {
-	useVaultContainers,
-	VaultOpenError,
-	VaultOpenErrorCode,
-} from './Vaults/hooks/useVaultContainers';
+import { useVaultContainers } from './Vaults/hooks/useVaultContainers';
 import { VaultScreen } from './VaultScreen';
 import { WelcomeScreen } from './WelcomeScreen';
 

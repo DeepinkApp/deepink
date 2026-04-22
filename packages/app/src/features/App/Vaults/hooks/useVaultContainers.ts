@@ -15,7 +15,11 @@ import { RootedFS } from '@core/features/files/RootedFS';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
 import { disposableEncryption, disposableKDF } from '@core/storage/cryptography';
 import { VaultConfigController } from '@core/storage/VaultConfigController';
-import { VaultController } from '@core/storage/VaultController';
+import {
+	VaultController,
+	VaultOpenError,
+	VaultOpenErrorCode,
+} from '@core/storage/VaultController';
 import { VaultSummary } from '@core/storage/VaultsList';
 import { useFilesStorage } from '@features/files';
 import { DisposableBox } from '@utils/disposable';
@@ -28,22 +32,6 @@ export type VaultContainer = {
 	encryptionController: EncryptionController;
 	files: IFilesStorage;
 };
-
-export const enum VaultOpenErrorCode {
-	CORRUPTED_CONFIG = 'CORRUPTED_CONFIG',
-	INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
-	KEY_FILE_NOT_FOUND = 'KEY_FILE_NOT_FOUND',
-}
-export class VaultOpenError extends Error {
-	constructor(
-		public readonly code: VaultOpenErrorCode,
-		message: string,
-		options?: ErrorOptions,
-	) {
-		super(message, options);
-		this.name = 'VaultOpenError';
-	}
-}
 
 // TODO: cover with tests to ensure we can decrypt exists vault
 /**
@@ -99,40 +87,14 @@ export const useVaultContainers = () => {
 							'Empty password for encrypted vault',
 						);
 
-					const configController = new VaultConfigController(
-						vaultFilesController,
-					);
-
-					const vaultConfig = await configController.get();
-					if (!vaultConfig || !vaultConfig.encryption)
-						throw new VaultOpenError(
-							VaultOpenErrorCode.CORRUPTED_CONFIG,
-							'Corrupted vault. The encryption config is not found',
-						);
-
 					const vaultController = new VaultController(
-						configController,
+						new VaultConfigController(vaultFilesController),
 						disposableEncryption,
 						disposableKDF,
 						getRandomBytes,
 					);
 
-					let key;
-					try {
-						key = await vaultController.getMasterKey(password);
-					} catch (error) {
-						throw new VaultOpenError(
-							VaultOpenErrorCode.INCORRECT_PASSWORD,
-							'Failed to decrypt the key',
-							{ cause: error },
-						);
-					}
-
-					const encryption = disposableEncryption({
-						algorithm: vaultConfig.encryption.algorithm,
-						key,
-						salt: vaultConfig.encryption.salt,
-					});
+					const encryption = await vaultController.getEncryption(password);
 
 					cleanups.push(() => encryption.dispose());
 					encryptionController = new EncryptionController(

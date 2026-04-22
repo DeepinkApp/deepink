@@ -12,6 +12,22 @@ export type DisposableEncryption = (
 
 export type DisposableKDF = () => DisposableBox<DerivedBitsGenerator>;
 
+export const enum VaultOpenErrorCode {
+	CORRUPTED_CONFIG = 'CORRUPTED_CONFIG',
+	INCORRECT_PASSWORD = 'INCORRECT_PASSWORD',
+	CONFIG_DOES_EXIST = 'CONFIG_DOES_EXIST',
+}
+export class VaultOpenError extends Error {
+	constructor(
+		public readonly code: VaultOpenErrorCode,
+		message: string,
+		options?: ErrorOptions,
+	) {
+		super(message, options);
+		this.name = 'VaultOpenError';
+	}
+}
+
 export class VaultController {
 	constructor(
 		private readonly config: VaultConfigController,
@@ -32,7 +48,8 @@ export class VaultController {
 	}) {
 		const hasConfigFile = await this.config.get().then((config) => config !== null);
 		if (hasConfigFile)
-			throw new Error(
+			throw new VaultOpenError(
+				VaultOpenErrorCode.CONFIG_DOES_EXIST,
 				'Vault config file is already exist. Cannot override a file implicitly',
 			);
 
@@ -101,11 +118,29 @@ export class VaultController {
 		// Init encrypted vault
 		const { algorithm, encryptedMasterKey, salt, passwordKDF } = config.encryption;
 
-		const derivedPassword = await consumeDisposable(this.disposableKDF(), (kdf) =>
-			kdf(new TextEncoder().encode(password), passwordKDF.salt, 256, {
-				memory: passwordKDF.params.memory,
-				ops: passwordKDF.params.ops,
-			}),
+		const derivedPassword = await consumeDisposable(
+			this.disposableKDF(),
+			async (kdf) => {
+				try {
+					const result = await kdf(
+						new TextEncoder().encode(password),
+						passwordKDF.salt,
+						256,
+						{
+							memory: passwordKDF.params.memory,
+							ops: passwordKDF.params.ops,
+						},
+					);
+
+					return result;
+				} catch (error) {
+					throw new VaultOpenError(
+						VaultOpenErrorCode.INCORRECT_PASSWORD,
+						'Failed to decrypt the key',
+						{ cause: error },
+					);
+				}
+			},
 		);
 
 		const masterKey = await consumeDisposable(
@@ -114,7 +149,19 @@ export class VaultController {
 				key: derivedPassword,
 				salt: salt,
 			}),
-			(cipher) => cipher.decrypt(encryptedMasterKey.buffer),
+			async (cipher) => {
+				try {
+					const result = await cipher.decrypt(encryptedMasterKey.buffer);
+
+					return result;
+				} catch (error) {
+					throw new VaultOpenError(
+						VaultOpenErrorCode.INCORRECT_PASSWORD,
+						'Failed to decrypt the key',
+						{ cause: error },
+					);
+				}
+			},
 		);
 
 		return new Uint8Array(masterKey);

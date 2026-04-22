@@ -9,7 +9,7 @@ import { DisposableBox } from '@utils/disposable';
 import { disposableEncryption, disposableKDF } from './cryptography';
 import { bytesToHex } from './hex';
 import { VaultConfigController } from './VaultConfigController';
-import { VaultController } from './VaultController';
+import { VaultController, VaultOpenErrorCode } from './VaultController';
 
 vi.stubGlobal('self', {
 	crypto: webcrypto,
@@ -62,7 +62,9 @@ describe('Vault life cycle', () => {
 					},
 				},
 			}),
-		).rejects.toThrow('already exist');
+		).rejects.toThrow(
+			expect.objectContaining({ code: VaultOpenErrorCode.CONFIG_DOES_EXIST }),
+		);
 	});
 
 	test('Master key may be decrypted with correct password', async () => {
@@ -92,7 +94,9 @@ describe('Vault life cycle', () => {
 			vaultController
 				.getMasterKey('wrong password')
 				.then((buffer) => bytesToHex(new Uint8Array(buffer))),
-		).rejects.toThrow('Integrity violation');
+		).rejects.toThrow(
+			expect.objectContaining({ code: VaultOpenErrorCode.INCORRECT_PASSWORD }),
+		);
 	});
 });
 
