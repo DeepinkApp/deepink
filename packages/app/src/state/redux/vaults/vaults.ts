@@ -511,18 +511,6 @@ export const vaultsSlice = createSlice({
 				note,
 				...openedNotes.slice(noteIndex + 1),
 			];
-
-			// Update temporary note to permanent if content or deleted status has changed
-			const previousNote = openedNotes[noteIndex];
-			const hasNoteChanged =
-				note.isDeleted !== previousNote.isDeleted ||
-				note.content.title !== previousNote.content.title ||
-				note.content.text !== previousNote.content.text;
-
-			const noteMeta = workspace.openedNotesMeta[note.id];
-			if (noteMeta && noteMeta.isTemporary && hasNoteChanged) {
-				noteMeta.isTemporary = false;
-			}
 		},
 
 		setOpenedNotes: (
