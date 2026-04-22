@@ -121,7 +121,7 @@ export type LoadingStatus = {
 	isTagsLoaded: boolean;
 };
 
-type OpenedNoteMeta = { isTemporary: boolean };
+type OpenedNotesMeta = Record<NoteId, { isTemporary: boolean }>;
 
 export type WorkspaceData = {
 	id: string;
@@ -139,7 +139,7 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
-	openedNotesMeta: Record<NoteId, OpenedNoteMeta>;
+	openedNotesMeta: OpenedNotesMeta;
 
 	noteIds: NoteId[];
 
@@ -375,51 +375,9 @@ export const vaultsSlice = createSlice({
 			if (workspace.recentlyClosedNotes.length !== filteredClosedNotes.length) {
 				workspace.recentlyClosedNotes = filteredClosedNotes;
 			}
-		},
 
-		markNoteAsTemporary: (
-			state,
-			{
-				payload: { vaultId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
-		) => {
-			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
-			if (!workspace) return;
-
-			// Ignore if the note is not open
-			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
-			if (!isNoteOpen) return;
-
-			const previousTemporaryIds = new Set<NoteId>();
-			Object.entries(workspace.openedNotesMeta).forEach(([id, meta]) => {
-				if (meta.isTemporary && id !== noteId) {
-					previousTemporaryIds.add(id);
-
-					// Only one temporary note is allowed
-					delete workspace.openedNotesMeta[id];
-				}
-			});
-
-			// Remove old temporary note from opened notes - only one note can be open in temporary mode
-			if (previousTemporaryIds.size) {
-				workspace.openedNotes = workspace.openedNotes.filter(
-					(note) => !previousTemporaryIds.has(note.id),
-				);
-			}
-
-			workspace.openedNotesMeta[noteId] = { isTemporary: true };
-		},
-
-		markNoteAsPermanent: (
-			state,
-			{
-				payload: { vaultId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
-		) => {
-			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
-			if (!workspace) return;
-
-			delete workspace.openedNotesMeta[noteId];
+			// Initialize note meta with defaults
+			workspace.openedNotesMeta[note.id] = { isTemporary: false };
 		},
 
 		removeOpenedNote: (
@@ -444,10 +402,8 @@ export const vaultsSlice = createSlice({
 
 			workspace.recentlyClosedNotes.push(noteId);
 
-			// Delete temporary note
-			if (workspace.openedNotesMeta[noteId]) {
-				delete workspace.openedNotesMeta[noteId];
-			}
+			// Cleanup note meta
+			delete workspace.openedNotesMeta[noteId];
 		},
 
 		updateOpenedNote: (
@@ -494,6 +450,63 @@ export const vaultsSlice = createSlice({
 			if (!workspace) return;
 
 			workspace.openedNotes = notes;
+		},
+
+		setOpenedNotesMeta: (
+			state,
+			{
+				payload: { vaultId, workspaceId, meta },
+			}: PayloadAction<WorkspaceScoped<{ meta: OpenedNotesMeta }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			if (!workspace) return;
+
+			workspace.openedNotesMeta = meta;
+		},
+
+		markNoteAsTemporary: (
+			state,
+			{
+				payload: { vaultId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			if (!workspace) return;
+
+			// Ignore if the note is not open
+			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
+			if (!isNoteOpen) return;
+
+			const previousTemporaryIds = new Set<NoteId>();
+			Object.entries(workspace.openedNotesMeta).forEach(([id, meta]) => {
+				if (meta.isTemporary && id !== noteId) {
+					previousTemporaryIds.add(id);
+
+					// Cleanup note meta
+					delete workspace.openedNotesMeta[id];
+				}
+			});
+
+			// Remove old temporary note from opened notes - only one note can be open in temporary mode
+			if (previousTemporaryIds.size) {
+				workspace.openedNotes = workspace.openedNotes.filter(
+					(note) => !previousTemporaryIds.has(note.id),
+				);
+			}
+
+			workspace.openedNotesMeta[noteId].isTemporary = true;
+		},
+
+		markNoteAsPermanent: (
+			state,
+			{
+				payload: { vaultId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			if (!workspace) return;
+
+			workspace.openedNotesMeta[noteId].isTemporary = false;
 		},
 
 		setSelectedTag: (
