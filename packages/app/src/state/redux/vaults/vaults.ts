@@ -530,7 +530,14 @@ export const vaultsSlice = createSlice({
 
 			workspace.openedNotes = notes;
 
-			workspace.openedNotesMeta = meta;
+			// Ensure meta only contains entries for notes and provide defaults for any missing metadata
+			const filteredMeta = Object.fromEntries(
+				workspace.openedNotes.map((note) => [
+					note.id,
+					meta[note.id] ?? { isTemporary: false },
+				]),
+			);
+			workspace.openedNotesMeta = filteredMeta;
 		},
 
 		markNoteAsTemporary: (
@@ -569,9 +576,9 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			// Ignore if note not opened or already permanent
+			// Skip if metadata for this note does not exist
 			const meta = workspace.openedNotesMeta[noteId];
-			if (!meta || !meta.isTemporary) return;
+			if (!meta) return;
 
 			workspace.openedNotesMeta[noteId].isTemporary = false;
 		},
