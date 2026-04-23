@@ -7,7 +7,7 @@ export const CenterBox: FC<PropsWithChildren<{ maxWidth?: string }>> = ({
 }) => {
 	return (
 		<Center width="100%" h="100vh" alignItems="start" overflow="auto" padding="3rem">
-			<Box maxW={maxWidth ?? '500px'} minW="350px" margin="auto">
+			<Box maxW={maxWidth ?? '500px'} minW="450px" margin="auto">
 				{children}
 			</Box>
 		</Center>

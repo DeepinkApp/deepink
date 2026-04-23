@@ -22,6 +22,15 @@ export class VaultOpenError extends Error {
 	}
 }
 
+export type VaultEncryptionInitConfig = {
+	password: string;
+	algorithm: string;
+	keyDerivation: {
+		memory: number;
+		ops: number;
+	};
+};
+
 export class VaultEncryptionController {
 	constructor(
 		private readonly config: VaultEncryptionConfig,
@@ -34,14 +43,7 @@ export class VaultEncryptionController {
 		password,
 		keyDerivation: { memory, ops },
 		algorithm,
-	}: {
-		password: string;
-		algorithm: string;
-		keyDerivation: {
-			memory: number;
-			ops: number;
-		};
-	}) {
+	}: VaultEncryptionInitConfig) {
 		const currentConfig = await this.config.get();
 		if (currentConfig)
 			throw new VaultOpenError(

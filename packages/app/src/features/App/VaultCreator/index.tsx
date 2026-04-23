@@ -1,9 +1,18 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+	FC,
+	PropsWithChildren,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 import { AutoFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
-import { FaDice } from 'react-icons/fa6';
+import { FaDice, FaShield } from 'react-icons/fa6';
+import bytes from 'bytes';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
+	Box,
 	Button,
 	HStack,
 	Input,
@@ -17,23 +26,64 @@ import {
 	ModalHeader,
 	ModalOverlay,
 	Select,
+	Switch,
 	Text,
 	useDisclosure,
 	VStack,
 } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
+import { RelaxedSlider } from '@components/Slider/RelaxedSlider';
 import { ENCRYPTION_ALGORITHM } from '@core/features/encryption';
 import { ENCRYPTION_ALGORITHM_OPTIONS } from '@core/features/encryption/algorithms';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
+import { VaultEncryptionInitConfig } from '@core/storage/VaultEncryptionController';
 import { useTelemetryTracker } from '@features/telemetry';
 import { shuffleArray } from '@utils/collections/shuffleArray';
 
 import { VaultsForm } from '../VaultsForm';
 
+export const DetailsContainer = ({ children }: PropsWithChildren) => {
+	const [isOpened, setIsOpened] = useState(false);
+
+	return (
+		<VStack
+			width="100%"
+			align="start"
+			borderRadius="6px"
+			padding="1rem"
+			backgroundColor="surface.panel"
+		>
+			<Box
+				as="label"
+				display="inline-flex"
+				gap=".5rem"
+				textDecor="none"
+				width="100%"
+				color="typography.accent"
+				alignItems="center"
+			>
+				<FaShield />
+				<span>Advanced encryption options</span>
+
+				<Switch
+					marginLeft="auto"
+					isChecked={isOpened}
+					onChange={(evt) => {
+						setIsOpened(evt.target.checked);
+					}}
+				/>
+			</Box>
+
+			<Box display={isOpened ? undefined : 'none'} width="100%" paddingBlock="1rem">
+				{children}
+			</Box>
+		</VStack>
+	);
+};
+
 export type NewVault = {
 	name: string;
-	password: string | null;
-	algorithm: string;
+	encryption: VaultEncryptionInitConfig | null;
 };
 
 export type VaultCreatorProps = {
@@ -42,6 +92,7 @@ export type VaultCreatorProps = {
 	defaultVaultName?: string;
 };
 
+// TODO: localize the texts
 export const VaultCreator: FC<VaultCreatorProps> = ({
 	onCreateVault,
 	onCancel,
@@ -66,6 +117,8 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 	const [passwordError, setPasswordError] = useState<null | string>(null);
 
 	const [algorithm, setAlgorithm] = useState(ENCRYPTION_ALGORITHM_OPTIONS[0]);
+	const [argonOps, setArgonOps] = useState(2);
+	const [argonMemory, setArgonMemory] = useState(256);
 
 	useEffect(() => {
 		setPasswordError(null);
@@ -91,8 +144,16 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 			const response = await onCreateVault({
 				name: vaultName,
-				password: usePassword ? password : null,
-				algorithm,
+				encryption: usePassword
+					? {
+							algorithm,
+							password,
+							keyDerivation: {
+								ops: argonOps,
+								memory: argonMemory,
+							},
+						}
+					: null,
 			}).finally(() => {
 				setIsPending(false);
 			});
@@ -110,8 +171,8 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 			password,
 			onCreateVault,
 			algorithm,
-			vaultNameInputRef,
-			passwordInputRef,
+			argonOps,
+			argonMemory,
 			t,
 			telemetry,
 		],
@@ -240,6 +301,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 					{vaultNameError && <Text color="red.500">{vaultNameError}</Text>}
 				</VStack>
+
 				<VStack w="100%" alignItems="start">
 					<HStack>
 						<Text>{t('creator.field.password.label')}</Text>
@@ -247,39 +309,90 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 							{t('creator.field.password.recommended')}
 						</Text>
 					</HStack>
-					<Input
-						ref={passwordInputRef}
-						size="md"
-						type="password"
-						placeholder={t('creator.field.password.placeholder')}
-						value={password}
-						onChange={(evt) => setPassword(evt.target.value)}
-						focusBorderColor={passwordError ? 'red.500' : undefined}
-						disabled={isPending}
-					/>
+
+					<InputGroup size="md">
+						<Input
+							ref={passwordInputRef}
+							type="password"
+							placeholder={t('creator.field.password.placeholder')}
+							value={password}
+							onChange={(evt) => setPassword(evt.target.value)}
+							focusBorderColor={passwordError ? 'red.500' : undefined}
+							disabled={isPending}
+						/>
+					</InputGroup>
 
 					{passwordError && <Text color="red.500">{passwordError}</Text>}
 				</VStack>
 
-				<VStack w="100%" gap="0.1rem">
-					<Text fontSize="18px" alignSelf="start">
-						{t('creator.field.algorithm.label')}
-					</Text>
-					<Select
-						size="md"
-						value={algorithm}
-						onChange={(evt) =>
-							setAlgorithm(evt.target.value as ENCRYPTION_ALGORITHM)
-						}
-						disabled={isPending}
-					>
-						{ENCRYPTION_ALGORITHM_OPTIONS.map((algorithm) => (
-							<option key={algorithm} value={algorithm}>
-								{algorithm.split('-').join('->')}
-							</option>
-						))}
-					</Select>
-				</VStack>
+				<DetailsContainer>
+					<VStack w="100%" gap="2rem">
+						<VStack w="100%" gap="0.5rem">
+							<Text fontSize="18px" alignSelf="start">
+								{t('creator.field.algorithm.label')}
+							</Text>
+							<Select
+								size="md"
+								value={algorithm}
+								onChange={(evt) =>
+									setAlgorithm(evt.target.value as ENCRYPTION_ALGORITHM)
+								}
+								disabled={isPending}
+							>
+								{ENCRYPTION_ALGORITHM_OPTIONS.map((algorithm) => (
+									<option key={algorithm} value={algorithm}>
+										{algorithm}
+									</option>
+								))}
+							</Select>
+						</VStack>
+
+						<VStack w="100%" gap="0.5rem" align="start">
+							<Text fontSize="18px">Key derivation function</Text>
+
+							<VStack
+								w="100%"
+								gap="0.5rem"
+								align="start"
+								borderRadius="6px"
+								padding="1rem"
+								border="1px solid"
+								borderColor="surface.border"
+							>
+								<VStack w="100%" gap="0.5rem">
+									<Text fontSize="18px" alignSelf="start">
+										Memory usage
+									</Text>
+
+									<RelaxedSlider
+										min={128}
+										max={1024}
+										step={128}
+										transformValue={(mb) =>
+											bytes(mb * 1024 ** 2) ?? `${mb}mb`
+										}
+										value={argonMemory}
+										onChange={setArgonMemory}
+									/>
+								</VStack>
+
+								<VStack w="100%" gap="0.5rem">
+									<Text fontSize="18px" alignSelf="start">
+										Iterations (ops)
+									</Text>
+
+									<RelaxedSlider
+										min={2}
+										max={8}
+										step={1}
+										value={argonOps}
+										onChange={setArgonOps}
+									/>
+								</VStack>
+							</VStack>
+						</VStack>
+					</VStack>
+				</DetailsContainer>
 			</VStack>
 		</VaultsForm>
 	);

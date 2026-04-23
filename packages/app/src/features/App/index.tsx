@@ -53,7 +53,7 @@ export const App: FC = () => {
 			setScreenName('loading');
 
 			try {
-				if (vault.isEncrypted !== null && password === undefined) {
+				if (vault.isEncrypted && !password) {
 					return {
 						status: 'error',
 						message: t('login.errors.passwordRequired'),
@@ -158,7 +158,10 @@ export const App: FC = () => {
 				<VaultCreator
 					onCreateVault={async (vault) => {
 						const newVault = await vaultsList.createVault(vault);
-						await onOpenVault(newVault, vault.password || undefined);
+						await onOpenVault(
+							newVault,
+							vault.encryption ? vault.encryption.password : undefined,
+						);
 					}}
 					onCancel={
 						isEmptyVaultsList ? undefined : () => setScreenName('choose')

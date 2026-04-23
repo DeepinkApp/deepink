@@ -43,11 +43,11 @@ export const useVaultsList = (): VaultsListApi => {
 		async (vault: NewVault) => {
 			const summary = await vaultsList.create({
 				name: vault.name,
-				isEncrypted: vault.password !== null,
+				isEncrypted: vault.encryption !== null,
 			});
 
 			// Setup encryption
-			if (vault.password) {
+			if (vault.encryption) {
 				const vaultConfig = new VaultEncryptionConfig(
 					new RootedFS(files, `/vaults/${summary.id}`),
 				);
@@ -59,11 +59,7 @@ export const useVaultsList = (): VaultsListApi => {
 					getRandomBytes,
 				);
 
-				await vaultController.init({
-					password: vault.password,
-					algorithm: vault.algorithm,
-					keyDerivation: { memory: 128, ops: 2 },
-				});
+				await vaultController.init(vault.encryption);
 			}
 
 			await updateVaults();
