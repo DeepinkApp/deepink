@@ -48,6 +48,12 @@ export const selectOpenedNotesMeta = createWorkspaceSelector(
 		return workspace.openedNotesMeta;
 	},
 );
+export const selectIsNoteTemporary = (noteId: string) =>
+	createWorkspaceSelector([selectWorkspaceRoot], (workspace) => {
+		if (!workspace) return false;
+
+		return workspace.openedNotesMeta[noteId]?.isTemporary ?? false;
+	});
 
 export const selectSearch = createWorkspaceSelector(
 	[selectWorkspaceRoot],
