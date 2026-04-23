@@ -77,7 +77,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					}
 
 					const title = getNoteTitle(note.content, 50);
-					const isTemporaryTab = tabsMeta[noteId].isTemporary;
+					const isTemporaryTab = tabsMeta[noteId]?.isTemporary;
 
 					return (
 						<Tab
