@@ -49,7 +49,11 @@ import {
 	useWorkspaceSelector,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import { selectTags, workspacesApi } from '@state/redux/vaults/vaults';
+import {
+	selectIsNoteTemporary,
+	selectTags,
+	workspacesApi,
+} from '@state/redux/vaults/vaults';
 
 import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
@@ -175,14 +179,18 @@ export const Note: FC<NoteEditorProps> = memo(
 
 		// Immediately update a temporary note to permanent if content has changed
 		const isFirstRunRef = useRef(true);
+		const isNoteTemporary = useWorkspaceSelector(selectIsNoteTemporary(note.id));
 		useEffect(() => {
 			if (isFirstRunRef.current) {
 				isFirstRunRef.current = false;
 				return;
 			}
 
+			// Skip if note is already permanent
+			if (!isNoteTemporary) return;
+
 			dispatch(workspaceAction.markNoteAsPermanent({ noteId: note.id }));
-		}, [title, text, dispatch, workspaceAction, note.id]);
+		}, [title, text, dispatch, workspaceAction, note.id, isNoteTemporary]);
 
 		const attachments = useAttachmentsController();
 
