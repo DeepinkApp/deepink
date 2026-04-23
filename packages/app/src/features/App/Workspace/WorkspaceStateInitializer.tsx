@@ -74,7 +74,10 @@ export const WorkspaceStateInitializer = () => {
 
 					if (openedNoteList && openedNoteList.length > 0) {
 						dispatch(
-							workspaceActions.setOpenedNotes({ notes: openedNoteList }),
+							workspaceActions.setOpenedNotes({
+								notes: openedNoteList,
+								meta: state.openedNotesMeta,
+							}),
 						);
 
 						let activeNote = openedNoteList[0];
@@ -86,14 +89,6 @@ export const WorkspaceStateInitializer = () => {
 						dispatch(
 							workspaceActions.setActiveNote({ noteId: activeNote.id }),
 						);
-
-						if (state.openedNotesMeta) {
-							dispatch(
-								workspaceActions.setOpenedNotesMeta({
-									meta: state.openedNotesMeta,
-								}),
-							);
-						}
 					}
 				}
 

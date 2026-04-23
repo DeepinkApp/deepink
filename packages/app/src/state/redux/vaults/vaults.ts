@@ -437,23 +437,13 @@ export const vaultsSlice = createSlice({
 		setOpenedNotes: (
 			state,
 			{
-				payload: { vaultId, workspaceId, notes },
-			}: PayloadAction<WorkspaceScoped<{ notes: INote[] }>>,
+				payload: { vaultId, workspaceId, notes, meta },
+			}: PayloadAction<WorkspaceScoped<{ notes: INote[]; meta: OpenedNotesMeta }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
 			workspace.openedNotes = notes;
-		},
-
-		setOpenedNotesMeta: (
-			state,
-			{
-				payload: { vaultId, workspaceId, meta },
-			}: PayloadAction<WorkspaceScoped<{ meta: OpenedNotesMeta }>>,
-		) => {
-			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
-			if (!workspace) return;
 
 			workspace.openedNotesMeta = meta;
 		},
