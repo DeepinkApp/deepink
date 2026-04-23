@@ -4,7 +4,6 @@ import { getWorkspacePath } from '@features/files/paths';
 import { useUpdateNotes } from '@hooks/notes/useUpdateNotes';
 import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceActions, useWorkspaceData } from '@state/redux/vaults/hooks';
-import { OpenedNotesMeta } from '@state/redux/vaults/vaults';
 
 import {
 	createWorkspaceConfigFile,
@@ -74,18 +73,10 @@ export const WorkspaceStateInitializer = () => {
 					);
 
 					if (openedNoteList && openedNoteList.length > 0) {
-						// Meta must only include notes that were successfully restored from the registry
-						const meta: OpenedNotesMeta = {};
-						openedNoteList.forEach((note) => {
-							if (state.openedNotesMeta[note.id]) {
-								meta[note.id] = state.openedNotesMeta[note.id];
-							}
-						});
-
 						dispatch(
 							workspaceActions.setOpenedNotes({
 								notes: openedNoteList,
-								meta,
+								meta: state.openedNotesMeta,
 							}),
 						);
 
