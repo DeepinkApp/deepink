@@ -349,10 +349,16 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 						<VStack w="100%" gap="0.5rem" align="start">
 							<Text fontSize="18px">Key derivation function</Text>
+							<Text color="typography.secondary" fontSize="1rem">
+								Helps protect weak or reused passwords by making each
+								guess slower and more costly. Raise these settings for
+								stronger protection, or keep the defaults for a balanced
+								experience.
+							</Text>
 
 							<VStack
 								w="100%"
-								gap="0.5rem"
+								gap="1rem"
 								align="start"
 								borderRadius="6px"
 								padding="1rem"
@@ -362,6 +368,12 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 								<VStack w="100%" gap="0.5rem">
 									<Text fontSize="18px" alignSelf="start">
 										Memory usage
+									</Text>
+									<Text color="typography.secondary" fontSize="1rem">
+										Makes each password guess use more memory. This is
+										especially effective against large-scale attacks,
+										because memory is costly and harder to scale
+										efficiently than raw computation.
 									</Text>
 
 									<RelaxedSlider
@@ -378,7 +390,14 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 								<VStack w="100%" gap="0.5rem">
 									<Text fontSize="18px" alignSelf="start">
-										Iterations (ops)
+										Iterations
+									</Text>
+									<Text color="typography.secondary" fontSize="1rem">
+										Repeats the derivation work for each password
+										guess. This increases the cost of every guess in a
+										mostly linear way: doubling iterations roughly
+										doubles the work for both attackers and your
+										device.
 									</Text>
 
 									<RelaxedSlider
