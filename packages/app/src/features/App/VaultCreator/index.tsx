@@ -291,7 +291,8 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						/>
 						<InputRightElement>
 							<IconButton
-								icon={<FaDice />}
+								variant="ghost"
+								icon={<FaDice transform="scale(1.5)" />}
 								title={t('creator.field.name.random')}
 								onClick={(evt) => {
 									evt.preventDefault();
