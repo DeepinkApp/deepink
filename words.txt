@@ -1,5 +1,7 @@
 AUTOINCREMENT
 Aes
+normalise
+Normalisation
 flexsearch
 opentag
 ciphertext

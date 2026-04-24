@@ -1,5 +1,6 @@
 export enum LOCALE_NAMESPACE {
 	common = 'common',
+	encryption = 'encryption',
 	introduction = 'introduction',
 	vault = 'vault',
 	workspace = 'workspace',
