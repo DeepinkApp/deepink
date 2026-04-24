@@ -1,9 +1,9 @@
 import React, {
 	FC,
+	forwardRef,
 	PropsWithChildren,
 	useCallback,
 	useEffect,
-	useMemo,
 	useRef,
 	useState,
 } from 'react';
@@ -18,6 +18,7 @@ import {
 	HStack,
 	Input,
 	InputGroup,
+	InputProps,
 	InputRightElement,
 	Modal,
 	ModalBody,
@@ -40,10 +41,97 @@ import { ENCRYPTION_ALGORITHM_OPTIONS } from '@core/features/encryption/algorith
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { VaultEncryptionInitConfig } from '@core/storage/VaultEncryptionController';
 import { useTelemetryTracker } from '@features/telemetry';
+import { useRelaxedValue } from '@hooks/useRelaxedValue';
 import { shuffleArray } from '@utils/collections/shuffleArray';
+import { useDebouncedCallback } from '@utils/debounce/useDebouncedCallback';
 
 import { VaultsForm } from '../VaultsForm';
 import { calcEntropy } from './calculatePasswordEntropy';
+
+export const PasswordInput = forwardRef<
+	HTMLInputElement,
+	Omit<InputProps, 'value'> & { value: string; setValue: (value: string) => void }
+>(({ value, setValue, ...props }, ref) => {
+	const { t: tEncryption } = useTranslation(LOCALE_NAMESPACE.encryption);
+
+	const [password, setPassword] = useRelaxedValue({ value, onChange: setValue });
+
+	const [passwordScore, setPasswordScore] = useState<{
+		entropy: number;
+		strength: 'good' | 'bad';
+	} | null>(null);
+
+	const updatePasswordScore = useDebouncedCallback(
+		() => {
+			if (!password) {
+				setPasswordScore(null);
+				return;
+			}
+
+			const entropy = Math.round(calcEntropy(password).entropy);
+			const strength: 'good' | 'bad' = entropy > 60 ? 'good' : 'bad';
+
+			setPasswordScore({ entropy, strength });
+		},
+		{ wait: 300, runImmediateFirstCall: false },
+	);
+
+	useEffect(() => {
+		if (!password) {
+			updatePasswordScore.cancel();
+			setPasswordScore(null);
+			return;
+		}
+
+		updatePasswordScore();
+	}, [password, updatePasswordScore]);
+
+	return (
+		<VStack w="100%" alignItems="start">
+			<InputGroup size="md">
+				<Input
+					ref={ref}
+					type="password"
+					value={password}
+					onChange={(evt) => setPassword(evt.target.value)}
+					{...props}
+				/>
+				{passwordScore && (
+					<InputRightElement>
+						{passwordScore.strength === 'good' ? (
+							<FaThumbsUp />
+						) : (
+							<FaThumbsDown />
+						)}
+					</InputRightElement>
+				)}
+			</InputGroup>
+
+			{passwordScore && (
+				<VStack width="100%" align="start" paddingTop=".3rem">
+					<Text color="typography.secondary" fontSize="1rem">
+						{passwordScore.strength === 'good'
+							? tEncryption('password.score.good', {
+									length: password.length,
+									entropy: passwordScore.entropy,
+								})
+							: tEncryption('password.score.bad', {
+									length: password.length,
+									entropy: passwordScore.entropy,
+								})}
+					</Text>
+					<Progress
+						width="100%"
+						value={passwordScore.entropy}
+						max={80}
+						size="xs"
+						variant={passwordScore.strength === 'good' ? 'success' : 'alert'}
+					/>
+				</VStack>
+			)}
+		</VStack>
+	);
+});
 
 export const DetailsContainer = ({ children }: PropsWithChildren) => {
 	const [isOpened, setIsOpened] = useState(false);
@@ -95,14 +183,12 @@ export type VaultCreatorProps = {
 	defaultVaultName?: string;
 };
 
-// TODO: localize the texts
 export const VaultCreator: FC<VaultCreatorProps> = ({
 	onCreateVault,
 	onCancel,
 	defaultVaultName,
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.vault);
-	const { t: tEncryption } = useTranslation(LOCALE_NAMESPACE.encryption);
 
 	const telemetry = useTelemetryTracker();
 
@@ -194,14 +280,6 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 	}, []);
 
 	const noPasswordDialogState = useDisclosure();
-
-	const passwordScore = useMemo(() => {
-		if (!password) return null;
-		const entropy = Math.round(calcEntropy(password).entropy);
-		const strength: 'good' | 'bad' = entropy > 60 ? 'good' : 'bad';
-
-		return { entropy, strength };
-	}, [password]);
 
 	return (
 		<VaultsForm
@@ -327,53 +405,14 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						All data in vault will be encrypted via this password
 					</Text>
 
-					<InputGroup size="md">
-						<Input
-							ref={passwordInputRef}
-							type="password"
-							placeholder={t('creator.field.password.placeholder')}
-							value={password}
-							onChange={(evt) => setPassword(evt.target.value)}
-							focusBorderColor={passwordError ? 'red.500' : undefined}
-							disabled={isPending}
-						/>
-						{passwordScore && (
-							<InputRightElement>
-								{passwordScore.strength === 'good' ? (
-									<FaThumbsUp />
-								) : (
-									<FaThumbsDown />
-								)}
-							</InputRightElement>
-						)}
-					</InputGroup>
-
-					{passwordScore && (
-						<VStack width="100%" align="start" paddingTop=".3rem">
-							<Text color="typography.secondary" fontSize="1rem">
-								{passwordScore.strength === 'good'
-									? tEncryption('password.score.good', {
-											length: password.length,
-											entropy: passwordScore.entropy,
-										})
-									: tEncryption('password.score.bad', {
-											length: password.length,
-											entropy: passwordScore.entropy,
-										})}
-							</Text>
-							<Progress
-								width="100%"
-								value={passwordScore.entropy}
-								max={80}
-								size="xs"
-								variant={
-									passwordScore.strength === 'good'
-										? 'success'
-										: 'alert'
-								}
-							/>
-						</VStack>
-					)}
+					<PasswordInput
+						ref={passwordInputRef}
+						placeholder={t('creator.field.password.placeholder')}
+						value={password}
+						setValue={setPassword}
+						isInvalid={passwordError !== null}
+						isDisabled={isPending}
+					/>
 
 					{passwordError && <Text color="red.500">{passwordError}</Text>}
 				</VStack>
