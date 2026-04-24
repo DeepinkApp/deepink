@@ -18,7 +18,8 @@ export default function (accentColor: string) {
 			accent: colors.accentVariants,
 			typography: {
 				base: '#e2e2e2',
-				secondary: '#a7a59f',
+				secondary: '#c7c7c7',
+				accent: colors.accentVariants['500'],
 				inverted: '#000',
 				invertedAccent: colors.getContrastForeground(
 					colors.accentVariants['500'],
@@ -35,7 +36,7 @@ export default function (accentColor: string) {
 			surface: {
 				background: '#2c272c',
 				invertedBackground: '#fff',
-				panel: '#363036',
+				panel: '#393139',
 				border: '#3a353a',
 			},
 			dim: {
@@ -54,6 +55,7 @@ export default function (accentColor: string) {
 			},
 			message: {
 				error: '#b30606',
+				success: '#3ea863',
 			},
 		},
 		semanticTokens: {
