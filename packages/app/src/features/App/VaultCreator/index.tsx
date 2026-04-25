@@ -422,10 +422,9 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 				<DetailsContainer>
 					<VStack w="100%" gap="2rem">
 						<Text color="typography.secondary" fontSize="1rem">
-							These settings define how many locks protect your vault and
-							how hard they are to pick. The defaults are strong for most
-							people. If you'd like to understand what each option actually
-							does before touching it, see{' '}
+							Configure the encryption primitives that protect your vault —
+							cipher cascade, KDF parameters, and more. For a full breakdown
+							of the defaults and their trade-offs, see{' '}
 							<Link href="https://deepink.io/introduction/encryption/">
 								how your vault is protected
 							</Link>
