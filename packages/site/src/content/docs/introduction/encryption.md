@@ -3,7 +3,7 @@ title: Encryption Design
 description: Details of the Deepink encryption scheme and threat model resistance
 ---
 
-Consider your data secured inside multiple independent layers of protection. In this design, those layers are not physical barriers but well-studied cryptographic constructions designed to resist both current and future attacks.
+Consider your data secured inside multiple independent layers of protection. These layers are not physical barriers but well-studied cryptographic constructions designed to resist both current and future attacks.
 
 Your password is never stored. It is used only to derive a key that unlocks a small encrypted container holding the actual vault key. This vault key is generated randomly and is entirely independent of your password. All user data is encrypted with this random key.
 
@@ -19,9 +19,9 @@ As a result:
 
 * **Password is never stored** — only a derived key is used
 * **Data is encrypted with a random master key** — independent of the password
-* **Password changes are constant-time** — only the wrapped master key is updated
-* **Multiple cipher layers** — security holds if at least one remains secure
-* **Integrity protection** — all ciphertext is authenticated
+* **Password changes do not require re-encrypting data** — only the wrapped master key is updated
+* **Multiple cipher layers** — reduces reliance on any single cipher
+* **Integrity protection** — ciphertext and metadata are authenticated
 * **No recovery mechanism** — no backdoors or server-side keys exist
 
 ## Technical Details
@@ -42,6 +42,7 @@ flowchart TD
     HKDF_W --> WK1(["AES-256 key"])
     HKDF_W --> WK2(["Twofish-256 key"])
     HKDF_W --> WK3(["Serpent-256 key"])
+    HKDF_W --> AUTH(["HMAC key"])
 
     WK1 --> CASENC["Cipher cascade encryption"]
     WK2 --> CASENC
@@ -49,8 +50,8 @@ flowchart TD
     KEYM --> CASENC
 
     CASENC --> ENCM(["Encrypted master key"])
-    ENCM --> DISK[("Stored: salt₁, salt₂, enc(key_M)")]
-```
+    ENCM --> DISK[("Stored: salts, params, IVs, enc(key_M)")]
+````
 
 #### Password Hardening
 
@@ -62,72 +63,97 @@ $$
 
 Parameters:
 
-* $m$: memory cost
-* $t$: time cost
-* $p$: parallelism
+* $m$ — memory cost
+* $t$ — time cost
+* $p$ — parallelism
 
 These parameters are stored alongside $\mathrm{salt}_1$.
 
 #### Master Key Generation
 
-A cryptographically secure random generator produces:
-
 $$
-\mathrm{key}_M \leftarrow \mathrm{CSPRNG}
+\mathrm{key}_M \leftarrow {0,1}^{256}
 $$
 
-This key is independent of the password and has full entropy.
+The master key is generated uniformly at random (256-bit entropy) and is independent of the password.
 
 #### Wrap Key Derivation (HKDF)
 
-For each cipher layer:
+First derive a pseudorandom key:
+
+$$
+\mathrm{PRK} = \mathrm{HKDF_Extract}(\mathrm{salt}_2, \mathrm{key}_1)
+$$
+
+Then expand per cipher:
 
 $$
 \mathrm{wrapKey}_i =
-\mathrm{HKDF}(
-\mathrm{IKM} = \mathrm{key}_1,\
-\mathrm{salt} = \mathrm{salt}_2,\
-\mathrm{info} = \text{"wrap-cipher-}i\text{"}
+\mathrm{HKDF_Expand}(
+\mathrm{PRK},
+\mathrm{info} = \text{"wrap-cipher-}i\text{"},
+L = 32
 )
 $$
 
-This ensures domain separation between keys.
+Authentication key:
+
+$$
+k_{\mathrm{auth}} =
+\mathrm{HKDF_Expand}(
+\mathrm{PRK},
+\mathrm{info} = \text{"auth"},
+L = 64
+)
+$$
+
+*Domain separation is enforced via distinct `info` values.*
 
 #### Master Key Encryption
+
+Each cipher operates in **CTR mode** with a unique random IV.
 
 The master key is encrypted through a cascade:
 
 $$
 \begin{aligned}
-c_1 &= \mathrm{Enc}*{AES}(k_1, IV_1, \mathrm{key}*M) \
-c_2 &= \mathrm{Enc}*{Twofish}(k_2, IV_2, c_1) \
-c_3 &= \mathrm{Enc}*{Serpent}(k_3, IV_3, c_2)
+c_1 &= \mathrm{Enc}*{\mathrm{AES\text{-}CTR}}(k_1, IV_1, \mathrm{key}*M) \
+c_2 &= \mathrm{Enc}*{\mathrm{Twofish\text{-}CTR}}(k_2, IV_2, c_1) \
+c_3 &= \mathrm{Enc}*{\mathrm{Serpent\text{-}CTR}}(k_3, IV_3, c_2)
 \end{aligned}
 $$
 
-Authentication:
+Authentication (Encrypt-then-MAC):
 
 $$
-\mathrm{final} = \mathrm{HMAC}*{SHA512}(k*{auth}, c_3) \ | \ c_3
+\mathrm{final} =
+\mathrm{HMAC}*{\mathrm{SHA512}}(
+k*{\mathrm{auth}},
+\mathrm{salt}_1 | m | t | p | \mathrm{salt}_2 | IV_1 | IV_2 | IV_3 | c_3
+)
+\ |\
+IV_1 | IV_2 | IV_3 | c_3
 $$
+
+*IVs are generated via CSPRNG, are unique per encryption, and stored alongside the ciphertext.*
 
 #### Stored Data
 
-| Value                          | Description                |
-| ------------------------------ | -------------------------- |
-| $\mathrm{salt}_1$              | Argon2 salt                |
-| $(m, t, p)$                    | Argon2 parameters          |
-| $\mathrm{salt}_2$              | HKDF salt                  |
-| $\mathrm{enc}(\mathrm{key}_M)$ | Encrypted master key + tag |
+| Value                          | Description                     |
+| ------------------------------ | ------------------------------- |
+| $\mathrm{salt}_1$              | Argon2 salt                     |
+| $(m, t, p)$                    | Argon2 parameters               |
+| $\mathrm{salt}_2$              | HKDF salt                       |
+| $IV_1, IV_2, IV_3$             | Per-layer IVs                   |
+| $\mathrm{enc}(\mathrm{key}_M)$ | Ciphertext + authentication tag |
 
-### Phase 2 — Vault Unlock 
-
+### Phase 2 — Vault Unlock
 
 ```mermaid
 flowchart TD
     PW(["Your Password"]) --> ARGON["Argon2id + salt₁"]
 
-    DISK[("salt₁ · salt₂ · enc(key_M)")] -->|"salt₁"| ARGON
+    DISK[("salts · params · IVs · enc(key_M)")] -->|"salt₁"| ARGON
     ARGON --> KEY1(["key₁"])
 
     KEY1 --> HKDF_W["HKDF (salt₂, per-cipher info)"]
@@ -136,8 +162,9 @@ flowchart TD
     HKDF_W --> WK1(["AES-256 key"])
     HKDF_W --> WK2(["Twofish-256 key"])
     HKDF_W --> WK3(["Serpent-256 key"])
+    HKDF_W --> AUTH(["HMAC key"])
 
-    DISK -->|"enc(key_M)"| CASDEC["Cascade decryption + HMAC verification"]
+    DISK -->|"enc(key_M)"| CASDEC["Verify HMAC → Cascade decryption"]
     WK1 --> CASDEC
     WK2 --> CASDEC
     WK3 --> CASDEC
@@ -163,60 +190,68 @@ $$
 \mathrm{key}_1 = \mathrm{Argon2id}(\mathrm{password}, \mathrm{salt}_1, m, t, p)
 $$
 
-
 #### Master Key Recovery
 
-1. Verify authentication tag
-2. Decrypt cascade (reverse order):
+1. Recompute $\mathrm{key}_1$
+2. Re-derive wrap keys and $k_{\mathrm{auth}}$
+3. **Verify HMAC before decryption**
+4. Decrypt cascade (reverse order):
 
 $$
 \begin{aligned}
-c_2 &= \mathrm{Dec}*{Serpent}(k_3, IV_3, c_3) \
-c_1 &= \mathrm{Dec}*{Twofish}(k_2, IV_2, c_2) \
-\mathrm{key}*M &= \mathrm{Dec}*{AES}(k_1, IV_1, c_1)
+c_2 &= \mathrm{Dec}*{\mathrm{Serpent\text{-}CTR}}(k_3, IV_3, c_3) \
+c_1 &= \mathrm{Dec}*{\mathrm{Twofish\text{-}CTR}}(k_2, IV_2, c_2) \
+\mathrm{key}*M &= \mathrm{Dec}*{\mathrm{AES\text{-}CTR}}(k_1, IV_1, c_1)
 \end{aligned}
 $$
 
-Incorrect passwords result in authentication failure.
-
+Incorrect passwords or tampering result in authentication failure.
 
 #### Data Key Derivation
 
 $$
+\mathrm{PRK}_D = \mathrm{HKDF_Extract}(\mathrm{salt}_2, \mathrm{key}_M)
+$$
+
+$$
 \mathrm{dataKey}_i =
-\mathrm{HKDF}(
-\mathrm{IKM} = \mathrm{key}_M,\
-\mathrm{salt} = \mathrm{salt}_2,\
-\mathrm{info} = \text{"data-cipher-}i\text{"}
+\mathrm{HKDF_Expand}(
+\mathrm{PRK}_D,
+\mathrm{info} = \text{"data-cipher-}i\text{"},
+L = 32
 )
 $$
 
-
 #### Data Encryption
 
-User data is encrypted using the same cascade structure with fresh IVs and authentication tags per object.
+User data is encrypted using the same cascade structure:
 
+* CTR mode per cipher
+* fresh random IVs per object
+* Encrypt-then-MAC using HMAC-SHA512
+* authentication covers ciphertext and all required metadata
 
 ## Algorithm Reference
 
-| Algorithm   | Purpose                 |
-| ----------- | ----------------------- |
-| Argon2id    | Password key derivation |
-| HKDF-SHA512 | Key expansion           |
-| AES-256     | Cipher layer            |
-| Twofish-256 | Cipher layer            |
-| Serpent-256 | Cipher layer            |
-| HMAC-SHA512 | Authentication          |
-| CSPRNG      | Random generation       |
+| Algorithm          | Purpose                 |
+| ------------------ | ----------------------- |
+| Argon2id           | Password key derivation |
+| HKDF-SHA512        | Key expansion           |
+| AES-256-CTR        | Cipher layer            |
+| Twofish-256-CTR    | Cipher layer            |
+| Serpent-256-CTR    | Cipher layer            |
+| XChaCha20-Poly1305 | Optional AEAD cipher    |
+| HMAC-SHA512        | Authentication          |
+| CSPRNG             | Random generation       |
 
 ## Threat Model
 
-| Threat              | Mitigation               |
-| ------------------- | ------------------------ |
-| Brute-force attacks | Argon2id with high cost  |
-| Stolen vault file   | Full encryption          |
-| Cipher failure      | Multi-cipher cascade     |
-| Tampering           | HMAC authentication      |
-| Key reuse           | HKDF domain separation   |
-| IV collision        | Random IVs per operation |
-| Memory exposure     | Key zeroization          |
+| Threat              | Mitigation                                 |
+| ------------------- | ------------------------------------------ |
+| Brute-force attacks | Argon2id with high cost                    |
+| Stolen vault file   | Full encryption + authenticated decryption |
+| Cipher failure      | Multi-cipher cascade                       |
+| Tampering           | HMAC over ciphertext and metadata          |
+| Key reuse           | HKDF domain separation                     |
+| IV collision        | Random IVs per operation                   |
+| Memory exposure     | Key zeroization                            |
