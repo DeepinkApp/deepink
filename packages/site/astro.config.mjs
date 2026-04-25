@@ -11,6 +11,8 @@ import svgr from 'vite-plugin-svgr';
 import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
 
+import remarkMermaid from './src/plugins/renderMermaid'
+
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://deepink.io',
@@ -57,7 +59,11 @@ export default defineConfig({
 	markdown: {
 		remarkPlugins: [
 			[remarkExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+			remarkMermaid,
 		],
+		syntaxHighlight: {
+			excludeLangs: ["mermaid"],
+		},
 	},
 
 	integrations: [
