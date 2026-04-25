@@ -3,215 +3,220 @@ title: Encryption Design
 description: Details of the Deepink encryption scheme and threat model resistance
 ---
 
-## Before All Else
+Consider your data secured inside multiple independent layers of protection. In this design, those layers are not physical barriers but well-studied cryptographic constructions designed to resist both current and future attacks.
 
-Imagine your most important documents locked inside a safe. Now imagine that safe is welded shut inside a second safe, which is inside a third, all of them bolted to the floor of a vault deep underground. That's roughly what happens to your data — except instead of metal and steel, we use mathematics that the world's most powerful computers cannot break.
+Your password is never stored. It is used only to derive a key that unlocks a small encrypted container holding the actual vault key. This vault key is generated randomly and is entirely independent of your password. All user data is encrypted with this random key.
 
-When you set your password, we never save it. Not on your device, not on a server, nowhere. Your password is used to unlock a tiny lockbox that holds your real vault key — a key that is completely random and has nothing to do with your password. Your actual notes and files are locked with that random key. This means if you ever change your password, only the lockbox changes. Your files — however many you have — stay untouched, instantly re-accessible.
+As a result:
 
-That lockbox protecting your random vault key isn't secured by one lock. It's wrapped in several independent encryption algorithms stacked on top of each other. An attacker would need to defeat all of them at the same time. Nobody has ever broken even one of these algorithms in over two decades of the world's brightest cryptographers trying.
+- Changing your password does not require re-encrypting your data
+- Your data security does not depend directly on password strength alone
+- An attacker must defeat multiple independent cryptographic layers
 
-> **We never see your password. We never see your files. If someone stole your vault file from your device, they would see nothing but meaningless random bytes — and without your password, that is all it will ever be.**
+*At no point do we have access to your password or your data. A stolen vault file reveals only indistinguishable random data.*
 
----
+## Security Properties (Summary)
 
-## The Full Scheme 
+* **Password is never stored** — only a derived key is used
+* **Data is encrypted with a random master key** — independent of the password
+* **Password changes are constant-time** — only the wrapped master key is updated
+* **Multiple cipher layers** — security holds if at least one remains secure
+* **Integrity protection** — all ciphertext is authenticated
+* **No recovery mechanism** — no backdoors or server-side keys exist
 
-> The diagrams below reflect the default triple-cipher configuration. The number of cipher layers can be adjusted in your settings — at least one is always active.
+## Technical Details
 
-### 🔧 Creating Your Vault
+### Phase 1 — Vault Creation
 
 ```mermaid
 flowchart TD
-    PW(["🔑 Your Password"]) --> ARGON["Argon2id  +  Salt₁ Deliberately slow · Memory-hard Brute-force resistant"]
-    ARGON --> KEY1(["key1 — Password Key"])
+    PW(["Your Password"]) --> ARGON["Argon2id + salt₁ (memory-hard)"]
+    ARGON --> KEY1(["key₁ — Password-derived key"])
 
-    RAND(["🎲 Secure Random Generator"]) --> KEYM(["keyM — Master Key Fully random · Unrelated to password"])
-    RAND --> SALT2(["Salt₂"])
+    RAND(["CSPRNG"]) --> KEYM(["key_M — Master key (random)"])
+    RAND --> SALT2(["salt₂"])
 
-    KEY1 --> HKDF_W["HKDF Key Expansion. Salt₂  ·  unique label per cipher"]
+    KEY1 --> HKDF_W["HKDF (salt₂, per-cipher info)"]
     SALT2 --> HKDF_W
 
-    HKDF_W --> WK1(["Wrap Key — AES-256"])
-    HKDF_W --> WK2(["Wrap Key — Twofish-256"])
-    HKDF_W --> WK3(["Wrap Key — Serpent-256"])
+    HKDF_W --> WK1(["AES-256 key"])
+    HKDF_W --> WK2(["Twofish-256 key"])
+    HKDF_W --> WK3(["Serpent-256 key"])
 
-    WK1 --> CASENC["Cipher Cascade — Encrypt keyM AES-256 → Twofish-256 → Serpent-256 Each cipher uses its own independent key + HMAC Authentication Tag"]
+    WK1 --> CASENC["Cipher cascade encryption"]
     WK2 --> CASENC
     WK3 --> CASENC
     KEYM --> CASENC
 
-    CASENC --> ENCM(["🔒 Encrypted Master Key"])
-    ENCM --> DISK[("💾 Written to Disk Salt₁  ·  Salt₂  ·  enc(keyM)")]
+    CASENC --> ENCM(["Encrypted master key"])
+    ENCM --> DISK[("Stored: salt₁, salt₂, enc(key_M)")]
 ```
 
-### 🔓 Opening Your Vault and Using It
+#### Password Hardening
+
+The password is transformed using [Argon2id](https://en.wikipedia.org/wiki/Argon2):
+
+$$
+\mathrm{key}_1 = \mathrm{Argon2id}(\mathrm{password}, \mathrm{salt}_1, m, t, p)
+$$
+
+Parameters:
+
+* $m$: memory cost
+* $t$: time cost
+* $p$: parallelism
+
+These parameters are stored alongside $\mathrm{salt}_1$.
+
+#### Master Key Generation
+
+A cryptographically secure random generator produces:
+
+$$
+\mathrm{key}_M \leftarrow \mathrm{CSPRNG}
+$$
+
+This key is independent of the password and has full entropy.
+
+#### Wrap Key Derivation (HKDF)
+
+For each cipher layer:
+
+$$
+\mathrm{wrapKey}_i =
+\mathrm{HKDF}(
+\mathrm{IKM} = \mathrm{key}_1,\
+\mathrm{salt} = \mathrm{salt}_2,\
+\mathrm{info} = \text{"wrap-cipher-}i\text{"}
+)
+$$
+
+This ensures domain separation between keys.
+
+#### Master Key Encryption
+
+The master key is encrypted through a cascade:
+
+$$
+\begin{aligned}
+c_1 &= \mathrm{Enc}*{AES}(k_1, IV_1, \mathrm{key}*M) \
+c_2 &= \mathrm{Enc}*{Twofish}(k_2, IV_2, c_1) \
+c_3 &= \mathrm{Enc}*{Serpent}(k_3, IV_3, c_2)
+\end{aligned}
+$$
+
+Authentication:
+
+$$
+\mathrm{final} = \mathrm{HMAC}*{SHA512}(k*{auth}, c_3) \ | \ c_3
+$$
+
+#### Stored Data
+
+| Value                          | Description                |
+| ------------------------------ | -------------------------- |
+| $\mathrm{salt}_1$              | Argon2 salt                |
+| $(m, t, p)$                    | Argon2 parameters          |
+| $\mathrm{salt}_2$              | HKDF salt                  |
+| $\mathrm{enc}(\mathrm{key}_M)$ | Encrypted master key + tag |
+
+### Phase 2 — Vault Unlock 
+
 
 ```mermaid
 flowchart TD
-    PW(["🔑 Your Password"]) --> ARGON["Argon2id  +  Salt₁"]
+    PW(["Your Password"]) --> ARGON["Argon2id + salt₁"]
 
-    DISK[("💾 Salt₁ · Salt₂ · enc(keyM)")] -->|"salt₁"| ARGON
-    ARGON --> KEY1(["key1"])
+    DISK[("salt₁ · salt₂ · enc(key_M)")] -->|"salt₁"| ARGON
+    ARGON --> KEY1(["key₁"])
 
-    KEY1 --> HKDF_W["HKDF Key Expansion Salt₂  ·  unique label per cipher"]
+    KEY1 --> HKDF_W["HKDF (salt₂, per-cipher info)"]
     DISK -->|"salt₂"| HKDF_W
 
-    HKDF_W --> WK1(["Wrap Key — AES-256"])
-    HKDF_W --> WK2(["Wrap Key — Twofish-256"])
-    HKDF_W --> WK3(["Wrap Key — Serpent-256"])
+    HKDF_W --> WK1(["AES-256 key"])
+    HKDF_W --> WK2(["Twofish-256 key"])
+    HKDF_W --> WK3(["Serpent-256 key"])
 
-    DISK -->|"enc(keyM)"| CASDEC["Cipher Cascade — Decrypt Serpent-256 → Twofish-256 → AES-256 + Verify HMAC ❌ Wrong password → rejected here"]
+    DISK -->|"enc(key_M)"| CASDEC["Cascade decryption + HMAC verification"]
     WK1 --> CASDEC
     WK2 --> CASDEC
     WK3 --> CASDEC
 
-    CASDEC --> KEYM(["keyM — Master Key"])
+    CASDEC --> KEYM(["key_M"])
 
-    KEYM --> HKDF_D["HKDF Key Expansion Salt₂  ·  unique label per cipher"]
+    KEYM --> HKDF_D["HKDF (data keys)"]
 
-    HKDF_D --> DK1(["Data Key — AES-256"])
-    HKDF_D --> DK2(["Data Key — Twofish-256"])
-    HKDF_D --> DK3(["Data Key — Serpent-256"])
+    HKDF_D --> DK1(["AES-256"])
+    HKDF_D --> DK2(["Twofish-256"])
+    HKDF_D --> DK3(["Serpent-256"])
 
-    DK1 --> DATACAS["Cipher Cascade AES-256 → Twofish-256 → Serpent-256 + HMAC Authentication Tag"]
+    DK1 --> DATACAS["Cipher cascade"]
     DK2 --> DATACAS
     DK3 --> DATACAS
 
-    DATACAS <--> FILES(["📁 Your Notes & Files"])
+    DATACAS <--> FILES(["Encrypted data"])
 ```
 
----
+#### Re-deriving the Password Key
 
-## Why You Are Safe — In Plain Words
+$$
+\mathrm{key}_1 = \mathrm{Argon2id}(\mathrm{password}, \mathrm{salt}_1, m, t, p)
+$$
 
-- 🔑 **Your password is never stored.** It is processed through a one-way mathematical function. There is nothing to steal.
-- 🎲 **Your files are encrypted with a fully random key.** That key was generated independently of your password, making it immune to dictionary attacks entirely.
-- 🪪 **Changing your password is instant.** Only the small encrypted lockbox holding your vault key is replaced. None of your files are touched.
-- 🏰 **Multiple cipher walls.** Your vault key and your data are each encrypted by several independent algorithms in sequence. Every single one would need to be broken to reach your data.
-- 🔏 **Tamper detection.** Every encrypted package carries an authentication tag. If anything is modified — even a single bit — the vault refuses to open and reports the corruption immediately.
-- 🚫 **We cannot help attackers.** The design contains no backdoor, no recovery key held by us, no mechanism to bypass your password. This is intentional and verifiable.
 
----
+#### Master Key Recovery
 
-## Technical Deep Dive
+1. Verify authentication tag
+2. Decrypt cascade (reverse order):
 
-### Phase 1 — Creating Your Vault
+$$
+\begin{aligned}
+c_2 &= \mathrm{Dec}*{Serpent}(k_3, IV_3, c_3) \
+c_1 &= \mathrm{Dec}*{Twofish}(k_2, IV_2, c_2) \
+\mathrm{key}*M &= \mathrm{Dec}*{AES}(k_1, IV_1, c_1)
+\end{aligned}
+$$
 
-**Step 1 — Hardening your password with Argon2id**
+Incorrect passwords result in authentication failure.
 
-Your password alone would be too weak to use as an encryption key directly. We pass it through Argon2id — a memory-hard key derivation function — together with a randomly generated `salt₁`:
 
-$$\text{key}_1 = \text{Argon2id}(\text{password},\ \text{salt}_1,\ m,\ t,\ p)$$
+#### Data Key Derivation
 
-The parameters $m$ (memory), $t$ (time iterations) and $p$ (parallelism) are tuned so that a single derivation takes a meaningful fraction of a second on modern hardware. This makes bulk brute-force attacks computationally prohibitive. All three parameters are stored alongside `salt₁` in the vault header so they can be reproduced exactly when you next unlock.
+$$
+\mathrm{dataKey}_i =
+\mathrm{HKDF}(
+\mathrm{IKM} = \mathrm{key}_M,\
+\mathrm{salt} = \mathrm{salt}_2,\
+\mathrm{info} = \text{"data-cipher-}i\text{"}
+)
+$$
 
-**Step 2 — Generating the Master Key**
 
-A cryptographically secure random number generator produces `keyM` — your master key. This key is never derived from your password. It has maximum entropy and is completely independent.
+#### Data Encryption
 
-**Step 3 — Expanding wrap keys via HKDF**
+User data is encrypted using the same cascade structure with fresh IVs and authentication tags per object.
 
-We need one independent encryption key per cipher in the cascade. A single HKDF call per cipher — each using a unique `info` label — produces them all from `key₁` and `salt₂`:
 
-$$\text{wrapKey}_i = \text{HKDF}(\text{IKM} = \text{key}_1,\ \text{salt} = \text{salt}_2,\ \text{info} = \texttt{"wrap-cipher-}i\texttt{"})$$
+## Algorithm Reference
 
-The `info` label guarantees the keys are domain-separated: even though they share the same input material, they are computationally independent outputs. Knowing one reveals nothing about another.
+| Algorithm   | Purpose                 |
+| ----------- | ----------------------- |
+| Argon2id    | Password key derivation |
+| HKDF-SHA512 | Key expansion           |
+| AES-256     | Cipher layer            |
+| Twofish-256 | Cipher layer            |
+| Serpent-256 | Cipher layer            |
+| HMAC-SHA512 | Authentication          |
+| CSPRNG      | Random generation       |
 
-**Step 4 — Encrypting the Master Key through the Cipher Cascade**
+## Threat Model
 
-`keyM` is encrypted through each configured cipher in sequence, each using its own dedicated `wrapKey`:
-
-```
-enc₁ = AES-256-Encrypt(wrapKey₁, IV₁, keyM)
-enc₂ = Twofish-256-Encrypt(wrapKey₂, IV₂, enc₁)
-enc₃ = Serpent-256-Encrypt(wrapKey₃, IV₃, enc₂)
-final = HMAC-SHA512(authKey, enc₃)  ‖  enc₃
-```
-
-Each IV is freshly generated at random per operation. Additionally, each cipher operates under a uniquely derived key — so even if the same IV bytes appeared across ciphers, the `(key, IV)` pairs remain distinct, eliminating cross-cipher nonce collision risk.
-
-The HMAC authentication tag wraps the entire ciphertext. Any modification to the stored blob — even a single flipped bit — causes HMAC verification to fail immediately upon the next unlock attempt.
-
-**Step 5 — Writing to Disk**
-
-Only the following is written to disk. Nothing else.
-
-| Stored Value | Size | Secret? |
-|---|---|---|
-| `salt₁` | 32 bytes | No — public salt |
-| Argon2id parameters $(m, t, p)$ | ~12 bytes | No |
-| `salt₂` | 32 bytes | No — public salt |
-| `enc(keyM)` + HMAC tag | key size + tag | Ciphertext only |
-
-`key₁`, `keyM`, and all derived keys are zeroed from memory immediately after use.
-
----
-
-### Phase 2 — Opening Your Vault
-
-**Step 1 — Re-derive `key₁`**
-
-`salt₁` and the Argon2id parameters are read from disk. Your password is passed through the same Argon2id function, producing the same `key₁` as during setup — if and only if the password is correct.
-
-**Step 2 — Re-derive wrap keys**
-
-HKDF is run identically to setup, producing the same set of `wrapKey` values.
-
-**Step 3 — Decrypt and authenticate the Master Key**
-
-The cipher cascade is reversed (decryption order is the inverse of encryption), and the HMAC tag is verified first:
-
-```
-Verify HMAC(authKey, enc₃)           → ✅ or ❌ abort
-dec₂ = Serpent-256-Decrypt(wrapKey₃, IV₃, enc₃)
-dec₁ = Twofish-256-Decrypt(wrapKey₂, IV₂, dec₂)
-keyM = AES-256-Decrypt(wrapKey₁, IV₁, dec₁)
-```
-
-A wrong password produces a wrong `key₁`, which produces wrong `wrapKey` values, which produces garbage decryption output, which fails HMAC verification. The vault rejects access cleanly.
-
-**Step 4 — Derive data keys**
-
-With `keyM` recovered, a second round of HKDF expansion produces the data-layer cipher keys:
-
-$$\text{dataKey}_i = \text{HKDF}(\text{IKM} = \text{keyM},\ \text{salt} = \text{salt}_2,\ \text{info} = \texttt{"data-cipher-}i\texttt{"})$$
-
-Note that the `info` namespace (`"data-cipher-*"`) is distinct from the wrap-key namespace (`"wrap-cipher-*"`). Even though `salt₂` is shared between both HKDF layers, the different IKMs (`key₁` vs `keyM`) and different `info` prefixes ensure the two sets of derived keys are fully independent.
-
-**Step 5 — Encrypt / Decrypt your data**
-
-Your notes, files and attachments are encrypted through the same cipher cascade structure, now keyed by `dataKey` values. Every individual item gets its own fresh random IV. The HMAC tag on each item ensures both integrity and authenticity.
-
----
-
-<details>
-<summary><strong>📋 Algorithm Reference</strong></summary>
-
-| Algorithm | Role | Standard |
-|---|---|---|
-| **Argon2id** | Password → `key₁` derivation | RFC 9106 / PHC Winner |
-| **HKDF-SHA512** | Key expansion and domain separation | RFC 5869 |
-| **AES-256** | Cipher layer 1 | FIPS 197 |
-| **Twofish-256** | Cipher layer 2 | AES finalist |
-| **Serpent-256** | Cipher layer 3 | AES finalist, highest security margin |
-| **HMAC-SHA512** | Ciphertext authentication | RFC 2104 |
-| **CSPRNG** | `keyM`, `salt₁`, `salt₂`, IVs | OS-provided (e.g. `/dev/urandom`, `BCryptGenRandom`) |
-
-</details>
-
-<details>
-<summary><strong>🛡️ Threat Model and Security Properties</strong></summary>
-
-| Threat | Mitigation | Result |
-|---|---|---|
-| Password brute-force | Argon2id with high memory/time cost | Millions of guesses per second → a few per second |
-| Stolen vault file | Everything encrypted; salts alone are useless | Attacker sees only random bytes |
-| Cipher broken in future | Multi-cipher cascade | Security holds as long as one cipher remains unbroken |
-| Ciphertext tampering | HMAC-SHA512 on every encrypted object | Tampering detected immediately; vault rejects access |
-| Password change cost | `keyM` indirection | Only `enc(keyM)` is re-wrapped; all data stays unchanged |
-| Nonce/IV collision | Per-operation random IVs + HKDF-derived per-cipher keys | Effective (key, IV) space prevents collision in practice |
-| Key reuse across layers | HKDF domain separation via `info` labels | Each key is cryptographically independent |
-| Memory forensics | Keys zeroed after use | No long-lived key material in RAM |
-
-</details>
+| Threat              | Mitigation               |
+| ------------------- | ------------------------ |
+| Brute-force attacks | Argon2id with high cost  |
+| Stolen vault file   | Full encryption          |
+| Cipher failure      | Multi-cipher cascade     |
+| Tampering           | HMAC authentication      |
+| Key reuse           | HKDF domain separation   |
+| IV collision        | Random IVs per operation |
+| Memory exposure     | Key zeroization          |
