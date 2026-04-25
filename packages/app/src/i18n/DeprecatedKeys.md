@@ -5,5 +5,3 @@ This approach is introduced to prevent the noise in pull requests, and to decrea
 We will change source locales in batch mode once enough changes will be collected.
 
 ## The keys to remove
-
-- note.bin.confirmMoveToBin

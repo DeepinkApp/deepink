@@ -173,7 +173,6 @@
 			}
 		},
 		"bin": {
-			"confirmMoveToBin": "Do you want to move this note to the bin?",
 			"confirmPermanentDeletion": "Do you want to permanently delete this note?"
 		}
 	},
