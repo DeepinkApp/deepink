@@ -20,6 +20,7 @@ import {
 	InputGroup,
 	InputProps,
 	InputRightElement,
+	Link,
 	Modal,
 	ModalBody,
 	ModalCloseButton,
@@ -370,6 +371,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						<InputRightElement>
 							<IconButton
 								variant="ghost"
+								size="sm"
 								icon={<FaDice transform="scale(1.5)" />}
 								title={t('creator.field.name.random')}
 								onClick={(evt) => {
@@ -419,6 +421,17 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 				<DetailsContainer>
 					<VStack w="100%" gap="2rem">
+						<Text color="typography.secondary" fontSize="1rem">
+							These settings define how many locks protect your vault and
+							how hard they are to pick. The defaults are strong for most
+							people. If you'd like to understand what each option actually
+							does before touching it, see{' '}
+							<Link href="https://deepink.io/introduction/encryption/">
+								how your vault is protected
+							</Link>
+							.
+						</Text>
+
 						<VStack w="100%" gap="0.5rem">
 							<Text fontSize="18px" alignSelf="start">
 								{t('creator.field.algorithm.label')}
