@@ -1,4 +1,5 @@
 export enum LOCALE_NAMESPACE {
+	about = 'about',
 	common = 'common',
 	encryption = 'encryption',
 	introduction = 'introduction',

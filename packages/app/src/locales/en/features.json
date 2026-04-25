@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Image loading"
+		"loading": "Image loading",
+		"brokenImage": "Image cannot be loaded"
 	},
 	"notifications": {
 		"title": "Notifications"
