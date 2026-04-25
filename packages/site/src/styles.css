@@ -15,3 +15,13 @@
 		border-radius: 8px;
 	}
 }
+
+/* Formulas */
+.katex-display {
+	overflow-x: auto;
+	padding-bottom: 0.5rem;
+}
+
+.katex-display > .katex {
+	max-width: 100%;
+}
