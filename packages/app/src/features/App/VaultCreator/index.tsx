@@ -2,13 +2,14 @@ import React, {
 	FC,
 	forwardRef,
 	PropsWithChildren,
+	ReactNode,
 	useCallback,
 	useEffect,
 	useRef,
 	useState,
 } from 'react';
 import { AutoFocusInside } from 'react-focus-lock';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { FaDice, FaShield, FaThumbsDown, FaThumbsUp } from 'react-icons/fa6';
 import bytes from 'bytes';
 import { LOCALE_NAMESPACE } from 'src/i18n';
@@ -134,7 +135,14 @@ export const PasswordInput = forwardRef<
 	);
 });
 
-export const DetailsContainer = ({ children }: PropsWithChildren) => {
+export const DetailsContainer = ({
+	icon,
+	title,
+	children,
+}: PropsWithChildren<{
+	icon?: ReactNode;
+	title?: ReactNode;
+}>) => {
 	const [isOpened, setIsOpened] = useState(false);
 
 	return (
@@ -154,8 +162,8 @@ export const DetailsContainer = ({ children }: PropsWithChildren) => {
 				color="typography.accent"
 				alignItems="center"
 			>
-				<FaShield />
-				<span>Advanced encryption options</span>
+				{icon}
+				{title && <span>{title}</span>}
 
 				<Switch
 					marginLeft="auto"
@@ -404,7 +412,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 					</HStack>
 
 					<Text color="typography.secondary" fontSize="1rem">
-						All data in vault will be encrypted via this password
+						{t('creator.field.password.description')}
 					</Text>
 
 					<PasswordInput
@@ -419,16 +427,21 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 					{passwordError && <Text color="red.500">{passwordError}</Text>}
 				</VStack>
 
-				<DetailsContainer>
+				<DetailsContainer
+					icon={<FaShield />}
+					title={t('creator.section.advancedConfig.label')}
+				>
 					<VStack w="100%" gap="2rem">
 						<Text color="typography.secondary" fontSize="1rem">
-							Configure the encryption primitives that protect your vault —
-							cipher cascade, KDF parameters, and more. For a full breakdown
-							of the defaults and their trade-offs, see{' '}
-							<Link href="https://deepink.io/introduction/encryption/">
-								how your vault is protected
-							</Link>
-							.
+							<Trans
+								t={t}
+								i18nKey="creator.section.advancedConfig.description"
+								components={{
+									link: (
+										<Link href="https://deepink.io/introduction/encryption/" />
+									),
+								}}
+							/>
 						</Text>
 
 						<VStack w="100%" gap="0.5rem">
@@ -452,12 +465,9 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						</VStack>
 
 						<VStack w="100%" gap="0.5rem" align="start">
-							<Text fontSize="18px">Key derivation function</Text>
+							<Text fontSize="18px">{t('creator.section.kdf.label')}</Text>
 							<Text color="typography.secondary" fontSize="1rem">
-								Helps protect weak or reused passwords by making each
-								guess slower and more costly. Raise these settings for
-								stronger protection, or keep the defaults for a balanced
-								experience.
+								{t('creator.section.kdf.description')}
 							</Text>
 
 							<VStack
@@ -471,13 +481,10 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 							>
 								<VStack w="100%" gap="0.5rem">
 									<Text fontSize="18px" alignSelf="start">
-										Memory usage
+										{t('creator.section.kdf.memory.label')}
 									</Text>
 									<Text color="typography.secondary" fontSize="1rem">
-										Makes each password guess use more memory. This is
-										especially effective against large-scale attacks,
-										because memory is costly and harder to scale
-										efficiently than raw computation.
+										{t('creator.section.kdf.memory.description')}
 									</Text>
 
 									<RelaxedSlider
@@ -494,14 +501,10 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 								<VStack w="100%" gap="0.5rem">
 									<Text fontSize="18px" alignSelf="start">
-										Iterations
+										{t('creator.section.kdf.ops.label')}
 									</Text>
 									<Text color="typography.secondary" fontSize="1rem">
-										Repeats the derivation work for each password
-										guess. This increases the cost of every guess in a
-										mostly linear way: doubling iterations roughly
-										doubles the work for both attackers and your
-										device.
+										{t('creator.section.kdf.ops.description')}
 									</Text>
 
 									<RelaxedSlider
