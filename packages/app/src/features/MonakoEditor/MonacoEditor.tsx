@@ -4,6 +4,7 @@ import React, {
 	Ref,
 	useCallback,
 	useEffect,
+	useLayoutEffect,
 	useRef,
 	useState,
 } from 'react';
@@ -268,22 +269,14 @@ export const MonacoEditor = ({
 	}, [isReadOnly]);
 
 	// Update value
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const editor = editorRef.current;
 		if (!editor) return;
 
 		if (editor.getValue() !== value) {
-			const model = editor.getModel();
-			if (!model) return;
-
-			// Update content without resetting cursor position
-			model.pushEditOperations(
-				editor.getSelections(),
-				[{ range: model.getFullModelRange(), text: value }],
-				() => null,
-			);
+			editor.setValue(value);
 		}
-	});
+	}, [value]);
 
 	// Update config
 	useEffect(() => {
