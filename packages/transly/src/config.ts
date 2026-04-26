@@ -15,7 +15,14 @@ export const configSchema = z.object({
 	model: z.string().min(1, 'model must not be empty'),
 	apiKey: z.string().min(1, 'apiKey must not be empty'),
 	baseUrl: z.string().url().optional(),
-	prompt: z.string().min(1, 'prompt must not be empty'),
+	contextPrompt: z
+		.function(z.tuple([z.string()]), z.string())
+		.or(z.string().min(1, 'prompt must not be empty'))
+		.optional(),
+	systemPrompt: z
+		.function(z.tuple([z.string()]), z.string())
+		.or(z.string().min(1, 'system prompt must not be empty'))
+		.optional(),
 	maxBatchSize: z.number().int().positive().optional(),
 });
 

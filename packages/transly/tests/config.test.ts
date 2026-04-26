@@ -76,11 +76,6 @@ describe('Config schema validation', () => {
 		expect(result.success).toBe(false);
 	});
 
-	it('rejects config with empty prompt', () => {
-		const result = configSchema.safeParse({ ...validConfig, prompt: '' });
-		expect(result.success).toBe(false);
-	});
-
 	it('rejects config with invalid baseUrl', () => {
 		const result = configSchema.safeParse({ ...validConfig, baseUrl: 'not-a-url' });
 		expect(result.success).toBe(false);

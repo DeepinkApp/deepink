@@ -14,6 +14,8 @@ export type CacheEntry = {
  */
 export type CacheFile = Record<string, CacheEntry>;
 
+export type PromptGenerator = (targetLanguage: string) => string;
+
 /**
  * Validated user configuration loaded from `i18n.config.js`.
  */
@@ -33,7 +35,11 @@ export type Config = {
 	/** Optional base URL for the API (defaults to OpenAI-compatible endpoint) */
 	baseUrl?: string;
 	/** System prompt instructing the LLM how to translate */
-	prompt: string;
+	systemPrompt?: string | PromptGenerator;
+	/**
+	 * Prompt to explain the app context and the terms to the LLM
+	 */
+	contextPrompt?: string | PromptGenerator;
 	/** Maximum number of keys per LLM request batch */
 	maxBatchSize?: number;
 };

@@ -113,7 +113,7 @@ describe('translateChunk — outgoing request', () => {
 
 		const config = makeConfig({
 			model: 'openai/gpt-4o-mini',
-			prompt: 'Translate carefully.',
+			systemPrompt: 'Translate carefully.',
 		});
 		await translateChunk(items, 'de', config);
 
