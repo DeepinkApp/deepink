@@ -289,6 +289,17 @@ export default tseslint.config(
 		},
 	},
 	{
+		files: ['packages/transly/**/*.ts'],
+		languageOptions: {
+			parserOptions: {
+				projectService: {
+					defaultProject: 'packages/transly/tsconfig.json',
+				},
+			},
+		},
+	},
+
+	{
 		files: ['packages/app/**/*.{ts,tsx,mts}'],
 		settings: {
 			'import/resolver': {
