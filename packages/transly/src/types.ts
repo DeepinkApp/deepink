@@ -1,3 +1,5 @@
+import { LlmTranslationResponse } from './llm';
+
 /**
  * A single entry in the translation cache.
  * `hash` is the SHA-256 of the source string value.
@@ -42,6 +44,11 @@ export type Config = {
 	contextPrompt?: string | PromptGenerator;
 	/** Maximum number of keys per LLM request batch */
 	maxBatchSize?: number;
+	translateChunk?: (
+		items: TranslationItem[],
+		targetLang: string,
+		config: Config,
+	) => Promise<LlmTranslationResponse>;
 };
 
 /**

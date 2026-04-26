@@ -4,7 +4,8 @@ import { resolve } from 'path';
 
 import { description, name, version } from '../package.json';
 import { loadConfig } from './config.js';
-import { type ProgressEvent, runTranslation } from './runner.js';
+import { translateChunk } from './llm';
+import { makeNodeFsAdapter, type ProgressEvent, runTranslation } from './runner.js';
 
 const program = new Command();
 
@@ -12,7 +13,7 @@ program
 	.name(name)
 	.description(description)
 	.version(version)
-	.option('-c, --config <path>', 'Path to the i18n config file', './i18n.config.js')
+	.option('-c, --config <path>', 'Path to the i18n config file', './transly.config.js')
 	.action(async (options: { config: string }) => {
 		const configPath = resolve(options.config);
 
@@ -61,7 +62,12 @@ program
 		};
 
 		try {
-			await runTranslation(config, undefined, undefined, onProgress);
+			await runTranslation(
+				config,
+				makeNodeFsAdapter(),
+				config.translateChunk ?? translateChunk,
+				onProgress,
+			);
 			console.log('\n✅ Translation complete.');
 		} catch (err) {
 			console.error(
