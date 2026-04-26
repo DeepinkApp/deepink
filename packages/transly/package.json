@@ -1,7 +1,16 @@
 {
 	"name": "transly",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Cache-driven LLM i18n translation CLI",
+	"keywords": [
+		"i18n",
+		"i18next",
+		"internationalization",
+		"translation",
+		"localization",
+		"l10n",
+		"globalization"
+	],
 	"author": "Robert Vitonsky <robert@vitonsky.net>",
 	"license": "MIT",
 	"type": "module",
