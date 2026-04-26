@@ -64,11 +64,11 @@ export default {
   model: 'openai/gpt-4o-mini',
   apiKey: process.env.OPENAI_API_KEY,
   baseUrl: 'https://openrouter.ai/api/v1', // optional, defaults to OpenRouter
-
-  prompt: `You are a professional UI translator.
+  systemPrompt: `You are a professional UI translator.
 Return a JSON object mapping each key to its translation in the target language.
 Preserve placeholders like {{name}} and {{count}} exactly.
 Keep translations concise and natural.`,
+  contextPrompt: `The vault is an encrypted directory where app keeps the user files. Not a bank safe.`,
 
   maxBatchSize: 50, // optional, default: 50
 };
