@@ -1,6 +1,6 @@
 {
 	"name": "transly",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Cache-driven LLM i18n translation CLI",
 	"author": "Robert Vitonsky <robert@vitonsky.net>",
 	"license": "MIT",
