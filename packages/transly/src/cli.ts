@@ -2,15 +2,16 @@
 import { Command } from 'commander';
 import { resolve } from 'path';
 
+import { description, name, version } from '../package.json';
 import { loadConfig } from './config.js';
 import { type ProgressEvent, runTranslation } from './runner.js';
 
 const program = new Command();
 
 program
-	.name('transly')
-	.description('Cache-driven LLM i18n translation CLI')
-	.version('0.1.0')
+	.name(name)
+	.description(description)
+	.version(version)
 	.option('-c, --config <path>', 'Path to the i18n config file', './i18n.config.js')
 	.action(async (options: { config: string }) => {
 		const configPath = resolve(options.config);
