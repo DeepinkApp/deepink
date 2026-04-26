@@ -1,25 +1,17 @@
 /* eslint-disable @cspell/spellchecker */
-/**
- * Filesystem integration tests using memfs.
- *
- * These tests verify that the tool correctly reads locale files, writes
- * translated output, and reads/writes cache — all through the FsAdapter
- * interface backed by memfs.
- */
 import { fs as memfsFs, vol } from 'memfs';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { computeHash, readCache, writeCache } from '../src/cache.js';
 import { runTranslation } from '../src/runner.js';
 import { scanNamespaces } from '../src/scanner.js';
-import type { CacheFile, Config, FsAdapter, TranslationItem } from '../src/types.js';
-
-// ---------------------------------------------------------------------------
-// memfs adapter
-// ---------------------------------------------------------------------------
+import type { CacheFile, FsAdapter } from '../src/types.js';
+import { makeConfig } from './stubs/makeConfig.js';
+import { makeMockTranslate } from './stubs/makeTranslate.js';
 
 /**
  * Wraps memfs in our FsAdapter interface.
+ * Used only in this file because it depends on the memfs library.
  */
 function makeMemfsAdapter(): FsAdapter {
 	return {
@@ -64,38 +56,6 @@ function makeMemfsAdapter(): FsAdapter {
 	};
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-function makeConfig(overrides: Partial<Config> = {}): Config {
-	return {
-		sourceLang: 'en',
-		targetLangs: ['de'],
-		localesDir: '/locales',
-		cacheDir: '/cache',
-		model: 'test-model',
-		apiKey: 'test-key',
-		prompt: 'Translate.',
-		maxBatchSize: 10,
-		...overrides,
-	};
-}
-
-function makeMockTranslate() {
-	return vi.fn(async (items: TranslationItem[], targetLang: string) => {
-		const result: Record<string, string> = {};
-		for (const item of items) {
-			result[item.key] = `[${targetLang}] ${item.value}`;
-		}
-		return result;
-	});
-}
-
-// ---------------------------------------------------------------------------
-// Setup / teardown
-// ---------------------------------------------------------------------------
-
 beforeEach(() => {
 	vol.reset();
 });
@@ -104,10 +64,6 @@ afterEach(() => {
 	vol.reset();
 });
 
-// ---------------------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------------------
-
 describe('Filesystem: scanNamespaces', () => {
 	it('discovers JSON files in the source locale directory', async () => {
 		vol.fromJSON({
@@ -115,12 +71,10 @@ describe('Filesystem: scanNamespaces', () => {
 			'/locales/en/workspace.json': JSON.stringify({ name: 'Workspace' }),
 		});
 
-		const fs = makeMemfsAdapter();
-		const namespaces = await scanNamespaces('/locales', 'en', fs);
+		const namespaces = await scanNamespaces('/locales', 'en', makeMemfsAdapter());
 
 		expect(namespaces).toHaveLength(2);
-		const names = namespaces.map((n) => n.namespace).sort();
-		expect(names).toEqual(['notes', 'workspace']);
+		expect(namespaces.map((n) => n.namespace).sort()).toEqual(['notes', 'workspace']);
 	});
 
 	it('ignores non-JSON files', async () => {
@@ -129,8 +83,7 @@ describe('Filesystem: scanNamespaces', () => {
 			'/locales/en/README.md': '# Locales',
 		});
 
-		const fs = makeMemfsAdapter();
-		const namespaces = await scanNamespaces('/locales', 'en', fs);
+		const namespaces = await scanNamespaces('/locales', 'en', makeMemfsAdapter());
 
 		expect(namespaces).toHaveLength(1);
 		expect(namespaces[0].namespace).toBe('notes');
@@ -138,16 +91,16 @@ describe('Filesystem: scanNamespaces', () => {
 
 	it('throws when source locale directory does not exist', async () => {
 		vol.fromJSON({});
-		const fs = makeMemfsAdapter();
-		await expect(scanNamespaces('/locales', 'en', fs)).rejects.toThrow();
+		await expect(
+			scanNamespaces('/locales', 'en', makeMemfsAdapter()),
+		).rejects.toThrow();
 	});
 
 	it('parses JSON content correctly', async () => {
 		const content = { title: 'Hello', nested: { message: 'World' } };
 		vol.fromJSON({ '/locales/en/notes.json': JSON.stringify(content) });
 
-		const fs = makeMemfsAdapter();
-		const namespaces = await scanNamespaces('/locales', 'en', fs);
+		const namespaces = await scanNamespaces('/locales', 'en', makeMemfsAdapter());
 
 		expect(namespaces[0].content).toEqual(content);
 	});
@@ -157,7 +110,6 @@ describe('Filesystem: cache read/write', () => {
 	it('writes cache file to disk and reads it back', async () => {
 		vol.fromJSON({ '/cache/.keep': '' });
 		const fs = makeMemfsAdapter();
-
 		const cache: CacheFile = {
 			title: { hash: computeHash('Hello'), translations: { de: 'Hallo' } },
 		};
@@ -170,22 +122,18 @@ describe('Filesystem: cache read/write', () => {
 
 	it('creates cache directory if it does not exist', async () => {
 		vol.fromJSON({});
-		const fs = makeMemfsAdapter();
-
 		const cache: CacheFile = {
 			key: { hash: computeHash('value'), translations: { de: 'Wert' } },
 		};
 
-		// Should not throw even though /cache doesn't exist
 		await expect(
-			writeCache('/cache', 'notes', 'de', cache, fs),
+			writeCache('/cache', 'notes', 'de', cache, makeMemfsAdapter()),
 		).resolves.not.toThrow();
 	});
 
 	it('returns empty cache when file does not exist', async () => {
 		vol.fromJSON({});
-		const fs = makeMemfsAdapter();
-		const result = await readCache('/cache', 'notes', 'de', fs);
+		const result = await readCache('/cache', 'notes', 'de', makeMemfsAdapter());
 		expect(result).toEqual({});
 	});
 });
@@ -200,14 +148,9 @@ describe('Filesystem: full pipeline with memfs', () => {
 		});
 
 		const fs = makeMemfsAdapter();
-		const mockTranslate = makeMockTranslate();
+		await runTranslation(makeConfig(), fs, makeMockTranslate());
 
-		await runTranslation(makeConfig(), fs, mockTranslate);
-
-		// Output file should exist
-		const outputRaw = await fs.readFile('/locales/de/notes.json', 'utf-8');
-		const output = JSON.parse(outputRaw);
-
+		const output = JSON.parse(await fs.readFile('/locales/de/notes.json', 'utf-8'));
 		expect(output.title).toBe('[de] Hello');
 		expect(output.nested.message).toBe('[de] World');
 	});
@@ -220,8 +163,9 @@ describe('Filesystem: full pipeline with memfs', () => {
 		const fs = makeMemfsAdapter();
 		await runTranslation(makeConfig(), fs, makeMockTranslate());
 
-		const cacheRaw = await fs.readFile('/cache/notes.de.json', 'utf-8');
-		const cache = JSON.parse(cacheRaw) as CacheFile;
+		const cache = JSON.parse(
+			await fs.readFile('/cache/notes.de.json', 'utf-8'),
+		) as CacheFile;
 
 		expect(cache['title']).toBeDefined();
 		expect(cache['title'].hash).toBe(computeHash('Hello'));
@@ -254,28 +198,17 @@ describe('Filesystem: full pipeline with memfs', () => {
 		const fs = makeMemfsAdapter();
 		const mockTranslate = makeMockTranslate();
 
-		// First run
 		await runTranslation(makeConfig(), fs, mockTranslate);
 		mockTranslate.mockClear();
 
-		// Update source file — only 'title' changed
 		await fs.writeFile(
 			'/locales/en/notes.json',
 			JSON.stringify({ title: 'Hello Updated', message: 'World' }),
 			'utf-8',
 		);
 
-		const callLog: { items: TranslationItem[] }[] = [];
-		const retryTranslate = vi.fn(
-			async (items: TranslationItem[], targetLang: string) => {
-				callLog.push({ items: [...items] });
-				const result: Record<string, string> = {};
-				for (const item of items) {
-					result[item.key] = `[${targetLang}] ${item.value}`;
-				}
-				return result;
-			},
-		);
+		const callLog: { items: { key: string }[] }[] = [];
+		const retryTranslate = makeMockTranslate(callLog as never);
 
 		await runTranslation(makeConfig(), fs, retryTranslate);
 
@@ -293,11 +226,12 @@ describe('Filesystem: full pipeline with memfs', () => {
 		const fs = makeMemfsAdapter();
 		await runTranslation(makeConfig(), fs, makeMockTranslate());
 
-		const notesRaw = await fs.readFile('/locales/de/notes.json', 'utf-8');
-		const workspaceRaw = await fs.readFile('/locales/de/workspace.json', 'utf-8');
-
-		expect(JSON.parse(notesRaw).title).toBe('[de] Note');
-		expect(JSON.parse(workspaceRaw).name).toBe('[de] Workspace');
+		expect(
+			JSON.parse(await fs.readFile('/locales/de/notes.json', 'utf-8')).title,
+		).toBe('[de] Note');
+		expect(
+			JSON.parse(await fs.readFile('/locales/de/workspace.json', 'utf-8')).name,
+		).toBe('[de] Workspace');
 	});
 
 	it('preserves existing target file keys not in source', async () => {
@@ -309,9 +243,7 @@ describe('Filesystem: full pipeline with memfs', () => {
 		const fs = makeMemfsAdapter();
 		await runTranslation(makeConfig(), fs, makeMockTranslate());
 
-		const outputRaw = await fs.readFile('/locales/de/notes.json', 'utf-8');
-		const output = JSON.parse(outputRaw);
-
+		const output = JSON.parse(await fs.readFile('/locales/de/notes.json', 'utf-8'));
 		expect(output.title).toBe('[de] Hello');
 		expect(output.legacy).toBe('Altes Feld');
 	});

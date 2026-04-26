@@ -66,6 +66,11 @@ describe('Config schema validation', () => {
 		expect(result.success).toBe(false);
 	});
 
+	it('rejects config with wrong type for targetLangs', () => {
+		const result = configSchema.safeParse({ ...validConfig, targetLangs: 'de' });
+		expect(result.success).toBe(false);
+	});
+
 	it('rejects config with empty apiKey', () => {
 		const result = configSchema.safeParse({ ...validConfig, apiKey: '' });
 		expect(result.success).toBe(false);
@@ -93,11 +98,6 @@ describe('Config schema validation', () => {
 
 	it('rejects config with non-integer maxBatchSize', () => {
 		const result = configSchema.safeParse({ ...validConfig, maxBatchSize: 1.5 });
-		expect(result.success).toBe(false);
-	});
-
-	it('rejects config with wrong type for targetLangs', () => {
-		const result = configSchema.safeParse({ ...validConfig, targetLangs: 'de' });
 		expect(result.success).toBe(false);
 	});
 

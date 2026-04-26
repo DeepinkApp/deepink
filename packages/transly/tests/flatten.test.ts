@@ -4,35 +4,26 @@ import { flattenJson, unflattenJson } from '../src/flatten.js';
 
 describe('flattenJson', () => {
 	it('flattens a simple flat object unchanged', () => {
-		const input = { title: 'Hello', action: 'Save' };
-		expect(flattenJson(input)).toEqual({ title: 'Hello', action: 'Save' });
+		expect(flattenJson({ title: 'Hello', action: 'Save' })).toEqual({
+			title: 'Hello',
+			action: 'Save',
+		});
 	});
 
 	it('flattens one level of nesting', () => {
-		const input = { nested: { message: 'World' } };
-		expect(flattenJson(input)).toEqual({ 'nested.message': 'World' });
+		expect(flattenJson({ nested: { message: 'World' } })).toEqual({
+			'nested.message': 'World',
+		});
 	});
 
 	it('flattens multiple levels of nesting', () => {
-		const input = {
-			a: {
-				b: {
-					c: 'deep',
-				},
-			},
-		};
-		expect(flattenJson(input)).toEqual({ 'a.b.c': 'deep' });
+		expect(flattenJson({ a: { b: { c: 'deep' } } })).toEqual({ 'a.b.c': 'deep' });
 	});
 
 	it('flattens mixed flat and nested keys', () => {
 		const input = {
 			title: 'Hello',
-			nested: {
-				message: 'World',
-				sub: {
-					value: 'deep',
-				},
-			},
+			nested: { message: 'World', sub: { value: 'deep' } },
 		};
 		expect(flattenJson(input)).toEqual({
 			title: 'Hello',
@@ -60,14 +51,7 @@ describe('flattenJson', () => {
 	it('handles real-world i18n structure', () => {
 		const input = {
 			tag: {
-				editor: {
-					mode: {
-						add: {
-							title: 'Create tag',
-							action: 'Create',
-						},
-					},
-				},
+				editor: { mode: { add: { title: 'Create tag', action: 'Create' } } },
 				suggests: ['fancy', 'tag name', 'ideas'],
 			},
 		};
@@ -81,18 +65,20 @@ describe('flattenJson', () => {
 
 describe('unflattenJson', () => {
 	it('reconstructs a simple flat object', () => {
-		const input = { title: 'Hello', action: 'Save' };
-		expect(unflattenJson(input)).toEqual({ title: 'Hello', action: 'Save' });
+		expect(unflattenJson({ title: 'Hello', action: 'Save' })).toEqual({
+			title: 'Hello',
+			action: 'Save',
+		});
 	});
 
 	it('reconstructs one level of nesting', () => {
-		const input = { 'nested.message': 'World' };
-		expect(unflattenJson(input)).toEqual({ nested: { message: 'World' } });
+		expect(unflattenJson({ 'nested.message': 'World' })).toEqual({
+			nested: { message: 'World' },
+		});
 	});
 
 	it('reconstructs multiple levels of nesting', () => {
-		const input = { 'a.b.c': 'deep' };
-		expect(unflattenJson(input)).toEqual({ a: { b: { c: 'deep' } } });
+		expect(unflattenJson({ 'a.b.c': 'deep' })).toEqual({ a: { b: { c: 'deep' } } });
 	});
 
 	it('reconstructs mixed flat and nested keys', () => {
@@ -103,12 +89,7 @@ describe('unflattenJson', () => {
 		};
 		expect(unflattenJson(input)).toEqual({
 			title: 'Hello',
-			nested: {
-				message: 'World',
-				sub: {
-					value: 'deep',
-				},
-			},
+			nested: { message: 'World', sub: { value: 'deep' } },
 		});
 	});
 
