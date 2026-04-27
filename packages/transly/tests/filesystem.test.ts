@@ -111,7 +111,7 @@ describe('Filesystem: cache read/write', () => {
 		vol.fromJSON({ '/cache/.keep': '' });
 		const fs = makeMemfsAdapter();
 		const cache: CacheFile = {
-			title: { hash: computeHash('Hello'), translations: { de: 'Hallo' } },
+			title: { hash: computeHash('Hello'), translation: 'Hallo' },
 		};
 
 		await writeCache('/cache', 'notes', 'de', cache, fs);
@@ -123,7 +123,7 @@ describe('Filesystem: cache read/write', () => {
 	it('creates cache directory if it does not exist', async () => {
 		vol.fromJSON({});
 		const cache: CacheFile = {
-			key: { hash: computeHash('value'), translations: { de: 'Wert' } },
+			key: { hash: computeHash('value'), translation: 'Wert' },
 		};
 
 		await expect(
@@ -169,7 +169,7 @@ describe('Filesystem: full pipeline with memfs', () => {
 
 		expect(cache['title']).toBeDefined();
 		expect(cache['title'].hash).toBe(computeHash('Hello'));
-		expect(cache['title'].translations['de']).toBe('[de] Hello');
+		expect(cache['title'].translation).toBe('[de] Hello');
 	});
 
 	it('does not call LLM on second run when nothing changed', async () => {

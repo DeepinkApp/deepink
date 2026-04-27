@@ -45,11 +45,11 @@ describe('Partial failure handling', () => {
 
 		expect(cache['key0']).toBeDefined();
 		expect(cache['key0'].hash).toBe(computeHash('value 0'));
-		expect(cache['key0'].translations['de']).toBe('[de] value 0');
+		expect(cache['key0'].translation).toBe('[de] value 0');
 
 		expect(cache['key1']).toBeDefined();
 		expect(cache['key1'].hash).toBe(computeHash('value 1'));
-		expect(cache['key1'].translations['de']).toBe('[de] value 1');
+		expect(cache['key1'].translation).toBe('[de] value 1');
 
 		expect(cache['key2']).toBeUndefined();
 		expect(cache['key3']).toBeUndefined();
@@ -152,7 +152,7 @@ describe('Partial failure handling', () => {
 
 		for (let i = 0; i < 4; i++) {
 			expect(cache[`key${i}`]).toBeDefined();
-			expect(cache[`key${i}`].translations['de']).toBe(`[de] value ${i}`);
+			expect(cache[`key${i}`].translation).toBe(`[de] value ${i}`);
 		}
 
 		expect(cache['key4']).toBeUndefined();

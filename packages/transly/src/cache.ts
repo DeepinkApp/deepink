@@ -80,7 +80,6 @@ export async function writeCache(
 export function getChangedKeys(
 	flatSource: Record<string, string>,
 	cache: CacheFile,
-	targetLang: string,
 ): string[] {
 	const changed: string[] = [];
 
@@ -88,7 +87,7 @@ export function getChangedKeys(
 		const entry = cache[key];
 		const hash = computeHash(value);
 
-		if (!entry || entry.hash !== hash || !(targetLang in entry.translations)) {
+		if (!entry || entry.hash !== hash) {
 			changed.push(key);
 		}
 	}

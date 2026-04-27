@@ -62,7 +62,7 @@ describe('LLM integration: translateChunk + runTranslation', () => {
 		expect(store.has('/cache/notes.de.json')).toBe(true);
 		const cache = JSON.parse(store.get('/cache/notes.de.json')!) as CacheFile;
 		expect(cache['greeting']).toBeDefined();
-		expect(cache['greeting'].translations['de']).toBe('Hallo');
+		expect(cache['greeting'].translation).toBe('Hallo');
 	});
 
 	it('does not call fetch on second run when nothing changed', async () => {

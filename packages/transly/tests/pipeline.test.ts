@@ -14,6 +14,10 @@ describe('Full translation pipeline', () => {
 				title: 'Hello',
 				message: 'World',
 				tags: ['Ideas', 'Health', 'Well Being'],
+				'foo.bar': 'Name with dots',
+				foo: {
+					bar: 'Another value',
+				},
 			}),
 		});
 
@@ -22,16 +26,19 @@ describe('Full translation pipeline', () => {
 
 		expect(callLog).toHaveLength(1);
 		expect(callLog[0].targetLang).toBe('de');
-		expect(callLog[0].items).toHaveLength(5);
+		expect(callLog[0].items).toHaveLength(7);
 
-		const output = JSON.parse(store.get('/locales/de/notes.json')!);
-		expect(output.title).toBe('[de] Hello');
-		expect(output.message).toBe('[de] World');
-		expect(output.tags).toStrictEqual([
-			'[de] Ideas',
-			'[de] Health',
-			'[de] Well Being',
-		]);
+		expect(JSON.parse(store.get('/locales/de/notes.json')!)).toStrictEqual({
+			title: '[de] Hello',
+			message: '[de] World',
+			tags: ['[de] Ideas', '[de] Health', '[de] Well Being'],
+			'foo.bar': '[de] Name with dots',
+			foo: {
+				bar: '[de] Another value',
+			},
+		});
+
+		expect(store).toMatchSnapshot('Storage state');
 	});
 
 	it('skips unchanged keys on second run', async () => {
@@ -154,7 +161,7 @@ describe('Full translation pipeline', () => {
 		const cache = JSON.parse(store.get('/cache/notes.de.json')!) as CacheFile;
 		expect(cache['title']).toBeDefined();
 		expect(cache['title'].hash).toBe(computeHash('Hello'));
-		expect(cache['title'].translations['de']).toBe('[de] Hello');
+		expect(cache['title'].translation).toBe('[de] Hello');
 	});
 
 	it('handles nested source JSON correctly', async () => {

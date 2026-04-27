@@ -6,7 +6,7 @@ import { chunkItems, DEFAULT_MAX_BATCH_SIZE } from './chunker.js';
 import { flattenJson, unflattenJson } from './flatten.js';
 import { translateChunk } from './llm.js';
 import { scanNamespaces } from './scanner.js';
-import type { Config, FsAdapter, TranslationItem } from './types.js';
+import type { CacheFile, Config, FsAdapter, TranslationItem } from './types.js';
 
 /**
  * Progress callback invoked at key milestones during translation.
@@ -55,7 +55,7 @@ async function writeTargetFile(
 	namespace: string,
 	targetLang: string,
 	flatSource: Record<string, string>,
-	cache: import('./types.js').CacheFile,
+	cache: CacheFile,
 	fs: FsAdapter,
 ): Promise<void> {
 	const targetDir = join(config.localesDir, targetLang);
@@ -77,7 +77,7 @@ async function writeTargetFile(
 
 	for (const key of Object.keys(flatSource)) {
 		const entry = cache[key];
-		const translation = entry?.translations[targetLang];
+		const translation = entry?.translation;
 		if (translation !== undefined) {
 			merged[key] = translation;
 		}
@@ -129,7 +129,7 @@ export async function runTranslation(
 			const cache = await readCache(config.cacheDir, namespace, targetLang, fs);
 
 			// 4. Detect changed keys
-			const changedKeys = getChangedKeys(flatSource, cache, targetLang);
+			const changedKeys = getChangedKeys(flatSource, cache);
 
 			onProgress?.({
 				type: 'namespace_start',
@@ -170,15 +170,11 @@ export async function runTranslation(
 
 				// Update cache entries for this chunk
 				for (const item of chunk) {
-					const existing = cache[item.key];
 					const hash = computeHash(item.value);
 
 					cache[item.key] = {
 						hash,
-						translations: {
-							...(existing?.translations ?? {}),
-							[targetLang]: translations[item.key],
-						},
+						translation: translations[item.key],
 					};
 				}
 

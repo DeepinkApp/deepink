@@ -7,7 +7,7 @@ import { LlmTranslationResponse } from './llm';
  */
 export type CacheEntry = {
 	hash: string;
-	translations: Record<string, string>;
+	translation: string;
 };
 
 /**

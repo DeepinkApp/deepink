@@ -39,7 +39,7 @@ describe('readCache', () => {
 		const cacheData: CacheFile = {
 			greeting: {
 				hash: computeHash('Hello'),
-				translations: { de: 'Hallo' },
+				translation: 'Hallo',
 			},
 		};
 		const fs = makeSimpleMemFs({
@@ -62,7 +62,7 @@ describe('writeCache', () => {
 		const cache: CacheFile = {
 			greeting: {
 				hash: computeHash('Hello'),
-				translations: { de: 'Hallo' },
+				translation: 'Hallo',
 			},
 		};
 
@@ -77,11 +77,11 @@ describe('writeCache', () => {
 		const cache: CacheFile = {
 			title: {
 				hash: computeHash('Hello'),
-				translations: { de: 'Hallo', fr: 'Bonjour' },
+				translation: 'Hallo',
 			},
 			'nested.message': {
 				hash: computeHash('World'),
-				translations: { de: 'Welt' },
+				translation: 'Hallo',
 			},
 		};
 
@@ -94,7 +94,7 @@ describe('writeCache', () => {
 describe('getChangedKeys', () => {
 	it('returns all keys when cache is empty', () => {
 		const flat = { title: 'Hello', message: 'World' };
-		const changed = getChangedKeys(flat, {}, 'de');
+		const changed = getChangedKeys(flat, {});
 		expect(changed).toEqual(expect.arrayContaining(['title', 'message']));
 		expect(changed).toHaveLength(2);
 	});
@@ -102,40 +102,30 @@ describe('getChangedKeys', () => {
 	it('returns no keys when all are cached with correct hashes', () => {
 		const flat = { title: 'Hello' };
 		const cache: CacheFile = {
-			title: { hash: computeHash('Hello'), translations: { de: 'Hallo' } },
+			title: { hash: computeHash('Hello'), translation: 'Hallo' },
 		};
 
-		const changed = getChangedKeys(flat, cache, 'de');
+		const changed = getChangedKeys(flat, cache);
 		expect(changed).toHaveLength(0);
 	});
 
 	it('returns key when hash has changed', () => {
 		const flat = { title: 'Hello Updated' };
 		const cache: CacheFile = {
-			title: { hash: computeHash('Hello'), translations: { de: 'Hallo' } },
+			title: { hash: computeHash('Hello'), translation: 'Hallo' },
 		};
 
-		const changed = getChangedKeys(flat, cache, 'de');
-		expect(changed).toContain('title');
-	});
-
-	it('returns key when target language translation is missing', () => {
-		const flat = { title: 'Hello' };
-		const cache: CacheFile = {
-			title: { hash: computeHash('Hello'), translations: { fr: 'Bonjour' } },
-		};
-
-		const changed = getChangedKeys(flat, cache, 'de');
+		const changed = getChangedKeys(flat, cache);
 		expect(changed).toContain('title');
 	});
 
 	it('does not return key when only another language is missing', () => {
 		const flat = { title: 'Hello' };
 		const cache: CacheFile = {
-			title: { hash: computeHash('Hello'), translations: { de: 'Hallo' } },
+			title: { hash: computeHash('Hello'), translation: 'Hallo' },
 		};
 
-		const changed = getChangedKeys(flat, cache, 'de');
+		const changed = getChangedKeys(flat, cache);
 		expect(changed).toHaveLength(0);
 	});
 
@@ -146,11 +136,11 @@ describe('getChangedKeys', () => {
 			newKey: 'New',
 		};
 		const cache: CacheFile = {
-			title: { hash: computeHash('Hello'), translations: { de: 'Hallo' } },
-			message: { hash: computeHash('World'), translations: { de: 'Welt' } },
+			title: { hash: computeHash('Hello'), translation: 'Hallo' },
+			message: { hash: computeHash('World'), translation: 'Hallo' },
 		};
 
-		const changed = getChangedKeys(flat, cache, 'de');
+		const changed = getChangedKeys(flat, cache);
 		expect(changed).not.toContain('title');
 		expect(changed).toContain('message');
 		expect(changed).toContain('newKey');
