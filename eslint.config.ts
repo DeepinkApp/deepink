@@ -297,6 +297,14 @@ export default tseslint.config(
 				},
 			},
 		},
+		settings: {
+			'import/resolver': {
+				typescript: {
+					alwaysTryTypes: true,
+					project: 'packages/transly/tsconfig.json',
+				},
+			},
+		},
 	},
 
 	{
