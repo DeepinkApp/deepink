@@ -15,8 +15,14 @@ function escapeKey(key: string): string {
  * Only string leaf values are included. Non-string leaves (numbers, booleans,
  * null, arrays) are coerced to strings so no data is silently dropped.
  */
-export function flattenJson(obj: JsonObject, prefix = ''): Record<string, string> {
-	const result: Record<string, string> = {};
+export function flattenJson<T extends ((value: unknown) => any) | void>(
+	obj: JsonObject,
+	transformValue?: T,
+): Record<string, T extends (value: unknown) => any ? ReturnType<T> : unknown> {
+	const result: Record<
+		string,
+		T extends (value: unknown) => any ? ReturnType<T> : unknown
+	> = {};
 
 	function recurse(value: unknown, path: string): void {
 		if (Array.isArray(value)) {
@@ -32,12 +38,12 @@ export function flattenJson(obj: JsonObject, prefix = ''): Record<string, string
 		} else {
 			// Coerce non-string primitives to string
 			// TODO: keep original values, and cast to strings on top level
-			// eslint-disable-next-line @typescript-eslint/no-base-to-string
-			result[path] = String(value ?? '');
+
+			result[path] = transformValue ? transformValue(value) : value;
 		}
 	}
 
-	recurse(obj, prefix);
+	recurse(obj, '');
 	return result;
 }
 type Token = { key: string; isIndex: boolean };

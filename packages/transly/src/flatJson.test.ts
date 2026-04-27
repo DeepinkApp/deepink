@@ -71,16 +71,18 @@ describe('flattenJson', () => {
 		expect(flattenJson({ a: { 'b.c': 'val' } })).toEqual({ 'a["b.c"]': 'val' });
 	});
 
-	it('coerces number leaf to string', () => {
-		expect(flattenJson({ a: 42 })).toEqual({ a: '42' });
+	it('keeps the values unmodified', () => {
+		expect(flattenJson({ a: 42 })).toEqual({ a: 42 });
+		expect(flattenJson({ a: true })).toEqual({ a: true });
+		expect(flattenJson({ a: null })).toEqual({ a: null });
 	});
 
-	it('coerces boolean leaf to string', () => {
-		expect(flattenJson({ a: true })).toEqual({ a: 'true' });
-	});
-
-	it('coerces null leaf to empty string', () => {
-		expect(flattenJson({ a: null })).toEqual({ a: '' });
+	it('transform values', () => {
+		expect(flattenJson({ a: 42, b: true, c: null }, String)).toEqual({
+			a: '42',
+			b: 'true',
+			c: 'null',
+		});
 	});
 });
 

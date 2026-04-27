@@ -43,9 +43,9 @@ describe('flattenJson', () => {
 			nothing: null as unknown,
 		};
 		const result = flattenJson(input as Record<string, unknown>);
-		expect(result['count']).toBe('42');
-		expect(result['flag']).toBe('true');
-		expect(result['nothing']).toBe('');
+		expect(result['count']).toBe(42);
+		expect(result['flag']).toBe(true);
+		expect(result['nothing']).toBe(null);
 	});
 
 	it('handles real-world i18n structure', () => {
