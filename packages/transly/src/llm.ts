@@ -57,7 +57,23 @@ export async function translateChunk(
 	const client = new OpenAI({
 		apiKey: config.apiKey,
 		baseURL: config.baseUrl,
-		fetch: config.fetch,
+		fetch: async (url, init) => {
+			const res = await (config.fetch ?? fetch)(url, init);
+
+			const contentType = res.headers.get('content-type') || '';
+
+			if (!contentType.includes('application/json')) {
+				const text = await res.text();
+				if (config.debug) console.log(text);
+
+				throw new Error(
+					`API error: expected JSON but got ${contentType}. ` +
+						`Check baseURL. Preview: ${text.slice(0, 200)}`,
+				);
+			}
+
+			return res;
+		},
 		...clientConfig,
 	});
 

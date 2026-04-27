@@ -190,7 +190,13 @@ describe('malformed responses', () => {
 		fetchSpy.mockImplementation(makeFetchStubText(200, 'this is not json'));
 
 		await expect(translateChunk(items, 'de', makeConfig())).rejects.toThrow(
-			'Unexpected LLM response shape',
+			expect.objectContaining({
+				message: 'Connection error.',
+				cause: expect.objectContaining({
+					message:
+						'API error: expected JSON but got text/plain. Check baseURL. Preview: this is not json',
+				}),
+			}),
 		);
 	});
 
