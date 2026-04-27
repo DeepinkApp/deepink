@@ -1,10 +1,14 @@
-import OpenAI from 'openai';
+import OpenAI, { ClientOptions } from 'openai';
 import z from 'zod';
 
 import type { Config, PromptGenerator, TranslationItem } from './types.js';
 
 function getDefaultSystemPrompt(languageCode: string) {
-	return `Translate the contents of the i18n JSON file to ${languageCode} according to the BCP 47 standard, ensuring the integrity and structure of the file are preserved. Please adhere to the following guidelines:
+	const languageName = new Intl.DisplayNames('en', { type: 'language' }).of(
+		languageCode,
+	);
+
+	return `Translate the contents of the i18n JSON file to ${languageName} according to the BCP 47 standard, ensuring the integrity and structure of the file are preserved. Please adhere to the following guidelines:
 
 - **Keep the keys identical to the original file** to ensure structural integrity. The translation should occur in the values only.
 - **Maintain valid i18n JSON file format** throughout the translation process.
@@ -17,7 +21,7 @@ Upon completion of the translation:
 
 3. **Cross-verify Translations**: If possible, cross-reference your translations with another source or a native speaker to ensure accuracy and naturalness of the language.
 
-The aim is to achieve a fluent and structurally sound translation of the JSON content from the base language to the target language ${languageCode}, without altering the document's schema or disrupting the key-value relationship.
+The aim is to achieve a fluent and structurally sound translation of the JSON content from the base language to the target language ${languageName}, without altering the document's schema or disrupting the key-value relationship.
 
 Return only translated JSON. Do no add any comments you your response.`;
 }
@@ -48,10 +52,13 @@ export async function translateChunk(
 	items: TranslationItem[],
 	targetLang: string,
 	config: Config,
+	clientConfig?: ClientOptions,
 ): Promise<LlmTranslationResponse> {
 	const client = new OpenAI({
 		apiKey: config.apiKey,
 		baseURL: config.baseUrl,
+		fetch: config.fetch,
+		...clientConfig,
 	});
 
 	const buildPrompt = (source: string | PromptGenerator) => {
