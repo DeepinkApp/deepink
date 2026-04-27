@@ -1,0 +1,570 @@
+{
+	"window.title": {
+		"hash": "66962f72a08883733c35df6f82a049b929f9579f19c4bc083ac99bead602eab3",
+		"translation": "Tercihler"
+	},
+	"tabs.general": {
+		"hash": "c910d474dcd724bff83ddedeb06bf1eceaf9fb3af7c76bb282be057f36e6dffa",
+		"translation": "Genel"
+	},
+	"tabs.appearance": {
+		"hash": "3907fa7f80722a6fc58cd8c1bd30abf7638095d6774f183b6e831b7093957d1b",
+		"translation": "Görünüm"
+	},
+	"tabs.hotkeys": {
+		"hash": "c15f1530d219f94a59b95b26ad33f38365cb4a94eeeb5edd560afc2fb0a1426e",
+		"translation": "Kısayollar"
+	},
+	"tabs.vault": {
+		"hash": "5d55c415e356dd7b59f329aa5c83a34ee10c3803516ac569fde5e68804a7e06c",
+		"translation": "Vault"
+	},
+	"tabs.workspace": {
+		"hash": "87bb59ba2f92f2a5a9f13e021fd58dd14ae5c065b1046146875e6e68d5ebc8b7",
+		"translation": "Alan"
+	},
+	"tabs.importExport": {
+		"hash": "889414db77dad77f37f47576854286852cc224349fc630ce28e3267453a6aceb",
+		"translation": "İçe ve Dışa Aktarma"
+	},
+	"tabs.vaultSettingsGroup": {
+		"hash": "e248ecab26309f6a44b152448df1bcfd916d6b14884b51e88e9c8576feca2276",
+		"translation": "Vault Ayarları"
+	},
+	"general.title": {
+		"hash": "2a1660d99aa8177e311f5e96837e07d32adc646be800c856dc0300ce023eccea",
+		"translation": "Genel ayarlar"
+	},
+	"general.subtitle": {
+		"hash": "8d642d652ce97fb6be25fc879fd4f48f6ed616c1756df9381212eeffad7bea75",
+		"translation": "Uygulamadaki genel tercihlerinizi yönetin."
+	},
+	"general.version.title": {
+		"hash": "dd167905de0defcaf72de673ee44c07431770d129ccffab286bd2edfdaf62396",
+		"translation": "Sürüm"
+	},
+	"general.version.checkForUpdates": {
+		"hash": "f26f3275e735bdf6268532ca7cbea3887c9adad21d8df74e84b2bc7791475c0d",
+		"translation": "Güncellemeleri kontrol et"
+	},
+	"general.version.upToDate": {
+		"hash": "6232df515ee9f186b325ea04c4018812f1bcdcb15cc66782d2d89a0fdcdff192",
+		"translation": "En güncel sürümü kullanıyorsunuz"
+	},
+	"general.version.newVersionAvailable": {
+		"hash": "f8a4d123d768eaf13c50efe0381b53586e91cbc68087144a532ac74cb5fa4605",
+		"translation": "Yeni sürüm <bold>{{version}}</bold> mevcut."
+	},
+	"general.version.downloadLatest": {
+		"hash": "d6eafe82359100423c93c5ce53c352c1b51ca1e699215fcec3f5c5dd9bf12d24",
+		"translation": "İndir"
+	},
+	"general.version.downloadDescription": {
+		"hash": "427dbbf13dd97d287a6c4bc59cd2a0d1b81654429905a7ee931c10d77238bf46",
+		"translation": "yeni özellikler ve iyileştirmeler için en son sürümü indirin."
+	},
+	"general.autoCheckUpdates.label": {
+		"hash": "016cf78cca62bd53eb9beb6c396f7f044051ee594ca26f0bbfb7a60652439eed",
+		"translation": "Otomatik güncelleme kontrolü"
+	},
+	"general.autoCheckUpdates.description": {
+		"hash": "c69a82954b0f73465974d667898d7ec94bfbb84e67c0cead717f2ea0d9d1dc2f",
+		"translation": "Uygulama düzenli olarak güncellemeleri kontrol eder ve yeni sürüm varsa bildirir."
+	},
+	"general.language.title": {
+		"hash": "a4fe65264ef7dbb38d104b1e81eb3350f3142f3d16f32bdec39b1d9b42c1b8d1",
+		"translation": "Dil"
+	},
+	"general.language.description": {
+		"hash": "09c44e5aa93850ec90e89a2b9668dee817286636be8b1ab718675a8b01451299",
+		"translation": "Görüntüleme dilini değiştirin."
+	},
+	"general.notifications.title": {
+		"hash": "788011833a5a0f22db90c91e8eb7bd8e9f5cd423354ff5ef8c338e7895f44ba9",
+		"translation": "Bildirimler"
+	},
+	"general.notifications.description": {
+		"hash": "4ba20964c37d576aa7e93ed0b4e4b6cef3f3bdd3180676b2ec456e0ac0832822",
+		"translation": "Sistem bildirimleri yalnızca hatırlatıcılar için kullanılır. Devre dışı bırakıldığında hatırlatıcılar yalnızca uygulama içi bildirim listesinde görünür."
+	},
+	"general.notifications.useSystem": {
+		"hash": "0631a564b1bec2e202296397c6b24d30d26bb9384361be1b3e56a288751c8cfc",
+		"translation": "Sistem bildirimlerini kullan"
+	},
+	"general.vaultLock.groupTitle": {
+		"hash": "558e4ac15e9b9019ea614440fcf78429895377f0356f350808f0a3db3d287453",
+		"translation": "Vault kilidi"
+	},
+	"general.vaultLock.lockOnSystemLock.label": {
+		"hash": "ae782e72bfd671239dc49aba7b4b5be2de209120f6d1e2905932931f735d8510",
+		"translation": "Sistem kilitlendiğinde vault'u kilitle"
+	},
+	"general.vaultLock.lockOnSystemLock.description": {
+		"hash": "1d79a7ec09a879bfd8f20b3a6c006cef6aa9582adc26f1e084b4792386920bb1",
+		"translation": "Ekran koruyucu başladığında veya cihaz uyku moduna geçtiğinde vault kilitlenir."
+	},
+	"general.vaultLock.lockAfterIdle.title": {
+		"hash": "dae066aa4378e82300d16e67fa037bc74b95b7f54a3fb11c7bf6b08c73a0e4c8",
+		"translation": "Boşta kaldığında vault'u kilitle"
+	},
+	"general.vaultLock.lockAfterIdle.description": {
+		"hash": "8c200867d2cc3f07cefc2b4f0f4348b74f632d1f56efeca44bb772b187d06aa9",
+		"translation": "Seçilen süre boyunca işlem yapılmadığında vault kilitlenir."
+	},
+	"general.vaultLock.lockAfterIdle.never": {
+		"hash": "01f117a2fd33d55ec11eea759f101ce0ebe53229543dc7707d8d46e3692f411d",
+		"translation": "Kilitleme"
+	},
+	"general.vaultLock.lockAfterIdle.minutes5": {
+		"hash": "8a2a918b4b49111c15368829b931d1a96bd6ff1639b6f8364cb341962c6b61b1",
+		"translation": "5 dakika sonra"
+	},
+	"general.vaultLock.lockAfterIdle.minutes10": {
+		"hash": "3b5a548b2e6ebc7e1568dd59519e773fa69c5761304a60996753e7bca1c3430b",
+		"translation": "10 dakika sonra"
+	},
+	"general.vaultLock.lockAfterIdle.minutes15": {
+		"hash": "e2ed765e518cc71620054e720cce9fc6525d98480b35ce0cce90a7d30503732a",
+		"translation": "15 dakika sonra"
+	},
+	"general.vaultLock.lockAfterIdle.minutes30": {
+		"hash": "877887d3b1f77580e828d9ae668eb93530636c830a685a9bacfbe0adc3a19bea",
+		"translation": "30 dakika sonra"
+	},
+	"general.vaultLock.lockAfterIdle.hour1": {
+		"hash": "4b4369cd2996443e32e1615b40fd8b619838bd6e1c74f2414b1946e215d85975",
+		"translation": "1 saat sonra"
+	},
+	"general.vaultLock.lockAfterIdle.hours2": {
+		"hash": "8fcca7ce3742a706d6e915670a927ce5da352ec880409d518f7916f8f13fc6b1",
+		"translation": "2 saat sonra"
+	},
+	"general.vaultLock.lockAfterIdle.hours3": {
+		"hash": "c92ed69bbdfe35f0eca23b6a07275e6a8902f9eba377671b630dfa9a7696f2da",
+		"translation": "3 saat sonra"
+	},
+	"general.vaultLock.lockAfterIdle.hours5": {
+		"hash": "f121f8a55af8d503b1dd35704917d5bd17a4d347a64bd033cd78f2606a68e425",
+		"translation": "5 saat sonra"
+	},
+	"appearance.theme.title": {
+		"hash": "efb52e7172b77731d996ff4f51cd7b3dcfd55fc6f07392994619418d58d170dd",
+		"translation": "Tema"
+	},
+	"appearance.theme.auto": {
+		"hash": "0286249762f7c94349cdc0ba3bb2255baf9a80036e2193ead1d77696f888582f",
+		"translation": "Otomatik"
+	},
+	"appearance.theme.dark": {
+		"hash": "60acc53f13a5d1bf115878c4a785e9a43e8286c4139a8402a6ac7d23966f9153",
+		"translation": "Koyu"
+	},
+	"appearance.theme.light": {
+		"hash": "dbcd5e7bb7a0f538810de44c3efbd813037ee3fa358747bb71fa58e157af45f7",
+		"translation": "Açık"
+	},
+	"appearance.theme.zen": {
+		"hash": "44cf6bf504501273a97509b3e2dc508eab83d46360b5edc07abd3fc966eea0c6",
+		"translation": "Zen"
+	},
+	"appearance.accentColor.title": {
+		"hash": "baeefbad50a33e7c7cc3b1cff2f645abf4d2f5c94509630d7bb1f5d0e879ae36",
+		"translation": "Vurgu rengi"
+	},
+	"appearance.accentColor.zenNotApplicable": {
+		"hash": "798d9af021e1d7c0a7926fee0e12e96b02f8c1f70c7545c4eebf3ba04095e462",
+		"translation": "Vurgu rengi seçili tema için geçerli değil."
+	},
+	"appearance.zoomLevel.title": {
+		"hash": "3926ced4e6c448d0a020fad6b7edb5d694059a30b45a7e37ff9ebe1a3492e6d5",
+		"translation": "Yakınlaştırma düzeyi"
+	},
+	"appearance.zoomLevel.description": {
+		"hash": "7a6aec1e6c226ac6924dda512acbd2f69c556c100113150eb4d678e3928d832b",
+		"translation": "Tüm pencereler için varsayılan yakınlaştırma düzeyini ayarlayın.\nSisteminiz uygulamaları otomatik olarak ölçeklendirmiyorsa, ekranın gerçek piksel oranına (DPR) uygun hale getirmek için yakınlaştırmayı değiştirebilirsiniz. Algılanan DPR: {{dpr}}."
+	},
+	"appearance.zoomLevel.apply": {
+		"hash": "31e392d1c0378beca611de66c0f4c71cba29159905cc54242d9bddee5b23d851",
+		"translation": "Uygula"
+	},
+	"appearance.zoomLevel.reset": {
+		"hash": "daee7606b339f3c339076fe2c9f372a3ff40c8ee896005d829c7481b64ca5303",
+		"translation": "Sıfırla"
+	},
+	"appearance.zoomLevel.errors.enterNumber": {
+		"hash": "492012e22f0c0c431e3a247b5dd3c2deeed985cee136d878af67ee304b9eb216",
+		"translation": "Yakınlaştırmayı ayarlamak için bir sayı girin"
+	},
+	"appearance.zoomLevel.errors.tooSmall": {
+		"hash": "0c02a814b5e01427a9142f918547f8c7b65cd50f35d05269a4ba0a3461cb6c38",
+		"translation": "Yakınlaştırma %{{min}} değerinden az olamaz"
+	},
+	"appearance.zoomLevel.errors.tooBig": {
+		"hash": "c2fdcd3fcabee61fa24b482e0e792f30f9683b90684f41cfbff4c7864cacd1c5",
+		"translation": "Yakınlaştırma %{{max}} değerinden fazla olamaz"
+	},
+	"editor.groupTitle": {
+		"hash": "936a161c39314b0540fe7415d2ad16cadb631568c4ebc57d6cff60f14edc099d",
+		"translation": "Editör"
+	},
+	"editor.mode.title": {
+		"hash": "458b80bd5a4eff87e8c727ccfa40888153065bad20bdeaacf95cb83f8613ed24",
+		"translation": "Editör modu"
+	},
+	"editor.fontFamily.title": {
+		"hash": "119ef3fa607e7c05ce8d693b7aeb64ce7ca4d18a655046c2d0f6a93d62c164f6",
+		"translation": "Yazı tipi"
+	},
+	"editor.fontFamily.description": {
+		"hash": "a43f8b4ebbffcacf8458e0245c831fedfad2cecc9be209e2ad5a0805e3f09828",
+		"translation": "Tüm editörlerde kullanılacak yazı tipini belirleyin veya varsayılanı kullanmak için boş bırakın."
+	},
+	"editor.fontFamily.placeholder": {
+		"hash": "c4b5fc040f728127505d88b55adfde4fea8040ccf2bfaef8bd71f3a6347d744c",
+		"translation": "Yazı tipi adını girin"
+	},
+	"editor.fontSize.title": {
+		"hash": "6d784d95c63833e60695476524e3bcf7b9cab90d6e405aa434e7511bf610ad3b",
+		"translation": "Yazı boyutu"
+	},
+	"editor.lineHeight.title": {
+		"hash": "127166f79c332f3e50ba5b64cf5479d7be34b62a977fb4f3e946c000b35970af",
+		"translation": "Satır yüksekliği"
+	},
+	"editor.dateFormat.title": {
+		"hash": "43123f5ccaa8e956ab329949046429f0609f5d96d9f2a5accd0b5290715c5d37",
+		"translation": "Tarih biçimi"
+	},
+	"editor.dateFormat.description": {
+		"hash": "7497536649e0e8d75b1fbf460b1f6ad5c220af326a5577962bcf496d2899183f",
+		"translation": "Tarih eklerken kullanılacak biçimi ayarlayın. DD/MM/YYYY HH:mm:ss gibi standart söz dizimini destekler."
+	},
+	"editor.dateFormat.formatReference": {
+		"hash": "f673e3a415b58cf00c4eb76ce5dcadffe438545ee0cc9439ed7dee8d7f27cbbe",
+		"translation": "tarih biçimi referansı"
+	},
+	"editor.dateFormat.example": {
+		"hash": "d029f87e3d80f8fd9b1be67c7426b4cc1ff47b4a9d0a8461c826a59d8c5eb6cd",
+		"translation": "Örnek"
+	},
+	"editor.plainText.groupTitle": {
+		"hash": "b4ecadbf484f6cb0d0c37934de2cbca79a0348d38c5d73ad7c5a0e5b292fa9cc",
+		"translation": "Düz metin editörü"
+	},
+	"editor.plainText.lineNumbers": {
+		"hash": "d03262ba19b05a7d0aca3636da07db03291baea5c9bc55e1ee3f08ae76d9a8e5",
+		"translation": "Satır numaralarını göster"
+	},
+	"editor.plainText.miniMap": {
+		"hash": "d6db14cca10060b5f2cecf97ca466bdd70319448e8bafca23b317b813407a402",
+		"translation": "Mini haritayı etkinleştir"
+	},
+	"hotkeys.blank": {
+		"hash": "2c3d371cbfd31225ec25b3e9798107cb8ca008f2357b98d13d1eddb7b042cc44",
+		"translation": "Boş"
+	},
+	"hotkeys.shortcuts.createNote": {
+		"hash": "9178b72b57852abb538addb183d2f3bfdb23761f671f102ff6a328748a9157c1",
+		"translation": "Yeni not oluştur"
+	},
+	"hotkeys.shortcuts.closeCurrentNote": {
+		"hash": "caff8aac9a8e1c895cc923925be7e06822d537353b162ae56b71a72e7c88f286",
+		"translation": "Etkin notu kapat"
+	},
+	"hotkeys.shortcuts.restoreClosedNote": {
+		"hash": "cd0f470fe738ce5330269db09eca72c9b9442383067c0119d1fda2d742c60c3b",
+		"translation": "Son kapatılan notu geri aç"
+	},
+	"hotkeys.shortcuts.focusNextNote": {
+		"hash": "4b43b15cc70bdab55426ebaca4aa2d4307404c8efe22a26b6b9f617cf3c2f162",
+		"translation": "Sonraki açık nota geç"
+	},
+	"hotkeys.shortcuts.focusPreviousNote": {
+		"hash": "6355ea144f4e652bf0ce985bef6fe066236e4a8102855d415aaf39fa70f3095e",
+		"translation": "Önceki açık nota geç"
+	},
+	"hotkeys.shortcuts.toggleArchive": {
+		"hash": "38accd9a612104a17e7cabcea4ac51c12401f8d8059bee9853726a5fed3da64c",
+		"translation": "Etkin notu arşive taşı/arşivden çıkar"
+	},
+	"hotkeys.shortcuts.toggleBookmark": {
+		"hash": "53b4e3256f49e23a6f085ccc8dc9d8d684c13538c5bd5ef87c199e64b8a3e561",
+		"translation": "Etkin notu yer imlerine ekle/çıkar"
+	},
+	"hotkeys.shortcuts.deleteNote": {
+		"hash": "3bed49eebf040dbc55e0056f381cf086715add720df4cca4db972755f35e083a",
+		"translation": "Etkin notu sil"
+	},
+	"hotkeys.shortcuts.restoreFromBin": {
+		"hash": "5c939e9fb6c9471879083771bad01faf01a71eb07456f822ba3619cc21281db8",
+		"translation": "Etkin notu çöp kutusundan geri yükle"
+	},
+	"hotkeys.shortcuts.toggleHistory": {
+		"hash": "c27140d3e01f448e9a0c711b3716034780ed390fada714d1123c2d46f8e2673e",
+		"translation": "Etkin notun geçmişini göster/gizle"
+	},
+	"hotkeys.shortcuts.focusSearch": {
+		"hash": "6e7a2179a38e98d0d97fdf235425f791aed29b2593b5a77d0b497e7b6cd007d4",
+		"translation": "Notlarda ara"
+	},
+	"hotkeys.shortcuts.syncDatabase": {
+		"hash": "2a47af7308038a12a6eb0a2f2968c876bc8e51bc0bdfc4af51701a6e787030be",
+		"translation": "Vault'u diske eşitle"
+	},
+	"hotkeys.shortcuts.lockVault": {
+		"hash": "441f34d1929aaf0f46abc4a3b292dd546f54e4acbfe27362a1e67a8acb8be04b",
+		"translation": "Vault'u kilitle"
+	},
+	"hotkeys.shortcuts.openSettings": {
+		"hash": "63da9ef1d3f8a4a7ab6b86574deadb5bb89f74577bed996ab9951d46bebb9e80",
+		"translation": "Tercihleri aç"
+	},
+	"vault.name.title": {
+		"hash": "e8ff12a50f50f494f8eca4adde0ed18cf758d0d42e318acd1bad3efdf0c34e68",
+		"translation": "Vault adı"
+	},
+	"vault.rememberPasswords.label": {
+		"hash": "5cb64ff4993f75c3544b8026eb652b36510e72479abef3165b6183bcba72c64c",
+		"translation": "Alan parolalarını hatırla"
+	},
+	"vault.rememberPasswords.description": {
+		"hash": "1c73693ee24d35587d8af3e3579a879155cd35b2a4aa945bf8aee65ddb583fcd",
+		"translation": "Alan parolaları ana anahtarla şifrelenerek veritabanına kaydedilir; böylece şifreli alanlar parola girmeden otomatik olarak açılır."
+	},
+	"vault.filesAndData.groupTitle": {
+		"hash": "b19996295a6a29da15141bbfaf390154f1e6377f607c250d2b34264754e41bb6",
+		"translation": "Dosyalar ve veriler"
+	},
+	"vault.filesAndData.imagesCompression.title": {
+		"hash": "5bad2493b146db76322d0f04635b91ae14070d2acbfb617f387c3a1824d90758",
+		"translation": "Görsel sıkıştırma"
+	},
+	"vault.filesAndData.imagesCompression.compress": {
+		"hash": "2d6be3919f8a0be49bda01363a8034c85d7d312da61f2869997433ffd28acd53",
+		"translation": "Görselleri sıkıştır"
+	},
+	"vault.filesAndData.imagesCompression.doNotCompress": {
+		"hash": "97a7ccea6a039fd88070503e473f28e394d72c034a40e5c1840f56d461f666c1",
+		"translation": "Görselleri sıkıştırma"
+	},
+	"vault.filesAndData.imagesCompression.alwaysAsk": {
+		"hash": "3c42771506f63e322dde196757b097396054e1cd78adca470dc338f0432339f9",
+		"translation": "Her zaman sor"
+	},
+	"vault.filesAndData.deleteOrphaned.label": {
+		"hash": "3c7c02d0d9f04f62a27dcd01740f3fdb0291a62c55a2c07a1f93ee2c9d70236c",
+		"translation": "Kullanılmayan dosyaları sil"
+	},
+	"vault.filesAndData.deleteOrphaned.description": {
+		"hash": "65fd7ed676fec3bde2bb8c71d68955cdc64ee60f885919a065c3c62221d17961",
+		"translation": "Artık kullanılmayan dosyaları silin."
+	},
+	"vault.encryption.groupTitle": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Şifreleme"
+	},
+	"vault.encryption.algorithm.title": {
+		"hash": "5cb576de8c785eed788510878567729f341ebacb8eb34b074b72be6d7261e28d",
+		"translation": "Şifreleme algoritması"
+	},
+	"vault.encryption.algorithm.none": {
+		"hash": "dc937b59892604f5a86ac96936cd7ff09e25f18ae6b758e8014a24c7fa039e91",
+		"translation": "Yok"
+	},
+	"vault.encryption.password.title": {
+		"hash": "e7cf3ef4f17c3999a94f2c6f612e8a888e5b1026878e4e19398b23bd38ec221a",
+		"translation": "Parola"
+	},
+	"vault.encryption.password.update": {
+		"hash": "fe45b4014135b70fda5670b5a1137186f43d326ed27a1efd4694e9e51e3a279d",
+		"translation": "Parolayı güncelle"
+	},
+	"vault.synchronization.groupTitle": {
+		"hash": "733736e784bf6c3b073020aa6ba0aaf24c60b8daf16b42b7e85673593ba9c172",
+		"translation": "Eşitleme"
+	},
+	"vault.synchronization.enable.label": {
+		"hash": "d4c1b800c951ea185ed7b62d0ef4f839c0ac1157f9fffeb8280590b7b31df38a",
+		"translation": "Eşitlemeyi etkinleştir"
+	},
+	"vault.synchronization.enable.description": {
+		"hash": "80095221067e09b5bc800a2b39126b34ef8f8227d31f0118d5b0ceaa40a3d9c2",
+		"translation": "Vault'unuzu cihazlar arasında eşitleyin. Tüm veriler cihazınızdan ayrılmadan önce şifrelenir."
+	},
+	"vault.synchronization.method.title": {
+		"hash": "60fd8857149c7d83450bfe06271b9a7786bc422cec495ddae1ac85dbd7f41eda",
+		"translation": "Eşitleme yöntemi"
+	},
+	"vault.synchronization.method.fileSystem": {
+		"hash": "72ede065fad02e5d9fe5681dd9022b26a1cc357ed0ded8e7ba24fab98b18347f",
+		"translation": "Dosya sistemi"
+	},
+	"vault.synchronization.method.server": {
+		"hash": "aef7de28d52977f1b5cd0fecfdc151717610adf41e0aa33b4d9f7522a43337ef",
+		"translation": "Sunucu"
+	},
+	"vault.synchronization.directory.title": {
+		"hash": "06d6c130db7e470574c1de0c624d4840daeecc576fbae82231d54ab2ea0b8467",
+		"translation": "Eşitleme dizini"
+	},
+	"vault.synchronization.directory.placeholder": {
+		"hash": "65170ab81579ebb69268aa409e7a40ca33ba8295253be84ae8b12c822bd0eb4f",
+		"translation": "Dizin yolunu girin"
+	},
+	"vault.snapshots.groupTitle": {
+		"hash": "f187f78e07efb26eacf88e2d361f91f4abf37d025e744f36446b62d22abd1460",
+		"translation": "Anlık görüntüler"
+	},
+	"vault.snapshots.record.label": {
+		"hash": "525d13905675f4ddc61e18a5a47f293a76b7225d4c13387d35d4009e3d301c00",
+		"translation": "Not anlık görüntülerini kaydet"
+	},
+	"vault.snapshots.record.description": {
+		"hash": "eaaae45eb5cdbde74ccbcb0cc1e17b4c0db8777b560f1940d9b41eda4ba68093",
+		"translation": "Etkinleştirildiğinde, not değiştirildiğinde içeriğin anlık görüntüsü oluşturulur. Not geçmişi panelinden her not için anlık görüntü kaydını ayrıca kontrol edebilirsiniz."
+	},
+	"vault.snapshots.delay.title": {
+		"hash": "1ac1e3ee96303cb21362e2d0907f7eaf03638f6c47169200678fa52690806da2",
+		"translation": "Anlık görüntü gecikmesi"
+	},
+	"vault.snapshots.delay.description": {
+		"hash": "cd0ced7ba6704d2925c9de708dea5ed873ea7bcb22002265eb83219838f67eb0",
+		"translation": "Not düzenlendikten sonra yeni bir anlık görüntü kaydedilmeden önce beklenecek süre (saniye). Daha kısa aralıklar daha sık anlık görüntü ve daha büyük vault anlamına gelir."
+	},
+	"vault.trashBin.groupTitle": {
+		"hash": "54d0180401d10b6e1d73e53a0845379e69e8e226232b6f45647a28c5dad58368",
+		"translation": "Çöp kutusu"
+	},
+	"vault.trashBin.confirmDeletion.label": {
+		"hash": "fa57243dc0dd127dc5c1b251753f2ba32ac8356524907b9fc6c000d7b440d6ac",
+		"translation": "Silme onayı"
+	},
+	"vault.trashBin.confirmDeletion.description": {
+		"hash": "56342a1abf4e69d59f40604ef8ae92df42c3a8aebce03c25835be18f9991f0e1",
+		"translation": "Bir notu silmeden önce onay isteyin."
+	},
+	"vault.trashBin.moveToBin.label": {
+		"hash": "7f439d340762ada34684af55e7f6f911efe7cb129791d18c297f5b818da5f5eb",
+		"translation": "Notları çöp kutusuna taşı"
+	},
+	"vault.trashBin.moveToBin.description": {
+		"hash": "895b6c4bc072742ef5a23fd736df1ae6525645b436d07fcd394c2e99671c9388",
+		"translation": "Notları kalıcı olarak silmek yerine çöp kutusuna taşıyın; böylece daha sonra geri yükleyebilirsiniz."
+	},
+	"vault.trashBin.autoPurge.label": {
+		"hash": "1d6d5867477ccea35014287bb4802a4f19653f89f5a7f2e3000697dc543d2e8d",
+		"translation": "Çöp kutusundaki eski notları kalıcı olarak sil"
+	},
+	"vault.trashBin.autoPurge.description": {
+		"hash": "5b7d20aac06343a653226d6ed95ef3949b9f4f5ddd6e2c8fa55ab372061b0fe0",
+		"translation": "Çöp kutusuna taşınan notlar belirli bir süre sonra kalıcı olarak silinir."
+	},
+	"vault.trashBin.purgeDelay.title": {
+		"hash": "b2019354080b546982db30961fc7862a6bf2126146e5c294b872591d608154d4",
+		"translation": "Kalıcı silme süresi"
+	},
+	"vault.trashBin.purgeDelay.description": {
+		"hash": "9baea0255d02e96ef44ade8e3786853a4d36f05c96145b068b1768b16b97a3a2",
+		"translation": "Çöp kutusundaki notlar, taşındıkları tarihten itibaren bu kadar gün sonra kalıcı olarak silinir."
+	},
+	"vault.trashBin.purgeDelay.unit": {
+		"hash": "ab51004e9d71a485f160f655fb9e72bcdef8f5ca4178b26938b49471456fd11c",
+		"translation": "gün"
+	},
+	"workspace.name.title": {
+		"hash": "9619649d8dc1394f89089621a11621651aa271453d81b3af8f7bcc7fa5fe5f1f",
+		"translation": "Alan adı"
+	},
+	"workspace.name.update": {
+		"hash": "c1c1009d3f37ec058070a62e22caf9ac9dae2169d452487c5c271a8bcf57a291",
+		"translation": "Güncelle"
+	},
+	"workspace.newNoteTitle.title": {
+		"hash": "50ac579d3edf679b3292e0e869b4fb9dbd291548088c0e48adf5e43625bdf080",
+		"translation": "Yeni not başlığı"
+	},
+	"workspace.newNoteTitle.description": {
+		"hash": "ed524f70840b11eea49713035bdd66289bc289c45384e4971e4b05a9b4f6c24d",
+		"translation": "Yeni notlar için başlık belirleyin. {date} veya {date:BİÇİM} söz dizimiyle tarih ekleyebilirsiniz, örneğin {date:DD/MM/YYYY HH:mm}."
+	},
+	"workspace.newNoteTitle.formatReference": {
+		"hash": "7b426df3874fd4a6fcc52d18007703834c9bacd994171c92c943273ec7e34c8c",
+		"translation": "biçim referansı"
+	},
+	"workspace.newNoteTitle.placeholder": {
+		"hash": "396d8b7433d4165ad5a6feaed73eb8e6090b415ea8ab8884c9b1a35b4e7568e2",
+		"translation": "ör. Not {date:DD/MM/YYYY HH:mm}"
+	},
+	"workspace.newNoteTitle.example": {
+		"hash": "d029f87e3d80f8fd9b1be67c7426b4cc1ff47b4a9d0a8461c826a59d8c5eb6cd",
+		"translation": "Örnek"
+	},
+	"workspace.tagsForNewNote.title": {
+		"hash": "48d216e1509ef95193fd2022ef9a3cd8b9b60931cbc2fc3ee82788a57434c273",
+		"translation": "Yeni not için etiketler"
+	},
+	"workspace.tagsForNewNote.none": {
+		"hash": "c3aefd137a8e2d40d11b42a2c971aa819e535756f4c214fe5747c9a2b4081ea1",
+		"translation": "Etiket ekleme"
+	},
+	"workspace.tagsForNewNote.selected": {
+		"hash": "f1b7724669ccb359841daf56fcf640fe21422bbe818003e147aac9c146d900c7",
+		"translation": "Seçili etiketle aynı"
+	},
+	"workspace.dangerousZone.groupTitle": {
+		"hash": "0dafe853e06558aedcf6ae938e88e7ba23f6ace158d82a6e11be32a13682ee08",
+		"translation": "Tehlikeli bölge"
+	},
+	"workspace.dangerousZone.delete.label": {
+		"hash": "90a3c2edbed71ba04995a12c23d786d7aa3c48243fd56cf37f587a787b411d9f",
+		"translation": "Alanı ve notlar, etiketler, dosyalar dahil tüm ilgili verileri sil"
+	},
+	"workspace.dangerousZone.delete.action": {
+		"hash": "55f033dbcb29d6087685108d9fed9457fb0dcfb9210c4d41ca752db1912a32d0",
+		"translation": "Alanı sil"
+	},
+	"workspace.dangerousZone.delete.cannotDeleteLast": {
+		"hash": "ba59e48ec6d95814cb19d770a0a2b5a48a87804b9e57b8116c5d61933d7d3d8f",
+		"translation": "Vault'taki son alan silinemez."
+	},
+	"workspace.dangerousZone.delete.createAnother": {
+		"hash": "4759498ac2a719c619e2c8cf8ee60af2d2407425e95d308eb208425b2a6d427a",
+		"translation": "Oluştur"
+	},
+	"workspace.dangerousZone.delete.createAnotherSuffix": {
+		"hash": "1cf0111b6ed4082fad15cac6beb474fbb0e6b6523d7674479a2be4dac5cec23b",
+		"translation": "önce başka bir alan oluşturun."
+	},
+	"workspace.dangerousZone.confirmDelete": {
+		"hash": "c541803b9c1c21522a0fd44f4db4dfce493c92726f36c17afb29fd0a4c1a3fa5",
+		"translation": "\"{{name}}\" alanını silmek üzeresiniz. Devam etmek istediğinizden emin misiniz?\n\nDevam ederseniz bu alana ait notlar, etiketler ve dosyalar dahil tüm veriler silinecektir."
+	},
+	"importExport.importNotes": {
+		"hash": "f5544a89b22d3ea43e79f7b51c5506e9aeb2ab3557cc10e5da5e6d9c05d5454f",
+		"translation": "Notları içe aktar"
+	},
+	"importExport.exportNotes": {
+		"hash": "7672569979ce084aa80c13d33b7638e361ab779078fc6489703fb2bdb9d0bf60",
+		"translation": "Notları dışa aktar"
+	},
+	"importExport.importFromZip": {
+		"hash": "f94f33ce6ef630b994a0dd26e1480a58a65fd07b2e522f6a2d1aa3e1017ca9d2",
+		"translation": ".zip arşivinden notları içe aktar"
+	},
+	"importExport.importFromDirectory": {
+		"hash": "2fcb0687294973a55cb45bbd1a9ea47bb56437d85e9b9ce0bc7074ef3ae78b26",
+		"translation": "Markdown dosyaları içeren dizini içe aktar"
+	},
+	"importExport.dropzone.title": {
+		"hash": "3604ef8412bdd4cea8abf8ed359d9aa87a6ea491ad8d026a8e771929e9e23688",
+		"translation": "İçe aktarmak için Markdown dosyalarını veya .zip arşivini buraya bırakın"
+	},
+	"importExport.dropzone.description": {
+		"hash": "a68fc0157f7477b90ae183e46088b8e887097b488954c955ffc3f1cfd3103746",
+		"translation": "Dosyaları sürükleyip bırakın veya seçmek için tıklayın"
+	},
+	"importExport.progress": {
+		"hash": "c85d2e66d24e60252b3a647de3f468a1a40b1fc003cf384cb66cdac24258fe18",
+		"translation": "Notlar içe aktarılıyor. Aşama: {{stage}} {{processed}}/{{total}}"
+	}
+}

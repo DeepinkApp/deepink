@@ -1,0 +1,94 @@
+{
+	"app.appMenu": {
+		"hash": "e7ad522ea327e5ba95534ef8355038ef7f7b86328c7cf9175886f60464c40d28",
+		"translation": "التطبيق"
+	},
+	"app.quit": {
+		"hash": "b3eb37acb66ba4bbe8fb1ba296815daf194be94f5a5fb50dab2fb5e4a57ba29e",
+		"translation": "إنهاء"
+	},
+	"app.edit": {
+		"hash": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344",
+		"translation": "تحرير"
+	},
+	"app.undo": {
+		"hash": "a8283ade31856f71220db0e6f60a257c6889dc4dad0f275f66ad44b9ed9bf8d5",
+		"translation": "تراجع"
+	},
+	"app.redo": {
+		"hash": "74273989b0966e2369b6d01aadb23af4ad6a9e724643fa88f2bde99202a36708",
+		"translation": "إعادة"
+	},
+	"app.cut": {
+		"hash": "1f45f02561f41db9483cfc00675900237967b8e382b9750d33f677812fe70842",
+		"translation": "قص"
+	},
+	"app.copy": {
+		"hash": "e21f935f11d7e966dbbae78da9daa378fe8142a14e7c0cd7434183005faa6c5c",
+		"translation": "نسخ"
+	},
+	"app.paste": {
+		"hash": "f3380f7b44bd70af2a369de6026bf2ca2a7b36fde9086935efcd62a0e379cc7a",
+		"translation": "لصق"
+	},
+	"app.selectAll": {
+		"hash": "d1ec69e64b9609d089aae09f7adc5c566d2cd222f8d8325f0ab3b523f0ac2690",
+		"translation": "تحديد الكل"
+	},
+	"app.help": {
+		"hash": "b79cac926e0b2e347e72cc91d5174037c9e17ae7733fd7bdb570f71b10cd7bfc",
+		"translation": "مساعدة"
+	},
+	"app.toggleDevTools": {
+		"hash": "e589471ab41222cd2c3ffe78540bc254f5c872c1d197249e7865d223c240e39b",
+		"translation": "أدوات المطوّر"
+	},
+	"app.about": {
+		"hash": "bb711ccc5f31b897a2b37af74baef83cbdd3b7f0f7f6008f1118a729a259033c",
+		"translation": "حول التطبيق"
+	},
+	"tray.open": {
+		"hash": "23b7fb6a2bb743340487919857a0572e605930301503a4440b421efbe53f155a",
+		"translation": "فتح الملاحظات"
+	},
+	"tray.quit": {
+		"hash": "b3eb37acb66ba4bbe8fb1ba296815daf194be94f5a5fb50dab2fb5e4a57ba29e",
+		"translation": "إنهاء"
+	},
+	"note.export": {
+		"hash": "fbbba83994d6ca24a36e22092d8a2e8baa5c47a77181b6fdc51463884e055792",
+		"translation": "تصدير..."
+	},
+	"note.duplicate": {
+		"hash": "02cdaabfca805d6ab75d81043998bdc733451b9ea48958ebf8098022d102ba2e",
+		"translation": "تكرار"
+	},
+	"note.copyMarkdownLink": {
+		"hash": "e6d0825121493330051458a6a7d8bc2fa2693ea330af59b6ecc5f6786e7aee73",
+		"translation": "نسخ رابط Markdown"
+	},
+	"note.deletePermanently": {
+		"hash": "280b10c89cc41d57a7524b447e4c510949a5b0b07d88670d602a0513e1e7ad61",
+		"translation": "حذف نهائي"
+	},
+	"note.restoreFromBin": {
+		"hash": "8445604748158e0d42bd4d1d05dae836b06bb4ecd27253b09b73603820e8a29d",
+		"translation": "استعادة من السلة"
+	},
+	"note.deleteToBin": {
+		"hash": "aea6a1f10aa416cb32b66a66fb2623a739e4e5467df73a0347cc38522899445d",
+		"translation": "نقل إلى السلة"
+	},
+	"tag.addNestedTag": {
+		"hash": "71098ef1091ab3576991b1c1c037dc26ba8033b31828d31e56eb526ae981309c",
+		"translation": "إنشاء وسم فرعي..."
+	},
+	"tag.edit": {
+		"hash": "dad54c96a5d31740876e674a14f3bef436f89c6acdfcf63ed814d2ddaf3a8583",
+		"translation": "تعديل..."
+	},
+	"tag.delete": {
+		"hash": "e2d0a54968ead24efc0dffa6ac78fc606dceec34a0f586177a74a54cc2272cf8",
+		"translation": "حذف"
+	}
+}
