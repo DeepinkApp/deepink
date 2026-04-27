@@ -5,6 +5,7 @@ Normalisation
 transly
 Altes
 unflatten
+unflattens
 flexsearch
 opentag
 ciphertext

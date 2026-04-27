@@ -58,7 +58,9 @@ describe('flattenJson', () => {
 		expect(flattenJson(input)).toEqual({
 			'tag.editor.mode.add.title': 'Create tag',
 			'tag.editor.mode.add.action': 'Create',
-			'tag.suggests': 'fancy,tag name,ideas',
+			'tag.suggests[0]': 'fancy',
+			'tag.suggests[1]': 'tag name',
+			'tag.suggests[2]': 'ideas',
 		});
 	});
 });

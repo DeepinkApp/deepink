@@ -4,19 +4,22 @@
  * fetch is stubbed at the global level so no real network calls are made.
  * Everything else — cache, filesystem, chunking, flattening — runs for real.
  */
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { translateChunk } from '../../src/llm.js';
 import { runTranslation } from '../../src/runner.js';
 import type { CacheFile } from '../../src/types.js';
 
 import { makeConfig } from '../stubs/makeConfig.js';
-import { makeFetchStub, makeOpenAiResponse } from '../stubs/makeFetchStub.js';
+import { makeFetchStub, makeOpenAiResponseObject } from '../stubs/makeFetchStub.js';
 import { makeMemFs } from '../stubs/makeMemFs.js';
 
-afterEach(() => {
-	vi.unstubAllGlobals();
-});
+const fetchSpy = vi.spyOn(globalThis, 'fetch');
+const mockApiResponse = (json: Record<string, string>) => {
+	fetchSpy.mockImplementation(
+		makeFetchStub(200, makeOpenAiResponseObject(JSON.stringify(json))),
+	);
+};
 
 describe('LLM integration: translateChunk + runTranslation', () => {
 	it('reads source file, calls the real LLM adapter, and writes translated output', async () => {
@@ -28,18 +31,10 @@ describe('LLM integration: translateChunk + runTranslation', () => {
 		});
 
 		// Stub fetch to return a valid OpenAI response for the two flat keys
-		vi.stubGlobal(
-			'fetch',
-			makeFetchStub(
-				200,
-				makeOpenAiResponse(
-					JSON.stringify({
-						title: 'Hallo',
-						'nested.message': 'Welt',
-					}),
-				),
-			),
-		);
+		mockApiResponse({
+			title: 'Hallo',
+			'nested.message': 'Welt',
+		});
 
 		await runTranslation(makeConfig(), fs, translateChunk);
 
@@ -60,10 +55,7 @@ describe('LLM integration: translateChunk + runTranslation', () => {
 			'/locales/en/notes.json': JSON.stringify({ greeting: 'Hello' }),
 		});
 
-		vi.stubGlobal(
-			'fetch',
-			makeFetchStub(200, makeOpenAiResponse(JSON.stringify({ greeting: 'Hallo' }))),
-		);
+		mockApiResponse({ greeting: 'Hallo' });
 
 		await runTranslation(makeConfig(), fs, translateChunk);
 
@@ -78,10 +70,7 @@ describe('LLM integration: translateChunk + runTranslation', () => {
 			'/locales/en/notes.json': JSON.stringify({ greeting: 'Hello' }),
 		});
 
-		const fetchSpy = vi.fn(
-			makeFetchStub(200, makeOpenAiResponse(JSON.stringify({ greeting: 'Hallo' }))),
-		);
-		vi.stubGlobal('fetch', fetchSpy);
+		mockApiResponse({ greeting: 'Hallo' });
 
 		// First run — populates cache
 		await runTranslation(makeConfig(), fs, translateChunk);
@@ -99,8 +88,7 @@ describe('LLM integration: translateChunk + runTranslation', () => {
 			'/locales/en/notes.json': JSON.stringify({ greeting: 'Hello' }),
 		});
 
-		vi.stubGlobal(
-			'fetch',
+		fetchSpy.mockImplementation(
 			makeFetchStub(429, { error: { message: 'Rate limit exceeded' } }),
 		);
 

@@ -13,6 +13,7 @@ describe('Full translation pipeline', () => {
 			'/locales/en/notes.json': JSON.stringify({
 				title: 'Hello',
 				message: 'World',
+				tags: ['Ideas', 'Health', 'Well Being'],
 			}),
 		});
 
@@ -21,11 +22,16 @@ describe('Full translation pipeline', () => {
 
 		expect(callLog).toHaveLength(1);
 		expect(callLog[0].targetLang).toBe('de');
-		expect(callLog[0].items).toHaveLength(2);
+		expect(callLog[0].items).toHaveLength(5);
 
 		const output = JSON.parse(store.get('/locales/de/notes.json')!);
 		expect(output.title).toBe('[de] Hello');
 		expect(output.message).toBe('[de] World');
+		expect(output.tags).toStrictEqual([
+			'[de] Ideas',
+			'[de] Health',
+			'[de] Well Being',
+		]);
 	});
 
 	it('skips unchanged keys on second run', async () => {
