@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Billede indlæses"
+		"loading": "Billede indlæses",
+		"brokenImage": "Billedet kan ikke indlæses"
 	},
 	"notifications": {
 		"title": "Notifikationer"

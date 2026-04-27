@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Bilden läses in"
+		"loading": "Bilden läses in",
+		"brokenImage": "Bilden kan inte laddas"
 	},
 	"notifications": {
 		"title": "Aviseringar"

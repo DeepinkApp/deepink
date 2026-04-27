@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Geslo za šifriranje",
 				"recommended": "(priporočeno)",
-				"placeholder": "Vnesite močno geslo"
+				"placeholder": "Vnesite močno geslo",
+				"description": "Vsi podatki v trezoru bodo šifrirani s tem geslom"
 			},
 			"algorithm": {
 				"label": "Algoritem šifriranja"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Vnesite ime trezorja",
 			"passwordRequired": "Vnesite geslo"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Napredne možnosti šifriranja",
+				"description": "Konfigurirajte šifrirne prvice, ki varujejo vašo trezoro — kaskada šifriranja, parametri KDF in več. Za celoten pregled privzetih nastavitev in njihovih prednosti in slabosti si oglejte <link>kako je vaša trezora zaščitena</link>."
+			},
+			"kdf": {
+				"label": "Funkcija pridobivanja ključev",
+				"description": "Pomaga zaščititi šibka ali ponovno uporabljena gesla tako, da vsako ugibanje upočasni in podraži. Povečajte te nastavitve za močnejšo zaščito ali obdržite privzete nastavitve za uravnoteženo izkušnjo.",
+				"memory": {
+					"label": "Poraba pomnilnika",
+					"description": "Vsak poskus ujame geslo uporablja več pomnilnika. To je še posebej učinkovito proti obsežnim napadom, saj je pomnilnik drag in težje ga je učinkovito povečati kot surovo računanje."
+				},
+				"ops": {
+					"label": "Ponovitve",
+					"description": "Ponovi delovno nalogo za vsako ugibanje gesla. To povečuje stroške vsakemu ugibanju na večinoma linearni način: podvajanje ponovitev približno podvoji delo za napadalce in vaše naprave."
+				}
+			}
 		}
 	},
 	"login": {

@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Dobra geslo: {{length}} znakov, {{entropy}} bitov entropije",
+			"bad": "Šibka geslo: {{length}} znakov, {{entropy}} bitov entropije"
+		}
+	}
+}

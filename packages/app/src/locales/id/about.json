@@ -1,0 +1,8 @@
+{
+	"version": "Versi {{version}}",
+	"environment": "Pustaka yang digunakan",
+	"links": {
+		"label": "Tautan",
+		"reportBug": "Laporkan Bug"
+	}
+}

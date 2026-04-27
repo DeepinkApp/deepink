@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Şifreleme parolası",
 				"recommended": "(önerilir)",
-				"placeholder": "Güçlü bir parola girin"
+				"placeholder": "Güçlü bir parola girin",
+				"description": "Vault'taki tüm veriler bu şifre ile şifrelenecektir."
 			},
 			"algorithm": {
 				"label": "Şifreleme algoritması"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Kasa adı girin",
 			"passwordRequired": "Parolayı girin"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Gelişmiş şifreleme seçenekleri",
+				"description": "Vault'unuzu koruyan şifreleme yöntemlerini yapılandırın — şifreleme zinciri, KDF parametreleri ve daha fazlası. Varsayılanlar ve bunların karşılaştırması için <link>vault'unuzun nasıl korunduğunu</link> görün."
+			},
+			"kdf": {
+				"label": "Anahtar türetme fonksiyonu",
+				"description": "Her tahmini yavaş ve maliyetli hale getirerek zayıf veya tekrar kullanılan şifreleri korumaya yardımcı olur. Daha güçlü koruma için bu ayarları artırın veya dengeli bir deneyim için varsayılanları koruyun.",
+				"memory": {
+					"label": "Bellek kullanımı",
+					"description": "Her şifre tahmininin daha fazla bellek kullanmasını sağlar. Bu, büyük ölçekli saldırılara karşı özellikle etkilidir çünkü bellek, ham hesaplamalardan daha maliyetli ve verimli bir şekilde ölçeklenmesi zor bir kaynaktır."
+				},
+				"ops": {
+					"label": "Tekrarlar",
+					"description": "Her şifre tahmini için türetim işlemini tekrar eder. Bu, her tahminin maliyetini genellikle doğrusal bir şekilde artırır: tekrarları iki katına çıkarmak, hem saldırganlar hem de cihazınız için çalışmayı yaklaşık olarak iki katına çıkarır."
+				}
+			}
 		}
 	},
 	"login": {

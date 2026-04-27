@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Salausavain",
 				"recommended": "(suositeltu)",
-				"placeholder": "Syötä vahva salasana"
+				"placeholder": "Syötä vahva salasana",
+				"description": "Kaikki tiedot säilytetään salasanalla salatussa tilassa."
 			},
 			"algorithm": {
 				"label": "Salausalgoritmi"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Syötä holvin nimi",
 			"passwordRequired": "Syötä salasana"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Edadvanced salausasetukset",
+				"description": "Määritä salauksen perusasetukset, jotka suojaavat säilytystä — salausketju, KDF-parametrit ja muuta. Täydelliset tiedot oletusasetuksista ja niiden kompromisseista löytyvät <link>miten säilytyksesi on suojattu</link>."
+			},
+			"kdf": {
+				"label": "Avaimen johdannaisfunktio",
+				"description": "Auttaa suojaamaan heikkoja tai käytettyjä salasanoja tekemällä jokaisesta arvauksesta hitaampaa ja kalliimpaa. Nosta näitä asetuksia saadaksesi vahvempaa suojaa tai pidä oletusasetukset tasapainoisen kokemuksen takaamiseksi.",
+				"memory": {
+					"label": "Muistin käyttö",
+					"description": "Saa jokainen salasanan arvaus käyttämään enemmän muistia. Tämä on erityisen tehokasta suurimmassa mittakaavassa tapahtuvia hyökkäyksiä vastaan, koska muisti on kallista ja vaikeampaa skaalata tehokkaasti kuin raakaluettelo."
+				},
+				"ops": {
+					"label": "Itse asiassa",
+					"description": "Toistaa johdannaisprosessin jokaisen salasanan arvauksen kohdalla. Tämä lisää kunkin arvauksen kustannuksia suunnilleen lineaarisesti: kaksoistaminen toistoja kaksinkertaistaa sekä hyökkääjien että laitteesi työn."
+				}
+			}
 		}
 	},
 	"login": {

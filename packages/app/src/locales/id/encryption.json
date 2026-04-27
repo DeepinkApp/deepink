@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Kata sandi yang baik: {{length}} karakter, {{entropy}} bit entropi",
+			"bad": "Kata sandi yang lemah: {{length}} karakter, {{entropy}} bit entropi"
+		}
+	}
+}

@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Đang tải hình ảnh"
+		"loading": "Đang tải hình ảnh",
+		"brokenImage": "Không thể tải hình ảnh"
 	},
 	"notifications": {
 		"title": "Thông báo"

@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Lozinka za enkripciju",
 				"recommended": "(preporučeno)",
-				"placeholder": "Unesite jaku lozinku ovde"
+				"placeholder": "Unesite jaku lozinku ovde",
+				"description": "Svi podaci u prostoru će biti šifrovani putem ove lozinke"
 			},
 			"algorithm": {
 				"label": "Enkripcioni algoritam"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Unesite ime sefa",
 			"passwordRequired": "Unesite lozinku"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Napredne opcije šifrovanja",
+				"description": "Konfigurišite šifrovanje koje štiti vaš prostor — lanac šifri, KDF parametre i više. Za detaljan prikaz podrazumevanih postavki i njihovih kompromisa, pogledajte <link>kako je vaš prostor zaštićen</link>."
+			},
+			"kdf": {
+				"label": "Funkcija derivacije ključa",
+				"description": "Pomaže u zaštiti slabih ili ponovo korišćenih lozinki usporavajući svaki pokušaj i čineći ga skupljim. Povećajte ove postavke za jaču zaštitu ili zadržite podrazumevane za izbalansirano iskustvo.",
+				"memory": {
+					"label": "Korišćenje memorije",
+					"description": "Svaki pokušaj lozinke koristi više memorije. Ovo je posebno efikasno protiv velikih napada, jer je memorija skupa i teže ju je efikasno skalirati od sirove obrade."
+				},
+				"ops": {
+					"label": "Iteracije",
+					"description": "Ponavlja rad derivacije za svaku pokušaj lozinke. Ovo povećava trošak svakog pokušaja većinom linearno: dupliranje iteracija otprilike duplira rad i za napadače i za vaš uređaj."
+				}
+			}
 		}
 	},
 	"login": {

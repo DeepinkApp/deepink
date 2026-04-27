@@ -1,0 +1,8 @@
+{
+	"version": "Verzija {{version}}",
+	"environment": "Korišćene biblioteke",
+	"links": {
+		"label": "Linkovi",
+		"reportBug": "Prijavite grešku"
+	}
+}

@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "इमेज लोड हो रही है"
+		"loading": "इमेज लोड हो रही है",
+		"brokenImage": "चित्र लोड नहीं किया जा सका"
 	},
 	"notifications": {
 		"title": "सूचनाएँ"

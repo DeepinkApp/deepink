@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "圖片載入中"
+		"loading": "圖片載入中",
+		"brokenImage": "無法載入圖片"
 	},
 	"notifications": {
 		"title": "通知"

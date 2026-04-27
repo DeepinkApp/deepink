@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Kata sandi enkripsi",
 				"recommended": "(disarankan)",
-				"placeholder": "Masukkan kata sandi yang kuat"
+				"placeholder": "Masukkan kata sandi yang kuat",
+				"description": "Semua data di dalam vault akan dienkripsi menggunakan kata sandi ini"
 			},
 			"algorithm": {
 				"label": "Algoritma enkripsi"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Masukkan nama vault",
 			"passwordRequired": "Masukkan kata sandi"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opsi enkripsi lanjutan",
+				"description": "Konfigurasi elemen enkripsi yang melindungi vault Anda — cascades cipher, parameter KDF, dan lainnya. Untuk rincian penuh tentang default dan komprominya, lihat <link>cara vault Anda dilindungi</link>."
+			},
+			"kdf": {
+				"label": "Fungsi derivasi kunci",
+				"description": "Membantu melindungi kata sandi yang lemah atau digunakan kembali dengan membuat setiap tebakan menjadi lebih lambat dan lebih mahal. Tingkatkan pengaturan ini untuk perlindungan lebih kuat, atau pertahankan default untuk pengalaman yang seimbang.",
+				"memory": {
+					"label": "Penggunaan memori",
+					"description": "Membuat setiap tebakan kata sandi menggunakan lebih banyak memori. Ini sangat efektif terhadap serangan berskala besar, karena memori itu mahal dan lebih sulit untuk diskalakan secara efisien dibandingkan perhitungan mentah."
+				},
+				"ops": {
+					"label": "Iterasi",
+					"description": "Mengulangi pekerjaan derivasi untuk setiap tebakan kata sandi. Ini meningkatkan biaya setiap tebakan secara hampir linier: menggandakan iterasi kira-kira menggandakan pekerjaan untuk penyerang dan perangkat Anda."
+				}
+			}
 		}
 	},
 	"login": {

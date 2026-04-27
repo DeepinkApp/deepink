@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Cargando imagen"
+		"loading": "Cargando imagen",
+		"brokenImage": "No se puede cargar la imagen"
 	},
 	"notifications": {
 		"title": "Notificaciones"

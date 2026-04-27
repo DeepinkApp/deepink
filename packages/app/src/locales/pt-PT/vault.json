@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Palavra-passe de encriptação",
 				"recommended": "(recomendado)",
-				"placeholder": "Introduza uma palavra-passe forte"
+				"placeholder": "Introduza uma palavra-passe forte",
+				"description": "Todos os dados no espaço de armazenamento serão encriptados com esta palavra-passe"
 			},
 			"algorithm": {
 				"label": "Algoritmo de encriptação"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Introduza um nome para o vault",
 			"passwordRequired": "Introduza a palavra-passe"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opções avançadas de encriptação",
+				"description": "Configure os primitivos de encriptação que protegem o seu espaço de armazenamento — cascata de cifras, parâmetros KDF e mais. Para uma explicação completa dos padrões e suas compensações, veja <link>como o seu espaço de armazenamento é protegido</link>."
+			},
+			"kdf": {
+				"label": "Função de derivação de chave",
+				"description": "Ajuda a proteger palavras-passe fracas ou reutilizadas, tornando cada tentativa mais lenta e dispendiosa. Aumente estas definições para uma proteção mais forte ou mantenha os padrões para uma experiência equilibrada.",
+				"memory": {
+					"label": "Uso de memória",
+					"description": "Faz com que cada tentativa de palavra-passe utilize mais memória. Isto é especialmente eficaz contra ataques em larga escala, porque a memória é dispendiosa e mais difícil de escalonar eficientemente do que o cálculo bruto."
+				},
+				"ops": {
+					"label": "Iterações",
+					"description": "Repete o trabalho de derivação para cada tentativa de palavra-passe. Isto aumenta o custo de cada tentativa de forma quase linear: dobrar as iterações aumenta aproximadamente o trabalho tanto para os atacantes como para o seu dispositivo."
+				}
+			}
 		}
 	},
 	"login": {

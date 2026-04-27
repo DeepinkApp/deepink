@@ -1,0 +1,8 @@
+{
+	"version": "{{version}} verzió",
+	"environment": "Használt könyvtárak",
+	"links": {
+		"label": "Hivatkozások",
+		"reportBug": "Hiba jelentése"
+	}
+}

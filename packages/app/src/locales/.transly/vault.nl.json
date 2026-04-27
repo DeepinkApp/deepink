@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "\"{{name}}\" lijkt beschadigd te zijn."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "Alle gegevens in de kluis worden versleuteld met dit wachtwoord"
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Geavanceerde encryptie-opties"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Stel de encryptie-elementen in die je kluis beschermen — cipher cascade, KDF-parameters en meer. Voor een volledige uitleg van de standaardinstellingen en hun voor- en nadelen, zie <link>hoe je kluis is beschermd</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Sleuteldifferentiatiefunctie"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Helpt zwakke of hergebruikte wachtwoorden te beschermen door elke gok trager en kostbaarder te maken. Verhoog deze instellingen voor een sterkere bescherming of houd de standaardinstellingen voor een evenwichtige ervaring."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Geheugengebruik"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Laat elke wachtwoordgok meer geheugen gebruiken. Dit is vooral effectief tegen grootschalige aanvallen, omdat geheugen kostbaar is en moeilijker efficiënt te schalen dan ruwe berekening."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Herhalingen"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Herhaalt het afgeleide werk voor elke wachtwoordgok. Dit verhoogt de kosten van elke gok op een grotendeels lineaire manier: het verdubbelen van herhalingen verdubbelt ongeveer het werk voor zowel aanvallers als je apparaat."
 	}
 }

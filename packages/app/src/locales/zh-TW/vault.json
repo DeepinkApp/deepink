@@ -66,7 +66,8 @@
 			"password": {
 				"label": "加密密碼",
 				"recommended": "（建議設定）",
-				"placeholder": "輸入高強度密碼"
+				"placeholder": "輸入高強度密碼",
+				"description": "保險庫中的所有數據將通過此密碼加密"
 			},
 			"algorithm": {
 				"label": "加密演算法"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "請輸入加密庫名稱",
 			"passwordRequired": "請輸入密碼"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "進階加密選項",
+				"description": "配置保護您的保險庫的加密原語 — 密碼瀑布、KDF 參數等。如需完整的預設值及其取捨，請參見 <link>如何保護您的保險庫</link>。"
+			},
+			"kdf": {
+				"label": "密鑰導出函數",
+				"description": "通過延長每次嘗試的時間和成本來幫助保護弱或重複使用的密碼。提高這些設置以增強保護，或者保留預設以獲得平衡的體驗。",
+				"memory": {
+					"label": "內存使用",
+					"description": "使每次密碼猜測使用更多內存。這對於大規模攻擊特別有效，因為內存成本高且比原始計算更難高效擴展。"
+				},
+				"ops": {
+					"label": "迭代次數",
+					"description": "為每次密碼猜測重複導出工作。這以大致線性的方式增加每次猜測的成本：將迭代次數加倍大約會使攻擊者和您的設備的工作量都加倍。"
+				}
+			}
 		}
 	},
 	"login": {

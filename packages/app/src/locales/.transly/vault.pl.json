@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "\"{{name}}\" wydaje się uszkodzony."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "Wszystkie dane w skarbcu będą szyfrowane za pomocą tego hasła"
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Zaawansowane opcje szyfrowania"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Skonfiguruj prymitywy szyfrowania, które chronią Twój skarbiec — kaskadę szyfrów, parametry KDF i więcej. Pełne omówienie domyślnych ustawień i ich kompromisów znajdziesz w <link>jak chroniony jest Twój skarbiec</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Funkcja derivacji klucza"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Pomaga chronić słabe lub powtarzane hasła, spowalniając każdy atak i czyniąc go bardziej kosztownym. Podnieś te ustawienia dla silniejszej ochrony lub zachowaj domyślne ustawienia dla zrównoważonego doświadczenia."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Wykorzystanie pamięci"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Sprawia, że każde zgadnięcie hasła wykorzystuje więcej pamięci. Jest to szczególnie skuteczne przeciwko atakom na dużą skalę, ponieważ pamięć jest kosztowna i trudniejsza do efektywnego skalowania niż surowa obliczeniowa moc."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Iteracje"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Powtarza pracę derivacyjną dla każdego zgadnięcia hasła. Zwiększa to koszt każdego zgadnięcia w głównie liniowy sposób: podwajając iteracje, w przybliżeniu podwajasz pracę zarówno dla atakujących, jak i dla Twojego urządzenia."
 	}
 }

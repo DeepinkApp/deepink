@@ -1,0 +1,8 @@
+{
+	"version": "الإصدار {{version}}",
+	"environment": "المكتبات المستخدمة",
+	"links": {
+		"label": "الروابط",
+		"reportBug": " signal report"
+	}
+}

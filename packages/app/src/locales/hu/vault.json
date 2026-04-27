@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Titkosítási jelszó",
 				"recommended": "(ajánlott)",
-				"placeholder": "Írjon be egy erős jelszót"
+				"placeholder": "Írjon be egy erős jelszót",
+				"description": "A tárban tárolt összes adat titkosítva lesz ezzel a jelszóval."
 			},
 			"algorithm": {
 				"label": "Titkosítási algoritmus"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Adja meg a tároló nevét",
 			"passwordRequired": "Adja meg a jelszót"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Speciális titkosítási beállítások",
+				"description": "Állítsa be a titkosítási alapelveket, amelyek védik a tárolóját — titkosítási lánc, KDF paraméterek és még sok más. A beállítások részletes ismertetéséhez lásd: <link>hogyan van védve a tárolód</link>."
+			},
+			"kdf": {
+				"label": "Kulcsleképezési funkció",
+				"description": "Segít megvédeni a gyenge vagy újrahasznált jelszavakat azáltal, hogy minden találgatást lassabbá és költségesebbé tesz. Emelje meg ezeket a beállításokat a nagyobb védelem érdekében, vagy tartsa meg az alapértelmezetteket a kiegyensúlyozott élmény érdekében.",
+				"memory": {
+					"label": "Memóriahasználat",
+					"description": "Minden jelszó találgatásához több memóriát igényel. Ez különösen hatékony a nagyszabású támadások ellen, mert a memória drágább és nehezebben skálázható hatékonyan, mint a nyers számítás."
+				},
+				"ops": {
+					"label": "Ismétlések",
+					"description": "Megismétli a leképezési munkát minden jelszó találgatásnál. Ez növeli a költségét minden egyes találgatásnak, főként lineáris módon: az ismétlések megduplázása körülbelül megduplázza a támadók és az eszközöd munkáját."
+				}
+			}
 		}
 	},
 	"login": {

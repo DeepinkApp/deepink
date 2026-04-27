@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "«{{name}}» — можливо, пошкоджене."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "Усі дані у сховищі будуть зашифровані за допомогою цього пароля"
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Розширені параметри шифрування"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Налаштуйте шифрувальні примітиви, які захищають ваше сховище — каскад шифру, параметри KDF тощо. Для повного розбору значень за замовчуванням та їх компромісів, дивіться <link>як захищається ваше сховище</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Функція похідного ключа"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Допомагає захищати слабкі чи повторно використані паролі, ускладнюючи кожну спробу. Збільшуйте ці налаштування для посиленого захисту або залишайте значення за замовчуванням для збалансованого досвіду."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Використання пам'яті"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Змушує кожну спробу пароля використовувати більше пам'яті. Це особливо ефективно проти масштабних атак, оскільки пам'ять є дорогою і важче масштабувати ефективно, ніж прості обчислення."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Ітерації"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Повторює роботу з похідним ключем для кожної спроби пароля. Це збільшує витрати на кожну спробу приблизно в лінійній пропорції: подвоєння ітерацій приблизно подвоює обсяг роботи як для нападників, так і для вашого пристрою."
 	}
 }

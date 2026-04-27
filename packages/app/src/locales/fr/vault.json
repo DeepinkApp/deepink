@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Mot de passe de chiffrement",
 				"recommended": "(recommandé)",
-				"placeholder": "Saisissez un mot de passe robuste"
+				"placeholder": "Saisissez un mot de passe robuste",
+				"description": "Toutes les données dans l'espace seront chiffrées via ce mot de passe"
 			},
 			"algorithm": {
 				"label": "Algorithme de chiffrement"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Saisissez un nom pour le coffre",
 			"passwordRequired": "Saisissez le mot de passe"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Options de chiffrement avancées",
+				"description": "Configurez les primitives de chiffrement qui protègent votre espace — cascade de chiffrement, paramètres KDF, et plus encore. Pour un aperçu complet des valeurs par défaut et de leurs compromis, consultez <link>comment votre espace est protégé</link>."
+			},
+			"kdf": {
+				"label": "Fonction de dérivation de clé",
+				"description": "Aide à protéger les mots de passe faibles ou réutilisés en ralentissant la vitesse et en augmentant le coût de chaque essai. Augmentez ces paramètres pour une protection renforcée, ou conservez les valeurs par défaut pour une expérience équilibrée.",
+				"memory": {
+					"label": "Utilisation de la mémoire",
+					"description": "Fait en sorte que chaque essai de mot de passe utilise plus de mémoire. Cela est particulièrement efficace contre les attaques à grande échelle, car la mémoire est coûteuse et plus difficile à échelonner efficacement que le calcul brut."
+				},
+				"ops": {
+					"label": "Itérations",
+					"description": "Répète le travail de dérivation pour chaque essai de mot de passe. Cela augmente le coût de chaque essai de manière principalement linéaire : doubler les itérations double à peu près le travail pour les attaquants et votre appareil."
+				}
+			}
 		}
 	},
 	"login": {

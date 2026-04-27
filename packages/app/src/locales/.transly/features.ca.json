@@ -654,5 +654,9 @@
 	"statusBar.notifications": {
 		"hash": "788011833a5a0f22db90c91e8eb7bd8e9f5cd423354ff5ef8c338e7895f44ba9",
 		"translation": "Notificacions"
+	},
+	"image.brokenImage": {
+		"hash": "f2f557a99c8464d430738cc7cc746ad6dba7c60aa661482101ea31b2eb863217",
+		"translation": "No es pot carregar la imatge"
 	}
 }

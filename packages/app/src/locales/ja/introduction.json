@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "Deepinkへようこそ",
+		"description": "Deepinkをあなたの好みに合わせて設定する時間を設けてください。このステップをスキップして、デフォルトの設定から始めることもできます。",
+		"terms": "続行することで、<terms>利用規約</terms>および<privacy>プライバシーポリシー</privacy>に同意したことになります。",
+		"continue": "始める"
+	}
+}

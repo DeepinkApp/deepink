@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "\"{{name}}\" sérültnek tűnik."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "A tárban tárolt összes adat titkosítva lesz ezzel a jelszóval."
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Speciális titkosítási beállítások"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Állítsa be a titkosítási alapelveket, amelyek védik a tárolóját — titkosítási lánc, KDF paraméterek és még sok más. A beállítások részletes ismertetéséhez lásd: <link>hogyan van védve a tárolód</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Kulcsleképezési funkció"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Segít megvédeni a gyenge vagy újrahasznált jelszavakat azáltal, hogy minden találgatást lassabbá és költségesebbé tesz. Emelje meg ezeket a beállításokat a nagyobb védelem érdekében, vagy tartsa meg az alapértelmezetteket a kiegyensúlyozott élmény érdekében."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Memóriahasználat"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Minden jelszó találgatásához több memóriát igényel. Ez különösen hatékony a nagyszabású támadások ellen, mert a memória drágább és nehezebben skálázható hatékonyan, mint a nyers számítás."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Ismétlések"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Megismétli a leképezési munkát minden jelszó találgatásnál. Ez növeli a költségét minden egyes találgatásnak, főként lineáris módon: az ismétlések megduplázása körülbelül megduplázza a támadók és az eszközöd munkáját."
 	}
 }

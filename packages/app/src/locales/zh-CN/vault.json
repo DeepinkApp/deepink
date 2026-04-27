@@ -66,7 +66,8 @@
 			"password": {
 				"label": "加密密码",
 				"recommended": "（推荐）",
-				"placeholder": "输入一个强密码"
+				"placeholder": "输入一个强密码",
+				"description": "保管库中的所有数据将通过此密码进行加密"
 			},
 			"algorithm": {
 				"label": "加密算法"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "请输入存储库名称",
 			"passwordRequired": "请输入密码"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "高级加密选项",
+				"description": "配置保护您保管库的加密原语—密码级联、KDF参数等。有关默认设置及其权衡的完整说明，请参见<link>如何保护您的保管库</link>。"
+			},
+			"kdf": {
+				"label": "密钥派生函数",
+				"description": "通过使每次猜测变得更慢且更昂贵来帮助保护弱密码或重复使用的密码。提高这些设置以获得更强的保护，或者保留默认设置以获得平衡的体验。",
+				"memory": {
+					"label": "内存使用",
+					"description": "使每次密码猜测使用更多内存。这对于大型攻击特别有效，因为内存成本高且比原始计算更难有效扩展。"
+				},
+				"ops": {
+					"label": "迭代次数",
+					"description": "对每次密码猜测重复派生工作。这会以一种大致线性的方式增加每次猜测的成本：将迭代次数加倍大致会将攻击者和您的设备的工作量都加倍。"
+				}
+			}
 		}
 	},
 	"login": {

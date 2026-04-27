@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Учитавање слике"
+		"loading": "Учитавање слике",
+		"brokenImage": "Slika se ne može učitati"
 	},
 	"notifications": {
 		"title": "Обавештења"

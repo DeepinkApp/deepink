@@ -1,0 +1,8 @@
+{
+	"version": "Version {{version}}",
+	"environment": "Använda bibliotek",
+	"links": {
+		"label": "Länkar",
+		"reportBug": "Rapportera fel"
+	}
+}

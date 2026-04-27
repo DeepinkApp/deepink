@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Versleutelingswachtwoord",
 				"recommended": "(aanbevolen)",
-				"placeholder": "Voer een sterk wachtwoord in"
+				"placeholder": "Voer een sterk wachtwoord in",
+				"description": "Alle gegevens in de kluis worden versleuteld met dit wachtwoord"
 			},
 			"algorithm": {
 				"label": "Versleutelingsalgoritme"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Voer een kluisnaam in",
 			"passwordRequired": "Voer het wachtwoord in"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Geavanceerde encryptie-opties",
+				"description": "Stel de encryptie-elementen in die je kluis beschermen — cipher cascade, KDF-parameters en meer. Voor een volledige uitleg van de standaardinstellingen en hun voor- en nadelen, zie <link>hoe je kluis is beschermd</link>."
+			},
+			"kdf": {
+				"label": "Sleuteldifferentiatiefunctie",
+				"description": "Helpt zwakke of hergebruikte wachtwoorden te beschermen door elke gok trager en kostbaarder te maken. Verhoog deze instellingen voor een sterkere bescherming of houd de standaardinstellingen voor een evenwichtige ervaring.",
+				"memory": {
+					"label": "Geheugengebruik",
+					"description": "Laat elke wachtwoordgok meer geheugen gebruiken. Dit is vooral effectief tegen grootschalige aanvallen, omdat geheugen kostbaar is en moeilijker efficiënt te schalen dan ruwe berekening."
+				},
+				"ops": {
+					"label": "Herhalingen",
+					"description": "Herhaalt het afgeleide werk voor elke wachtwoordgok. Dit verhoogt de kosten van elke gok op een grotendeels lineaire manier: het verdubbelen van herhalingen verdubbelt ongeveer het werk voor zowel aanvallers als je apparaat."
+				}
+			}
 		}
 	},
 	"login": {

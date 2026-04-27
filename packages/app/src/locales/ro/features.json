@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Imagine se încarcă"
+		"loading": "Imagine se încarcă",
+		"brokenImage": "Imaginea nu poate fi încărcată"
 	},
 	"notifications": {
 		"title": "Notificări"

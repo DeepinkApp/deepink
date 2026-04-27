@@ -1,0 +1,8 @@
+{
+	"version": "Versjon {{version}}",
+	"environment": "Brukte biblioteker",
+	"links": {
+		"label": "Lenker",
+		"reportBug": "Rapporter feil"
+	}
+}

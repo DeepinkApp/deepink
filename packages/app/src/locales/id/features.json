@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Memuat gambar"
+		"loading": "Memuat gambar",
+		"brokenImage": "Gambar tidak dapat dimuat"
 	},
 	"notifications": {
 		"title": "Notifikasi"

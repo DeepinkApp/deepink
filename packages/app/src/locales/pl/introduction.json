@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "Witaj w Deepink",
+		"description": "Poświęć chwilę, aby dostosować Deepink do swoich potrzeb. Możesz też pominąć ten krok i rozpocząć z domyślnym ustawieniem.",
+		"terms": "Kontynuując, akceptujesz nasze <terms>Warunki korzystania</terms> i <privacy>Politykę prywatności</privacy>.",
+		"continue": "Rozpocznij"
+	}
+}

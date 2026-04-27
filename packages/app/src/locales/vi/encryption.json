@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Mật khẩu tốt: {{length}} ký tự, {{entropy}} bit độ phức tạp",
+			"bad": "Mật khẩu yếu: {{length}} ký tự, {{entropy}} bit độ phức tạp"
+		}
+	}
+}

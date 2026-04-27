@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "\"{{name}}\" ser ud til at være beskadiget."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "Alle data i vault vil blive krypteret med denne adgangskode"
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Avancerede krypteringsindstillinger"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Konfigurer de krypteringsprimitiver, der beskytter din vault — cipher kaskade, KDF-parametre og mere. For en fuld oversigt over standardindstillingerne og deres fordele og ulemper, se <link>hvordan din vault er beskyttet</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Nøgleafledningsfunktion"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Hjælper med at beskytte svage eller genbrugte adgangskoder ved at gøre hver gæt langsommere og dyrere. Hæv disse indstillinger for stærkere beskyttelse, eller behold standardindstillingerne for en afbalanceret oplevelse."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Hukommelsesforbrug"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Gør hvert adgangskodegæt til at bruge mere hukommelse. Dette er især effektivt mod storskala angreb, fordi hukommelse er kostbar og sværere at skalere effektivt end rå beregning."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Iterationer"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Gentager afledningsarbejdet for hvert adgangskodegæt. Dette øger omkostningerne ved hver gæt på en stort set lineær måde: at fordoble iterationer fordobler omtrent arbejdet for både angribere og din enhed."
 	}
 }

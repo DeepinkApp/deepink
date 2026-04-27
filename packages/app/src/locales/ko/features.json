@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "이미지 로딩 중"
+		"loading": "이미지 로딩 중",
+		"brokenImage": "이미지를 불러올 수 없습니다."
 	},
 	"notifications": {
 		"title": "알림"

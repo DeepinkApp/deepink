@@ -1,0 +1,8 @@
+{
+	"version": "Phiên bản {{version}}",
+	"environment": "Thư viện đã sử dụng",
+	"links": {
+		"label": "Liên kết",
+		"reportBug": "Báo cáo lỗi"
+	}
+}

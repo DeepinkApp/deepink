@@ -1,0 +1,18 @@
+{
+	"welcome.title": {
+		"hash": "d8b23f5646ede991b6d9a658f3c8bbdc0da4bedb79711b13f756a7341ec41ad1",
+		"translation": "Welkom bij Deepink"
+	},
+	"welcome.description": {
+		"hash": "aa7fa4e70afffebc5abe09741fc5bd721f3c5b46c6090683174ef37428f20741",
+		"translation": "Neem even de tijd om Deepink naar jouw smaak in te stellen. Of sla deze stap over en begin met de standaardinstellingen."
+	},
+	"welcome.terms": {
+		"hash": "1d5415383fcc27f5bdd3affacfc41eef10b92f97e5b84d19134ea493c09a500a",
+		"translation": "Door door te gaan, accepteer je onze <terms>Gebruiksvoorwaarden</terms> en <privacy>Privacybeleid</privacy>."
+	},
+	"welcome.continue": {
+		"hash": "61e8d44ad423a4a0951b21b9d11440a1c23a881fe79335c367f63be251c64800",
+		"translation": "Aan de slag"
+	}
+}

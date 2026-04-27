@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "\"{{name}}\" изглежда повредено."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "Всички данни в хранилището ще бъдат криптирани с паролата."
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Разширени опции за криптиране"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Конфигурирайте криптографските примитиви, които защитават вашето хранилище — каскада от шифри, параметри на KDF и др. За пълен преглед на стойностите по подразбиране и техните компромиси, вижте <link>как е защитено вашето хранилище</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Функция за извеждане на ключове"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Помага да се защитят слаби или повторно използвани пароли, като прави всяко предположение по-бавно и по-скъпо. Увеличете тези настройки за по-силна защита или оставете стойностите по подразбиране за балансирано изживяване."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Използване на памет"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Прави всяко предположение за парола да използва повече памет. Това е особено ефективно срещу мащабни атаки, тъй като паметта е скъпа и по-трудна за мащабиране ефективно от суровата изчислителна мощ."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Итерации"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Повтаря работата по извеждане за всяко предположение за парола. Това увеличава разходите за всяко предположение по основно линейен начин: удвояването на итерациите приблизително удвоява работата както за нападателите, така и за вашето устройство."
 	}
 }

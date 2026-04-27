@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "歡迎來到 Deepink",
+		"description": "花點時間調整 Deepink 至您的喜好。或者可跳過這一步，直接使用預設設定。",
+		"terms": "繼續即表示您接受我們的 <terms>使用條款</terms> 和 <privacy>隱私政策</privacy>。",
+		"continue": "開始使用"
+	}
+}

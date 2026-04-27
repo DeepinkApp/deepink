@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Krypteringsadgangskode",
 				"recommended": "(anbefalet)",
-				"placeholder": "Indtast en stærk adgangskode"
+				"placeholder": "Indtast en stærk adgangskode",
+				"description": "Alle data i vault vil blive krypteret med denne adgangskode"
 			},
 			"algorithm": {
 				"label": "Krypteringsalgoritme"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Indtast et vault-navn",
 			"passwordRequired": "Indtast adgangskoden"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Avancerede krypteringsindstillinger",
+				"description": "Konfigurer de krypteringsprimitiver, der beskytter din vault — cipher kaskade, KDF-parametre og mere. For en fuld oversigt over standardindstillingerne og deres fordele og ulemper, se <link>hvordan din vault er beskyttet</link>."
+			},
+			"kdf": {
+				"label": "Nøgleafledningsfunktion",
+				"description": "Hjælper med at beskytte svage eller genbrugte adgangskoder ved at gøre hver gæt langsommere og dyrere. Hæv disse indstillinger for stærkere beskyttelse, eller behold standardindstillingerne for en afbalanceret oplevelse.",
+				"memory": {
+					"label": "Hukommelsesforbrug",
+					"description": "Gør hvert adgangskodegæt til at bruge mere hukommelse. Dette er især effektivt mod storskala angreb, fordi hukommelse er kostbar og sværere at skalere effektivt end rå beregning."
+				},
+				"ops": {
+					"label": "Iterationer",
+					"description": "Gentager afledningsarbejdet for hvert adgangskodegæt. Dette øger omkostningerne ved hver gæt på en stort set lineær måde: at fordoble iterationer fordobler omtrent arbejdet for både angribere og din enhed."
+				}
+			}
 		}
 	},
 	"login": {

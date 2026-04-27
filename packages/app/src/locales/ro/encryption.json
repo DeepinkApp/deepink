@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Parolă bună: {{length}} caractere, {{entropy}} biți entropie",
+			"bad": "Parolă slabă: {{length}} caractere, {{entropy}} biți entropie"
+		}
+	}
+}

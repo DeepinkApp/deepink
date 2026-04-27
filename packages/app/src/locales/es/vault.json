@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Contraseña de cifrado",
 				"recommended": "(recomendado)",
-				"placeholder": "Introduce una contraseña segura"
+				"placeholder": "Introduce una contraseña segura",
+				"description": "Todos los datos en el área de almacenamiento serán cifrados mediante esta contraseña"
 			},
 			"algorithm": {
 				"label": "Algoritmo de cifrado"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Introduce un nombre para el vault",
 			"passwordRequired": "Introduce la contraseña"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opciones avanzadas de cifrado",
+				"description": "Configura los elementos de cifrado que protegen tu área de almacenamiento: cascada de cifrados, parámetros de KDF y más. Para un desglose completo de los valores predeterminados y sus compensaciones, consulta <link>cómo está protegido tu área de almacenamiento</link>."
+			},
+			"kdf": {
+				"label": "Función de derivación de clave",
+				"description": "Ayuda a proteger contraseñas débiles o reutilizadas al hacer que cada intento sea más lento y costoso. Aumenta estas configuraciones para una protección más fuerte, o mantén los valores predeterminados para una experiencia equilibrada.",
+				"memory": {
+					"label": "Uso de memoria",
+					"description": "Hace que cada intento de contraseña utilice más memoria. Esto es especialmente efectivo contra ataques a gran escala, ya que la memoria es costosa y más difícil de escalar de manera eficiente que el cálculo bruto."
+				},
+				"ops": {
+					"label": "Iteraciones",
+					"description": "Repite el trabajo de derivación para cada intento de contraseña. Esto aumenta el costo de cada intento de manera mayormente lineal: duplicar las iteraciones aproximadamente duplica el trabajo tanto para los atacantes como para tu dispositivo."
+				}
+			}
 		}
 	},
 	"login": {

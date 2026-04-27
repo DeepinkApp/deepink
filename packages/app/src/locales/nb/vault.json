@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Krypteringspassord",
 				"recommended": "(anbefalt)",
-				"placeholder": "Skriv inn et sterkt passord"
+				"placeholder": "Skriv inn et sterkt passord",
+				"description": "All data i området vil bli kryptert med dette passordet"
 			},
 			"algorithm": {
 				"label": "Krypteringsalgoritme"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Skriv inn et hvelvnavn",
 			"passwordRequired": "Skriv inn passordet"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Avanserte krypteringsalternativer",
+				"description": "Konfigurer krypteringsprimitivene som beskytter ditt område — krypteringskjede, KDF-parametre og mer. For en fullstendig oversikt over standardinnstillingene og deres avveininger, se <link>hvordan ditt område er beskyttet</link>."
+			},
+			"kdf": {
+				"label": "Nøkkelderivasjonsfunksjon",
+				"description": "Hjelper med å beskytte svake eller gjenbrukte passord ved å gjøre hvert gjett saktere og kostnadskrevende. Hev disse innstillingene for sterkere beskyttelse, eller behold standardene for en balansert opplevelse.",
+				"memory": {
+					"label": "Minnebruk",
+					"description": "Får hvert passordgjett til å bruke mer minne. Dette er spesielt effektivt mot storskala angrep, fordi minne er kostbart og vanskeligere å skalere effektivt enn ren beregning."
+				},
+				"ops": {
+					"label": "Iterasjoner",
+					"description": "Gjentar avledningsarbeidet for hvert passordgjett. Dette øker kostnaden for hvert gjett på en stort sett lineær måte: å doble iterasjoner dobler omtrent arbeidet for både angripere og enheten din."
+				}
+			}
 		}
 	},
 	"login": {

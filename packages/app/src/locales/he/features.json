@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "טוען תמונה"
+		"loading": "טוען תמונה",
+		"brokenImage": "לא ניתן לטעון את התמונה"
 	},
 	"notifications": {
 		"title": "התראות"

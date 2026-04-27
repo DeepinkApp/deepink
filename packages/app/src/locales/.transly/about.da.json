@@ -1,0 +1,18 @@
+{
+	"version": {
+		"hash": "c6b6b4b58937ac03375604bd0a9252f6c1926496d870272ba68f78fb3497891a",
+		"translation": "Version {{version}}"
+	},
+	"environment": {
+		"hash": "2414fa5248c50733e37ab1bfcd0e4baca58f1bc2ff9c2f21aa4fa714e0064983",
+		"translation": "Brugte biblioteker"
+	},
+	"links.label": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Links"
+	},
+	"links.reportBug": {
+		"hash": "e4ce476d3f54c2a52709d432c0a68e5d3901515687e9e77867fb560c1d44cc68",
+		"translation": "Rapporter fejl"
+	}
+}

@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Kuvaa ladataan"
+		"loading": "Kuvaa ladataan",
+		"brokenImage": "Kuvaa ei voida ladata"
 	},
 	"notifications": {
 		"title": "Ilmoitukset"

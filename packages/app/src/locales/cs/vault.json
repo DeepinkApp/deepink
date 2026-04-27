@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Heslo pro šifrování",
 				"recommended": "(doporučeno)",
-				"placeholder": "Zadejte silné heslo"
+				"placeholder": "Zadejte silné heslo",
+				"description": "Všechna data ve vaultu budou šifrována pomocí tohoto hesla"
 			},
 			"algorithm": {
 				"label": "Šifrovací algoritmus"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Zadejte název trezoru",
 			"passwordRequired": "Zadejte heslo"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Pokročilé možnosti šifrování",
+				"description": "Nakonfigurujte šifrovací prvky, které chrání váš vault — kaskády šifrování, parametry KDF a další. Pro podrobný přehled výchozích hodnot a jejich výhod a nevýhod se podívejte na <link>jak je váš vault chráněn</link>."
+			},
+			"kdf": {
+				"label": "Funkce odvození klíče",
+				"description": "Pomáhá chránit slabá nebo opakovaně použitá hesla tím, že zpomaluje a zvyšuje náklady na každé uhádnutí. Zvyšte tato nastavení pro silnější ochranu, nebo si ponechte výchozí hodnoty pro vyvážený zážitek.",
+				"memory": {
+					"label": "Využití paměti",
+					"description": "Způsobuje, že každé uhádnutí hesla používá více paměti. To je zvláště účinné proti velkým útokům, protože paměť je nákladná a hůře se efektivně škáluje než surové výpočty."
+				},
+				"ops": {
+					"label": "Počet iterací",
+					"description": "Opakuje práci s odvozením pro každé uhádnutí hesla. To zvyšuje náklady na každé uhádnutí většinou lineárním způsobem: zdvojnásobení iterací přibližně zdvojnásobí práci pro útočníky i vaše zařízení."
+				}
+			}
 		}
 	},
 	"login": {

@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Contrasenya de xifratge",
 				"recommended": "(recomanat)",
-				"placeholder": "Introdueix una contrasenya segura"
+				"placeholder": "Introdueix una contrasenya segura",
+				"description": "Tots les dades del cofre estaran xifrades mitjançant aquesta contrasenya"
 			},
 			"algorithm": {
 				"label": "Algorisme de xifratge"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Introdueix un nom per al vault",
 			"passwordRequired": "Introdueix la contrasenya"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opcions avançades de xifrat",
+				"description": "Configura els primitives de xifrat que protegeixen el teu cofre: cascada de xifrat, paràmetres de KDF, i més. Per a un desglossament complet dels predeterminats i els seus compromisos, consulta <link>com està protegit el teu cofre</link>."
+			},
+			"kdf": {
+				"label": "Funció de derivació de clau",
+				"description": "Ajuda a protegir contrasenyes febles o reutilitzades fent que cada intent sigui més lent i costós. Augmenta aquests paràmetres per a una protecció més forta, o mantingues els predeterminats per a una experiència equilibrada.",
+				"memory": {
+					"label": "Ús de memòria",
+					"description": "Fa que cada intent de contrasenya utilitzi més memòria. Això és especialment efectiu contra atacs a gran escala, ja que la memòria és costosa i més difícil d'escalar eficientment que el càlcul pur."
+				},
+				"ops": {
+					"label": "Iteracions",
+					"description": "Repeteix la feina de derivació per a cada intent de contrasenya. Això augmenta el cost de cada intent d'una manera principalment lineal: duplicar les iteracions aproximadament duplica la feina tant per als atacants com per al teu dispositiu."
+				}
+			}
 		}
 	},
 	"login": {

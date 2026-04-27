@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Senha de criptografia",
 				"recommended": "(recomendado)",
-				"placeholder": "Digite uma senha forte"
+				"placeholder": "Digite uma senha forte",
+				"description": "Todos os dados no cofre serão criptografados com esta senha"
 			},
 			"algorithm": {
 				"label": "Algoritmo de criptografia"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Digite um nome para o vault",
 			"passwordRequired": "Digite a senha"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opções de criptografia avançada",
+				"description": "Configure os primitivos de criptografia que protegem seu cofre — cascata de cifra, parâmetros de KDF e mais. Para uma explicação completa das configurações padrão e suas trocas, veja <link>como seu cofre é protegido</link>."
+			},
+			"kdf": {
+				"label": "Função de deriva de chave",
+				"description": "Ajuda a proteger senhas fracas ou reutilizadas, tornando cada tentativa mais lenta e custosa. Aumente essas configurações para uma proteção mais forte ou mantenha os padrões para uma experiência equilibrada.",
+				"memory": {
+					"label": "Uso de memória",
+					"description": "Faz com que cada tentativa de senha use mais memória. Isso é especialmente eficaz contra ataques em grande escala, pois memória é custosa e mais difícil de escalar eficientemente do que o cálculo bruto."
+				},
+				"ops": {
+					"label": "Iteirações",
+					"description": "Repete o trabalho de derivação para cada tentativa de senha. Isso aumenta o custo de cada tentativa de maneira quase linear: dobrando as iterações, aumenta-se aproximadamente o dobro do trabalho tanto para atacantes quanto para o seu dispositivo."
+				}
+			}
 		}
 	},
 	"login": {

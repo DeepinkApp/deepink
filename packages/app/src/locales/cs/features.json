@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Načítání obrázku"
+		"loading": "Načítání obrázku",
+		"brokenImage": "Obrázek se nemůže načíst"
 	},
 	"notifications": {
 		"title": "Oznámení"

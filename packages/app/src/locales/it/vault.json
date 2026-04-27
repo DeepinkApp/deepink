@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Password di crittografia",
 				"recommended": "(consigliata)",
-				"placeholder": "Inserisci una password sicura"
+				"placeholder": "Inserisci una password sicura",
+				"description": "Tutti i dati nel vault saranno crittografati tramite questa password"
 			},
 			"algorithm": {
 				"label": "Algoritmo di crittografia"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Inserisci un nome per il vault",
 			"passwordRequired": "Inserisci la password"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opzioni di crittografia avanzate",
+				"description": "Configura le primitive di crittografia che proteggono il tuo vault — cascata di cifratura, parametri KDF e altro. Per un'analisi completa dei valori predefiniti e dei loro compromessi, consulta <link>come è protetto il tuo vault</link>."
+			},
+			"kdf": {
+				"label": "Funzione di derivazione della chiave",
+				"description": "Aiuta a proteggere password deboli o riutilizzate rendendo ogni tentativo più lento e costoso. Aumenta queste impostazioni per una protezione più forte, o rimani sui valori predefiniti per un'esperienza equilibrata.",
+				"memory": {
+					"label": "Utilizzo della memoria",
+					"description": "Rende ogni tentativo di password più dispendioso in termini di memoria. Questo è particolarmente efficace contro attacchi su larga scala, poiché la memoria è costosa e difficile da scalare in modo efficiente rispetto al calcolo grezzo."
+				},
+				"ops": {
+					"label": "Iterazioni",
+					"description": "Ripete il lavoro di derivazione per ogni tentativo di password. Questo aumenta il costo di ogni tentativo in modo per lo più lineare: raddoppiare le iterazioni raddoppia all'incirca il lavoro sia per gli aggressori che per il tuo dispositivo."
+				}
+			}
 		}
 	},
 	"login": {

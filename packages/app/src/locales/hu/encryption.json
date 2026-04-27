@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Jó jelszó: {{length}} karakter, {{entropy}} bit entrópia",
+			"bad": "Gyenge jelszó: {{length}} karakter, {{entropy}} bit entrópia"
+		}
+	}
+}

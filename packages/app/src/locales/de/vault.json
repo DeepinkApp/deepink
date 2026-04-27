@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Verschlüsselungs-Passwort",
 				"recommended": "(empfohlen)",
-				"placeholder": "Geben Sie hier ein starkes Passwort ein"
+				"placeholder": "Geben Sie hier ein starkes Passwort ein",
+				"description": "Alle Daten im Tresor werden über dieses Passwort verschlüsselt"
 			},
 			"algorithm": {
 				"label": "Verschlüsselungsalgorithmus"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Geben Sie einen Vault-Namen ein",
 			"passwordRequired": "Geben Sie das Passwort ein"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Erweiterte Verschlüsselungsoptionen",
+				"description": "Konfigurieren Sie die Verschlüsselungsgrundlagen, die Ihren Tresor schützen — Chiffre-Kaskade, KDF-Parameter und mehr. Für eine vollständige Übersicht der Standardeinstellungen und ihrer Vor- und Nachteile siehe <link>wie Ihr Tresor geschützt ist</link>."
+			},
+			"kdf": {
+				"label": "Schlüsselerzeugungsfunktion",
+				"description": "Schützt schwache oder wiederverwendete Passwörter, indem jeder Versuch langsamer und kostspieliger wird. Erhöhen Sie diese Einstellungen für stärkeren Schutz oder behalten Sie die Standardeinstellungen für ein ausgewogenes Erlebnis.",
+				"memory": {
+					"label": "Speicherbedarf",
+					"description": "Erhöht den Speicherbedarf für jeden Passwortversuch. Dies ist besonders effektiv gegen großangelegte Angriffe, da Speicher kostspielig und schwieriger effizient zu skalieren ist als rohe Berechnung."
+				},
+				"ops": {
+					"label": "Iterationen",
+					"description": "Wiederholt die Erzeugungsarbeit für jeden Passwortversuch. Dies erhöht die Kosten jedes Versuchs in meist linearer Weise: Verdopplung der Iterationen verdoppelt grob die Arbeit sowohl für Angreifer als auch für Ihr Gerät."
+				}
+			}
 		}
 	},
 	"login": {

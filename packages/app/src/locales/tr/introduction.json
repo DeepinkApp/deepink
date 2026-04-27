@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "Deepink'e Hoş Geldiniz",
+		"description": "Deepink'i kendi zevkinize göre ayarlamak için bir anınızı ayırın. Ya da bu adımı atlayarak varsayılan ayarlarla başlayın.",
+		"terms": "Devam ederek <terms>Kullanım Şartlarımızı</terms> ve <privacy>Gizlilik Politikamızı</privacy> kabul ediyorsunuz.",
+		"continue": "Başlayın"
+	}
+}

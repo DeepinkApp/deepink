@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Contrasenya bona: {{length}} caràcters, {{entropy}} bits d'entropia",
+			"bad": "Contrasenya feble: {{length}} caràcters, {{entropy}} bits d'entropia"
+		}
+	}
+}

@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Krypteringslösenord",
 				"recommended": "(rekommenderas)",
-				"placeholder": "Ange ett starkt lösenord"
+				"placeholder": "Ange ett starkt lösenord",
+				"description": "All data i lagret kommer att krypteras med detta lösenord"
 			},
 			"algorithm": {
 				"label": "Krypteringsalgoritm"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Ange ett namn för valvet",
 			"passwordRequired": "Ange lösenordet"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Avancerade krypteringsalternativ",
+				"description": "Konfigurera de krypteringsmetoder som skyddar ditt lagringsutrymme — chifferserie, KDF-inställningar och mer. För en fullständig översikt av standardinställningarna och deras kompromisser, se <link>hur ditt lagringsutrymme skyddas</link>."
+			},
+			"kdf": {
+				"label": "Nyckelavledningsfunktion",
+				"description": "Hjälper till att skydda svaga eller återanvända lösenord genom att göra varje gissning långsammare och mer kostsam. Höj dessa inställningar för starkare skydd eller behåll standardinställningarna för en balanserad upplevelse.",
+				"memory": {
+					"label": "Minneanvändning",
+					"description": "Får varje lösenordsgissning att använda mer minne. Detta är särskilt effektivt mot storskaliga attacker, eftersom minne är kostsamt och svårare att skalas effektivt än ren beräkning."
+				},
+				"ops": {
+					"label": "Iterationer",
+					"description": "Upprepar avledningsarbetet för varje lösenordsgissning. Detta ökar kostnaden för varje gissning på ett för det mesta linjärt sätt: att dubbla iterationerna fördubblar i stort sett arbetet för både angripare och din enhet."
+				}
+			}
 		}
 	},
 	"login": {

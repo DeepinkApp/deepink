@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "画像を読み込み中"
+		"loading": "画像を読み込み中",
+		"brokenImage": "画像を読み込めません"
 	},
 	"notifications": {
 		"title": "通知"

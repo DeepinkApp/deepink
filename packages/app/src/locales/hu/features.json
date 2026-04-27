@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Kép betöltése"
+		"loading": "Kép betöltése",
+		"brokenImage": "A képet nem lehet betölteni"
 	},
 	"notifications": {
 		"title": "Értesítések"

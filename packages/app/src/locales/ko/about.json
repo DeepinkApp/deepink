@@ -1,0 +1,8 @@
+{
+	"version": "버전 {{version}}",
+	"environment": "사용된 라이브러리",
+	"links": {
+		"label": "링크",
+		"reportBug": "버그 신고"
+	}
+}

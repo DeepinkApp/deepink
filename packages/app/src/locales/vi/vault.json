@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Mật khẩu mã hóa",
 				"recommended": "(khuyên dùng)",
-				"placeholder": "Nhập mật khẩu mạnh"
+				"placeholder": "Nhập mật khẩu mạnh",
+				"description": "Tất cả dữ liệu trong kho sẽ được mã hóa qua mật khẩu này"
 			},
 			"algorithm": {
 				"label": "Thuật toán mã hóa"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Nhập tên vault",
 			"passwordRequired": "Nhập mật khẩu"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Tùy chọn mã hóa nâng cao",
+				"description": "Cấu hình các phương pháp mã hóa bảo vệ kho của bạn — chuỗi mã hóa, tham số KDF và nhiều hơn nữa. Để biết chi tiết đầy đủ về các mặc định và sự đánh đổi của chúng, hãy xem <link>cách kho của bạn được bảo vệ</link>."
+			},
+			"kdf": {
+				"label": "Hàm sinh khóa",
+				"description": "Giúp bảo vệ mật khẩu yếu hoặc đã tái sử dụng bằng cách làm cho mỗi lần đoán trở nên chậm hơn và tốn kém hơn. Tăng cường các cài đặt này để có sự bảo vệ mạnh mẽ hơn, hoặc giữ nguyên các mặc định để có trải nghiệm cân bằng.",
+				"memory": {
+					"label": "Sử dụng bộ nhớ",
+					"description": "Khiến mỗi lần đoán mật khẩu sử dụng nhiều bộ nhớ hơn. Điều này đặc biệt hiệu quả đối phó với các cuộc tấn công quy mô lớn, vì bộ nhớ tốn kém và khó mở rộng hiệu quả hơn so với tính toán thô."
+				},
+				"ops": {
+					"label": "Số lần lặp lại",
+					"description": "Lặp lại quá trình sinh khóa cho mỗi lần đoán mật khẩu. Điều này làm tăng chi phí cho mỗi lần đoán theo cách chủ yếu là tuyến tính: gấp đôi số lần lặp lại thì sẽ gấp đôi công việc cho cả kẻ tấn công và thiết bị của bạn."
+				}
+			}
 		}
 	},
 	"login": {

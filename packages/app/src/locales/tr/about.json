@@ -1,0 +1,8 @@
+{
+	"version": "Sürüm {{version}}",
+	"environment": "Kullanılan kütüphaneler",
+	"links": {
+		"label": "Bağlantılar",
+		"reportBug": "Hata Bildir"
+	}
+}

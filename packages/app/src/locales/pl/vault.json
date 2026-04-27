@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Hasło szyfrowania",
 				"recommended": "(zalecane)",
-				"placeholder": "Wprowadź silne hasło"
+				"placeholder": "Wprowadź silne hasło",
+				"description": "Wszystkie dane w skarbcu będą szyfrowane za pomocą tego hasła"
 			},
 			"algorithm": {
 				"label": "Algorytm szyfrowania"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Podaj nazwę sejfu",
 			"passwordRequired": "Podaj hasło"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Zaawansowane opcje szyfrowania",
+				"description": "Skonfiguruj prymitywy szyfrowania, które chronią Twój skarbiec — kaskadę szyfrów, parametry KDF i więcej. Pełne omówienie domyślnych ustawień i ich kompromisów znajdziesz w <link>jak chroniony jest Twój skarbiec</link>."
+			},
+			"kdf": {
+				"label": "Funkcja derivacji klucza",
+				"description": "Pomaga chronić słabe lub powtarzane hasła, spowalniając każdy atak i czyniąc go bardziej kosztownym. Podnieś te ustawienia dla silniejszej ochrony lub zachowaj domyślne ustawienia dla zrównoważonego doświadczenia.",
+				"memory": {
+					"label": "Wykorzystanie pamięci",
+					"description": "Sprawia, że każde zgadnięcie hasła wykorzystuje więcej pamięci. Jest to szczególnie skuteczne przeciwko atakom na dużą skalę, ponieważ pamięć jest kosztowna i trudniejsza do efektywnego skalowania niż surowa obliczeniowa moc."
+				},
+				"ops": {
+					"label": "Iteracje",
+					"description": "Powtarza pracę derivacyjną dla każdego zgadnięcia hasła. Zwiększa to koszt każdego zgadnięcia w głównie liniowy sposób: podwajając iteracje, w przybliżeniu podwajasz pracę zarówno dla atakujących, jak i dla Twojego urządzenia."
+				}
+			}
 		}
 	},
 	"login": {

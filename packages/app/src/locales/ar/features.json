@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "جارٍ تحميل الصورة"
+		"loading": "جارٍ تحميل الصورة",
+		"brokenImage": "لا يمكن تحميل الصورة"
 	},
 	"notifications": {
 		"title": "الإشعارات"

@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "图片加载中"
+		"loading": "图片加载中",
+		"brokenImage": "无法加载图像"
 	},
 	"notifications": {
 		"title": "通知"

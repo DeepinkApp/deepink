@@ -302,5 +302,41 @@
 	"errors.corrupted": {
 		"hash": "271fb1a8df691e62cc73ec80678f8ac70a667dff995f0c086d305823a697e1cb",
 		"translation": "\"{{name}}\" có vẻ đã bị hỏng."
+	},
+	"creator.field.password.description": {
+		"hash": "57ecdf6d7f91ee407e5e9c0d496c1659826181015d80618521b8bc69741babbc",
+		"translation": "Tất cả dữ liệu trong kho sẽ được mã hóa qua mật khẩu này"
+	},
+	"creator.section.advancedConfig.label": {
+		"hash": "e193b95ba67f67dadaf116a7b373fc46be3f8dcc94d92d56a5e5aa2ca440ee62",
+		"translation": "Tùy chọn mã hóa nâng cao"
+	},
+	"creator.section.advancedConfig.description": {
+		"hash": "06c42e6b2752aa105e09faac06f97318db2ab49bf96e8d0b23eb05d843256839",
+		"translation": "Cấu hình các phương pháp mã hóa bảo vệ kho của bạn — chuỗi mã hóa, tham số KDF và nhiều hơn nữa. Để biết chi tiết đầy đủ về các mặc định và sự đánh đổi của chúng, hãy xem <link>cách kho của bạn được bảo vệ</link>."
+	},
+	"creator.section.kdf.label": {
+		"hash": "8d7021328b651d20947484934b0487059614bb5ed34308f305939d4dc7ac216b",
+		"translation": "Hàm sinh khóa"
+	},
+	"creator.section.kdf.description": {
+		"hash": "5a25839414378ad1f34ca43cd6d6e4b0a11dc292f0b129cdfca5ba38a6897059",
+		"translation": "Giúp bảo vệ mật khẩu yếu hoặc đã tái sử dụng bằng cách làm cho mỗi lần đoán trở nên chậm hơn và tốn kém hơn. Tăng cường các cài đặt này để có sự bảo vệ mạnh mẽ hơn, hoặc giữ nguyên các mặc định để có trải nghiệm cân bằng."
+	},
+	"creator.section.kdf.memory.label": {
+		"hash": "46e2c42a0c19ddf30ba473d20d61e77aa70357a3ce2e24acd8ce118cc93091b4",
+		"translation": "Sử dụng bộ nhớ"
+	},
+	"creator.section.kdf.memory.description": {
+		"hash": "9ab4ecaa6df9b3bbca7779ac7796f9f12c339f6bf882b6604dcd4e5143ada9ef",
+		"translation": "Khiến mỗi lần đoán mật khẩu sử dụng nhiều bộ nhớ hơn. Điều này đặc biệt hiệu quả đối phó với các cuộc tấn công quy mô lớn, vì bộ nhớ tốn kém và khó mở rộng hiệu quả hơn so với tính toán thô."
+	},
+	"creator.section.kdf.ops.label": {
+		"hash": "4740b573715316a4698d4dee44ebb90046ed94f5f582ffa67ccab31e68a8a6b5",
+		"translation": "Số lần lặp lại"
+	},
+	"creator.section.kdf.ops.description": {
+		"hash": "7e94dc647e2940108ebafd7edd4b77f1b21f7c8099b1ad84390d5ab9c27c7013",
+		"translation": "Lặp lại quá trình sinh khóa cho mỗi lần đoán mật khẩu. Điều này làm tăng chi phí cho mỗi lần đoán theo cách chủ yếu là tuyến tính: gấp đôi số lần lặp lại thì sẽ gấp đôi công việc cho cả kẻ tấn công và thiết bị của bạn."
 	}
 }

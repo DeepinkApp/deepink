@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Parola de criptare",
 				"recommended": "(recomandat)",
-				"placeholder": "Introdu o parolă puternică aici"
+				"placeholder": "Introdu o parolă puternică aici",
+				"description": "Toate datele din spațiul de stocare vor fi criptate prin această parolă"
 			},
 			"algorithm": {
 				"label": "Algoritm de criptare"
@@ -88,6 +89,24 @@
 		"errors": {
 			"nameRequired": "Introdu un nume pentru seif",
 			"passwordRequired": "Introdu parola"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opțiuni avansate de criptare",
+				"description": "Configurează primitivele de criptare care protejează spațiul tău de stocare — lanț de cifrare, parametrii KDF și altele. Pentru o descriere detaliată a setărilor implicite și compromisurilor acestora, vezi <link>cum este protejat spațiul tău de stocare</link>."
+			},
+			"kdf": {
+				"label": "Funcția de derivare a cheii",
+				"description": "Ajută la protejarea parolelor slabe sau reutilizate prin încetinirea și creșterea costului fiecărei încercări. Crește aceste setări pentru o protecție mai puternică sau păstrează setările implicite pentru o experiență echilibrată.",
+				"memory": {
+					"label": "Utilizarea memoriei",
+					"description": "Îngreunează fiecare încercare de parolă, folosind mai multă memorie. Acest lucru este deosebit de eficient împotriva atacurilor la scară largă, deoarece memoria este costisitoare și mai greu de scalat eficient decât calculul brut."
+				},
+				"ops": {
+					"label": "Iterații",
+					"description": "Repetă procesul de derivare pentru fiecare încercare de parolă. Acest lucru crește costul fiecărei încercări într-un mod aproape liniar: dublarea iterațiilor dublează aproximativ munca atât pentru atacatori, cât și pentru dispozitivul tău."
+				}
+			}
 		}
 	},
 	"login": {
