@@ -97,13 +97,13 @@ Each file contains nested JSON:
 ### 3. Run
 
 ```bash
-npx transly
+npx transly translate
 ```
 
 Or with a custom config path:
 
 ```bash
-npx transly --config ./config/transly.config.js
+npx transly translate --config ./config/transly.config.js
 ```
 
 ### 4. Output
@@ -132,6 +132,47 @@ And stores the cache:
 ```
 
 > **Tip:** Commit the cache directory to version control. This ensures teammates and CI never re-translate strings that are already done.
+
+## Initialize Cache from Existing Translations
+
+If you already have translated locale files (from another tool or a previous setup), you can bootstrap Transly’s cache without re-translating everything.
+
+Use:
+
+```bash
+transly cache seed
+```
+
+### What it does
+
+* Scans your existing locale files
+* Extracts translations
+* Populates the internal cache
+* Enables incremental translation (only new/changed messages will be processed)
+
+### When to use
+
+* Migrating from another i18n tool
+* Cache directory was removed or corrupted
+* First-time setup with pre-existing translations
+
+### Typical flow
+
+```bash
+# 1. Seed cache from current translations
+transly cache seed
+
+# 2. Run translation (only missing/changed keys will be processed)
+transly translate
+```
+
+### Notes
+
+* This command does **not** modify your locale files
+* Safe to run multiple times
+* Existing cache entries may be updated if translations changed
+
+After seeding, Transly will treat your current translations as the baseline and only process diffs going forward.
 
 ---
 
