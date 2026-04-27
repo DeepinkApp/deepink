@@ -1,46 +1,7 @@
+import OpenAI from 'openai';
+import z from 'zod';
+
 import type { Config, PromptGenerator, TranslationItem } from './types.js';
-
-/**
- * Extracts the assistant message text content from an OpenAI-compatible
- * chat completion response.
- */
-function extractContent(json: unknown): string {
-	if (
-		typeof json !== 'object' ||
-		json === null ||
-		!('choices' in json) ||
-		!Array.isArray((json as { choices: unknown }).choices)
-	) {
-		throw new Error(`Unexpected LLM response shape: ${JSON.stringify(json)}`);
-	}
-
-	const choices = (json as { choices: unknown[] }).choices;
-	if (choices.length === 0) {
-		throw new Error('LLM returned empty choices array');
-	}
-
-	const first = choices[0];
-	if (
-		typeof first !== 'object' ||
-		first === null ||
-		!('message' in first) ||
-		typeof (first as { message: unknown }).message !== 'object'
-	) {
-		throw new Error(`Unexpected choice shape: ${JSON.stringify(first)}`);
-	}
-
-	const message = (first as { message: { content?: unknown } }).message;
-	if (typeof message.content !== 'string') {
-		throw new Error(
-			`LLM message content is not a string: ${JSON.stringify(message.content)}`,
-		);
-	}
-
-	return message.content;
-}
-
-/** Default OpenAI-compatible base URL */
-const DEFAULT_BASE_URL = 'https://openrouter.ai/api/v1';
 
 function getDefaultSystemPrompt(languageCode: string) {
 	return `Translate the contents of the i18n JSON file to ${languageCode} according to the BCP 47 standard, ensuring the integrity and structure of the file are preserved. Please adhere to the following guidelines:
@@ -56,7 +17,9 @@ Upon completion of the translation:
 
 3. **Cross-verify Translations**: If possible, cross-reference your translations with another source or a native speaker to ensure accuracy and naturalness of the language.
 
-The aim is to achieve a fluent and structurally sound translation of the JSON content from the base language to the target language ${languageCode}, without altering the document's schema or disrupting the key-value relationship.`;
+The aim is to achieve a fluent and structurally sound translation of the JSON content from the base language to the target language ${languageCode}, without altering the document's schema or disrupting the key-value relationship.
+
+Return only translated JSON. Do no add any comments you your response.`;
 }
 
 /**
@@ -86,102 +49,91 @@ export async function translateChunk(
 	targetLang: string,
 	config: Config,
 ): Promise<LlmTranslationResponse> {
-	const baseUrl = config.baseUrl ?? DEFAULT_BASE_URL;
-	const url = `${baseUrl.replace(/\/$/, '')}/chat/completions`;
-
-	const userContent = JSON.stringify({ targetLang, items });
+	const client = new OpenAI({
+		apiKey: config.apiKey,
+		baseURL: config.baseUrl,
+	});
 
 	const buildPrompt = (source: string | PromptGenerator) => {
 		if (typeof source === 'string') return source;
 		return source(targetLang);
 	};
 
-	const body = {
-		model: config.model,
-		messages: [
-			{
-				role: 'system',
-				content: config.systemPrompt
-					? buildPrompt(config.systemPrompt)
-					: getDefaultSystemPrompt(targetLang),
-			},
-			...(config.contextPrompt
-				? [
-						{
-							role: 'system',
-							content:
-								'The app context:\n\n' +
-								buildPrompt(config.contextPrompt),
-						},
-					]
-				: []),
-			{ role: 'user', content: userContent },
-		],
-	};
+	const response = await client.chat.completions
+		.create({
+			model: config.model,
+			messages: [
+				{
+					role: 'system',
+					content: config.systemPrompt
+						? buildPrompt(config.systemPrompt)
+						: getDefaultSystemPrompt(targetLang),
+				},
+				...(config.contextPrompt
+					? [
+							{
+								role: 'system',
+								content:
+									'The app context:\n\n' +
+									buildPrompt(config.contextPrompt),
+							} as const,
+						]
+					: []),
+				{
+					role: 'user',
+					content: JSON.stringify(
+						Object.fromEntries(items.map(({ key, value }) => [key, value])),
+					),
+				},
+			],
+		})
+		.then((response) => {
+			try {
+				return z
+					.object({
+						choices: z
+							.object({
+								message: z.object({ content: z.string().nullable() }),
+							})
+							.array()
+							.min(1, 'empty choices'),
+					})
+					.parse(response);
+			} catch (error) {
+				if (config.debug) console.log(response);
 
-	let response: Response;
-	try {
-		response = await fetch(url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${config.apiKey}`,
-			},
-			body: JSON.stringify(body),
+				throw new Error('Unexpected LLM response shape', { cause: error });
+			}
 		});
-	} catch (err) {
-		throw new Error(
-			`LLM request failed (network error): ${err instanceof Error ? err.message : String(err)}`,
-		);
-	}
 
-	if (!response.ok) {
-		const text = await response.text().catch(() => '');
-		throw new Error(`LLM request failed with status ${response.status}: ${text}`);
+	const content = response.choices[0].message.content;
+	if (!content) {
+		throw new Error(`LLM response is empty`);
 	}
-
-	let json: unknown;
-	try {
-		json = await response.json();
-	} catch (err) {
-		throw new Error(
-			`Failed to parse LLM response as JSON: ${err instanceof Error ? err.message : String(err)}`,
-		);
-	}
-
-	// Extract the assistant message content
-	const content = extractContent(json);
 
 	// Parse the content as JSON translation map
-	let translations: unknown;
+	let parsedJson;
 	try {
 		// The LLM may wrap the JSON in markdown code fences — strip them
-		const cleaned = content
+		const json = content
 			.replace(/^```(?:json)?\s*/i, '')
 			.replace(/\s*```$/, '')
 			.trim();
-		translations = JSON.parse(cleaned);
+
+		parsedJson = JSON.parse(json);
 	} catch (err) {
 		throw new Error(
 			`LLM returned non-JSON content: ${err instanceof Error ? err.message : String(err)}\nContent: ${content}`,
-		);
-	}
-
-	if (
-		typeof translations !== 'object' ||
-		translations === null ||
-		Array.isArray(translations)
-	) {
-		throw new Error(
-			`LLM response is not a JSON object. Got: ${JSON.stringify(translations)}`,
+			{ cause: err },
 		);
 	}
 
 	// Validate that all expected keys are present and values are strings
+	const translations = z.record(z.string()).parse(parsedJson);
 	const result: LlmTranslationResponse = {};
 	for (const item of items) {
-		const value = (translations as Record<string, unknown>)[item.key];
-		if (typeof value !== 'string') {
+		const value = translations[item.key];
+		if (!value) {
 			throw new Error(
 				`LLM response missing or invalid translation for key "${item.key}". Got: ${JSON.stringify(value)}`,
 			);

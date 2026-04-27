@@ -25,6 +25,7 @@ export const configSchema = z.object({
 		.optional(),
 	maxBatchSize: z.number().int().positive().optional(),
 	translateChunk: z.any().optional(),
+	debug: z.coerce.boolean().optional(),
 });
 
 /**

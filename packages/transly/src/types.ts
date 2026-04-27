@@ -49,6 +49,7 @@ export type Config = {
 		targetLang: string,
 		config: Config,
 	) => Promise<LlmTranslationResponse>;
+	debug?: boolean;
 };
 
 /**

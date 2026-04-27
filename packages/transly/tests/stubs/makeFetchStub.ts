@@ -4,7 +4,7 @@
  * Builds a minimal OpenAI-compatible chat completion response body.
  * Pass `content` as the assistant message text (typically a JSON string).
  */
-export function makeOpenAiResponse(content: string): unknown {
+export function makeOpenAiResponseObject(content: string): unknown {
 	return {
 		id: 'chatcmpl-test',
 		object: 'chat.completion',
