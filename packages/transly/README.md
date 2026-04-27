@@ -50,16 +50,16 @@ Requires **Node.js ≥ 22**.
 
 ### 1. Create a config file
 
-Create `i18n.config.js` in your project root:
+Create `transly.config.js` in your project root:
 
 ```js
-// i18n.config.js
+// transly.config.js
 export default {
   sourceLang: 'en',
   targetLangs: ['de', 'fr', 'ja'],
 
   localesDir: './src/locales',
-  cacheDir: './.i18n-cache',
+  cacheDir: './.transly-cache',
 
   model: 'openai/gpt-4o-mini',
   apiKey: process.env.OPENAI_API_KEY,
@@ -103,7 +103,7 @@ npx transly
 Or with a custom config path:
 
 ```bash
-npx transly --config ./config/i18n.config.js
+npx transly --config ./config/transly.config.js
 ```
 
 ### 4. Output
@@ -125,7 +125,7 @@ src/locales/
 And stores the cache:
 
 ```
-.i18n-cache/
+.transly-cache/
   common.de.json
   common.fr.json
   common.ja.json
@@ -195,7 +195,7 @@ Cache-driven LLM i18n translation CLI
 
 Options:
   -V, --version          output the version number
-  -c, --config <path>    Path to the i18n config file (default: "./i18n.config.js")
+  -c, --config <path>    Path to the i18n config file (default: "./transly.config.js")
   -h, --help             display help for command
 ```
 
@@ -245,7 +245,7 @@ transly automatically strips markdown code fences (` ```json ... ``` `) from the
 One cache file per namespace × target language, stored as JSON:
 
 ```
-.i18n-cache/
+.transly-cache/
   features.de.json
   features.fr.json
   common.de.json
@@ -324,7 +324,7 @@ Dynamically imports an ESM config file and validates it with Zod.
 ```ts
 import { loadConfig } from 'transly/config';
 
-const config = await loadConfig('./i18n.config.js');
+const config = await loadConfig('./transly.config.js');
 ```
 
 Throws a descriptive `Error` if the file cannot be loaded or the config is invalid.

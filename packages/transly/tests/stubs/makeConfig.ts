@@ -12,7 +12,6 @@ export function makeConfig(overrides: Partial<Config> = {}): Config {
 		cacheDir: '/cache',
 		model: 'test-model',
 		apiKey: 'test-key',
-		prompt: 'Translate.',
 		maxBatchSize: 10,
 		...overrides,
 	};
