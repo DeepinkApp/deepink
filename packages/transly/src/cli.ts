@@ -5,7 +5,8 @@ import { resolve } from 'path';
 import { description, name, version } from '../package.json';
 import { loadConfig } from './config.js';
 import { translateChunk } from './llm';
-import { makeNodeFsAdapter, type ProgressEvent, runTranslation } from './runner.js';
+import { type ProgressEvent, runTranslation } from './runner.js';
+import { makeNodeFsAdapter } from './utils/makeNodeFsAdapter';
 
 const program = new Command();
 

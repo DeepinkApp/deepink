@@ -1,4 +1,3 @@
-import { promises as nodeFsPromises } from 'fs';
 import { join } from 'path';
 
 import { computeHash, getChangedKeys, readCache, writeCache } from './cache.js';
@@ -7,6 +6,7 @@ import { flattenJson, unflattenJson } from './flatten.js';
 import { translateChunk } from './llm.js';
 import { scanNamespaces } from './scanner.js';
 import type { CacheFile, Config, FsAdapter, TranslationItem } from './types.js';
+import { makeNodeFsAdapter } from './utils/makeNodeFsAdapter.js';
 
 /**
  * Progress callback invoked at key milestones during translation.
@@ -30,20 +30,6 @@ export type ProgressEvent =
 	  }
 	| { type: 'namespace_done'; namespace: string; targetLang: string }
 	| { type: 'no_changes'; namespace: string; targetLang: string };
-
-/**
- * Builds a default FsAdapter from Node's `fs/promises`.
- */
-export function makeNodeFsAdapter(): FsAdapter {
-	return {
-		readFile: (path, encoding) => nodeFsPromises.readFile(path, { encoding }),
-		writeFile: (path, data, encoding) =>
-			nodeFsPromises.writeFile(path, data, { encoding }),
-		mkdir: (path, options) => nodeFsPromises.mkdir(path, options),
-		readdir: (path) => nodeFsPromises.readdir(path),
-		access: (path) => nodeFsPromises.access(path),
-	};
-}
 
 /**
  * Merges cached translations with the existing target locale file and writes
