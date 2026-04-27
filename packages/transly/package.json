@@ -1,6 +1,6 @@
 {
 	"name": "transly",
-	"version": "0.1.4",
+	"version": "0.2.0",
 	"description": "Cache-driven LLM i18n translation CLI",
 	"keywords": [
 		"i18n",
