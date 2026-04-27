@@ -50,6 +50,7 @@ export type Config = {
 		config: Config,
 	) => Promise<LlmTranslationResponse>;
 	debug?: boolean;
+	fetch?: typeof fetch;
 };
 
 /**
