@@ -6,6 +6,7 @@ export type NoteMeta = {
 	isDeleted: boolean;
 	isArchived: boolean;
 	isBookmarked: boolean;
+	isPinned: boolean;
 };
 
 export type NoteSortField = 'id' | 'createdAt' | 'updatedAt' | 'deletedAt';
