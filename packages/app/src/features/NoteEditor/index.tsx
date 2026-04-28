@@ -296,7 +296,11 @@ export const Note: FC<NoteEditorProps> = memo(
 						<Button
 							variant="ghost"
 							size="xs"
-							title={note.isPinned ? 'Unpin the note' : 'Pin the note'}
+							title={
+								note.isPinned
+									? t('note.actions.unpinNote')
+									: t('note.actions.pinNote')
+							}
 							onClick={() => {
 								runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, {
 									noteId: note.id,
