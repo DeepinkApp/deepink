@@ -92,7 +92,9 @@
 			"addToFavorites": "Add to favorites",
 			"removeFromFavorites": "Remove from favorites",
 			"moveToArchive": "Move to archive",
-			"removeFromArchive": "Remove from archive"
+			"removeFromArchive": "Remove from archive",
+			"pinNote": "Pin note",
+			"unpinNote": "Unpin note"
 		},
 		"tags": {
 			"addPlaceholder": "Type to add tag…"
