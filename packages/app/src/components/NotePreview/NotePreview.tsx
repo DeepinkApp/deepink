@@ -61,7 +61,10 @@ export const NotePreview = forwardRef<
 
 				<Box
 					as={FaThumbtack}
-					onClick={pin.onToggle}
+					onClick={(evt) => {
+						evt.stopPropagation();
+						pin.onToggle();
+					}}
 					title={pin.title}
 					boxSize="13px"
 					opacity={pin.isActive ? 1 : 0}
