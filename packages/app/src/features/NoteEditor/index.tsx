@@ -293,7 +293,17 @@ export const Note: FC<NoteEditorProps> = memo(
 						>
 							<Box as={FaBoxArchive} transform="scale(1.1)" />
 						</Button>
-						<Button variant="ghost" size="xs">
+						<Button
+							variant="ghost"
+							size="xs"
+							title={note.isPinned ? 'Unpin the note' : 'Pin the note'}
+							onClick={() => {
+								runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, {
+									noteId: note.id,
+								});
+							}}
+							isActive={note.isPinned}
+						>
 							<Box as={FaThumbtack} transform="scale(1.1)" />
 						</Button>
 					</HStack>
