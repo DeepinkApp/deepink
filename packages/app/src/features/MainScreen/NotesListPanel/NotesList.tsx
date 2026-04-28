@@ -9,6 +9,8 @@ import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useNoteContextMenu } from '@features/NotesContainer/NoteContextMenu/useNoteContextMenu';
 import { useTelemetryTracker } from '@features/telemetry';
+import { GLOBAL_COMMANDS } from '@hooks/commands';
+import { useCommand } from '@hooks/commands/useCommand';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
@@ -33,6 +35,7 @@ export const NotesList: FC<NotesListProps> = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const localizedDate = useLocalizedDate();
 	const telemetry = useTelemetryTracker();
+	const runCommand = useCommand();
 
 	const createNote = useCreateNote();
 
@@ -197,6 +200,17 @@ export const NotesList: FC<NotesListProps> = () => {
 												context: 'notes list',
 											},
 										);
+									}}
+									pin={{
+										isActive: Boolean(note.isPinned),
+										title: note.isPinned
+											? t('note.actions.unpinNote')
+											: t('note.actions.pinNote'),
+										onToggle: () => {
+											runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, {
+												noteId: note.id,
+											});
+										},
 									}}
 									onDoubleClick={() => {
 										// Convert preview tab to regular
