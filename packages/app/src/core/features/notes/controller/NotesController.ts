@@ -29,6 +29,7 @@ const RowScheme = z
 		deleted_at: z.coerce.date().nullable(),
 		archived: z.coerce.boolean(),
 		bookmarked: z.coerce.boolean(),
+		pinned: z.coerce.boolean(),
 	})
 	.transform(
 		({
@@ -41,6 +42,7 @@ const RowScheme = z
 			visible,
 			deleted_at,
 			archived,
+			pinned,
 			bookmarked,
 		}): INote => ({
 			id,
@@ -52,6 +54,7 @@ const RowScheme = z
 			deletedAt: deleted_at?.getTime(),
 			isArchived: archived,
 			isBookmarked: bookmarked,
+			isPinned: pinned,
 			content: { title, text },
 		}),
 	);
@@ -79,6 +82,9 @@ function formatNoteMeta(meta: Partial<NoteMeta>) {
 				break;
 			case 'isBookmarked':
 				fields['bookmarked'] = Number(value);
+				break;
+			case 'isPinned':
+				fields['pinned'] = Number(value);
 				break;
 		}
 	}
@@ -162,6 +168,7 @@ function getFetchQuery(
 	}
 
 	// Sort
+	orderQuery.push(qb.line('pinned DESC'));
 	if (sort) {
 		orderQuery.push(
 			qb.line(sortFieldMap[sort.by], sort.order === 'desc' ? 'DESC' : 'ASC'),
@@ -190,7 +197,7 @@ function getFetchQuery(
 					),
 				),
 			),
-		orderQuery.length > 0 ? qb.sql`ORDER BY ${qb.set(orderQuery)}` : undefined,
+		qb.sql`ORDER BY ${qb.set(orderQuery)}`,
 		limit ? qb.limit(limit) : undefined,
 		page && limit ? qb.offset((page - 1) * limit) : undefined,
 	);
