@@ -2,6 +2,7 @@ import React, { forwardRef, ReactNode } from 'react';
 import { FaThumbtack } from 'react-icons/fa6';
 import {
 	Box,
+	Button,
 	HStack,
 	StackProps,
 	Text,
@@ -59,24 +60,24 @@ export const NotePreview = forwardRef<
 					) : undefined}
 				</VStack>
 
-				<Box
-					as={FaThumbtack}
+				<Button
+					variant="ghost"
+					size="xs"
+					alignSelf="baseline"
+					aria-label={pin.title}
+					title={pin.title}
+					color={pin.isActive ? 'typography.base' : 'typography.secondary'}
+					opacity={pin.isActive ? 1 : 0}
+					_groupHover={{
+						opacity: 1,
+					}}
 					onClick={(evt) => {
 						evt.stopPropagation();
 						pin.onToggle();
 					}}
-					title={pin.title}
-					boxSize="13px"
-					opacity={pin.isActive ? 1 : 0}
-					color={pin.isActive ? 'typography.base' : 'typography.secondary'}
-					transform="rotate(25deg)"
-					_groupHover={{
-						opacity: 1,
-					}}
-					_active={{
-						transform: 'rotate(25deg) scale(1.1)',
-					}}
-				/>
+				>
+					<Box as={FaThumbtack} />
+				</Button>
 			</HStack>
 
 			{meta && <Box sx={styles.meta}>{meta}</Box>}
