@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Edadvanced salausasetukset",
-				"description": "Määritä salauksen perusasetukset, jotka suojaavat säilytystä — salausketju, KDF-parametrit ja muuta. Täydelliset tiedot oletusasetuksista ja niiden kompromisseista löytyvät <link>miten säilytyksesi on suojattu</link>."
+				"description": "Määritä salausmenettelyt, jotka suojaavat säilöäsi — salausketju, KDF-parametrit ja muuta. Täydelliset tiedot oletusasetuksista ja niiden luvuista löytyvät kohdasta <encryption>kuinka säilösi on suojattu</encryption>."
 			},
 			"kdf": {
 				"label": "Avaimen johdannaisfunktio",

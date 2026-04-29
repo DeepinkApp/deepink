@@ -76,7 +76,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Advanced encryption options",
-				"description": "Configure the encryption primitives that protect your vault — cipher cascade, KDF parameters, and more. For a full breakdown of the defaults and their trade-offs, see <link>how your vault is protected</link>."
+				"description": "Configure the encryption primitives that protect your vault — cipher cascade, KDF parameters, and more. For a full breakdown of the defaults and their trade-offs, see <encryption>how your vault is protected</encryption>."
 			},
 			"kdf": {
 				"label": "Key derivation function",

@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "進階加密選項",
-				"description": "配置保護您的保險庫的加密原語 — 密碼瀑布、KDF 參數等。如需完整的預設值及其取捨，請參見 <link>如何保護您的保險庫</link>。"
+				"description": "配置保護您資料庫的加密原語——密碼串接、KDF 參數等。欲了解預設值及其權衡的完整分析，請參閱 <encryption>您的資料庫如何受到保護</encryption>。"
 			},
 			"kdf": {
 				"label": "密鑰導出函數",

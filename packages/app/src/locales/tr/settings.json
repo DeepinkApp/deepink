@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Yakınlaştırma düzeyi",
-			"description": "Tüm pencereler için varsayılan yakınlaştırma düzeyini ayarlayın.\nSisteminiz uygulamaları otomatik olarak ölçeklendirmiyorsa, ekranın gerçek piksel oranına (DPR) uygun hale getirmek için yakınlaştırmayı değiştirebilirsiniz. Algılanan DPR: {{dpr}}.",
+			"description": "Tüm pencereler için varsayılan yakınlaştırma seviyesini ayarlayın.\nSisteminiz uygulamaları otomatik olarak ölçeklendirmiyorsa, yakınlaştırmayı mevcut ekran piksel oranına (DPR) uyacak şekilde değiştirebilirsiniz. Ekran piksel oranınız {{dpr}}.",
 			"apply": "Uygula",
 			"reset": "Sıfırla",
 			"errors": {

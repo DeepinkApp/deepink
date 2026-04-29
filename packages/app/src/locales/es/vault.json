@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opciones avanzadas de cifrado",
-				"description": "Configura los elementos de cifrado que protegen tu área de almacenamiento: cascada de cifrados, parámetros de KDF y más. Para un desglose completo de los valores predeterminados y sus compensaciones, consulta <link>cómo está protegido tu área de almacenamiento</link>."
+				"description": "Configura los elementos de cifrado que protegen tu espacio — cascada de cifrados, parámetros de KDF y más. Para un desglose completo de los valores predeterminados y sus compensaciones, consulta <encryption>cómo está protegido tu espacio</encryption>."
 			},
 			"kdf": {
 				"label": "Función de derivación de clave",

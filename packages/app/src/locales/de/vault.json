@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Erweiterte Verschlüsselungsoptionen",
-				"description": "Konfigurieren Sie die Verschlüsselungsgrundlagen, die Ihren Tresor schützen — Chiffre-Kaskade, KDF-Parameter und mehr. Für eine vollständige Übersicht der Standardeinstellungen und ihrer Vor- und Nachteile siehe <link>wie Ihr Tresor geschützt ist</link>."
+				"description": "Konfigurieren Sie die Verschlüsselungsprimitive, die Ihr Vault schützt – Verschlüsselungscascade, KDF-Parameter und mehr. Für eine vollständige Übersicht der Standardeinstellungen und ihrer Vor- und Nachteile siehe <encryption>wie Ihr Vault geschützt ist</encryption>."
 			},
 			"kdf": {
 				"label": "Schlüsselerzeugungsfunktion",

@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Mức thu phóng",
-			"description": "Điều chỉnh mức thu phóng mặc định cho tất cả cửa sổ.\nNếu hệ thống không tự động điều chỉnh tỷ lệ, bạn có thể thay đổi mức thu phóng cho phù hợp với tỷ lệ điểm ảnh thực tế (DPR). DPR phát hiện được là {{dpr}}.",
+			"description": "Điều chỉnh mức thu phóng mặc định cho tất cả các cửa sổ.\nNếu hệ thống của bạn không tự động điều chỉnh kích thước ứng dụng, bạn có thể thay đổi mức thu phóng để phù hợp với tỷ lệ pixel hiển thị thực tế (DPR). Tỷ lệ pixel hiển thị của bạn là {{dpr}}.",
 			"apply": "Áp dụng",
 			"reset": "Đặt lại",
 			"errors": {

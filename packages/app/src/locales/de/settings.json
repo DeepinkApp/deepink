@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Zoomstufe",
-			"description": "Passen Sie die Standard-Zoomstufe für alle Fenster an.\nFalls Ihr System Apps nicht automatisch skaliert, können Sie den Zoom ändern, um ihn an das tatsächliche Display-Pixelverhältnis (DPR) anzupassen. Erkanntes DPR ist {{dpr}}.",
+			"description": "Passen Sie den Standardzoom für alle Fenster an.\nFalls Ihr System die Apps nicht automatisch skaliert, können Sie den Zoom ändern, um ihn an das aktuelle Anzeige-Pixelverhältnis (DPR) anzupassen. Ihr Anzeige-Pixelverhältnis beträgt {{dpr}}.",
 			"apply": "Anwenden",
 			"reset": "Zurücksetzen",
 			"errors": {

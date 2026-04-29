@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Nível de zoom",
-			"description": "Ajustar o nível de zoom predefinido para todas as janelas.\nCaso o sistema não dimensione as aplicações automaticamente, pode alterar o zoom para o adaptar à proporção real de píxeis do ecrã (DPR). DPR detetado: {{dpr}}.",
+			"description": "Ajuste o nível de zoom padrão para todas as janelas.\nCaso o seu sistema não escale as aplicações automaticamente, pode alterar o zoom para se adequar à proporção de pixel do display (DPR) real. A sua proporção de pixel do display é {{dpr}}.",
 			"apply": "Aplicar",
 			"reset": "Repor",
 			"errors": {

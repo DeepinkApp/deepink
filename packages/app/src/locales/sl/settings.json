@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Stopnja povečave",
-			"description": "Prilagodite privzeto stopnjo povečave za vsa okna.\nČe vaš sistem ne prilagaja aplikacij samodejno, lahko spremenite povečavo, da ustreza dejanski ločljivosti zaslona (DPR). Zaznana DPR je {{dpr}}.",
+			"description": "Prilagodite privzeto raven povečave za vse okna.\nČe vaš sistem ne prilagaja aplikacij samodejno, lahko spremenite povečavo, da se prilega dejanskemu razmerju slikovnih pik zaslona (DPR). Vaše razmerje slikovnih pik je {{dpr}}.",
 			"apply": "Uporabi",
 			"reset": "Ponastavi",
 			"errors": {

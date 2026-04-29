@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Napredne opcije šifrovanja",
-				"description": "Konfigurišite šifrovanje koje štiti vaš prostor — lanac šifri, KDF parametre i više. Za detaljan prikaz podrazumevanih postavki i njihovih kompromisa, pogledajte <link>kako je vaš prostor zaštićen</link>."
+				"description": "Konfigurišite enkripcijske parametre koji štite vaš prostor — kaskada šifara, KDF parametri i još mnogo toga. Za detaljno objašnjenje podrazumevanih postavki i njihovih prednosti i slabosti, pogledajte <encryption>kako je vaš prostor zaštićen</encryption>."
 			},
 			"kdf": {
 				"label": "Funkcija derivacije ključa",

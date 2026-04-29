@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Avancerade krypteringsalternativ",
-				"description": "Konfigurera de krypteringsmetoder som skyddar ditt lagringsutrymme — chifferserie, KDF-inställningar och mer. För en fullständig översikt av standardinställningarna och deras kompromisser, se <link>hur ditt lagringsutrymme skyddas</link>."
+				"description": "Konfigurera de krypteringsmetoder som skyddar ditt utrymme — chifferkaskad, KDF-parametrar och mer. För en fullständig genomgång av standardvärdena och deras avvägningar, se <encryption>hur ditt utrymme skyddas</encryption>."
 			},
 			"kdf": {
 				"label": "Nyckelavledningsfunktion",

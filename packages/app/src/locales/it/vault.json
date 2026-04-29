@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opzioni di crittografia avanzate",
-				"description": "Configura le primitive di crittografia che proteggono il tuo vault — cascata di cifratura, parametri KDF e altro. Per un'analisi completa dei valori predefiniti e dei loro compromessi, consulta <link>come è protetto il tuo vault</link>."
+				"description": "Configura le primitive di crittografia che proteggono il tuo spazio — cascata di cifratura, parametri KDF e altro. Per un'analisi completa delle impostazioni predefinite e dei loro compromessi, consulta <encryption>come è protetto il tuo spazio</encryption>."
 			},
 			"kdf": {
 				"label": "Funzione di derivazione della chiave",

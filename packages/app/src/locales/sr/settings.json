@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Nivo zumiranja",
-			"description": "Podesite podrazumevani nivo zumiranja za sve prozore.\nAko vaš sistem ne skalira aplikacije automatski, možete promeniti zum da odgovara stvarnom odnosu piksela ekrana (DPR). Detektovani DPR je {{dpr}}.",
+			"description": "Podesite podrazumevani nivo uvećanja za sve prozore.\nAko vaš sistem ne skalira aplikacije automatski, možete promeniti nivo uvećanja kako biste ga prilagodili stvarnom odnosu piksela na ekranu (DPR). Vaš odnos piksela na ekranu je {{dpr}}.",
 			"apply": "Primeni",
 			"reset": "Resetuj",
 			"errors": {

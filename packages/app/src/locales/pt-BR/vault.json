@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opções de criptografia avançada",
-				"description": "Configure os primitivos de criptografia que protegem seu cofre — cascata de cifra, parâmetros de KDF e mais. Para uma explicação completa das configurações padrão e suas trocas, veja <link>como seu cofre é protegido</link>."
+				"description": "Configure os elementos de criptografia que protegem seu cofre — cascata de cifra, parâmetros de KDF e mais. Para um detalhamento completo dos padrões e suas implicações, veja <encryption>como seu cofre é protegido</encryption>."
 			},
 			"kdf": {
 				"label": "Função de deriva de chave",

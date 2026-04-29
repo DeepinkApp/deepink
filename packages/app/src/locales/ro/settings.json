@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Nivel de zoom",
-			"description": "Ajustează nivelul de zoom implicit pentru toate feroneriile.\nÎn cazul în care sistemul tău nu scalează aplicațiile automat, poți schimba zoomul pentru a se potrivi cu raportul de pixeli al ecranului (DPR) actual. DPR detectat este {{dpr}}.",
+			"description": "Ajustați nivelul de zoom implicit pentru toate ferontele.\nÎn cazul în care sistemul dvs. nu scală aplicațiile automat, puteți schimba zoomul pentru a se potrivi cu raportul de pixeli al afișajului (DPR). Raportul dvs. de pixeli al afișajului este {{dpr}}.",
 			"apply": "Aplică",
 			"reset": "Resetează",
 			"errors": {

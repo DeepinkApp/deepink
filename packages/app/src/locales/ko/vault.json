@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "고급 암호화 옵션",
-				"description": "금고를 보호하는 암호화 기본 설정을 구성합니다 — 암호 알고리즘 계층, KDF 매개변수 등. 기본 설정과 그 장단점에 대한 자세한 내용은 <link>금고 보호 방법</link>을 참조하세요."
+				"description": "볼트를 보호하는 암호화 원리를 설정하세요 — 암호 체인, KDF 매개변수 등. 기본값과 그 장단점에 대한 전체 분석은 <encryption>볼트 보호 방법</encryption>을 참조하세요."
 			},
 			"kdf": {
 				"label": "키 파생 함수",

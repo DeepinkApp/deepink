@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Tùy chọn mã hóa nâng cao",
-				"description": "Cấu hình các phương pháp mã hóa bảo vệ kho của bạn — chuỗi mã hóa, tham số KDF và nhiều hơn nữa. Để biết chi tiết đầy đủ về các mặc định và sự đánh đổi của chúng, hãy xem <link>cách kho của bạn được bảo vệ</link>."
+				"description": "Cấu hình các nguyên tắc mã hóa bảo vệ kho lưu trữ của bạn — chuỗi mã hóa, tham số KDF, và nhiều hơn nữa. Để biết chi tiết về các mặc định và những đánh đổi của chúng, xem <encryption>cách mà kho lưu trữ của bạn được bảo vệ</encryption>."
 			},
 			"kdf": {
 				"label": "Hàm sinh khóa",

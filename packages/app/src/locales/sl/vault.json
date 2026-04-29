@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Napredne možnosti šifriranja",
-				"description": "Konfigurirajte šifrirne prvice, ki varujejo vašo trezoro — kaskada šifriranja, parametri KDF in več. Za celoten pregled privzetih nastavitev in njihovih prednosti in slabosti si oglejte <link>kako je vaša trezora zaščitena</link>."
+				"description": "Konfigurirajte kriptografske elemente, ki varujejo vaš prostor — verigo šifer, parametre KDF in več. Za popoln pregled privzetih nastavitev in njihovih kompromisov si oglejte <encryption>kako je vaš prostor zaščiten</encryption>."
 			},
 			"kdf": {
 				"label": "Funkcija pridobivanja ključev",

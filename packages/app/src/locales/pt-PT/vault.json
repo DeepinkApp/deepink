@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opções avançadas de encriptação",
-				"description": "Configure os primitivos de encriptação que protegem o seu espaço de armazenamento — cascata de cifras, parâmetros KDF e mais. Para uma explicação completa dos padrões e suas compensações, veja <link>como o seu espaço de armazenamento é protegido</link>."
+				"description": "Configure as primitivas de encriptação que protegem o seu espaço — cascata de cifragem, parâmetros KDF e mais. Para uma explicação completa dos padrões e das suas compensações, veja <encryption>como o seu espaço está protegido</encryption>."
 			},
 			"kdf": {
 				"label": "Função de derivação de chave",

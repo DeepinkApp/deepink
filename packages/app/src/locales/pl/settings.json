@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Poziom powiększenia",
-			"description": "Dostosuj domyślny poziom powiększenia dla wszystkich okien.\nJeśli Twój system nie skaluje aplikacji automatycznie, możesz zmienić powiększenie, aby dopasować je do rzeczywistego współczynnika pikseli wyświetlacza (DPR). Wykryty DPR to {{dpr}}.",
+			"description": "Dostosuj domyślny poziom powiększenia dla wszystkich okien.\nJeśli Twój system nie skaluje aplikacji automatycznie, możesz zmienić powiększenie, aby dopasować je do rzeczywistego stosunku pikseli wyświetlacza (DPR). Twój stosunek pikseli wyświetlacza wynosi {{dpr}}.",
 			"apply": "Zastosuj",
 			"reset": "Resetuj",
 			"errors": {

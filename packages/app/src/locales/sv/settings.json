@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Zoomnivå",
-			"description": "Justera standardzoomnivån för alla fönster.\nOm ditt system inte skalar appar automatiskt kan du ändra zoomen så att den matchar skärmens faktiska pixelförhållande (DPR). Identifierat DPR är {{dpr}}.",
+			"description": "Justera standardzoomnivån för alla fönster.\nOm ditt system inte automatiskt anpassar appar kan du ändra zoomnivån för att passa den faktiska pixeldensiteten (DPR). Din pixeldensitet är {{dpr}}.",
 			"apply": "Tillämpa",
 			"reset": "Återställ",
 			"errors": {

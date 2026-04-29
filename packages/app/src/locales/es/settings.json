@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Nivel de zoom",
-			"description": "Ajusta el nivel de zoom predeterminado para todas las ventanas.\nSi tu sistema no escala las apps automáticamente, puedes cambiar el zoom para adaptarlo a la proporción de píxeles de tu pantalla (DPR). DPR detectado: {{dpr}}.",
+			"description": "Ajusta el nivel de zoom predeterminado para todas las ventanas.\nSi tu sistema no escala las aplicaciones automáticamente, puedes cambiar el zoom para que se ajuste a la relación de píxeles de la pantalla actual (DPR). La relación de píxeles de tu pantalla es {{dpr}}.",
 			"apply": "Aplicar",
 			"reset": "Restablecer",
 			"errors": {

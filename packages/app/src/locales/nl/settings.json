@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Zoomniveau",
-			"description": "Pas het standaard zoomniveau aan voor alle vensters.\nAls je systeem apps niet automatisch schaalt, kun je het zoomniveau aanpassen aan de werkelijke beeldschermverhouding (DPR). Gedetecteerde DPR is {{dpr}}.",
+			"description": "Pas het standaard zoomniveau voor alle vensters aan.\nAls uw systeem apps niet automatisch schaalt, kunt u de zoom aanpassen om deze aan te passen aan de werkelijke weergavepixelsverhouding (DPR). Uw weergavepixelsverhouding is {{dpr}}.",
 			"apply": "Toepassen",
 			"reset": "Herstellen",
 			"errors": {

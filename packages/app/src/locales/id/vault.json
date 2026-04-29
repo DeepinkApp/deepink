@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opsi enkripsi lanjutan",
-				"description": "Konfigurasi elemen enkripsi yang melindungi vault Anda — cascades cipher, parameter KDF, dan lainnya. Untuk rincian penuh tentang default dan komprominya, lihat <link>cara vault Anda dilindungi</link>."
+				"description": "Atur primitif enkripsi yang melindungi ruang penyimpanan Anda—cascade cipher, parameter KDF, dan lainnya. Untuk penjelasan lengkap tentang pengaturan awal dan kelebihannya, lihat <encryption>cara ruang penyimpanan Anda dilindungi</encryption>."
 			},
 			"kdf": {
 				"label": "Fungsi derivasi kunci",

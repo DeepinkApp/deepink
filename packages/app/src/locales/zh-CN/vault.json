@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "高级加密选项",
-				"description": "配置保护您保管库的加密原语—密码级联、KDF参数等。有关默认设置及其权衡的完整说明，请参见<link>如何保护您的保管库</link>。"
+				"description": "配置保护您加密存储的加密原语 — 密码级联、KDF参数等。如需详细了解默认设置及其权衡，请参见 <encryption>您的存储如何得以保护</encryption>."
 			},
 			"kdf": {
 				"label": "密钥派生函数",

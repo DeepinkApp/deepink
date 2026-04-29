@@ -437,7 +437,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 								t={t}
 								i18nKey="creator.section.advancedConfig.description"
 								components={{
-									link: (
+									encryption: (
 										<Link href="https://deepink.io/introduction/encryption/" />
 									),
 								}}

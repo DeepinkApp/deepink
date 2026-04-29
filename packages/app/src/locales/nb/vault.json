@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Avanserte krypteringsalternativer",
-				"description": "Konfigurer krypteringsprimitivene som beskytter ditt område — krypteringskjede, KDF-parametre og mer. For en fullstendig oversikt over standardinnstillingene og deres avveininger, se <link>hvordan ditt område er beskyttet</link>."
+				"description": "Konfigurer kryptografiske primitive som beskytter ditt lagringsområde — krypteringsmetode, KDF-parametere, og mer. For en fullstendig gjennomgang av standardinnstillingene og deres vurderinger, se <encryption>hvordan ditt lagringsområde er beskyttet</encryption>."
 			},
 			"kdf": {
 				"label": "Nøkkelderivasjonsfunksjon",

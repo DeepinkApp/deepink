@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opțiuni avansate de criptare",
-				"description": "Configurează primitivele de criptare care protejează spațiul tău de stocare — lanț de cifrare, parametrii KDF și altele. Pentru o descriere detaliată a setărilor implicite și compromisurilor acestora, vezi <link>cum este protejat spațiul tău de stocare</link>."
+				"description": "Configurează primitivele de criptare care protejează depozitul tău — cascade de cifruri, parametrii KDF și altele. Pentru o prezentare detaliată a setărilor implicite și a compromisurilor acestora, vezi <encryption>cum este protejat depozitul tău</encryption>."
 			},
 			"kdf": {
 				"label": "Funcția de derivare a cheii",

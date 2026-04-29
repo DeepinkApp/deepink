@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Avancerede krypteringsindstillinger",
-				"description": "Konfigurer de krypteringsprimitiver, der beskytter din vault — cipher kaskade, KDF-parametre og mere. For en fuld oversigt over standardindstillingerne og deres fordele og ulemper, se <link>hvordan din vault er beskyttet</link>."
+				"description": "Konfigurer de krypteringsprimitiver, der beskytter din vault — chifferkaskade, KDF-parametre og mere. For en fuld gennemgang af standardindstillingerne og deres fordele og ulemper, se <encryption>hvordan din vault er beskyttet</encryption>."
 			},
 			"kdf": {
 				"label": "Nøgleafledningsfunktion",

@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Options de chiffrement avancées",
-				"description": "Configurez les primitives de chiffrement qui protègent votre espace — cascade de chiffrement, paramètres KDF, et plus encore. Pour un aperçu complet des valeurs par défaut et de leurs compromis, consultez <link>comment votre espace est protégé</link>."
+				"description": "Configurez les primitives de cryptage qui protègent votre coffre-fort — cascade de chiffrements, paramètres de KDF, et plus encore. Pour une explication complète des valeurs par défaut et de leurs compromis, consultez <encryption>comment votre coffre-fort est protégé</encryption>."
 			},
 			"kdf": {
 				"label": "Fonction de dérivation de clé",

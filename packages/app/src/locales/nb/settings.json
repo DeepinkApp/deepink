@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Zoomnivå",
-			"description": "Juster standard zoomnivå for alle vinduer.\nHvis systemet ditt ikke skalerer apper automatisk, kan du endre zoom for å tilpasse den faktiske pikseltettheten (DPR). Oppdaget DPR er {{dpr}}.",
+			"description": "Juster standard zoomnivå for alle vinduer.\nHvis systemet ditt ikke skalerer apper automatisk, kan du endre zoomnivået for å tilpasse det til den faktiske skjermpixelratioen (DPR). Din skjermpixelratio er {{dpr}}.",
 			"apply": "Bruk",
 			"reset": "Tilbakestill",
 			"errors": {

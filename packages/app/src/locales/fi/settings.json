@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Zoomaustaso",
-			"description": "Säädä oletuszoomaustasoa kaikille ikkunoille.\nJos järjestelmäsi ei skaalaa sovelluksia automaattisesti, voit muuttaa zoomausta vastaamaan näytön todellista pikselitiheyttä (DPR). Havaittu DPR on {{dpr}}.",
+			"description": "Säädä oletussuurennustaso kaikille ikkunoille.\nJos järjestelmäsi ei skaalaa sovelluksia automaattisesti, voit muuttaa suurennusta saadaksesi sen sopimaan todelliseen näyttöpikselisuhteeseen (DPR). Näyttöpikselisuhteesi on {{dpr}}.",
 			"apply": "Käytä",
 			"reset": "Palauta",
 			"errors": {

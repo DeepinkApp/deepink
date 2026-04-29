@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Pokročilé možnosti šifrování",
-				"description": "Nakonfigurujte šifrovací prvky, které chrání váš vault — kaskády šifrování, parametry KDF a další. Pro podrobný přehled výchozích hodnot a jejich výhod a nevýhod se podívejte na <link>jak je váš vault chráněn</link>."
+				"description": "Konfigurujte šifrovací prvky, které chrání váš trezor — kaskádu šifer, parametry KDF a další. Pro podrobné informace o výchozích hodnotách a jejich výhodách a nevýhodách, viz <encryption>jak je váš trezor chráněn</encryption>."
 			},
 			"kdf": {
 				"label": "Funkce odvození klíče",

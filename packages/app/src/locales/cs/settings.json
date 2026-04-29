@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Úroveň přiblížení",
-			"description": "Upravte výchozí úroveň přiblížení pro všechna okna.\nPokud váš systém automaticky neskaluje aplikace, můžete změnit přiblížení, aby odpovídalo skutečnému poměru pixelů displeje (DPR). Detekovaný DPR je {{dpr}}.",
+			"description": "Upravte výchozí úroveň přiblížení pro všechna okna.\nPokud váš systém automaticky neskaluje aplikace, můžete změnit přiblížení tak, aby odpovídalo aktuálnímu poměru pixelů na displeji (DPR). Váš poměr pixelů na displeji je {{dpr}}.",
 			"apply": "Použít",
 			"reset": "Obnovit",
 			"errors": {

@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Tingkat zoom",
-			"description": "Sesuaikan tingkat zoom default untuk semua jendela.\nJika sistem Anda tidak menskalakan aplikasi secara otomatis, Anda dapat mengubah zoom agar sesuai dengan rasio piksel layar (DPR). DPR terdeteksi: {{dpr}}.",
+			"description": "Sesuaikan tingkat zoom default untuk semua jendela.\nJika sistem Anda tidak secara otomatis menskalakan aplikasi, Anda dapat mengubah zoom untuk menyesuaikan dengan rasio piksel tampilan saat ini (DPR). Rasio piksel tampilan Anda adalah {{dpr}}.",
 			"apply": "Terapkan",
 			"reset": "Atur ulang",
 			"errors": {

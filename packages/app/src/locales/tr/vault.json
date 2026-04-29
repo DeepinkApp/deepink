@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Gelişmiş şifreleme seçenekleri",
-				"description": "Vault'unuzu koruyan şifreleme yöntemlerini yapılandırın — şifreleme zinciri, KDF parametreleri ve daha fazlası. Varsayılanlar ve bunların karşılaştırması için <link>vault'unuzun nasıl korunduğunu</link> görün."
+				"description": "Açık alanını koruyan şifreleme ilkelerini ayarlayın - şifreleme kaskadı, KDF parametreleri ve daha fazlası. Varsayılanların ve bunların ticari değerlerinin tam ayrıntılı incelemesi için <encryption>kasasıınızın nasıl korunduğunu</encryption> görün."
 			},
 			"kdf": {
 				"label": "Anahtar türetme fonksiyonu",

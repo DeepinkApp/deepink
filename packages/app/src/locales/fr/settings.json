@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Niveau de zoom",
-			"description": "Ajustez le niveau de zoom par défaut pour toutes les fenêtres.\nSi votre système ne met pas automatiquement les applications à l'échelle, vous pouvez modifier le zoom pour l'adapter au ratio de pixels réel de l'écran (DPR). DPR détecté : {{dpr}}.",
+			"description": "Ajustez le niveau de zoom par défaut pour toutes les fenêtres.\nSi votre système ne mise pas automatiquement à l'échelle les applications, vous pouvez modifier le zoom pour l'adapter au rapport de pixels de l'affichage réel (DPR). Votre rapport de pixels d'affichage est {{dpr}}.",
 			"apply": "Appliquer",
 			"reset": "Réinitialiser",
 			"errors": {

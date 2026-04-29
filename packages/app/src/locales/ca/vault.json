@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Opcions avançades de xifrat",
-				"description": "Configura els primitives de xifrat que protegeixen el teu cofre: cascada de xifrat, paràmetres de KDF, i més. Per a un desglossament complet dels predeterminats i els seus compromisos, consulta <link>com està protegit el teu cofre</link>."
+				"description": "Configura les primitives d'encriptació que protegeixen el teu espai — cascada de xifrat, paràmetres del KDF, i més. Per a una explicació completa dels valors per defecte i els seus compromisos, consulta <encryption>com està protegit el teu espai</encryption>."
 			},
 			"kdf": {
 				"label": "Funció de derivació de clau",

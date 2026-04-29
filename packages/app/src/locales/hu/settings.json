@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Nagyítási szint",
-			"description": "Állítsa be az alapértelmezett nagyítási szintet az összes ablakhoz.\nHa a rendszere nem méretezi automatikusan az alkalmazásokat, módosíthatja a nagyítást, hogy illeszkedjen a tényleges kijelző pixel arányához (DPR). A észlelt DPR: {{dpr}}.",
+			"description": "Állítsa be az összes ablak alapértelmezett zoom szintjét.\nHa a rendszer nem méretezi automatikusan az alkalmazásokat, módosíthatja a zoom szintet, hogy az megfeleljen a tényleges kijelző pixel arányának (DPR). Az ön kijelzőjének pixel aránya: {{dpr}}.",
 			"apply": "Alkalmaz",
 			"reset": "Visszaállít",
 			"errors": {

@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Zaawansowane opcje szyfrowania",
-				"description": "Skonfiguruj prymitywy szyfrowania, które chronią Twój skarbiec — kaskadę szyfrów, parametry KDF i więcej. Pełne omówienie domyślnych ustawień i ich kompromisów znajdziesz w <link>jak chroniony jest Twój skarbiec</link>."
+				"description": "Skonfiguruj prymitywy szyfrowania, które chronią twoje zaszyfrowane miejsce — kaskadę szyfrów, parametry KDF i inne. Aby uzyskać pełny przegląd domyślnych ustawień i ich kompromisów, zobacz <encryption>jak twoje miejsce jest chronione</encryption>."
 			},
 			"kdf": {
 				"label": "Funkcja derivacji klucza",

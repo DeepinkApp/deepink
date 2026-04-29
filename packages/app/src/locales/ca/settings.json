@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Nivell de zoom",
-			"description": "Ajusta el nivell de zoom per defecte per a totes les finestres.\nSi el teu sistema no escala les aplicacions automàticament, pots canviar el zoom per adaptar-lo a la proporció de píxels de la pantalla (DPR). DPR detectat: {{dpr}}.",
+			"description": "Ajusta el nivell de zoom per defecte de totes les finestres.\nSi el teu sistema no redimensiona les aplicacions de manera automàtica, pots canviar el zoom per adaptar-lo a la proporció de píxels real de la pantalla (DPR). La teva proporció de píxels de pantalla és {{dpr}}.",
 			"apply": "Aplicar",
 			"reset": "Restablir",
 			"errors": {

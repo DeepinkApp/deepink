@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Livello di zoom",
-			"description": "Regola il livello di zoom predefinito per tutte le finestre.\nSe il sistema non ridimensiona automaticamente le app, puoi modificare lo zoom per adattarlo al rapporto pixel effettivo del display (DPR). DPR rilevato: {{dpr}}.",
+			"description": "Regola il livello di zoom predefinito per tutte le finestre.\nSe il tuo sistema non scala automaticamente le app, puoi modificare lo zoom per adattarlo al rapporto pixel reale del display (DPR). Il tuo rapporto pixel del display è {{dpr}}.",
 			"apply": "Applica",
 			"reset": "Ripristina",
 			"errors": {

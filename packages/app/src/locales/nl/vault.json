@@ -93,7 +93,7 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Geavanceerde encryptie-opties",
-				"description": "Stel de encryptie-elementen in die je kluis beschermen — cipher cascade, KDF-parameters en meer. Voor een volledige uitleg van de standaardinstellingen en hun voor- en nadelen, zie <link>hoe je kluis is beschermd</link>."
+				"description": "Configureer de encryptie-elementen die je vault beschermen — versleutelingstoepassing, KDF-parameters, en meer. Voor een volledige uitleg van de standaardinstellingen en hun afwegingen, zie <encryption>hoe je vault beschermd is</encryption>."
 			},
 			"kdf": {
 				"label": "Sleuteldifferentiatiefunctie",
