@@ -56,11 +56,12 @@ export class StateFile<
 
 	private readonly queue = new DebouncedPromises();
 	async set(value: z.TypeOf<T>): Promise<void> {
-		const validValue = this.scheme.encode(value);
+		const encodeResult = this.scheme.safeEncode(value);
+		if (!encodeResult.success) throw encodeResult.error;
 
 		await this.queue.add(async () => {
 			await this.file.write(
-				new TextEncoder().encode(JSON.stringify(validValue)).buffer,
+				new TextEncoder().encode(JSON.stringify(encodeResult.data)).buffer,
 			);
 		});
 	}
