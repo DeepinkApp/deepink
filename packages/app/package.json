@@ -33,7 +33,7 @@
 		"bench": "node scripts/datasets/prepare-bench-data.ts  && vitest bench",
 		"typecheck": "tsc --noEmit --watch",
 		"update-icons": "tsx ./scripts/icons/build.ts",
-		"update-locales": "docker compose run --rm transmart",
+		"update-locales": "transly cache seed && transly translate",
 		"release-preview": "npm version prerelease --preid=preview && git push --follow-tags"
 	},
 	"devDependencies": {
