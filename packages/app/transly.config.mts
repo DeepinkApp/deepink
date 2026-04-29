@@ -129,6 +129,8 @@ export default defineConfig({
 		apiKey: process.env.OPENAI_API_KEY,
 		baseUrl: process.env.OPENAI_API_URL,
 
+		// model: 'anthropic/claude-sonnet-4.6',
+		// model: 'anthropic/claude-opus-4.6',
 		model: 'openai/gpt-4o-mini',
 		contextPrompt: context,
 	},
