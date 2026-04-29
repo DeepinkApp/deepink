@@ -61,7 +61,7 @@ export const ChooseVaultScreen: FC<{
 								onClick={() => {
 									dispatch(workspacesApi.setActiveVault(vault.id));
 
-									if (vault.isEncrypted === null) {
+									if (!vault.isEncrypted) {
 										onOpenVault(vault);
 									}
 
