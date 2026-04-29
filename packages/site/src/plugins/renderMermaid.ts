@@ -21,11 +21,20 @@ export default function remarkMermaid() {
 				const encoded = Buffer.from(node.value).toString('base64url');
 				const url = `https://mermaid.ink/svg/${encoded}`;
 
-				const res = await fetch(url);
-				const svg = await res.text();
-
-				node.type = 'html';
-				node.value = svg;
+				try {
+					const res = await fetch(url);
+					if (!res.ok) {
+						throw new Error(
+							`mermaid.ink returned [${res.status}] ${res.statusText}`,
+						);
+					}
+					const svg = await res.text();
+					node.type = 'html';
+					node.value = svg;
+				} catch (error) {
+					console.warn(`[remarkMermaid] failed to render diagram: ${error}`);
+					// Leave the original code block intact as a fallback
+				}
 			}),
 		);
 	};
