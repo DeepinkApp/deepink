@@ -1,5 +1,8 @@
 import 'dotenv/config';
 
+import { defineConfig } from 'transly';
+
+
 /* eslint-disable @cspell/spellchecker */
 const context = `
 **Instruction:**
@@ -78,7 +81,7 @@ const context = `
 * If it feels translated, it’s wrong.
 `.trim();
 
-export default {
+export default defineConfig({
 	sourceLang: 'en',
 	targetLangs: Array.from(
 		new Set([
@@ -121,14 +124,15 @@ export default {
 	),
 
 	localesDir: './src/locales',
-	cacheDir: './src/locales/.transly',
 
-	apiKey: process.env.OPENAI_API_KEY,
-	baseUrl: process.env.OPENAI_API_URL,
+	llm: {
+		apiKey: process.env.OPENAI_API_KEY,
+		baseUrl: process.env.OPENAI_API_URL,
 
-	model: 'openai/gpt-4o-mini',
-	contextPrompt: context,
+		model: 'openai/gpt-4o-mini',
+		contextPrompt: context,
+	},
 
 	maxBatchSize: 50,
 	debug: true,
-};
+});
