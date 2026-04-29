@@ -51,7 +51,7 @@ flowchart TD
 
     CASENC --> ENCM(["Encrypted master key"])
     ENCM --> DISK[("Stored: salts, params, IVs, enc(key_M)")]
-````
+```
 
 #### Password Hardening
 
