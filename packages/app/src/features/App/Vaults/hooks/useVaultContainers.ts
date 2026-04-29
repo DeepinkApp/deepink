@@ -126,11 +126,7 @@ export const useVaultContainers = () => {
 					await db.sync();
 				}
 
-				const vaultEntry: VaultEntry = {
-					id: vault.id,
-					name: vault.name,
-					isEncrypted: vault.isEncrypted !== null,
-				};
+				const vaultEntry: VaultEntry = vault;
 
 				const newVault = new DisposableBox(
 					{
