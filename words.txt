@@ -6,6 +6,7 @@ transly
 Altes
 unflatten
 unflattens
+transly
 flexsearch
 opentag
 ciphertext
