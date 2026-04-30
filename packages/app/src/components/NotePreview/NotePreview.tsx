@@ -66,10 +66,10 @@ export const NotePreview = forwardRef<
 					alignSelf="baseline"
 					aria-label={pin.title}
 					title={pin.title}
-					color={pin.isActive ? 'typography.base' : 'typography.secondary'}
-					opacity={pin.isActive ? 1 : 0}
+					color={pin.isActive ? undefined : 'typography.secondary'}
+					visibility={pin.isActive ? 'visible' : 'hidden'}
 					_groupHover={{
-						opacity: 1,
+						visibility: 'visible',
 					}}
 					onClick={(evt) => {
 						evt.stopPropagation();
