@@ -5,54 +5,54 @@
 	"tabs": {
 		"general": "Általános",
 		"appearance": "Megjelenés",
-		"hotkeys": "Gyorsbillentyűk",
+		"hotkeys": "Billentyűkombinációk",
 		"vault": "Tár",
 		"workspace": "Tér",
 		"importExport": "Importálás és exportálás",
-		"vaultSettingsGroup": "Tár beállítások"
+		"vaultSettingsGroup": "Tár beállításai"
 	},
 	"general": {
 		"title": "Általános beállítások",
-		"subtitle": "Kezelje az alkalmazás általános preferenciáit.",
+		"subtitle": "Az alkalmazás egészében berlakuvo alapbeállítások kezelése.",
 		"version": {
 			"title": "Verzió",
-			"checkForUpdates": "Frissítések ellenőrzése",
+			"checkForUpdates": "Keresés a frissítésekért",
 			"upToDate": "A legfrissebb verziót használja",
-			"newVersionAvailable": "Új verzió <bold>{{version}}</bold> érhető el.",
+			"newVersionAvailable": "Új verzió <bold>{{version}}</bold> elérhető.",
 			"downloadLatest": "Letöltés",
-			"downloadDescription": "a legfrissebb verzió letöltéséhez, hogy új funkciókat és fejlesztéseket kapjon."
+			"downloadDescription": "a legfrissebb verzió az új funkciókért és fejlesztésekért."
 		},
 		"autoCheckUpdates": {
-			"label": "Automatikus frissítések ellenőrzése",
-			"description": "Az alkalmazás időszakosan ellenőrzi a frissítéseket, és értesít, ha új verzió érhető el."
+			"label": "Automatikus frissítés-ellenőrzés",
+			"description": "Az alkalmazás időnként ellenőrzi a frissítéseket, és értesít, ha új verzió érkezik."
 		},
 		"language": {
 			"title": "Nyelv",
-			"description": "Változtassa meg a megjelenítési nyelvet."
+			"description": "A megjelenítési nyelv megváltoztatása."
 		},
 		"notifications": {
 			"title": "Értesítések",
-			"description": "A rendszerértesítések csak emlékeztetők céljára lesznek használva. Ha le van tiltva, az emlékeztetők csak az alkalmazás értesítési listájában jelennek meg.",
+			"description": "A rendszerértesítéseket csak emlékeztetésekre használjuk. Ha kikapcsolva vannak, az emlékeztetők csak az alkalmazás értesítési listájában jelennek meg.",
 			"useSystem": "Rendszerértesítések használata"
 		},
 		"vaultLock": {
 			"groupTitle": "Tár zárolása",
 			"lockOnSystemLock": {
-				"label": "Zárolja a tárt, amikor a rendszer zárol",
-				"description": "A tár zárolva lesz, amikor a képernyővédő elindul, vagy az eszköz alvó állapotba lép."
+				"label": "Tár zárolása a rendszer zárolásakor",
+				"description": "A tár zárolódik, ha kijön a képernyővédő, vagy az eszköz alacsony fogyasztási módba kerül."
 			},
 			"lockAfterIdle": {
-				"title": "Zárolás inaktivitás után",
-				"description": "A tár a kiválasztott inaktív idő után lesz zárolva.",
-				"never": "Ne zárolja",
-				"minutes5": "5 percig",
-				"minutes10": "10 percig",
-				"minutes15": "15 percig",
-				"minutes30": "30 percig",
-				"hour1": "1 óráig",
-				"hours2": "2 óráig",
-				"hours3": "3 óráig",
-				"hours5": "5 óráig"
+				"title": "Tár zárolása inaktivitás után",
+				"description": "A tár a megadott inaktivitási idő után zárolódik.",
+				"never": "Nincs zárolás",
+				"minutes5": "5 perc után",
+				"minutes10": "10 perc után",
+				"minutes15": "15 perc után",
+				"minutes30": "30 perc után",
+				"hour1": "1 óra után",
+				"hours2": "2 óra után",
+				"hours3": "3 óra után",
+				"hours5": "5 óra után"
 			}
 		}
 	},
@@ -65,64 +65,64 @@
 			"zen": "Zen"
 		},
 		"accentColor": {
-			"title": "Kiemelő szín",
-			"zenNotApplicable": "A kiemelő szín nem alkalmazható a kiválasztott témára."
+			"title": "Accent szín",
+			"zenNotApplicable": "A választott témához nincs szükség accent színre."
 		},
 		"zoomLevel": {
-			"title": "Nagyítási szint",
-			"description": "Állítsa be az alapértelmezett nagyítási szintet az összes ablakhoz.\nHa a rendszere nem méretezi automatikusan az alkalmazásokat, módosíthatja a nagyítást, hogy illeszkedjen a tényleges kijelző pixel arányához (DPR). A észlelt DPR: {{dpr}}.",
+			"title": "Képernyőzoom",
+			"description": "Az összes ablak alapértelmezett zoomszintjének beállítása.\nHa a rendszer nem skálázza automatikusan az alkalmazásokat, módosíthatja a zoomot a kijelző pixelarányához (DPR) igazítva. A jelenlegi pixelarány: {{dpr}}.",
 			"apply": "Alkalmaz",
-			"reset": "Visszaállít",
+			"reset": "Alaphelyreállítás",
 			"errors": {
-				"enterNumber": "Adjon meg egy számot a nagyítás beállításához",
-				"tooSmall": "A nagyítás nem lehet kevesebb, mint {{min}}%",
-				"tooBig": "A nagyítás nem lehet több, mint {{max}}%"
+				"enterNumber": "Adj meg egy számot a zoom beállításához",
+				"tooSmall": "A zoom nem lehet kisebb, mint {{min}}%",
+				"tooBig": "A zoom nem lehet nagyobb, mint {{max}}%"
 			}
 		}
 	},
 	"editor": {
 		"groupTitle": "Szerkesztő",
 		"mode": {
-			"title": "Szerkesztő mód"
+			"title": "Szerkesztési mód"
 		},
 		"fontFamily": {
 			"title": "Betűtípus",
-			"description": "Állítson be egy betűtípust, amelyet az összes szerkesztőben használni fog, vagy hagyja üresen az alapértelmezettek használatához.",
-			"placeholder": "Adja meg a betűtípus nevét"
+			"description": "Válasszon egy betűtípust az összes szerkesztőhöz, vagy hagyja üresen az alapértelmezettekhez.",
+			"placeholder": "Betűtípus megnevezése"
 		},
 		"fontSize": {
 			"title": "Betűméret"
 		},
 		"lineHeight": {
-			"title": "Sorköz"
+			"title": "Sorrakozás"
 		},
 		"dateFormat": {
 			"title": "Dátumformátum",
-			"description": "Állítsa be a dátumformátumot, amelyet a dátumok beszúrásakor használ. Támogatja a standard token szintaxist, mint például DD/MM/YYYY HH:mm:ss.",
+			"description": "A dátumok beillesztésekor használt formátum beállítása. Támogatja a szabványos tokent, például: DD/MM/YYYY HH:mm:ss.",
 			"formatReference": "dátumformátum referencia",
 			"example": "Példa"
 		},
 		"plainText": {
-			"groupTitle": "Egyszerű szövegszerkesztő",
-			"lineNumbers": "Sorok számának megjelenítése",
-			"miniMap": "Mini térkép engedélyezése"
+			"groupTitle": "Szövegszerkesztő",
+			"lineNumbers": "Sorok számozása",
+			"miniMap": "Mini térkép megjelenítése"
 		}
 	},
 	"hotkeys": {
-		"blank": "Üres",
+		"blank": "Nincs hozzárendelve",
 		"shortcuts": {
 			"createNote": "Új jegyzet létrehozása",
 			"closeCurrentNote": "Aktív jegyzet bezárása",
-			"restoreClosedNote": "Nemrég bezárt jegyzet visszaállítása",
-			"focusNextNote": "Ugrás a következő megnyitott jegyzetre",
-			"focusPreviousNote": "Ugrás az előző megnyitott jegyzetre",
-			"toggleArchive": "Aktív jegyzet áthelyezése az archívumba/archívumból",
-			"toggleBookmark": "Aktív jegyzet könyvjelzőbe/onnan áthelyezése",
+			"restoreClosedNote": "Legutóbbi bezárt jegyzet visszaállítása",
+			"focusNextNote": "Következő nyitott jegyzet",
+			"focusPreviousNote": "Előző nyitott jegyzet",
+			"toggleArchive": "Jegyzet archiválása/archiválásból kivétele",
+			"toggleBookmark": "Jegyzet könyvjelzője / könyvjelző eltávolítása",
 			"deleteNote": "Aktív jegyzet törlése",
-			"restoreFromBin": "Aktív jegyzet visszaállítása a kukából",
-			"toggleHistory": "Aktív jegyzet történetének megjelenítése vagy elrejtése",
+			"restoreFromBin": "Jegyzet visszaállítása a töröltekből",
+			"toggleHistory": "Aktív jegyzet előzményeinek megjelenítése/rejtése",
 			"focusSearch": "Jegyzetek keresése",
-			"syncDatabase": "Tár szinkronizálása a lemezen",
+			"syncDatabase": "Tár szinkronizálása a meghajtóra",
 			"lockVault": "Tár zárolása",
 			"openSettings": "Beállítások megnyitása"
 		}
@@ -132,20 +132,20 @@
 			"title": "Tár neve"
 		},
 		"rememberPasswords": {
-			"label": "Munkaterületek jelszavainak megjegyzése",
-			"description": "A munkaterületek jelszavai titkosítva lesznek a mesterkulccsal, és elmentésre kerülnek az adatbázisba, hogy automatikusan megnyithassa a titkosított munkaterületeket jelszó megadása nélkül."
+			"label": "Tér jelszavainak megjegyzése",
+			"description": "A terek jelszavai titkosítva kerülnek a tár adatbázisába, így a zárolt terek jelszó nélküli megnyitása lehetséges."
 		},
 		"filesAndData": {
 			"groupTitle": "Fájlok és adatok",
 			"imagesCompression": {
-				"title": "Képek tömörítése",
+				"title": "Képgörgetés",
 				"compress": "Képek tömörítése",
-				"doNotCompress": "Ne tömörítse a képeket",
-				"alwaysAsk": "Mindig kérdezzen"
+				"doNotCompress": "Képek tömörítése nélkül",
+				"alwaysAsk": "Mindig kérje meg"
 			},
 			"deleteOrphaned": {
-				"label": "Árvafájlok törlése",
-				"description": "Törölje azokat a fájlokat, amelyeket már nem használnak."
+				"label": "Értetlen fájlok törlése",
+				"description": "A már nem használt fájlok törlése."
 			}
 		},
 		"encryption": {
@@ -163,88 +163,88 @@
 			"groupTitle": "Szinkronizálás",
 			"enable": {
 				"label": "Szinkronizálás engedélyezése",
-				"description": "Tartsa a tárt szinkronban az eszközök között. Minden adat titkosítva van, mielőtt elhagyná az eszközt."
+				"description": "Tartsa összhangban a tárat az eszközök között. Minden adat titkosítva távozik az eszközről."
 			},
 			"method": {
-				"title": "Szinkronizálási módszer",
+				"title": "Szinkronizálási mód",
 				"fileSystem": "Fájlrendszer",
 				"server": "Szerver"
 			},
 			"directory": {
-				"title": "Szinkronizálási könyvtár",
-				"placeholder": "Adja meg a könyvtár elérési útját"
+				"title": "Szinkronizálási mappa",
+				"placeholder": "Mappa elérési útja"
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Képernyőképek",
+			"groupTitle": "Képmomentok",
 			"record": {
-				"label": "Jegyzet képernyőképek rögzítése",
-				"description": "Ha engedélyezve van, a jegyzet tartalmának képernyőképei készülnek, amikor a jegyzet megváltozik. A jegyzet történeti panelen szabályozhatja a képernyőképek rögzítését jegyzetenként."
+				"label": "Jegyzetek képmomentainak mentése",
+				"description": "Ha be van kapcsolva, a jegyzet tartalmából képmomentokat készít a módosításokkor. A mentést egy jegyzetenként a jegyzet előzmény paneljén szabályozhatja."
 			},
 			"delay": {
-				"title": "Késleltetés a képernyőképhez",
-				"description": "Mennyi ideig várjon, miután egy jegyzetet szerkesztettek, mielőtt új képernyőképet mentene, másodpercekben. A rövidebb időközök gyakrabban készítenek képernyőképeket — és nagyobb tárt eredményeznek."
+				"title": "Képmoment mentési késleltetés",
+				"description": "A jegyzet szerkesztése utáni várakozási idő másodpercekben. A rövidebb intervallum gyakoribb mentéseket eredményez, ami nagyobb tárhelyet igényel a biztonsági tárolóban."
 			}
 		},
 		"trashBin": {
-			"groupTitle": "Kuka",
+			"groupTitle": "Karbantartó",
 			"confirmDeletion": {
 				"label": "Törlés megerősítése",
-				"description": "Kérdezzen meg a jegyzet törlése előtt."
+				"description": "Kérdezzen rá, mielőtt töröl egy jegyzetet."
 			},
 			"moveToBin": {
-				"label": "Jegyzetek áthelyezése a kukába",
-				"description": "Áthelyezheti a jegyzeteket a kukába a végleges törlés helyett, így később visszaállíthatja őket."
+				"label": "Jegyzetek elhelyezése a karbantartóban",
+				"description": "A jegyzetek a törlés helyett a karbantartóba kerülnek, így később visszaállíthatók."
 			},
 			"autoPurge": {
-				"label": "Régi jegyzetek végleges törlése a kukában",
-				"description": "A kukába áthelyezett jegyzetek egy idő után véglegesen törlésre kerülnek."
+				"label": "Régi jegyzetek végleges törlése a karbantartóból",
+				"description": "A karbantartóba helyezett jegyzetek egy idő után véglegesen törlődnek."
 			},
 			"purgeDelay": {
-				"title": "Végleges törlés késleltetése",
-				"description": "A kukában lévő jegyzetek véglegesen törlésre kerülnek ennyi nap után, a kukába helyezés időpontjától számítva.",
+				"title": "Végleges törlés időtartama",
+				"description": "A karbantartóban lévő jegyzetek ennyi nap után törlődnek véglegesen a helyezés pillanatától számítva.",
 				"unit": "nap"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "Munkaterület neve",
+			"title": "Térக்özség neve",
 			"update": "Frissítés"
 		},
 		"newNoteTitle": {
 			"title": "Új jegyzet címe",
-			"description": "Állítson be címet az új jegyzetekhez. Használhatja a dátumot a {date} vagy {date:FORMAT} szintaxissal, mint például {date:DD/MM/YYYY HH:mm}.",
+			"description": "Állítsa be az új jegyzetek címét. A dátumot a {date} vagy a {date:FORMAT} (pl. {date:DD/MM/YYYY HH:mm}) szintaxis használatával adhatja meg.",
 			"formatReference": "formátum referencia",
-			"placeholder": "pl., Jegyzet {date:DD/MM/YYYY HH:mm}",
+			"placeholder": "pl. Jegyzet {date:DD/MM/YYYY HH:mm}",
 			"example": "Példa"
 		},
 		"tagsForNewNote": {
-			"title": "Címkék az új jegyzethez",
-			"none": "Ne állítson be címkéket",
-			"selected": "Ugyanaz, mint a kiválasztott címke"
+			"title": "Címkék az új jegyhez",
+			"none": "Nincsenek címkék",
+			"selected": "Ugyanazok, mint a kiválasztott címkék"
 		},
 		"dangerousZone": {
-			"groupTitle": "Veszélyes zóna",
+			"groupTitle": "Kritikus zóna",
 			"delete": {
-				"label": "Munkaterület és az összes kapcsolódó adat törlése, beleértve a jegyzeteket, címkéket és fájlokat",
-				"action": "Munkaterület törlése",
-				"cannotDeleteLast": "Nem lehet törölni az utolsó munkaterületet a tárban.",
-				"createAnother": "Hozzon létre",
-				"createAnotherSuffix": "egy másik munkaterületet először."
+				"label": "A térközség és minden kapcsolódó adat (jegyzetek, címkék, fájlok) törlése",
+				"action": "Térközség törlése",
+				"cannotDeleteLast": "A biztonsági tároló utolsó térközségét nem lehet törölni.",
+				"createAnother": "Létrehozás",
+				"createAnotherSuffix": "először egy másik térközség."
 			},
-			"confirmDelete": "Biztosan törölni szeretné a \"{{name}}\" munkaterületet? Ha folytatja, az összes, ehhez a munkaterülethez kapcsolódó adat törlésre kerül, beleértve a jegyzeteket, címkéket és fájlokat."
+			"confirmDelete": "Törölni kívánja a \"{{name}}\" nevű térközésget. Biztos benne?\n\nHa folytatja, minden kapcsolódó adat törlődnie fog, beleértve a jegyzeteket, a címkéket és a fájlokat is."
 		}
 	},
 	"importExport": {
 		"importNotes": "Jegyzetek importálása",
 		"exportNotes": "Jegyzetek exportálása",
-		"importFromZip": "Jegyzetek importálása .zip archívumból",
-		"importFromDirectory": "Könyvtár importálása Markdown fájlokkal",
+		"importFromZip": "Jegyzetek importálása .zip archívából",
+		"importFromDirectory": "Markdown fájlok mappa importálása",
 		"dropzone": {
-			"title": "Húzza ide a Markdown fájlokat vagy .zip archívumot az importáláshoz",
-			"description": "Húzzon ide néhány fájlt, vagy kattintson a fájlok kiválasztásához"
+			"title": "Húzza ide a Markdown fájlokat vagy a .zip archívát az importáláshoz",
+			"description": "Húzza ide a fájlokat, vagy kattintson a kiválasztáshoz"
 		},
-		"progress": "A jegyzetek importálása folyamatban van. Fázis: {{stage}} {{processed}}/{{total}}"
+		"progress": "Jegyzetek importálása folyamatban. Állapot: {{stage}} {{processed}}/{{total}}"
 	}
 }

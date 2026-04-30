@@ -13,6 +13,6 @@
 		"close": "Κλείσιμο"
 	},
 	"form": {
-		"suggestTemplate": "Δοκίμασε αυτό: <suggests>"
+		"suggestTemplate": "Δοκιμάστε αυτό: <suggests>"
 	}
 }

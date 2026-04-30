@@ -2,13 +2,13 @@
 	"panel": {
 		"tags": {
 			"label": "Tag",
-			"empty": "Crea dei tag per organizzare le note. Annidali in una gerarchia flessibile.",
+			"empty": "Crea i tag per organizzare le tue note. Usa le gerarchie per una gestione flessibile.",
 			"actions": {
 				"add": "Aggiungi tag"
 			}
 		},
 		"workspaces": {
-			"label": "Spazi",
+			"label": "Spazi di lavoro",
 			"actions": {
 				"add": "Aggiungi spazio"
 			}

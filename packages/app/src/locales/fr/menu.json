@@ -18,16 +18,16 @@
 		"quit": "Quitter"
 	},
 	"note": {
-		"export": "Exporter…",
+		"export": "Exporter...",
 		"duplicate": "Dupliquer",
 		"copyMarkdownLink": "Copier le lien Markdown",
 		"deletePermanently": "Supprimer définitivement",
 		"restoreFromBin": "Restaurer de la corbeille",
-		"deleteToBin": "Déplacer vers la corbeille"
+		"deleteToBin": "Placer dans la corbeille"
 	},
 	"tag": {
-		"addNestedTag": "Créer un sous-tag…",
-		"edit": "Modifier…",
+		"addNestedTag": "Créer une hiérarchie de tags...",
+		"edit": "Modifier...",
 		"delete": "Supprimer"
 	}
 }

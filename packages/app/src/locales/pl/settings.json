@@ -7,52 +7,52 @@
 		"appearance": "Wygląd",
 		"hotkeys": "Skróty",
 		"vault": "Sejf",
-		"workspace": "Obszar roboczy",
-		"importExport": "Importuj i eksportuj",
+		"workspace": "Przestrzeń",
+		"importExport": "Import i eksport",
 		"vaultSettingsGroup": "Ustawienia sejfu"
 	},
 	"general": {
 		"title": "Ustawienia ogólne",
-		"subtitle": "Zarządzaj swoimi preferencjami w aplikacji.",
+		"subtitle": "Zarządzaj ogólnymi preferencjami aplikacji.",
 		"version": {
 			"title": "Wersja",
 			"checkForUpdates": "Sprawdź aktualizacje",
 			"upToDate": "Masz najnowszą wersję",
-			"newVersionAvailable": "Nowa wersja <bold>{{version}}</bold> jest dostępna.",
+			"newVersionAvailable": "Dostępna jest nowa wersja <bold>{{version}}</bold>.",
 			"downloadLatest": "Pobierz",
-			"downloadDescription": "najnowszą wersję, aby uzyskać nowe funkcje i ulepszenia."
+			"downloadDescription": "najnowszą wersję, aby korzystać z nowych funkcji i ulepszeń."
 		},
 		"autoCheckUpdates": {
 			"label": "Automatyczne sprawdzanie aktualizacji",
-			"description": "Aplikacja będzie okresowo sprawdzać aktualizacje i powiadomi, jeśli nowa wersja będzie dostępna."
+			"description": "Aplikacja będzie okresowo sprawdzać dostępność aktualizacji i powiadomi Cię o nowej wersji."
 		},
 		"language": {
 			"title": "Język",
-			"description": "Zmień język wyświetlania."
+			"description": "Zmień język interfejsu."
 		},
 		"notifications": {
 			"title": "Powiadomienia",
-			"description": "Powiadomienia systemowe będą używane tylko do przypomnień. Po wyłączeniu przypomnienia będą się pojawiać tylko na liście powiadomień aplikacji.",
-			"useSystem": "Użyj powiadomień systemowych"
+			"description": "Powiadomienia systemowe będą używane wyłącznie do przypomnień. Po ich wyłączeniu przypomnienia będą widoczne tylko na liście powiadomień w aplikacji.",
+			"useSystem": "Używaj powiadomień systemowych"
 		},
 		"vaultLock": {
-			"groupTitle": "Zablokowanie sejfu",
+			"groupTitle": "Blokowanie sejfu",
 			"lockOnSystemLock": {
-				"label": "Zablokuj sejf, gdy system jest zablokowany",
-				"description": "Sejf zostanie zablokowany, gdy rozpocznie się wygaszacz ekranu lub urządzenie przejdzie w stan uśpienia."
+				"label": "Blokuj sejf przy blokadzie systemu",
+				"description": "Sejf zostanie zablokowany po uruchomieniu ekranu oszczędzacza lub gdy urządzenie przejdzie w tryb uśpienia."
 			},
 			"lockAfterIdle": {
-				"title": "Zablokuj sejf po bezczynności",
-				"description": "Sejf zostanie zablokowany po wybranym czasie bezczynności.",
+				"title": "Blokuj sejf po nieaktywności",
+				"description": "Sejf zostanie zablokowany po upływie wybranego czasu nieaktywności.",
 				"never": "Nie blokuj",
-				"minutes5": "przez 5 minut",
-				"minutes10": "przez 10 minut",
-				"minutes15": "przez 15 minut",
-				"minutes30": "przez 30 minut",
-				"hour1": "przez 1 godzinę",
-				"hours2": "przez 2 godziny",
-				"hours3": "przez 3 godziny",
-				"hours5": "przez 5 godzin"
+				"minutes5": "po 5 minutach",
+				"minutes10": "po 10 minutach",
+				"minutes15": "po 15 minutach",
+				"minutes30": "po 30 minutach",
+				"hour1": "po 1 godzinie",
+				"hours2": "po 2 godzinach",
+				"hours3": "po 3 godzinach",
+				"hours5": "po 5 godzinach"
 			}
 		}
 	},
@@ -66,15 +66,15 @@
 		},
 		"accentColor": {
 			"title": "Kolor akcentu",
-			"zenNotApplicable": "Kolor akcentu nie jest stosowany w wybranym motywie."
+			"zenNotApplicable": "Kolor akcentu nie jest dostępny dla wybranego motywu."
 		},
 		"zoomLevel": {
 			"title": "Poziom powiększenia",
-			"description": "Dostosuj domyślny poziom powiększenia dla wszystkich okien.\nJeśli Twój system nie skaluje aplikacji automatycznie, możesz zmienić powiększenie, aby dopasować je do rzeczywistego współczynnika pikseli wyświetlacza (DPR). Wykryty DPR to {{dpr}}.",
+			"description": "Ustaw domyślny poziom powiększenia dla wszystkich okien.\nW przypadku, gdy system nie skaluje aplikacji automatycznie, możesz zmienić powiększenie, aby dopasować je do współczynnika DPI ekranu. Twój współczynnik DPI wynosi {{dpr}}.",
 			"apply": "Zastosuj",
 			"reset": "Resetuj",
 			"errors": {
-				"enterNumber": "Wprowadź liczbę, aby ustawić powiększenie",
+				"enterNumber": "Wpisz liczbę, aby ustawić powiększenie",
 				"tooSmall": "Powiększenie nie może być mniejsze niż {{min}}%",
 				"tooBig": "Powiększenie nie może być większe niż {{max}}%"
 			}
@@ -87,43 +87,43 @@
 		},
 		"fontFamily": {
 			"title": "Rodzina czcionek",
-			"description": "Ustaw rodzinę czcionek do użycia we wszystkich edytorach lub pozostaw puste, aby użyć domyślnych.",
-			"placeholder": "Wprowadź nazwę rodziny czcionek"
+			"description": "Ustaw rodzinę czcionek dla wszystkich edytorów lub pozostaw puste, aby używać domyślnych.",
+			"placeholder": "Wpisz nazwę rodziny czcionek"
 		},
 		"fontSize": {
 			"title": "Rozmiar czcionki"
 		},
 		"lineHeight": {
-			"title": "Wysokość linii"
+			"title": "Interlinia"
 		},
 		"dateFormat": {
 			"title": "Format daty",
-			"description": "Ustaw format daty używany przy wstawianiu dat. Obsługuje standardową składnię tokenów, taką jak DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "odniesienie do formatu daty",
+			"description": "Ustaw format daty używany podczas wstawiania dat. Obsługuje standardową składnię tokenów, np. DD/MM/YYYY HH:mm:ss.",
+			"formatReference": "odnośnik do formatu daty",
 			"example": "Przykład"
 		},
 		"plainText": {
-			"groupTitle": "Edytor tekstu",
+			"groupTitle": "Edytor tekstu czystego",
 			"lineNumbers": "Pokaż numery linii",
-			"miniMap": "Włącz mini mapę"
+			"miniMap": "Włącz mapę miniaturową"
 		}
 	},
 	"hotkeys": {
-		"blank": "Pusty",
+		"blank": "Brak",
 		"shortcuts": {
 			"createNote": "Utwórz nową notatkę",
 			"closeCurrentNote": "Zamknij aktywną notatkę",
-			"restoreClosedNote": "Przywróć niedawno zamkniętą notatkę",
+			"restoreClosedNote": "Przywróć ostatnio zamkniętą notatkę",
 			"focusNextNote": "Przejdź do następnej otwartej notatki",
 			"focusPreviousNote": "Przejdź do poprzedniej otwartej notatki",
-			"toggleArchive": "Przenieś aktywną notatkę do/ze archiwum",
-			"toggleBookmark": "Przenieś aktywną notatkę do/ze zakładki",
+			"toggleArchive": "Przenieś aktywną notatkę do archiwum lub z archiwum",
+			"toggleBookmark": "Dodaj/usuń aktywną notatkę z zakładek",
 			"deleteNote": "Usuń aktywną notatkę",
 			"restoreFromBin": "Przywróć aktywną notatkę z kosza",
 			"toggleHistory": "Pokaż lub ukryj historię aktywnej notatki",
 			"focusSearch": "Szukaj notatek",
 			"syncDatabase": "Synchronizuj sejf z dyskiem",
-			"lockVault": "Zablokuj sejf",
+			"lockVault": "Blokuj sejf",
 			"openSettings": "Otwórz preferencje"
 		}
 	},
@@ -132,8 +132,8 @@
 			"title": "Nazwa sejfu"
 		},
 		"rememberPasswords": {
-			"label": "Zapamiętaj hasła obszarów roboczych",
-			"description": "Hasła obszarów roboczych będą szyfrowane kluczem głównym i zapisywane w bazie danych, aby automatycznie otwierać zaszyfrowane obszary robocze bez wprowadzania hasła."
+			"label": "Zapamiętaj hasła do przestrzeni",
+			"description": "Hasła do przestrzeni zostaną zaszyfrowane kluczem głównym i zapisane w bazie danych, co umożliwi automatyczne otwieranie zaszyfrowanych przestrzeni bez wpisywania hasła."
 		},
 		"filesAndData": {
 			"groupTitle": "Pliki i dane",
@@ -156,14 +156,14 @@
 			},
 			"password": {
 				"title": "Hasło",
-				"update": "Zaktualizuj hasło"
+				"update": "Zmień hasło"
 			}
 		},
 		"synchronization": {
 			"groupTitle": "Synchronizacja",
 			"enable": {
 				"label": "Włącz synchronizację",
-				"description": "Utrzymuj swój sejf w synchronizacji między urządzeniami. Wszystkie dane są szyfrowane przed opuszczeniem Twojego urządzenia."
+				"description": "Utrzymuj swój sejf w synchronizacji między urządzeniami. Wszystkie dane są szyfrowane przed opuszczeniem urządzenia."
 			},
 			"method": {
 				"title": "Metoda synchronizacji",
@@ -172,79 +172,79 @@
 			},
 			"directory": {
 				"title": "Katalog synchronizacji",
-				"placeholder": "Wprowadź ścieżkę do katalogu"
+				"placeholder": "Podaj ścieżkę do katalogu"
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Zrzuty",
+			"groupTitle": "Migawki",
 			"record": {
-				"label": "Rejestruj zrzuty notatek",
-				"description": "Po włączeniu, zrzuty treści notatek będą tworzone, gdy notatka zostanie zmieniona. Możesz kontrolować rejestrowanie zrzutów dla każdej notatki w panelu historii notatek."
+				"label": "Rejestruj migawki notatek",
+				"description": "Po włączeniu tej opcji, każda zmiana w notatce spowoduje utworzenie jej migawki. Możesz zarządzać rejestrowaniem migawek dla poszczególnych notatek w panelu historii."
 			},
 			"delay": {
-				"title": "Opóźnienie dla zrzutu",
-				"description": "Jak długo czekać po edytowaniu notatki przed zapisaniem nowego zrzutu, w sekundach. Krótsze interwały oznaczają częstsze zrzuty — i większy sejf."
+				"title": "Opóźnienie migawki",
+				"description": "Czas w sekundach, jaki upłynie od edycji notatki do zapisania nowej migawki. Krótsze interwały oznaczają częstsze migawki i większy rozmiar zaszyfrowanego magazynu."
 			}
 		},
 		"trashBin": {
 			"groupTitle": "Kosz",
 			"confirmDeletion": {
-				"label": "Potwierdź usunięcie",
-				"description": "Zapytaj przed usunięciem notatki."
+				"label": "Potwierdzaj usuwanie",
+				"description": "Pytaj przed usunięciem notatki."
 			},
 			"moveToBin": {
 				"label": "Przenieś notatki do kosza",
-				"description": "Przenieś notatki do kosza zamiast trwałego usunięcia, aby móc je później przywrócić."
+				"description": "Zamiast trwałego usuwania, przenoś notatki do kosza, aby móc je później przywrócić."
 			},
 			"autoPurge": {
-				"label": "Trwale usuń stare notatki w koszu",
-				"description": "Notatki przeniesione do kosza będą trwale usunięte po pewnym czasie."
+				"label": "Trwale usuwaj stare notatki z kosza",
+				"description": "Notatki w koszu zostaną trwale usunięte po upływie określonego czasu."
 			},
 			"purgeDelay": {
-				"title": "Opóźnienie trwałego usunięcia",
-				"description": "Notatki w koszu będą trwale usunięte po tylu dniach, liczonych od momentu, gdy zostały tam przeniesione.",
+				"title": "Czas trwałego usuwania",
+				"description": "Notatki w koszu zostaną trwale usunięte po tej liczbie dni od momentu ich przeniesienia.",
 				"unit": "dni"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "Nazwa obszaru roboczego",
-			"update": "Zaktualizuj"
+			"title": "Nazwa przestrzeni",
+			"update": "Aktualizuj"
 		},
 		"newNoteTitle": {
 			"title": "Tytuł nowej notatki",
-			"description": "Ustaw tytuł dla nowych notatek. Możesz użyć daty za pomocą składni {date} lub {date:FORMAT} jak {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "odniesienie do formatu",
+			"description": "Ustal tytuł dla nowych notatek. Możesz użyć daty za pomocą składni {date} lub {date:FORMAT}, np. {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "formatowanie daty",
 			"placeholder": "np. Notatka {date:DD/MM/YYYY HH:mm}",
 			"example": "Przykład"
 		},
 		"tagsForNewNote": {
 			"title": "Tagi dla nowej notatki",
-			"none": "Nie ustawiaj żadnych tagów",
-			"selected": "Takie same jak wybrany tag"
+			"none": "Bez tagów",
+			"selected": "Takie jak wybrane"
 		},
 		"dangerousZone": {
-			"groupTitle": "Niebezpieczna strefa",
+			"groupTitle": "Strefa niebezpieczna",
 			"delete": {
-				"label": "Usuń obszar roboczy i wszystkie powiązane dane, w tym notatki, tagi i pliki",
-				"action": "Usuń obszar roboczy",
-				"cannotDeleteLast": "Nie można usunąć ostatniego obszaru roboczego w sejfie.",
-				"createAnother": "Utwórz",
-				"createAnotherSuffix": "inny obszar roboczy najpierw."
+				"label": "Usuń przestrzeń i wszystkie powiązane dane, w tym notatki, tagi i pliki",
+				"action": "Usuń przestrzeń",
+				"cannotDeleteLast": "Nie można usunąć ostatniej przestrzeni w magazynie.",
+				"createAnother": "Najpierw utwórz",
+				"createAnotherSuffix": "inną przestrzeń."
 			},
-			"confirmDelete": "Zaraz usuniesz obszar roboczy \"{{name}}\". Czy na pewno chcesz to zrobić?\n\nJeśli kontynuujesz, wszystkie dane związane z tym obszarem roboczym zostaną usunięte, w tym notatki, tagi i pliki."
+			"confirmDelete": "Czy na pewno chcesz usunąć przestrzeń „{{name}}”?\n\nJeśli to zrobisz, wszystkie dane powiązane z tą przestrzenią zostaną usunięte, w tym notatki, tagi i pliki."
 		}
 	},
 	"importExport": {
 		"importNotes": "Importuj notatki",
 		"exportNotes": "Eksportuj notatki",
-		"importFromZip": "Importuj notatki z archiwum .zip",
+		"importFromZip": "Importuj notatki z pliku .zip",
 		"importFromDirectory": "Importuj katalog z plikami Markdown",
 		"dropzone": {
-			"title": "Upuść pliki Markdown lub archiwum .zip, aby zaimportować",
-			"description": "Przeciągnij i upuść pliki tutaj lub kliknij, aby wybrać pliki"
+			"title": "Przeciągnij pliki Markdown lub .zip, aby zaimportować",
+			"description": "Przeciągnij pliki tutaj lub kliknij, aby wybrać je z urządzenia"
 		},
-		"progress": "Import notatek jest w toku. Etap: {{stage}} {{processed}}/{{total}}"
+		"progress": "Trwa import notatek. Etap: {{stage}} {{processed}}/{{total}}"
 	}
 }

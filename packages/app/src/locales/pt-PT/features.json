@@ -17,26 +17,26 @@
 					"placeholder": "ex.: Ideias"
 				},
 				"parent": {
-					"label": "Etiqueta superior",
+					"label": "Etiqueta pai",
 					"placeholder": "ex.: Receitas/Sobremesas"
 				}
 			},
 			"messages": {
 				"unknownSubmitError": "Não foi possível guardar as alterações devido a um erro desconhecido.",
-				"format": "A etiqueta não pode estar vazia, começar ou terminar com \"/\", nem conter \"//\".",
+				"format": "A etiqueta não pode estar vazia, começar ou terminar com \"/\", ou conter \"//\".",
 				"duplicate": "A etiqueta '{{name}}' já existe.",
-				"parentTagNotFound": "Etiqueta superior não encontrada. Selecione outra etiqueta."
+				"parentTagNotFound": "Etiqueta pai não encontrada, selecione outra etiqueta."
 			}
 		},
 		"deletion": {
-			"confirm": "Tem a certeza de que pretende eliminar a etiqueta \"{{name}}\" e todas as sub-etiquetas?"
+			"confirm": "Tem a certeza que deseja eliminar a etiqueta \"{{name}}\" e todas as subetiquetas?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Caderno",
 		"creator": {
 			"title": "Criar novo espaço",
-			"description": "Cada espaço é um ambiente independente para as suas notas, etiquetas e ficheiros. Tudo permanece separado, mas dentro do seu cofre encriptado — pronto quando precisar.",
+			"description": "Cada espaço é uma área independente para as suas notas, etiquetas e ficheiros. Tudo permanece separado, mas dentro do seu cofre encriptado — pronto a usar quando mudar de espaço.",
 			"action": {
 				"add": "Criar",
 				"cancel": "Cancelar"
@@ -66,7 +66,7 @@
 		},
 		"error": {
 			"title": "Não foi possível carregar o espaço \"{{name}}\"",
-			"description": "Não foi possível carregar este espaço. Os dados podem estar corrompidos. Mude para outro espaço ou crie um novo para continuar a trabalhar.",
+			"description": "Falha ao carregar este espaço. Os dados podem estar corrompidos. Mude para outro espaço ou crie um novo para continuar a trabalhar.",
 			"chooseAnother": "Escolher outro espaço",
 			"dividerText": "ou",
 			"createNew": "Criar um novo espaço",
@@ -81,10 +81,10 @@
 			"duplicate": "Duplicado: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Escreva uma ideia, tarefa ou pensamento…",
+			"placeholder": "Registe uma ideia, tarefa ou pensamento...",
 			"modes": {
-				"plaintext": "Modo texto",
-				"richtext": "Editor formatado",
+				"plaintext": "Modo de texto",
+				"richtext": "Editor rico",
 				"split-screen": "Ecrã dividido"
 			}
 		},
@@ -95,7 +95,7 @@
 			"removeFromArchive": "Remover do arquivo"
 		},
 		"tags": {
-			"addPlaceholder": "Escreva para adicionar etiqueta…"
+			"addPlaceholder": "Escreva para adicionar etiqueta..."
 		},
 		"versionPreview": {
 			"versionAt": "Versão de {{date}}",
@@ -103,7 +103,7 @@
 		},
 		"menu": {
 			"title": "Opções da nota",
-			"copyReference": "Copiar ligação da nota",
+			"copyReference": "Copiar link da nota",
 			"remindMe": "Lembrar-me",
 			"history": "Histórico",
 			"backLinks": "Ligações de retorno",
@@ -114,15 +114,15 @@
 			"disableSync": "Desativar sincronização",
 			"moveToArchive": "Mover para o arquivo",
 			"removeFromArchive": "Remover do arquivo",
-			"deleteToBin": "Mover para o lixo",
+			"deleteToBin": "Enviar para a lixeira",
 			"deletePermanently": "Eliminar permanentemente",
-			"restoreFromBin": "Restaurar do lixo"
+			"restoreFromBin": "Restaurar da lixeira"
 		},
 		"version": {
 			"chars": "{{count}} caracteres",
 			"apply": {
 				"title": "Aplicar versão",
-				"readonlyTitle": "Não é possível aplicar a versão numa nota de leitura"
+				"readonlyTitle": "Não é possível aplicar uma versão numa nota em modo de leitura"
 			},
 			"open": {
 				"title": "Abrir versão"
@@ -152,14 +152,14 @@
 			"confirmApply": {
 				"title": "Aplicar versão da nota",
 				"description": "Está prestes a aplicar a versão {{version}} da nota.",
-				"warning": "Esta ação irá substituir o conteúdo atual da nota pelo texto do instantâneo selecionado. Tem a certeza?",
+				"warning": "Esta ação irá substituir os dados atuais da nota pelo texto do instantâneo selecionado. Tem a certeza?",
 				"apply": "Aplicar",
 				"preview": "Pré-visualizar"
 			},
 			"confirmDelete": {
 				"title": "Eliminar versão da nota",
 				"description": "Está prestes a eliminar a versão {{version}} da nota.",
-				"warning": "Esta ação irá eliminar a versão da nota de forma irreversível. Tem a certeza?",
+				"warning": "Esta ação eliminará a versão da nota de forma irreversível. Tem a certeza?",
 				"delete": "Eliminar",
 				"preview": "Pré-visualizar"
 			}
@@ -174,18 +174,18 @@
 		},
 		"bin": {
 			"confirmMoveToBin": "Pretende mover esta nota para o lixo?",
-			"confirmPermanentDeletion": "Pretende eliminar permanentemente esta nota?"
+			"confirmPermanentDeletion": "Deseja eliminar permanentemente esta nota?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Tem a certeza de que pretende carregar {{filesCount}} ficheiros ({{size}} no total)?"
+		"confirmLargeUpload": "Tem a certeza que deseja carregar {{filesCount}} ficheiros ({{size}} no total)?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Pesquisar..."
 		},
 		"filterBy": "Filtrar por",
-		"empty": "Ainda não há notas aqui. <create>Criar uma nota</create>"
+		"empty": "Ainda não há notas. <create>Criar uma nota</create>"
 	},
 	"notesView": {
 		"allNotes": "Todas as notas",
@@ -206,24 +206,24 @@
 		"inbox": "Caixa de entrada",
 		"publishNotes": "Publicar notas",
 		"lockVault": "Bloquear cofre",
-		"globalSettings": "Definições gerais"
+		"globalSettings": "Definições globais"
 	},
 	"tabBar": {
 		"closeTab": "Fechar separador"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Clique para inserir cabeçalho de nível {{level}}. Abra o menu de contexto para escolher outra opção",
-			"level": "Cabeçalho nível {{level}}"
+			"insertTitle": "Clique para inserir o cabeçalho de nível {{level}}. Abra o menu de contexto para escolher outra opção",
+			"level": "Nível de cabeçalho {{level}}"
 		},
-		"bold": "Alternar estilo negrito",
-		"italic": "Alternar estilo itálico",
-		"strikethrough": "Alternar estilo rasurado",
+		"bold": "Alternar negrito",
+		"italic": "Alternar itálico",
+		"strikethrough": "Alternar tachado",
 		"unorderedList": "Inserir ou alternar lista não ordenada",
 		"checkboxList": "Inserir ou alternar lista de verificação",
 		"orderedList": "Inserir ou alternar lista ordenada",
-		"codeBlock": "Inserir ou envolver texto com bloco de código",
-		"quoteBlock": "Inserir ou envolver texto com bloco de citação",
+		"codeBlock": "Inserir ou envolver texto em bloco de código",
+		"quoteBlock": "Inserir ou envolver texto em citação",
 		"insertDate": "Inserir data",
 		"insertPageBreak": "Inserir quebra de página",
 		"insertFile": "Inserir ficheiro",
@@ -247,12 +247,12 @@
 			}
 		},
 		"link": {
-			"buttonTitle": "Inserir ligação",
-			"dialogTitle": "Adicionar ligação",
-			"dialogDescription": "O texto selecionado será convertido em ligação, ou a ligação será adicionada na posição do cursor se nada estiver selecionado.",
+			"buttonTitle": "Inserir link",
+			"dialogTitle": "Adicionar link",
+			"dialogDescription": "O texto selecionado tornar-se-á um link ou o link será adicionado na posição do cursor.",
 			"field": {
 				"url": {
-					"label": "URL da ligação",
+					"label": "URL do link",
 					"placeholder": "ex.: https://exemplo.com"
 				}
 			},
@@ -263,20 +263,21 @@
 		}
 	},
 	"image": {
-		"loading": "A carregar imagem"
+		"loading": "A carregar imagem",
+		"brokenImage": "Não foi possível carregar a imagem"
 	},
 	"notifications": {
 		"title": "Notificações"
 	},
 	"updates": {
 		"appUpdate": {
-			"title": "Atualização da aplicação",
-			"reminderLater": "O lembrete será mostrado daqui a uma semana"
+			"title": "Atualização da app",
+			"reminderLater": "O lembrete será exibido daqui a uma semana"
 		},
 		"newVersion": {
 			"title": "Nova versão disponível",
-			"body": "Está disponível uma nova versão. Atualize para obter as últimas melhorias e correções.",
-			"download": "Transferir nova versão",
+			"body": "Uma nova versão está pronta. Atualize para obter as mais recentes melhorias e correções.",
+			"download": "Descarregar nova versão",
 			"ignore": "Ignorar"
 		}
 	},
@@ -287,16 +288,16 @@
 			"altLabel": "Texto alternativo da imagem"
 		},
 		"linkProperties": {
-			"title": "Propriedades da ligação",
-			"urlLabel": "URL da ligação"
+			"title": "Propriedades do link",
+			"urlLabel": "URL do link"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Clique para guardar as alterações no disco",
+			"title": "Clique para guardar alterações no disco",
 			"saving": "A guardar alterações..."
 		},
-		"changeVault": "Mudar de cofre",
+		"changeVault": "Alterar cofre",
 		"history": "Histórico",
 		"notifications": "Notificações"
 	}

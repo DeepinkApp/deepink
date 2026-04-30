@@ -5,11 +5,15 @@
 import path from 'node:path';
 
 import { defineConfig } from 'astro/config';
+import rehypeKatex from 'rehype-katex';
 import remarkExternalLinks from 'remark-external-links';
+import remarkMath from 'remark-math';
 import starlightThemeFlexoki from 'starlight-theme-flexoki';
 import svgr from 'vite-plugin-svgr';
 import react from '@astrojs/react';
 import starlight from '@astrojs/starlight';
+
+import remarkMermaid from './src/plugins/renderMermaid'
 
 // https://astro.build/config
 export default defineConfig({
@@ -57,7 +61,15 @@ export default defineConfig({
 	markdown: {
 		remarkPlugins: [
 			[remarkExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
+			remarkMath,
+			remarkMermaid,
 		],
+		rehypePlugins: [
+			rehypeKatex
+		],
+		syntaxHighlight: {
+			excludeLangs: ["mermaid"],
+		},
 	},
 
 	integrations: [
@@ -71,7 +83,7 @@ export default defineConfig({
 				src: './src/components/Layout/logo.svg',
 			},
 			disable404Route: true,
-			customCss: ['./src/styles.css'],
+			customCss: ['./src/styles.css', 'katex/dist/katex.min.css'],
 			social: [
 				{
 					icon: 'cloud-download',

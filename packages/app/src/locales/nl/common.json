@@ -1,15 +1,15 @@
 {
 	"actions": {
-		"cancel": "Annuleer",
-		"confirm": "Bevestig",
+		"cancel": "Annuleren",
+		"confirm": "Bevestigen",
 		"apply": "Toepassen",
-		"save": "Bewaar",
-		"saveChanges": "Wijzigingen bewaren",
+		"save": "Opslaan",
+		"saveChanges": "Wijzigingen opslaan",
 		"delete": "Verwijderen",
-		"reset": "Herstel",
+		"reset": "Resetten",
 		"update": "Bijwerken",
 		"add": "Toevoegen",
-		"create": "Aanmaken",
+		"create": "Maken",
 		"close": "Sluiten"
 	},
 	"form": {

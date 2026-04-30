@@ -13,6 +13,6 @@
 		"close": "Luk"
 	},
 	"form": {
-		"suggestTemplate": "Prøv dette: <suggests>"
+		"suggestTemplate": "Prøv denne: <suggests>"
 	}
 }

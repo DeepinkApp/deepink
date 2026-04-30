@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "Bem-vinda ao Deepink",
+		"description": "Reserve um momento para personalizar o Deepink. Ou pule esta etapa e comece com a configuração padrão.",
+		"terms": "Ao continuar, você aceita nossos <terms>Termos de Uso</terms> e <privacy>Política de Privacidade</privacy>.",
+		"continue": "Começar"
+	}
+}

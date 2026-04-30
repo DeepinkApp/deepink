@@ -1,114 +1,133 @@
 {
 	"chooseVault": {
-		"title": "Tria un vault",
+		"title": "Tria una cambra",
 		"actions": {
-			"createNew": "Crear un vault nou"
+			"createNew": "Crea una cambra nova"
 		}
 	},
 	"creator": {
-		"title": "Crear vault",
+		"title": "Crear cambra",
 		"field": {
 			"name": {
-				"label": "Nom del vault",
-				"placeholder": "p. ex., El meu vault, Compartit amb l'Àlex",
+				"label": "Nom del contenidor",
+				"placeholder": "p. ex., La meva cambra, Compartida amb l'Alex",
 				"random": "Generar nom aleatori",
 				"suggests": {
-					"0": "Marginàlia",
-					"1": "Vitel·la",
-					"2": "Guarda",
+					"0": "Marginals",
+					"1": "Vellú",
+					"2": "Guanyota",
 					"3": "Verso",
-					"4": "Record",
+					"4": "Memento",
 					"5": "Alcova",
 					"6": "Penombra",
-					"7": "Correspondència de lluna",
-					"8": "Cartografia nocturna",
-					"9": "Llanterna i tinta",
-					"10": "Arxiu a la llum d'espelma",
-					"11": "Manuscrits d'heura",
+					"7": "Correspondència a la llum de la lluna",
+					"8": "Cartografia vespertina",
+					"9": "Llum i tinta",
+					"10": "Arxiu a la llum de les veles",
+					"11": "Manúsccrits d'herba creixent",
 					"12": "Cartes de cedre",
-					"13": "Escriptori de palissandre",
-					"14": "El còdex deslligat",
-					"15": "Marginàlia i murmuris",
-					"16": "Confessions de guarda",
+					"13": "Scriptorium de roselet",
+					"14": "El còdex lliure",
+					"15": "Marginals i murmuris",
+					"16": "Confessions de la guanyota",
 					"17": "El silenci anotat",
 					"18": "Cartografia d'ombres",
 					"19": "L'habitació recordada",
 					"20": "Les cartes sense signar",
-					"21": "Coordenades xiuxiuejades",
-					"22": "L'almanac inèdit",
+					"21": "Coordenades susurrades",
+					"22": "L'almanac no revelat",
 					"23": "Cartes de cera perduda",
 					"24": "La biblioteca invisible",
-					"25": "Marges inexplorats",
+					"25": "Marginals inexplorats",
 					"26": "La conspiració silenciosa",
 					"27": "El correu no lliurat",
-					"28": "Arxiu perenne",
+					"28": "Arxiu perennant",
 					"29": "Lluna de paper",
 					"30": "Flor de paper",
-					"31": "Flor nocturna",
-					"32": "Atles suau",
-					"33": "Vellut",
+					"31": "Flor de nit",
+					"32": "Atlas suau",
+					"33": "Velurt",
 					"34": "Pedra de tinta",
 					"35": "Silenci",
 					"36": "Ombra",
-					"37": "Deriva serena",
+					"37": "Deriva calma",
 					"38": "Prat profund",
-					"39": "Llibre major inèdit",
-					"40": "Esborrany silenciós",
-					"41": "Arxiu tàcit",
-					"42": "Diari a la deriva",
+					"39": "Registre no escrit",
+					"40": "Esborrador silenciós",
+					"41": "Arxiu no declarat",
+					"42": "Diari errant",
 					"43": "Crònica del vent solar",
 					"44": "Fiord silenciós",
 					"45": "Fragments de memòria",
-					"46": "Instant silenciós",
-					"47": "Minuts esvaïts"
+					"46": "Moment silenciós",
+					"47": "Minuts desapareguts"
 				}
 			},
 			"password": {
 				"label": "Contrasenya de xifratge",
 				"recommended": "(recomanat)",
-				"placeholder": "Introdueix una contrasenya segura"
+				"placeholder": "Introdueix una contrasenya robusta",
+				"description": "Totes les dades de la cambra es xifraran amb aquesta contrasenya"
 			},
 			"algorithm": {
-				"label": "Algorisme de xifratge"
+				"label": "Algoritme de xifratge"
 			}
 		},
 		"actions": {
-			"create": "Crear vault",
+			"create": "Crear cambra",
 			"continueNoPassword": "Continuar sense contrasenya",
 			"cancel": "Cancel·lar"
 		},
 		"noEncryptionDialog": {
-			"title": "Crear vault sense xifratge",
-			"description": "Les notes i dades s'emmagatzemaran com a text pla. Qualsevol aplicació o persona amb accés al directori del vault podrà llegir-ne tot el contingut.",
+			"title": "Crear cambra sense xifratge",
+			"description": "Les teves notes i dades s'emmagatzemaran com a text pla. Qualsevol aplicació o persona amb accés al directori de la cambra al disc podrà llegir-ho tot.",
 			"actions": {
 				"confirm": "Continuar sense xifratge",
 				"cancel": "Cancel·lar"
 			}
 		},
 		"errors": {
-			"nameRequired": "Introdueix un nom per al vault",
+			"nameRequired": "Introdueix un nom per a la cambra",
 			"passwordRequired": "Introdueix la contrasenya"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opcions avançades de xifratge",
+				"description": "Configura els primitives de xifratge que protegeixen la teva cambra: cascada de cifa, paràmetres KDF i més. Per a un detall complet dels valors predeterminats i els seus compromisos, consulta <encryption>com es protegeix la teva cambra</encryption>."
+			},
+			"kdf": {
+				"label": "Funció de derivació de clau",
+				"description": "Ajuda a protegir contrasenyes febles o reutilitzades fent que cada intent sigui més lent i costós. Augmenta aquests paràmetres per una protecció més forta o manté els valors predeterminats per un equilibri òptim.",
+				"memory": {
+					"label": "Ús de memòria",
+					"description": "Fa que cada intent de contrasenya utilitzi més memòria. Això és especialment efectiu contra ataques a gran escala, ja que la memòria és costosa i més difícil d'escalar que la simple computació."
+				},
+				"ops": {
+					"label": "Iteracions",
+					"description": "Repeteix el procés de derivació per a cada intent de contrasenya. Això augmenta el cost de cada intent de manera lineal: duplicar les iteracions dobla aproximadament la feina tant per als atacants com per al teu dispositiu."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Desbloquejar vault",
+		"title": "Obre la cambra",
 		"field": {
 			"password": {
 				"placeholder": "Introdueix la contrasenya"
 			}
 		},
 		"actions": {
-			"unlock": "Desbloquejar",
-			"changeVault": "Canviar de vault"
+			"unlock": "Obre",
+			"changeVault": "Canvia de cambra"
 		},
 		"errors": {
-			"cannotOpen": "No s'ha pogut obrir el vault",
+			"cannotOpen": "No es pot obrir la cambra",
 			"invalidPassword": "Contrasenya incorrecta",
 			"passwordRequired": "Introdueix la contrasenya"
 		}
 	},
 	"errors": {
-		"failedToOpen": "No s'ha pogut obrir el vault",
-		"corrupted": "\"{{name}}\" sembla estar corromput."
+		"failedToOpen": "No s'ha pogut obrir la cambra",
+		"corrupted": "\"{{name}}\" sembla estar corrupte."
 	}
 }

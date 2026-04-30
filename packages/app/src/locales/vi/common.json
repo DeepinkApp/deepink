@@ -13,6 +13,6 @@
 		"close": "Đóng"
 	},
 	"form": {
-		"suggestTemplate": "Thử xem: <suggests>"
+		"suggestTemplate": "Thử mẫu này: <suggests>"
 	}
 }

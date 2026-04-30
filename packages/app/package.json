@@ -33,7 +33,7 @@
 		"bench": "node scripts/datasets/prepare-bench-data.ts  && vitest bench",
 		"typecheck": "tsc --noEmit --watch",
 		"update-icons": "tsx ./scripts/icons/build.ts",
-		"update-locales": "docker compose run --rm transmart",
+		"update-locales": "transly cache seed && transly translate",
 		"release-preview": "npm version prerelease --preid=preview && git push --follow-tags"
 	},
 	"devDependencies": {
@@ -48,6 +48,7 @@
 		"@swc/core": "^1.15.11",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
+		"@types/bytes": "^3.1.5",
 		"@types/file-saver": "^2.0.7",
 		"@types/humanize-duration": "^3.27.4",
 		"@types/lodash": "^4.17.23",
@@ -80,6 +81,7 @@
 		"sharp-ico": "^0.1.5",
 		"swc-loader": "^0.2.7",
 		"swc-minify-webpack-plugin": "^2.1.3",
+		"transly": "^0.3.6",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "^4.2.0",
 		"tsconfig-paths-webpack-plugin": "^4.2.0",
@@ -103,6 +105,7 @@
 		"@reduxjs/toolkit": "^2.11.2",
 		"@tanstack/react-virtual": "^3.13.18",
 		"arrival-time": "^1.0.6",
+		"bytes": "^3.1.2",
 		"chalk": "5.6.2",
 		"check-disk-space": "^3.4.0",
 		"colord": "^2.9.3",

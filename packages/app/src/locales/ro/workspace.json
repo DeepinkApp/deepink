@@ -1,16 +1,16 @@
 {
 	"panel": {
 		"tags": {
-			"label": "Taguri",
-			"empty": "Creează taguri pentru a-ți organiza notițele. Ierarhizează-le pentru o structură flexibilă.",
+			"label": "Etichete",
+			"empty": "Creează etichete pentru a-ți organiza notele. Folosește ierarhii pentru o organizare flexibilă.",
 			"actions": {
-				"add": "Adaugă tag"
+				"add": "Adaugă etichetă"
 			}
 		},
 		"workspaces": {
 			"label": "Spații de lucru",
 			"actions": {
-				"add": "Adaugă spațiu"
+				"add": "Adaugă spațiu de lucru"
 			}
 		}
 	}

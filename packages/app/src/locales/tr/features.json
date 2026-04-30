@@ -14,29 +14,29 @@
 			"field": {
 				"name": {
 					"label": "Etiket adı",
-					"placeholder": "ör. Fikirler"
+					"placeholder": "Örn. Fikirler"
 				},
 				"parent": {
 					"label": "Üst etiket",
-					"placeholder": "ör. Tarifler/Tatlılar"
+					"placeholder": "Örn. Yemekler/Tatlılar"
 				}
 			},
 			"messages": {
 				"unknownSubmitError": "Bilinmeyen bir hata nedeniyle değişiklikler kaydedilemedi.",
-				"format": "Etiket boş olamaz, \"/\" ile başlayamaz veya bitemez ya da \"//\" içeremez.",
-				"duplicate": "'{{name}}' etiketi zaten mevcut.",
+				"format": "Etiket boş olamaz, \"/\" ile başlayıp bitemez veya \"//\" içeremez.",
+				"duplicate": "'{{name}}' isimli etiket zaten mevcut.",
 				"parentTagNotFound": "Üst etiket bulunamadı, lütfen başka bir etiket seçin."
 			}
 		},
 		"deletion": {
-			"confirm": "\"{{name}}\" etiketi ve tüm alt etiketleri silinsin mi?"
+			"confirm": "\"{{name}}\" etiketini ve tüm alt etiketlerini silmek istediğinize emin misiniz?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Defter",
 		"creator": {
 			"title": "Yeni alan oluştur",
-			"description": "Her alan; notlarınız, etiketleriniz ve dosyalarınız için bağımsız bir bölümdür. Her şey ayrı tutulur, ancak şifreli kasanızın içinde kalır — geçiş yaptığınızda hazır olur.",
+			"description": "Her alan; notlarınız, etiketleriniz ve dosyalarınız için birbirinden bağımsız bir yerdir. Her şey şifreli kasasınızın içinde ayrı tutulur ve alanlar arası geçiş yaptığınızda hazır bekler.",
 			"action": {
 				"add": "Oluştur",
 				"cancel": "İptal"
@@ -44,7 +44,7 @@
 			"field": {
 				"name": {
 					"label": "Alan adı",
-					"placeholder": "ör. Sağlık Günlüğü, İş Fikirleri",
+					"placeholder": "Örn. Sağlık Günlüğü, İş Fikirleri",
 					"suggests": {
 						"0": "Finans",
 						"1": "Sağlık",
@@ -55,23 +55,23 @@
 						"6": "Fikirler",
 						"7": "Hukuk",
 						"8": "Seyahat",
-						"9": "Kişisel"
+						"9": "Özel"
 					}
 				}
 			},
 			"error": {
 				"unknown": "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.",
-				"format": "Alan adı boş olamaz."
+				"format": "Alan adı boş bırakılamaz."
 			}
 		},
 		"error": {
 			"title": "\"{{name}}\" alanı yüklenemedi",
-			"description": "Bu alan yüklenemedi. Veriler bozulmuş olabilir. Çalışmaya devam etmek için başka bir alana geçin veya yeni bir tane oluşturun.",
-			"chooseAnother": "Başka bir alan seç",
+			"description": "Bu alan yüklenemedi. Veriler bozulmuş olabilir. Çalışmaya devam etmek için başka bir alana geçin veya yeni bir alan oluşturun.",
+			"chooseAnother": "Başka bir alan seçin",
 			"dividerText": "veya",
-			"createNew": "Yeni bir alan oluştur",
+			"createNew": "Yeni bir alan oluşturun",
 			"createWorkspace": "Alan oluştur",
-			"closeVault": "Kasayı kapat"
+			"closeVault": "Mevcut kasayı kapat"
 		}
 	},
 	"note": {
@@ -81,10 +81,10 @@
 			"duplicate": "Kopya: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Bir fikir, görev veya düşünce yazın…",
+			"placeholder": "Bir fikir, görev veya düşünce kaydedin...",
 			"modes": {
-				"plaintext": "Metin modu",
-				"richtext": "Zengin düzenleyici",
+				"plaintext": "Düz metin",
+				"richtext": "Zengin metin",
 				"split-screen": "Bölünmüş ekran"
 			}
 		},
@@ -95,16 +95,16 @@
 			"removeFromArchive": "Arşivden çıkar"
 		},
 		"tags": {
-			"addPlaceholder": "Etiket eklemek için yazın…"
+			"addPlaceholder": "Etiket eklemek için yazın..."
 		},
 		"versionPreview": {
-			"versionAt": "{{date}} tarihli sürüm",
+			"versionAt": "{{date}} tarihindeki sürüm",
 			"backToEditing": "Düzenlemeye dön"
 		},
 		"menu": {
 			"title": "Not seçenekleri",
 			"copyReference": "Not bağlantısını kopyala",
-			"remindMe": "Hatırlat",
+			"remindMe": "Bana hatırlat",
 			"history": "Geçmiş",
 			"backLinks": "Geri bağlantılar",
 			"readonlyMode": "Salt okunur mod",
@@ -122,7 +122,7 @@
 			"chars": "{{count}} karakter",
 			"apply": {
 				"title": "Sürümü uygula",
-				"readonlyTitle": "Salt okunur nota sürüm uygulanamaz"
+				"readonlyTitle": "Salt okunur notlarda sürüm uygulanamaz"
 			},
 			"open": {
 				"title": "Sürümü aç"
@@ -133,35 +133,35 @@
 		},
 		"versions": {
 			"saveVersion": {
-				"label": "Anlık kopya kaydet",
-				"title": "Notun mevcut durumunu geçmişe yeni bir sürüm olarak kaydet"
+				"label": "Anlık görüntü kaydet",
+				"title": "Notun mevcut durumunu geçmişte yeni bir sürüm olarak kaydet"
 			},
 			"deleteAll": {
 				"label": "Tümünü sil",
-				"title": "Bu notun kayıtlı tüm sürümlerini kalıcı olarak sil"
+				"title": "Bu notun kaydedilmiş tüm sürümlerini kalıcı olarak sil"
 			},
 			"dontRecord": "Bu not için geçmiş kaydetme",
-			"empty": "Bu notun kayıtlı sürümü yok",
+			"empty": "Bu not için kaydedilmiş sürüm bulunmuyor",
 			"loading": "Yükleniyor...",
 			"confirmDeleteAll": {
 				"title": "Tüm not sürümlerini sil",
-				"description": "Bu işlem tüm not sürümlerini kalıcı olarak silecek.",
+				"description": "Bu işlem tüm not sürümlerini kalıcı olarak silecektir.",
 				"confirm": "Emin misiniz?",
 				"action": "Uygula"
 			},
 			"confirmApply": {
 				"title": "Not sürümünü uygula",
-				"description": "{{version}} sürümünü uygulamak üzeresiniz.",
-				"warning": "Bu işlem notun mevcut içeriğini seçilen anlık kopyanın metniyle değiştirecek. Emin misiniz?",
+				"description": "{{version}} numaralı not sürümünü uygulamak üzeresiniz.",
+				"warning": "Bu işlem, mevcut not verilerini seçilen anlık görüntünün metniyle değiştirecektir. Emin misiniz?",
 				"apply": "Uygula",
-				"preview": "Önizle"
+				"preview": "Önizleme"
 			},
 			"confirmDelete": {
 				"title": "Not sürümünü sil",
-				"description": "{{version}} sürümünü silmek üzeresiniz.",
-				"warning": "Bu işlem not sürümünü geri alınamaz şekilde silecek. Emin misiniz?",
+				"description": "{{version}} numaralı not sürümünü silmek üzeresiniz.",
+				"warning": "Bu işlem not sürümünü geri döndürülemez şekilde silecektir. Emin misiniz?",
 				"delete": "Sil",
-				"preview": "Önizle"
+				"preview": "Önizleme"
 			}
 		},
 		"sidebar": {
@@ -178,33 +178,33 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "{{filesCount}} dosyayı (toplam {{size}}) yüklemek istediğinizden emin misiniz?"
+		"confirmLargeUpload": "{{filesCount}} dosya (toplam {{size}}) yüklemek istediğinizden emin misiniz?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Ara..."
 		},
-		"filterBy": "Filtrele",
-		"empty": "Henüz not yok. <create>Not oluşturun</create>"
+		"filterBy": "Filtrele:",
+		"empty": "Henüz not yok. <create>Bir not oluştur</create>"
 	},
 	"notesView": {
 		"allNotes": "Tüm notlar",
 		"favorites": "Favori notlar",
-		"archived": "Arşivlenen notlar",
+		"archived": "Arşivlenmiş notlar",
 		"deleted": "Silinen notlar"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Okumak veya düzenlemek için bir not seçin"
+			"placeholder": "Okumaya veya düzenlemeye başlamak için bir not seçin"
 		}
 	},
 	"activityBar": {
 		"newNote": "Yeni not",
 		"files": "Dosyalar",
-		"reminders": "Hatırlatmalar",
+		"reminders": "Hatırlatıcılar",
 		"extensions": "Eklentiler",
-		"inbox": "Gelen kutusu",
-		"publishNotes": "Notları yayımla",
+		"inbox": "Gelen Kutusu",
+		"publishNotes": "Notları yayınla",
 		"lockVault": "Kasayı kilitle",
 		"globalSettings": "Genel ayarlar"
 	},
@@ -213,31 +213,31 @@
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "{{level}}. düzey başlık eklemek için tıklayın. Diğer seçenekler için sağ tıklayın",
-			"level": "{{level}}. düzey başlık"
+			"insertTitle": "{{level}}. seviye başlık eklemek için tıklayın. Başka bir seçenek için sağ tıklayın",
+			"level": "{{level}}. seviye başlık"
 		},
-		"bold": "Kalın metin stilini aç/kapat",
-		"italic": "İtalik metin stilini aç/kapat",
-		"strikethrough": "Üstü çizili metin stilini aç/kapat",
-		"unorderedList": "Madde işaretli liste ekle veya değiştir",
+		"bold": "Kalın metin stilini değiştir",
+		"italic": "İtalik metin stilini değiştir",
+		"strikethrough": "Üstü çizili metin stilini değiştir",
+		"unorderedList": "Madde işareti listesi ekle veya değiştir",
 		"checkboxList": "Onay kutusu listesi ekle veya değiştir",
 		"orderedList": "Numaralı liste ekle veya değiştir",
-		"codeBlock": "Kod bloğu ekle veya metni kod bloğuyla sar",
-		"quoteBlock": "Alıntı bloğu ekle veya metni alıntı bloğuyla sar",
+		"codeBlock": "Metni kod bloğu olarak ekle veya içine al",
+		"quoteBlock": "Metni alıntı bloğu olarak ekle veya içine al",
 		"insertDate": "Tarih ekle",
 		"insertPageBreak": "Sayfa sonu ekle",
 		"insertFile": "Dosya ekle",
 		"image": {
 			"buttonTitle": "Görsel ekle",
 			"dialogTitle": "Görsel ekle",
-			"dialogDescription": "Görsel, imleç konumuna eklenecek.",
+			"dialogDescription": "Görsel, imlecin bulunduğu konuma eklenecektir.",
 			"field": {
 				"url": {
 					"label": "Görsel URL'si",
-					"placeholder": "ör. https://example.com/image.png"
+					"placeholder": "ör., https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Görsel açıklaması (isteğe bağlı)",
+					"label": "Görsel alt metni (isteğe bağlı)",
 					"placeholder": "Görselin kısa açıklaması"
 				}
 			},
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Bağlantı ekle",
 			"dialogTitle": "Bağlantı ekle",
-			"dialogDescription": "Seçili metin bağlantıya dönüşür; metin seçili değilse bağlantı imleç konumuna eklenir.",
+			"dialogDescription": "Seçili metin bağlantıya dönüştürülür; hiçbir şey seçili değilse bağlantı imlecin konumuna eklenir.",
 			"field": {
 				"url": {
 					"label": "Bağlantı URL'si",
-					"placeholder": "ör. https://example.com"
+					"placeholder": "ör., https://example.com"
 				}
 			},
 			"actions": {
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Görsel yükleniyor"
+		"loading": "Görsel yükleniyor",
+		"brokenImage": "Görsel yüklenemedi"
 	},
 	"notifications": {
 		"title": "Bildirimler"
@@ -271,20 +272,20 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Uygulama güncellemesi",
-			"reminderLater": "Hatırlatma bir hafta sonra tekrar gösterilecek"
+			"reminderLater": "Hatırlatıcı bir hafta sonra gösterilecek"
 		},
 		"newVersion": {
 			"title": "Yeni sürüm mevcut",
-			"body": "Yeni bir sürüm hazır. En son iyileştirmeler ve düzeltmeler için güncelleyin.",
+			"body": "Yeni bir sürüm hazır. En son iyileştirmeleri ve düzeltmeleri almak için güncelleyin.",
 			"download": "Yeni sürümü indir",
-			"ignore": "Yoksay"
+			"ignore": "Geç"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
 			"title": "Görsel özellikleri",
 			"urlLabel": "Görsel URL'si",
-			"altLabel": "Görsel açıklaması"
+			"altLabel": "Görsel alt metni"
 		},
 		"linkProperties": {
 			"title": "Bağlantı özellikleri",
@@ -293,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Değişiklikleri diske kaydetmek için tıklayın",
-			"saving": "Kaydediliyor..."
+			"title": "Değişiklikleri kaydetmek için tıklayın",
+			"saving": "Değişiklikler kaydediliyor..."
 		},
-		"changeVault": "Kasa değiştir",
+		"changeVault": "Kasayı değiştir",
 		"history": "Geçmiş",
 		"notifications": "Bildirimler"
 	}

@@ -1,114 +1,133 @@
 {
 	"chooseVault": {
-		"title": "Izberite trezor",
+		"title": "Izberite arhiv",
 		"actions": {
-			"createNew": "Ustvari nov trezor"
+			"createNew": "Ustvari nov arhiv"
 		}
 	},
 	"creator": {
-		"title": "Ustvari trezor",
+		"title": "Ustvari arhiv",
 		"field": {
 			"name": {
-				"label": "Ime trezorja",
-				"placeholder": "npr. Moj trezor, Deljeno z Alešem",
-				"random": "Naključno ime",
+				"label": "Ime arhivov",
+				"placeholder": "npr. Moj arhiv, Deljeno z Aleksom",
+				"random": "Generiraj naključno ime",
 				"suggests": {
-					"0": "Marginalia",
-					"1": "Pergament",
-					"2": "Predlist",
+					"0": "Marginalije",
+					"1": "Vellum",
+					"2": "Zavih",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alkova",
-					"6": "Polsenca",
-					"7": "Mesečna korespondenca",
-					"8": "Večerna kartografija",
-					"9": "Svetilka in črnilo",
-					"10": "Arhiv ob svečah",
-					"11": "Rokopisi vzpenjajoče bršljanke",
+					"5": "Niša",
+					"6": "Penumbra",
+					"7": "Mesečevo dopisovanje",
+					"8": "Večernja kartografija",
+					"9": "Latern in črnilo",
+					"10": "Arhiv ob sveči",
+					"11": "Manuskrpti s pleterjem",
 					"12": "Cedrova pisma",
-					"13": "Skriptorij iz palisandra",
-					"14": "Nevezani kodeks",
-					"15": "Marginalia in šepeti",
-					"16": "Izpovedi na predlistu",
-					"17": "Anotirana tišina",
+					"13": "Rosewood skriptorij",
+					"14": "Neomejen kodeks",
+					"15": "Marginalije in šepeti",
+					"16": "Zavihna priznanja",
+					"17": "Omejena tišina",
 					"18": "Kartografija senc",
-					"19": "Zapomnjena soba",
-					"20": "Nepodpisana pisma",
-					"21": "Šepetane koordinate",
-					"22": "Nepovedani almanah",
+					"19": "Spoznana soba",
+					"20": "Neovasičena pisma",
+					"21": "Šepet koordint",
+					"22": "Neizpovedani almanah",
 					"23": "Pisma iz izgubljenega voska",
 					"24": "Nevidna knjižnica",
-					"25": "Neraziskani robovi",
-					"26": "Tiha zarota",
-					"27": "Nedostavljena pošta",
-					"28": "Zimzeleni arhiv",
-					"29": "Papirnata luna",
-					"30": "Papirnati cvet",
+					"25": "Neoznačene robove",
+					"26": "Tiha zaplet",
+					"27": "Neizposlana pošta",
+					"28": "Večno zeleni arhiv",
+					"29": "Papirni måk",
+					"30": "Papirni cvet",
 					"31": "Nočni cvet",
-					"32": "Nežni atlas",
+					"32": "Mehak atlas",
 					"33": "Velur",
-					"34": "Črnilni kamen",
+					"34": "Kamn za črnilo",
 					"35": "Tišina",
 					"36": "Senca",
-					"37": "Mirno plavanje",
-					"38": "Globoki travnik",
-					"39": "Nenapisana knjiga",
-					"40": "Tiha skicirka",
-					"41": "Neizrečeni arhiv",
-					"42": "Plavajoči dnevnik",
-					"43": "Kronika sončnega vetra",
+					"37": "Miren drift",
+					"38": "Globoka travnik",
+					"39": "Nezapisan register",
+					"40": "Tiha rokopis",
+					"41": "Neizpovedan arhiv",
+					"42": "Drhteč dnevnik",
+					"43": "Solarni vetrovi kronika",
 					"44": "Tihi fjord",
-					"45": "Drobci spominov",
+					"45": "Fragmenti spomina",
 					"46": "Tihi trenutek",
-					"47": "Izginule minute"
+					"47": "Izginjene minute"
 				}
 			},
 			"password": {
 				"label": "Geslo za šifriranje",
 				"recommended": "(priporočeno)",
-				"placeholder": "Vnesite močno geslo"
+				"placeholder": "Vnesite močno geslo",
+				"description": "Vse podatke v prostoru bo šifriralo to geslo"
 			},
 			"algorithm": {
 				"label": "Algoritem šifriranja"
 			}
 		},
 		"actions": {
-			"create": "Ustvari trezor",
+			"create": "Ustvari prostor",
 			"continueNoPassword": "Nadaljuj brez gesla",
 			"cancel": "Prekliči"
 		},
 		"noEncryptionDialog": {
-			"title": "Ustvari trezor brez šifriranja",
-			"description": "Vaši zapiski in podatki bodo shranjeni kot navadno besedilo. Vsaka aplikacija ali oseba z dostopom do mape trezorja na disku bo lahko prebrala vso vsebino.",
+			"title": "Ustvarjanje prostora brez šifriranja",
+			"description": "Vaši zapisi in podatki bodo shranjeni kot običajno besedilo. Vsaka aplikacija ali oseba, ki bo imela dostop do mape prostora na disku, bo mogla prebrati vse vsebine.",
 			"actions": {
 				"confirm": "Nadaljuj brez šifriranja",
 				"cancel": "Prekliči"
 			}
 		},
 		"errors": {
-			"nameRequired": "Vnesite ime trezorja",
+			"nameRequired": "Vnesite ime prostora",
 			"passwordRequired": "Vnesite geslo"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Napredne možnosti šifriranja",
+				"description": "Nastavite elemente šifriranja, ki ščitijo vaš prostor — natečaj šifr »cipher«, parametre KDF in več. Za podrobnejši pregled privzetih nastavitev in njihovega vpliva si oglejte <encryption>način zaščite vašega prostora</encryption>."
+			},
+			"kdf": {
+				"label": "Funkcija za izvedbo ključa",
+				"description": "Povečuje varnost šibkih ali ponovljenih gesel tako, da vsako poskus ugibanja naredi počasnejši in zahtevnejši. Za večjo varnost povečajte te nastavitve, za uravnoteženo izkušnjo pa uporabite privzete.",
+				"memory": {
+					"label": "Poraba pomnilnika",
+					"description": "Vsak poskus ugibanja gesla bo porabil več pomnilnika. To je zlasti učinkovito proti obsežnim napadi, saj je poraba pomnilnika draga in težje skalirabilă kot sama izračunjava."
+				},
+				"ops": {
+					"label": "Iteracije",
+					"description": "Ponavlja postopek izvedbe za vsak poskus ugibanja gesla. To linearno povečuje zahtevnost vsakega poskusa: dvojna števila iteracij približno dvojno poveča delo tako napadalcev kot vaše naprave."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Odkleni trezor",
+		"title": "Odključi prostor",
 		"field": {
 			"password": {
 				"placeholder": "Vnesite geslo"
 			}
 		},
 		"actions": {
-			"unlock": "Odkleni",
-			"changeVault": "Zamenjaj trezor"
+			"unlock": "Odključi",
+			"changeVault": "Spremeni prostor"
 		},
 		"errors": {
-			"cannotOpen": "Trezorja ni mogoče odpreti",
-			"invalidPassword": "Napačno geslo",
+			"cannotOpen": "Prostora ni mogoče odpreti",
+			"invalidPassword": "Neveljavno geslo",
 			"passwordRequired": "Vnesite geslo"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Trezorja ni bilo mogoče odpreti",
-		"corrupted": "\"{{name}}\" je morda poškodovan."
+		"failedToOpen": "Prostora ni bilo mogoče odpreti",
+		"corrupted": "\"{{name}}\" se zdi poškodovan."
 	}
 }

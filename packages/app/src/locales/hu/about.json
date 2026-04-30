@@ -1,0 +1,8 @@
+{
+	"version": "Verzió {{version}}",
+	"environment": "Használt könyvtárak",
+	"links": {
+		"label": "Linkek",
+		"reportBug": "Hibajelentés"
+	}
+}

@@ -2,7 +2,7 @@
 	"actions": {
 		"cancel": "ยกเลิก",
 		"confirm": "ยืนยัน",
-		"apply": "ใช้งาน",
+		"apply": "นำไปใช้",
 		"save": "บันทึก",
 		"saveChanges": "บันทึกการเปลี่ยนแปลง",
 		"delete": "ลบ",
@@ -13,6 +13,6 @@
 		"close": "ปิด"
 	},
 	"form": {
-		"suggestTemplate": "ลองใช้: <suggests>"
+		"suggestTemplate": "ลองใช้แบบนี้: <suggests>"
 	}
 }

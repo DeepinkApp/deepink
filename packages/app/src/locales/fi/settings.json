@@ -6,53 +6,53 @@
 		"general": "Yleiset",
 		"appearance": "Ulkoasu",
 		"hotkeys": "Pikanäppäimet",
-		"vault": "Holvi",
-		"workspace": "Työtila",
-		"importExport": "Tuonti ja vienti",
-		"vaultSettingsGroup": "Holvin asetukset"
+		"vault": "Arkisto",
+		"workspace": "Tila",
+		"importExport": "Tuo ja vie",
+		"vaultSettingsGroup": "Arkiston asetukset"
 	},
 	"general": {
 		"title": "Yleiset asetukset",
 		"subtitle": "Hallitse sovelluksen yleisiä asetuksia.",
 		"version": {
 			"title": "Versio",
-			"checkForUpdates": "Tarkista päivitykset",
+			"checkForUpdates": "Etsi päivityksiä",
 			"upToDate": "Käytössäsi on uusin versio",
 			"newVersionAvailable": "Uusi versio <bold>{{version}}</bold> on saatavilla.",
 			"downloadLatest": "Lataa",
-			"downloadDescription": "uusin versio, joka sisältää uusia ominaisuuksia ja parannuksia."
+			"downloadDescription": "viimeisin versio, jotta saat uusia ominaisuuksia ja parannuksia."
 		},
 		"autoCheckUpdates": {
-			"label": "Tarkista päivitykset automaattisesti",
+			"label": "Automaattinen päivitysten tarkistus",
 			"description": "Sovellus tarkistaa päivitykset säännöllisesti ja ilmoittaa, kun uusi versio on saatavilla."
 		},
 		"language": {
 			"title": "Kieli",
-			"description": "Vaihda näyttökieli."
+			"description": "Vaihda käyttöliittymän kieli."
 		},
 		"notifications": {
 			"title": "Ilmoitukset",
-			"description": "Järjestelmäilmoituksia käytetään vain muistutuksiin. Kun ne on poistettu käytöstä, muistutukset näkyvät vain sovelluksen ilmoituslistassa.",
+			"description": "Järjestelmäilmoituksia käytetään vain muistutuksiin. Jos ne on poistettu käytöstä, muistutukset näkyvät vain sovelluksen ilmoituslistalla.",
 			"useSystem": "Käytä järjestelmäilmoituksia"
 		},
 		"vaultLock": {
-			"groupTitle": "Holvin lukitus",
+			"groupTitle": "Arkiston lukitus",
 			"lockOnSystemLock": {
-				"label": "Lukitse holvi järjestelmän lukittuessa",
-				"description": "Holvi lukitaan, kun näytönsäästäjä käynnistyy tai laite menee lepotilaan."
+				"label": "Lukitse arkisto, kun järjestelmä lukitaan",
+				"description": "Arkisto lukitaan, kun näyttösuojin käynnistyy tai laite menee lepotilaan."
 			},
 			"lockAfterIdle": {
-				"title": "Lukitse holvi käyttämättömyyden jälkeen",
-				"description": "Holvi lukitaan valitun käyttämättömyysajan jälkeen.",
+				"title": "Lukitse arkisto toimettomuuden jälkeen",
+				"description": "Arkisto lukitaan valitun toimettomuusajan jälkeen.",
 				"never": "Älä lukitse",
-				"minutes5": "5 minuutin jälkeen",
-				"minutes10": "10 minuutin jälkeen",
-				"minutes15": "15 minuutin jälkeen",
-				"minutes30": "30 minuutin jälkeen",
-				"hour1": "1 tunnin jälkeen",
-				"hours2": "2 tunnin jälkeen",
-				"hours3": "3 tunnin jälkeen",
-				"hours5": "5 tunnin jälkeen"
+				"minutes5": "5 minuutin kuluttua",
+				"minutes10": "10 minuutin kuluttua",
+				"minutes15": "15 minuutin kuluttua",
+				"minutes30": "30 minuutin kuluttua",
+				"hour1": "1 tunnin kuluttua",
+				"hours2": "2 tunnin kuluttua",
+				"hours3": "3 tunnin kuluttua",
+				"hours5": "5 tunnin kuluttua"
 			}
 		}
 	},
@@ -65,18 +65,18 @@
 			"zen": "Zen"
 		},
 		"accentColor": {
-			"title": "Korostusväri",
-			"zenNotApplicable": "Korostusväri ei ole käytettävissä valitussa teemassa."
+			"title": "Tehosteväri",
+			"zenNotApplicable": "Tehosteväriä ei voi käyttää valitussa teemassa."
 		},
 		"zoomLevel": {
-			"title": "Zoomaustaso",
-			"description": "Säädä oletuszoomaustasoa kaikille ikkunoille.\nJos järjestelmäsi ei skaalaa sovelluksia automaattisesti, voit muuttaa zoomausta vastaamaan näytön todellista pikselitiheyttä (DPR). Havaittu DPR on {{dpr}}.",
+			"title": "Lähentämistaso",
+			"description": "Säädä oletuslähentämistasoa kaikille ikkunoille.\nJos järjestelmäsi ei skaalaa sovelluksia automaattisesti, voit muuttaa suurennusta vastaamaan näytön pikselitiheyttä (DPR). Näytön pikselitiheys on {{dpr}}.",
 			"apply": "Käytä",
-			"reset": "Palauta",
+			"reset": "Nollaa",
 			"errors": {
-				"enterNumber": "Syötä numero asettaaksesi zoomauksen",
-				"tooSmall": "Zoomaus ei voi olla alle {{min}} %",
-				"tooBig": "Zoomaus ei voi olla yli {{max}} %"
+				"enterNumber": "Syötä numero suurennuksen asettamiseksi",
+				"tooSmall": "Suurennus ei voi olla alle {{min}} %",
+				"tooBig": "Suurennus ei voi olla yli {{max}} %"
 			}
 		}
 	},
@@ -86,57 +86,57 @@
 			"title": "Editorin tila"
 		},
 		"fontFamily": {
-			"title": "Kirjasinperhe",
-			"description": "Aseta kirjasinperhe kaikkiin editoreihin tai jätä tyhjäksi käyttääksesi oletusta.",
-			"placeholder": "Syötä kirjasinperheen nimi"
+			"title": "Kirjasintyyppi",
+			"description": "Valitse kirjasintyyppi kaikille editoreille tai jätä tyhjäksi käyttää oletusta.",
+			"placeholder": "Kirjasintyypin nimi"
 		},
 		"fontSize": {
-			"title": "Kirjasinkoko"
+			"title": "Fonttikoko"
 		},
 		"lineHeight": {
-			"title": "Rivin korkeus"
+			"title": "Riviväli"
 		},
 		"dateFormat": {
-			"title": "Päivämäärämuoto",
-			"description": "Aseta päivämäärämuoto, jota käytetään päivämäärien lisäämisessä. Tukee vakiomuotoista syntaksia kuten PP/KK/VVVV HH:mm:ss.",
-			"formatReference": "päivämäärämuodon ohje",
+			"title": "Päivämääräformaatti",
+			"description": "Aseta päivämääräformaatti, jota käytetään päivämääriä lisättäessä. Tukee standardeja tunnisteita, kuten DD/MM/YYYY HH:mm:ss.",
+			"formatReference": "päivämääräformaatin ohje",
 			"example": "Esimerkki"
 		},
 		"plainText": {
-			"groupTitle": "Tekstieditori",
+			"groupTitle": "Pelkän tekstin editori",
 			"lineNumbers": "Näytä rivinumerot",
-			"miniMap": "Ota minikartta käyttöön"
+			"miniMap": "Ota käyttöön minikartta"
 		}
 	},
 	"hotkeys": {
-		"blank": "Tyhjä",
+		"blank": "Ei mitään",
 		"shortcuts": {
 			"createNote": "Luo uusi muistiinpano",
 			"closeCurrentNote": "Sulje aktiivinen muistiinpano",
-			"restoreClosedNote": "Palauta äskettäin suljettu muistiinpano",
-			"focusNextNote": "Siirry seuraavaan avattuun muistiinpanoon",
-			"focusPreviousNote": "Siirry edelliseen avattuun muistiinpanoon",
-			"toggleArchive": "Siirrä aktiivinen muistiinpano arkistoon tai pois",
-			"toggleBookmark": "Lisää tai poista aktiivinen muistiinpano kirjanmerkeistä",
+			"restoreClosedNote": "Palauta hiljattain suljettu muistiinpano",
+			"focusNextNote": "Siirry seuraavaan muistiinpanoon",
+			"focusPreviousNote": "Siirry edelliseen muistiinpanoon",
+			"toggleArchive": "Siirrä aktiivinen muistiinpano arkistoon/arkistosta",
+			"toggleBookmark": "Siirrä aktiivinen muistiinpano kirjanmerkkiin/kirjanmerkeistä",
 			"deleteNote": "Poista aktiivinen muistiinpano",
 			"restoreFromBin": "Palauta aktiivinen muistiinpano roskakorista",
-			"toggleHistory": "Näytä tai piilota aktiivisen muistiinpanon historia",
-			"focusSearch": "Hae muistiinpanoja",
-			"syncDatabase": "Synkronoi holvi levylle",
-			"lockVault": "Lukitse holvi",
+			"toggleHistory": "Näytä tai piilota aktiivisen muistion historia",
+			"focusSearch": "Etsi muistiinpanoja",
+			"syncDatabase": "Synkronoi arkisto levylle",
+			"lockVault": "Lukitse arkisto",
 			"openSettings": "Avaa asetukset"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Holvin nimi"
+			"title": "Arkiston nimi"
 		},
 		"rememberPasswords": {
-			"label": "Muista työtilojen salasanat",
-			"description": "Työtilojen salasanat salataan pääavaimella ja tallennetaan tietokantaan, jotta salatut työtilat avautuvat automaattisesti ilman salasanan syöttämistä."
+			"label": "Muista tilojen salasanat",
+			"description": "Tilojen salasanat salataan pääavaimella ja tallennetaan tietokantaan, jotta salatut tilat voidaan avata automaattisesti ilman salasanaa."
 		},
 		"filesAndData": {
-			"groupTitle": "Tiedostot ja data",
+			"groupTitle": "Tiedostot ja tiedot",
 			"imagesCompression": {
 				"title": "Kuvien pakkaus",
 				"compress": "Pakkaa kuvat",
@@ -144,7 +144,7 @@
 				"alwaysAsk": "Kysy aina"
 			},
 			"deleteOrphaned": {
-				"label": "Poista käyttämättömät tiedostot",
+				"label": "Poista ylimääräiset tiedostot",
 				"description": "Poista tiedostot, joita ei enää käytetä."
 			}
 		},
@@ -163,7 +163,7 @@
 			"groupTitle": "Synkronointi",
 			"enable": {
 				"label": "Ota synkronointi käyttöön",
-				"description": "Pidä holvi synkronoituna laitteiden välillä. Kaikki data salataan ennen kuin se lähtee laitteeltasi."
+				"description": "Pidä arkistosi synkronoituna laitteiden välillä. Kaikki tiedot salataan ennen laitteelta lähtemistä."
 			},
 			"method": {
 				"title": "Synkronointitapa",
@@ -171,38 +171,38 @@
 				"server": "Palvelin"
 			},
 			"directory": {
-				"title": "Synkronointikansio",
-				"placeholder": "Syötä kansion polku"
+				"title": "Synkronointihakemisto",
+				"placeholder": "Kirjoita hakemiston polku"
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Tilannevedokset",
+			"groupTitle": "Hetkikuvat",
 			"record": {
-				"label": "Tallenna muistiinpanojen tilannevedoksia",
-				"description": "Kun käytössä, muistiinpanon sisällöstä luodaan tilannevedos muutosten yhteydessä. Voit hallita tilannevedosten tallennusta muistiinpanokohtaisesti historiapaneelissa."
+				"label": "Tallenna muistiinpanojen hetkikuvat",
+				"description": "Kun tämä on päällä, muistiinpanoista luodaan hetkikuvat niiden muuttuessa. Voit hallita hetkikuvien tallennusta yksittäisen muistiinpanon kohdalla muistiinpanojen historiassa."
 			},
 			"delay": {
-				"title": "Tilannevedoksen viive",
-				"description": "Kuinka kauan muokkauksen jälkeen odotetaan ennen uuden tilannevedoksen tallentamista, sekunteina. Lyhyempi väli tarkoittaa useampia tilannevedoksia — ja suurempaa holvia."
+				"title": "Hetkikuvan viive",
+				"description": "Kuinka monta sekuntia odotetaan muokkauksen jälkeen ennen uuden hetkikuvan tallentamista. Lyhyempi väli tarkoittaa tiheämpiä hetkikuvia ja suurempaa säiliötä."
 			}
 		},
 		"trashBin": {
 			"groupTitle": "Roskakori",
 			"confirmDeletion": {
-				"label": "Vahvista poistaminen",
-				"description": "Kysy ennen muistiinpanon poistamista."
+				"label": "Vahvista poisto",
+				"description": "Kysy vahvistus ennen muistiinpanon poistamista."
 			},
 			"moveToBin": {
 				"label": "Siirrä muistiinpanot roskakoriin",
-				"description": "Siirrä muistiinpanot roskakoriin pysyvän poiston sijaan, jotta ne voidaan palauttaa myöhemmin."
+				"description": "Siirrä muistiinpanot roskakoriin pysyvän poiston sijaan, jotta voit palauttaa ne myöhemmin."
 			},
 			"autoPurge": {
-				"label": "Poista vanhat muistiinpanot roskakorista pysyvästi",
+				"label": "Poista vanhat roskakorin muistiinpanot pysyvästi",
 				"description": "Roskakoriin siirretyt muistiinpanot poistetaan pysyvästi tietyn ajan kuluttua."
 			},
 			"purgeDelay": {
 				"title": "Pysyvän poiston viive",
-				"description": "Roskakorissa olevat muistiinpanot poistetaan pysyvästi tämän päivämäärän jälkeen, laskettuna siirtohetkestä.",
+				"description": "Roskakorin muistiinpanot poistetaan pysyvästi tämän päivämäärän kuluttua siitä, kun ne siirrettiin sinne.",
 				"unit": "päivää"
 			}
 		}
@@ -214,36 +214,36 @@
 		},
 		"newNoteTitle": {
 			"title": "Uuden muistiinpanon otsikko",
-			"description": "Aseta otsikko uusille muistiinpanoille. Voit käyttää päivämäärää syntaksilla {date} tai {date:MUOTO}, esim. {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "muoto-ohje",
+			"description": "Aseta otsikko uusille muistiinpanoille. Voit käyttää päivämäärää syntaksilla {date} tai {date:FORMAT}, kuten {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "muodon viite",
 			"placeholder": "esim. Muistiinpano {date:DD/MM/YYYY HH:mm}",
 			"example": "Esimerkki"
 		},
 		"tagsForNewNote": {
-			"title": "Uuden muistiinpanon tunnisteet",
+			"title": "Tunnisteet uusille muistiinpanoille",
 			"none": "Älä aseta tunnisteita",
 			"selected": "Sama kuin valittu tunniste"
 		},
 		"dangerousZone": {
-			"groupTitle": "Vaaravyöhyke",
+			"groupTitle": "Vaara-alue",
 			"delete": {
-				"label": "Poista työtila ja kaikki siihen liittyvä data, mukaan lukien muistiinpanot, tunnisteet ja tiedostot",
+				"label": "Poista työtila ja kaikki siihen liittyvät tiedot, mukaan lukien muistiinpanot, tunnisteet ja tiedostot",
 				"action": "Poista työtila",
-				"cannotDeleteLast": "Holvin viimeistä työtilaa ei voi poistaa.",
+				"cannotDeleteLast": "Viimeistä säiliön työtilaa ei voi poistaa.",
 				"createAnother": "Luo",
 				"createAnotherSuffix": "ensin toinen työtila."
 			},
-			"confirmDelete": "Olet poistamassa työtilan \"{{name}}\". Haluatko varmasti jatkaa?\n\nJos jatkat, kaikki tähän työtilaan liittyvä data poistetaan, mukaan lukien muistiinpanot, tunnisteet ja tiedostot."
+			"confirmDelete": "Olet poistamassa työtilan \"{{name}}\". Oletko varma haluatko jatkaa?\n\nJos jatkat, kaikki tähän työtilaan liittyvät tiedot poistetaan, mukaan lukien muistiinpanot, tunnisteet ja tiedostot."
 		}
 	},
 	"importExport": {
-		"importNotes": "Tuo muistiinpanoja",
-		"exportNotes": "Vie muistiinpanoja",
-		"importFromZip": "Tuo muistiinpanoja .zip-arkistosta",
-		"importFromDirectory": "Tuo kansio Markdown-tiedostoineen",
+		"importNotes": "Tuo muistiinpanot",
+		"exportNotes": "Vie muistiinpanot",
+		"importFromZip": "Tuo muistiinpanot .zip-arkistosta",
+		"importFromDirectory": "Tuo hakemisto, jossa on Markdown-tiedostoja",
 		"dropzone": {
-			"title": "Pudota Markdown-tiedostoja tai .zip-arkisto tuotavaksi",
-			"description": "Vedä ja pudota tiedostoja tähän tai valitse tiedostot napsauttamalla"
+			"title": "Pudota Markdown-tiedostot tai .zip-arkisto tuodaksesi ne",
+			"description": "Vedä ja pudota tiedostot tähän tai klikkaa valitaksesi tiedostot"
 		},
 		"progress": "Muistiinpanojen tuonti käynnissä. Vaihe: {{stage}} {{processed}}/{{total}}"
 	}

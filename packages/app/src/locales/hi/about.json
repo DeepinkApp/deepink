@@ -1,0 +1,8 @@
+{
+	"version": "वर्जन {{version}}",
+	"environment": "उपयोग की गई लाइब्रेरीज़",
+	"links": {
+		"label": "लिंक्स",
+		"reportBug": "बग रिपोर्ट करें"
+	}
+}

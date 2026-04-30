@@ -1,6 +1,6 @@
 {
 	"chooseVault": {
-		"title": "Velg hvelv",
+		"title": "Velg et hvelv",
 		"actions": {
 			"createNew": "Opprett nytt hvelv"
 		}
@@ -9,54 +9,54 @@
 		"title": "Opprett hvelv",
 		"field": {
 			"name": {
-				"label": "Hvelvnavn",
+				"label": "Navn på hvelv",
 				"placeholder": "f.eks. Mitt hvelv, Delt med Alex",
 				"random": "Generer tilfeldig navn",
 				"suggests": {
 					"0": "Marginalia",
-					"1": "Pergament",
-					"2": "Forsatsblad",
+					"1": "Vellum",
+					"2": "Endepapir",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alkove",
-					"6": "Halvskygge",
-					"7": "Månelyst korrespondanse",
-					"8": "Kveldskartografi",
-					"9": "Lykt & blekk",
-					"10": "Levende lys-arkiv",
-					"11": "Villvin-manuskripter",
-					"12": "Sedertre-brev",
-					"13": "Rosentre-skriptorium",
+					"5": "Alkov",
+					"6": "Penumbra",
+					"7": "Måneskinnskorrespondance",
+					"8": "Kveldens kartografi",
+					"9": "Lykt og blekk",
+					"10": "Stearinlysarkiv",
+					"11": "Klatreplantemanuskript",
+					"12": "Sedertrebrev",
+					"13": "Rosewood-skriptorium",
 					"14": "Den ubundne kodeks",
-					"15": "Marginalia & mumling",
-					"16": "Forsatsbladbekjennelser",
+					"15": "Marginalia og hvisking",
+					"16": "Endepapirens tilståelser",
 					"17": "Den annoterte stillheten",
 					"18": "Skyggekartografi",
-					"19": "Det erindrende rommet",
+					"19": "Det glemte rommet",
 					"20": "De usignerte brevene",
 					"21": "Hviskede koordinater",
 					"22": "Den ufortalte almanakken",
-					"23": "Tapt voks-brev",
+					"23": "Lost Wax-brev",
 					"24": "Det usynlige biblioteket",
-					"25": "Ukjente marger",
-					"26": "Den stille sammensvergelsen",
-					"27": "Den uleverte posten",
+					"25": "Uutforskede marger",
+					"26": "Den stille konspirasjonen",
+					"27": "Ulevert post",
 					"28": "Eviggrønt arkiv",
 					"29": "Papirmåne",
 					"30": "Papirblomst",
 					"31": "Nattblomst",
-					"32": "Mykt atlas",
-					"33": "Velur",
+					"32": "Myk atlas",
+					"33": "Fløyel",
 					"34": "Blekkstein",
-					"35": "Hvisk",
+					"35": "Stillhet",
 					"36": "Skygge",
-					"37": "Stille drift",
+					"37": "Rolig drift",
 					"38": "Dyp eng",
 					"39": "Uskrevet hovedbok",
-					"40": "Stille skissebok",
-					"41": "Uuttalt arkiv",
+					"40": "Stille utkast",
+					"41": "Uutsagt arkiv",
 					"42": "Drivende journal",
-					"43": "Solvind-krønike",
+					"43": "Solvindkrøniken",
 					"44": "Stille fjord",
 					"45": "Minnefragmenter",
 					"46": "Stille øyeblikk",
@@ -66,7 +66,8 @@
 			"password": {
 				"label": "Krypteringspassord",
 				"recommended": "(anbefalt)",
-				"placeholder": "Skriv inn et sterkt passord"
+				"placeholder": "Skriv inn et sterkt passord",
+				"description": "Alle data i hvelvet vil bli kryptert med dette passordet"
 			},
 			"algorithm": {
 				"label": "Krypteringsalgoritme"
@@ -79,15 +80,33 @@
 		},
 		"noEncryptionDialog": {
 			"title": "Opprett hvelv uten kryptering",
-			"description": "Notatene og dataene dine lagres som ren tekst. Alle apper eller personer med tilgang til hvelvets mappe på disken vil kunne lese alt innholdet.",
+			"description": "Notatene og dataene dine vil bli lagret som ren tekst. Enhver app eller person som har tilgang til hvelvets mappe på disken, vil kunne lese alt innholdet.",
 			"actions": {
 				"confirm": "Fortsett uten kryptering",
 				"cancel": "Avbryt"
 			}
 		},
 		"errors": {
-			"nameRequired": "Skriv inn et hvelvnavn",
+			"nameRequired": "Skriv inn et navn på hvelvet",
 			"passwordRequired": "Skriv inn passordet"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Avanserte krypteringsvalg",
+				"description": "Konfigurer krypteringsparametrene som beskytter hvelvet ditt — blant annet chifferkaskader, KDF-innstillinger og mer. Se <encryption>hvordan hvelvet ditt er beskyttet</encryption> for en fullstendig gjennomgang av standardvalg og avveininger."
+			},
+			"kdf": {
+				"label": "Nøkkelavledningsfunksjon (KDF)",
+				"description": "Beskytter svake eller gjenbrukte passord ved å gjøre hvert forsøk på gjetting tregere og mer ressurskrevende. Øk disse innstillingene for sterkere beskyttelse, eller behold standardvalgene for en balansert opplevelse.",
+				"memory": {
+					"label": "Minnebruk",
+					"description": "Gjør at hvert passordforsøk krever mer minne. Dette er spesielt effektivt mot omfattende angrep, da minne er ressurskrevende og vanskeligere å skalere effektivt enn ren beregningskraft."
+				},
+				"ops": {
+					"label": "Iterasjoner",
+					"description": "Gjentar avledningsprosessen for hvert passordforsøk. Dette øker ressursbruken for hvert forsøk lineært: Ved å doble antall iterasjoner, dobles arbeidsmengden omtrent for både angripere og din enhet."
+				}
+			}
 		}
 	},
 	"login": {
@@ -102,13 +121,13 @@
 			"changeVault": "Bytt hvelv"
 		},
 		"errors": {
-			"cannotOpen": "Kan ikke åpne hvelvet",
+			"cannotOpen": "Kunne ikke åpne hvelvet",
 			"invalidPassword": "Feil passord",
 			"passwordRequired": "Skriv inn passord"
 		}
 	},
 	"errors": {
 		"failedToOpen": "Kunne ikke åpne hvelvet",
-		"corrupted": "«{{name}}» ser ut til å være skadet."
+		"corrupted": "\"{{name}}\" ser ut til å være skadet."
 	}
 }

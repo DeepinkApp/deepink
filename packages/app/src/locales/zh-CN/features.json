@@ -14,37 +14,37 @@
 			"field": {
 				"name": {
 					"label": "标签名称",
-					"placeholder": "例如：想法"
+					"placeholder": "例如：灵感"
 				},
 				"parent": {
-					"label": "父标签",
+					"label": "父级标签",
 					"placeholder": "例如：食谱/甜点"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "由于未知错误，无法保存更改。",
-				"format": "标签不能为空，不能以\"/\"开头或结尾，也不能包含\"//\"。",
-				"duplicate": "标签 '{{name}}' 已存在。",
-				"parentTagNotFound": "未找到父标签，请选择其他标签。"
+				"unknownSubmitError": "保存失败，原因未知。",
+				"format": "标签不能为空，不能以 \"/\" 开头或结尾，且不能包含 \"//\"。",
+				"duplicate": "标签 \"{{name}}\" 已存在。",
+				"parentTagNotFound": "未找到父级标签，请重新选择。"
 			}
 		},
 		"deletion": {
-			"confirm": "真的要删除标签 \"{{name}}\" 及其所有子标签吗？"
+			"confirm": "确定要删除标签 \"{{name}}\" 及其所有子标签吗？"
 		}
 	},
 	"workspace": {
 		"defaultName": "笔记本",
 		"creator": {
-			"title": "创建新工作区",
-			"description": "每个工作区都是一个独立的空间，用于存放您的笔记、标签和文件。所有内容保持分开，同时仍然存放在您的加密保险库中——随时准备切换。",
+			"title": "创建新空间",
+			"description": "每个空间都是一个独立的区域，用于存放您的笔记、标签和文件。所有内容在加密库中保持独立，并在您切换时随时就绪。",
 			"action": {
 				"add": "创建",
 				"cancel": "取消"
 			},
 			"field": {
 				"name": {
-					"label": "工作区名称",
-					"placeholder": "例如：健康日志，商业想法",
+					"label": "空间名称",
+					"placeholder": "例如：健康日志、商业创意",
 					"suggests": {
 						"0": "财务",
 						"1": "健康",
@@ -52,69 +52,69 @@
 						"3": "家庭",
 						"4": "日志",
 						"5": "目标",
-						"6": "想法",
+						"6": "灵感",
 						"7": "法律",
 						"8": "旅行",
-						"9": "私人"
+						"9": "私密"
 					}
 				}
 			},
 			"error": {
-				"unknown": "发生未知错误。请重试。",
-				"format": "工作区名称不能为空。"
+				"unknown": "发生未知错误，请重试。",
+				"format": "空间名称不能为空。"
 			}
 		},
 		"error": {
-			"title": "工作区 \"{{name}}\" 加载失败",
-			"description": "无法加载此工作区。数据可能已损坏。切换到其他工作区或创建一个新工作区以继续工作。",
-			"chooseAnother": "选择其他工作区",
+			"title": "无法加载空间 \"{{name}}\"",
+			"description": "加载该空间失败，数据可能已损坏。请切换到其他空间或创建一个新空间以继续工作。",
+			"chooseAnother": "选择其他空间",
 			"dividerText": "或",
-			"createNew": "创建新工作区",
-			"createWorkspace": "创建工作区",
-			"closeVault": "关闭当前保险库"
+			"createNew": "创建新空间",
+			"createWorkspace": "创建空间",
+			"closeVault": "关闭当前加密库"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "无标题",
-			"defaultTemplate": "无标题 - {{date}}",
-			"duplicate": "副本: {{title}}"
+			"placeholder": "未命名",
+			"defaultTemplate": "未命名 - {{date}}",
+			"duplicate": "重复：{{title}}"
 		},
 		"editor": {
-			"placeholder": "捕捉一个想法、任务或思考…",
+			"placeholder": "记录灵感、任务或想法……",
 			"modes": {
-				"plaintext": "文本模式",
+				"plaintext": "纯文本模式",
 				"richtext": "富文本编辑器",
-				"split-screen": "分屏"
+				"split-screen": "分屏模式"
 			}
 		},
 		"actions": {
 			"addToFavorites": "添加到收藏",
 			"removeFromFavorites": "从收藏中移除",
-			"moveToArchive": "移动到归档",
-			"removeFromArchive": "从归档中移除"
+			"moveToArchive": "移至存档",
+			"removeFromArchive": "从存档中移除"
 		},
 		"tags": {
 			"addPlaceholder": "输入以添加标签…"
 		},
 		"versionPreview": {
-			"versionAt": "版本于 {{date}}",
+			"versionAt": "版本日期：{{date}}",
 			"backToEditing": "返回编辑"
 		},
 		"menu": {
 			"title": "笔记选项",
 			"copyReference": "复制笔记链接",
 			"remindMe": "提醒我",
-			"history": "历史",
+			"history": "历史记录",
 			"backLinks": "反向链接",
 			"readonlyMode": "只读模式",
 			"spellcheck": "拼写检查",
 			"export": "导出...",
 			"passwordProtection": "密码保护...",
 			"disableSync": "禁用同步",
-			"moveToArchive": "移动到归档",
-			"removeFromArchive": "从归档中移除",
-			"deleteToBin": "删除到回收站",
+			"moveToArchive": "移至存档",
+			"removeFromArchive": "从存档中移除",
+			"deleteToBin": "移至回收站",
 			"deletePermanently": "永久删除",
 			"restoreFromBin": "从回收站恢复"
 		},
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "保存快照",
-				"title": "将此笔记的当前状态保存为历史中的新版本"
+				"title": "将当前笔记状态保存为历史中的新版本"
 			},
 			"deleteAll": {
-				"label": "删除所有",
-				"title": "永久删除此笔记的所有已保存版本"
+				"label": "全部删除",
+				"title": "永久删除该笔记的所有保存版本"
 			},
-			"dontRecord": "不记录此笔记的历史",
-			"empty": "此笔记没有记录的版本",
+			"dontRecord": "不记录此笔记的历史记录",
+			"empty": "此笔记暂无历史版本",
 			"loading": "加载中...",
 			"confirmDeleteAll": {
 				"title": "删除所有笔记版本",
 				"description": "此操作将永久删除所有笔记版本。",
-				"confirm": "您确定吗？",
-				"action": "应用"
+				"confirm": "确定要执行此操作吗？",
+				"action": "确定"
 			},
 			"confirmApply": {
 				"title": "应用笔记版本",
-				"description": "您即将应用笔记版本 {{version}}。",
-				"warning": "此操作将用所选快照的文本替换当前笔记数据。您确定吗？",
+				"description": "您即将应用版本 {{version}}。",
+				"warning": "此操作将使用所选快照的内容替换当前笔记数据。确定吗？",
 				"apply": "应用",
 				"preview": "预览"
 			},
 			"confirmDelete": {
 				"title": "删除笔记版本",
-				"description": "您即将删除笔记版本 {{version}}。",
-				"warning": "此操作将不可逆转地删除笔记版本。您确定吗？",
+				"description": "您即将删除版本 {{version}}。",
+				"warning": "此操作将无法撤销该版本。确定吗？",
 				"delete": "删除",
 				"preview": "预览"
 			}
@@ -169,39 +169,39 @@
 			"tabs": {
 				"history": "笔记版本",
 				"backLinks": "反向链接",
-				"files": "附加文件"
+				"files": "附件"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "您想将此笔记移动到回收站吗？",
-			"confirmPermanentDeletion": "您想永久删除此笔记吗？"
+			"confirmPermanentDeletion": "确定要永久删除此笔记吗？"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "您确定要上传 {{filesCount}} 个文件（总计 {{size}}）吗？"
+		"confirmLargeUpload": "确定要上传 {{filesCount}} 个文件（共 {{size}}）吗？"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "搜索..."
 		},
-		"filterBy": "按...过滤",
-		"empty": "这里还没有笔记。<create>创建一条笔记</create>"
+		"filterBy": "筛选条件",
+		"empty": "暂无笔记。<create>创建笔记</create>"
 	},
 	"notesView": {
 		"allNotes": "所有笔记",
-		"favorites": "收藏的笔记",
-		"archived": "归档的笔记",
-		"deleted": "已删除的笔记"
+		"favorites": "收藏笔记",
+		"archived": "归档笔记",
+		"deleted": "已删除笔记"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "选择一条笔记开始阅读或编辑"
+			"placeholder": "选择笔记开始阅读或编辑"
 		}
 	},
 	"activityBar": {
-		"newNote": "新笔记",
+		"newNote": "新建笔记",
 		"files": "文件",
-		"reminders": "提醒",
+		"reminders": "提醒事项",
 		"extensions": "扩展",
 		"inbox": "收件箱",
 		"publishNotes": "发布笔记",
@@ -209,36 +209,36 @@
 		"globalSettings": "全局设置"
 	},
 	"tabBar": {
-		"closeTab": "关闭标签"
+		"closeTab": "关闭标签页"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "点击插入级别为 {{level}} 的标题。打开上下文菜单选择其他选项",
-			"level": "标题级别 {{level}}"
+			"insertTitle": "点击插入 {{level}} 级标题。打开上下文菜单以选择其他选项",
+			"level": "{{level}} 级标题"
 		},
-		"bold": "切换粗体文本样式",
-		"italic": "切换斜体文本样式",
-		"strikethrough": "切换删除线文本样式",
-		"unorderedList": "插入或切换无序列表",
-		"checkboxList": "插入或切换复选框列表",
-		"orderedList": "插入或切换有序列表",
-		"codeBlock": "插入或包裹文本为代码块",
-		"quoteBlock": "插入或包裹文本为引用块",
+		"bold": "加粗",
+		"italic": "斜体",
+		"strikethrough": "删除线",
+		"unorderedList": "无序列表",
+		"checkboxList": "待办事项列表",
+		"orderedList": "有序列表",
+		"codeBlock": "代码块",
+		"quoteBlock": "引用",
 		"insertDate": "插入日期",
-		"insertPageBreak": "插入分页符",
+		"insertPageBreak": "分页符",
 		"insertFile": "插入文件",
 		"image": {
 			"buttonTitle": "插入图片",
 			"dialogTitle": "添加图片",
-			"dialogDescription": "图片将插入在光标位置。",
+			"dialogDescription": "图片将插入到当前光标位置。",
 			"field": {
 				"url": {
-					"label": "图片网址",
+					"label": "图片链接",
 					"placeholder": "例如：https://example.com/image.png"
 				},
 				"altText": {
 					"label": "图片替代文本（可选）",
-					"placeholder": "图片的简要描述"
+					"placeholder": "简要描述图片内容"
 				}
 			},
 			"actions": {
@@ -249,10 +249,10 @@
 		"link": {
 			"buttonTitle": "插入链接",
 			"dialogTitle": "添加链接",
-			"dialogDescription": "选定的文本将成为链接，或者如果没有选定文本，链接将添加在光标位置。",
+			"dialogDescription": "所选文本将变为链接；若未选中内容，链接将插入到当前光标位置。",
 			"field": {
 				"url": {
-					"label": "链接网址",
+					"label": "链接地址",
 					"placeholder": "例如：https://example.com"
 				}
 			},
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "图片加载中"
+		"loading": "正在加载图片",
+		"brokenImage": "图片无法加载"
 	},
 	"notifications": {
 		"title": "通知"
@@ -271,11 +272,11 @@
 	"updates": {
 		"appUpdate": {
 			"title": "应用更新",
-			"reminderLater": "提醒将在一周后显示"
+			"reminderLater": "提醒将在一周后再次显示"
 		},
 		"newVersion": {
-			"title": "新版本可用",
-			"body": "新版本已准备好。更新以获取最新的改进和修复。",
+			"title": "有新版本可用",
+			"body": "新版本已就绪。请更新以体验最新的功能优化与修复。",
 			"download": "下载新版本",
 			"ignore": "忽略"
 		}
@@ -283,21 +284,21 @@
 	"contextMenu": {
 		"imageProperties": {
 			"title": "图片属性",
-			"urlLabel": "图片网址",
+			"urlLabel": "图片链接",
 			"altLabel": "图片替代文本"
 		},
 		"linkProperties": {
 			"title": "链接属性",
-			"urlLabel": "链接网址"
+			"urlLabel": "链接地址"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "点击保存更改到磁盘",
-			"saving": "正在保存更改..."
+			"title": "点击保存更改",
+			"saving": "正在保存..."
 		},
-		"changeVault": "更改保险库",
-		"history": "历史",
+		"changeVault": "切换保险库",
+		"history": "历史记录",
 		"notifications": "通知"
 	}
 }

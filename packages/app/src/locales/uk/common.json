@@ -13,6 +13,6 @@
 		"close": "Закрити"
 	},
 	"form": {
-		"suggestTemplate": "Спробуйте: <suggests>"
+		"suggestTemplate": "Спробуйте це: <suggests>"
 	}
 }

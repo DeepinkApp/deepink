@@ -53,6 +53,7 @@ export default {
 		},
 		message: {
 			error: '#b30606',
+			success: '#3ea863',
 		},
 	},
 	semanticTokens: {
@@ -60,6 +61,10 @@ export default {
 			link: {
 				base: 'accent.500',
 				hover: 'accent.700',
+			},
+
+			typography: {
+				accent: 'accent.500',
 			},
 
 			control: {

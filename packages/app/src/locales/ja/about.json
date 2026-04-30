@@ -1,0 +1,8 @@
+{
+	"version": "バージョン {{version}}",
+	"environment": "使用ライブラリ",
+	"links": {
+		"label": "リンク",
+		"reportBug": "バグを報告"
+	}
+}

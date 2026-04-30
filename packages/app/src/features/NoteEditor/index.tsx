@@ -594,6 +594,7 @@ export const Note: FC<NoteEditorProps> = memo(
 											id: NoteSidebarTabs.BACK_LINKS,
 											title: t('note.sidebar.tabs.backLinks'),
 											content() {
+												// eslint-disable-next-line i18next/no-literal-string
 												return <div>TODO: Note back links</div>;
 											},
 										},
@@ -602,6 +603,7 @@ export const Note: FC<NoteEditorProps> = memo(
 											title: t('note.sidebar.tabs.files'),
 											content() {
 												return (
+													// eslint-disable-next-line i18next/no-literal-string
 													<div>
 														TODO: Files attached to note
 													</div>

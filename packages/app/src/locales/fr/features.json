@@ -23,7 +23,7 @@
 			},
 			"messages": {
 				"unknownSubmitError": "Impossible d'enregistrer les modifications en raison d'une erreur inconnue.",
-				"format": "Le tag ne peut pas être vide, commencer ou finir par « / », ni contenir « // ».",
+				"format": "Le tag ne peut pas être vide, commencer ou finir par \"/\", ou contenir \"//\".",
 				"duplicate": "Le tag « {{name}} » existe déjà.",
 				"parentTagNotFound": "Tag parent introuvable, veuillez en sélectionner un autre."
 			}
@@ -36,7 +36,7 @@
 		"defaultName": "Carnet",
 		"creator": {
 			"title": "Créer un nouvel espace",
-			"description": "Chaque espace est un environnement autonome pour vos notes, tags et fichiers. Tout reste séparé, tout en étant protégé dans votre coffre chiffré — accessible dès que vous en avez besoin.",
+			"description": "Chaque espace est un environnement isolé pour vos notes, tags et fichiers. Tout reste séparé, tout en résidant dans votre coffre chiffré — prêt dès que vous changez d'espace.",
 			"action": {
 				"add": "Créer",
 				"cancel": "Annuler"
@@ -44,7 +44,7 @@
 			"field": {
 				"name": {
 					"label": "Nom de l'espace",
-					"placeholder": "ex. Journal santé, Idées business",
+					"placeholder": "ex. Journal de santé, Idées business",
 					"suggests": {
 						"0": "Finances",
 						"1": "Santé",
@@ -60,17 +60,17 @@
 				}
 			},
 			"error": {
-				"unknown": "Une erreur inconnue s'est produite. Veuillez réessayer.",
+				"unknown": "Une erreur inconnue est survenue. Veuillez réessayer.",
 				"format": "Le nom de l'espace ne peut pas être vide."
 			}
 		},
 		"error": {
-			"title": "L'espace « {{name}} » n'a pas pu être chargé",
-			"description": "Impossible de charger cet espace. Les données sont peut-être corrompues. Basculez vers un autre espace ou créez-en un nouveau pour continuer.",
+			"title": "Échec du chargement de l'espace « {{name}} »",
+			"description": "Impossible de charger cet espace. Les données sont peut-être corrompues. Passez à un autre espace ou créez-en un nouveau pour continuer.",
 			"chooseAnother": "Choisir un autre espace",
 			"dividerText": "ou",
 			"createNew": "Créer un nouvel espace",
-			"createWorkspace": "Créer un espace",
+			"createWorkspace": "Créer l'espace",
 			"closeVault": "Fermer le coffre actuel"
 		}
 	},
@@ -78,14 +78,14 @@
 		"title": {
 			"placeholder": "Sans titre",
 			"defaultTemplate": "Sans titre - {{date}}",
-			"duplicate": "Copie : {{title}}"
+			"duplicate": "Doublon : {{title}}"
 		},
 		"editor": {
-			"placeholder": "Notez une idée, une tâche ou une pensée…",
+			"placeholder": "Saisir une idée, une tâche ou une pensée…",
 			"modes": {
 				"plaintext": "Mode texte",
-				"richtext": "Éditeur riche",
-				"split-screen": "Écran partagé"
+				"richtext": "Éditeur enrichi",
+				"split-screen": "Écran scindé"
 			}
 		},
 		"actions": {
@@ -95,11 +95,11 @@
 			"removeFromArchive": "Retirer des archives"
 		},
 		"tags": {
-			"addPlaceholder": "Saisissez pour ajouter un tag…"
+			"addPlaceholder": "Taper pour ajouter un tag…"
 		},
 		"versionPreview": {
 			"versionAt": "Version du {{date}}",
-			"backToEditing": "Revenir à l'édition"
+			"backToEditing": "Retour à l'édition"
 		},
 		"menu": {
 			"title": "Options de la note",
@@ -108,15 +108,15 @@
 			"history": "Historique",
 			"backLinks": "Liens entrants",
 			"readonlyMode": "Mode lecture seule",
-			"spellcheck": "Correcteur orthographique",
-			"export": "Exporter…",
-			"passwordProtection": "Protection par mot de passe…",
+			"spellcheck": "Correction orthographique",
+			"export": "Exporter...",
+			"passwordProtection": "Protection par mot de passe...",
 			"disableSync": "Désactiver la synchronisation",
 			"moveToArchive": "Déplacer vers les archives",
 			"removeFromArchive": "Retirer des archives",
 			"deleteToBin": "Mettre à la corbeille",
 			"deletePermanently": "Supprimer définitivement",
-			"restoreFromBin": "Restaurer depuis la corbeille"
+			"restoreFromBin": "Restaurer de la corbeille"
 		},
 		"version": {
 			"chars": "{{count}} caractères",
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Enregistrer un instantané",
-				"title": "Enregistrer l'état actuel de cette note comme nouvelle version dans l'historique"
+				"title": "Enregistrer l'état actuel de cette note comme une nouvelle version dans l'historique"
 			},
 			"deleteAll": {
 				"label": "Tout supprimer",
 				"title": "Supprimer définitivement toutes les versions enregistrées de cette note"
 			},
 			"dontRecord": "Ne pas enregistrer l'historique pour cette note",
-			"empty": "Cette note n'a aucune version enregistrée",
-			"loading": "Chargement…",
+			"empty": "Aucune version enregistrée pour cette note",
+			"loading": "Chargement...",
 			"confirmDeleteAll": {
 				"title": "Supprimer toutes les versions",
 				"description": "Cette action supprimera définitivement toutes les versions de la note.",
-				"confirm": "Êtes-vous sûr de vouloir continuer ?",
+				"confirm": "Êtes-vous sûr ?",
 				"action": "Appliquer"
 			},
 			"confirmApply": {
-				"title": "Appliquer une version",
-				"description": "Vous êtes sur le point d'appliquer la version {{version}}.",
-				"warning": "Cette action remplacera le contenu actuel de la note par le texte de l'instantané sélectionné. Êtes-vous sûr ?",
+				"title": "Appliquer la version de la note",
+				"description": "Vous allez appliquer la version {{version}}.",
+				"warning": "Cette action remplacera les données actuelles par le texte de l'instantané sélectionné. Êtes-vous sûr ?",
 				"apply": "Appliquer",
 				"preview": "Aperçu"
 			},
 			"confirmDelete": {
-				"title": "Supprimer une version",
-				"description": "Vous êtes sur le point de supprimer la version {{version}}.",
-				"warning": "Cette action supprimera la version de manière irréversible. Êtes-vous sûr ?",
+				"title": "Supprimer la version",
+				"description": "Vous allez supprimer la version {{version}}.",
+				"warning": "Cette action est irréversible. Êtes-vous sûr ?",
 				"delete": "Supprimer",
 				"preview": "Aperçu"
 			}
@@ -182,7 +182,7 @@
 	},
 	"notesList": {
 		"search": {
-			"placeholder": "Rechercher…"
+			"placeholder": "Rechercher..."
 		},
 		"filterBy": "Filtrer par",
 		"empty": "Aucune note pour le moment. <create>Créer une note</create>"
@@ -195,7 +195,7 @@
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Sélectionnez une note pour la lire ou la modifier"
+			"placeholder": "Sélectionnez une note pour lire ou modifier"
 		}
 	},
 	"activityBar": {
@@ -205,7 +205,7 @@
 		"extensions": "Extensions",
 		"inbox": "Boîte de réception",
 		"publishNotes": "Publier des notes",
-		"lockVault": "Verrouiller le coffre",
+		"lockVault": "Verrouiller l'espace",
 		"globalSettings": "Paramètres généraux"
 	},
 	"tabBar": {
@@ -214,27 +214,27 @@
 	"editorPanel": {
 		"header": {
 			"insertTitle": "Cliquez pour insérer un titre de niveau {{level}}. Ouvrez le menu contextuel pour d'autres options",
-			"level": "Titre niveau {{level}}"
+			"level": "Niveau de titre {{level}}"
 		},
-		"bold": "Activer/désactiver le gras",
-		"italic": "Activer/désactiver l'italique",
-		"strikethrough": "Activer/désactiver le barré",
-		"unorderedList": "Insérer ou basculer en liste à puces",
-		"checkboxList": "Insérer ou basculer en liste de cases à cocher",
-		"orderedList": "Insérer ou basculer en liste numérotée",
-		"codeBlock": "Insérer ou encadrer avec un bloc de code",
-		"quoteBlock": "Insérer ou encadrer avec un bloc de citation",
+		"bold": "Mettre en gras",
+		"italic": "Mettre en italique",
+		"strikethrough": "Barrer le texte",
+		"unorderedList": "Liste à puces",
+		"checkboxList": "Liste de cases à cocher",
+		"orderedList": "Liste numérotée",
+		"codeBlock": "Insérer un bloc de code",
+		"quoteBlock": "Insérer une citation",
 		"insertDate": "Insérer la date",
 		"insertPageBreak": "Insérer un saut de page",
 		"insertFile": "Insérer un fichier",
 		"image": {
 			"buttonTitle": "Insérer une image",
 			"dialogTitle": "Ajouter une image",
-			"dialogDescription": "L'image sera insérée à la position du curseur.",
+			"dialogDescription": "L'image sera insérée à l'emplacement du curseur.",
 			"field": {
 				"url": {
 					"label": "URL de l'image",
-					"placeholder": "ex. https://example.com/image.png"
+					"placeholder": "ex: https://exemple.com/image.png"
 				},
 				"altText": {
 					"label": "Texte alternatif (optionnel)",
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Insérer un lien",
 			"dialogTitle": "Ajouter un lien",
-			"dialogDescription": "Le texte sélectionné deviendra un lien. Si rien n'est sélectionné, le lien sera inséré à la position du curseur.",
+			"dialogDescription": "Le texte sélectionné deviendra un lien, ou le lien sera ajouté à l'emplacement du curseur.",
 			"field": {
 				"url": {
 					"label": "URL du lien",
-					"placeholder": "ex. https://example.com"
+					"placeholder": "ex: https://exemple.com"
 				}
 			},
 			"actions": {
@@ -263,19 +263,20 @@
 		}
 	},
 	"image": {
-		"loading": "Chargement de l'image"
+		"loading": "Chargement de l'image",
+		"brokenImage": "Impossible de charger l'image"
 	},
 	"notifications": {
 		"title": "Notifications"
 	},
 	"updates": {
 		"appUpdate": {
-			"title": "Mise à jour de l'app",
-			"reminderLater": "Le rappel s'affichera dans une semaine"
+			"title": "Mise à jour de l'application",
+			"reminderLater": "Le rappel sera affiché dans une semaine"
 		},
 		"newVersion": {
 			"title": "Nouvelle version disponible",
-			"body": "Une nouvelle version est prête. Mettez à jour pour bénéficier des dernières améliorations et corrections.",
+			"body": "Une nouvelle version est prête. Installez-la pour profiter des dernières améliorations et corrections.",
 			"download": "Télécharger la nouvelle version",
 			"ignore": "Ignorer"
 		}
@@ -284,7 +285,7 @@
 		"imageProperties": {
 			"title": "Propriétés de l'image",
 			"urlLabel": "URL de l'image",
-			"altLabel": "Texte alternatif de l'image"
+			"altLabel": "Texte alternatif"
 		},
 		"linkProperties": {
 			"title": "Propriétés du lien",
@@ -293,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Cliquez pour enregistrer les modifications sur le disque",
-			"saving": "Enregistrement en cours…"
+			"title": "Cliquer pour enregistrer les modifications",
+			"saving": "Enregistrement en cours..."
 		},
-		"changeVault": "Changer de coffre",
+		"changeVault": "Changer d'espace",
 		"history": "Historique",
 		"notifications": "Notifications"
 	}

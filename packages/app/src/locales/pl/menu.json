@@ -1,8 +1,8 @@
 {
 	"app": {
 		"appMenu": "Aplikacja",
-		"quit": "Zakończ",
-		"edit": "Edycja",
+		"quit": "Wyjdź",
+		"edit": "Edytuj",
 		"undo": "Cofnij",
 		"redo": "Ponów",
 		"cut": "Wytnij",
@@ -10,24 +10,24 @@
 		"paste": "Wklej",
 		"selectAll": "Zaznacz wszystko",
 		"help": "Pomoc",
-		"toggleDevTools": "Narzędzia deweloperskie",
+		"toggleDevTools": "Narzędzia programistyczne",
 		"about": "O aplikacji"
 	},
 	"tray": {
 		"open": "Otwórz notatki",
-		"quit": "Zakończ"
+		"quit": "Wyjdź"
 	},
 	"note": {
-		"export": "Eksportuj…",
+		"export": "Eksportuj...",
 		"duplicate": "Duplikuj",
 		"copyMarkdownLink": "Kopiuj link Markdown",
-		"deletePermanently": "Usuń trwale",
+		"deletePermanently": "Usuń na stałe",
 		"restoreFromBin": "Przywróć z kosza",
 		"deleteToBin": "Przenieś do kosza"
 	},
 	"tag": {
-		"addNestedTag": "Utwórz podtag…",
-		"edit": "Edytuj…",
+		"addNestedTag": "Dodaj tag w hierarchii...",
+		"edit": "Edytuj...",
 		"delete": "Usuń"
 	}
 }

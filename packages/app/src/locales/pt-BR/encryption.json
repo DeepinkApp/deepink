@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Senha segura: {{length}} caracteres, {{entropy}} bits de entropia",
+			"bad": "Senha fraca: {{length}} caracteres, {{entropy}} bits de entropia"
+		}
+	}
+}

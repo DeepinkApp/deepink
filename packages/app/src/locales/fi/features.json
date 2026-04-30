@@ -3,40 +3,40 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "Luo tunniste",
+					"title": "Luo tägi",
 					"action": "Luo"
 				},
 				"edit": {
-					"title": "Muokkaa tunnistetta",
+					"title": "Muokkaa tägiä",
 					"action": "Tallenna"
 				}
 			},
 			"field": {
 				"name": {
-					"label": "Tunnisteen nimi",
+					"label": "Tägin nimi",
 					"placeholder": "esim. Ideat"
 				},
 				"parent": {
-					"label": "Ylätunniste",
+					"label": "Ylätägi",
 					"placeholder": "esim. Reseptit/Jälkiruoat"
 				}
 			},
 			"messages": {
 				"unknownSubmitError": "Muutoksia ei voitu tallentaa tuntemattoman virheen vuoksi.",
-				"format": "Tunniste ei voi olla tyhjä, alkaa tai päättyä merkillä \"/\" eikä sisältää merkkijonoa \"//\".",
-				"duplicate": "Tunniste '{{name}}' on jo olemassa.",
-				"parentTagNotFound": "Ylätunnistetta ei löytynyt. Valitse toinen tunniste."
+				"format": "Tägi ei voi olla tyhjä, se ei voi alkaa tai päättyä merkkiin \"/\", eikä se voi sisältää merkkejä \"//\".",
+				"duplicate": "Tägi '{{name}}' on jo olemassa.",
+				"parentTagNotFound": "Ylätägiä ei löytynyt, valitse toinen tägi."
 			}
 		},
 		"deletion": {
-			"confirm": "Haluatko varmasti poistaa tunnisteen \"{{name}}\" ja kaikki sen alatunnisteet?"
+			"confirm": "Haluatko varmasti poistaa tägin \"{{name}}\" ja kaikki sen alatägit?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Muistikirja",
 		"creator": {
 			"title": "Luo uusi työtila",
-			"description": "Jokainen työtila on erillinen tila muistiinpanoillesi, tunnisteillesi ja tiedostoillesi. Kaikki pysyy erillään, mutta salatun holvin sisällä — valmiina kun vaihdat.",
+			"description": "Jokainen työtila on oma kokonaisuutensa muistiinpanoille, tägeille ja tiedostoille. Kaikki pysyy erillään, mutta on silti suojatun säilytystilan sisällä — valmiina käytettäväksi.",
 			"action": {
 				"add": "Luo",
 				"cancel": "Peruuta"
@@ -44,7 +44,7 @@
 			"field": {
 				"name": {
 					"label": "Työtilan nimi",
-					"placeholder": "esim. Terveyspäiväkirja, Liikeideat",
+					"placeholder": "esim. Terveys, Liikeideat",
 					"suggests": {
 						"0": "Talous",
 						"1": "Terveys",
@@ -53,39 +53,39 @@
 						"4": "Päiväkirja",
 						"5": "Tavoitteet",
 						"6": "Ideat",
-						"7": "Lakiasiat",
-						"8": "Matkat",
+						"7": "Laki",
+						"8": "Matkustus",
 						"9": "Yksityinen"
 					}
 				}
 			},
 			"error": {
-				"unknown": "Tuntematon virhe. Yritä uudelleen.",
+				"unknown": "Tapahtui tuntematon virhe. Yritä uudelleen.",
 				"format": "Työtilan nimi ei voi olla tyhjä."
 			}
 		},
 		"error": {
 			"title": "Työtilan \"{{name}}\" lataaminen epäonnistui",
-			"description": "Työtilan lataaminen epäonnistui. Tiedot saattavat olla vaurioituneet. Vaihda toiseen työtilaan tai luo uusi jatkaaksesi.",
+			"description": "Työtilan lataaminen epäonnistui. Tiedot voivat olla vioittuneet. Vaihda toiseen työtilaan tai luo uusi jatkaaksesi.",
 			"chooseAnother": "Valitse toinen työtila",
 			"dividerText": "tai",
 			"createNew": "Luo uusi työtila",
 			"createWorkspace": "Luo työtila",
-			"closeVault": "Sulje nykyinen holvi"
+			"closeVault": "Sulje nykyinen säilytystila"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "Nimetön",
-			"defaultTemplate": "Nimetön – {{date}}",
-			"duplicate": "Kopio: {{title}}"
+			"placeholder": "Otsikoimaton",
+			"defaultTemplate": "Otsikoimaton - {{date}}",
+			"duplicate": "Kaksoiskappale: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Kirjaa idea, tehtävä tai ajatus…",
+			"placeholder": "Kirjoita idea, tehtävä tai ajatus...",
 			"modes": {
-				"plaintext": "Tekstitila",
-				"richtext": "Muotoilutila",
-				"split-screen": "Jaettu näkymä"
+				"plaintext": "Tekstimuoto",
+				"richtext": "Rikastettu muokkain",
+				"split-screen": "Jaettu näyttö"
 			}
 		},
 		"actions": {
@@ -95,20 +95,20 @@
 			"removeFromArchive": "Poista arkistosta"
 		},
 		"tags": {
-			"addPlaceholder": "Kirjoita lisätäksesi tunnisteen…"
+			"addPlaceholder": "Kirjoita lisätäksesi tägin..."
 		},
 		"versionPreview": {
-			"versionAt": "Versio {{date}}",
-			"backToEditing": "Palaa muokkaukseen"
+			"versionAt": "Versio: {{date}}",
+			"backToEditing": "Palaa muokkaamaan"
 		},
 		"menu": {
-			"title": "Muistiinpanon asetukset",
-			"copyReference": "Kopioi muistiinpanon linkki",
+			"title": "Muistiin liittyvät valinnat",
+			"copyReference": "Kopioi muistiin linkki",
 			"remindMe": "Muistuta minua",
 			"history": "Historia",
-			"backLinks": "Paluulinkit",
+			"backLinks": "Viittaukset",
 			"readonlyMode": "Vain luku -tila",
-			"spellcheck": "Oikeinkirjoituksen tarkistus",
+			"spellcheck": "Oikoluku",
 			"export": "Vie...",
 			"passwordProtection": "Salasanasuojaus...",
 			"disableSync": "Poista synkronointi käytöstä",
@@ -121,8 +121,8 @@
 		"version": {
 			"chars": "{{count}} merkkiä",
 			"apply": {
-				"title": "Ota versio käyttöön",
-				"readonlyTitle": "Versiota ei voi ottaa käyttöön vain luku -tilassa"
+				"title": "Käytä versiota",
+				"readonlyTitle": "Versiota ei voi käyttää vain luku -muodossa olevaan muistiinpanoon"
 			},
 			"open": {
 				"title": "Avaa versio"
@@ -138,38 +138,38 @@
 			},
 			"deleteAll": {
 				"label": "Poista kaikki",
-				"title": "Poista pysyvästi kaikki tämän muistiinpanon tallennetut versiot"
+				"title": "Poista pysyvästi kaikki muistiinpanon tallennetut versiot"
 			},
-			"dontRecord": "Älä tallenna tämän muistiinpanon historiaa",
+			"dontRecord": "Älä tallenna historiaa tälle muistiinpanolle",
 			"empty": "Tällä muistiinpanolla ei ole tallennettuja versioita",
 			"loading": "Ladataan...",
 			"confirmDeleteAll": {
 				"title": "Poista kaikki versiot",
-				"description": "Tämä poistaa pysyvästi kaikki muistiinpanon versiot.",
+				"description": "Tämä poistaa kaikki muistiinpanon versiot pysyvästi.",
 				"confirm": "Oletko varma?",
-				"action": "Toteuta"
+				"action": "Kyllä"
 			},
 			"confirmApply": {
-				"title": "Ota versio käyttöön",
-				"description": "Olet ottamassa käyttöön versiota {{version}}.",
-				"warning": "Tämä korvaa muistiinpanon nykyisen sisällön valitun tilannekuvan tekstillä. Oletko varma?",
-				"apply": "Toteuta",
-				"preview": "Esikatsele"
+				"title": "Käytä muistiinpanon versiota",
+				"description": "Olet käyttämässä versiota {{version}}.",
+				"warning": "Tämä korvaa nykyisen sisällön valitun tilannekuvan tekstillä. Oletko varma?",
+				"apply": "Käytä",
+				"preview": "Esikatselu"
 			},
 			"confirmDelete": {
 				"title": "Poista versio",
-				"description": "Olet poistamassa versiota {{version}}.",
+				"description": "Olet poistamassa version {{version}}.",
 				"warning": "Tämä poistaa version peruuttamattomasti. Oletko varma?",
 				"delete": "Poista",
-				"preview": "Esikatsele"
+				"preview": "Esikatselu"
 			}
 		},
 		"sidebar": {
 			"closePanel": "Sulje paneeli",
 			"tabs": {
-				"history": "Versiohistoria",
-				"backLinks": "Paluulinkit",
-				"files": "Liitetiedostot"
+				"history": "Versiot",
+				"backLinks": "Viittaukset",
+				"files": "Liitetyt tiedostot"
 			}
 		},
 		"bin": {
@@ -178,13 +178,13 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Haluatko varmasti ladata {{filesCount}} tiedostoa (yhteensä {{size}})?"
+		"confirmLargeUpload": "Haluatko varmasti ladata {{filesCount}} tiedostoa (yhteensä {{size}}?)"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Hae..."
 		},
-		"filterBy": "Suodata",
+		"filterBy": "Suodata:",
 		"empty": "Täällä ei ole vielä muistiinpanoja. <create>Luo muistiinpano</create>"
 	},
 	"notesView": {
@@ -195,7 +195,7 @@
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Valitse muistiinpano lukeaksesi tai muokataksesi"
+			"placeholder": "Valitse muistiinpano lukeaksesi tai muokataksesi sitä"
 		}
 	},
 	"activityBar": {
@@ -204,36 +204,36 @@
 		"reminders": "Muistutukset",
 		"extensions": "Laajennukset",
 		"inbox": "Saapuneet",
-		"publishNotes": "Julkaise muistiinpanoja",
-		"lockVault": "Lukitse holvi",
-		"globalSettings": "Yleiset asetukset"
+		"publishNotes": "Julkaistut muistiinpanot",
+		"lockVault": "Lukitse säiliö",
+		"globalSettings": "Asetukset"
 	},
 	"tabBar": {
 		"closeTab": "Sulje välilehti"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Lisää otsikkotaso {{level}} napsauttamalla. Avaa kontekstivalikko valitaksesi toisen vaihtoehdon",
-			"level": "Otsikkotaso {{level}}"
+			"insertTitle": "Lisää otsikko tasolla {{level}}. Avaa kontekstivalikko valitaksesi toisen tason.",
+			"level": "Otsikon taso {{level}}"
 		},
-		"bold": "Lihavointi päälle/pois",
-		"italic": "Kursivointi päälle/pois",
-		"strikethrough": "Yliviivaus päälle/pois",
-		"unorderedList": "Lisää tai vaihda luettelomerkit",
-		"checkboxList": "Lisää tai vaihda valintaruutuluettelo",
-		"orderedList": "Lisää tai vaihda numeroitu luettelo",
-		"codeBlock": "Lisää tai kääri koodilohkoon",
-		"quoteBlock": "Lisää tai kääri lainauslohkoon",
+		"bold": "Lihavoi teksti",
+		"italic": "Kursivoi teksti",
+		"strikethrough": "Ylivedä teksti",
+		"unorderedList": "Lisää luettelo (bullet points)",
+		"checkboxList": "Lisää tehtävälista",
+		"orderedList": "Lisää numeroitu lista",
+		"codeBlock": "Lisää koodilohko",
+		"quoteBlock": "Lisää lainaus",
 		"insertDate": "Lisää päivämäärä",
 		"insertPageBreak": "Lisää sivunvaihto",
 		"insertFile": "Lisää tiedosto",
 		"image": {
 			"buttonTitle": "Lisää kuva",
 			"dialogTitle": "Lisää kuva",
-			"dialogDescription": "Kuva lisätään kohdistimen kohtaan.",
+			"dialogDescription": "Kuva lisätään kursoriin.",
 			"field": {
 				"url": {
-					"label": "Kuvan URL",
+					"label": "Kuvan URL-osoite",
 					"placeholder": "esim. https://example.com/image.png"
 				},
 				"altText": {
@@ -249,10 +249,10 @@
 		"link": {
 			"buttonTitle": "Lisää linkki",
 			"dialogTitle": "Lisää linkki",
-			"dialogDescription": "Valittu teksti muuttuu linkiksi. Jos tekstiä ei ole valittu, linkki lisätään kohdistimen kohtaan.",
+			"dialogDescription": "Valittu teksti muuttuu linkiksi tai linkki lisätään kursoriin.",
 			"field": {
 				"url": {
-					"label": "Linkin URL",
+					"label": "Linkin URL-osoite",
 					"placeholder": "esim. https://example.com"
 				}
 			},
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Kuvaa ladataan"
+		"loading": "Kuvaa ladataan",
+		"brokenImage": "Kuvaa ei voida ladata"
 	},
 	"notifications": {
 		"title": "Ilmoitukset"
@@ -277,26 +278,26 @@
 			"title": "Uusi versio saatavilla",
 			"body": "Uusi versio on valmis. Päivitä saadaksesi uusimmat parannukset ja korjaukset.",
 			"download": "Lataa uusi versio",
-			"ignore": "Ohita"
+			"ignore": "Ei nyt"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
-			"title": "Kuvan ominaisuudet",
-			"urlLabel": "Kuvan URL",
+			"title": "Kuvan tiedot",
+			"urlLabel": "Kuvan URL-osoite",
 			"altLabel": "Kuvan vaihtoehtoinen teksti"
 		},
 		"linkProperties": {
-			"title": "Linkin ominaisuudet",
-			"urlLabel": "Linkin URL"
+			"title": "Linkin tiedot",
+			"urlLabel": "Linkin URL-osoite"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Tallenna muutokset levylle napsauttamalla",
-			"saving": "Tallennetaan muutoksia..."
+			"title": "Tallenna muutokset",
+			"saving": "Tallennetaan..."
 		},
-		"changeVault": "Vaihda holvia",
+		"changeVault": "Vaihda säiliö",
 		"history": "Historia",
 		"notifications": "Ilmoitukset"
 	}

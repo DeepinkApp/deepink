@@ -1,0 +1,8 @@
+{
+	"version": "Versiunea {{version}}",
+	"environment": "Biblioteci utilizate",
+	"links": {
+		"label": "Linkuri",
+		"reportBug": "Raportează o eroare"
+	}
+}

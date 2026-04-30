@@ -23,6 +23,24 @@ test('Returns 32 bytes for a 256-bit request', async () => {
 	expect(key).toHaveLength(32);
 });
 
+test('Outputs is equal for equal inputs', async () => {
+	const utils = new CryptographyUtils();
+
+	const keys: string[] = [];
+	for (let i = 0; i < 10; i++) {
+		const key = await utils.deriveBits(
+			new TextEncoder().encode('password'),
+			new Uint8Array(16),
+			256,
+			{ memory: 1024 ** 2 * 32, ops: 2 },
+		);
+
+		keys.push(Buffer.from(key).toString('hex'));
+	}
+
+	expect(keys).toStrictEqual(Array(10).fill(keys[0]));
+});
+
 test('Error must be thrown when requested bits length is not equal to a full byte', async () => {
 	const utils = new CryptographyUtils();
 	await expect(

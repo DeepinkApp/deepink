@@ -1,0 +1,8 @@
+{
+	"version": "Versi {{version}}",
+	"environment": "Library yang digunakan",
+	"links": {
+		"label": "Tautan",
+		"reportBug": "Laporkan Bug"
+	}
+}

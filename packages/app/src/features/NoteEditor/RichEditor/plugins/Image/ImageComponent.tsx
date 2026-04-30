@@ -121,7 +121,8 @@ export const LazyImage = React.forwardRef<
 );
 
 function BrokenImage(): JSX.Element {
-	return <div>Broken image</div>;
+	const { t } = useTranslation(LOCALE_NAMESPACE.features);
+	return <div>{t('image.brokenImage')}</div>;
 }
 
 function ImageLoadingFallback(): JSX.Element {

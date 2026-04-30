@@ -6,13 +6,13 @@
 		"save": "Lagre",
 		"saveChanges": "Lagre endringer",
 		"delete": "Slett",
-		"reset": "Tilbakestill",
+		"reset": "Nullstill",
 		"update": "Oppdater",
 		"add": "Legg til",
 		"create": "Opprett",
 		"close": "Lukk"
 	},
 	"form": {
-		"suggestTemplate": "Prøv dette: <suggests>"
+		"suggestTemplate": "Prøv denne: <suggests>"
 	}
 }

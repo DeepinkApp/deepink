@@ -17,15 +17,15 @@
 					"placeholder": "npr. Ideje"
 				},
 				"parent": {
-					"label": "Nadrejena oznaka",
+					"label": "Nadrečna oznaka",
 					"placeholder": "npr. Recepti/Sladice"
 				}
 			},
 			"messages": {
 				"unknownSubmitError": "Sprememb ni mogoče shraniti zaradi neznane napake.",
-				"format": "Oznaka ne sme biti prazna, se začeti ali končati z \"/\" ali vsebovati \"//\".",
+				"format": "Oznaka ne sme biti prazna, ne sme se začeti ali končati z \"/\" in ne sme vsebovati \"//\".",
 				"duplicate": "Oznaka '{{name}}' že obstaja.",
-				"parentTagNotFound": "Nadrejena oznaka ni bila najdena. Izberite drugo oznako."
+				"parentTagNotFound": "Nadrečna oznaka ni bila najdeni, izberite drugo oznako."
 			}
 		},
 		"deletion": {
@@ -33,10 +33,10 @@
 		}
 	},
 	"workspace": {
-		"defaultName": "Beležnica",
+		"defaultName": "Zvezek",
 		"creator": {
 			"title": "Ustvari nov prostor",
-			"description": "Vsak prostor je ločeno okolje za vaše zapiske, oznake in datoteke. Vse ostane ločeno, a varno shranjeno v vašem šifriranem trezorju — pripravljeno, ko preklopite.",
+			"description": "Vsak prostor je ločen prostor za vaše beležke, oznake in datoteke. Vse ostane ločeno, vendar v vašem šifriranem trezorgu — pripravljeno, ko preklopite med prostori.",
 			"action": {
 				"add": "Ustvari",
 				"cancel": "Prekliči"
@@ -44,14 +44,14 @@
 			"field": {
 				"name": {
 					"label": "Ime prostora",
-					"placeholder": "npr. Zdravstveni dnevnik, Poslovne ideje",
+					"placeholder": "npr. Zdravje, Poslovne ideje",
 					"suggests": {
 						"0": "Finance",
 						"1": "Zdravje",
 						"2": "Kariera",
 						"3": "Družina",
 						"4": "Dnevnik",
-						"5": "Cilji",
+						"5": "Zasledovanja",
 						"6": "Ideje",
 						"7": "Pravno",
 						"8": "Potovanja",
@@ -65,179 +65,179 @@
 			}
 		},
 		"error": {
-			"title": "Prostora \"{{name}}\" ni bilo mogoče naložiti",
-			"description": "Tega prostora ni bilo mogoče naložiti. Podatki so morda poškodovani. Preklopite na drug prostor ali ustvarite novega.",
+			"title": "Prostor \"{{name}}\" se ni mogel naložiti",
+			"description": "Ta prostor se ni mogel naložiti. Podatki so lahko poškodovani. Za nadaljevanje delo izberite drug prostor ali ustvarite nov.",
 			"chooseAnother": "Izberite drug prostor",
 			"dividerText": "ali",
-			"createNew": "Ustvarite nov prostor",
+			"createNew": "Ustvari nov prostor",
 			"createWorkspace": "Ustvari prostor",
 			"closeVault": "Zapri trenutni trezor"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "Brez naslova",
-			"defaultTemplate": "Brez naslova – {{date}}",
-			"duplicate": "Kopija: {{title}}"
+			"placeholder": "Breznaslovno",
+			"defaultTemplate": "Breznaslovno - {{date}}",
+			"duplicate": "Dvojnik: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Zapišite idejo, opravilo ali misel …",
+			"placeholder": "Zapiši idejo, nalogo ali misel...",
 			"modes": {
 				"plaintext": "Besedilni način",
-				"richtext": "Obogateni urejevalnik",
+				"richtext": "Napreden urejevalnik",
 				"split-screen": "Razdeljen zaslon"
 			}
 		},
 		"actions": {
 			"addToFavorites": "Dodaj med priljubljene",
 			"removeFromFavorites": "Odstrani iz priljubljenih",
-			"moveToArchive": "Premakni v arhiv",
-			"removeFromArchive": "Odstrani iz arhiva"
+			"moveToArchive": "Premjesti v arhiv",
+			"removeFromArchive": "Odstrani iz arhivov"
 		},
 		"tags": {
-			"addPlaceholder": "Vpišite za dodajanje oznake …"
+			"addPlaceholder": "Vpiši za dodajanje oznake..."
 		},
 		"versionPreview": {
-			"versionAt": "Različica z dne {{date}}",
-			"backToEditing": "Nazaj na urejanje"
+			"versionAt": "Verzija iz {{date}}",
+			"backToEditing": "Nazaj k urejanju"
 		},
 		"menu": {
-			"title": "Možnosti zapiska",
-			"copyReference": "Kopiraj povezavo do zapiska",
+			"title": "Možnosti beležke",
+			"copyReference": "Kopiraj povezavo do beležke",
 			"remindMe": "Opomni me",
 			"history": "Zgodovina",
 			"backLinks": "Povratne povezave",
-			"readonlyMode": "Način samo za branje",
-			"spellcheck": "Preverjanje črkovanja",
-			"export": "Izvozi …",
-			"passwordProtection": "Zaščita z geslom …",
-			"disableSync": "Onemogoči sinhronizacijo",
-			"moveToArchive": "Premakni v arhiv",
-			"removeFromArchive": "Odstrani iz arhiva",
-			"deleteToBin": "Izbriši v koš",
+			"readonlyMode": "Načino samo za branje",
+			"spellcheck": "Preverjanje pravopisa",
+			"export": "Izvoz...",
+			"passwordProtection": "Zaščita s geslom...",
+			"disableSync": "Izklopi sinhronizacijo",
+			"moveToArchive": "Premjesti v arhiv",
+			"removeFromArchive": "Odstrani iz arhivov",
+			"deleteToBin": "Premesti v košarico",
 			"deletePermanently": "Trajno izbriši",
-			"restoreFromBin": "Obnovi iz koša"
+			"restoreFromBin": "Obnovi iz košarice"
 		},
 		"version": {
 			"chars": "{{count}} znakov",
 			"apply": {
-				"title": "Uporabi različico",
-				"readonlyTitle": "Različice ni mogoče uporabiti za zapisek samo za branje"
+				"title": "Uporabi verzijo",
+				"readonlyTitle": "Verzije ni mogoče uporabiti za beležke v načinu samo za branje"
 			},
 			"open": {
-				"title": "Odpri različico"
+				"title": "Odpri verzijo"
 			},
 			"delete": {
-				"title": "Izbriši različico"
+				"title": "Izbriši verzijo"
 			}
 		},
 		"versions": {
 			"saveVersion": {
 				"label": "Shrani posnetek",
-				"title": "Shrani trenutno stanje zapiska kot novo različico v zgodovini"
+				"title": "Trenutno stanje beležke shrani kot novo verzijo v zgodovini"
 			},
 			"deleteAll": {
 				"label": "Izbriši vse",
-				"title": "Trajno izbriši vse shranjene različice tega zapiska"
+				"title": "Trajno izbriši vse shranjene verzije te beležke"
 			},
-			"dontRecord": "Ne beleži zgodovine za ta zapisek",
-			"empty": "Ta zapisek nima shranjenih različic",
-			"loading": "Nalaganje …",
+			"dontRecord": "Ne beleži zgodovine za ta beležek",
+			"empty": "Ta beležka nima shranjenih verzij",
+			"loading": "Nalaganje...",
 			"confirmDeleteAll": {
-				"title": "Izbriši vse različice zapiska",
-				"description": "To dejanje bo trajno izbrisalo vse različice zapiska.",
+				"title": "Izbriši vse verzije beležke",
+				"description": "Ta ukrep bo trajno izbrisal vse shranjene verzije beležke.",
 				"confirm": "Ali ste prepričani?",
-				"action": "Uporabi"
+				"action": "Potrdi"
 			},
 			"confirmApply": {
-				"title": "Uporabi različico zapiska",
-				"description": "Uporabili boste različico zapiska {{version}}.",
-				"warning": "To dejanje bo nadomestilo trenutno vsebino zapiska z besedilom izbranega posnetka. Ali ste prepričani?",
+				"title": "Uporabi verzijo beležke",
+				"description": "Uporabiti želite verzijo {{version}}.",
+				"warning": "Ta ukrep bo zamenjal trenutne podatke beležke s teksom iz izbranega posnetka. Ali ste prepričani?",
 				"apply": "Uporabi",
 				"preview": "Predogled"
 			},
 			"confirmDelete": {
-				"title": "Izbriši različico zapiska",
-				"description": "Izbrisali boste različico zapiska {{version}}.",
-				"warning": "To dejanje bo nepovratno izbrisalo različico zapiska. Ali ste prepričani?",
+				"title": "Izbriši verzijo beležke",
+				"description": "Izbrisati želite verzijo beležke {{version}}.",
+				"warning": "Ta ukrep bo verzijo beležke izbrisal neprevrljivo. Ali ste prepričani?",
 				"delete": "Izbriši",
 				"preview": "Predogled"
 			}
 		},
 		"sidebar": {
-			"closePanel": "Zapri ploščo",
+			"closePanel": "Zapri panel",
 			"tabs": {
-				"history": "Različice zapiska",
+				"history": "Verzije beležke",
 				"backLinks": "Povratne povezave",
 				"files": "Priložene datoteke"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Ali želite premakniti ta zapisek v koš?",
-			"confirmPermanentDeletion": "Ali želite trajno izbrisati ta zapisek?"
+			"confirmPermanentDeletion": "Ali želite to beležko trajno izbrisati?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Ali res želite naložiti {{filesCount}} datotek (skupaj {{size}})?"
+		"confirmLargeUpload": "Ali ste prepričani, da želite naložiti {{filesCount}} datotek (skupaj {{size}})?"
 	},
 	"notesList": {
 		"search": {
-			"placeholder": "Iskanje …"
+			"placeholder": "Iskanje..."
 		},
 		"filterBy": "Filtriraj po",
-		"empty": "Tu še ni zapiskov. <create>Ustvarite zapisek</create>"
+		"empty": "Sklep je še prazen. <create>Ustvari zapis</create>"
 	},
 	"notesView": {
-		"allNotes": "Vsi zapiski",
-		"favorites": "Priljubljeni zapiski",
-		"archived": "Arhivirani zapiski",
-		"deleted": "Izbrisani zapiski"
+		"allNotes": "Vsi zapisi",
+		"favorites": "Priljubljeni zapisi",
+		"archived": "Arhivirani zapisi",
+		"deleted": "Izbrisani zapisi"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Izberite zapisek za branje ali urejanje"
+			"placeholder": "Izberite zapis za branje ali urejanje"
 		}
 	},
 	"activityBar": {
-		"newNote": "Nov zapisek",
+		"newNote": "Nov zapis",
 		"files": "Datoteke",
 		"reminders": "Opomniki",
-		"extensions": "Razširitve",
-		"inbox": "Prejeto",
-		"publishNotes": "Objavi zapiske",
-		"lockVault": "Zakleni trezor",
-		"globalSettings": "Globalne nastavitve"
+		"extensions": "Dodatki",
+		"inbox": "Prejemnica",
+		"publishNotes": "Objavi zapise",
+		"lockVault": "Zakleni prostor",
+		"globalSettings": "Splošne nastavitve"
 	},
 	"tabBar": {
-		"closeTab": "Zapri zavihek"
+		"closeTab": "Zapri zavih"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Kliknite za vstavljanje naslova ravni {{level}}. Odprite kontekstni meni za druge možnosti",
-			"level": "Raven naslova {{level}}"
+			"insertTitle": "Kliknite za vstavljanje naslova stopnje {{level}}. S desnim klikom izberite drugo možnost",
+			"level": "Naslov stopnje {{level}}"
 		},
-		"bold": "Preklopi krepko oblikovanje",
-		"italic": "Preklopi ležeče oblikovanje",
-		"strikethrough": "Preklopi prečrtano oblikovanje",
-		"unorderedList": "Vstavi ali preklopi neurejen seznam",
-		"checkboxList": "Vstavi ali preklopi seznam s potrditvenimi polji",
-		"orderedList": "Vstavi ali preklopi urejen seznam",
-		"codeBlock": "Vstavi ali obdaj besedilo z blokom kode",
-		"quoteBlock": "Vstavi ali obdaj besedilo z blokom citata",
+		"bold": "Debelo besedilo",
+		"italic": "Č Italics besedilo",
+		"strikethrough": "Prečrtano besedilo",
+		"unorderedList": "Nedoločena seznam",
+		"checkboxList": "Seznam s polji za potrditev",
+		"orderedList": "Določena seznam",
+		"codeBlock": "Vstavi blok kode",
+		"quoteBlock": "Vstavi citat",
 		"insertDate": "Vstavi datum",
 		"insertPageBreak": "Vstavi prelom strani",
 		"insertFile": "Vstavi datoteko",
 		"image": {
 			"buttonTitle": "Vstavi sliko",
 			"dialogTitle": "Dodaj sliko",
-			"dialogDescription": "Slika bo vstavljena na mesto kazalca.",
+			"dialogDescription": "Slika bo vstavljena na položaj utripnika.",
 			"field": {
 				"url": {
 					"label": "URL slike",
-					"placeholder": "npr. https://example.com/image.png"
+					"placeholder": "npr. https://primer.com/slika.png"
 				},
 				"altText": {
-					"label": "Nadomestno besedilo slike (neobvezno)",
+					"label": "Opis slike (neobvezno)",
 					"placeholder": "Kratek opis slike"
 				}
 			},
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Vstavi povezavo",
 			"dialogTitle": "Dodaj povezavo",
-			"dialogDescription": "Izbrano besedilo postane povezava. Če ni izbire, bo povezava dodana na mesto kazalca.",
+			"dialogDescription": "Izbrani tekst bo postal povezava, sicer bo povezava dodana na položaj utripnika.",
 			"field": {
 				"url": {
 					"label": "URL povezave",
-					"placeholder": "npr. https://example.com"
+					"placeholder": "npr. https://primer.com"
 				}
 			},
 			"actions": {
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Nalaganje slike"
+		"loading": "Nalaganje slike",
+		"brokenImage": "Slike ni mogoče nalagati"
 	},
 	"notifications": {
 		"title": "Obvestila"
@@ -271,20 +272,20 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Posodobitev aplikacije",
-			"reminderLater": "Opomnik bo prikazan čez en teden"
+			"reminderLater": "Opominček bo prikazan čez teden"
 		},
 		"newVersion": {
 			"title": "Na voljo je nova različica",
-			"body": "Nova različica je pripravljena. Posodobite za najnovejše izboljšave in popravke.",
+			"body": "Nova različica je pripravljena. Posodobite aplikacijo za najnovejše izboljšave in popravke.",
 			"download": "Prenesi novo različico",
-			"ignore": "Prezri"
+			"ignore": "Ignoriraj"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
 			"title": "Lastnosti slike",
 			"urlLabel": "URL slike",
-			"altLabel": "Nadomestno besedilo slike"
+			"altLabel": "Opis slike"
 		},
 		"linkProperties": {
 			"title": "Lastnosti povezave",
@@ -293,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Kliknite za shranjevanje sprememb na disk",
-			"saving": "Shranjevanje sprememb …"
+			"title": "Kliknite za shranjevanje sprememb",
+			"saving": "Shranjanje..."
 		},
-		"changeVault": "Zamenjaj trezor",
+		"changeVault": "Spremeni prostor",
 		"history": "Zgodovina",
 		"notifications": "Obvestila"
 	}

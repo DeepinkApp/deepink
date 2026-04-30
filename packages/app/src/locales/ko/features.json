@@ -3,11 +3,11 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "태그 만들기",
-					"action": "만들기"
+					"title": "태그 생성",
+					"action": "생성"
 				},
 				"edit": {
-					"title": "태그 편집",
+					"title": "태그 수정",
 					"action": "저장"
 				}
 			},
@@ -22,29 +22,29 @@
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "알 수 없는 오류로 변경 사항을 저장할 수 없습니다.",
-				"format": "태그는 비어 있거나, \"/\"로 시작하거나 끝나거나, \"//\"를 포함할 수 없습니다.",
+				"unknownSubmitError": "알 수 없는 오류로 인해 변경 사항을 저장할 수 없습니다.",
+				"format": "태그는 비어 있거나 \"/\"로 시작 또는 종료할 수 없으며, \"//\"를 포함할 수 없습니다.",
 				"duplicate": "'{{name}}' 태그가 이미 존재합니다.",
 				"parentTagNotFound": "상위 태그를 찾을 수 없습니다. 다른 태그를 선택해 주세요."
 			}
 		},
 		"deletion": {
-			"confirm": "\"{{name}}\" 태그와 모든 하위 태그를 삭제하시겠습니까?"
+			"confirm": "태그 \"{{name}}\"와 모든 하위 태그를 삭제하시겠습니까?"
 		}
 	},
 	"workspace": {
 		"defaultName": "노트북",
 		"creator": {
-			"title": "새 워크스페이스 만들기",
-			"description": "각 워크스페이스는 노트, 태그, 파일을 위한 독립된 공간입니다. 모든 데이터는 분리되어 관리되며, 암호화된 보관함 안에 안전하게 저장됩니다.",
+			"title": "새 워크스페이스 생성",
+			"description": "워크스페이스는 노트, 태그, 파일을 관리하는 독립적인 공간입니다. 모든 데이터는 암호화된 볼트 안에 안전하게 분리되어 보관되며, 언제든 바로 전환하여 사용할 수 있습니다.",
 			"action": {
-				"add": "만들기",
+				"add": "생성",
 				"cancel": "취소"
 			},
 			"field": {
 				"name": {
 					"label": "워크스페이스 이름",
-					"placeholder": "예: 건강 일지, 비즈니스 아이디어",
+					"placeholder": "예: 건강 일기, 사업 아이디어",
 					"suggests": {
 						"0": "재정",
 						"1": "건강",
@@ -61,30 +61,30 @@
 			},
 			"error": {
 				"unknown": "알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.",
-				"format": "워크스페이스 이름은 비어 있을 수 없습니다."
+				"format": "워크스페이스 이름을 입력해야 합니다."
 			}
 		},
 		"error": {
-			"title": "워크스페이스 \"{{name}}\"을(를) 불러오지 못했습니다",
-			"description": "이 워크스페이스를 불러오지 못했습니다. 데이터가 손상되었을 수 있습니다. 다른 워크스페이스로 전환하거나 새로 만들어 주세요.",
+			"title": "워크스페이스 \"{{name}}\"를 불러오지 못했습니다",
+			"description": "워크스페이스를 불러오는 데 실패했습니다. 데이터가 손상되었을 수 있습니다. 다른 워크스페이스로 전환하거나 새 워크스페이스를 생성해 주세요.",
 			"chooseAnother": "다른 워크스페이스 선택",
 			"dividerText": "또는",
-			"createNew": "새 워크스페이스 만들기",
-			"createWorkspace": "워크스페이스 만들기",
-			"closeVault": "현재 보관함 닫기"
+			"createNew": "새 워크스페이스 생성",
+			"createWorkspace": "워크스페이스 생성",
+			"closeVault": "현재 볼트 닫기"
 		}
 	},
 	"note": {
 		"title": {
 			"placeholder": "제목 없음",
 			"defaultTemplate": "제목 없음 - {{date}}",
-			"duplicate": "사본: {{title}}"
+			"duplicate": "중복: {{title}}"
 		},
 		"editor": {
-			"placeholder": "아이디어, 할 일, 생각을 기록하세요…",
+			"placeholder": "아이디어, 할 일, 생각을 기록하세요...",
 			"modes": {
 				"plaintext": "텍스트 모드",
-				"richtext": "리치 편집기",
+				"richtext": "리치 텍스트",
 				"split-screen": "분할 화면"
 			}
 		},
@@ -92,10 +92,10 @@
 			"addToFavorites": "즐겨찾기에 추가",
 			"removeFromFavorites": "즐겨찾기에서 제거",
 			"moveToArchive": "보관함으로 이동",
-			"removeFromArchive": "보관함에서 꺼내기"
+			"removeFromArchive": "보관함에서 제거"
 		},
 		"tags": {
-			"addPlaceholder": "태그를 입력하세요…"
+			"addPlaceholder": "태그를 입력하세요..."
 		},
 		"versionPreview": {
 			"versionAt": "{{date}} 버전",
@@ -106,17 +106,17 @@
 			"copyReference": "노트 링크 복사",
 			"remindMe": "리마인더 설정",
 			"history": "기록",
-			"backLinks": "백링크",
+			"backLinks": "연결된 문서",
 			"readonlyMode": "읽기 전용 모드",
 			"spellcheck": "맞춤법 검사",
 			"export": "내보내기...",
 			"passwordProtection": "비밀번호 보호...",
 			"disableSync": "동기화 비활성화",
 			"moveToArchive": "보관함으로 이동",
-			"removeFromArchive": "보관함에서 꺼내기",
-			"deleteToBin": "휴지통으로 삭제",
+			"removeFromArchive": "보관함에서 제거",
+			"deleteToBin": "휴지통으로 이동",
 			"deletePermanently": "영구 삭제",
-			"restoreFromBin": "휴지통에서 복원"
+			"restoreFromBin": "휴지통에서 복구"
 		},
 		"version": {
 			"chars": "{{count}}자",
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "스냅샷 저장",
-				"title": "현재 노트 상태를 새 버전으로 기록에 저장합니다"
+				"title": "현재 노트 상태를 새로운 버전으로 기록합니다"
 			},
 			"deleteAll": {
 				"label": "모두 삭제",
-				"title": "이 노트의 저장된 버전을 모두 영구 삭제합니다"
+				"title": "저장된 모든 버전을 영구적으로 삭제합니다"
 			},
 			"dontRecord": "이 노트의 기록을 남기지 않음",
 			"empty": "기록된 버전이 없습니다",
 			"loading": "불러오는 중...",
 			"confirmDeleteAll": {
 				"title": "모든 노트 버전 삭제",
-				"description": "이 작업은 모든 노트 버전을 영구적으로 삭제합니다.",
-				"confirm": "정말 삭제하시겠습니까?",
+				"description": "이 작업을 수행하면 모든 노트 버전이 영구적으로 삭제됩니다.",
+				"confirm": "정말로 삭제하시겠습니까?",
 				"action": "적용"
 			},
 			"confirmApply": {
 				"title": "노트 버전 적용",
-				"description": "노트 버전 {{version}}을(를) 적용하려고 합니다.",
-				"warning": "이 작업은 현재 노트 내용을 선택한 스냅샷의 텍스트로 대체합니다. 계속하시겠습니까?",
+				"description": "{{version}} 버전을 적용하려고 합니다.",
+				"warning": "현재 노트 내용이 선택한 스냅샷의 내용으로 교체됩니다. 계속하시겠습니까?",
 				"apply": "적용",
 				"preview": "미리보기"
 			},
 			"confirmDelete": {
 				"title": "노트 버전 삭제",
-				"description": "노트 버전 {{version}}을(를) 삭제하려고 합니다.",
-				"warning": "이 작업은 노트 버전을 되돌릴 수 없이 삭제합니다. 계속하시겠습니까?",
+				"description": "{{version}} 버전을 삭제하려고 합니다.",
+				"warning": "이 버전은 다시 복구할 수 없습니다. 계속하시겠습니까?",
 				"delete": "삭제",
 				"preview": "미리보기"
 			}
@@ -168,7 +168,7 @@
 			"closePanel": "패널 닫기",
 			"tabs": {
 				"history": "노트 버전",
-				"backLinks": "백링크",
+				"backLinks": "연결된 문서",
 				"files": "첨부 파일"
 			}
 		},
@@ -178,18 +178,18 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "{{filesCount}}개 파일(총 {{size}})을 업로드하시겠습니까?"
+		"confirmLargeUpload": "{{filesCount}}개의 파일(총 {{size}})을 업로드하시겠습니까?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "검색..."
 		},
-		"filterBy": "필터",
+		"filterBy": "필터:",
 		"empty": "아직 노트가 없습니다. <create>노트 만들기</create>"
 	},
 	"notesView": {
 		"allNotes": "모든 노트",
-		"favorites": "즐겨찾기",
+		"favorites": "즐겨찾는 노트",
 		"archived": "보관된 노트",
 		"deleted": "삭제된 노트"
 	},
@@ -205,7 +205,7 @@
 		"extensions": "확장 기능",
 		"inbox": "받은 편지함",
 		"publishNotes": "노트 게시",
-		"lockVault": "보관함 잠금",
+		"lockVault": "Vault 잠금",
 		"globalSettings": "전체 설정"
 	},
 	"tabBar": {
@@ -213,17 +213,17 @@
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "클릭하여 {{level}}단계 제목을 삽입합니다. 컨텍스트 메뉴에서 다른 옵션을 선택할 수 있습니다",
-			"level": "제목 {{level}}단계"
+			"insertTitle": "클릭하여 {{level}} 단계 헤더를 삽입합니다. 다른 옵션을 선택하려면 컨텍스트 메뉴를 여세요",
+			"level": "헤더 레벨 {{level}}"
 		},
-		"bold": "굵게 전환",
-		"italic": "기울임꼴 전환",
-		"strikethrough": "취소선 전환",
-		"unorderedList": "순서 없는 목록 삽입 또는 전환",
-		"checkboxList": "체크박스 목록 삽입 또는 전환",
-		"orderedList": "순서 있는 목록 삽입 또는 전환",
-		"codeBlock": "코드 블록 삽입 또는 감싸기",
-		"quoteBlock": "인용 블록 삽입 또는 감싸기",
+		"bold": "굵게",
+		"italic": "기울임꼴",
+		"strikethrough": "취소선",
+		"unorderedList": "글머리 기호 목록",
+		"checkboxList": "체크리스트",
+		"orderedList": "번호 매기기 목록",
+		"codeBlock": "코드 블록",
+		"quoteBlock": "인용구",
 		"insertDate": "날짜 삽입",
 		"insertPageBreak": "페이지 나누기 삽입",
 		"insertFile": "파일 삽입",
@@ -237,8 +237,8 @@
 					"placeholder": "예: https://example.com/image.png"
 				},
 				"altText": {
-					"label": "이미지 대체 텍스트 (선택)",
-					"placeholder": "이미지에 대한 간단한 설명"
+					"label": "이미지 대체 텍스트 (선택 사항)",
+					"placeholder": "이미지에 대한 짧은 설명"
 				}
 			},
 			"actions": {
@@ -249,7 +249,7 @@
 		"link": {
 			"buttonTitle": "링크 삽입",
 			"dialogTitle": "링크 추가",
-			"dialogDescription": "선택한 텍스트가 링크로 변환되며, 선택 영역이 없으면 커서 위치에 링크가 추가됩니다.",
+			"dialogDescription": "텍스트를 선택하면 해당 텍스트에 링크가 적용되며, 선택하지 않으면 커서 위치에 링크가 추가됩니다.",
 			"field": {
 				"url": {
 					"label": "링크 URL",
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "이미지 로딩 중"
+		"loading": "이미지 불러오는 중",
+		"brokenImage": "이미지를 불러올 수 없습니다"
 	},
 	"notifications": {
 		"title": "알림"
@@ -271,13 +272,13 @@
 	"updates": {
 		"appUpdate": {
 			"title": "앱 업데이트",
-			"reminderLater": "일주일 후에 다시 알려드립니다"
+			"reminderLater": "일주일 후에 다시 안내해 드립니다"
 		},
 		"newVersion": {
 			"title": "새 버전 사용 가능",
-			"body": "새 버전이 준비되었습니다. 업데이트하여 최신 개선 사항과 수정 사항을 적용하세요.",
+			"body": "새 버전이 준비되었습니다. 업데이트를 통해 최신 개선 사항과 수정 사항을 확인하세요.",
 			"download": "새 버전 다운로드",
-			"ignore": "무시"
+			"ignore": "나중에"
 		}
 	},
 	"contextMenu": {
@@ -293,11 +294,11 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "클릭하여 변경 사항을 디스크에 저장",
-			"saving": "저장 중..."
+			"title": "클릭하여 변경 사항을 저장합니다",
+			"saving": "변경 사항 저장 중..."
 		},
-		"changeVault": "보관함 변경",
-		"history": "기록",
+		"changeVault": "Vault 변경",
+		"history": "히스토리",
 		"notifications": "알림"
 	}
 }

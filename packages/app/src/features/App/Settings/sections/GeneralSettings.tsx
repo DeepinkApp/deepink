@@ -35,13 +35,40 @@ type UpdateState = {
 	newVersion: AppVersionInfo | null;
 };
 
+export const LanguagePicker = () => {
+	const dispatch = useAppDispatch();
+
+	const language = useAppSelector(selectAppLanguage);
+
+	return (
+		<Select
+			size="sm"
+			width="auto"
+			value={language}
+			onChange={(evt) => {
+				dispatch(settingsApi.setLanguage(evt.target.value));
+			}}
+			textTransform="capitalize"
+		>
+			{supportedLanguages.map((code) => {
+				return (
+					<option key={code} value={code}>
+						{code in languageNames
+							? languageNames[code as keyof typeof languageNames]
+							: code}
+					</option>
+				);
+			})}
+		</Select>
+	);
+};
+
 export const GeneralSettings = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.settings);
 	const dispatch = useAppDispatch();
 
 	const vaultLockConfig = useAppSelector(selectVaultLockConfig);
 	const isCheckForUpdatesEnabled = useAppSelector(selectIsCheckForUpdatesEnabled);
-	const language = useAppSelector(selectAppLanguage);
 
 	const getAppUpdates = useGetAppUpdates();
 	const [appUpdatesState, updateAppUpdatesState] = useReducer<
@@ -137,27 +164,7 @@ export const GeneralSettings = () => {
 					title={t('general.language.title')}
 					description={t('general.language.description')}
 				>
-					<Select
-						size="sm"
-						width="auto"
-						value={language}
-						onChange={(evt) => {
-							dispatch(settingsApi.setLanguage(evt.target.value));
-						}}
-						textTransform="capitalize"
-					>
-						{supportedLanguages.map((code) => {
-							return (
-								<option key={code} value={code}>
-									{code in languageNames
-										? languageNames[
-												code as keyof typeof languageNames
-											]
-										: code}
-								</option>
-							);
-						})}
-					</Select>
+					<LanguagePicker />
 				</FeaturesOption>
 
 				<FeaturesOption

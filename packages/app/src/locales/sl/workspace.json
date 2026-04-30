@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Oznake",
-			"empty": "Ustvarite oznake za organizacijo zapiskov. Razporedite jih v hierarhijo za večjo preglednost.",
+			"empty": "Ustvarite oznake za organizacijo zapiskov. Uporabite hierarhijo za večjo prilagodljivost.",
 			"actions": {
 				"add": "Dodaj oznako"
 			}

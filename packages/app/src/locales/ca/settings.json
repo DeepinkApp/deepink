@@ -4,55 +4,55 @@
 	},
 	"tabs": {
 		"general": "General",
-		"appearance": "Aparença",
-		"hotkeys": "Dreceres",
-		"vault": "Vault",
+		"appearance": "Aspecte",
+		"hotkeys": "Atles de teclat",
+		"vault": "Contener",
 		"workspace": "Espai",
-		"importExport": "Importar i exportar",
-		"vaultSettingsGroup": "Configuració del vault"
+		"importExport": "Importació i exportació",
+		"vaultSettingsGroup": "Configuració del contener"
 	},
 	"general": {
 		"title": "Configuració general",
-		"subtitle": "Gestiona les preferències generals de l'aplicació.",
+		"subtitle": "Gestiona les teves preferències globals de l'aplicació.",
 		"version": {
 			"title": "Versió",
 			"checkForUpdates": "Comprovar actualitzacions",
-			"upToDate": "Tens la darrera versió",
-			"newVersionAvailable": "Hi ha disponible la nova versió <bold>{{version}}</bold>.",
+			"upToDate": "Estàs a la darrera versió",
+			"newVersionAvailable": "Hi ha una nova versió <bold>{{version}}</bold> disponible.",
 			"downloadLatest": "Descarregar",
-			"downloadDescription": "la darrera versió per obtenir noves funcions i millores."
+			"downloadDescription": "la darrera versió per accedir a noves funcions i millores."
 		},
 		"autoCheckUpdates": {
 			"label": "Comprovació automàtica d'actualitzacions",
-			"description": "L'aplicació comprovarà periòdicament si hi ha actualitzacions i t'avisarà si n'hi ha una de nova."
+			"description": "L'aplicació comprovarà actualitzacions periòdicament i t'avisarà si n'hi ha una nova disponible."
 		},
 		"language": {
 			"title": "Idioma",
-			"description": "Canvia l'idioma de la interfície."
+			"description": "Canvia l'idioma d'interfície."
 		},
 		"notifications": {
 			"title": "Notificacions",
-			"description": "Les notificacions del sistema només s'utilitzaran per a recordatoris. Si es desactiven, els recordatoris apareixeran només a la llista de notificacions de l'aplicació.",
+			"description": "Les notificacions del sistema s'utilitzaran només per als records. Si les desactives, els records apareixeran només a la llista de notificacions de l'aplicació.",
 			"useSystem": "Utilitzar notificacions del sistema"
 		},
 		"vaultLock": {
-			"groupTitle": "Bloqueig del vault",
+			"groupTitle": "Blocatge del contener",
 			"lockOnSystemLock": {
-				"label": "Bloquejar el vault quan es bloquegi el sistema",
-				"description": "El vault es bloquejarà quan s'activi el protector de pantalla o el dispositiu entri en repòs."
+				"label": "Blocar contener quan es bloquegi el sistema",
+				"description": "El contener es bloquejarà quan s'activi el salvapantalles o el dispositiu passi a mode de repòs."
 			},
 			"lockAfterIdle": {
-				"title": "Bloquejar el vault després d'inactivitat",
-				"description": "El vault es bloquejarà després del temps d'inactivitat seleccionat.",
+				"title": "Blocar contener per inactivitat",
+				"description": "El contener es bloquejarà després del temps d'inactivitat seleccionat.",
 				"never": "No bloquejar",
-				"minutes5": "5 minuts",
-				"minutes10": "10 minuts",
-				"minutes15": "15 minuts",
-				"minutes30": "30 minuts",
-				"hour1": "1 hora",
-				"hours2": "2 hores",
-				"hours3": "3 hores",
-				"hours5": "5 hores"
+				"minutes5": "durant 5 minuts",
+				"minutes10": "durant 10 minuts",
+				"minutes15": "durant 15 minuts",
+				"minutes30": "durant 30 minuts",
+				"hour1": "durant 1 hora",
+				"hours2": "durant 2 hores",
+				"hours3": "durant 3 hores",
+				"hours5": "durant 5 hores"
 			}
 		}
 	},
@@ -70,88 +70,88 @@
 		},
 		"zoomLevel": {
 			"title": "Nivell de zoom",
-			"description": "Ajusta el nivell de zoom per defecte per a totes les finestres.\nSi el teu sistema no escala les aplicacions automàticament, pots canviar el zoom per adaptar-lo a la proporció de píxels de la pantalla (DPR). DPR detectat: {{dpr}}.",
+			"description": "Ajusta el zoom predeterminat de totes les finestres.\nSi el teu sistema no escala les aplicacions automàticament, pots canviar el zoom per adaptar-lo a la densitat de píxels de la pantalla. La teva densitat de píxels és {{dpr}}.",
 			"apply": "Aplicar",
 			"reset": "Restablir",
 			"errors": {
-				"enterNumber": "Introdueix un número per establir el zoom",
-				"tooSmall": "El zoom no pot ser inferior a {{min}}%",
-				"tooBig": "El zoom no pot ser superior a {{max}}%"
+				"enterNumber": "Introdueix un número per configurar el zoom",
+				"tooSmall": "El zoom no pot ser inferior al {{min}}%",
+				"tooBig": "El zoom no pot ser superior al {{max}}%"
 			}
 		}
 	},
 	"editor": {
 		"groupTitle": "Editor",
 		"mode": {
-			"title": "Mode d'editor"
+			"title": "Mode de l'editor"
 		},
 		"fontFamily": {
 			"title": "Tipografia",
-			"description": "Estableix una tipografia per a tots els editors, o deixa-ho buit per utilitzar la predeterminada.",
+			"description": "Defineix una tipografia per a tots els editors, o deixa'l buit per utilitzar l'estàndard.",
 			"placeholder": "Introdueix el nom de la tipografia"
 		},
 		"fontSize": {
-			"title": "Mida de la lletra"
+			"title": "Mida de la font"
 		},
 		"lineHeight": {
-			"title": "Alçada de línia"
+			"title": "Interlineat"
 		},
 		"dateFormat": {
 			"title": "Format de data",
-			"description": "Estableix el format de data per inserir dates. Admet la sintaxi estàndard de tokens com DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "referència del format de data",
+			"description": "Defineix el format de data que s'utilitzarà en inserir dates. Suporta la sintaxi de tokens estàndard com DD/MM/AAAA HH:mm:ss.",
+			"formatReference": "referència de format de data",
 			"example": "Exemple"
 		},
 		"plainText": {
 			"groupTitle": "Editor de text pla",
-			"lineNumbers": "Mostrar números de línia",
-			"miniMap": "Activar minimapa"
+			"lineNumbers": "Mostra els números de línia",
+			"miniMap": "Activa el mini mapa"
 		}
 	},
 	"hotkeys": {
-		"blank": "Sense assignar",
+		"blank": "Cap",
 		"shortcuts": {
 			"createNote": "Crear una nota nova",
 			"closeCurrentNote": "Tancar la nota activa",
-			"restoreClosedNote": "Restaurar la nota tancada recentment",
-			"focusNextNote": "Anar a la nota oberta següent",
-			"focusPreviousNote": "Anar a la nota oberta anterior",
-			"toggleArchive": "Moure la nota activa a/de l'arxiu",
-			"toggleBookmark": "Moure la nota activa a/de preferits",
+			"restoreClosedNote": "Restablir l'última nota tancada",
+			"focusNextNote": "Anar a la següent nota oberta",
+			"focusPreviousNote": "Anar a la nota anterior oberta",
+			"toggleArchive": "Arxivador la nota activa",
+			"toggleBookmark": "Marcar/desmarcar la nota activa",
 			"deleteNote": "Eliminar la nota activa",
-			"restoreFromBin": "Restaurar la nota activa de la paperera",
-			"toggleHistory": "Mostrar o amagar l'historial de la nota activa",
+			"restoreFromBin": "Restablir la nota des de la paperera",
+			"toggleHistory": "Mostra/oculta l'historial de la nota activa",
 			"focusSearch": "Cercar notes",
-			"syncDatabase": "Sincronitzar el vault al disc",
-			"lockVault": "Bloquejar el vault",
+			"syncDatabase": "Sincronitzar contener amb el disc",
+			"lockVault": "Blocar contener",
 			"openSettings": "Obrir preferències"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Nom del vault"
+			"title": "Nom del contener"
 		},
 		"rememberPasswords": {
-			"label": "Recordar les contrasenyes dels espais",
-			"description": "Les contrasenyes dels espais es xifraran amb la clau mestra i es desaran a la base de dades, per obrir automàticament els espais xifrats sense introduir la contrasenya."
+			"label": "Recordar contrasenyes dels espais",
+			"description": "Les contrasenyes dels espais es gravaran de forma encriptada amb la clau mestra per poder obrir-los automàticament sense introduir la contrasenya."
 		},
 		"filesAndData": {
 			"groupTitle": "Fitxers i dades",
 			"imagesCompression": {
-				"title": "Compressió d'imatges",
+				"title": "Compressió de imatges",
 				"compress": "Comprimir imatges",
 				"doNotCompress": "No comprimir imatges",
 				"alwaysAsk": "Preguntar sempre"
 			},
 			"deleteOrphaned": {
-				"label": "Eliminar fitxers orfes",
-				"description": "Elimina els fitxers que ja no s'utilitzen."
+				"label": "Eliminar fitxers òrfans",
+				"description": "Eliminar fitxers que ja no s'utilitzen."
 			}
 		},
 		"encryption": {
-			"groupTitle": "Xifratge",
+			"groupTitle": "Encriptació",
 			"algorithm": {
-				"title": "Algorisme de xifratge",
+				"title": "Algorisme d'encriptació",
 				"none": "Cap"
 			},
 			"password": {
@@ -162,8 +162,8 @@
 		"synchronization": {
 			"groupTitle": "Sincronització",
 			"enable": {
-				"label": "Activar sincronització",
-				"description": "Mantén el vault sincronitzat entre dispositius. Totes les dades es xifren abans de sortir del teu dispositiu."
+				"label": "Activar la sincronització",
+				"description": "Manté el teu contener sincronitzat entre dispositius. Les dades s'encripten abans de sortir del teu dispositiu."
 			},
 			"method": {
 				"title": "Mètode de sincronització",
@@ -176,14 +176,14 @@
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Instantànies",
+			"groupTitle": "Captures",
 			"record": {
-				"label": "Registrar instantànies de les notes",
-				"description": "Quan estigui activat, es crearan instantànies del contingut de la nota quan es modifiqui. Pots controlar el registre d'instantànies per nota al panell d'historial de la nota."
+				"label": "Registrar captures de notes",
+				"description": "Quan estigui activat, es crearà una captura del contingut cada vegada que esmodifiqui una nota. Pots gestionar l'enregistrament per nota des del panell d'historial."
 			},
 			"delay": {
-				"title": "Retard per a la instantània",
-				"description": "Quant de temps esperar després d'editar una nota abans de desar una nova instantània, en segons. Intervals més curts impliquen instantànies més freqüents — i un vault més gran."
+				"title": "Retard de captura",
+				"description": "Segons que l'app ha d'esperar després d'editar una nota abans de guardar una nova captura. Intervals més breus generen captures més freqüents i una cambra més gran."
 			}
 		},
 		"trashBin": {
@@ -194,15 +194,15 @@
 			},
 			"moveToBin": {
 				"label": "Moure notes a la paperera",
-				"description": "Mou les notes a la paperera en lloc d'eliminar-les permanentment, per poder-les restaurar més tard."
+				"description": "Moure les notes a la paperera en lloc d'eliminar-les permanentment per poder restaurar-les més tard."
 			},
 			"autoPurge": {
-				"label": "Eliminar permanentment les notes antigues de la paperera",
-				"description": "Les notes mogudes a la paperera s'eliminaran permanentment després d'un temps."
+				"label": "Eliminar permanentment notes antigues de la paperera",
+				"description": "Les notes de la paperera s'eliminaran permanentment després d'un cert temps."
 			},
 			"purgeDelay": {
 				"title": "Retard d'eliminació permanent",
-				"description": "Les notes de la paperera s'eliminaran permanentment després d'aquest nombre de dies, comptats des que s'hi van moure.",
+				"description": "Les notes de la paperera s'eliminaran permanentment després d'aquest nombre de dies des que es van moure allí.",
 				"unit": "dies"
 			}
 		}
@@ -213,38 +213,38 @@
 			"update": "Actualitzar"
 		},
 		"newNoteTitle": {
-			"title": "Títol de la nota nova",
-			"description": "Estableix el títol per a les notes noves. Pots utilitzar la data amb la sintaxi {date} o {date:FORMAT} com {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "referència del format",
-			"placeholder": "p. ex., Nota {date:DD/MM/YYYY HH:mm}",
+			"title": "Títol de les noves notes",
+			"description": "Defineix el títol per a les noves notes. Pots utilitzar la data amb la sintaxi {date} o {date:FORMAT}, com {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "referència de format",
+			"placeholder": "ex. Nota {date:DD/MM/YYYY HH:mm}",
 			"example": "Exemple"
 		},
 		"tagsForNewNote": {
-			"title": "Etiquetes per a la nota nova",
-			"none": "No assignar cap etiqueta",
-			"selected": "La mateixa que l'etiqueta seleccionada"
+			"title": "Etiquetes per a la nova nota",
+			"none": "Sense etiquetes",
+			"selected": "Igual que l'etiqueta seleccionada"
 		},
 		"dangerousZone": {
-			"groupTitle": "Zona perillosa",
+			"groupTitle": "Zona de risc",
 			"delete": {
-				"label": "Eliminar l'espai i totes les dades relacionades, incloent-hi notes, etiquetes i fitxers",
+				"label": "Eliminar l'espai i totes les dades relacionades (notes, etiquetes i fitxers)",
 				"action": "Eliminar espai",
-				"cannotDeleteLast": "No es pot eliminar l'últim espai del vault.",
+				"cannotDeleteLast": "No es pot eliminar l'últim espai de la cambra.",
 				"createAnother": "Crea",
 				"createAnotherSuffix": "un altre espai primer."
 			},
-			"confirmDelete": "Estàs a punt d'eliminar l'espai \"{{name}}\". Segur que vols continuar?\n\nSi continues, totes les dades relacionades amb aquest espai s'eliminaran, incloent-hi notes, etiquetes i fitxers."
+			"confirmDelete": "Estàs a punt d'eliminar l'espai \"{{name}}\". Vols continuar?\n\nSi ho fas, es l'eliminaran totes les dades vinculades a aquest espai, incloent-hi notes, etiquetes i fitxers."
 		}
 	},
 	"importExport": {
 		"importNotes": "Importar notes",
 		"exportNotes": "Exportar notes",
 		"importFromZip": "Importar notes des d'un arxiu .zip",
-		"importFromDirectory": "Importar directori amb fitxers Markdown",
+		"importFromDirectory": "Importar directoris amb fitxers Markdown",
 		"dropzone": {
-			"title": "Arrossega fitxers Markdown o un arxiu .zip per importar",
-			"description": "Arrossega fitxers aquí, o fes clic per seleccionar-los"
+			"title": "Arrossega fitxers Markdown o arxius .zip per importar",
+			"description": "Arrossega fitxers aquí o fes clic per seleccionar-los"
 		},
-		"progress": "La importació de notes està en curs. Etapa: {{stage}} {{processed}}/{{total}}"
+		"progress": "Importació de notes en curs. Etapa: {{stage}} {{processed}}/{{total}}"
 	}
 }

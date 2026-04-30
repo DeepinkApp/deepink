@@ -1,12 +1,12 @@
 {
 	"actions": {
-		"cancel": "Kumoa",
+		"cancel": "Peruuta",
 		"confirm": "Vahvista",
 		"apply": "Käytä",
 		"save": "Tallenna",
 		"saveChanges": "Tallenna muutokset",
 		"delete": "Poista",
-		"reset": "Palauta",
+		"reset": "Nollaa",
 		"update": "Päivitä",
 		"add": "Lisää",
 		"create": "Luo",

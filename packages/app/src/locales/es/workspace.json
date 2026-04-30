@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Etiquetas",
-			"empty": "Crea etiquetas para organizar tus notas. Anida unas dentro de otras para formar jerarquías.",
+			"empty": "Crea etiquetas para organizar tus notas. Utiliza jerarquías para mayor flexibilidad.",
 			"actions": {
 				"add": "Añadir etiqueta"
 			}

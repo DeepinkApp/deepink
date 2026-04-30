@@ -6,109 +6,128 @@
 		}
 	},
 	"creator": {
-		"title": "Crea vault",
+		"title": "Crea Vault",
 		"field": {
 			"name": {
 				"label": "Nome del vault",
 				"placeholder": "es. Il mio vault, Condiviso con Alex",
-				"random": "Genera nome casuale",
+				"random": "Genera un nome casuale",
 				"suggests": {
 					"0": "Marginalia",
 					"1": "Vellum",
-					"2": "Risguardo",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
 					"5": "Alcova",
 					"6": "Penombra",
-					"7": "Corrispondenza al chiaro di luna",
-					"8": "Cartografia serale",
-					"9": "Lanterna e inchiostro",
+					"7": "Corrispondenza Lunare",
+					"8": "Cartografia Serale",
+					"9": "Lanterna e Inchiostro",
 					"10": "Archivio a lume di candela",
-					"11": "Manoscritti d'edera",
+					"11": "Manoscritti di edera",
 					"12": "Lettere di cedro",
-					"13": "Scriptorium di palissandro",
-					"14": "Il codice slegato",
-					"15": "Marginalia e sussurri",
-					"16": "Confessioni di risguardo",
+					"13": "SCRIPTORIUM in palissandro",
+					"14": "Il Codice Libero",
+					"15": "Marginalia e Sussurri",
+					"16": "Confessioni di carta",
 					"17": "Il silenzio annotato",
-					"18": "Cartografia d'ombra",
-					"19": "La stanza ricordata",
-					"20": "Le lettere non firmate",
+					"18": "Cartografia delle ombre",
+					"19": "La stanza dei ricordi",
+					"20": "Lettere senza firma",
 					"21": "Coordinate sussurrate",
-					"22": "L'almanacco inedito",
-					"23": "Lettere a cera persa",
+					"22": "L'Almanacco inespresso",
+					"23": "Lettere in cera persa",
 					"24": "La biblioteca invisibile",
 					"25": "Margini inesplorati",
-					"26": "La quieta cospirazione",
-					"27": "La posta mai consegnata",
-					"28": "Archivio sempreverde",
+					"26": "La quieta congiura",
+					"27": "Posta mai consegnata",
+					"28": "Archivio perenne",
 					"29": "Luna di carta",
 					"30": "Fioritura di carta",
 					"31": "Fioritura notturna",
-					"32": "Atlante soffice",
-					"33": "Velour",
-					"34": "Pietra d'inchiostro",
-					"35": "Silenzio",
+					"32": "Atlante morbido",
+					"33": "Velluto",
+					"34": "Pietra per inchiostro",
+					"35": "Hush",
 					"36": "Ombra",
-					"37": "Quieta deriva",
+					"37": "Deriva calma",
 					"38": "Prato profondo",
-					"39": "Registro non scritto",
-					"40": "Taccuino silente",
+					"39": "Registro inedito",
+					"40": "Bozzerario silenzioso",
 					"41": "Archivio inespresso",
-					"42": "Diario alla deriva",
+					"42": "Diario errante",
 					"43": "Cronaca del vento solare",
-					"44": "Fiordo silenzioso",
-					"45": "Frammenti di memoria",
-					"46": "Istante silenzioso",
-					"47": "Minuti svaniti"
+					"44": "Fiordo Silenzioso",
+					"45": "Frammenti di Memoria",
+					"46": "Istante Silente",
+					"47": "Minuti Svaniti"
 				}
 			},
 			"password": {
 				"label": "Password di crittografia",
 				"recommended": "(consigliata)",
-				"placeholder": "Inserisci una password sicura"
+				"placeholder": "Inserisci una password sicura",
+				"description": "Tutti i dati all'interno dell'area protetta saranno criptati con questa password"
 			},
 			"algorithm": {
 				"label": "Algoritmo di crittografia"
 			}
 		},
 		"actions": {
-			"create": "Crea vault",
+			"create": "Crea area protetta",
 			"continueNoPassword": "Continua senza password",
 			"cancel": "Annulla"
 		},
 		"noEncryptionDialog": {
-			"title": "Crea vault senza crittografia",
-			"description": "Le note e i dati verranno salvati in chiaro. Qualsiasi app o persona con accesso alla cartella del vault potrà leggerne il contenuto.",
+			"title": "Crea area protetta senza crittografia",
+			"description": "Le note e i dati saranno salvati in formato testo semplice. Qualsiasi app o persona con accesso alla cartella dell'area protetta sul disco potrà leggere tutto il contenuto.",
 			"actions": {
 				"confirm": "Continua senza crittografia",
 				"cancel": "Annulla"
 			}
 		},
 		"errors": {
-			"nameRequired": "Inserisci un nome per il vault",
+			"nameRequired": "Inserisci un nome per l'area protetta",
 			"passwordRequired": "Inserisci la password"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opzioni di crittografia avanzate",
+				"description": "Configura i parametri di crittografia che proteggono l'area protetta: cascata di cifratura, parametri KDF e altro. Per un'analisi completa dei valori predefiniti e dei relativi compromessi, consulta <encryption>come viene protetta l'area protetta</encryption>."
+			},
+			"kdf": {
+				"label": "Funzione di derivazione della chiave (KDF)",
+				"description": "Protegge le password deboli o riutilizzate rendendo ogni tentativo di accesso più lento e oneroso. Aumenta questi valori per una protezione maggiore, o mantieni i predefiniti per un equilibrio ottimale.",
+				"memory": {
+					"label": "Utilizzo della memoria",
+					"description": "Impedisce che ogni tentativo di password utilizzi poca memoria. Questo è particolarmente efficace contro gli attacchi su larga scala, poiché la memoria è una risorsa costosa e difficile da scalare rispetto alla pura potenza di calcolo."
+				},
+				"ops": {
+					"label": "Iterazioni",
+					"description": "Ripete il processo di derivazione per ogni tentativo di password. Questo aumenta il costo di ogni tentativo in modo quasi lineare: raddoppiare le iterazioni raddoppia approssimativamente il lavoro sia per gli attaccanti che per il tuo dispositivo."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Sblocca vault",
+		"title": "Sblocca area protetta",
 		"field": {
 			"password": {
-				"placeholder": "Inserisci la password"
+				"placeholder": "Inserisci password"
 			}
 		},
 		"actions": {
 			"unlock": "Sblocca",
-			"changeVault": "Cambia vault"
+			"changeVault": "Cambia area protetta"
 		},
 		"errors": {
-			"cannotOpen": "Impossibile aprire il vault",
+			"cannotOpen": "Impossibile aprire l'area protetta",
 			"invalidPassword": "Password non valida",
 			"passwordRequired": "Inserisci la password"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Impossibile aprire il vault",
+		"failedToOpen": "Impossibile aprire l'area protetta",
 		"corrupted": "\"{{name}}\" sembra essere danneggiato."
 	}
 }

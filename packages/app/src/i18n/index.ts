@@ -1,5 +1,8 @@
 export enum LOCALE_NAMESPACE {
+	about = 'about',
 	common = 'common',
+	encryption = 'encryption',
+	introduction = 'introduction',
 	vault = 'vault',
 	workspace = 'workspace',
 	features = 'features',
@@ -49,3 +52,18 @@ export const supportedLanguages = [
 	'zh-CN',
 	'zh-TW',
 ];
+
+export const getPreferredLanguage = (
+	languages: readonly string[],
+	defaultLanguage = sourceLanguage,
+) => {
+	const supported = new Set(supportedLanguages);
+	for (const language of languages) {
+		if (supported.has(language)) return language;
+
+		const base = language.split('-')[0];
+		if (supported.has(base)) return base;
+	}
+
+	return defaultLanguage;
+};

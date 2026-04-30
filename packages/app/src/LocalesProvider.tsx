@@ -36,6 +36,7 @@ export const LocalesProvider = ({ children }: PropsWithChildren) => {
 
 					ns: NAMESPACES,
 					defaultNS: NAMESPACES,
+					maxRetries: 1,
 
 					backend: {
 						loadPath:

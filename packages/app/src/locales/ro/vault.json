@@ -1,114 +1,133 @@
 {
 	"chooseVault": {
-		"title": "Alege un seif",
+		"title": "Alege un cazan",
 		"actions": {
-			"createNew": "Creează un seif nou"
+			"createNew": "Creează un cazan nou"
 		}
 	},
 	"creator": {
-		"title": "Creează Seif",
+		"title": "Creează cazan",
 		"field": {
 			"name": {
-				"label": "Numele seifului",
-				"placeholder": "de exemplu, Seiful Meu, Partajat cu Alex",
-				"random": "Generează un nume aleator",
+				"label": "Nume cazan",
+				"placeholder": "ex., Cazanul meu, Partajat cu Alex",
+				"random": "Generează un nume aleatoriu",
 				"suggests": {
 					"0": "Marginalia",
 					"1": "Vellum",
-					"2": "Hârtie de final",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Colțar",
+					"5": "Alcove",
 					"6": "Penumbra",
-					"7": "Corespondență sub lumina lunii",
+					"7": "Corespondență sub lumină lunară",
 					"8": "Cartografie de seară",
-					"9": "Lanternă & Cerneală",
-					"10": "Arhivă iluminată de lumânări",
-					"11": "Manuscrise de iederă cățărătoare",
-					"12": "Scrisori din lemn de cedru",
-					"13": "Scriptorium din lemn de trandafir",
+					"9": "Lanternă și cerneală",
+					"10": "Arhivă la lumina lumânării",
+					"11": "Manuscris cu iederă",
+					"12": "Scrisori de cedru",
+					"13": "Scriptorium de palo santo",
 					"14": "Codexul nelegat",
-					"15": "Marginalia & Murmure",
-					"16": "Confesiuni de hârtie de final",
-					"17": "Silence Annotat",
-					"18": "Cartografie a umbrelor",
-					"19": "Camera amintită",
+					"15": "Marginalia și șoapte",
+					"16": "Confesiuni de la marginea paginii",
+					"17": "Tăcerea anotată",
+					"18": "Cartografie de umbră",
+					"19": "Camera amintirii",
 					"20": "Scrisori nesemnate",
 					"21": "Coordonate șoptite",
-					"22": "Almanahul nespus",
+					"22": "Almanahul nescris",
 					"23": "Scrisori din ceară pierdută",
 					"24": "Biblioteca invizibilă",
 					"25": "Margini neexplorate",
 					"26": "Conspirația tăcută",
-					"27": "Poșta nedistribuită",
-					"28": "Arhivă veșnic verde",
+					"27": "Corespondență nedelivrată",
+					"28": "Arhivă perenă",
 					"29": "Lună de hârtie",
-					"30": "Floare de hârtie",
-					"31": "Floare de noapte",
-					"32": "Atlas blând",
+					"30": "Înflorire de hârtie",
+					"31": "Înflorire nocturnă",
+					"32": "Atlas delicat",
 					"33": "Velur",
-					"34": "Piatra de cerneală",
-					"35": "Tăcere",
+					"34": "Piatră de cerneală",
+					"35": "Hush",
 					"36": "Umbră",
 					"37": "Derivă calmă",
-					"38": "Pădure adâncă",
+					"38": "Prăpastie adâncă",
 					"39": "Registru nescris",
-					"40": "Caiet tăcut",
+					"40": "Registru de schițe silențioase",
 					"41": "Arhivă nespusă",
 					"42": "Jurnal plutitor",
-					"43": "Cronică a vântului solar",
-					"44": "Fjord tăcut",
+					"43": "Cronica vântului solar",
+					"44": "Fiord liniștit",
 					"45": "Fragmente de memorie",
 					"46": "Moment tăcut",
 					"47": "Minute dispărute"
 				}
 			},
 			"password": {
-				"label": "Parola de criptare",
+				"label": "Parolă de criptare",
 				"recommended": "(recomandat)",
-				"placeholder": "Introdu o parolă puternică aici"
+				"placeholder": "Introdu o parolă puternică",
+				"description": "Toate datele din cazan vor fi criptate folosind această parolă"
 			},
 			"algorithm": {
 				"label": "Algoritm de criptare"
 			}
 		},
 		"actions": {
-			"create": "Creează seif",
+			"create": "Creează cazanul",
 			"continueNoPassword": "Continuă fără parolă",
 			"cancel": "Anulează"
 		},
 		"noEncryptionDialog": {
-			"title": "Creează seif fără criptare",
-			"description": "Notițele și datele tale vor fi stocate ca text simplu. Orice aplicație sau persoană cu acces la directorul seifului pe disc va putea citi tot ce se află în interior.",
+			"title": "Creează cazan fără criptare",
+			"description": "Notele și datele tale vor fi stocate în format text simplu. Orice aplicație sau persoană care are acces la directorul cazanului de pe disc va putea citi tot conținutul.",
 			"actions": {
 				"confirm": "Continuă fără criptare",
 				"cancel": "Anulează"
 			}
 		},
 		"errors": {
-			"nameRequired": "Introdu un nume pentru seif",
+			"nameRequired": "Introdu un nume pentru cazan",
 			"passwordRequired": "Introdu parola"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opțiuni avansate de criptare",
+				"description": "Configurează elementele de criptare care îți protejează cazanul — cascade de cifre, parametri KDF și altele. Pentru o analiză detaliată a setărilor implicite și a compromisurilor acestora, consultă <encryption>cum este protejat cazanul tău</encryption>."
+			},
+			"kdf": {
+				"label": "Funcție de derivare a cheii",
+				"description": "Ajută la protejarea parolelor slabe sau reutilizate, făcând fiecare încercare de ghicire mai lentă și mai costisitoare. Crește aceste setări pentru o protecție mai puternică sau păstrează setările implicite pentru un echilibru optim.",
+				"memory": {
+					"label": "Utilizarea memoriei",
+					"description": "Fiecare încercare de parolă va utiliza mai multă memorie. Acest lucru este eficient în special împotriva atacurilor la scară largă, deoarece memoria este costisitoare și mai greu de scalat eficient decât puterea de calcul brută."
+				},
+				"ops": {
+					"label": "Iterații",
+					"description": "Repetă procesul de derivare pentru fiecare încercare de parolă. Acest lucru crește costul fiecărei încercări într-un mod aproape liniar: dublarea iterațiilor dublează aproximativ efortul atât pentru atacatori, cât și pentru dispozitivul tău."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Deblochează seiful",
+		"title": "Deblocare cazan",
 		"field": {
 			"password": {
 				"placeholder": "Introdu parola"
 			}
 		},
 		"actions": {
-			"unlock": "Deblochează",
-			"changeVault": "Schimbă seiful"
+			"unlock": "Deblocare",
+			"changeVault": "Schimbă cazanul"
 		},
 		"errors": {
-			"cannotOpen": "Nu se poate deschide seiful",
+			"cannotOpen": "Nu se poate deschide cazanul",
 			"invalidPassword": "Parolă invalidă",
 			"passwordRequired": "Introdu parola"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Nu s-a reușit deschiderea seifului",
+		"failedToOpen": "Nu s-a putut deschide cazanul",
 		"corrupted": "\"{{name}}\" pare a fi corupt."
 	}
 }

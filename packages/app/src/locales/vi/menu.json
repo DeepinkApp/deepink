@@ -10,8 +10,8 @@
 		"paste": "Dán",
 		"selectAll": "Chọn tất cả",
 		"help": "Trợ giúp",
-		"toggleDevTools": "Bật/tắt công cụ nhà phát triển",
-		"about": "Giới thiệu ứng dụng"
+		"toggleDevTools": "Bật công cụ nhà phát triển",
+		"about": "Giới thiệu"
 	},
 	"tray": {
 		"open": "Mở ghi chú",
@@ -21,13 +21,13 @@
 		"export": "Xuất...",
 		"duplicate": "Nhân bản",
 		"copyMarkdownLink": "Sao chép liên kết Markdown",
-		"deletePermanently": "Xoá vĩnh viễn",
+		"deletePermanently": "Xóa vĩnh viễn",
 		"restoreFromBin": "Khôi phục từ thùng rác",
 		"deleteToBin": "Chuyển vào thùng rác"
 	},
 	"tag": {
-		"addNestedTag": "Tạo tag con...",
+		"addNestedTag": "Tạo phân cấp thẻ...",
 		"edit": "Chỉnh sửa...",
-		"delete": "Xoá"
+		"delete": "Xóa"
 	}
 }

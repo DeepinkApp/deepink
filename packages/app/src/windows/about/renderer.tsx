@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { LocalesProvider } from 'src/LocalesProvider';
 import { patchWindow } from '@electron/requests/electronPatches/renderer';
 import { ThemeProvider } from '@features/ThemeProvider';
 import { loadStore } from '@state/redux/persistence';
@@ -23,7 +24,9 @@ const reactRoot = createRoot(rootNode);
 reactRoot.render(
 	<Provider store={store}>
 		<ThemeProvider>
-			<About />
+			<LocalesProvider>
+				<About />
+			</LocalesProvider>
 		</ThemeProvider>
 	</Provider>,
 );

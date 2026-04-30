@@ -8,51 +8,51 @@
 		"hotkeys": "Raccourcis",
 		"vault": "Coffre",
 		"workspace": "Espace",
-		"importExport": "Import et export",
+		"importExport": "Importation & Exportation",
 		"vaultSettingsGroup": "Réglages du coffre"
 	},
 	"general": {
-		"title": "Réglages généraux",
-		"subtitle": "Gérez vos préférences générales dans l'application.",
+		"title": "Paramètres généraux",
+		"subtitle": "Gérez vos préférences globales de l'application.",
 		"version": {
 			"title": "Version",
 			"checkForUpdates": "Rechercher des mises à jour",
-			"upToDate": "Vous disposez de la dernière version",
-			"newVersionAvailable": "La version <bold>{{version}}</bold> est disponible.",
+			"upToDate": "Votre version est à jour",
+			"newVersionAvailable": "Une nouvelle version <bold>{{version}}</bold> est disponible.",
 			"downloadLatest": "Télécharger",
-			"downloadDescription": "la dernière version pour profiter des nouveautés et améliorations."
+			"downloadDescription": "la dernière version pour profiter des nouvelles fonctionnalités et améliorations."
 		},
 		"autoCheckUpdates": {
-			"label": "Recherche automatique des mises à jour",
-			"description": "L'application vérifiera régulièrement les mises à jour et vous informera si une nouvelle version est disponible."
+			"label": "Recherche automatique de mises à jour",
+			"description": "L'application vérifiera périodiquement les mises à jour et vous informera si une nouvelle version est disponible."
 		},
 		"language": {
 			"title": "Langue",
-			"description": "Modifier la langue d'affichage."
+			"description": "Changer la langue d'affichage."
 		},
 		"notifications": {
 			"title": "Notifications",
-			"description": "Les notifications système sont utilisées uniquement pour les rappels. Si désactivées, les rappels apparaîtront uniquement dans la liste de notifications de l'application.",
+			"description": "Les notifications système servent uniquement aux rappels. Si désactivées, les rappels apparaîtront uniquement dans la liste des notifications de l'application.",
 			"useSystem": "Utiliser les notifications système"
 		},
 		"vaultLock": {
 			"groupTitle": "Verrouillage du coffre",
 			"lockOnSystemLock": {
-				"label": "Verrouiller le coffre au verrouillage du système",
-				"description": "Le coffre sera verrouillé au démarrage de l'écran de veille ou à la mise en veille de l'appareil."
+				"label": "Verrouiller le coffre lors du verrouillage du système",
+				"description": "Le coffre sera verrouillé lors du lancement de l'économiseur d'écran ou de la mise en veille de l'appareil."
 			},
 			"lockAfterIdle": {
-				"title": "Verrouiller le coffre après inactivité",
-				"description": "Le coffre sera verrouillé après la durée d'inactivité sélectionnée.",
+				"title": "Verrouiller après inactivité",
+				"description": "Le coffre sera verrouillé après une période d'inactivité définie.",
 				"never": "Ne pas verrouiller",
-				"minutes5": "après 5 minutes",
-				"minutes10": "après 10 minutes",
-				"minutes15": "après 15 minutes",
-				"minutes30": "après 30 minutes",
-				"hour1": "après 1 heure",
-				"hours2": "après 2 heures",
-				"hours3": "après 3 heures",
-				"hours5": "après 5 heures"
+				"minutes5": "pendant 5 minutes",
+				"minutes10": "pendant 10 minutes",
+				"minutes15": "pendant 15 minutes",
+				"minutes30": "pendant 30 minutes",
+				"hour1": "pendant 1 heure",
+				"hours2": "pendant 2 heures",
+				"hours3": "pendant 3 heures",
+				"hours5": "pendant 5 heures"
 			}
 		}
 	},
@@ -70,11 +70,11 @@
 		},
 		"zoomLevel": {
 			"title": "Niveau de zoom",
-			"description": "Ajustez le niveau de zoom par défaut pour toutes les fenêtres.\nSi votre système ne met pas automatiquement les applications à l'échelle, vous pouvez modifier le zoom pour l'adapter au ratio de pixels réel de l'écran (DPR). DPR détecté : {{dpr}}.",
+			"description": "Ajuster le zoom par défaut pour toutes les fenêtres.\nSi votre système ne redimensionne pas automatiquement les applications, vous pouvez modifier le zoom pour l'adapter au ratio de pixels de votre écran (DPR). Votre ratio est de {{dpr}}.",
 			"apply": "Appliquer",
 			"reset": "Réinitialiser",
 			"errors": {
-				"enterNumber": "Saisissez un nombre pour définir le zoom",
+				"enterNumber": "Veuillez entrer un nombre pour le zoom",
 				"tooSmall": "Le zoom ne peut pas être inférieur à {{min}} %",
 				"tooBig": "Le zoom ne peut pas être supérieur à {{max}} %"
 			}
@@ -86,20 +86,20 @@
 			"title": "Mode de l'éditeur"
 		},
 		"fontFamily": {
-			"title": "Police",
-			"description": "Définissez une police pour tous les éditeurs, ou laissez vide pour utiliser celle par défaut.",
+			"title": "Police de caractères",
+			"description": "Définir une police pour tous les éditeurs, ou laisser vide pour utiliser la police par défaut.",
 			"placeholder": "Nom de la police"
 		},
 		"fontSize": {
-			"title": "Taille de police"
+			"title": "Taille de la police"
 		},
 		"lineHeight": {
-			"title": "Hauteur de ligne"
+			"title": "Interligne"
 		},
 		"dateFormat": {
 			"title": "Format de date",
-			"description": "Définissez le format utilisé lors de l'insertion de dates. Supporte la syntaxe standard comme DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "référence du format de date",
+			"description": "Définir le format de date utilisé lors de l'insertion de dates. Supporte la syntaxe standard comme DD/MM/YYYY HH:mm:ss.",
+			"formatReference": "Référence du format de date",
 			"example": "Exemple"
 		},
 		"plainText": {
@@ -111,16 +111,16 @@
 	"hotkeys": {
 		"blank": "Aucun",
 		"shortcuts": {
-			"createNote": "Créer une note",
+			"createNote": "Créer une nouvelle note",
 			"closeCurrentNote": "Fermer la note active",
-			"restoreClosedNote": "Rouvrir la dernière note fermée",
-			"focusNextNote": "Aller à la note ouverte suivante",
-			"focusPreviousNote": "Aller à la note ouverte précédente",
-			"toggleArchive": "Archiver ou désarchiver la note active",
-			"toggleBookmark": "Ajouter ou retirer la note active des favoris",
+			"restoreClosedNote": "Rouvrir la note récemment fermée",
+			"focusNextNote": "Note suivante",
+			"focusPreviousNote": "Note précédente",
+			"toggleArchive": "Archiver/Désarchiver la note",
+			"toggleBookmark": "Ajouter/Retirer des favoris",
 			"deleteNote": "Supprimer la note active",
-			"restoreFromBin": "Restaurer la note active depuis la corbeille",
-			"toggleHistory": "Afficher ou masquer l'historique de la note active",
+			"restoreFromBin": "Restaurer la note depuis la corbeille",
+			"toggleHistory": "Afficher/Masquer l'historique de la note",
 			"focusSearch": "Rechercher des notes",
 			"syncDatabase": "Synchroniser le coffre sur le disque",
 			"lockVault": "Verrouiller le coffre",
@@ -133,7 +133,7 @@
 		},
 		"rememberPasswords": {
 			"label": "Mémoriser les mots de passe des espaces",
-			"description": "Les mots de passe des espaces seront chiffrés avec la clé principale et enregistrés dans la base de données, afin d'ouvrir automatiquement les espaces chiffrés sans saisir de mot de passe."
+			"description": "Les mots de passe des espaces seront chiffrés avec la clé maîtresse et enregistrés pour ouvrir automatiquement vos espaces sans saisie de mot de passe."
 		},
 		"filesAndData": {
 			"groupTitle": "Fichiers et données",
@@ -163,7 +163,7 @@
 			"groupTitle": "Synchronisation",
 			"enable": {
 				"label": "Activer la synchronisation",
-				"description": "Gardez votre coffre synchronisé entre vos appareils. Toutes les données sont chiffrées avant de quitter votre appareil."
+				"description": "Synchronisez votre coffre sur tous vos appareils. Toutes les données sont chiffrées avant de quitter votre appareil."
 			},
 			"method": {
 				"title": "Méthode de synchronisation",
@@ -172,18 +172,18 @@
 			},
 			"directory": {
 				"title": "Répertoire de synchronisation",
-				"placeholder": "Saisissez le chemin du répertoire"
+				"placeholder": "Entrez le chemin du répertoire"
 			}
 		},
 		"snapshots": {
 			"groupTitle": "Instantanés",
 			"record": {
-				"label": "Enregistrer des instantanés des notes",
-				"description": "Lorsque cette option est activée, un instantané du contenu de la note est créé à chaque modification. Vous pouvez contrôler l'enregistrement des instantanés par note dans le panneau d'historique."
+				"label": "Enregistrer les instantanés des notes",
+				"description": "Lorsque cette option est activée, des instantanés du contenu sont créés à chaque modification. Vous pouvez gérer cet enregistrement note par note via l'historique."
 			},
 			"delay": {
-				"title": "Délai avant instantané",
-				"description": "Temps d'attente, en secondes, après la modification d'une note avant d'enregistrer un nouvel instantané. Un intervalle court génère plus d'instantanés — et un coffre plus volumineux."
+				"title": "Délai de l'instantané",
+				"description": "Temps d'attente en secondes après une modification avant de sauvegarder un nouvel instantané. Un intervalle court augmente la fréquence des instantanés et la taille du coffre."
 			}
 		},
 		"trashBin": {
@@ -193,16 +193,16 @@
 				"description": "Demander confirmation avant de supprimer une note."
 			},
 			"moveToBin": {
-				"label": "Déplacer les notes dans la corbeille",
-				"description": "Déplacer les notes dans la corbeille au lieu de les supprimer définitivement, afin de pouvoir les restaurer ultérieurement."
+				"label": "Placer les notes dans la corbeille",
+				"description": "Placer les notes dans la corbeille plutôt que de les supprimer définitivement pour pouvoir les restaurer plus tard."
 			},
 			"autoPurge": {
-				"label": "Supprimer définitivement les anciennes notes de la corbeille",
-				"description": "Les notes déplacées dans la corbeille seront définitivement supprimées après un certain temps."
+				"label": "Supprimer automatiquement les notes anciennes",
+				"description": "Les notes placées dans la corbeille seront définitivement supprimées après un certain délai."
 			},
 			"purgeDelay": {
 				"title": "Délai de suppression définitive",
-				"description": "Les notes dans la corbeille seront définitivement supprimées après ce nombre de jours, à compter de leur mise en corbeille.",
+				"description": "Les notes dans la corbeille seront définitivement supprimées après ce nombre de jours suivant leur déplacement.",
 				"unit": "jours"
 			}
 		}
@@ -214,37 +214,37 @@
 		},
 		"newNoteTitle": {
 			"title": "Titre des nouvelles notes",
-			"description": "Définissez le titre des nouvelles notes. Vous pouvez insérer la date avec la syntaxe {date} ou {date:FORMAT}, par exemple {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "référence du format",
-			"placeholder": "ex. Note {date:DD/MM/YYYY HH:mm}",
+			"description": "Définissez le titre des nouvelles notes. Vous pouvez utiliser la date via la syntaxe {date} ou {date:FORMAT}, par exemple {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "référence de format",
+			"placeholder": "ex: Note {date:DD/MM/YYYY HH:mm}",
 			"example": "Exemple"
 		},
 		"tagsForNewNote": {
-			"title": "Tags des nouvelles notes",
-			"none": "Ne pas attribuer de tag",
-			"selected": "Identique au tag sélectionné"
+			"title": "Tags pour les nouvelles notes",
+			"none": "Aucun tag",
+			"selected": "Même que le tag sélectionné"
 		},
 		"dangerousZone": {
-			"groupTitle": "Zone critique",
+			"groupTitle": "Zone sensible",
 			"delete": {
-				"label": "Supprimer l'espace et toutes les données associées, y compris les notes, tags et fichiers",
+				"label": "Supprimer l'espace et toutes les données associées (notes, tags et fichiers)",
 				"action": "Supprimer l'espace",
 				"cannotDeleteLast": "Impossible de supprimer le dernier espace du coffre.",
 				"createAnother": "Créez",
-				"createAnotherSuffix": "un autre espace au préalable."
+				"createAnotherSuffix": "un autre espace d'abord."
 			},
-			"confirmDelete": "Vous êtes sur le point de supprimer l'espace « {{name}} ». Voulez-vous vraiment continuer ?\n\nToutes les données associées à cet espace seront supprimées, y compris les notes, tags et fichiers."
+			"confirmDelete": "Vous allez supprimer l'espace « {{name}} ». Êtes-vous sûr de vouloir continuer ?\n\nSi vous validez, toutes les données de cet espace seront supprimées, y compris les notes, les tags et les fichiers."
 		}
 	},
 	"importExport": {
 		"importNotes": "Importer des notes",
 		"exportNotes": "Exporter des notes",
 		"importFromZip": "Importer des notes depuis une archive .zip",
-		"importFromDirectory": "Importer un dossier de fichiers Markdown",
+		"importFromDirectory": "Importer un répertoire de fichiers Markdown",
 		"dropzone": {
-			"title": "Déposez des fichiers Markdown ou une archive .zip à importer",
-			"description": "Glissez-déposez des fichiers ici, ou cliquez pour les sélectionner"
+			"title": "Déposez des fichiers Markdown ou une archive .zip pour importer",
+			"description": "Glissez-déposez des fichiers ici ou cliquez pour les sélectionner"
 		},
-		"progress": "Import des notes en cours. Étape : {{stage}} {{processed}}/{{total}}"
+		"progress": "Importation des notes en cours. Étape : {{stage}} {{processed}}/{{total}}"
 	}
 }

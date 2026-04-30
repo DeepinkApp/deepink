@@ -3,7 +3,7 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "Creează etichetă",
+					"title": "Cree etichetă",
 					"action": "Creează"
 				},
 				"edit": {
@@ -13,38 +13,38 @@
 			},
 			"field": {
 				"name": {
-					"label": "Numele etichetei",
-					"placeholder": "de exemplu, Idei"
+					"label": "Nume etichetă",
+					"placeholder": "ex. Idei"
 				},
 				"parent": {
-					"label": "Eticheta părinte",
-					"placeholder": "de exemplu, Rețete/Dulciuri"
+					"label": "Etichetă părinte",
+					"placeholder": "ex. Rețete/Deserturi"
 				}
 			},
 			"messages": {
 				"unknownSubmitError": "Nu se pot salva modificările din cauza unei erori necunoscute.",
-				"format": "Eticheta nu poate fi goală, să înceapă sau să se termine cu \"/\" sau să conțină \"//\".",
+				"format": "Eticheta nu poate fi goală, nu poate începe sau termina cu \"/\" și nu poate conține \"//\".",
 				"duplicate": "Eticheta '{{name}}' există deja.",
-				"parentTagNotFound": "Eticheta părinte nu a fost găsită, te rugăm să selectezi o altă etichetă."
+				"parentTagNotFound": "Eticheta părinte nu a fost găsită, te rugăm să selectezi alta."
 			}
 		},
 		"deletion": {
-			"confirm": "Vrei cu adevărat să ștergi eticheta \"{{name}}\" și toate sub-etichetele?"
+			"confirm": "Dorești cu adevărat să ștergi eticheta \"{{name}}\" și toate sub-etichetele?"
 		}
 	},
 	"workspace": {
-		"defaultName": "Caiet",
+		"defaultName": "Notebook",
 		"creator": {
 			"title": "Creează un nou spațiu de lucru",
-			"description": "Fiecare spațiu de lucru este un spațiu izolat pentru notele, etichetele și fișierele tale. Totul rămâne separat, dar este în continuare în interiorul seifului tău criptat — gata când schimbi.",
+			"description": "Fiecare spațiu de lucru este un mediu separat pentru notele, etichetele și fișierele tale. Totul rămâne izolat, fiind parte din spațiul tău securizat — gata de utilizat oricând schimbi spațiul.",
 			"action": {
 				"add": "Creează",
 				"cancel": "Anulează"
 			},
 			"field": {
 				"name": {
-					"label": "Numele spațiului de lucru",
-					"placeholder": "de exemplu, Jurnal de sănătate, Idei de afaceri",
+					"label": "Nume spațiu de lucru",
+					"placeholder": "ex. Jurnal sănătate, Idei afaceri",
 					"suggests": {
 						"0": "Finanțe",
 						"1": "Sănătate",
@@ -53,7 +53,7 @@
 						"4": "Jurnal",
 						"5": "Obiective",
 						"6": "Idei",
-						"7": "Legal",
+						"7": "Juridic",
 						"8": "Călătorii",
 						"9": "Privat"
 					}
@@ -65,13 +65,13 @@
 			}
 		},
 		"error": {
-			"title": "Spațiul de lucru \"{{name}}\" nu a reușit să se încarce",
-			"description": "Nu s-a reușit încărcarea acestui spațiu de lucru. Datele pot fi corupte. Schimbă la un alt spațiu de lucru sau creează unul nou pentru a continua.",
+			"title": "Eroare la încărcarea spațiului de lucru \"{{name}}\"",
+			"description": "Nu s-a putut încărca acest spațiu de lucru. Datele pot fi corupte. Schimbă spațiul de lucru sau creează unul nou pentru a continua.",
 			"chooseAnother": "Alege un alt spațiu de lucru",
 			"dividerText": "sau",
 			"createNew": "Creează un nou spațiu de lucru",
 			"createWorkspace": "Creează spațiu de lucru",
-			"closeVault": "Închide seiful curent"
+			"closeVault": "Închide spațiul securizat"
 		}
 	},
 	"note": {
@@ -81,48 +81,48 @@
 			"duplicate": "Duplicat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Capturează o idee, o sarcină sau un gând…",
+			"placeholder": "Notează o idee, o sarcină sau un gând…",
 			"modes": {
 				"plaintext": "Mod text",
-				"richtext": "Editor avansat",
-				"split-screen": "Ecran împărțit"
+				"richtext": "Editor bogat",
+				"split-screen": "Ecran divizat"
 			}
 		},
 		"actions": {
 			"addToFavorites": "Adaugă la favorite",
-			"removeFromFavorites": "Îndepărtează din favorite",
+			"removeFromFavorites": "Elimină din favorite",
 			"moveToArchive": "Mută în arhivă",
-			"removeFromArchive": "Îndepărtează din arhivă"
+			"removeFromArchive": "Elimină din arhivă"
 		},
 		"tags": {
-			"addPlaceholder": "Scrie pentru a adăuga eticheta…"
+			"addPlaceholder": "Scrie pentru a adăuga etichetă…"
 		},
 		"versionPreview": {
-			"versionAt": "Versiune la {{date}}",
-			"backToEditing": "Întoarce-te la editare"
+			"versionAt": "Versiunea de la {{date}}",
+			"backToEditing": "Revino la editare"
 		},
 		"menu": {
 			"title": "Opțiuni notă",
-			"copyReference": "Copiază linkul notei",
+			"copyReference": "Copiază link nota",
 			"remindMe": "Amintește-mi",
 			"history": "Istoric",
-			"backLinks": "Linkuri înapoi",
-			"readonlyMode": "Mod doar citire",
-			"spellcheck": "Verificare ortografică",
-			"export": "Exportă...",
-			"passwordProtection": "Protecție prin parolă...",
+			"backLinks": "Link-uri de revenire",
+			"readonlyMode": "Mod de citire",
+			"spellcheck": "Corectare ortografică",
+			"export": "Export...",
+			"passwordProtection": "Protecție parolă...",
 			"disableSync": "Dezactivează sincronizarea",
 			"moveToArchive": "Mută în arhivă",
-			"removeFromArchive": "Îndepărtează din arhivă",
-			"deleteToBin": "Șterge în coș",
-			"deletePermanently": "Șterge permanent",
-			"restoreFromBin": "Restabilește din coș"
+			"removeFromArchive": "Elimină din arhivă",
+			"deleteToBin": "Mută la coșul de gunoi",
+			"deletePermanently": "Șterge definitiv",
+			"restoreFromBin": "Restabilește din coșul de gunoi"
 		},
 		"version": {
 			"chars": "{{count}} caractere",
 			"apply": {
 				"title": "Aplică versiunea",
-				"readonlyTitle": "Versiunea nu poate fi aplicată pentru o notă în modul doar citire"
+				"readonlyTitle": "Versiunea nu poate fi aplicată pentru o notă în modul de citire"
 			},
 			"open": {
 				"title": "Deschide versiunea"
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Salvează instantaneu",
-				"title": "Salvează starea curentă a acestei note ca o nouă versiune în istoric"
+				"title": "Salvează starea actuală a acestei note ca o nouă versiune în istoric"
 			},
 			"deleteAll": {
 				"label": "Șterge tot",
-				"title": "Șterge permanent toate versiunile salvate ale acestei note"
+				"title": "Șterge definitiv toate versiunile salvate ale acestei note"
 			},
-			"dontRecord": "Nu înregistra istoric pentru această notă",
+			"dontRecord": "Nu înregistra istoricul pentru această notă",
 			"empty": "Această notă nu are versiuni înregistrate",
 			"loading": "Se încarcă...",
 			"confirmDeleteAll": {
 				"title": "Șterge toate versiunile notei",
-				"description": "Această acțiune va șterge permanent toate versiunile notei.",
-				"confirm": "Ești sigur de asta?",
+				"description": "Această acțiune va șterge definitiv toate versiunile notei.",
+				"confirm": "Ești sigur?",
 				"action": "Aplică"
 			},
 			"confirmApply": {
 				"title": "Aplică versiunea notei",
-				"description": "Ești pe cale să aplici versiunea notei {{version}}.",
-				"warning": "Această acțiune va înlocui datele curente ale notei cu textul unei instantanee selectate. Ești sigur?",
+				"description": "Urmează să aplici versiunea {{version}}.",
+				"warning": "Această acțiune va înlocui datele actuale ale notei cu textul din instantaneul selectat. Ești sigur?",
 				"apply": "Aplică",
 				"preview": "Previzualizare"
 			},
 			"confirmDelete": {
 				"title": "Șterge versiunea notei",
-				"description": "Ești pe cale să ștergi versiunea notei {{version}}.",
-				"warning": "Această acțiune va șterge versiunea notei ireversibil. Ești sigur?",
+				"description": "Urmează să ștergi versiunea {{version}}.",
+				"warning": "Această acțiune va șterge versiunea notei iremediabil. Ești sigur?",
 				"delete": "Șterge",
 				"preview": "Previzualizare"
 			}
@@ -167,25 +167,25 @@
 		"sidebar": {
 			"closePanel": "Închide panoul",
 			"tabs": {
-				"history": "Versiuni note",
-				"backLinks": "Linkuri înapoi",
+				"history": "Versiuni notă",
+				"backLinks": "Link-uri de revenire",
 				"files": "Fișiere atașate"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Vrei să muți această notă în coș?",
-			"confirmPermanentDeletion": "Vrei să ștergi permanent această notă?"
+			"confirmPermanentDeletion": "Dorești să ștergi definitiv această notă?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Ești sigur că vrei să încarci {{filesCount}} fișiere ({{size}} total)?"
+		"confirmLargeUpload": "Ești sigur că vrei să încarci {{filesCount}} fișiere ({{size}} în total)?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Caută..."
 		},
 		"filterBy": "Filtrează după",
-		"empty": "Nu sunt note aici încă. <create>Creează o notă</create>"
+		"empty": "Încă nu există note aici. <create>Creează o notă</create>"
 	},
 	"notesView": {
 		"allNotes": "Toate notele",
@@ -195,37 +195,37 @@
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Selectează o notă pentru a începe să citești sau să editezi"
+			"placeholder": "Selectează o notă pentru a începe citirea sau editarea"
 		}
 	},
 	"activityBar": {
 		"newNote": "Notă nouă",
 		"files": "Fișiere",
-		"reminders": "Amintește-mi",
+		"reminders": "Mişcări de reamintire",
 		"extensions": "Extensii",
 		"inbox": "Inbox",
 		"publishNotes": "Publică note",
-		"lockVault": "Blochează seiful",
-		"globalSettings": "Setări globale"
+		"lockVault": "Inchide compartimentul",
+		"globalSettings": "Setări generale"
 	},
 	"tabBar": {
-		"closeTab": "Închide tab"
+		"closeTab": "Închide tab-ul"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Click pentru a insera antet cu nivel {{level}}. Deschide meniul contextual pentru a alege o altă opțiune",
-			"level": "Nivel antet {{level}}"
+			"insertTitle": "Click pentru a insera un titlu de nivel {{level}}. Deschide meniul pentru alte opțiuni",
+			"level": "Nivel titlu {{level}}"
 		},
-		"bold": "Activează/dezactivează stilul de text îngroșat",
-		"italic": "Activează/dezactivează stilul de text italic",
-		"strikethrough": "Activează/dezactivează stilul de text tăiat",
-		"unorderedList": "Inserează sau activează lista neordonată",
-		"checkboxList": "Inserează sau activează lista cu casete de selectare",
-		"orderedList": "Inserează sau activează lista ordonată",
-		"codeBlock": "Inserează sau învelește textul cu bloc de cod",
-		"quoteBlock": "Inserează sau învelește textul cu bloc de citat",
+		"bold": "Activează/dezactivează textul îngroșat",
+		"italic": "Activează/dezactivează textul cursiv",
+		"strikethrough": "Activează/dezactivează textul barat",
+		"unorderedList": "Inserează sau comută lista neordonată",
+		"checkboxList": "Inserează sau comută lista cu casete de selectare",
+		"orderedList": "Inserează sau comută lista ordonată",
+		"codeBlock": "Inserează sau învelește textul într-un bloc de cod",
+		"quoteBlock": "Inserează sau învelește textul într-o citare",
 		"insertDate": "Inserează data",
-		"insertPageBreak": "Inserează o pagină",
+		"insertPageBreak": "Inserează separator de pagină",
 		"insertFile": "Inserează fișier",
 		"image": {
 			"buttonTitle": "Inserează imagine",
@@ -234,11 +234,11 @@
 			"field": {
 				"url": {
 					"label": "URL imagine",
-					"placeholder": "de exemplu, https://example.com/image.png"
+					"placeholder": "ex: https://exemplu.com/imagine.png"
 				},
 				"altText": {
-					"label": "Text alternativ pentru imagine (opțional)",
-					"placeholder": "Descriere scurtă a imaginii"
+					"label": "Text alternativ imagine (opțional)",
+					"placeholder": "O scurtă descriere a imaginii"
 				}
 			},
 			"actions": {
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Inserează link",
 			"dialogTitle": "Adaugă link",
-			"dialogDescription": "Textul selectat devine un link, sau linkul va fi adăugat la poziția cursorului dacă nimic nu este selectat.",
+			"dialogDescription": "Textul selectat va deveni un link, sau link-ul va fi adăugat la poziția cursorului dacă nimic nu este selectat.",
 			"field": {
 				"url": {
 					"label": "URL link",
-					"placeholder": "de exemplu, https://example.com"
+					"placeholder": "ex: https://exemplu.com"
 				}
 			},
 			"actions": {
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Imagine se încarcă"
+		"loading": "Se încarcă imaginea",
+		"brokenImage": "Imaginea nu poate fi încărcată"
 	},
 	"notifications": {
 		"title": "Notificări"
@@ -271,11 +272,11 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Actualizare aplicație",
-			"reminderLater": "Amintește-mi săptămâna viitoare"
+			"reminderLater": "Reamintirea va apărea peste o săptămână"
 		},
 		"newVersion": {
 			"title": "O nouă versiune este disponibilă",
-			"body": "O nouă versiune este gata. Actualizează pentru a obține cele mai recente îmbunătățiri și corecții.",
+			"body": "O nouă versiune este pregătită. Actualizează pentru cele mai recente îmbunătățiri și corectări.",
 			"download": "Descarcă noua versiune",
 			"ignore": "Ignoră"
 		}
@@ -293,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Click pentru a salva modificările pe disc",
-			"saving": "Se salvează modificările..."
+			"title": "Click pentru a salva modificările",
+			"saving": "Se salvează..."
 		},
-		"changeVault": "Schimbă seiful",
+		"changeVault": "Schimbă compartimentul",
 		"history": "Istoric",
 		"notifications": "Notificări"
 	}

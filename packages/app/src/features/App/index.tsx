@@ -4,6 +4,10 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebounce } from 'use-debounce';
 import { useToast } from '@chakra-ui/react';
 import { ConfigStorage } from '@core/storage/ConfigStorage';
+import {
+	VaultOpenError,
+	VaultOpenErrorCode,
+} from '@core/storage/VaultEncryptionController';
 import { useFilesStorage } from '@features/files';
 import { SplashScreen } from '@features/SplashScreen';
 import { getRandomItem } from '@utils/collections/getRandomItem';
@@ -16,12 +20,9 @@ import { useRecentVault } from './useRecentVault';
 import { useVaultsList } from './useVaultsList';
 import { VaultCreator } from './VaultCreator';
 import { VaultLoginForm } from './VaultLoginForm';
-import {
-	useVaultContainers,
-	VaultOpenError,
-	VaultOpenErrorCode,
-} from './Vaults/hooks/useVaultContainers';
+import { useVaultContainers } from './Vaults/hooks/useVaultContainers';
 import { VaultScreen } from './VaultScreen';
+import { WelcomeScreen } from './WelcomeScreen';
 
 export const App: FC = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.vault);
@@ -52,7 +53,7 @@ export const App: FC = () => {
 			setScreenName('loading');
 
 			try {
-				if (vault.encryption !== null && password === undefined) {
+				if (vault.isEncrypted && !password) {
 					return {
 						status: 'error',
 						message: t('login.errors.passwordRequired'),
@@ -101,7 +102,7 @@ export const App: FC = () => {
 				(vault) => vault.id === recentVault.vaultId,
 			);
 
-			if (!vault || vault.encryption) return;
+			if (!vault || vault.isEncrypted) return;
 
 			// Automatically open vault with no encryption
 			onOpenVault(vault);
@@ -117,17 +118,29 @@ export const App: FC = () => {
 	);
 
 	// Skip splash while encrypted vault is opening
-	const isVaultLoading = screenName === 'loading' && !currentVault?.encryption;
+	const isVaultLoading = screenName === 'loading' && !currentVault?.isEncrypted;
+
+	const isEmptyVaultsList = vaultsList.vaults.length === 0;
+	const [isConfigured, setIsConfigured] = useState(false);
 
 	if (isInitialLoading || isVaultLoading) {
 		return <SplashScreen />;
 	}
 
+	if (isEmptyVaultsList && !isConfigured)
+		return (
+			<WelcomeScreen
+				onConfirm={() => {
+					setIsConfigured(true);
+				}}
+			/>
+		);
+
 	if (vaultContainers.activeVault) {
 		return <VaultScreen vaultContainers={vaultContainers} />;
 	}
 
-	if (currentVault && currentVault.encryption) {
+	if (currentVault && currentVault.isEncrypted) {
 		return (
 			<CenterBox>
 				<VaultLoginForm
@@ -139,16 +152,20 @@ export const App: FC = () => {
 		);
 	}
 
-	const hasNoVaults = vaultsList.vaults.length === 0;
-	if (screenName === 'create' || hasNoVaults) {
+	if (screenName === 'create' || isEmptyVaultsList) {
 		return (
 			<CenterBox>
 				<VaultCreator
 					onCreateVault={async (vault) => {
 						const newVault = await vaultsList.createVault(vault);
-						await onOpenVault(newVault, vault.password || undefined);
+						await onOpenVault(
+							newVault,
+							vault.encryption ? vault.encryption.password : undefined,
+						);
 					}}
-					onCancel={hasNoVaults ? undefined : () => setScreenName('choose')}
+					onCancel={
+						isEmptyVaultsList ? undefined : () => setScreenName('choose')
+					}
 					defaultVaultName={getRandomItem(
 						Object.values(
 							t('creator.field.name.suggests', {

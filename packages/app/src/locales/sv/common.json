@@ -2,7 +2,7 @@
 	"actions": {
 		"cancel": "Avbryt",
 		"confirm": "Bekräfta",
-		"apply": "Tillämpa",
+		"apply": "Verkställ",
 		"save": "Spara",
 		"saveChanges": "Spara ändringar",
 		"delete": "Radera",
@@ -13,6 +13,6 @@
 		"close": "Stäng"
 	},
 	"form": {
-		"suggestTemplate": "Prova det här: <suggests>"
+		"suggestTemplate": "Prova detta: <suggests>"
 	}
 }

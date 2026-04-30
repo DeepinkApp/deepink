@@ -41,7 +41,18 @@ export class CryptographyUtils implements CryptographyUtilsWorker {
 		input: Uint8Array<ArrayBuffer>,
 		salt: Uint8Array<ArrayBuffer>,
 		length: number,
+		config?: {
+			memory?: number;
+			ops?: number;
+		},
 	) {
-		return this.getState().api.deriveBits(input, salt, length);
+		// TODO: delete explicit copy
+		// We temporary copy buffers explicitly, because of bug https://github.com/vitest-dev/vitest/issues/9927
+		return this.getState().api.deriveBits(
+			input.slice(),
+			salt.slice(),
+			length,
+			config,
+		);
 	}
 }

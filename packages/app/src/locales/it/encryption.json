@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Password sicura: {{length}} caratteri, {{entropy}} bit di entropia",
+			"bad": "Password debole: {{length}} caratteri, {{entropy}} bit di entropia"
+		}
+	}
+}

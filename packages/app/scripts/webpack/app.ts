@@ -42,6 +42,9 @@ export default merge(commonConfig, {
 				{
 					from: path.resolve(projectRoot, 'src/locales'),
 					to: 'locales',
+					filter(filePath) {
+						return !filePath.includes('.transly');
+					},
 				},
 			],
 		}),

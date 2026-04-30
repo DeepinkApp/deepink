@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Etiketler",
-			"empty": "Notlarınızı düzenlemek için etiketler oluşturun. Esnek bir hiyerarşi kurmak için alt etiketler ekleyin.",
+			"empty": "Notlarınızı düzenlemek için etiketler oluşturun. Esnek bir hiyerarşi kurmak için etiketleri iç içe geçirebilirsiniz.",
 			"actions": {
 				"add": "Etiket ekle"
 			}

@@ -1,7 +1,7 @@
 {
 	"actions": {
 		"cancel": "キャンセル",
-		"confirm": "確認",
+		"confirm": "確定",
 		"apply": "適用",
 		"save": "保存",
 		"saveChanges": "変更を保存",
@@ -13,6 +13,6 @@
 		"close": "閉じる"
 	},
 	"form": {
-		"suggestTemplate": "こちらはいかがですか: <suggests>"
+		"suggestTemplate": "テンプレートの提案: <suggests>"
 	}
 }

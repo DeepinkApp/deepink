@@ -3,6 +3,8 @@ title: Security
 description: Analysis and insights about a note-taking app's security threats.
 ---
 
+![Original Oil Painting Pet Portrait 8×8 Inches, Cute Tuxedo Cat. Ebay item id is 327104784498, created by mia028-5](<cute-oil-paint.webp>)
+
 The Deepink mission is to make note-taking simple, quick, and safe.
 
 Deepink’s ergonomics are explained in the [introduction](/introduction). Now let’s explore the security aspect.
