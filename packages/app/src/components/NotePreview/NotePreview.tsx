@@ -71,6 +71,12 @@ export const NotePreviewContent = memo(
 					_groupHover={{
 						visibility: 'visible',
 					}}
+					_groupFocusWithin={{
+						visibility: 'visible',
+					}}
+					_focus={{
+						visibility: 'visible',
+					}}
 					onClick={(evt) => {
 						evt.stopPropagation();
 						pin.onToggle();
