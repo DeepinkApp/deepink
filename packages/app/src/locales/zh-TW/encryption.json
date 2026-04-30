@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "密碼強度良好：{{length}} 個字元，{{entropy}} 位元熵值",
+			"bad": "密碼強度不足：{{length}} 個字元，{{entropy}} 位元熵值"
+		}
+	}
+}

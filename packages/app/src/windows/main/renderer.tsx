@@ -5,6 +5,7 @@ import { createEvent } from 'effector';
 import { LocalesProvider } from 'src/LocalesProvider';
 import { EventBus } from '@api/events/EventBus';
 import { GlobalEventsPayloadMap } from '@api/events/global';
+import { InMemoryFS } from '@core/features/files/InMemoryFS';
 import { patchWindow } from '@electron/requests/electronPatches/renderer';
 import { ElectronFilesController, storageApi } from '@electron/requests/storage/renderer';
 import { telemetry } from '@electron/requests/telemetry/renderer';
@@ -47,7 +48,10 @@ const globalEventBus = {
 	},
 } satisfies EventBus<GlobalEventsPayloadMap>;
 
-const filesController = new ElectronFilesController(storageApi, `/`);
+const filesController =
+	localStorage.noStorage === 'true'
+		? new InMemoryFS()
+		: new ElectronFilesController(storageApi, `/`);
 
 const reactRoot = createRoot(rootNode);
 reactRoot.render(

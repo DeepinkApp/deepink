@@ -14,29 +14,29 @@
 			"field": {
 				"name": {
 					"label": "Nombre de la etiqueta",
-					"placeholder": "p. ej., Ideas"
+					"placeholder": "ej. Ideas"
 				},
 				"parent": {
 					"label": "Etiqueta superior",
-					"placeholder": "p. ej., Recetas/Postres"
+					"placeholder": "ej. Recetas/Postres"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "No se pudieron guardar los cambios debido a un error desconocido.",
+				"unknownSubmitError": "No se han podido guardar los cambios debido a un error desconocido.",
 				"format": "La etiqueta no puede estar vacía, empezar o terminar con \"/\", ni contener \"//\".",
 				"duplicate": "La etiqueta '{{name}}' ya existe.",
-				"parentTagNotFound": "Etiqueta superior no encontrada. Selecciona otra."
+				"parentTagNotFound": "No se encontró la etiqueta superior, selecciona otra."
 			}
 		},
 		"deletion": {
-			"confirm": "¿Eliminar la etiqueta \"{{name}}\" y todas sus subetiquetas?"
+			"confirm": "¿Seguro que quieres eliminar la etiqueta \"{{name}}\" y todas sus subetiquetas?"
 		}
 	},
 	"workspace": {
-		"defaultName": "Cuaderno",
+		"defaultName": "Bloc de notas",
 		"creator": {
 			"title": "Crear nuevo espacio",
-			"description": "Cada espacio es un entorno independiente para tus notas, etiquetas y archivos. Todo se mantiene separado, pero dentro de tu almacenamiento cifrado — listo cuando cambies de espacio.",
+			"description": "Cada espacio es un área independiente para tus notas, etiquetas y archivos. Todo se mantiene separado, pero dentro de tu bóveda cifrada, listo para cuando cambies de uno a otro.",
 			"action": {
 				"add": "Crear",
 				"cancel": "Cancelar"
@@ -44,7 +44,7 @@
 			"field": {
 				"name": {
 					"label": "Nombre del espacio",
-					"placeholder": "p. ej., Diario de salud, Ideas de negocio",
+					"placeholder": "ej. Diario de salud, Ideas de negocio",
 					"suggests": {
 						"0": "Finanzas",
 						"1": "Salud",
@@ -60,18 +60,18 @@
 				}
 			},
 			"error": {
-				"unknown": "Ocurrió un error desconocido. Inténtalo de nuevo.",
+				"unknown": "Ha ocurrido un error desconocido. Inténtalo de nuevo.",
 				"format": "El nombre del espacio no puede estar vacío."
 			}
 		},
 		"error": {
-			"title": "El espacio \"{{name}}\" no se pudo cargar",
-			"description": "No se pudo cargar este espacio. Los datos podrían estar dañados. Cambia a otro espacio o crea uno nuevo para seguir trabajando.",
-			"chooseAnother": "Elegir otro espacio",
+			"title": "Error al cargar el espacio \"{{name}}\"",
+			"description": "No se pudo cargar este espacio. Es posible que los datos estén dañados. Cambia a otro espacio o crea uno nuevo para seguir trabajando.",
+			"chooseAnother": "Elige otro espacio",
 			"dividerText": "o",
-			"createNew": "Crear un nuevo espacio",
+			"createNew": "Crea un nuevo espacio",
 			"createWorkspace": "Crear espacio",
-			"closeVault": "Cerrar almacenamiento actual"
+			"closeVault": "Cerrar bóveda actual"
 		}
 	},
 	"note": {
@@ -95,19 +95,19 @@
 			"removeFromArchive": "Quitar del archivo"
 		},
 		"tags": {
-			"addPlaceholder": "Escribe para añadir etiqueta…"
+			"addPlaceholder": "Escribe para añadir una etiqueta…"
 		},
 		"versionPreview": {
 			"versionAt": "Versión del {{date}}",
 			"backToEditing": "Volver a editar"
 		},
 		"menu": {
-			"title": "Opciones de nota",
-			"copyReference": "Copiar enlace de nota",
+			"title": "Opciones de la nota",
+			"copyReference": "Copiar enlace de la nota",
 			"remindMe": "Recordarme",
 			"history": "Historial",
 			"backLinks": "Enlaces entrantes",
-			"readonlyMode": "Modo solo lectura",
+			"readonlyMode": "Modo de solo lectura",
 			"spellcheck": "Corrector ortográfico",
 			"export": "Exportar...",
 			"passwordProtection": "Protección con contraseña...",
@@ -137,7 +137,7 @@
 				"title": "Guardar el estado actual de esta nota como una nueva versión en el historial"
 			},
 			"deleteAll": {
-				"label": "Eliminar todas",
+				"label": "Eliminar todo",
 				"title": "Eliminar permanentemente todas las versiones guardadas de esta nota"
 			},
 			"dontRecord": "No registrar historial para esta nota",
@@ -146,20 +146,20 @@
 			"confirmDeleteAll": {
 				"title": "Eliminar todas las versiones",
 				"description": "Esta acción eliminará permanentemente todas las versiones de la nota.",
-				"confirm": "¿Estás seguro/a?",
+				"confirm": "¿Estás seguro?",
 				"action": "Aplicar"
 			},
 			"confirmApply": {
-				"title": "Aplicar versión de nota",
-				"description": "Estás a punto de aplicar la versión {{version}}.",
-				"warning": "Esta acción reemplazará el contenido actual de la nota con el texto de la instantánea seleccionada. ¿Estás seguro/a?",
+				"title": "Aplicar versión de la nota",
+				"description": "Vas a aplicar la versión {{version}}.",
+				"warning": "Esta acción reemplazará el contenido actual de la nota con el de la instantánea seleccionada. ¿Estás seguro?",
 				"apply": "Aplicar",
 				"preview": "Vista previa"
 			},
 			"confirmDelete": {
-				"title": "Eliminar versión de nota",
-				"description": "Estás a punto de eliminar la versión {{version}}.",
-				"warning": "Esta acción eliminará la versión de forma irreversible. ¿Estás seguro/a?",
+				"title": "Eliminar versión de la nota",
+				"description": "Vas a eliminar la versión {{version}}.",
+				"warning": "Esta acción eliminará la versión de forma irreversible. ¿Estás seguro?",
 				"delete": "Eliminar",
 				"preview": "Vista previa"
 			}
@@ -167,31 +167,31 @@
 		"sidebar": {
 			"closePanel": "Cerrar panel",
 			"tabs": {
-				"history": "Versiones de nota",
+				"history": "Versiones de la nota",
 				"backLinks": "Enlaces entrantes",
 				"files": "Archivos adjuntos"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "¿Mover esta nota a la papelera?",
-			"confirmPermanentDeletion": "¿Eliminar esta nota permanentemente?"
+			"confirmPermanentDeletion": "¿Quieres eliminar esta nota permanentemente?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "¿Subir {{filesCount}} archivos ({{size}} en total)?"
+		"confirmLargeUpload": "¿Seguro que quieres subir {{filesCount}} archivos ({{size}} en total)?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Buscar..."
 		},
 		"filterBy": "Filtrar por",
-		"empty": "Aún no hay notas aquí. <create>Crear una nota</create>"
+		"empty": "Aún no hay notas. <create>Crea una nota</create>"
 	},
 	"notesView": {
 		"allNotes": "Todas las notas",
-		"favorites": "Notas favoritas",
-		"archived": "Notas archivadas",
-		"deleted": "Notas eliminadas"
+		"favorites": "Favoritos",
+		"archived": "Archivadas",
+		"deleted": "Eliminadas"
 	},
 	"notesContainer": {
 		"empty": {
@@ -205,7 +205,7 @@
 		"extensions": "Extensiones",
 		"inbox": "Bandeja de entrada",
 		"publishNotes": "Publicar notas",
-		"lockVault": "Bloquear almacenamiento",
+		"lockVault": "Bloquear espacio",
 		"globalSettings": "Ajustes generales"
 	},
 	"tabBar": {
@@ -213,19 +213,19 @@
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Clic para insertar encabezado de nivel {{level}}. Abre el menú contextual para elegir otra opción",
-			"level": "Encabezado nivel {{level}}"
+			"insertTitle": "Haz clic para insertar un encabezado de nivel {{level}}. Abre el menú contextual para otras opciones",
+			"level": "Nivel de encabezado {{level}}"
 		},
-		"bold": "Alternar estilo de texto en negrita",
-		"italic": "Alternar estilo de texto en cursiva",
-		"strikethrough": "Alternar estilo de texto tachado",
-		"unorderedList": "Insertar o alternar lista sin orden",
-		"checkboxList": "Insertar o alternar lista de casillas",
-		"orderedList": "Insertar o alternar lista numerada",
-		"codeBlock": "Insertar o envolver texto en bloque de código",
-		"quoteBlock": "Insertar o envolver texto en bloque de cita",
+		"bold": "Negrita",
+		"italic": "Cursiva",
+		"strikethrough": "Tachado",
+		"unorderedList": "Lista con viñetas",
+		"checkboxList": "Lista de tareas",
+		"orderedList": "Lista numerada",
+		"codeBlock": "Bloque de código",
+		"quoteBlock": "Cita",
 		"insertDate": "Insertar fecha",
-		"insertPageBreak": "Insertar salto de página",
+		"insertPageBreak": "Salto de página",
 		"insertFile": "Insertar archivo",
 		"image": {
 			"buttonTitle": "Insertar imagen",
@@ -234,7 +234,7 @@
 			"field": {
 				"url": {
 					"label": "URL de la imagen",
-					"placeholder": "p. ej., https://ejemplo.com/imagen.png"
+					"placeholder": "ej., https://ejemplo.com/imagen.png"
 				},
 				"altText": {
 					"label": "Texto alternativo (opcional)",
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Insertar enlace",
 			"dialogTitle": "Añadir enlace",
-			"dialogDescription": "El texto seleccionado se convertirá en enlace, o se añadirá en la posición del cursor si no hay selección.",
+			"dialogDescription": "El texto seleccionado se convertirá en un enlace, o se añadirá en la posición del cursor si no hay nada seleccionado.",
 			"field": {
 				"url": {
 					"label": "URL del enlace",
-					"placeholder": "p. ej., https://ejemplo.com"
+					"placeholder": "ej., https://ejemplo.com"
 				}
 			},
 			"actions": {
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Cargando imagen"
+		"loading": "Cargando imagen",
+		"brokenImage": "No se pudo cargar la imagen"
 	},
 	"notifications": {
 		"title": "Notificaciones"
@@ -271,7 +272,7 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Actualización de la app",
-			"reminderLater": "El recordatorio se mostrará en una semana"
+			"reminderLater": "Se mostrará un recordatorio la próxima semana"
 		},
 		"newVersion": {
 			"title": "Nueva versión disponible",
@@ -282,9 +283,9 @@
 	},
 	"contextMenu": {
 		"imageProperties": {
-			"title": "Propiedades de imagen",
+			"title": "Propiedades de la imagen",
 			"urlLabel": "URL de la imagen",
-			"altLabel": "Texto alternativo de la imagen"
+			"altLabel": "Texto alternativo"
 		},
 		"linkProperties": {
 			"title": "Propiedades del enlace",
@@ -293,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Clic para guardar cambios en disco",
+			"title": "Haz clic para guardar los cambios",
 			"saving": "Guardando cambios..."
 		},
-		"changeVault": "Cambiar almacenamiento",
+		"changeVault": "Cambiar espacio",
 		"history": "Historial",
 		"notifications": "Notificaciones"
 	}

@@ -10,7 +10,7 @@
 		"field": {
 			"name": {
 				"label": "Nama vault",
-				"placeholder": "mis., Vault Saya, Berbagi dengan Alex",
+				"placeholder": "misal., Vault Saya, Dibagikan dengan Alex",
 				"random": "Buat nama acak",
 				"suggests": {
 					"0": "Marginalia",
@@ -20,53 +20,54 @@
 					"4": "Memento",
 					"5": "Alcove",
 					"6": "Penumbra",
-					"7": "Moonlit Correspondence",
-					"8": "Evening Cartography",
-					"9": "Lantern & Ink",
-					"10": "Candlelit Archive",
-					"11": "Climbing Ivy Manuscripts",
-					"12": "Cedarwood Letters",
-					"13": "Rosewood Scriptorium",
-					"14": "The Unbound Codex",
-					"15": "Marginalia & Murmurs",
-					"16": "Endpaper Confessions",
-					"17": "The Annotated Silence",
-					"18": "Shadow Cartography",
-					"19": "The Remembered Room",
-					"20": "The Unsigned Letters",
-					"21": "Whispered Coordinates",
-					"22": "The Untold Almanac",
-					"23": "Lost Wax Letters",
-					"24": "The Invisible Library",
-					"25": "Uncharted Margins",
-					"26": "The Quiet Conspiracy",
-					"27": "The Undelivered Post",
-					"28": "Evergreen Archive",
-					"29": "Paper Moon",
-					"30": "Paper Bloom",
-					"31": "Night Bloom",
-					"32": "Soft Atlas",
+					"7": "Korespondensi Rembulan",
+					"8": "Kartografi Senja",
+					"9": "Lentera & Tinta",
+					"10": "Arsip Cahaya Lilin",
+					"11": "Manuskrip Ivy",
+					"12": "Surat Kayu Cedar",
+					"13": "Skriptorium Kayu Mawar",
+					"14": "Kodeks Tak Terikat",
+					"15": "Marginalia & Bisikan",
+					"16": "Pengakuan Endpaper",
+					"17": "Keheningan Teranotasi",
+					"18": "Kartografi Bayang",
+					"19": "Ruang Kenangan",
+					"20": "Surat Tanpa Nama",
+					"21": "Koordinat Berbisik",
+					"22": "Almanak Tak Terungkap",
+					"23": "Surat Lost Wax",
+					"24": "Perpustakaan Tak Terlihat",
+					"25": "Margin Tak Terjamah",
+					"26": "Konspirasi Sunyi",
+					"27": "Pos Tak Terkirim",
+					"28": "Arsip Evergreen",
+					"29": "Bulan Kertas",
+					"30": "Mekar Kertas",
+					"31": "Mekar Malam",
+					"32": "Atlas Lembut",
 					"33": "Velour",
 					"34": "Inkstone",
 					"35": "Hush",
 					"36": "Shade",
-					"37": "Calm Drift",
-					"38": "Deep Meadow",
-					"39": "Unwritten Ledger",
-					"40": "Silent Draftbook",
-					"41": "Unspoken Archive",
-					"42": "Drifting Journal",
-					"43": "Solar Wind Chronicle",
-					"44": "Quiet Fjord",
-					"45": "Memory Fragments",
-					"46": "Silent Moment",
-					"47": "Vanished Minutes"
+					"37": "Hanyut Tenang",
+					"38": "Padang Rumput Dalam",
+					"39": "Buku Besar Tak Tertulis",
+					"40": "Buku Draf Sunyi",
+					"41": "Arsip Tak Terucapkan",
+					"42": "Jurnal Mengalir",
+					"43": "Kronik Angin Surya",
+					"44": "Fjord Tenang",
+					"45": "Fragmen Memori",
+					"46": "Momen Sunyi",
+					"47": "Menit yang Hilang"
 				}
 			},
 			"password": {
 				"label": "Kata sandi enkripsi",
 				"recommended": "(disarankan)",
-				"placeholder": "Masukkan kata sandi yang kuat"
+				"placeholder": "Masukkan kata sandi yang kuat",
+				"description": "Semua data dalam vault akan dienkripsi dengan kata sandi ini"
 			},
 			"algorithm": {
 				"label": "Algoritma enkripsi"
@@ -79,7 +80,7 @@
 		},
 		"noEncryptionDialog": {
 			"title": "Buat vault tanpa enkripsi",
-			"description": "Catatan dan data Anda akan disimpan sebagai teks biasa. Aplikasi atau siapa pun yang memiliki akses ke direktori vault di disk dapat membaca seluruh isinya.",
+			"description": "Catatan dan data Anda akan disimpan sebagai teks biasa. Aplikasi atau siapa pun yang memiliki akses ke direktori vault di penyimpanan Anda dapat membaca seluruh isinya.",
 			"actions": {
 				"confirm": "Lanjutkan tanpa enkripsi",
 				"cancel": "Batal"
@@ -88,10 +89,28 @@
 		"errors": {
 			"nameRequired": "Masukkan nama vault",
 			"passwordRequired": "Masukkan kata sandi"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opsi enkripsi lanjutan",
+				"description": "Konfigurasi primitif enkripsi yang melindungi vault Anda — cipher cascade, parameter KDF, dan lainnya. Untuk rincian lengkap tentang pengaturan default dan risikonya, lihat <encryption>cara vault Anda dilindungi</encryption>."
+			},
+			"kdf": {
+				"label": "Fungsi derivasi kunci (KDF)",
+				"description": "Membantu melindungi kata sandi yang lemah atau yang digunakan berulang kali dengan membuat setiap upaya tebakan menjadi lebih lambat dan berat. Tingkatkan pengaturan ini untuk perlindungan lebih kuat, atau gunakan default untuk pengalaman yang seimbang.",
+				"memory": {
+					"label": "Penggunaan memori",
+					"description": "Membuat setiap tebakan kata sandi menggunakan lebih banyak memori. Ini sangat efektif terhadap serangan skala besar, karena memori memerlukan biaya tinggi dan lebih sulit untuk ditingkatkan secara efisien dibandingkan komputasi murni."
+				},
+				"ops": {
+					"label": "Iterasi",
+					"description": "Mengulang proses derivasi untuk setiap tebakan kata sandi. Ini meningkatkan beban setiap tebakan secara linier: menggandakan iterasi kira-kira akan menggandakan beban kerja bagi penyerang maupun perangkat Anda."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Buka kunci vault",
+		"title": "Buka vault",
 		"field": {
 			"password": {
 				"placeholder": "Masukkan kata sandi"

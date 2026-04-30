@@ -1,97 +1,116 @@
 {
 	"chooseVault": {
-		"title": "Escolher um vault",
+		"title": "Escolher um cofre",
 		"actions": {
-			"createNew": "Criar novo vault"
+			"createNew": "Criar novo cofre"
 		}
 	},
 	"creator": {
-		"title": "Criar Vault",
+		"title": "Criar Cofre",
 		"field": {
 			"name": {
-				"label": "Nome do vault",
-				"placeholder": "ex.: O Meu Vault, Partilhado com Alex",
+				"label": "Nome do cofre",
+				"placeholder": "ex., O meu cofre, Partilhado com o Alex",
 				"random": "Gerar nome aleatório",
 				"suggests": {
-					"0": "Marginália",
-					"1": "Velino",
-					"2": "Guarda do Livro",
+					"0": "Marginalia",
+					"1": "Vellum",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
 					"5": "Alcova",
 					"6": "Penumbra",
 					"7": "Correspondência ao Luar",
-					"8": "Cartografia Nocturna",
-					"9": "Lanterna & Tinta",
-					"10": "Arquivo à Luz de Vela",
+					"8": "Cartografia Noturna",
+					"9": "Lanterna e Tinta",
+					"10": "Arquivo à Luz de Velas",
 					"11": "Manuscritos de Hera",
 					"12": "Cartas de Cedro",
-					"13": "Scriptorium de Pau-Rosa",
-					"14": "O Códice Solto",
-					"15": "Marginália & Murmúrios",
-					"16": "Confissões na Guarda",
+					"13": "Scriptorium de Rosewood",
+					"14": "O Códice Infinito",
+					"15": "Marginalia e Murmúrios",
+					"16": "Confissões de Endpaper",
 					"17": "O Silêncio Anotado",
 					"18": "Cartografia de Sombras",
-					"19": "A Sala Lembrada",
-					"20": "As Cartas Sem Assinatura",
+					"19": "O Quarto da Memória",
+					"20": "As Cartas Não Assinadas",
 					"21": "Coordenadas Sussurradas",
-					"22": "O Almanaque Inédito",
-					"23": "Cartas em Cera Perdida",
+					"22": "O Almanaque Não Contado",
+					"23": "Cartas de Cera Perdida",
 					"24": "A Biblioteca Invisível",
 					"25": "Margens Inexploradas",
 					"26": "A Conspiração Silenciosa",
-					"27": "O Correio Não Entregue",
+					"27": "A Correspondência Não Entregue",
 					"28": "Arquivo Perene",
 					"29": "Lua de Papel",
 					"30": "Flor de Papel",
-					"31": "Flor Nocturna",
+					"31": "Flor Noturna",
 					"32": "Atlas Suave",
 					"33": "Veludo",
 					"34": "Pedra de Tinta",
-					"35": "Silêncio",
+					"35": "Hush",
 					"36": "Sombra",
 					"37": "Deriva Calma",
 					"38": "Prado Profundo",
-					"39": "Livro de Registos Inédito",
+					"39": "Livro de Registos Não Escrito",
 					"40": "Caderno de Esboços Silencioso",
 					"41": "Arquivo Não Dito",
-					"42": "Diário à Deriva",
+					"42": "Diário Errante",
 					"43": "Crónica do Vento Solar",
-					"44": "Fiorde Silencioso",
+					"44": "Fiordo Silencioso",
 					"45": "Fragmentos de Memória",
-					"46": "Momento Silencioso",
-					"47": "Minutos Desvanecidos"
+					"46": "Momento de Silêncio",
+					"47": "Minutos Perdidos"
 				}
 			},
 			"password": {
 				"label": "Palavra-passe de encriptação",
 				"recommended": "(recomendado)",
-				"placeholder": "Introduza uma palavra-passe forte"
+				"placeholder": "Introduza uma palavra-passe forte",
+				"description": "Todos os dados no cofre serão encriptados com esta palavra-passe"
 			},
 			"algorithm": {
 				"label": "Algoritmo de encriptação"
 			}
 		},
 		"actions": {
-			"create": "Criar vault",
+			"create": "Criar cofre",
 			"continueNoPassword": "Continuar sem palavra-passe",
 			"cancel": "Cancelar"
 		},
 		"noEncryptionDialog": {
-			"title": "Criar vault sem encriptação",
-			"description": "As suas notas e dados serão guardados em texto simples. Qualquer aplicação ou pessoa com acesso à pasta do vault no disco poderá ler todo o seu conteúdo.",
+			"title": "Criar cofre sem encriptação",
+			"description": "As suas notas e dados serão armazenados em texto simples. Qualquer aplicação ou pessoa com acesso ao diretório do cofre no disco poderá ler todo o seu conteúdo.",
 			"actions": {
 				"confirm": "Continuar sem encriptação",
 				"cancel": "Cancelar"
 			}
 		},
 		"errors": {
-			"nameRequired": "Introduza um nome para o vault",
+			"nameRequired": "Introduza um nome para o cofre",
 			"passwordRequired": "Introduza a palavra-passe"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Opções avançadas de encriptação",
+				"description": "Configure os elementos de encriptação que protegem o seu cofre — cascata de cifra, parâmetros KDF e mais. Para uma análise detalhada dos valores predefinidos e respetivos compromissos, veja <encryption>como o seu cofre é protegido</encryption>."
+			},
+			"kdf": {
+				"label": "Função de derivação de chave",
+				"description": "Ajuda a proteger palavras-passe fracas ou reutilizadas, tornando cada tentativa mais lenta e dispendiosa. Aumente estas definições para uma proteção mais forte ou mantenha os valores predefinidos para um equilíbrio ideal.",
+				"memory": {
+					"label": "Uso de memória",
+					"description": "Faz com que cada tentativa de palavra-passe utilize mais memória. Isto é particularmente eficaz contra ataques de larga escala, uma vez que a memória é dispendiosa e mais difícil de escalar do que o simples processamento."
+				},
+				"ops": {
+					"label": "Iterações",
+					"description": "Repete o processo de derivação para cada tentativa de palavra-passe. Isto aumenta o custo de cada tentativa de forma quase linear: duplicar as iterações duplica, aproximadamente, o esforço tanto para atacantes como para o seu dispositivo."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Desbloquear vault",
+		"title": "Desbloquear cofre",
 		"field": {
 			"password": {
 				"placeholder": "Introduza a palavra-passe"
@@ -99,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Desbloquear",
-			"changeVault": "Mudar de vault"
+			"changeVault": "Alterar cofre"
 		},
 		"errors": {
-			"cannotOpen": "Não foi possível abrir o vault",
+			"cannotOpen": "Não foi possível abrir o cofre",
 			"invalidPassword": "Palavra-passe inválida",
 			"passwordRequired": "Introduza a palavra-passe"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Não foi possível abrir o vault",
+		"failedToOpen": "Falha ao abrir o cofre",
 		"corrupted": "\"{{name}}\" parece estar corrompido."
 	}
 }

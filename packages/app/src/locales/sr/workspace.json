@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Oznake",
-			"empty": "Napravite oznake da organizujete beleške. Grupisanjem oznaka možete izgraditi fleksibilnu hijerarhiju.",
+			"empty": "Kreirajte oznake za organizaciju beleški. Koristite hijerarhiju za veću fleksibilnost.",
 			"actions": {
 				"add": "Dodaj oznaku"
 			}

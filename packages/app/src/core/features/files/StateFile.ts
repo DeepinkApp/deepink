@@ -41,7 +41,7 @@ export class StateFile<
 			return defaultValue as void extends D ? z.TypeOf<T> | null : z.TypeOf<T>;
 
 		try {
-			const parseResult = this.scheme.safeParse(
+			const parseResult = this.scheme.safeDecode(
 				JSON.parse(new TextDecoder().decode(rawJson)),
 			);
 			if (parseResult.success) return parseResult.data;
@@ -56,11 +56,12 @@ export class StateFile<
 
 	private readonly queue = new DebouncedPromises();
 	async set(value: z.TypeOf<T>): Promise<void> {
-		const validValue = this.scheme.parse(value);
+		const encodeResult = this.scheme.safeEncode(value);
+		if (!encodeResult.success) throw encodeResult.error;
 
 		await this.queue.add(async () => {
 			await this.file.write(
-				new TextEncoder().encode(JSON.stringify(validValue)).buffer,
+				new TextEncoder().encode(JSON.stringify(encodeResult.data)).buffer,
 			);
 		});
 	}

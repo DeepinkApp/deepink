@@ -1,4 +1,6 @@
 import z, { ZodError } from 'zod';
+import { createFakeRandomBytesGenerator } from '@core/encryption/__tests__/random';
+import { bytesToHex, hexToBytes } from '@core/storage/hex';
 import { createFileControllerMock } from '@utils/mocks/fileControllerMock';
 import { wait } from '@utils/time';
 
@@ -136,4 +138,30 @@ describe('Error strategies', () => {
 			'Configured default value must be returned',
 		).resolves.toBe(42);
 	});
+});
+
+test('State support the custom Zod codecs', async () => {
+	const hexToBytesCodec = z.codec(z.string(), z.instanceof(Uint8Array), {
+		encode: (bytes) => bytesToHex(bytes),
+		decode: (str) => hexToBytes(str),
+	});
+
+	const file = createFileControllerMock();
+	const state = new StateFile(
+		file,
+		z.object({
+			buffer: hexToBytesCodec,
+		}),
+	);
+
+	const getRandomBytes = createFakeRandomBytesGenerator(0);
+	const bytes = getRandomBytes(100);
+	await state.set({ buffer: bytes });
+	await expect(state.get()).resolves.toStrictEqual({ buffer: bytes });
+
+	await expect(
+		file
+			.get()
+			.then((content) => (content ? new TextDecoder().decode(content) : content)),
+	).resolves.toMatchSnapshot();
 });

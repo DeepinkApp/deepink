@@ -1,6 +1,7 @@
 // eslint.config.js
 import { globalIgnores } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
+import i18next from 'eslint-plugin-i18next';
 import importPlugin from 'eslint-plugin-import';
 import paths from 'eslint-plugin-paths';
 import react from 'eslint-plugin-react';
@@ -288,6 +289,25 @@ export default tseslint.config(
 		},
 	},
 	{
+		files: ['packages/transly/**/*.ts'],
+		languageOptions: {
+			parserOptions: {
+				projectService: {
+					defaultProject: 'packages/transly/tsconfig.json',
+				},
+			},
+		},
+		settings: {
+			'import/resolver': {
+				typescript: {
+					alwaysTryTypes: true,
+					project: 'packages/transly/tsconfig.json',
+				},
+			},
+		},
+	},
+
+	{
 		files: ['packages/app/**/*.{ts,tsx,mts}'],
 		settings: {
 			'import/resolver': {
@@ -304,5 +324,10 @@ export default tseslint.config(
 				},
 			},
 		},
+	},
+	// Require locale strings instead of inlined texts
+	{
+		files: ['packages/app/**/*.tsx'],
+		...i18next.configs['flat/recommended'],
 	},
 );

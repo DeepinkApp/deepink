@@ -1,19 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { joinBuffers } from '@core/encryption/utils/buffers';
-import { bytesToBase64 } from '@core/encryption/utils/encoding';
-import { deriveBitsFromPassword, KEY_SALT_BYTES } from '@core/encryption/utils/keys';
 import { getRandomBytes } from '@core/encryption/utils/random';
-import { createEncryption } from '@core/features/encryption/createEncryption';
 import { RootedFS } from '@core/features/files/RootedFS';
-import { VaultObject, VaultsManager } from '@core/storage/VaultsManager';
+import { disposableEncryption, disposableKDF } from '@core/storage/cryptography';
+import { VaultEncryptionConfig } from '@core/storage/VaultConfigController';
+import { VaultEncryptionController } from '@core/storage/VaultEncryptionController';
+import { VaultsList, VaultSummary } from '@core/storage/VaultsList';
 import { useFilesStorage } from '@features/files';
 
 import { NewVault } from './VaultCreator';
 
 export type VaultsListApi = {
 	isVaultsLoaded: boolean;
-	vaults: VaultObject[];
-	createVault: (vault: NewVault) => Promise<VaultObject>;
+	vaults: VaultSummary[];
+	createVault: (vault: NewVault) => Promise<VaultSummary>;
 };
 
 /**
@@ -21,25 +20,18 @@ export type VaultsListApi = {
  */
 export const useVaultsList = (): VaultsListApi => {
 	const files = useFilesStorage();
-	const vaultsManager = useMemo(
-		() =>
-			new VaultsManager(
-				files,
-				(vaultName) => new RootedFS(files, `/vaults/${vaultName}`),
-			),
-		[files],
-	);
+	const vaultsList = useMemo(() => new VaultsList(files), [files]);
 
-	const [vaults, setVaults] = useState<VaultObject[]>([]);
+	const [vaults, setVaults] = useState<VaultSummary[]>([]);
 	const [isVaultsLoaded, setIsVaultsLoaded] = useState(false);
 
 	const updateVaults = useCallback(
 		() =>
-			vaultsManager.getVaults().then((vaults) => {
+			vaultsList.getAll().then((vaults) => {
 				setVaults(vaults);
 				setIsVaultsLoaded(true);
 			}),
-		[vaultsManager],
+		[vaultsList],
 	);
 
 	// Init state
@@ -49,52 +41,32 @@ export const useVaultsList = (): VaultsListApi => {
 
 	const createVault = useCallback(
 		async (vault: NewVault) => {
-			let vaultData;
-			if (vault.password === null) {
-				// Create vault with no encryption
-				vaultData = await vaultsManager.add({
-					name: vault.name,
-					encryption: null,
-				});
-			} else {
-				// Create encrypted vault
-				console.log('Create vault with encryption', vault.algorithm);
+			const summary = await vaultsList.create({
+				name: vault.name,
+				isEncrypted: vault.encryption !== null,
+			});
 
-				const passwordSalt = getRandomBytes(16);
-				const keyPassword = await deriveBitsFromPassword(
-					vault.password,
-					passwordSalt,
+			// Setup encryption
+			if (vault.encryption) {
+				const vaultConfig = new VaultEncryptionConfig(
+					new RootedFS(files, `/vaults/${summary.id}`),
 				);
 
-				const key = getRandomBytes(32);
-				const keySalt = getRandomBytes(KEY_SALT_BYTES);
+				const vaultController = new VaultEncryptionController(
+					vaultConfig,
+					disposableEncryption,
+					disposableKDF,
+					getRandomBytes,
+				);
 
-				const encryption = await createEncryption({
-					key: keyPassword,
-					salt: keySalt,
-					algorithm: vault.algorithm,
-				});
-
-				const encryptedKey = await encryption
-					.getContent()
-					.encrypt(key.buffer)
-					.finally(() => encryption.dispose());
-
-				vaultData = await vaultsManager.add({
-					name: vault.name,
-					encryption: {
-						algorithm: vault.algorithm,
-						salt: bytesToBase64(passwordSalt.buffer),
-						key: joinBuffers([keySalt.buffer, encryptedKey]),
-					},
-				});
+				await vaultController.init(vault.encryption);
 			}
 
 			await updateVaults();
 
-			return vaultData;
+			return summary;
 		},
-		[vaultsManager, updateVaults],
+		[vaultsList, files, updateVaults],
 	);
 
 	return {

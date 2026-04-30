@@ -1,8 +1,8 @@
 {
 	"app": {
-		"appMenu": "ऐप्लिकेशन",
-		"quit": "बंद करें",
-		"edit": "संपादन",
+		"appMenu": "एप्लिकेशन",
+		"quit": "बाहर निकलें",
+		"edit": "एडिट",
 		"undo": "पूर्ववत करें",
 		"redo": "फिर से करें",
 		"cut": "कट करें",
@@ -10,24 +10,24 @@
 		"paste": "पेस्ट करें",
 		"selectAll": "सभी चुनें",
 		"help": "सहायता",
-		"toggleDevTools": "डेव टूल्स टॉगल करें",
-		"about": "ऐप्लिकेशन के बारे में"
+		"toggleDevTools": "डेवलपर टूल्स",
+		"about": "एप्लिकेशन के बारे में"
 	},
 	"tray": {
 		"open": "नोट्स खोलें",
-		"quit": "बंद करें"
+		"quit": "बाहर निकलें"
 	},
 	"note": {
-		"export": "एक्सपोर्ट...",
-		"duplicate": "प्रतिलिपि बनाएँ",
-		"copyMarkdownLink": "Markdown लिंक कॉपी करें",
-		"deletePermanently": "स्थायी रूप से हटाएँ",
-		"restoreFromBin": "बिन से वापस लाएँ",
-		"deleteToBin": "बिन में भेजें"
+		"export": "एक्सपोर्ट करें...",
+		"duplicate": "डुप्लीकेट करें",
+		"copyMarkdownLink": "मार्कडाउन लिंक कॉपी करें",
+		"deletePermanently": "स्थायी रूप से हटाएं",
+		"restoreFromBin": "बिन से वापस लाएं",
+		"deleteToBin": "बिन में डालें"
 	},
 	"tag": {
-		"addNestedTag": "सब-टैग बनाएँ...",
-		"edit": "संपादित करें...",
-		"delete": "हटाएँ"
+		"addNestedTag": "टैग पदानुक्रम बनाएं...",
+		"edit": "एडिट करें...",
+		"delete": "हटाएं"
 	}
 }

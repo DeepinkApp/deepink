@@ -1,0 +1,8 @@
+{
+	"version": "Versio {{version}}",
+	"environment": "Käytetyt kirjastot",
+	"links": {
+		"label": "Linkit",
+		"reportBug": "Ilmoita virheestä"
+	}
+}

@@ -33,7 +33,8 @@ export class DisposableBox<T> {
 
 	public async dispose() {
 		if (this.cleanup) {
-			await this.cleanup();
+			const cleanupResult = this.cleanup();
+			if (cleanupResult instanceof Promise) await cleanupResult;
 		}
 
 		this.controller.terminate();
@@ -44,3 +45,26 @@ export class DisposableBox<T> {
 		return this.controller.isTerminated();
 	}
 }
+
+/**
+ * Util to simplify consume-then-dispose scenario,
+ * when we want to get content, use it once and call the `dispose` unconditionally,
+ * even if any error happens.
+ *
+ * For example, when we want to wipe the crypto material after use.
+ *
+ * @param container `DisposableBox`
+ * @param consumer callback to consume the content and return result
+ */
+export const consumeDisposable = async <T, R>(
+	container: DisposableBox<T>,
+	consumer: (content: T) => Promise<R>,
+): Promise<R> => {
+	try {
+		const content = container.getContent();
+		const result = await consumer(content);
+		return result;
+	} finally {
+		await container.dispose();
+	}
+};

@@ -17,34 +17,34 @@
 					"placeholder": "bijv. Ideeën"
 				},
 				"parent": {
-					"label": "Bovenliggende tag",
+					"label": "Ouder-tag",
 					"placeholder": "bijv. Recepten/Desserts"
 				}
 			},
 			"messages": {
 				"unknownSubmitError": "Wijzigingen kunnen niet worden opgeslagen door een onbekende fout.",
-				"format": "Een tag mag niet leeg zijn, niet beginnen of eindigen met \"/\" en geen \"//\" bevatten.",
+				"format": "De tag mag niet leeg zijn, mag niet beginnen of eindigen met \"/\" en mag geen \"//\" bevatten.",
 				"duplicate": "Tag '{{name}}' bestaat al.",
-				"parentTagNotFound": "Bovenliggende tag niet gevonden. Kies een andere tag."
+				"parentTagNotFound": "Ouder-tag niet gevonden, selecteer een andere tag."
 			}
 		},
 		"deletion": {
-			"confirm": "Weet je zeker dat je tag \"{{name}}\" en alle subtags wilt verwijderen?"
+			"confirm": "Weet je zeker dat je tag \"{{name}}\" en alle sub-tags wilt verwijderen?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Notitieboek",
 		"creator": {
 			"title": "Nieuwe ruimte aanmaken",
-			"description": "Elke ruimte is een eigen omgeving voor je notities, tags en bestanden. Alles blijft gescheiden, maar veilig opgeslagen in je versleutelde kluis — klaar wanneer je wisselt.",
+			"description": "Elke ruimte is een op zichzelf staande plek voor je notities, tags en bestanden. Alles blijft gescheiden, maar bevindt zich nog steeds binnen je versleutelde vault — klaar voor gebruik zodra je wisselt.",
 			"action": {
 				"add": "Aanmaken",
 				"cancel": "Annuleren"
 			},
 			"field": {
 				"name": {
-					"label": "Naam van de ruimte",
-					"placeholder": "bijv. Gezondheidsdagboek, Zakelijke ideeën",
+					"label": "Ruimtenaam",
+					"placeholder": "bijv. Gezondheid, Zakelijke ideeën",
 					"suggests": {
 						"0": "Financiën",
 						"1": "Gezondheid",
@@ -61,68 +61,68 @@
 			},
 			"error": {
 				"unknown": "Er is een onbekende fout opgetreden. Probeer het opnieuw.",
-				"format": "De naam van de ruimte mag niet leeg zijn."
+				"format": "De ruimtenaam mag niet leeg zijn."
 			}
 		},
 		"error": {
-			"title": "Ruimte \"{{name}}\" kon niet worden geladen",
-			"description": "Deze ruimte kon niet worden geladen. De gegevens zijn mogelijk beschadigd. Wissel naar een andere ruimte of maak een nieuwe aan om verder te werken.",
+			"title": "Laden van ruimte \"{{name}}\" mislukt",
+			"description": "Het laden van deze ruimte is mislukt. De gegevens kunnen beschadigd zijn. Wissel naar een andere ruimte of maak een nieuwe aan om door te gaan.",
 			"chooseAnother": "Kies een andere ruimte",
 			"dividerText": "of",
 			"createNew": "Maak een nieuwe ruimte aan",
 			"createWorkspace": "Ruimte aanmaken",
-			"closeVault": "Huidige kluis sluiten"
+			"closeVault": "Huidige vault sluiten"
 		}
 	},
 	"note": {
 		"title": {
 			"placeholder": "Zonder titel",
 			"defaultTemplate": "Zonder titel - {{date}}",
-			"duplicate": "Kopie: {{title}}"
+			"duplicate": "Duplicaat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Leg een idee, taak of gedachte vast…",
+			"placeholder": "Leg een idee, taak of gedachte vast...",
 			"modes": {
 				"plaintext": "Tekstmodus",
-				"richtext": "Rich editor",
-				"split-screen": "Gesplitst scherm"
+				"richtext": "Rijke tekst",
+				"split-screen": "Split-screen"
 			}
 		},
 		"actions": {
-			"addToFavorites": "Aan favorieten toevoegen",
-			"removeFromFavorites": "Uit favorieten verwijderen",
-			"moveToArchive": "Naar archief verplaatsen",
-			"removeFromArchive": "Uit archief verwijderen"
+			"addToFavorites": "Toevoegen aan favorieten",
+			"removeFromFavorites": "Verwijderen uit favorieten",
+			"moveToArchive": "Verplaatsen naar archief",
+			"removeFromArchive": "Verwijderen uit archief"
 		},
 		"tags": {
-			"addPlaceholder": "Typ om een tag toe te voegen…"
+			"addPlaceholder": "Typ om tag toe te voegen..."
 		},
 		"versionPreview": {
 			"versionAt": "Versie van {{date}}",
 			"backToEditing": "Terug naar bewerken"
 		},
 		"menu": {
-			"title": "Notitie-opties",
-			"copyReference": "Notitielink kopiëren",
-			"remindMe": "Herinner me",
+			"title": "Notie-opties",
+			"copyReference": "Link naar notitie kopiëren",
+			"remindMe": "Herinner mij",
 			"history": "Geschiedenis",
 			"backLinks": "Terugverwijzingen",
-			"readonlyMode": "Alleen-lezenmodus",
-			"spellcheck": "Spellingcontrole",
+			"readonlyMode": "Alleen-lezen modus",
+			"spellcheck": "Spellingscontrole",
 			"export": "Exporteren...",
 			"passwordProtection": "Wachtwoordbeveiliging...",
 			"disableSync": "Synchronisatie uitschakelen",
-			"moveToArchive": "Naar archief verplaatsen",
-			"removeFromArchive": "Uit archief verwijderen",
-			"deleteToBin": "Naar prullenbak verplaatsen",
-			"deletePermanently": "Definitief verwijderen",
+			"moveToArchive": "Verplaatsen naar archief",
+			"removeFromArchive": "Verwijderen uit archief",
+			"deleteToBin": "Verwijderen naar prullenbak",
+			"deletePermanently": "Permanent verwijderen",
 			"restoreFromBin": "Herstellen uit prullenbak"
 		},
 		"version": {
 			"chars": "{{count}} tekens",
 			"apply": {
 				"title": "Versie toepassen",
-				"readonlyTitle": "Versie kan niet worden toegepast op een alleen-lezennotitie"
+				"readonlyTitle": "Versie kan niet worden toegepast op een notitie in alleen-lezen modus"
 			},
 			"open": {
 				"title": "Versie openen"
@@ -133,33 +133,33 @@
 		},
 		"versions": {
 			"saveVersion": {
-				"label": "Momentopname opslaan",
-				"title": "Sla de huidige staat van deze notitie op als nieuwe versie in de geschiedenis"
+				"label": "Snapshot opslaan",
+				"title": "Sla de huidige staat van deze notitie op als een nieuwe versie in de geschiedenis"
 			},
 			"deleteAll": {
-				"label": "Alles verwijderen",
-				"title": "Verwijder alle opgeslagen versies van deze notitie definitief"
+				"label": "Verwijder alles",
+				"title": "Verwijder permanent alle opgeslagen versies van deze notitie"
 			},
 			"dontRecord": "Geen geschiedenis bijhouden voor deze notitie",
 			"empty": "Deze notitie heeft geen opgeslagen versies",
 			"loading": "Laden...",
 			"confirmDeleteAll": {
-				"title": "Alle notitieversies verwijderen",
-				"description": "Hiermee worden alle notitieversies definitief verwijderd.",
-				"confirm": "Weet je het zeker?",
+				"title": "Alle versies verwijderen",
+				"description": "Deze actie verwijdert permanent alle versies van deze notitie.",
+				"confirm": "Weet je dit zeker?",
 				"action": "Toepassen"
 			},
 			"confirmApply": {
-				"title": "Notitieversie toepassen",
-				"description": "Je staat op het punt notitieversie {{version}} toe te passen.",
-				"warning": "Hiermee wordt de huidige notitie-inhoud vervangen door de tekst van de geselecteerde momentopname. Weet je het zeker?",
+				"title": "Notie-versie toepassen",
+				"description": "Je staat op het punt versie {{version}} toe te passen.",
+				"warning": "Deze actie vervangt de huidige gegevens van de notitie door de tekst van de geselecteerde snapshot. Weet je dit zeker?",
 				"apply": "Toepassen",
 				"preview": "Voorbeeld"
 			},
 			"confirmDelete": {
-				"title": "Notitieversie verwijderen",
-				"description": "Je staat op het punt notitieversie {{version}} te verwijderen.",
-				"warning": "Hiermee wordt de notitieversie onomkeerbaar verwijderd. Weet je het zeker?",
+				"title": "Notie-versie verwijderen",
+				"description": "Je staat op het punt versie {{version}} te verwijderen.",
+				"warning": "Deze actie is onomkeerbaar. Weet je dit zeker?",
 				"delete": "Verwijderen",
 				"preview": "Voorbeeld"
 			}
@@ -167,35 +167,35 @@
 		"sidebar": {
 			"closePanel": "Paneel sluiten",
 			"tabs": {
-				"history": "Notitieversies",
+				"history": "Notie-versies",
 				"backLinks": "Terugverwijzingen",
 				"files": "Bijgevoegde bestanden"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Wil je deze notitie naar de prullenbak verplaatsen?",
-			"confirmPermanentDeletion": "Wil je deze notitie definitief verwijderen?"
+			"confirmPermanentDeletion": "Wil je deze notitie permanent verwijderen?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Weet je zeker dat je {{filesCount}} bestanden wilt uploaden ({{size}} totaal)?"
+		"confirmLargeUpload": "Weet je zeker dat je {{filesCount}} bestanden (totaal {{size}}) wilt uploaden?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Zoeken..."
 		},
-		"filterBy": "Filteren op",
-		"empty": "Nog geen notities. <create>Maak een notitie</create>"
+		"filterBy": "Filter op",
+		"empty": "Nog geen notities. <create>Maak een notitie aan</create>"
 	},
 	"notesView": {
 		"allNotes": "Alle notities",
-		"favorites": "Favoriete notities",
-		"archived": "Gearchiveerde notities",
-		"deleted": "Verwijderde notities"
+		"favorites": "Favorieten",
+		"archived": "Archief",
+		"deleted": "Verwijderd"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Selecteer een notitie om te lezen of bewerken"
+			"placeholder": "Selecteer een notitie om te lezen of te bewerken"
 		}
 	},
 	"activityBar": {
@@ -205,35 +205,35 @@
 		"extensions": "Extensies",
 		"inbox": "Inbox",
 		"publishNotes": "Notities publiceren",
-		"lockVault": "Kluis vergrendelen",
-		"globalSettings": "Algemene instellingen"
+		"lockVault": "Vault vergrendelen",
+		"globalSettings": "Instellingen"
 	},
 	"tabBar": {
-		"closeTab": "Tabblad sluiten"
+		"closeTab": "Tab sluiten"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Klik om een kop van niveau {{level}} in te voegen. Open het contextmenu voor andere opties",
-			"level": "Kopniveau {{level}}"
+			"insertTitle": "Klik om koptekst niveau {{level}} in te voegen. Open het contextmenu voor andere opties",
+			"level": "Koptekst niveau {{level}}"
 		},
-		"bold": "Vetgedrukte tekststijl in-/uitschakelen",
-		"italic": "Cursieve tekststijl in-/uitschakelen",
-		"strikethrough": "Doorgehaalde tekststijl in-/uitschakelen",
-		"unorderedList": "Ongeordende lijst invoegen of wisselen",
-		"checkboxList": "Checkboxlijst invoegen of wisselen",
-		"orderedList": "Genummerde lijst invoegen of wisselen",
-		"codeBlock": "Codeblok invoegen of tekst omzetten",
-		"quoteBlock": "Citaatblok invoegen of tekst omzetten",
+		"bold": "Vetgedrukt",
+		"italic": "Cursief",
+		"strikethrough": "Doorhalen",
+		"unorderedList": "Opsommingsteken",
+		"checkboxList": "Checklist",
+		"orderedList": "Genummerde lijst",
+		"codeBlock": "Codeblok",
+		"quoteBlock": "Citaat",
 		"insertDate": "Datum invoegen",
 		"insertPageBreak": "Pagina-einde invoegen",
 		"insertFile": "Bestand invoegen",
 		"image": {
 			"buttonTitle": "Afbeelding invoegen",
 			"dialogTitle": "Afbeelding toevoegen",
-			"dialogDescription": "De afbeelding wordt ingevoegd op de cursorpositie.",
+			"dialogDescription": "De afbeelding wordt ingevoegd op de huidige cursorpositie.",
 			"field": {
 				"url": {
-					"label": "Afbeeldings-URL",
+					"label": "Afbeelding URL",
 					"placeholder": "bijv. https://example.com/image.png"
 				},
 				"altText": {
@@ -249,10 +249,10 @@
 		"link": {
 			"buttonTitle": "Link invoegen",
 			"dialogTitle": "Link toevoegen",
-			"dialogDescription": "Geselecteerde tekst wordt een link, of de link wordt ingevoegd op de cursorpositie als er niets is geselecteerd.",
+			"dialogDescription": "De geselecteerde tekst wordt een link. Als er niets is geselecteerd, wordt de link ingevoegd op de cursorpositie.",
 			"field": {
 				"url": {
-					"label": "Link-URL",
+					"label": "Link URL",
 					"placeholder": "bijv. https://example.com"
 				}
 			},
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Afbeelding laden"
+		"loading": "Afbeelding laden",
+		"brokenImage": "Afbeelding kan niet worden geladen"
 	},
 	"notifications": {
 		"title": "Meldingen"
@@ -271,24 +272,24 @@
 	"updates": {
 		"appUpdate": {
 			"title": "App-update",
-			"reminderLater": "De herinnering wordt over een week opnieuw getoond"
+			"reminderLater": "De herinnering wordt over een week getoond"
 		},
 		"newVersion": {
 			"title": "Nieuwe versie beschikbaar",
-			"body": "Er is een nieuwe versie beschikbaar. Werk bij voor de nieuwste verbeteringen en fixes.",
-			"download": "Nieuwe versie downloaden",
+			"body": "Er is een nieuwe versie beschikbaar. Update de app voor de laatste verbeteringen en reparaties.",
+			"download": "Download nieuwe versie",
 			"ignore": "Negeren"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
 			"title": "Afbeeldingseigenschappen",
-			"urlLabel": "Afbeeldings-URL",
+			"urlLabel": "Afbeelding URL",
 			"altLabel": "Alt-tekst"
 		},
 		"linkProperties": {
 			"title": "Linkeigenschappen",
-			"urlLabel": "Link-URL"
+			"urlLabel": "Link URL"
 		}
 	},
 	"statusBar": {
@@ -296,7 +297,7 @@
 			"title": "Klik om wijzigingen op te slaan",
 			"saving": "Wijzigingen opslaan..."
 		},
-		"changeVault": "Kluis wisselen",
+		"changeVault": "Andere vault selecteren",
 		"history": "Geschiedenis",
 		"notifications": "Meldingen"
 	}

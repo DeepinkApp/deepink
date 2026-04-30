@@ -3,28 +3,28 @@
 		"title": "偏好设置"
 	},
 	"tabs": {
-		"general": "通用",
+		"general": "常规",
 		"appearance": "外观",
 		"hotkeys": "快捷键",
 		"vault": "保险库",
-		"workspace": "工作区",
+		"workspace": "空间",
 		"importExport": "导入与导出",
 		"vaultSettingsGroup": "保险库设置"
 	},
 	"general": {
-		"title": "通用设置",
-		"subtitle": "管理应用的整体偏好设置。",
+		"title": "常规设置",
+		"subtitle": "管理应用的全局偏好设置。",
 		"version": {
 			"title": "版本",
 			"checkForUpdates": "检查更新",
 			"upToDate": "已是最新版本",
 			"newVersionAvailable": "新版本 <bold>{{version}}</bold> 已发布。",
 			"downloadLatest": "下载",
-			"downloadDescription": "最新版本，获取新功能与改进。"
+			"downloadDescription": "下载最新版本以获取新功能与改进。"
 		},
 		"autoCheckUpdates": {
 			"label": "自动检查更新",
-			"description": "应用将定期检查更新，并在有新版本时通知你。"
+			"description": "应用将定期检查更新，并在有新版本时通知您。"
 		},
 		"language": {
 			"title": "语言",
@@ -32,27 +32,27 @@
 		},
 		"notifications": {
 			"title": "通知",
-			"description": "系统通知仅用于提醒事项。关闭后，提醒将仅显示在应用内的通知列表中。",
+			"description": "系统通知仅用于提醒。禁用后，提醒将仅出现在应用内的通知列表中。",
 			"useSystem": "使用系统通知"
 		},
 		"vaultLock": {
 			"groupTitle": "保险库锁定",
 			"lockOnSystemLock": {
-				"label": "系统锁定时锁定保险库",
-				"description": "当屏幕保护程序启动或设备进入睡眠时，保险库将自动锁定。"
+				"label": "系统锁定后锁定保险库",
+				"description": "当屏幕保护程序启动或设备进入睡眠状态时，将锁定保险库。"
 			},
 			"lockAfterIdle": {
 				"title": "闲置后锁定保险库",
-				"description": "保险库将在选定的闲置时间后自动锁定。",
-				"never": "不锁定",
-				"minutes5": "5 分钟",
-				"minutes10": "10 分钟",
-				"minutes15": "15 分钟",
-				"minutes30": "30 分钟",
-				"hour1": "1 小时",
-				"hours2": "2 小时",
-				"hours3": "3 小时",
-				"hours5": "5 小时"
+				"description": "在设定的闲置时间后锁定保险库。",
+				"never": "从不锁定",
+				"minutes5": "5 分钟后",
+				"minutes10": "10 分钟后",
+				"minutes15": "15 分钟后",
+				"minutes30": "30 分钟后",
+				"hour1": "1 小时后",
+				"hours2": "2 小时后",
+				"hours3": "3 小时后",
+				"hours5": "5 小时后"
 			}
 		}
 	},
@@ -62,21 +62,21 @@
 			"auto": "自动",
 			"dark": "深色",
 			"light": "浅色",
-			"zen": "禅"
+			"zen": "禅意"
 		},
 		"accentColor": {
 			"title": "强调色",
-			"zenNotApplicable": "强调色不适用于当前主题。"
+			"zenNotApplicable": "所选主题不支持自定义强调色。"
 		},
 		"zoomLevel": {
 			"title": "缩放级别",
-			"description": "调整所有窗口的默认缩放级别。\n如果系统未自动缩放应用，你可以更改缩放以匹配实际显示像素比 (DPR)。检测到的 DPR 为 {{dpr}}。",
+			"description": "调整所有窗口的默认缩放级别。\n如果您的系统未自动缩放应用，可以通过调整缩放级别使其适应实际的屏幕像素比 (DPR)。您的当前像素比为 {{dpr}}。",
 			"apply": "应用",
 			"reset": "重置",
 			"errors": {
 				"enterNumber": "请输入数字以设置缩放",
-				"tooSmall": "缩放不能小于 {{min}}%",
-				"tooBig": "缩放不能大于 {{max}}%"
+				"tooSmall": "缩放比例不能低于 {{min}}%",
+				"tooBig": "缩放比例不能高于 {{max}}%"
 			}
 		}
 	},
@@ -86,8 +86,8 @@
 			"title": "编辑器模式"
 		},
 		"fontFamily": {
-			"title": "字体",
-			"description": "设置所有编辑器使用的字体，留空则使用默认字体。",
+			"title": "字体族",
+			"description": "为所有编辑器设置统一的字体族，留空则使用默认字体。",
 			"placeholder": "输入字体名称"
 		},
 		"fontSize": {
@@ -98,14 +98,14 @@
 		},
 		"dateFormat": {
 			"title": "日期格式",
-			"description": "设置插入日期时使用的格式。支持标准格式语法，如 DD/MM/YYYY HH:mm:ss。",
+			"description": "设置插入日期时使用的格式。支持标准占位符语法，如 DD/MM/YYYY HH:mm:ss。",
 			"formatReference": "日期格式参考",
 			"example": "示例"
 		},
 		"plainText": {
 			"groupTitle": "纯文本编辑器",
 			"lineNumbers": "显示行号",
-			"miniMap": "启用缩略图"
+			"miniMap": "启用小地图"
 		}
 	},
 	"hotkeys": {
@@ -114,15 +114,15 @@
 			"createNote": "新建笔记",
 			"closeCurrentNote": "关闭当前笔记",
 			"restoreClosedNote": "恢复最近关闭的笔记",
-			"focusNextNote": "切换到下一篇笔记",
-			"focusPreviousNote": "切换到上一篇笔记",
-			"toggleArchive": "归档 / 取消归档当前笔记",
-			"toggleBookmark": "收藏 / 取消收藏当前笔记",
+			"focusNextNote": "切换至下一篇笔记",
+			"focusPreviousNote": "切换至上一篇笔记",
+			"toggleArchive": "将笔记移入/移出归档",
+			"toggleBookmark": "将笔记设为/取消书签",
 			"deleteNote": "删除当前笔记",
-			"restoreFromBin": "从回收站恢复当前笔记",
-			"toggleHistory": "显示或隐藏当前笔记的历史记录",
+			"restoreFromBin": "从回收站恢复笔记",
+			"toggleHistory": "显示/隐藏笔记历史",
 			"focusSearch": "搜索笔记",
-			"syncDatabase": "同步保险库到磁盘",
+			"syncDatabase": "将保险库同步至磁盘",
 			"lockVault": "锁定保险库",
 			"openSettings": "打开偏好设置"
 		}
@@ -132,8 +132,8 @@
 			"title": "保险库名称"
 		},
 		"rememberPasswords": {
-			"label": "记住工作区密码",
-			"description": "工作区密码将使用主密钥加密并保存在数据库中，以便自动打开加密的工作区，无需再次输入密码。"
+			"label": "记住空间密码",
+			"description": "使用主密钥加密并保存空间密码，以便无需输入密码即可自动打开加密空间。"
 		},
 		"filesAndData": {
 			"groupTitle": "文件与数据",
@@ -141,11 +141,11 @@
 				"title": "图片压缩",
 				"compress": "压缩图片",
 				"doNotCompress": "不压缩图片",
-				"alwaysAsk": "每次询问"
+				"alwaysAsk": "总是询问"
 			},
 			"deleteOrphaned": {
-				"label": "删除无引用文件",
-				"description": "删除不再被使用的文件。"
+				"label": "清理孤立文件",
+				"description": "删除不再使用的文件。"
 			}
 		},
 		"encryption": {
@@ -163,7 +163,7 @@
 			"groupTitle": "同步",
 			"enable": {
 				"label": "启用同步",
-				"description": "在多台设备间保持保险库同步。所有数据在离开设备前均已加密。"
+				"description": "在设备间保持保险库同步。所有数据在离开设备前均已加密。"
 			},
 			"method": {
 				"title": "同步方式",
@@ -179,42 +179,42 @@
 			"groupTitle": "快照",
 			"record": {
 				"label": "记录笔记快照",
-				"description": "启用后，笔记内容发生更改时将自动创建快照。你可以在笔记历史面板中单独控制每篇笔记的快照记录。"
+				"description": "开启后，笔记内容发生变更时将自动创建快照。您可以在笔记历史面板中针对单篇笔记控制快照记录。"
 			},
 			"delay": {
 				"title": "快照延迟",
-				"description": "笔记编辑后等待多长时间再保存新快照，单位为秒。间隔越短，快照越频繁，保险库体积也越大。"
+				"description": "笔记编辑完成后等待多少秒再保存新快照。间隔越短，快照越频繁，占用的库空间也越大。"
 			}
 		},
 		"trashBin": {
 			"groupTitle": "回收站",
 			"confirmDeletion": {
-				"label": "确认删除",
-				"description": "删除笔记前进行确认。"
+				"label": "删除确认",
+				"description": "在删除笔记前进行确认。"
 			},
 			"moveToBin": {
-				"label": "将笔记移至回收站",
-				"description": "删除笔记时先移至回收站，而非永久删除，以便后续恢复。"
+				"label": "移至回收站",
+				"description": "将笔记移至回收站而非直接永久删除，以便日后恢复。"
 			},
 			"autoPurge": {
-				"label": "自动永久删除回收站中的旧笔记",
+				"label": "自动清理回收站旧笔记",
 				"description": "移至回收站的笔记将在一段时间后被永久删除。"
 			},
 			"purgeDelay": {
 				"title": "永久删除延迟",
-				"description": "回收站中的笔记将在移入后指定天数后被永久删除。",
+				"description": "笔记移入回收站后的指定天数内将被永久删除。",
 				"unit": "天"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "工作区名称",
+			"title": "空间名称",
 			"update": "更新"
 		},
 		"newNoteTitle": {
 			"title": "新笔记标题",
-			"description": "设置新笔记的标题。可使用 {date} 或 {date:FORMAT} 语法插入日期，如 {date:DD/MM/YYYY HH:mm}。",
+			"description": "设置新笔记的默认标题。您可以使用 {date} 或 {date:FORMAT} 语法，例如 {date:DD/MM/YYYY HH:mm}。",
 			"formatReference": "格式参考",
 			"placeholder": "例如：笔记 {date:DD/MM/YYYY HH:mm}",
 			"example": "示例"
@@ -225,25 +225,25 @@
 			"selected": "与当前选中的标签相同"
 		},
 		"dangerousZone": {
-			"groupTitle": "危险操作",
+			"groupTitle": "危险区域",
 			"delete": {
-				"label": "删除工作区及所有相关数据，包括笔记、标签和文件",
-				"action": "删除工作区",
-				"cannotDeleteLast": "无法删除保险库中的最后一个工作区。",
-				"createAnother": "创建",
-				"createAnotherSuffix": "另一个工作区后再操作。"
+				"label": "删除该空间及其所有相关数据，包括笔记、标签和文件",
+				"action": "删除空间",
+				"cannotDeleteLast": "无法删除库中的最后一个空间。",
+				"createAnother": "请先创建",
+				"createAnotherSuffix": "另一个空间。"
 			},
-			"confirmDelete": "你即将删除工作区「{{name}}」。确定要继续吗？\n\n继续操作后，该工作区的所有数据将被删除，包括笔记、标签和文件。"
+			"confirmDelete": "您即将删除空间 \"{{name}}\"。确定要执行此操作吗？\n\n如果继续，该空间的所有相关数据（包括笔记、标签和文件）都将被删除。"
 		}
 	},
 	"importExport": {
 		"importNotes": "导入笔记",
 		"exportNotes": "导出笔记",
 		"importFromZip": "从 .zip 压缩包导入笔记",
-		"importFromDirectory": "导入包含 Markdown 文件的目录",
+		"importFromDirectory": "从包含 Markdown 文件的目录导入",
 		"dropzone": {
-			"title": "拖放 Markdown 文件或 .zip 压缩包以导入",
-			"description": "将文件拖放到此处，或点击选择文件"
+			"title": "拖入 Markdown 文件或 .zip 压缩包进行导入",
+			"description": "将文件拖拽至此，或点击选择文件"
 		},
 		"progress": "正在导入笔记。阶段：{{stage}} {{processed}}/{{total}}"
 	}

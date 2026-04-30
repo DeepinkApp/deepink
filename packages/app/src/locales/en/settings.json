@@ -70,7 +70,7 @@
 		},
 		"zoomLevel": {
 			"title": "Zoom level",
-			"description": "Adjust the default zoom level for all windows.\nIn case your system does not scale apps automatically, you may change the zoom to make it fit the actual display pixel ratio (DPR). Detected DPR is {{dpr}}.",
+			"description": "Adjust the default zoom level for all windows.\nIn case your system does not scale apps automatically, you may change the zoom to make it fit the actual display pixel ratio (DPR). Your display pixel ratio is {{dpr}}.",
 			"apply": "Apply",
 			"reset": "Reset",
 			"errors": {

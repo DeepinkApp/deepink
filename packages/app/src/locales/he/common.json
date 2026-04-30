@@ -13,6 +13,6 @@
 		"close": "סגירה"
 	},
 	"form": {
-		"suggestTemplate": "אפשר לנסות: <suggests>"
+		"suggestTemplate": "נסה/י את: <suggests>"
 	}
 }

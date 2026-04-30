@@ -1,0 +1,8 @@
+{
+	"version": "版本 {{version}}",
+	"environment": "使用函式庫",
+	"links": {
+		"label": "連結",
+		"reportBug": "回報問題"
+	}
+}

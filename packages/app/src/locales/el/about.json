@@ -1,0 +1,8 @@
+{
+	"version": "Έκδοση {{version}}",
+	"environment": "Βιβλιοθήκες",
+	"links": {
+		"label": "Σύνδεσμοι",
+		"reportBug": "Αναφορά σφάλματος"
+	}
+}

@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Tags",
-			"empty": "Maak tags om je notities te ordenen. Groepeer ze in een flexibele hiërarchie.",
+			"empty": "Maak tags aan om je notities te ordenen. Gebruik een hiërarchie voor meer flexibiliteit.",
 			"actions": {
 				"add": "Tag toevoegen"
 			}

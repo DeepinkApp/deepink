@@ -5,7 +5,7 @@ import { CryptographyUtilsWorker } from '.';
 
 expose(
 	{
-		async deriveBits(input, salt, length) {
+		async deriveBits(input, salt, length, config) {
 			try {
 				await sodium.ready;
 
@@ -27,8 +27,8 @@ expose(
 					);
 
 				// 512mb
-				const memory = 1024 ** 2 * 512;
-				const ops = 2;
+				const memory = config?.memory ?? 1024 ** 2 * 512;
+				const ops = config?.ops ?? 2;
 
 				const key = sodium.crypto_pwhash(
 					outputBytes,

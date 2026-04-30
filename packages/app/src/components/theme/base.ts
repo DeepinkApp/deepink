@@ -1,4 +1,5 @@
 /* eslint-disable @cspell/spellchecker */
+import { progressAnatomy } from '@chakra-ui/anatomy';
 import {
 	createMultiStyleConfigHelpers,
 	defineStyleConfig,
@@ -96,6 +97,22 @@ export default extendTheme({
 		},
 	},
 	components: {
+		Progress: createMultiStyleConfigHelpers(
+			progressAnatomy.keys,
+		).defineMultiStyleConfig({
+			variants: {
+				success: {
+					filledTrack: {
+						bgColor: 'message.success',
+					},
+				},
+				alert: {
+					filledTrack: {
+						bgColor: 'message.error',
+					},
+				},
+			},
+		}),
 		Text: defineStyleConfig({
 			baseStyle: {
 				color: 'typography.base',

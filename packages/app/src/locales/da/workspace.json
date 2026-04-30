@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Tags",
-			"empty": "Opret tags for at organisere dine noter. Byg en fleksibel struktur med undertags.",
+			"empty": "Opret tags for at organisere dine noter. Brug tag-hierarkier for at skabe fleksibilitet.",
 			"actions": {
 				"add": "Tilføj tag"
 			}

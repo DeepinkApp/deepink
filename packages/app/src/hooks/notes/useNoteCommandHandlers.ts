@@ -41,8 +41,6 @@ export const useNoteCommandHandlers = () => {
 	const eventBus = useEventBus();
 
 	useWorkspaceCommandCallback(GLOBAL_COMMANDS.MOVE_NOTE_TO_BIN, async ({ noteId }) => {
-		if (deletionConfig.confirm && !confirm(t('note.bin.confirmMoveToBin'))) return;
-
 		await noteActions.close(noteId);
 
 		await notes.updateMeta([noteId], { isDeleted: true });

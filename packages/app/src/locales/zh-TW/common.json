@@ -13,6 +13,6 @@
 		"close": "關閉"
 	},
 	"form": {
-		"suggestTemplate": "試試看：<suggests>"
+		"suggestTemplate": "嘗試使用：<suggests>"
 	}
 }

@@ -6,25 +6,25 @@
 		"general": "General",
 		"appearance": "Apariencia",
 		"hotkeys": "Atajos",
-		"vault": "Vault",
-		"workspace": "Espacio",
+		"vault": "Bóveda",
+		"workspace": "Espacios",
 		"importExport": "Importar y exportar",
-		"vaultSettingsGroup": "Ajustes del vault"
+		"vaultSettingsGroup": "Ajustes de la bóveda"
 	},
 	"general": {
 		"title": "Ajustes generales",
-		"subtitle": "Gestiona las preferencias generales de la app.",
+		"subtitle": "Gestiona tus preferencias generales en la aplicación.",
 		"version": {
 			"title": "Versión",
 			"checkForUpdates": "Buscar actualizaciones",
 			"upToDate": "Tienes la última versión",
-			"newVersionAvailable": "La versión <bold>{{version}}</bold> está disponible.",
+			"newVersionAvailable": "Hay una nueva versión disponible: <bold>{{version}}</bold>.",
 			"downloadLatest": "Descargar",
 			"downloadDescription": "la última versión para obtener nuevas funciones y mejoras."
 		},
 		"autoCheckUpdates": {
 			"label": "Buscar actualizaciones automáticamente",
-			"description": "La app buscará actualizaciones periódicamente y te notificará si hay una nueva versión disponible."
+			"description": "La aplicación buscará actualizaciones periódicamente y te avisará si hay una nueva versión disponible."
 		},
 		"language": {
 			"title": "Idioma",
@@ -36,23 +36,23 @@
 			"useSystem": "Usar notificaciones del sistema"
 		},
 		"vaultLock": {
-			"groupTitle": "Bloqueo del vault",
+			"groupTitle": "Bloqueo de la bóveda",
 			"lockOnSystemLock": {
-				"label": "Bloquear vault al bloquear el sistema",
-				"description": "El vault se bloqueará cuando se active el protector de pantalla o el dispositivo entre en reposo."
+				"label": "Bloquear bóveda al bloquear el sistema",
+				"description": "La bóveda se bloqueará cuando se active el protector de pantalla o el dispositivo entre en reposo."
 			},
 			"lockAfterIdle": {
-				"title": "Bloquear vault tras inactividad",
-				"description": "El vault se bloqueará tras el tiempo de inactividad seleccionado.",
+				"title": "Bloquear tras inactividad",
+				"description": "La bóveda se bloqueará tras un tiempo de inactividad seleccionado.",
 				"never": "No bloquear",
-				"minutes5": "5 minutos",
-				"minutes10": "10 minutos",
-				"minutes15": "15 minutos",
-				"minutes30": "30 minutos",
-				"hour1": "1 hora",
-				"hours2": "2 horas",
-				"hours3": "3 horas",
-				"hours5": "5 horas"
+				"minutes5": "durante 5 minutos",
+				"minutes10": "durante 10 minutos",
+				"minutes15": "durante 15 minutos",
+				"minutes30": "durante 30 minutos",
+				"hour1": "durante 1 hora",
+				"hours2": "durante 2 horas",
+				"hours3": "durante 3 horas",
+				"hours5": "durante 5 horas"
 			}
 		}
 	},
@@ -70,35 +70,35 @@
 		},
 		"zoomLevel": {
 			"title": "Nivel de zoom",
-			"description": "Ajusta el nivel de zoom predeterminado para todas las ventanas.\nSi tu sistema no escala las apps automáticamente, puedes cambiar el zoom para adaptarlo a la proporción de píxeles de tu pantalla (DPR). DPR detectado: {{dpr}}.",
+			"description": "Ajusta el nivel de zoom predeterminado para todas las ventanas.\nSi tu sistema no escala las apps automáticamente, puedes cambiar el zoom para adaptarlo a la densidad de píxeles (DPR) de tu pantalla. Tu densidad de píxeles es {{dpr}}.",
 			"apply": "Aplicar",
 			"reset": "Restablecer",
 			"errors": {
 				"enterNumber": "Introduce un número para ajustar el zoom",
-				"tooSmall": "El zoom no puede ser menor de {{min}}%",
-				"tooBig": "El zoom no puede ser mayor de {{max}}%"
+				"tooSmall": "El zoom no puede ser inferior al {{min}}%",
+				"tooBig": "El zoom no puede ser superior al {{max}}%"
 			}
 		}
 	},
 	"editor": {
 		"groupTitle": "Editor",
 		"mode": {
-			"title": "Modo del editor"
+			"title": "Modo de editor"
 		},
 		"fontFamily": {
-			"title": "Tipografía",
-			"description": "Establece una tipografía para todos los editores, o déjalo vacío para usar la predeterminada.",
-			"placeholder": "Nombre de la tipografía"
+			"title": "Familia tipográfica",
+			"description": "Establece una fuente para todos los editores, o déjala vacía para usar la predeterminada.",
+			"placeholder": "Nombre de la fuente"
 		},
 		"fontSize": {
 			"title": "Tamaño de fuente"
 		},
 		"lineHeight": {
-			"title": "Altura de línea"
+			"title": "Interlineado"
 		},
 		"dateFormat": {
 			"title": "Formato de fecha",
-			"description": "Establece el formato de fecha al insertar fechas. Admite sintaxis estándar de tokens como DD/MM/YYYY HH:mm:ss.",
+			"description": "Establece el formato de fecha al insertar fechas. Admite sintaxis de tokens estándar como DD/MM/YYYY HH:mm:ss.",
 			"formatReference": "referencia de formato de fecha",
 			"example": "Ejemplo"
 		},
@@ -109,31 +109,31 @@
 		}
 	},
 	"hotkeys": {
-		"blank": "Sin asignar",
+		"blank": "Ninguno",
 		"shortcuts": {
-			"createNote": "Crear nueva nota",
+			"createNote": "Crear una nueva nota",
 			"closeCurrentNote": "Cerrar nota activa",
 			"restoreClosedNote": "Restaurar nota cerrada recientemente",
 			"focusNextNote": "Ir a la siguiente nota abierta",
-			"focusPreviousNote": "Ir a la nota abierta anterior",
-			"toggleArchive": "Mover nota activa al archivo o sacarla",
-			"toggleBookmark": "Añadir o quitar marcador de la nota activa",
+			"focusPreviousNote": "Ir a la nota anterior abierta",
+			"toggleArchive": "Archivar/Desarchivar nota activa",
+			"toggleBookmark": "Marcar/Desmarcar nota activa",
 			"deleteNote": "Eliminar nota activa",
-			"restoreFromBin": "Restaurar nota activa de la papelera",
-			"toggleHistory": "Mostrar u ocultar historial de la nota activa",
+			"restoreFromBin": "Restaurar nota desde la papelera",
+			"toggleHistory": "Mostrar u ocultar historial de la nota",
 			"focusSearch": "Buscar notas",
-			"syncDatabase": "Sincronizar vault con disco",
-			"lockVault": "Bloquear vault",
+			"syncDatabase": "Sincronizar bóveda con el disco",
+			"lockVault": "Bloquear bóveda",
 			"openSettings": "Abrir preferencias"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Nombre del vault"
+			"title": "Nombre de la bóveda"
 		},
 		"rememberPasswords": {
-			"label": "Recordar contraseñas de los espacios",
-			"description": "Las contraseñas de los espacios se cifrarán con la clave maestra y se guardarán en la base de datos, para abrir automáticamente los espacios cifrados sin introducir contraseña."
+			"label": "Recordar contraseñas de espacios",
+			"description": "Las contraseñas de los espacios se cifrarán con la clave maestra y se guardarán en la base de datos para abrir espacios cifrados automáticamente sin introducir la contraseña."
 		},
 		"filesAndData": {
 			"groupTitle": "Archivos y datos",
@@ -145,7 +145,7 @@
 			},
 			"deleteOrphaned": {
 				"label": "Eliminar archivos huérfanos",
-				"description": "Elimina archivos que ya no se utilizan."
+				"description": "Elimina los archivos que ya no se utilizan."
 			}
 		},
 		"encryption": {
@@ -163,7 +163,7 @@
 			"groupTitle": "Sincronización",
 			"enable": {
 				"label": "Activar sincronización",
-				"description": "Mantén tu vault sincronizado entre dispositivos. Todos los datos se cifran antes de salir de tu dispositivo."
+				"description": "Mantén tu bóveda sincronizada en todos tus dispositivos. Todos los datos se cifran antes de salir de tu dispositivo."
 			},
 			"method": {
 				"title": "Método de sincronización",
@@ -179,11 +179,11 @@
 			"groupTitle": "Instantáneas",
 			"record": {
 				"label": "Registrar instantáneas de notas",
-				"description": "Cuando está activado, se crearán instantáneas del contenido de la nota cada vez que se modifique. Puedes controlar el registro de instantáneas por nota en el panel de historial."
+				"description": "Al activar esta opción, se crearán instantáneas del contenido cuando cambies una nota. Puedes gestionar el registro de instantáneas de cada nota desde su historial."
 			},
 			"delay": {
-				"title": "Espera antes de la instantánea",
-				"description": "Tiempo de espera en segundos tras editar una nota antes de guardar una nueva instantánea. Intervalos más cortos generan más instantáneas y un vault más grande."
+				"title": "Retraso de la instantánea",
+				"description": "Segundos de espera tras editar una nota antes de guardar una nueva instantánea. Intervalos cortos generan más instantáneas y un espacio más grande."
 			}
 		},
 		"trashBin": {
@@ -194,15 +194,15 @@
 			},
 			"moveToBin": {
 				"label": "Mover notas a la papelera",
-				"description": "Las notas se moverán a la papelera en lugar de eliminarse permanentemente, para poder restaurarlas después."
+				"description": "Mueve las notas a la papelera en lugar de eliminarlas permanentemente para poder restaurarlas después."
 			},
 			"autoPurge": {
-				"label": "Eliminar permanentemente notas antiguas de la papelera",
-				"description": "Las notas en la papelera se eliminarán permanentemente tras un tiempo."
+				"label": "Eliminar automáticamente notas antiguas",
+				"description": "Las notas en la papelera se eliminarán permanentemente tras un tiempo determinado."
 			},
 			"purgeDelay": {
-				"title": "Plazo de eliminación permanente",
-				"description": "Las notas en la papelera se eliminarán permanentemente tras este número de días, contados desde que se movieron allí.",
+				"title": "Retraso de eliminación permanente",
+				"description": "Las notas en la papelera se eliminarán permanentemente tras este número de días desde su traslado.",
 				"unit": "días"
 			}
 		}
@@ -213,38 +213,38 @@
 			"update": "Actualizar"
 		},
 		"newNoteTitle": {
-			"title": "Título de nueva nota",
-			"description": "Establece el título para nuevas notas. Puedes usar la fecha con la sintaxis {date} o {date:FORMATO} como {date:DD/MM/YYYY HH:mm}.",
+			"title": "Título de nuevas notas",
+			"description": "Define el título para las nuevas notas. Puedes usar la fecha con la sintaxis {date} o {date:FORMAT}, por ejemplo {date:DD/MM/YYYY HH:mm}.",
 			"formatReference": "referencia de formato",
-			"placeholder": "Ej., Nota {date:DD/MM/YYYY HH:mm}",
+			"placeholder": "ej., Nota {date:DD/MM/YYYY HH:mm}",
 			"example": "Ejemplo"
 		},
 		"tagsForNewNote": {
-			"title": "Tags para nueva nota",
-			"none": "No asignar tags",
-			"selected": "Mismo que el tag seleccionado"
+			"title": "Etiquetas para nuevas notas",
+			"none": "Sin etiquetas",
+			"selected": "Misma que la etiqueta seleccionada"
 		},
 		"dangerousZone": {
-			"groupTitle": "Zona de riesgo",
+			"groupTitle": "Zona de peligro",
 			"delete": {
-				"label": "Eliminar espacio y todos los datos relacionados, incluyendo notas, tags y archivos",
+				"label": "Eliminar espacio y todos sus datos (notas, etiquetas y archivos)",
 				"action": "Eliminar espacio",
-				"cannotDeleteLast": "No se puede eliminar el último espacio del vault.",
+				"cannotDeleteLast": "No se puede eliminar el último espacio de un contenedor.",
 				"createAnother": "Crea",
 				"createAnotherSuffix": "otro espacio primero."
 			},
-			"confirmDelete": "Estás a punto de eliminar el espacio \"{{name}}\". ¿Seguro que quieres continuar?\n\nSi continúas, se eliminarán todos los datos de este espacio, incluyendo notas, tags y archivos."
+			"confirmDelete": "Estás a punto de eliminar el espacio \"{{name}}\". ¿Estás seguro?\n\nSi continúas, se eliminarán todos los datos de este espacio, incluyendo notas, etiquetas y archivos."
 		}
 	},
 	"importExport": {
 		"importNotes": "Importar notas",
 		"exportNotes": "Exportar notas",
-		"importFromZip": "Importar notas desde archivo .zip",
+		"importFromZip": "Importar notas desde un archivo .zip",
 		"importFromDirectory": "Importar directorio con archivos Markdown",
 		"dropzone": {
-			"title": "Arrastra archivos Markdown o un archivo .zip para importar",
-			"description": "Arrastra archivos aquí o haz clic para seleccionarlos"
+			"title": "Suelta archivos Markdown o .zip para importar",
+			"description": "Arrastra y suelta archivos aquí, o haz clic para seleccionarlos"
 		},
-		"progress": "Importación de notas en curso. Etapa: {{stage}} {{processed}}/{{total}}"
+		"progress": "Importando notas. Etapa: {{stage}} {{processed}}/{{total}}"
 	}
 }

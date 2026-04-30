@@ -5,61 +5,61 @@
 	"tabs": {
 		"general": "Splošno",
 		"appearance": "Videz",
-		"hotkeys": "Bližnjice",
-		"vault": "Trezor",
+		"hotkeys": "Prekratki",
+		"vault": "Varnilo",
 		"workspace": "Prostor",
 		"importExport": "Uvoz in izvoz",
-		"vaultSettingsGroup": "Nastavitve trezorja"
+		"vaultSettingsGroup": "Nastavitve varnilnega prostora"
 	},
 	"general": {
 		"title": "Splošne nastavitve",
-		"subtitle": "Upravljajte splošne nastavitve aplikacije.",
+		"subtitle": "Upravljajte svoje splošne nastavitve v aplikaciji.",
 		"version": {
 			"title": "Različica",
 			"checkForUpdates": "Preveri posodobitve",
-			"upToDate": "Uporabljate najnovejšo različico",
+			"upToDate": "Uporabljate zadnjo različico",
 			"newVersionAvailable": "Na voljo je nova različica <bold>{{version}}</bold>.",
 			"downloadLatest": "Prenesi",
-			"downloadDescription": "najnovejšo različico z novimi funkcijami in izboljšavami."
+			"downloadDescription": "zadnjo različico za nove funkcije in izboljšave."
 		},
 		"autoCheckUpdates": {
 			"label": "Samodejno preverjanje posodobitev",
-			"description": "Aplikacija bo občasno preverila posodobitve in vas obvestila, če je na voljo nova različica."
+			"description": "Aplikacija bo periodicno preverjala posodobitve in vas obvestila, če bo na voljo nova različica."
 		},
 		"language": {
 			"title": "Jezik",
-			"description": "Spremenite jezik prikaza."
+			"description": "Spremenite jezik prikazov."
 		},
 		"notifications": {
 			"title": "Obvestila",
-			"description": "Sistemska obvestila se uporabljajo samo za opomnike. Ko so onemogočena, se opomniki prikažejo le na seznamu obvestil v aplikaciji.",
+			"description": "Sistemska obvestila bodo uporabljena le za opomnike. Če so izključena, se bodo opomniki prikazali le v seznamu obvestil v aplikaciji.",
 			"useSystem": "Uporabi sistemska obvestila"
 		},
 		"vaultLock": {
-			"groupTitle": "Zaklepanje trezorja",
+			"groupTitle": "Zaklepanje varnilnega prostora",
 			"lockOnSystemLock": {
-				"label": "Zakleni trezor ob zaklepu sistema",
-				"description": "Trezor se zaklene, ko se vklopi ohranjevalnik zaslona ali naprava preide v spanje."
+				"label": "Zakleni varnilo ob zaklepanju sistema",
+				"description": "Varnilo bo zaklenjeno, ko se začne varnega zaslona ali ko naprava zaspi."
 			},
 			"lockAfterIdle": {
-				"title": "Zakleni trezor po nedejavnosti",
-				"description": "Trezor se zaklene po izbranem času nedejavnosti.",
+				"title": "Zakleni varnilo po obdobju neaktivnosti",
+				"description": "Varnilo bo zaklenjeno po določenem času neaktivnosti.",
 				"never": "Ne zaklepaj",
-				"minutes5": "po 5 minutah",
-				"minutes10": "po 10 minutah",
-				"minutes15": "po 15 minutah",
-				"minutes30": "po 30 minutah",
-				"hour1": "po 1 uri",
-				"hours2": "po 2 urah",
-				"hours3": "po 3 urah",
-				"hours5": "po 5 urah"
+				"minutes5": "za 5 minut",
+				"minutes10": "za 10 minut",
+				"minutes15": "za 15 minut",
+				"minutes30": "za 30 minut",
+				"hour1": "za 1 uro",
+				"hours2": "za 2 uri",
+				"hours3": "za 3 ure",
+				"hours5": "za 5 ur"
 			}
 		}
 	},
 	"appearance": {
 		"theme": {
 			"title": "Tema",
-			"auto": "Samodejna",
+			"auto": "Samodejno",
 			"dark": "Temna",
 			"light": "Svetla",
 			"zen": "Zen"
@@ -70,82 +70,82 @@
 		},
 		"zoomLevel": {
 			"title": "Stopnja povečave",
-			"description": "Prilagodite privzeto stopnjo povečave za vsa okna.\nČe vaš sistem ne prilagaja aplikacij samodejno, lahko spremenite povečavo, da ustreza dejanski ločljivosti zaslona (DPR). Zaznana DPR je {{dpr}}.",
+			"description": "Prilagodite privzeto stopnjo povečave za vse okna.\nČe vaš sistem ne spreminja velikosti aplikacij samodejno, lahko povečavo prilagodite glede na razmerje pik zaslona (DPR). Razmerje pik vašega zaslona je {{dpr}}.",
 			"apply": "Uporabi",
 			"reset": "Ponastavi",
 			"errors": {
-				"enterNumber": "Vnesite število za nastavitev povečave",
-				"tooSmall": "Povečava ne more biti manjša od {{min}} %",
-				"tooBig": "Povečava ne more biti večja od {{max}} %"
+				"enterNumber": "Vnesite številko za nastavitev povečave",
+				"tooSmall": "Povečava ne more biti manjša od {{min}}%",
+				"tooBig": "Povečava ne more biti večja od {{max}}%"
 			}
 		}
 	},
 	"editor": {
-		"groupTitle": "Urejevalnik",
+		"groupTitle": "Urednik",
 		"mode": {
-			"title": "Način urejevalnika"
+			"title": "Način urednika"
 		},
 		"fontFamily": {
-			"title": "Družina pisave",
-			"description": "Nastavite družino pisave za vse urejevalnike ali pustite prazno za privzeto.",
-			"placeholder": "Vnesite ime družine pisave"
+			"title": "Vrsta pisave",
+			"description": "Nastavite vrsto pisave za vse urednike ali pustite prazno za privzeto nastavitev.",
+			"placeholder": "Vnesite ime pisave"
 		},
 		"fontSize": {
 			"title": "Velikost pisave"
 		},
 		"lineHeight": {
-			"title": "Višina vrstice"
+			"title": "Razmak med vrsticami"
 		},
 		"dateFormat": {
-			"title": "Oblika datuma",
-			"description": "Nastavite obliko datuma pri vstavljanju datumov. Podprta je standardna sintaksa, npr. DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "referenca oblike datuma",
+			"title": "Format datuma",
+			"description": "Nastavite format datuma, ki se uporablja pri vstavljanju datumov. Podpira standardno sintakso, kot je DD/MM/RRRR HH:mm:ss.",
+			"formatReference": "poved za format datuma",
 			"example": "Primer"
 		},
 		"plainText": {
-			"groupTitle": "Urejevalnik navadnega besedila",
+			"groupTitle": "Urednik običajnega besedila",
 			"lineNumbers": "Prikaži številke vrstic",
-			"miniMap": "Omogoči mini zemljevid"
+			"miniMap": "Vključi mini zemljevid"
 		}
 	},
 	"hotkeys": {
-		"blank": "Prazno",
+		"blank": "Brez",
 		"shortcuts": {
-			"createNote": "Ustvari nov zapisek",
-			"closeCurrentNote": "Zapri aktiven zapisek",
-			"restoreClosedNote": "Obnovi nedavno zaprt zapisek",
-			"focusNextNote": "Pojdi na naslednji odprt zapisek",
-			"focusPreviousNote": "Pojdi na prejšnji odprt zapisek",
-			"toggleArchive": "Premakni aktiven zapisek v/iz arhiva",
-			"toggleBookmark": "Premakni aktiven zapisek v/iz zaznamkov",
-			"deleteNote": "Izbriši aktiven zapisek",
-			"restoreFromBin": "Obnovi aktiven zapisek iz koša",
-			"toggleHistory": "Prikaži ali skrij zgodovino aktivnega zapiska",
-			"focusSearch": "Iskanje zapiskov",
-			"syncDatabase": "Sinhroniziraj trezor na disk",
-			"lockVault": "Zakleni trezor",
+			"createNote": "Ustvari novo beležko",
+			"closeCurrentNote": "Zapri aktivno beležko",
+			"restoreClosedNote": "Obnovi nedavno zaprto beležko",
+			"focusNextNote": "Pređi na naslednjo odprto beležko",
+			"focusPreviousNote": "Pređi na prejšnjo odprto beležko",
+			"toggleArchive": "Prekliči arhiviranje aktivne beležke",
+			"toggleBookmark": "Prekliči zavihano aktivno beležko",
+			"deleteNote": "Izbriši aktivno beležko",
+			"restoreFromBin": "Obnovi aktivno beležko iz smeti",
+			"toggleHistory": "Prikaži ali skrij zgodovino aktivne beležke",
+			"focusSearch": "Išči beležke",
+			"syncDatabase": "Sinhroniziraj varnilo z diskom",
+			"lockVault": "Zakleni varnilo",
 			"openSettings": "Odpri nastavitve"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Ime trezorja"
+			"title": "Ime varnilnega prostora"
 		},
 		"rememberPasswords": {
 			"label": "Zapomni si gesla prostorov",
-			"description": "Gesla prostorov bodo šifrirana z glavnim ključem in shranjena v bazi, da se šifrirani prostori samodejno odprejo brez vnosa gesla."
+			"description": "Gesla prostorov bodo zaščitena z glavnim ključem in shranjena v bazi podatkov, da lahko samodejno odprete šifrirane prostore brez vnosanja gesla."
 		},
 		"filesAndData": {
 			"groupTitle": "Datoteke in podatki",
 			"imagesCompression": {
-				"title": "Stiskanje slik",
-				"compress": "Stisni slike",
-				"doNotCompress": "Ne stiskaj slik",
+				"title": "Kompresija slik",
+				"compress": "Kompresiraj slike",
+				"doNotCompress": "Ne kompresiraj slik",
 				"alwaysAsk": "Vedno vprašaj"
 			},
 			"deleteOrphaned": {
 				"label": "Izbriši neuporabljene datoteke",
-				"description": "Izbriši datoteke, ki niso več v uporabi."
+				"description": "Izbriši datoteke, ki se ne uporabljajo več."
 			}
 		},
 		"encryption": {
@@ -156,18 +156,18 @@
 			},
 			"password": {
 				"title": "Geslo",
-				"update": "Posodobi geslo"
+				"update": "Posodobite geslo"
 			}
 		},
 		"synchronization": {
 			"groupTitle": "Sinhronizacija",
 			"enable": {
-				"label": "Omogoči sinhronizacijo",
-				"description": "Ohranjajte trezor sinhroniziran med napravami. Vsi podatki so šifrirani, preden zapustijo vašo napravo."
+				"label": "Vključi sinhronizacijo",
+				"description": "Održujte svoj varnilni prostor sinhroniziran med napravami. Vsi podatki so pred pošiljanjem iz naprave šifrirani."
 			},
 			"method": {
-				"title": "Način sinhronizacije",
-				"fileSystem": "Datotečni sistem",
+				"title": "Metoda sinhronizacije",
+				"fileSystem": "Datoteka sistema",
 				"server": "Strežnik"
 			},
 			"directory": {
@@ -176,34 +176,34 @@
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Posnetki",
+			"groupTitle": "Snimki stanja",
 			"record": {
-				"label": "Snemaj posnetke zapiskov",
-				"description": "Ko je omogočeno, se ob spremembi zapiska ustvari posnetek vsebine. Snemanje posnetkov lahko upravljate za posamezen zapisek na plošči zgodovine."
+				"label": "Snimanje posnetkov stanja zapisa",
+				"description": "Ko je funkcija vklopljena, se ob spremembi zapisa ustvari posnetek njegove vsebine. Snemanje posnetkov lahko upravljate posamezno za vsak zapis v zgledovnem panelu."
 			},
 			"delay": {
-				"title": "Zakasnitev posnetka",
-				"description": "Koliko časa po urejanju zapiska naj mine pred shranjevanjem novega posnetka, v sekundah. Krajši intervali pomenijo pogostejše posnetke — in večji trezor."
+				"title": "Zastav za posnetek",
+				"description": "Koliko sekund počakam po uredovanju zapisa, preden shranim nov posnetek. Krajši intervali pomenijo pogostejše posnetke — in večjo porabo prostora."
 			}
 		},
 		"trashBin": {
 			"groupTitle": "Koš",
 			"confirmDeletion": {
-				"label": "Potrdi brisanje",
-				"description": "Vprašaj pred brisanjem zapiska."
+				"label": "Potrdite izbrisavanje",
+				"description": "Pred izbrisanjem zapisa vprašajte za potrditev."
 			},
 			"moveToBin": {
-				"label": "Premakni zapiske v koš",
-				"description": "Zapiski se premaknejo v koš namesto trajnega brisanja, da jih lahko pozneje obnovite."
+				"label": "Premiki zapisi v koš",
+				"description": "Namesto dokončnega izbrisa premaknite zapise v koš, da jih lahko kasneje obnovite."
 			},
 			"autoPurge": {
-				"label": "Trajno izbriši stare zapiske v košu",
-				"description": "Zapiski v košu bodo po določenem času trajno izbrisani."
+				"label": "Dokončno izbriši stare zapise iz koša",
+				"description": "Zapisi, premeščeni v koš, bodo po dnem nekaj časa dokončno izbrisani."
 			},
 			"purgeDelay": {
-				"title": "Zakasnitev trajnega brisanja",
-				"description": "Zapiski v košu bodo trajno izbrisani po toliko dneh od premika v koš.",
-				"unit": "dni"
+				"title": "Zastav za dokončni izbris",
+				"description": "Zapisi v koš ste dokončno izbrisani po tem številu dni, odvrščenih od trenutka, ko so bili vanjo premeščeni.",
+				"unit": "dnevi"
 			}
 		}
 	},
@@ -213,38 +213,38 @@
 			"update": "Posodobi"
 		},
 		"newNoteTitle": {
-			"title": "Naslov novega zapiska",
-			"description": "Nastavite naslov za nove zapiske. Datum lahko vstavite s sintakso {date} ali {date:FORMAT}, npr. {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "referenca oblike",
-			"placeholder": "npr. Zapisek {date:DD/MM/YYYY HH:mm}",
+			"title": "Naslov novega zapisa",
+			"description": "Nastavite naslov za nove zapise. Uporabite lahko datum s sintakso {date} ali {date:FORMAT}, na primer {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "oblikovni predlog",
+			"placeholder": "npr. Zapis {date:DD/MM/YYYY HH:mm}",
 			"example": "Primer"
 		},
 		"tagsForNewNote": {
-			"title": "Oznake za nov zapisek",
-			"none": "Brez oznak",
-			"selected": "Enako kot izbrana oznaka"
+			"title": "Oznake za nov zapis",
+			"none": "Ne postavljaj nobenih oznak",
+			"selected": "Isto kot izbrana oznaka"
 		},
 		"dangerousZone": {
-			"groupTitle": "Nevarno območje",
+			"groupTitle": "Območje tveganih opravil",
 			"delete": {
-				"label": "Izbriši prostor in vse povezane podatke, vključno z zapiski, oznakami in datotekami",
+				"label": "Izbriši prostor in vse povezane podatke, vključno z zapisi, oznakami in datotekami",
 				"action": "Izbriši prostor",
-				"cannotDeleteLast": "Zadnjega prostora v trezorju ni mogoče izbrisati.",
+				"cannotDeleteLast": "Zadnjega prostora v vaultu ni mogoče izbrisati.",
 				"createAnother": "Ustvarite",
 				"createAnotherSuffix": "najprej drug prostor."
 			},
-			"confirmDelete": "Izbrisali boste prostor \"{{name}}\". Ali ste prepričani?\n\nČe nadaljujete, bodo vsi podatki tega prostora izbrisani, vključno z zapiski, oznakami in datotekami."
+			"confirmDelete": "Izbrišete prostor \"{{name}}\". Ste prepričani?\n\nČe nadaljujete, bodo vsi podatki, povezani s tem prostorom, izbrisani, vključno z zapisi, oznakami in datotekami."
 		}
 	},
 	"importExport": {
-		"importNotes": "Uvozi zapiske",
-		"exportNotes": "Izvozi zapiske",
-		"importFromZip": "Uvozi zapiske iz arhiva .zip",
-		"importFromDirectory": "Uvozi mapo z datotekami Markdown",
+		"importNotes": "Uvozi zapise",
+		"exportNotes": "Izvozi zapise",
+		"importFromZip": "Uvozi zapise iz .zip arhive",
+		"importFromDirectory": "Uvozi mapo s Markdown datotekami",
 		"dropzone": {
-			"title": "Povlecite datoteke Markdown ali arhiv .zip za uvoz",
-			"description": "Povlecite datoteke sem ali kliknite za izbiro"
+			"title": "Prevrnite Markdown datoteke ali .zip arhiv za uvoz",
+			"description": "Prevrnite datoteke sem ali kliknite za njihovo izbiro"
 		},
-		"progress": "Uvoz zapiskov poteka. Faza: {{stage}} {{processed}}/{{total}}"
+		"progress": "Uvoz zapisa poteka. Stopnja: {{stage}} {{processed}}/{{total}}"
 	}
 }

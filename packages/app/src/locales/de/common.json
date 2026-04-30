@@ -2,9 +2,9 @@
 	"actions": {
 		"cancel": "Abbrechen",
 		"confirm": "Bestätigen",
-		"apply": "Anwenden",
-		"save": "Sichern",
-		"saveChanges": "Änderungen sichern",
+		"apply": "Übernehmen",
+		"save": "Speichern",
+		"saveChanges": "Änderungen speichern",
 		"delete": "Löschen",
 		"reset": "Zurücksetzen",
 		"update": "Aktualisieren",
@@ -13,6 +13,6 @@
 		"close": "Schließen"
 	},
 	"form": {
-		"suggestTemplate": "Versuch mal: <suggests>"
+		"suggestTemplate": "Vorschlag: <suggests>"
 	}
 }

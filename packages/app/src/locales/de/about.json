@@ -1,0 +1,8 @@
+{
+	"version": "Version {{version}}",
+	"environment": "Verwendete Bibliotheken",
+	"links": {
+		"label": "Links",
+		"reportBug": "Fehler melden"
+	}
+}

@@ -10,7 +10,7 @@
 		"paste": "Tempel",
 		"selectAll": "Pilih Semua",
 		"help": "Bantuan",
-		"toggleDevTools": "Tampilkan/sembunyikan dev tools",
+		"toggleDevTools": "Buka alat pengembang",
 		"about": "Tentang Aplikasi"
 	},
 	"tray": {
@@ -22,11 +22,11 @@
 		"duplicate": "Duplikat",
 		"copyMarkdownLink": "Salin tautan Markdown",
 		"deletePermanently": "Hapus permanen",
-		"restoreFromBin": "Pulihkan dari tong sampah",
-		"deleteToBin": "Pindahkan ke tong sampah"
+		"restoreFromBin": "Pulihkan dari tempat sampah",
+		"deleteToBin": "Pindahkan ke tempat sampah"
 	},
 	"tag": {
-		"addNestedTag": "Buat sub-tag...",
+		"addNestedTag": "Buat hierarki tag...",
 		"edit": "Edit...",
 		"delete": "Hapus"
 	}

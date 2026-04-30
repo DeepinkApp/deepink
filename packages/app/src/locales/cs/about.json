@@ -1,0 +1,8 @@
+{
+	"version": "Verze {{version}}",
+	"environment": "Použité knihovny",
+	"links": {
+		"label": "Odkazy",
+		"reportBug": "Nahlásit chybu"
+	}
+}

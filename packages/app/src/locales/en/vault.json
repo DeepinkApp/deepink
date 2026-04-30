@@ -66,10 +66,29 @@
 			"password": {
 				"label": "Encryption password",
 				"recommended": "(recommended)",
-				"placeholder": "Enter a strong password here"
+				"placeholder": "Enter a strong password here",
+				"description": "All data in vault will be encrypted via this password"
 			},
 			"algorithm": {
 				"label": "Encryption algorithm"
+			}
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Advanced encryption options",
+				"description": "Configure the encryption primitives that protect your vault — cipher cascade, KDF parameters, and more. For a full breakdown of the defaults and their trade-offs, see <encryption>how your vault is protected</encryption>."
+			},
+			"kdf": {
+				"label": "Key derivation function",
+				"description": "Helps protect weak or reused passwords by making each guess slower and more costly. Raise these settings for stronger protection, or keep the defaults for a balanced experience.",
+				"memory": {
+					"label": "Memory usage",
+					"description": "Makes each password guess use more memory. This is especially effective against large-scale attacks, because memory is costly and harder to scale efficiently than raw computation."
+				},
+				"ops": {
+					"label": "Iterations",
+					"description": "Repeats the derivation work for each password guess. This increases the cost of every guess in a mostly linear way: doubling iterations roughly doubles the work for both attackers and your device."
+				}
 			}
 		},
 		"actions": {

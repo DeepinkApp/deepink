@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "Tervetuloa Deepinkiin",
+		"description": "Muokkaa Deepink vastaamaan mieltymyksiäsi tai jatka oletusasetuksilla.",
+		"terms": "Jatkamalla hyväksyt <terms>käyttöehtomme</terms> ja <privacy>tietosuojakäsityrämme</privacy>.",
+		"continue": "Aloita"
+	}
+}

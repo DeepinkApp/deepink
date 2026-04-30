@@ -1,33 +1,33 @@
 {
 	"app": {
-		"appMenu": "Апликација",
-		"quit": "Затвори",
-		"edit": "Уређивање",
-		"undo": "Опозови",
-		"redo": "Понови",
-		"cut": "Исеци",
-		"copy": "Копирај",
-		"paste": "Налепи",
-		"selectAll": "Изабери све",
-		"help": "Помоћ",
-		"toggleDevTools": "Алатке за програмере",
-		"about": "О апликацији"
+		"appMenu": "Aplikacija",
+		"quit": "Izađi",
+		"edit": "Uredi",
+		"undo": "Vrati",
+		"redo": "Ponovi",
+		"cut": "Iseci",
+		"copy": "Kopiraj",
+		"paste": "Zalepi",
+		"selectAll": "Izaberi sve",
+		"help": "Pomoć",
+		"toggleDevTools": "Alati za programere",
+		"about": "O aplikaciji"
 	},
 	"tray": {
-		"open": "Отвори белешке",
-		"quit": "Затвори"
+		"open": "Otvori beleške",
+		"quit": "Izađi"
 	},
 	"note": {
-		"export": "Извези...",
-		"duplicate": "Дуплирај",
-		"copyMarkdownLink": "Копирај Markdown линк",
-		"deletePermanently": "Трајно обриши",
-		"restoreFromBin": "Врати из корпе",
-		"deleteToBin": "Премести у корпу"
+		"export": "Izvezi...",
+		"duplicate": "Dupliraj",
+		"copyMarkdownLink": "Kopiraj Markdown link",
+		"deletePermanently": "Trajno obriši",
+		"restoreFromBin": "Vrati iz kante",
+		"deleteToBin": "Premesti u kantu"
 	},
 	"tag": {
-		"addNestedTag": "Додај подознаку...",
-		"edit": "Измени...",
-		"delete": "Обриши"
+		"addNestedTag": "Kreiraj hijerarhiju tagova...",
+		"edit": "Uredi...",
+		"delete": "Obriši"
 	}
 }

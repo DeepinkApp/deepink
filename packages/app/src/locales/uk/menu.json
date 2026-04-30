@@ -2,7 +2,7 @@
 	"app": {
 		"appMenu": "Програма",
 		"quit": "Вийти",
-		"edit": "Редагування",
+		"edit": "Редагувати",
 		"undo": "Скасувати",
 		"redo": "Повторити",
 		"cut": "Вирізати",
@@ -18,16 +18,16 @@
 		"quit": "Вийти"
 	},
 	"note": {
-		"export": "Експортувати…",
+		"export": "Експортувати...",
 		"duplicate": "Дублювати",
-		"copyMarkdownLink": "Копіювати Markdown-посилання",
+		"copyMarkdownLink": "Копіювати посилання Markdown",
 		"deletePermanently": "Видалити назавжди",
 		"restoreFromBin": "Відновити з кошика",
-		"deleteToBin": "До кошика"
+		"deleteToBin": "Перемістити в кошик"
 	},
 	"tag": {
-		"addNestedTag": "Створити вкладений тег…",
-		"edit": "Редагувати…",
+		"addNestedTag": "Створити ієрархію тегів...",
+		"edit": "Редагувати...",
 		"delete": "Видалити"
 	}
 }

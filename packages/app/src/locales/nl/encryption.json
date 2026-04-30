@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Sterk wachtwoord: {{length}} tekens, {{entropy}} bits entropie",
+			"bad": "Zwak wachtwoord: {{length}} tekens, {{entropy}} bits entropie"
+		}
+	}
+}

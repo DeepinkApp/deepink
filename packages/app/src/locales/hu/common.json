@@ -1,18 +1,18 @@
 {
 	"actions": {
-		"cancel": "Mégse",
-		"confirm": "Megerősítés",
+		"cancel": "Mégsem",
+		"confirm": "Rájönni",
 		"apply": "Alkalmaz",
 		"save": "Mentés",
-		"saveChanges": "Módosítások mentése",
+		"saveChanges": "Mentés",
 		"delete": "Törlés",
-		"reset": "Visszaállítás",
+		"reset": "Alaphelyzetbe állítás",
 		"update": "Frissítés",
 		"add": "Hozzáadás",
 		"create": "Létrehozás",
 		"close": "Bezárás"
 	},
 	"form": {
-		"suggestTemplate": "Próbáld ezt: <suggests>"
+		"suggestTemplate": "Próbálja ki ezt: <suggests>"
 	}
 }

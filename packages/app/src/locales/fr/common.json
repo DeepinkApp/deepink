@@ -13,6 +13,6 @@
 		"close": "Fermer"
 	},
 	"form": {
-		"suggestTemplate": "Essayez ceci : <suggests>"
+		"suggestTemplate": "Essayer : <suggests>"
 	}
 }

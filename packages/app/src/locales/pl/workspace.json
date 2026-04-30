@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Tagi",
-			"empty": "Twórz tagi, by porządkować notatki. Buduj z nich hierarchię dopasowaną do siebie.",
+			"empty": "Twórz tagi, aby organizować notatki. Twórz hierarchie, aby uzyskać większą elastyczność.",
 			"actions": {
 				"add": "Dodaj tag"
 			}

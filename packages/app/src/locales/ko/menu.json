@@ -3,15 +3,15 @@
 		"appMenu": "애플리케이션",
 		"quit": "종료",
 		"edit": "편집",
-		"undo": "실행 취소",
+		"undo": "되돌리기",
 		"redo": "다시 실행",
 		"cut": "잘라내기",
 		"copy": "복사",
 		"paste": "붙여넣기",
 		"selectAll": "전체 선택",
 		"help": "도움말",
-		"toggleDevTools": "개발자 도구 전환",
-		"about": "애플리케이션 정보"
+		"toggleDevTools": "개발자 도구",
+		"about": "앱 정보"
 	},
 	"tray": {
 		"open": "노트 열기",
@@ -20,13 +20,13 @@
 	"note": {
 		"export": "내보내기...",
 		"duplicate": "복제",
-		"copyMarkdownLink": "Markdown 링크 복사",
+		"copyMarkdownLink": "마크다운 링크 복사",
 		"deletePermanently": "영구 삭제",
 		"restoreFromBin": "휴지통에서 복원",
 		"deleteToBin": "휴지통으로 이동"
 	},
 	"tag": {
-		"addNestedTag": "하위 태그 만들기...",
+		"addNestedTag": "하위 태그 생성...",
 		"edit": "편집...",
 		"delete": "삭제"
 	}

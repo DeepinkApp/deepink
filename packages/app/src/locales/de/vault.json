@@ -1,47 +1,47 @@
 {
 	"chooseVault": {
-		"title": "Wählen Sie ein Vault",
+		"title": "Vault auswählen",
 		"actions": {
-			"createNew": "Neues Vault erstellen"
+			"createNew": "Neuen Vault erstellen"
 		}
 	},
 	"creator": {
 		"title": "Vault erstellen",
 		"field": {
 			"name": {
-				"label": "Vault-Name",
-				"placeholder": "z.B. Mein Vault, Mit Alex geteilt",
+				"label": "Name des Vaults",
+				"placeholder": "z. B. Mein Vault, Geteilt mit Alex",
 				"random": "Zufälligen Namen generieren",
 				"suggests": {
-					"0": "Marginalien",
+					"0": "Marginalia",
 					"1": "Vellum",
 					"2": "Endpapier",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Nische",
-					"6": "Halbschatten",
-					"7": "Mondlicht Korrespondenz",
-					"8": "Abendliche Kartographie",
+					"5": "Alcove",
+					"6": "Penumbra",
+					"7": "Mondlicht-Korrespondenz",
+					"8": "Abendliche Kartografie",
 					"9": "Laterne & Tinte",
-					"10": "Kerzenlicht Archiv",
-					"11": "Kletternde Efeu Manuskripte",
-					"12": "Zedernholz Briefe",
-					"13": "Rossholz Scriptorium",
-					"14": "Der Ungebundene Kodex",
-					"15": "Marginalien & Murmeln",
-					"16": "Endpapier Geständnisse",
-					"17": "Die Annotationsstille",
-					"18": "Schattenkartographie",
-					"19": "Der Erinnerte Raum",
-					"20": "Die Ununterzeichneten Briefe",
+					"10": "Kerzenschein-Archiv",
+					"11": "Efeu-Manuskripte",
+					"12": "Zedernholz-Briefe",
+					"13": "Rosenholz-Skriptorium",
+					"14": "Der unbound Codex",
+					"15": "Marginalien & Geflüster",
+					"16": "Endpapier-Geständnisse",
+					"17": "Die kommentierte Stille",
+					"18": "Schattenschatten-Kartografie",
+					"19": "Der erinnerte Raum",
+					"20": "Die ununterzeichneten Briefe",
 					"21": "Geflüsterte Koordinaten",
-					"22": "Der Ungesagte Almanach",
-					"23": "Verlorene Wachsbücher",
-					"24": "Die Unsichtbare Bibliothek",
-					"25": "Unkartierte Ränder",
-					"26": "Die Stille Verschwörung",
-					"27": "Die Ungelieferte Post",
-					"28": "Immergrünes Archiv",
+					"22": "Der unerzählte Almanach",
+					"23": "Wachsverlorene Briefe",
+					"24": "Die unsichtbare Bibliothek",
+					"25": "Unentdeckte Ränder",
+					"26": "Die leise Verschwörung",
+					"27": "Die unzustellbare Post",
+					"28": "Evergreen-Archiv",
 					"29": "Papiermond",
 					"30": "Papierblüte",
 					"31": "Nachtblüte",
@@ -50,23 +50,24 @@
 					"34": "Tintenstein",
 					"35": "Stille",
 					"36": "Schatten",
-					"37": "Ruhiger Drift",
-					"38": "Tiefes Wiesental",
-					"39": "Unbeschriebenes Hauptbuch",
-					"40": "Stilles Entwurfbuch",
+					"37": "Calm Drift",
+					"38": "Tiefe Wiese",
+					"39": "Ungeschriebenes Register",
+					"40": "Stilles Entwurfsbuch",
 					"41": "Ungesprochenes Archiv",
-					"42": "Driftendes Journal",
-					"43": "Solarwind Chronik",
-					"44": "Ruhiger Fjord",
+					"42": "Treibendes Journal",
+					"43": "Sonnenwind-Chronik",
+					"44": "Stiller Fjord",
 					"45": "Erinnerungsfragmente",
 					"46": "Stiller Moment",
-					"47": "Verschwundene Minuten"
+					"47": "Vergangene Minuten"
 				}
 			},
 			"password": {
-				"label": "Verschlüsselungs-Passwort",
+				"label": "Verschlüsselungspasswort",
 				"recommended": "(empfohlen)",
-				"placeholder": "Geben Sie hier ein starkes Passwort ein"
+				"placeholder": "Ein sicheres Passwort eingeben",
+				"description": "Alle Daten im Vault werden mit diesem Passwort verschlüsselt"
 			},
 			"algorithm": {
 				"label": "Verschlüsselungsalgorithmus"
@@ -74,20 +75,38 @@
 		},
 		"actions": {
 			"create": "Vault erstellen",
-			"continueNoPassword": "Fortfahren ohne Passwort",
+			"continueNoPassword": "Ohne Passwort fortfahren",
 			"cancel": "Abbrechen"
 		},
 		"noEncryptionDialog": {
 			"title": "Vault ohne Verschlüsselung erstellen",
-			"description": "Ihre Notizen und Daten werden als Klartext gespeichert. Jede App oder Person mit Zugriff auf das Vault-Verzeichnis auf der Festplatte kann alles darin lesen.",
+			"description": "Ihre Notizen und Daten werden im Klartext gespeichert. Jede App oder Person, die Zugriff auf das Verzeichnis des Vaults hat, kann den gesamten Inhalt lesen.",
 			"actions": {
-				"confirm": "Fortfahren ohne Verschlüsselung",
+				"confirm": "Ohne Verschlüsselung fortfahren",
 				"cancel": "Abbrechen"
 			}
 		},
 		"errors": {
-			"nameRequired": "Geben Sie einen Vault-Namen ein",
-			"passwordRequired": "Geben Sie das Passwort ein"
+			"nameRequired": "Bitte einen Namen für den Vault eingeben",
+			"passwordRequired": "Bitte das Passwort eingeben"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Erweiterte Verschlüsselungsoptionen",
+				"description": "Konfigurieren Sie die Verschlüsselungsparameter Ihres Vaults – Cipher Cascade, KDF-Parameter und mehr. Eine detaillierte Übersicht der Standardeinstellungen und deren Vor- sowie Nachteile finden Sie unter <encryption>wie Ihr Vault geschützt wird</encryption>."
+			},
+			"kdf": {
+				"label": "Schlüsselableitungsfunktion (KDF)",
+				"description": "Erhöht den Schutz bei schwachen oder wiederverwendeten Passwörtern, indem jeder Versuch langsamer und aufwendiger wird. Erhöhen Sie diese Werte für maximalen Schutz oder behalten Sie die Standardwerte für eine ausgewogene Performance bei.",
+				"memory": {
+					"label": "Speicherverbrauch",
+					"description": "Erhöht den Speicherbedarf pro Passwortversuch. Dies ist besonders wirksam gegen groß angelegte Angriffe, da Speicherressourcen kostspieliger und schwerer skalierbar sind als reine Rechenleistung."
+				},
+				"ops": {
+					"label": "Iterationen",
+					"description": "Wiederholt den Ableitungsprozess bei jedem Passwortversuch. Dies erhöht den Aufwand für jeden Versuch nahezu linear: Eine Verdoppelung der Iterationen verdoppelt etwa den Arbeitsaufwand für Angreifer und Ihr Gerät."
+				}
+			}
 		}
 	},
 	"login": {
@@ -103,12 +122,12 @@
 		},
 		"errors": {
 			"cannotOpen": "Vault kann nicht geöffnet werden",
-			"invalidPassword": "Ungültiges Passwort",
-			"passwordRequired": "Geben Sie das Passwort ein"
+			"invalidPassword": "Falsches Passwort",
+			"passwordRequired": "Bitte Passwort eingeben"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Fehler beim Öffnen des Vaults",
+		"failedToOpen": "Vault konnte nicht geöffnet werden",
 		"corrupted": "\"{{name}}\" scheint beschädigt zu sein."
 	}
 }

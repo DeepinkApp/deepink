@@ -6,7 +6,7 @@
 		"undo": "撤销",
 		"redo": "重做",
 		"cut": "剪切",
-		"copy": "拷贝",
+		"copy": "复制",
 		"paste": "粘贴",
 		"selectAll": "全选",
 		"help": "帮助",
@@ -18,16 +18,16 @@
 		"quit": "退出"
 	},
 	"note": {
-		"export": "导出…",
-		"duplicate": "创建副本",
-		"copyMarkdownLink": "拷贝 Markdown 链接",
+		"export": "导出...",
+		"duplicate": "复制",
+		"copyMarkdownLink": "复制 Markdown 链接",
 		"deletePermanently": "永久删除",
 		"restoreFromBin": "从回收站恢复",
-		"deleteToBin": "移到回收站"
+		"deleteToBin": "移至回收站"
 	},
 	"tag": {
-		"addNestedTag": "创建子标签…",
-		"edit": "编辑…",
+		"addNestedTag": "创建层级标签...",
+		"edit": "编辑...",
 		"delete": "删除"
 	}
 }

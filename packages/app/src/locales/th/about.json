@@ -1,0 +1,8 @@
+{
+	"version": "เวอร์ชัน {{version}}",
+	"environment": "ไลบรารีที่ใช้งาน",
+	"links": {
+		"label": "ลิงก์",
+		"reportBug": "รายงานปัญหา"
+	}
+}

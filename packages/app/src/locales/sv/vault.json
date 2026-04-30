@@ -9,54 +9,54 @@
 		"title": "Skapa valv",
 		"field": {
 			"name": {
-				"label": "Valvets namn",
+				"label": "Namn på valv",
 				"placeholder": "t.ex. Mitt valv, Delat med Alex",
-				"random": "Slumpa ett namn",
+				"random": "Generera slumpmässigt namn",
 				"suggests": {
 					"0": "Marginalia",
-					"1": "Pergament",
-					"2": "Försättsblad",
+					"1": "Vellum",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alkov",
-					"6": "Halvskugga",
-					"7": "Månbelyst korrespondens",
+					"5": "Alcove",
+					"6": "Penumbra",
+					"7": "Månskenskorrespondens",
 					"8": "Kvällskartografi",
-					"9": "Lykta & bläck",
-					"10": "Levande ljus arkiv",
-					"11": "Klättrande murgröna",
-					"12": "Cederbrev",
-					"13": "Rosenträ-skriptorium",
-					"14": "Den obundna kodexen",
-					"15": "Marginalia & mummel",
-					"16": "Försättsbladets bekännelser",
+					"9": "Lykta & Bläck",
+					"10": "Levande ljus-arkiv",
+					"11": "Klättrande murgrönsmanuskript",
+					"12": "Cederträsbrev",
+					"13": "Rosenträdets skrivkammare",
+					"14": "Det obundna kodexet",
+					"15": "Marginalia & viskningar",
+					"16": "Endpaper-bekännelser",
 					"17": "Den annoterade tystnaden",
 					"18": "Skuggkartografi",
-					"19": "Det mindes rum",
+					"19": "Det ihågkomna rummet",
 					"20": "De osignerade breven",
 					"21": "Viskade koordinater",
-					"22": "Den oberättade almanackan",
-					"23": "Förlorade vaxbrev",
+					"22": "Den otalade almanackan",
+					"23": "Lost Wax-brev",
 					"24": "Det osynliga biblioteket",
-					"25": "Okartlagda marginaler",
+					"25": "Outforskade marginaler",
 					"26": "Den tysta konspirationen",
-					"27": "Den olevererade posten",
-					"28": "Vintergrönt arkiv",
+					"27": "Det olevererade posten",
+					"28": "Evergreen-arkivet",
 					"29": "Pappersmåne",
-					"30": "Pappersblom",
-					"31": "Nattblom",
+					"30": "Pappersblomning",
+					"31": "Nattblomning",
 					"32": "Mjuk atlas",
 					"33": "Velour",
 					"34": "Bläcksten",
-					"35": "Tystnad",
+					"35": "Hush",
 					"36": "Skugga",
-					"37": "Stilla drift",
+					"37": "Lugn drift",
 					"38": "Djup äng",
 					"39": "Oskriven liggare",
-					"40": "Tyst skissbok",
-					"41": "Outtalat arkiv",
-					"42": "Drivande journal",
-					"43": "Solvindens krönika",
+					"40": "Tyst utkastbok",
+					"41": "Det outtalade arkivet",
+					"42": "Drivande dagbok",
+					"43": "Solar Wind-krönikan",
 					"44": "Stilla fjord",
 					"45": "Minnesfragment",
 					"46": "Tyst ögonblick",
@@ -64,9 +64,10 @@
 				}
 			},
 			"password": {
-				"label": "Krypteringslösenord",
+				"label": "Lösenord för kryptering",
 				"recommended": "(rekommenderas)",
-				"placeholder": "Ange ett starkt lösenord"
+				"placeholder": "Ange ett starkt lösenord",
+				"description": "All data i ditt valv krypteras med detta lösenord"
 			},
 			"algorithm": {
 				"label": "Krypteringsalgoritm"
@@ -79,15 +80,33 @@
 		},
 		"noEncryptionDialog": {
 			"title": "Skapa valv utan kryptering",
-			"description": "Dina anteckningar och data lagras som oformaterad text. Alla appar och personer med åtkomst till valvets mapp på disk kan läsa allt innehåll.",
+			"description": "Dina anteckningar och din data kommer att sparas som vanlig text. Alla appar eller personer som har tillgång till valvets mapp på hårddisken kommer att kunna läsa allt innehåll.",
 			"actions": {
 				"confirm": "Fortsätt utan kryptering",
 				"cancel": "Avbryt"
 			}
 		},
 		"errors": {
-			"nameRequired": "Ange ett namn för valvet",
+			"nameRequired": "Ange ett namn på valvet",
 			"passwordRequired": "Ange lösenordet"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Avancerade krypteringsalternativ",
+				"description": "Konfigurera krypteringen som skyddar ditt valv — chifferkedjor, KDF-parametrar och mer. Se <encryption>hur ditt valv skyddas</encryption> för en fullständig genomgång av standardinställningar och avvägningar."
+			},
+			"kdf": {
+				"label": "Nyderiveringsfunktion (KDF)",
+				"description": "Skyddar svaga eller återanvända lösenord genom att göra varje gissning långsammare och mer resurskrävande. Höj dessa inställningar för starkare skydd, eller behåll standardinställningarna för en balanserad upplevelse.",
+				"memory": {
+					"label": "Minnesanvändning",
+					"description": "Gör att varje lösenordsförsök kräver mer minne. Detta är särskilt effektivt mot storskaliga attacker, eftersom minne är kostsamt och svårare att skala upp än ren beräkningskraft."
+				},
+				"ops": {
+					"label": "Iterationer",
+					"description": "Upprepar deriveringsarbetet för varje lösenordsförsök. Detta ökar kostnaden för varje försök linjärt: att dubbla antalet iterationer fördubblar ungefär arbetsmängden för både angripare och din enhet."
+				}
+			}
 		}
 	},
 	"login": {
@@ -103,7 +122,7 @@
 		},
 		"errors": {
 			"cannotOpen": "Kan inte öppna valvet",
-			"invalidPassword": "Felaktigt lösenord",
+			"invalidPassword": "Fel lösenord",
 			"passwordRequired": "Ange lösenord"
 		}
 	},

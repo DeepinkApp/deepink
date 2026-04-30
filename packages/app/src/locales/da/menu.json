@@ -1,33 +1,33 @@
 {
 	"app": {
-		"appMenu": "Program",
+		"appMenu": "App",
 		"quit": "Afslut",
 		"edit": "Rediger",
 		"undo": "Fortryd",
 		"redo": "Gentag",
 		"cut": "Klip",
-		"copy": "Kopier",
-		"paste": "Indsæt",
+		"copy": "Kopiér",
+		"paste": "Sæt ind",
 		"selectAll": "Vælg alle",
 		"help": "Hjælp",
-		"toggleDevTools": "Vis/skjul udviklerværktøjer",
-		"about": "Om programmet"
+		"toggleDevTools": "Vis udviklerværktøjer",
+		"about": "Om appen"
 	},
 	"tray": {
 		"open": "Åbn noter",
 		"quit": "Afslut"
 	},
 	"note": {
-		"export": "Eksporter…",
+		"export": "Eksporter...",
 		"duplicate": "Dupliker",
-		"copyMarkdownLink": "Kopier Markdown-link",
+		"copyMarkdownLink": "Kopiér Markdown-link",
 		"deletePermanently": "Slet permanent",
 		"restoreFromBin": "Gendan fra papirkurv",
 		"deleteToBin": "Flyt til papirkurv"
 	},
 	"tag": {
-		"addNestedTag": "Opret undertag…",
-		"edit": "Rediger…",
+		"addNestedTag": "Opret tag-hierarki...",
+		"edit": "Rediger...",
 		"delete": "Slet"
 	}
 }

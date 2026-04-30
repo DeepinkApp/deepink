@@ -1,16 +1,16 @@
 {
 	"panel": {
 		"tags": {
-			"label": "Tagger",
-			"empty": "Opprett tagger for å organisere notatene dine. Bygg hierarkier for mer fleksibel struktur.",
+			"label": "Emneknagger",
+			"empty": "Opprett emneknagger for å organisere notatene dine. Bruk emneknagg-hierarkier for økt fleksibilitet.",
 			"actions": {
-				"add": "Legg til tagg"
+				"add": "Legg til emneknagg"
 			}
 		},
 		"workspaces": {
-			"label": "Arbeidsområder",
+			"label": "Områder",
 			"actions": {
-				"add": "Legg til arbeidsområde"
+				"add": "Legg til område"
 			}
 		}
 	}

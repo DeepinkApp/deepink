@@ -173,7 +173,6 @@
 			}
 		},
 		"bin": {
-			"confirmMoveToBin": "Do you want to move this note to the bin?",
 			"confirmPermanentDeletion": "Do you want to permanently delete this note?"
 		}
 	},
@@ -263,7 +262,8 @@
 		}
 	},
 	"image": {
-		"loading": "Image loading"
+		"loading": "Image loading",
+		"brokenImage": "Image cannot be loaded"
 	},
 	"notifications": {
 		"title": "Notifications"

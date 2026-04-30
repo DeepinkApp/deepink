@@ -5,7 +5,7 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Button, Divider, HStack, Text } from '@chakra-ui/react';
 import { NestedList } from '@components/NestedList';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
-import { VaultObject } from '@core/storage/VaultsManager';
+import { VaultSummary } from '@core/storage/VaultsList';
 import { telemetry } from '@electron/requests/telemetry/renderer';
 import { useAppDispatch } from '@state/redux/hooks';
 import { workspacesApi } from '@state/redux/vaults/vaults';
@@ -15,7 +15,7 @@ import { OnPickVault } from './types';
 import { VaultsForm } from './VaultsForm';
 
 export const ChooseVaultScreen: FC<{
-	vaults: VaultObject[];
+	vaults: VaultSummary[];
 	onOpenVault: OnPickVault;
 	onCreateVault: () => void;
 }> = ({ vaults, onOpenVault, onCreateVault }) => {
@@ -61,7 +61,7 @@ export const ChooseVaultScreen: FC<{
 								onClick={() => {
 									dispatch(workspacesApi.setActiveVault(vault.id));
 
-									if (vault.encryption === null) {
+									if (!vault.isEncrypted) {
 										onOpenVault(vault);
 									}
 

@@ -1,0 +1,8 @@
+{
+	"welcome": {
+		"title": "Deepink에 오신 것을 환영합니다",
+		"description": "Deepink를 취향에 맞게 설정해 보세요. 이 단계를 건너뛰고 기본 설정으로 시작할 수도 있습니다.",
+		"terms": "계속하면 <terms>이용 약관</terms> 및 <privacy>개인정보 처리방침</privacy>에 동의하게 됩니다.",
+		"continue": "시작하기"
+	}
+}

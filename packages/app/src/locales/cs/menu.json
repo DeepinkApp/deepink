@@ -2,10 +2,10 @@
 	"app": {
 		"appMenu": "Aplikace",
 		"quit": "Ukončit",
-		"edit": "Úpravy",
-		"undo": "Zpět",
-		"redo": "Znovu",
-		"cut": "Vyjmout",
+		"edit": "Upravit",
+		"undo": "Dělat zpět",
+		"redo": "Opakovat",
+		"cut": "Vystřihnout",
 		"copy": "Kopírovat",
 		"paste": "Vložit",
 		"selectAll": "Vybrat vše",
@@ -18,16 +18,16 @@
 		"quit": "Ukončit"
 	},
 	"note": {
-		"export": "Exportovat…",
+		"export": "Exportovat...",
 		"duplicate": "Duplikovat",
 		"copyMarkdownLink": "Kopírovat Markdown odkaz",
 		"deletePermanently": "Trvale smazat",
-		"restoreFromBin": "Obnovit z koše",
+		"restoreFromBin": "Obnovit ze koše",
 		"deleteToBin": "Přesunout do koše"
 	},
 	"tag": {
-		"addNestedTag": "Vytvořit podštítek…",
-		"edit": "Upravit…",
+		"addNestedTag": "Vytvořit hierarchii tagů...",
+		"edit": "Upravit...",
 		"delete": "Smazat"
 	}
 }

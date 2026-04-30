@@ -6,13 +6,13 @@
 		"save": "حفظ",
 		"saveChanges": "حفظ التغييرات",
 		"delete": "حذف",
-		"reset": "إعادة تعيين",
+		"reset": "إعادة ضبط",
 		"update": "تحديث",
 		"add": "إضافة",
 		"create": "إنشاء",
 		"close": "إغلاق"
 	},
 	"form": {
-		"suggestTemplate": "جرّب هذا: <suggests>"
+		"suggestTemplate": "جرب هذا: <suggests>"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"app": {
-		"appMenu": "Program",
+		"appMenu": "App",
 		"quit": "Avsluta",
 		"edit": "Redigera",
 		"undo": "Ångra",
@@ -8,26 +8,26 @@
 		"cut": "Klipp ut",
 		"copy": "Kopiera",
 		"paste": "Klistra in",
-		"selectAll": "Markera allt",
+		"selectAll": "Markera alla",
 		"help": "Hjälp",
-		"toggleDevTools": "Växla utvecklarverktyg",
-		"about": "Om programmet"
+		"toggleDevTools": "Visa utvecklarverktyg",
+		"about": "Om appen"
 	},
 	"tray": {
 		"open": "Öppna anteckningar",
 		"quit": "Avsluta"
 	},
 	"note": {
-		"export": "Exportera…",
+		"export": "Exportera...",
 		"duplicate": "Duplicera",
 		"copyMarkdownLink": "Kopiera Markdown-länk",
-		"deletePermanently": "Radera permanent",
+		"deletePermanently": "Ta bort permanent",
 		"restoreFromBin": "Återställ från papperskorgen",
 		"deleteToBin": "Flytta till papperskorgen"
 	},
 	"tag": {
-		"addNestedTag": "Skapa undertagg…",
-		"edit": "Redigera…",
+		"addNestedTag": "Skapa tagghierarki...",
+		"edit": "Redigera...",
 		"delete": "Ta bort"
 	}
 }

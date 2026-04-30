@@ -18,13 +18,13 @@
 			"title": "Versão",
 			"checkForUpdates": "Verificar atualizações",
 			"upToDate": "Você está na versão mais recente",
-			"newVersionAvailable": "Nova versão <bold>{{version}}</bold> disponível.",
+			"newVersionAvailable": "Uma nova versão <bold>{{version}}</bold> está disponível.",
 			"downloadLatest": "Baixar",
 			"downloadDescription": "a versão mais recente para obter novos recursos e melhorias."
 		},
 		"autoCheckUpdates": {
-			"label": "Verificar atualizações automaticamente",
-			"description": "O app verificará periodicamente se há atualizações e notificará quando uma nova versão estiver disponível."
+			"label": "Verificação automática de atualizações",
+			"description": "O app verificará atualizações periodicamente e notificará se uma nova versão estiver disponível."
 		},
 		"language": {
 			"title": "Idioma",
@@ -32,27 +32,27 @@
 		},
 		"notifications": {
 			"title": "Notificações",
-			"description": "As notificações do sistema serão usadas apenas para lembretes. Quando desativadas, os lembretes aparecerão somente na lista de notificações do app.",
+			"description": "As notificações do sistema serão usadas apenas para lembretes. Quando desativadas, os lembretes aparecerão apenas na lista de notificações do app.",
 			"useSystem": "Usar notificações do sistema"
 		},
 		"vaultLock": {
 			"groupTitle": "Bloqueio do cofre",
 			"lockOnSystemLock": {
 				"label": "Bloquear cofre ao bloquear o sistema",
-				"description": "O cofre será bloqueado quando a proteção de tela iniciar ou o dispositivo entrar em suspensão."
+				"description": "O cofre será bloqueado quando o protetor de tela iniciar ou o dispositivo entrar em repouso."
 			},
 			"lockAfterIdle": {
 				"title": "Bloquear cofre após inatividade",
 				"description": "O cofre será bloqueado após o tempo de inatividade selecionado.",
 				"never": "Não bloquear",
-				"minutes5": "após 5 minutos",
-				"minutes10": "após 10 minutos",
-				"minutes15": "após 15 minutos",
-				"minutes30": "após 30 minutos",
-				"hour1": "após 1 hora",
-				"hours2": "após 2 horas",
-				"hours3": "após 3 horas",
-				"hours5": "após 5 horas"
+				"minutes5": "por 5 minutos",
+				"minutes10": "por 10 minutos",
+				"minutes15": "por 15 minutos",
+				"minutes30": "por 30 minutos",
+				"hour1": "por 1 hora",
+				"hours2": "por 2 horas",
+				"hours3": "por 3 horas",
+				"hours5": "por 5 horas"
 			}
 		}
 	},
@@ -70,13 +70,13 @@
 		},
 		"zoomLevel": {
 			"title": "Nível de zoom",
-			"description": "Ajuste o nível de zoom padrão para todas as janelas.\nCaso seu sistema não redimensione os apps automaticamente, você pode alterar o zoom para adequá-lo à proporção real de pixels da tela (DPR). DPR detectado: {{dpr}}.",
+			"description": "Ajuste o nível de zoom padrão para todas as janelas.\nCaso seu sistema não redimensione os apps automaticamente, você pode alterar o zoom para se ajustar à proporção de pixels (DPR) da tela. Sua proporção de pixels é {{dpr}}.",
 			"apply": "Aplicar",
 			"reset": "Redefinir",
 			"errors": {
-				"enterNumber": "Insira um número para definir o zoom",
-				"tooSmall": "O zoom não pode ser menor que {{min}}%",
-				"tooBig": "O zoom não pode ser maior que {{max}}%"
+				"enterNumber": "Digite um número para definir o zoom",
+				"tooSmall": "O zoom não pode ser inferior a {{min}}%",
+				"tooBig": "O zoom não pode ser superior a {{max}}%"
 			}
 		}
 	},
@@ -86,9 +86,9 @@
 			"title": "Modo do editor"
 		},
 		"fontFamily": {
-			"title": "Família da fonte",
-			"description": "Defina uma família de fonte para todos os editores ou deixe em branco para usar o padrão.",
-			"placeholder": "Nome da família da fonte"
+			"title": "Família de fontes",
+			"description": "Defina uma família de fontes para todos os editores ou deixe vazio para usar o padrão.",
+			"placeholder": "Digite o nome da família de fontes"
 		},
 		"fontSize": {
 			"title": "Tamanho da fonte"
@@ -98,29 +98,29 @@
 		},
 		"dateFormat": {
 			"title": "Formato de data",
-			"description": "Defina o formato de data usado ao inserir datas. Suporta sintaxe padrão de tokens como DD/MM/YYYY HH:mm:ss.",
+			"description": "Defina o formato de data usado ao inserir datas. Suporta sintaxe de tokens padrão como DD/MM/YYYY HH:mm:ss.",
 			"formatReference": "referência de formato de data",
 			"example": "Exemplo"
 		},
 		"plainText": {
 			"groupTitle": "Editor de texto simples",
-			"lineNumbers": "Exibir números de linha",
+			"lineNumbers": "Mostrar números das linhas",
 			"miniMap": "Ativar minimapa"
 		}
 	},
 	"hotkeys": {
 		"blank": "Nenhum",
 		"shortcuts": {
-			"createNote": "Criar nova nota",
+			"createNote": "Criar uma nova nota",
 			"closeCurrentNote": "Fechar nota ativa",
 			"restoreClosedNote": "Restaurar nota fechada recentemente",
 			"focusNextNote": "Ir para a próxima nota aberta",
-			"focusPreviousNote": "Ir para a nota aberta anterior",
-			"toggleArchive": "Mover nota ativa para/do arquivo",
-			"toggleBookmark": "Adicionar/remover nota ativa dos favoritos",
+			"focusPreviousNote": "Ir para a nota anterior aberta",
+			"toggleArchive": "Arquivar/desarquivar nota ativa",
+			"toggleBookmark": "Favoritar/desfavoritar nota ativa",
 			"deleteNote": "Excluir nota ativa",
 			"restoreFromBin": "Restaurar nota ativa da lixeira",
-			"toggleHistory": "Exibir ou ocultar histórico da nota ativa",
+			"toggleHistory": "Mostrar ou ocultar histórico da nota ativa",
 			"focusSearch": "Pesquisar notas",
 			"syncDatabase": "Sincronizar cofre com o disco",
 			"lockVault": "Bloquear cofre",
@@ -133,7 +133,7 @@
 		},
 		"rememberPasswords": {
 			"label": "Lembrar senhas dos espaços",
-			"description": "As senhas dos espaços serão criptografadas com a chave mestra e salvas no banco de dados, para abrir automaticamente espaços criptografados sem digitar a senha."
+			"description": "As senhas dos espaços serão criptografadas com a chave mestra e salvas no banco de dados, para abrir espaços criptografados automaticamente sem digitar a senha."
 		},
 		"filesAndData": {
 			"groupTitle": "Arquivos e dados",
@@ -145,7 +145,7 @@
 			},
 			"deleteOrphaned": {
 				"label": "Excluir arquivos órfãos",
-				"description": "Exclui arquivos que não estão mais em uso."
+				"description": "Excluir arquivos que não estão mais em uso."
 			}
 		},
 		"encryption": {
@@ -156,14 +156,14 @@
 			},
 			"password": {
 				"title": "Senha",
-				"update": "Alterar senha"
+				"update": "Atualizar senha"
 			}
 		},
 		"synchronization": {
 			"groupTitle": "Sincronização",
 			"enable": {
 				"label": "Ativar sincronização",
-				"description": "Mantenha seu cofre sincronizado entre dispositivos. Todos os dados são criptografados antes de sair do seu dispositivo."
+				"description": "Mantenha seu cofre sincronizado entre dispositivos. Todos os dados são criptografados antes de saírem do seu dispositivo."
 			},
 			"method": {
 				"title": "Método de sincronização",
@@ -172,18 +172,18 @@
 			},
 			"directory": {
 				"title": "Diretório de sincronização",
-				"placeholder": "Insira o caminho do diretório"
+				"placeholder": "Digite o caminho do diretório"
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Snapshots",
+			"groupTitle": "Instantâneos",
 			"record": {
-				"label": "Registrar snapshots das notas",
-				"description": "Quando ativado, snapshots do conteúdo da nota serão criados ao editá-la. Você pode controlar o registro de snapshots por nota no painel de histórico."
+				"label": "Registrar instantâneos de notas",
+				"description": "Quando ativado, instantâneos do conteúdo serão criados sempre que uma nota for alterada. Você pode controlar esse registro individualmente no histórico da nota."
 			},
 			"delay": {
-				"title": "Intervalo para snapshot",
-				"description": "Tempo de espera, em segundos, após a edição de uma nota antes de salvar um novo snapshot. Intervalos menores geram snapshots mais frequentes — e um cofre maior."
+				"title": "Intervalo para instantâneo",
+				"description": "Tempo de espera em segundos após a edição de uma nota antes de salvar um novo instantâneo. Intervalos menores geram mais instantâneos e aumentam o tamanho do cofre."
 			}
 		},
 		"trashBin": {
@@ -194,15 +194,15 @@
 			},
 			"moveToBin": {
 				"label": "Mover notas para a lixeira",
-				"description": "Move notas para a lixeira em vez de excluí-las permanentemente, permitindo restaurá-las depois."
+				"description": "Move as notas para a lixeira em vez de excluí-las permanentemente, permitindo a restauração posterior."
 			},
 			"autoPurge": {
-				"label": "Excluir permanentemente notas antigas da lixeira",
-				"description": "Notas movidas para a lixeira serão excluídas permanentemente após algum tempo."
+				"label": "Excluir notas antigas da lixeira permanentemente",
+				"description": "Notas movidas para a lixeira serão excluídas permanentemente após um período."
 			},
 			"purgeDelay": {
 				"title": "Prazo para exclusão permanente",
-				"description": "Notas na lixeira serão excluídas permanentemente após este número de dias, contados a partir de quando foram movidas para lá.",
+				"description": "As notas na lixeira serão excluídas permanentemente após este número de dias, contados a partir do momento em que foram movidas para lá.",
 				"unit": "dias"
 			}
 		}
@@ -213,14 +213,14 @@
 			"update": "Atualizar"
 		},
 		"newNoteTitle": {
-			"title": "Título da nova nota",
-			"description": "Defina o título para novas notas. Você pode usar data com a sintaxe {date} ou {date:FORMATO} como {date:DD/MM/YYYY HH:mm}.",
+			"title": "Título de novas notas",
+			"description": "Defina o título para novas notas. Você pode usar a data via sintaxe {date} ou {date:FORMAT}, como {date:DD/MM/YYYY HH:mm}.",
 			"formatReference": "referência de formato",
-			"placeholder": "ex.: Nota {date:DD/MM/YYYY HH:mm}",
+			"placeholder": "ex: Nota {date:DD/MM/YYYY HH:mm}",
 			"example": "Exemplo"
 		},
 		"tagsForNewNote": {
-			"title": "Tags para nova nota",
+			"title": "Tags para novas notas",
 			"none": "Não definir tags",
 			"selected": "Mesma tag selecionada"
 		},
@@ -229,7 +229,7 @@
 			"delete": {
 				"label": "Excluir espaço e todos os dados relacionados, incluindo notas, tags e arquivos",
 				"action": "Excluir espaço",
-				"cannotDeleteLast": "Não é possível excluir o último espaço do cofre.",
+				"cannotDeleteLast": "Não é possível excluir o último espaço de um cofre.",
 				"createAnother": "Crie",
 				"createAnotherSuffix": "outro espaço primeiro."
 			},
@@ -239,11 +239,11 @@
 	"importExport": {
 		"importNotes": "Importar notas",
 		"exportNotes": "Exportar notas",
-		"importFromZip": "Importar notas de arquivo .zip",
+		"importFromZip": "Importar notas de um arquivo .zip",
 		"importFromDirectory": "Importar diretório com arquivos Markdown",
 		"dropzone": {
-			"title": "Solte arquivos Markdown ou um arquivo .zip para importar",
-			"description": "Arraste e solte arquivos aqui ou clique para selecionar"
+			"title": "Arraste arquivos Markdown ou um arquivo .zip para importar",
+			"description": "Arraste arquivos para cá ou clique para selecionar"
 		},
 		"progress": "Importação de notas em andamento. Etapa: {{stage}} {{processed}}/{{total}}"
 	}

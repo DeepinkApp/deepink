@@ -3,54 +3,54 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "Vytvořit tag",
+					"title": "Vytvořit štítek",
 					"action": "Vytvořit"
 				},
 				"edit": {
-					"title": "Upravit tag",
+					"title": "Upravit štítek",
 					"action": "Uložit"
 				}
 			},
 			"field": {
 				"name": {
-					"label": "Název tagu",
+					"label": "Název štítku",
 					"placeholder": "např. Nápady"
 				},
 				"parent": {
-					"label": "Nadřazený tag",
-					"placeholder": "např. Recepty/Desserty"
+					"label": "Nadřazený štítek",
+					"placeholder": "např. Recepty/Dezerty"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Nelze uložit změny kvůli neznámé chybě.",
-				"format": "Tag nemůže být prázdný, začínat nebo končit znakem \"/\" nebo obsahovat \"//\".",
-				"duplicate": "Tag '{{name}}' již existuje.",
-				"parentTagNotFound": "Nadřazený tag nebyl nalezen, vyberte prosím jiný tag."
+				"unknownSubmitError": "Změny nelze uložit z neznámého důvodu.",
+				"format": "Štítek nesmí být prázdný, nesmí začínat ani končit znakem \"/\" a nesmí obsahovat \"//\".",
+				"duplicate": "Štítek '{{name}}' již existuje.",
+				"parentTagNotFound": "Nadřazený štítek nebyl nalezen, vyberte jiný."
 			}
 		},
 		"deletion": {
-			"confirm": "Opravdu chcete smazat tag \"{{name}}\" a všechny podtagy?"
+			"confirm": "Chcete opravdu smazat štítek \"{{name}}\" i všechny jeho podštítky?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Poznámkový blok",
 		"creator": {
-			"title": "Vytvořit nový pracovní prostor",
-			"description": "Každý pracovní prostor je samostatný prostor pro vaše poznámky, tagy a soubory. Všechno zůstává oddělené, přitom žije uvnitř vašeho šifrovaného trezoru — připraveno, když přepnete.",
+			"title": "Vytvořit nové pracoviště",
+			"description": "Každé pracoviště je samostatným prostorem pro vaše poznámky, štítky a soubory. Vše zůstává oddělené, ale stále je součástí vašeho šifrovaného úložiště.",
 			"action": {
 				"add": "Vytvořit",
 				"cancel": "Zrušit"
 			},
 			"field": {
 				"name": {
-					"label": "Název pracovního prostoru",
-					"placeholder": "např. Zdravotní deník, Obchodní nápady",
+					"label": "Název pracoviště",
+					"placeholder": "např. Zdraví, Obchodní nápady",
 					"suggests": {
 						"0": "Finance",
 						"1": "Zdraví",
 						"2": "Kariéra",
 						"3": "Rodina",
-						"4": "Deník",
+						"4": "Denník",
 						"5": "Cíle",
 						"6": "Nápady",
 						"7": "Právní",
@@ -61,30 +61,30 @@
 			},
 			"error": {
 				"unknown": "Došlo k neznámé chybě. Zkuste to prosím znovu.",
-				"format": "Název pracovního prostoru nemůže být prázdný."
+				"format": "Název pracoviště nesmí být prázdný."
 			}
 		},
 		"error": {
-			"title": "Pracovní prostor \"{{name}}\" se nepodařilo načíst",
-			"description": "Nepodařilo se načíst tento pracovní prostor. Data mohou být poškozena. Přepněte na jiný pracovní prostor nebo vytvořte nový, abyste mohli pokračovat.",
-			"chooseAnother": "Vyberte jiný pracovní prostor",
+			"title": "Nepodařilo se načíst pracoviště \"{{name}}\"",
+			"description": "Pracoviště se nepodařilo načíst. Data mohou být poškozená. Přepněte se na jiné pracoviště nebo vytvořte nové.",
+			"chooseAnother": "Vyberte jiné pracoviště",
 			"dividerText": "nebo",
-			"createNew": "Vytvořit nový pracovní prostor",
-			"createWorkspace": "Vytvořit pracovní prostor",
-			"closeVault": "Zavřít aktuální trezor"
+			"createNew": "Vytvořit nové pracoviště",
+			"createWorkspace": "Vytvořit pracoviště",
+			"closeVault": "Zavřít úložiště"
 		}
 	},
 	"note": {
 		"title": {
 			"placeholder": "Bez názvu",
 			"defaultTemplate": "Bez názvu - {{date}}",
-			"duplicate": "Duplikát: {{title}}"
+			"duplicate": "Duplicitní: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Zaznamenejte nápad, úkol nebo myšlenku…",
+			"placeholder": "Zapište si nápad, úkol nebo myšlenku…",
 			"modes": {
 				"plaintext": "Textový režim",
-				"richtext": "Bohatý editor",
+				"richtext": "Rich text editor",
 				"split-screen": "Rozdělená obrazovka"
 			}
 		},
@@ -92,29 +92,29 @@
 			"addToFavorites": "Přidat k oblíbeným",
 			"removeFromFavorites": "Odebrat z oblíbených",
 			"moveToArchive": "Přesunout do archivu",
-			"removeFromArchive": "Odebrat z archivu"
+			"removeFromArchive": "Vyjmout z archivu"
 		},
 		"tags": {
-			"addPlaceholder": "Napište pro přidání tagu…"
+			"addPlaceholder": "Napište pro přidání štítku…"
 		},
 		"versionPreview": {
-			"versionAt": "Verze k {{date}}",
-			"backToEditing": "Vrátit se k úpravám"
+			"versionAt": "Verze ze {{date}}",
+			"backToEditing": "Zpět k úpravám"
 		},
 		"menu": {
 			"title": "Možnosti poznámky",
 			"copyReference": "Kopírovat odkaz na poznámku",
-			"remindMe": "Připomeňte mi",
+			"remindMe": "Připomenout mi",
 			"history": "Historie",
-			"backLinks": "Zpětné odkazy",
+			"backLinks": "Odkazy zpět",
 			"readonlyMode": "Režim pouze pro čtení",
 			"spellcheck": "Kontrola pravopisu",
 			"export": "Exportovat...",
 			"passwordProtection": "Ochrana heslem...",
-			"disableSync": "Deaktivovat synchronizaci",
+			"disableSync": "Vypnout synchronizaci",
 			"moveToArchive": "Přesunout do archivu",
-			"removeFromArchive": "Odebrat z archivu",
-			"deleteToBin": "Smazat do koše",
+			"removeFromArchive": "Vyjmout z archivu",
+			"deleteToBin": "Přesunout do koše",
 			"deletePermanently": "Smazat trvale",
 			"restoreFromBin": "Obnovit z koše"
 		},
@@ -122,7 +122,7 @@
 			"chars": "{{count}} znaků",
 			"apply": {
 				"title": "Použít verzi",
-				"readonlyTitle": "Verzi nelze použít pro poznámku pouze pro čtení"
+				"readonlyTitle": "Verzi nelze použít u poznámky v režimu pouze pro čtení"
 			},
 			"open": {
 				"title": "Otevřít verzi"
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Uložit snímek",
-				"title": "Uložit aktuální stav této poznámky jako novou verzi v historii"
+				"title": "Uložit aktuální stav poznámky jako novou verzi v historii"
 			},
 			"deleteAll": {
 				"label": "Smazat vše",
 				"title": "Trvale smazat všechny uložené verze této poznámky"
 			},
-			"dontRecord": "Nehledat historii pro tuto poznámku",
-			"empty": "Tato poznámka nemá zaznamenané verze",
+			"dontRecord": "Nahrávat historii u této poznámky",
+			"empty": "Pro tuto poznámku nejsou v historii žádné verze",
 			"loading": "Načítání...",
 			"confirmDeleteAll": {
 				"title": "Smazat všechny verze poznámky",
-				"description": "Tato akce trvale smaže všechny verze poznámky.",
-				"confirm": "Opravdu si tím jste jisti?",
+				"description": "Tato akce trvale smaže všechny uložené verze poznámky.",
+				"confirm": "Opravdu chcete pokračovat?",
 				"action": "Použít"
 			},
 			"confirmApply": {
 				"title": "Použít verzi poznámky",
-				"description": "Chystáte se použít verzi poznámky {{version}}.",
-				"warning": "Tato akce nahradí aktuální data poznámky textem vybraného snímku. Jste si jisti?",
+				"description": "Chystáte se použít verzi {{version}}.",
+				"warning": "Tato akce nahradí aktuální obsah poznámky textem vybraného snímku. Chcete pokračovat?",
 				"apply": "Použít",
 				"preview": "Náhled"
 			},
 			"confirmDelete": {
 				"title": "Smazat verzi poznámky",
-				"description": "Chystáte se smazat verzi poznámky {{version}}.",
-				"warning": "Tato akce verzi poznámky nenávratně smaže. Jste si jisti?",
+				"description": "Chystáte se smazat verzi {{version}}.",
+				"warning": "Tato akce je nevratná. Chcete pokračovat?",
 				"delete": "Smazat",
 				"preview": "Náhled"
 			}
@@ -168,8 +168,8 @@
 			"closePanel": "Zavřít panel",
 			"tabs": {
 				"history": "Verze poznámky",
-				"backLinks": "Zpětné odkazy",
-				"files": "Připojené soubory"
+				"backLinks": "Odkazy zpět",
+				"files": "Přiložené soubory"
 			}
 		},
 		"bin": {
@@ -178,14 +178,14 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Opravdu chcete nahrát {{filesCount}} souborů ({{size}} celkem)?"
+		"confirmLargeUpload": "Chcete opravdu nahrát {{filesCount}} souborů (celkem {{size}})??"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Hledat..."
 		},
 		"filterBy": "Filtrovat podle",
-		"empty": "Zatím zde nejsou žádné poznámky. <create>Vytvořte poznámku</create>"
+		"empty": "Zatím zde nejsou žádné poznámky. <create>Vytvořit poznámku</create>"
 	},
 	"notesView": {
 		"allNotes": "Všechny poznámky",
@@ -195,17 +195,17 @@
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Vyberte poznámku, abyste začali číst nebo upravovat"
+			"placeholder": "Vyberte poznámku pro čtení nebo úpravu"
 		}
 	},
 	"activityBar": {
 		"newNote": "Nová poznámka",
 		"files": "Soubory",
-		"reminders": "Připomínky",
+		"reminders": "Upomínky",
 		"extensions": "Rozšíření",
-		"inbox": "Doručená pošta",
-		"publishNotes": "Publikovat poznámky",
-		"lockVault": "Zamknout trezor",
+		"inbox": "Schránka",
+		"publishNotes": "Publikované poznámky",
+		"lockVault": "Uzamknout úložiště",
 		"globalSettings": "Globální nastavení"
 	},
 	"tabBar": {
@@ -213,19 +213,19 @@
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Klikněte pro vložení nadpisu úrovně {{level}}. Otevřete kontextové menu pro výběr jiné možnosti",
+			"insertTitle": "Kliknutím vložíte nadpis úrovně {{level}}. Pro výběr jiné možnosti použijte kontextové menu",
 			"level": "Úroveň nadpisu {{level}}"
 		},
-		"bold": "Přepnout tučný styl textu",
-		"italic": "Přepnout kurzívový styl textu",
-		"strikethrough": "Přepnout přeškrtnutý styl textu",
-		"unorderedList": "Vložit nebo přepnout nečíslovaný seznam",
-		"checkboxList": "Vložit nebo přepnout seznam s zaškrtávacími políčky",
-		"orderedList": "Vložit nebo přepnout číslovaný seznam",
-		"codeBlock": "Vložit nebo obalit text kódem",
-		"quoteBlock": "Vložit nebo obalit text citací",
+		"bold": "Tučné písmo",
+		"italic": "Kurzíva",
+		"strikethrough": "Průřez",
+		"unorderedList": "Odrážkový seznam",
+		"checkboxList": "Seznam s zaškrtávacími políčky",
+		"orderedList": "Číslovaný seznam",
+		"codeBlock": "Blok kódu",
+		"quoteBlock": "Citace",
 		"insertDate": "Vložit datum",
-		"insertPageBreak": "Vložit stránkový zlom",
+		"insertPageBreak": "Vložit zalomení stránky",
 		"insertFile": "Vložit soubor",
 		"image": {
 			"buttonTitle": "Vložit obrázek",
@@ -234,11 +234,11 @@
 			"field": {
 				"url": {
 					"label": "URL obrázku",
-					"placeholder": "např., https://example.com/image.png"
+					"placeholder": "např. https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Alternativní text obrázku (volitelné)",
-					"placeholder": "Krátký popis obrázku"
+					"label": "Alt text obrázku (volitelné)",
+					"placeholder": "Stručný popis obrázku"
 				}
 			},
 			"actions": {
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Vložit odkaz",
 			"dialogTitle": "Přidat odkaz",
-			"dialogDescription": "Vybraný text se stane odkazem, nebo odkaz bude přidán na pozici kurzoru, pokud není nic vybráno.",
+			"dialogDescription": "Označený text se stane odkazem, nebo bude odkaz vložen na pozici kurzoru, pokud nic není vybráno.",
 			"field": {
 				"url": {
 					"label": "URL odkazu",
-					"placeholder": "např., https://example.com"
+					"placeholder": "např. https://example.com"
 				}
 			},
 			"actions": {
@@ -263,7 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Načítání obrázku"
+		"loading": "Načítání obrázku",
+		"brokenImage": "Obrázek nelze načíst"
 	},
 	"notifications": {
 		"title": "Oznámení"
@@ -271,11 +272,11 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Aktualizace aplikace",
-			"reminderLater": "Připomínka se zobrazí za týden"
+			"reminderLater": "Upomínka se zobrazí za týden"
 		},
 		"newVersion": {
-			"title": "Nová verze je k dispozici",
-			"body": "Nová verze je připravena. Aktualizujte, abyste získali nejnovější vylepšení a opravy.",
+			"title": "Je dostupná nová verze",
+			"body": "Nová verze je připravena. Aktualizujte pro získání nejnovějších vylepšení a oprav.",
 			"download": "Stáhnout novou verzi",
 			"ignore": "Ignorovat"
 		}
@@ -284,7 +285,7 @@
 		"imageProperties": {
 			"title": "Vlastnosti obrázku",
 			"urlLabel": "URL obrázku",
-			"altLabel": "Alternativní text obrázku"
+			"altLabel": "Alt text obrázku"
 		},
 		"linkProperties": {
 			"title": "Vlastnosti odkazu",
@@ -293,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Klikněte pro uložení změn na disk",
+			"title": "Kliknutím uložíte změny na disk",
 			"saving": "Ukládání změn..."
 		},
-		"changeVault": "Změnit trezor",
+		"changeVault": "Změnit úložiště",
 		"history": "Historie",
 		"notifications": "Oznámení"
 	}

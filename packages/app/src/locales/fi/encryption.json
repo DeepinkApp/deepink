@@ -1,0 +1,8 @@
+{
+	"password": {
+		"score": {
+			"good": "Hyvä salasana: {{length}} merkkiä, {{entropy}} bitin entropia",
+			"bad": "Heikko salasana: {{length}} merkkiä, {{entropy}} bitin entropia"
+		}
+	}
+}

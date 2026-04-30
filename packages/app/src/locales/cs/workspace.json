@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Štítky",
-			"empty": "Vytvořte si štítky pro organizaci poznámek. Uspořádejte je do hierarchie podle potřeby.",
+			"empty": "Vytvořte si štítky pro organizaci poznámek. Využijte hierarchii pro větší flexibilitu.",
 			"actions": {
 				"add": "Přidat štítek"
 			}

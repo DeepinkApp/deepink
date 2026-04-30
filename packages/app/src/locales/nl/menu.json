@@ -1,33 +1,33 @@
 {
 	"app": {
 		"appMenu": "Applicatie",
-		"quit": "Stop",
-		"edit": "Wijzig",
+		"quit": "Afsluiten",
+		"edit": "Bewerken",
 		"undo": "Ongedaan maken",
-		"redo": "Opnieuw",
-		"cut": "Knip",
-		"copy": "Kopieer",
-		"paste": "Plak",
+		"redo": "Opnieuw uitvoeren",
+		"cut": "Knippen",
+		"copy": "Kopiëren",
+		"paste": "Plakken",
 		"selectAll": "Selecteer alles",
 		"help": "Help",
-		"toggleDevTools": "Ontwikkeltools in-/uitschakelen",
-		"about": "Over deze applicatie"
+		"toggleDevTools": "Ontwikkelaarstools openen/sluiten",
+		"about": "Over de applicatie"
 	},
 	"tray": {
-		"open": "Open notities",
-		"quit": "Stop"
+		"open": "Notities openen",
+		"quit": "Afsluiten"
 	},
 	"note": {
-		"export": "Exporteer...",
-		"duplicate": "Dupliceer",
-		"copyMarkdownLink": "Kopieer Markdown-link",
-		"deletePermanently": "Definitief verwijderen",
-		"restoreFromBin": "Terugzetten uit prullenmand",
-		"deleteToBin": "Naar prullenmand"
+		"export": "Exporteren...",
+		"duplicate": "Dupliceren",
+		"copyMarkdownLink": "Markdown-link kopiëren",
+		"deletePermanently": "Permanent verwijderen",
+		"restoreFromBin": "Herstellen uit prullenbak",
+		"deleteToBin": "Verplaatsen naar prullenbak"
 	},
 	"tag": {
-		"addNestedTag": "Subtag aanmaken...",
-		"edit": "Bewerk...",
-		"delete": "Verwijder"
+		"addNestedTag": "Taghiërarchie maken...",
+		"edit": "Bewerken...",
+		"delete": "Verwijderen"
 	}
 }

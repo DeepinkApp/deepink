@@ -10,7 +10,7 @@
 		"paste": "Pegar",
 		"selectAll": "Seleccionar todo",
 		"help": "Ayuda",
-		"toggleDevTools": "Alternar herramientas de desarrollo",
+		"toggleDevTools": "Abrir herramientas de desarrollo",
 		"about": "Acerca de la aplicación"
 	},
 	"tray": {
@@ -26,7 +26,7 @@
 		"deleteToBin": "Mover a la papelera"
 	},
 	"tag": {
-		"addNestedTag": "Crear subtag...",
+		"addNestedTag": "Crear jerarquía de etiquetas...",
 		"edit": "Editar...",
 		"delete": "Eliminar"
 	}

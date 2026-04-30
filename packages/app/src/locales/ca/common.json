@@ -1,16 +1,16 @@
 {
 	"actions": {
-		"cancel": "Cancel·la",
-		"confirm": "Confirma",
-		"apply": "Aplica",
-		"save": "Desa",
-		"saveChanges": "Desa els canvis",
-		"delete": "Elimina",
-		"reset": "Restableix",
-		"update": "Actualitza",
-		"add": "Afegeix",
-		"create": "Crea",
-		"close": "Tanca"
+		"cancel": "Cancel·",
+		"confirm": "Confirmar",
+		"apply": "Aplicar",
+		"save": "Desar",
+		"saveChanges": "Desar canvis",
+		"delete": "Eliminar",
+		"reset": "Restablir",
+		"update": "Actualitzar",
+		"add": "Afegir",
+		"create": "Crear",
+		"close": "Tancar"
 	},
 	"form": {
 		"suggestTemplate": "Prova això: <suggests>"

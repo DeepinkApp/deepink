@@ -1,10 +1,10 @@
 {
 	"panel": {
 		"tags": {
-			"label": "Tagit",
-			"empty": "Luo tageja muistiinpanojen järjestämiseen. Rakenna niistä hierarkia tarpeidesi mukaan.",
+			"label": "Tunnisteet",
+			"empty": "Luo tunnisteita muotoillaksesi muistiinpanoja. Käytä tunnistehierarkiaa hallitaksesi sisältöä joustavasti.",
 			"actions": {
-				"add": "Lisää tagi"
+				"add": "Lisää tunniste"
 			}
 		},
 		"workspaces": {

@@ -1,114 +1,133 @@
 {
 	"chooseVault": {
-		"title": "Valitse holvi",
+		"title": "Valitse arkisto",
 		"actions": {
-			"createNew": "Luo uusi holvi"
+			"createNew": "Luo uusi arkisto"
 		}
 	},
 	"creator": {
-		"title": "Luo holvi",
+		"title": "Luo arkisto",
 		"field": {
 			"name": {
-				"label": "Holvin nimi",
-				"placeholder": "esim. Oma holvi, Jaettu Alexin kanssa",
-				"random": "Luo satunnainen nimi",
+				"label": "Arkiston nimi",
+				"placeholder": "esim. Oma arkisto, Jaettu Alexin kanssa",
+				"random": "Generoi satunnainen nimi",
 				"suggests": {
 					"0": "Marginalia",
-					"1": "Pergamentti",
-					"2": "Päätypaperi",
+					"1": "Vellum",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alkovi",
-					"6": "Puolihämärä",
-					"7": "Kuutamokirjeet",
-					"8": "Iltakartografia",
+					"5": "Alcove",
+					"6": "Penumbra",
+					"7": "Kuunvalon kirjeet",
+					"8": "Illan kartografia",
 					"9": "Lyhty ja muste",
-					"10": "Kynttilänvaloarkisto",
-					"11": "Villiviiniköynnökset",
-					"12": "Setripuukirjeet",
-					"13": "Ruusupuinen kirjoitushuone",
-					"14": "Sitomaton koodeksi",
-					"15": "Marginaalit ja kuiskeet",
-					"16": "Päätypaperin tunnustukset",
-					"17": "Merkitty hiljaisuus",
-					"18": "Varjokartografia",
+					"10": "Kynttilän valaisema arkisto",
+					"11": "Köynnöskäsikirjoitukset",
+					"12": "Setrikirjeet",
+					"13": "Ruusupuu-skriptorio",
+					"14": "Vapautettu codex",
+					"15": "Marginaliat ja kuiskaukset",
+					"16": "Endpaper-tunnustukset",
+					"17": "Kirjoitettu hiljaisuus",
+					"18": "Varjojen kartografia",
 					"19": "Muistettu huone",
 					"20": "Allekirjoittamattomat kirjeet",
-					"21": "Kuiskatut koordinaatit",
+					"21": "Kuiskaavat koordinaatit",
 					"22": "Kertomaton almanakka",
-					"23": "Kadonneen vahan kirjeet",
+					"23": "Vahakirjeet",
 					"24": "Näkymätön kirjasto",
 					"25": "Kartoittamattomat marginaalit",
 					"26": "Hiljainen salaliitto",
-					"27": "Toimittamaton posti",
+					"27": "Toimittelematon posti",
 					"28": "Ikivihreä arkisto",
 					"29": "Paperikuu",
-					"30": "Paperikukinto",
-					"31": "Yökukinto",
+					"30": "Paperin kukoistus",
+					"31": "Yön kukoistus",
 					"32": "Pehmeä atlas",
-					"33": "Sametti",
+					"33": "Veluuri",
 					"34": "Mustekivi",
-					"35": "Hiljaisuus",
+					"35": "Hush",
 					"36": "Varjo",
-					"37": "Tyyni virta",
+					"37": "Rauhallinen virta",
 					"38": "Syvä niitty",
-					"39": "Kirjoittamaton tilikirja",
+					"39": "Kirjoittamaton kirjanpito",
 					"40": "Hiljainen luonnoskirja",
-					"41": "Sanaton arkisto",
-					"42": "Ajelehtiva päiväkirja",
+					"41": "Sanomaton arkisto",
+					"42": "Vaeltava päiväkirja",
 					"43": "Aurinkotuulen kronikka",
 					"44": "Hiljainen vuono",
-					"45": "Muistojen sirpaleet",
+					"45": "Muistipalaset",
 					"46": "Hiljainen hetki",
 					"47": "Kadonneet minuutit"
 				}
 			},
 			"password": {
-				"label": "Salausavain",
+				"label": "Salasana",
 				"recommended": "(suositeltu)",
-				"placeholder": "Syötä vahva salasana"
+				"placeholder": "Kirjoita vahva salasana",
+				"description": "Kaikki arkiston tiedot salataan tämän salasanan avulla"
 			},
 			"algorithm": {
 				"label": "Salausalgoritmi"
 			}
 		},
 		"actions": {
-			"create": "Luo holvi",
+			"create": "Luo arkisto",
 			"continueNoPassword": "Jatka ilman salasanaa",
 			"cancel": "Peruuta"
 		},
 		"noEncryptionDialog": {
-			"title": "Luo holvi ilman salausta",
-			"description": "Muistiinpanosi ja tietosi tallennetaan selkokielisenä tekstinä. Kaikki sovellukset ja henkilöt, joilla on pääsy holvin kansioon levyllä, voivat lukea sen sisällön.",
+			"title": "Luo arkisto ilman salausta",
+			"description": "Muistiinpanosi ja tietosi tallennetaan selkokielisenä tekstinä. Mikä tahansa sovellus tai henkilö, jolla on pääsy arkiston tiedostohakemistoon, voi lukea kaiken sisällön.",
 			"actions": {
 				"confirm": "Jatka ilman salausta",
 				"cancel": "Peruuta"
 			}
 		},
 		"errors": {
-			"nameRequired": "Syötä holvin nimi",
-			"passwordRequired": "Syötä salasana"
+			"nameRequired": "Anna arkistolle nimi",
+			"passwordRequired": "Anna salasana"
+		},
+		"section": {
+			"advancedConfig": {
+				"label": "Lisäasetukset salaukselle",
+				"description": "Määritä arkistosi suojaamiseen käytettävät salausominaisuudet — kuten salausketjut, KDF-parametrit ja muut. Lue lisää oletusasetuksista ja niiden vaikutuksista kohdasta <encryption>miten arkistosi on suojattu</encryption>."
+			},
+			"kdf": {
+				"label": "Avaimen johdatusfunktio (KDF)",
+				"description": "Auttaa suojaamaan heikkoja tai uudelleenkäytettyjä salasanoja tekemällä jokaisesta arvauksesta hitaamman ja raskaamman. Nostamalla näitä asetuksia saat vahvemman suojan; oletusasetukset tarjoavat tasapainoisen käyttökokemuksen.",
+				"memory": {
+					"label": "Muistinkäyttö",
+					"description": "Lisää muistinkulutusta jokaista salasanan arvausta kohden. Tämä tekee laajamittaisista hyökkäyksistä tehottomampia, koska muistin käyttö on kalliimpaa ja vaikeammin skaalattavissa kuin pelkkä laskentateho."
+				},
+				"ops": {
+					"label": "Iteraatiot",
+					"description": "Toistaa avaimen johdatusprosessia jokaisen salasanan arvauksen yhteydessä. Tämä lisää jokaisen arvauksen vaativuutta lineaarisesti: iteratioiden määrän tuplaaminen suunnilleen tuplaa työn määrän sekä hyökkääjälle että laitteellesi."
+				}
+			}
 		}
 	},
 	"login": {
-		"title": "Avaa holvi",
+		"title": "Avaa arkisto",
 		"field": {
 			"password": {
-				"placeholder": "Syötä salasana"
+				"placeholder": "Kirjoita salasana"
 			}
 		},
 		"actions": {
 			"unlock": "Avaa",
-			"changeVault": "Vaihda holvia"
+			"changeVault": "Vaihda arkistoa"
 		},
 		"errors": {
-			"cannotOpen": "Holvia ei voi avata",
+			"cannotOpen": "Arkistoa ei voida avata",
 			"invalidPassword": "Virheellinen salasana",
-			"passwordRequired": "Syötä salasana"
+			"passwordRequired": "Anna salasana"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Holvin avaaminen epäonnistui",
+		"failedToOpen": "Arkiston avaaminen epäonnistui",
 		"corrupted": "\"{{name}}\" vaikuttaa vioittuneelta."
 	}
 }
