@@ -1,65 +1,65 @@
 {
 	"chooseVault": {
-		"title": "Escolha um vault",
+		"title": "Escolha um cofre",
 		"actions": {
-			"createNew": "Criar novo vault"
+			"createNew": "Criar novo cofre"
 		}
 	},
 	"creator": {
-		"title": "Criar Vault",
+		"title": "Criar Cofre",
 		"field": {
 			"name": {
-				"label": "Nome do vault",
-				"placeholder": "ex.: Meu Vault, Compartilhado com Alex",
+				"label": "Nome do cofre",
+				"placeholder": "ex: Meu Cofre, Compartilhado com Alex",
 				"random": "Gerar nome aleatório",
 				"suggests": {
-					"0": "Marginália",
-					"1": "Velino",
-					"2": "Guarda",
+					"0": "Marginalia",
+					"1": "Vellum",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
 					"5": "Alcova",
 					"6": "Penumbra",
 					"7": "Correspondência ao Luar",
 					"8": "Cartografia Noturna",
-					"9": "Lanterna & Tinta",
+					"9": "Lanterna e Tinta",
 					"10": "Arquivo à Luz de Velas",
 					"11": "Manuscritos de Hera",
 					"12": "Cartas de Cedro",
-					"13": "Escritório de Jacarandá",
-					"14": "O Códice Solto",
-					"15": "Marginália & Murmúrios",
-					"16": "Confissões na Guarda",
+					"13": "Scriptorium de Jacarandá",
+					"14": "O Códice Livre",
+					"15": "Marginalia e Murmúrios",
+					"16": "Confissões de Endpaper",
 					"17": "O Silêncio Anotado",
-					"18": "Cartografia de Sombras",
-					"19": "O Quarto Lembrado",
+					"18": "Cartografia das Sombras",
+					"19": "O Quarto Recordado",
 					"20": "As Cartas Não Assinadas",
 					"21": "Coordenadas Sussurradas",
-					"22": "O Almanaque Não Contado",
-					"23": "Cartas em Cera Perdida",
+					"22": "O Almanaque Não Revelado",
+					"23": "Cartas de Cera Perdida",
 					"24": "A Biblioteca Invisível",
 					"25": "Margens Inexploradas",
 					"26": "A Conspiração Silenciosa",
-					"27": "A Correspondência Não Entregue",
+					"27": "O Correio Não Entregue",
 					"28": "Arquivo Perene",
 					"29": "Lua de Papel",
-					"30": "Flor de Papel",
-					"31": "Flor Noturna",
+					"30": "Florescer de Papel",
+					"31": "Florescer Noturno",
 					"32": "Atlas Suave",
 					"33": "Veludo",
 					"34": "Pedra de Tinta",
-					"35": "Silêncio",
+					"35": "Hush",
 					"36": "Sombra",
 					"37": "Deriva Calma",
-					"38": "Campina Profunda",
-					"39": "Registro Não Escrito",
-					"40": "Rascunho Silencioso",
+					"38": "Prado Profundo",
+					"39": "Livro de Registros Não Escrito",
+					"40": "Caderno de Rascunhos Silencioso",
 					"41": "Arquivo Não Dito",
 					"42": "Diário à Deriva",
 					"43": "Crônica do Vento Solar",
 					"44": "Fiorde Silencioso",
 					"45": "Fragmentos de Memória",
-					"46": "Instante Silencioso",
+					"46": "Momento de Silêncio",
 					"47": "Minutos Perdidos"
 				}
 			},
@@ -67,50 +67,50 @@
 				"label": "Senha de criptografia",
 				"recommended": "(recomendado)",
 				"placeholder": "Digite uma senha forte",
-				"description": "Todos os dados no cofre serão criptografados com esta senha"
+				"description": "Todos os dados do cofre serão criptografados com esta senha"
 			},
 			"algorithm": {
 				"label": "Algoritmo de criptografia"
 			}
 		},
 		"actions": {
-			"create": "Criar vault",
+			"create": "Criar cofre",
 			"continueNoPassword": "Continuar sem senha",
 			"cancel": "Cancelar"
 		},
 		"noEncryptionDialog": {
-			"title": "Criar vault sem criptografia",
-			"description": "Suas notas e dados serão armazenados como texto simples. Qualquer aplicativo ou pessoa com acesso ao diretório do vault no disco poderá ler todo o conteúdo.",
+			"title": "Criar cofre sem criptografia",
+			"description": "Suas notas e dados serão armazenados em texto simples. Qualquer aplicativo ou pessoa com acesso ao diretório do cofre poderá ler todo o conteúdo.",
 			"actions": {
 				"confirm": "Continuar sem criptografia",
 				"cancel": "Cancelar"
 			}
 		},
 		"errors": {
-			"nameRequired": "Digite um nome para o vault",
+			"nameRequired": "Digite um nome para o cofre",
 			"passwordRequired": "Digite a senha"
 		},
 		"section": {
 			"advancedConfig": {
-				"label": "Opções de criptografia avançada",
-				"description": "Configure os elementos de criptografia que protegem seu cofre — cascata de cifra, parâmetros de KDF e mais. Para um detalhamento completo dos padrões e suas implicações, veja <encryption>como seu cofre é protegido</encryption>."
+				"label": "Opções avançadas de criptografia",
+				"description": "Configure as primitivas de criptografia que protegem seu cofre — cascata de cifras, parâmetros de KDF e mais. Para detalhes sobre os padrões e seus impactos, veja <encryption>como seu cofre é protegido</encryption>."
 			},
 			"kdf": {
-				"label": "Função de deriva de chave",
-				"description": "Ajuda a proteger senhas fracas ou reutilizadas, tornando cada tentativa mais lenta e custosa. Aumente essas configurações para uma proteção mais forte ou mantenha os padrões para uma experiência equilibrada.",
+				"label": "Função de derivação de chave (KDF)",
+				"description": "Protege senhas fracas ou reutilizadas, tornando cada tentativa de acesso mais lenta e custosa. Aumente estas configurações para maior proteção ou mantenha o padrão para um equilíbrio ideal.",
 				"memory": {
 					"label": "Uso de memória",
-					"description": "Faz com que cada tentativa de senha use mais memória. Isso é especialmente eficaz contra ataques em grande escala, pois memória é custosa e mais difícil de escalar eficientemente do que o cálculo bruto."
+					"description": "Faz com que cada tentativa de senha utilize mais memória. Isso é especialmente eficaz contra ataques em larga escala, pois a memória é um recurso caro e mais difícil de escalar do que o processamento puro."
 				},
 				"ops": {
-					"label": "Iteirações",
-					"description": "Repete o trabalho de derivação para cada tentativa de senha. Isso aumenta o custo de cada tentativa de maneira quase linear: dobrando as iterações, aumenta-se aproximadamente o dobro do trabalho tanto para atacantes quanto para o seu dispositivo."
+					"label": "Iterações",
+					"description": "Repete o processo de derivação para cada tentativa de senha. Isso aumenta o custo de cada tentativa de forma linear: dobrar as iterações dobra o esforço tanto para invasores quanto para o seu dispositivo."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Desbloquear vault",
+		"title": "Desbloquear cofre",
 		"field": {
 			"password": {
 				"placeholder": "Digite a senha"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Desbloquear",
-			"changeVault": "Trocar vault"
+			"changeVault": "Trocar cofre"
 		},
 		"errors": {
-			"cannotOpen": "Não foi possível abrir o vault",
-			"invalidPassword": "Senha inválida",
+			"cannotOpen": "Não foi possível abrir o cofre",
+			"invalidPassword": "Senha incorreta",
 			"passwordRequired": "Digite a senha"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Falha ao abrir o vault",
+		"failedToOpen": "Falha ao abrir o cofre",
 		"corrupted": "\"{{name}}\" parece estar corrompido."
 	}
 }

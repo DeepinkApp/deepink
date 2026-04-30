@@ -1,8 +1,8 @@
 {
 	"password": {
 		"score": {
-			"good": "良好的密碼：{{length}}個字元，{{entropy}}位元組的熵",
-			"bad": "弱密碼：{{length}}個字元，{{entropy}}位元組的熵"
+			"good": "密碼強度良好：{{length}} 個字元，{{entropy}} 位元熵值",
+			"bad": "密碼強度不足：{{length}} 個字元，{{entropy}} 位元熵值"
 		}
 	}
 }

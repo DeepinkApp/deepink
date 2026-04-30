@@ -1,30 +1,30 @@
 {
 	"window": {
-		"title": "Tùy chọn"
+		"title": "Tùy chỉnh"
 	},
 	"tabs": {
 		"general": "Chung",
 		"appearance": "Giao diện",
 		"hotkeys": "Phím tắt",
-		"vault": "Vault",
-		"workspace": "Không gian",
+		"vault": "Kho lưu trữ",
+		"workspace": "Không gian làm việc",
 		"importExport": "Nhập & Xuất",
-		"vaultSettingsGroup": "Cài đặt Vault"
+		"vaultSettingsGroup": "Cài đặt Kho lưu trữ"
 	},
 	"general": {
 		"title": "Cài đặt chung",
-		"subtitle": "Quản lý các tùy chọn tổng thể của ứng dụng.",
+		"subtitle": "Quản lý các tùy chỉnh chung của ứng dụng.",
 		"version": {
 			"title": "Phiên bản",
 			"checkForUpdates": "Kiểm tra cập nhật",
 			"upToDate": "Bạn đang dùng phiên bản mới nhất",
-			"newVersionAvailable": "Phiên bản mới <bold>{{version}}</bold> đã sẵn sàng.",
+			"newVersionAvailable": "Đã có phiên bản mới <bold>{{version}}</bold>.",
 			"downloadLatest": "Tải về",
-			"downloadDescription": "phiên bản mới nhất để nhận các tính năng và cải tiến."
+			"downloadDescription": "tải phiên bản mới nhất để trải nghiệm các tính năng và cải tiến mới."
 		},
 		"autoCheckUpdates": {
 			"label": "Tự động kiểm tra cập nhật",
-			"description": "Ứng dụng sẽ định kỳ kiểm tra và thông báo khi có phiên bản mới."
+			"description": "Ứng dụng sẽ định kỳ kiểm tra cập nhật và thông báo nếu có phiên bản mới."
 		},
 		"language": {
 			"title": "Ngôn ngữ",
@@ -32,33 +32,33 @@
 		},
 		"notifications": {
 			"title": "Thông báo",
-			"description": "Thông báo hệ thống chỉ được dùng cho nhắc nhở. Khi tắt, nhắc nhở sẽ chỉ hiển thị trong danh sách thông báo của ứng dụng.",
+			"description": "Thông báo hệ thống chỉ được dùng để nhắc nhở. Khi tắt, các nhắc nhở sẽ chỉ xuất hiện trong danh sách thông báo của ứng dụng.",
 			"useSystem": "Sử dụng thông báo hệ thống"
 		},
 		"vaultLock": {
-			"groupTitle": "Khóa vault",
+			"groupTitle": "Khóa Kho lưu trữ",
 			"lockOnSystemLock": {
-				"label": "Khóa vault khi thiết bị khóa",
-				"description": "Vault sẽ được khóa khi trình bảo vệ màn hình bật hoặc thiết bị ở chế độ ngủ."
+				"label": "Khóa Kho lưu trữ khi khóa hệ thống",
+				"description": "Kho lưu trữ sẽ được khóa khi trình bảo vệ màn hình khởi động hoặc thiết bị ở chế độ ngủ."
 			},
 			"lockAfterIdle": {
-				"title": "Khóa vault sau khi không hoạt động",
-				"description": "Vault sẽ được khóa sau khoảng thời gian không hoạt động đã chọn.",
+				"title": "Khóa Kho lưu trữ sau một thời gian không hoạt động",
+				"description": "Kho lưu trữ sẽ được khóa sau khoảng thời gian chờ đã chọn.",
 				"never": "Không khóa",
-				"minutes5": "sau 5 phút",
-				"minutes10": "sau 10 phút",
-				"minutes15": "sau 15 phút",
-				"minutes30": "sau 30 phút",
-				"hour1": "sau 1 giờ",
-				"hours2": "sau 2 giờ",
-				"hours3": "sau 3 giờ",
-				"hours5": "sau 5 giờ"
+				"minutes5": "trong 5 phút",
+				"minutes10": "trong 10 phút",
+				"minutes15": "trong 15 phút",
+				"minutes30": "trong 30 phút",
+				"hour1": "trong 1 giờ",
+				"hours2": "trong 2 giờ",
+				"hours3": "trong 3 giờ",
+				"hours5": "trong 5 giờ"
 			}
 		}
 	},
 	"appearance": {
 		"theme": {
-			"title": "Giao diện",
+			"title": "Chủ đề",
 			"auto": "Tự động",
 			"dark": "Tối",
 			"light": "Sáng",
@@ -66,15 +66,15 @@
 		},
 		"accentColor": {
 			"title": "Màu nhấn",
-			"zenNotApplicable": "Màu nhấn không áp dụng cho giao diện đã chọn."
+			"zenNotApplicable": "Màu nhấn không áp dụng cho chủ đề đã chọn."
 		},
 		"zoomLevel": {
 			"title": "Mức thu phóng",
-			"description": "Điều chỉnh mức thu phóng mặc định cho tất cả các cửa sổ.\nNếu hệ thống của bạn không tự động điều chỉnh kích thước ứng dụng, bạn có thể thay đổi mức thu phóng để phù hợp với tỷ lệ pixel hiển thị thực tế (DPR). Tỷ lệ pixel hiển thị của bạn là {{dpr}}.",
+			"description": "Điều chỉnh mức thu phóng mặc định cho tất cả cửa sổ.\nNếu hệ thống không tự động điều chỉnh tỷ lệ ứng dụng, bạn có thể thay đổi mức thu phóng để phù hợp với tỷ lệ điểm ảnh (DPR) của màn hình. Tỷ lệ điểm ảnh của bạn là {{dpr}}.",
 			"apply": "Áp dụng",
 			"reset": "Đặt lại",
 			"errors": {
-				"enterNumber": "Nhập một số để đặt mức thu phóng",
+				"enterNumber": "Vui lòng nhập một con số để thiết lập mức thu phóng",
 				"tooSmall": "Mức thu phóng không thể nhỏ hơn {{min}}%",
 				"tooBig": "Mức thu phóng không thể lớn hơn {{max}}%"
 			}
@@ -87,23 +87,23 @@
 		},
 		"fontFamily": {
 			"title": "Phông chữ",
-			"description": "Đặt phông chữ cho tất cả trình soạn thảo, hoặc để trống để dùng mặc định.",
+			"description": "Thiết lập phông chữ cho tất cả trình soạn thảo, hoặc để trống để dùng mặc định.",
 			"placeholder": "Nhập tên phông chữ"
 		},
 		"fontSize": {
 			"title": "Cỡ chữ"
 		},
 		"lineHeight": {
-			"title": "Chiều cao dòng"
+			"title": "Khoảng cách dòng"
 		},
 		"dateFormat": {
-			"title": "Định dạng ngày",
-			"description": "Đặt định dạng ngày khi chèn ngày. Hỗ trợ cú pháp chuẩn như DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "tham chiếu định dạng ngày",
+			"title": "Định dạng ngày tháng",
+			"description": "Thiết lập định dạng ngày tháng khi chèn. Hỗ trợ cú pháp token tiêu chuẩn như DD/MM/YYYY HH:mm:ss.",
+			"formatReference": "tham khảo định dạng ngày tháng",
 			"example": "Ví dụ"
 		},
 		"plainText": {
-			"groupTitle": "Trình soạn thảo văn bản thuần",
+			"groupTitle": "Trình soạn thảo văn bản thuần túy",
 			"lineNumbers": "Hiển thị số dòng",
 			"miniMap": "Bật bản đồ thu nhỏ"
 		}
@@ -112,47 +112,47 @@
 		"blank": "Trống",
 		"shortcuts": {
 			"createNote": "Tạo ghi chú mới",
-			"closeCurrentNote": "Đóng ghi chú đang mở",
+			"closeCurrentNote": "Đóng ghi chú hiện tại",
 			"restoreClosedNote": "Mở lại ghi chú vừa đóng",
-			"focusNextNote": "Chuyển đến ghi chú tiếp theo",
-			"focusPreviousNote": "Chuyển đến ghi chú trước đó",
-			"toggleArchive": "Chuyển ghi chú vào/ra lưu trữ",
-			"toggleBookmark": "Chuyển ghi chú vào/ra đánh dấu",
-			"deleteNote": "Xóa ghi chú đang mở",
+			"focusNextNote": "Chuyển sang ghi chú tiếp theo",
+			"focusPreviousNote": "Chuyển về ghi chú trước đó",
+			"toggleArchive": "Lưu trữ/Bỏ lưu trữ ghi chú hiện tại",
+			"toggleBookmark": "Đánh dấu/Bỏ đánh dấu ghi chú hiện tại",
+			"deleteNote": "Xóa ghi chú hiện tại",
 			"restoreFromBin": "Khôi phục ghi chú từ thùng rác",
-			"toggleHistory": "Hiện hoặc ẩn lịch sử ghi chú",
+			"toggleHistory": "Hiện/Ẩn lịch sử ghi chú",
 			"focusSearch": "Tìm kiếm ghi chú",
-			"syncDatabase": "Đồng bộ vault",
-			"lockVault": "Khóa vault",
-			"openSettings": "Mở tùy chọn"
+			"syncDatabase": "Đồng bộ Kho lưu trữ với ổ đĩa",
+			"lockVault": "Khóa Kho lưu trữ",
+			"openSettings": "Mở cài đặt"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Tên vault"
+			"title": "Tên Kho lưu trữ"
 		},
 		"rememberPasswords": {
-			"label": "Ghi nhớ mật khẩu không gian",
-			"description": "Mật khẩu không gian sẽ được mã hóa bằng khóa chính và lưu trong cơ sở dữ liệu, để tự động mở các không gian được mã hóa mà không cần nhập mật khẩu."
+			"label": "Ghi nhớ mật khẩu Không gian làm việc",
+			"description": "Mật khẩu các Không gian làm việc sẽ được mã hóa bằng khóa chính và lưu trong cơ sở dữ liệu để tự động mở mà không cần nhập lại mật khẩu."
 		},
 		"filesAndData": {
 			"groupTitle": "Tệp và dữ liệu",
 			"imagesCompression": {
-				"title": "Nén hình ảnh",
-				"compress": "Nén hình ảnh",
-				"doNotCompress": "Không nén hình ảnh",
+				"title": "Nén ảnh",
+				"compress": "Nén ảnh",
+				"doNotCompress": "Không nén ảnh",
 				"alwaysAsk": "Luôn hỏi"
 			},
 			"deleteOrphaned": {
 				"label": "Xóa tệp không còn sử dụng",
-				"description": "Xóa các tệp không còn được dùng."
+				"description": "Xóa các tệp không còn được dùng đến."
 			}
 		},
 		"encryption": {
 			"groupTitle": "Mã hóa",
 			"algorithm": {
 				"title": "Thuật toán mã hóa",
-				"none": "Không"
+				"none": "Không có"
 			},
 			"password": {
 				"title": "Mật khẩu",
@@ -160,13 +160,13 @@
 			}
 		},
 		"synchronization": {
-			"groupTitle": "Đồng bộ",
+			"groupTitle": "Đồng bộ hóa",
 			"enable": {
-				"label": "Bật đồng bộ",
-				"description": "Đồng bộ vault giữa các thiết bị. Toàn bộ dữ liệu được mã hóa trước khi rời khỏi thiết bị của bạn."
+				"label": "Bật đồng bộ hóa",
+				"description": "Giữ Kho lưu trữ luôn đồng bộ giữa các thiết bị. Mọi dữ liệu đều được mã hóa trước khi rời khỏi thiết bị của bạn."
 			},
 			"method": {
-				"title": "Phương thức đồng bộ",
+				"title": "Phương thức đồng bộ hóa",
 				"fileSystem": "Hệ thống tệp",
 				"server": "Máy chủ"
 			},
@@ -176,33 +176,33 @@
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Bản chụp",
+			"groupTitle": "Bản sao lưu",
 			"record": {
-				"label": "Ghi bản chụp ghi chú",
-				"description": "Khi bật, bản chụp nội dung ghi chú sẽ được tạo mỗi khi ghi chú thay đổi. Bạn có thể kiểm soát việc ghi bản chụp cho từng ghi chú trong bảng lịch sử."
+				"label": "Ghi lại bản sao lưu ghi chú",
+				"description": "Khi bật, các bản sao lưu nội dung sẽ được tạo mỗi khi ghi chú thay đổi. Bạn có thể tùy chỉnh việc ghi lại bản sao lưu cho từng ghi chú trong bảng lịch sử."
 			},
 			"delay": {
-				"title": "Thời gian chờ trước khi chụp",
-				"description": "Thời gian chờ (tính bằng giây) sau khi chỉnh sửa ghi chú trước khi lưu bản chụp mới. Khoảng thời gian ngắn hơn nghĩa là nhiều bản chụp hơn — và vault lớn hơn."
+				"title": "Thời gian chờ bản sao lưu",
+				"description": "Số giây chờ sau khi chỉnh sửa ghi chú trước khi lưu bản sao lưu mới. Khoảng thời gian càng ngắn, bản sao lưu càng thường xuyên — và dung lượng kho lưu trữ sẽ lớn hơn."
 			}
 		},
 		"trashBin": {
 			"groupTitle": "Thùng rác",
 			"confirmDeletion": {
-				"label": "Xác nhận trước khi xóa",
+				"label": "Xác nhận xóa",
 				"description": "Hỏi trước khi xóa ghi chú."
 			},
 			"moveToBin": {
 				"label": "Chuyển ghi chú vào thùng rác",
-				"description": "Chuyển ghi chú vào thùng rác thay vì xóa vĩnh viễn để bạn có thể khôi phục sau."
+				"description": "Chuyển ghi chú vào thùng rác thay vì xóa vĩnh viễn để bạn có thể khôi phục sau này."
 			},
 			"autoPurge": {
 				"label": "Tự động xóa vĩnh viễn ghi chú cũ trong thùng rác",
-				"description": "Ghi chú trong thùng rác sẽ bị xóa vĩnh viễn sau một khoảng thời gian."
+				"description": "Các ghi chú trong thùng rác sẽ bị xóa vĩnh viễn sau một khoảng thời gian."
 			},
 			"purgeDelay": {
-				"title": "Thời hạn xóa vĩnh viễn",
-				"description": "Ghi chú trong thùng rác sẽ bị xóa vĩnh viễn sau số ngày này, tính từ khi được chuyển vào.",
+				"title": "Thời gian chờ xóa vĩnh viễn",
+				"description": "Ghi chú trong thùng rác sẽ bị xóa vĩnh viễn sau số ngày này, tính từ lúc chúng được chuyển vào đó.",
 				"unit": "ngày"
 			}
 		}
@@ -214,36 +214,36 @@
 		},
 		"newNoteTitle": {
 			"title": "Tiêu đề ghi chú mới",
-			"description": "Đặt tiêu đề cho ghi chú mới. Bạn có thể dùng ngày với cú pháp {date} hoặc {date:FORMAT} như {date:DD/MM/YYYY HH:mm}.",
+			"description": "Thiết lập tiêu đề cho các ghi chú mới. Bạn có thể dùng ngày tháng qua cú pháp {date} hoặc {date:FORMAT} như {date:DD/MM/YYYY HH:mm}.",
 			"formatReference": "tham chiếu định dạng",
-			"placeholder": "ví dụ: Ghi chú {date:DD/MM/YYYY HH:mm}",
+			"placeholder": "VD: Ghi chú {date:DD/MM/YYYY HH:mm}",
 			"example": "Ví dụ"
 		},
 		"tagsForNewNote": {
-			"title": "Tag cho ghi chú mới",
-			"none": "Không đặt tag",
-			"selected": "Giống tag đang chọn"
+			"title": "Thẻ cho ghi chú mới",
+			"none": "Không đặt thẻ nào",
+			"selected": "Giống thẻ đã chọn"
 		},
 		"dangerousZone": {
-			"groupTitle": "Vùng nguy hiểm",
+			"groupTitle": "Khu vực nguy hiểm",
 			"delete": {
-				"label": "Xóa không gian và toàn bộ dữ liệu liên quan, bao gồm ghi chú, tag và tệp",
+				"label": "Xóa không gian và toàn bộ dữ liệu liên quan, bao gồm ghi chú, thẻ và tệp",
 				"action": "Xóa không gian",
-				"cannotDeleteLast": "Không thể xóa không gian cuối cùng trong vault.",
-				"createAnother": "Tạo",
+				"cannotDeleteLast": "Không thể xóa không gian cuối cùng trong kho lưu trữ.",
+				"createAnother": "Hãy tạo",
 				"createAnotherSuffix": "một không gian khác trước."
 			},
-			"confirmDelete": "Bạn sắp xóa không gian \"{{name}}\". Bạn có chắc chắn muốn thực hiện?\n\nNếu tiếp tục, toàn bộ dữ liệu liên quan đến không gian này sẽ bị xóa, bao gồm ghi chú, tag và tệp."
+			"confirmDelete": "Bạn sắp xóa không gian \"{{name}}\". Bạn có chắc chắn muốn thực hiện không?\n\nNếu tiếp tục, tất cả dữ liệu liên quan đến không gian này sẽ bị xóa, bao gồm ghi chú, thẻ và tệp."
 		}
 	},
 	"importExport": {
 		"importNotes": "Nhập ghi chú",
 		"exportNotes": "Xuất ghi chú",
 		"importFromZip": "Nhập ghi chú từ tệp .zip",
-		"importFromDirectory": "Nhập thư mục chứa tệp Markdown",
+		"importFromDirectory": "Nhập thư mục chứa các tệp Markdown",
 		"dropzone": {
 			"title": "Kéo thả tệp Markdown hoặc tệp .zip để nhập",
-			"description": "Kéo thả tệp vào đây, hoặc nhấn để chọn tệp"
+			"description": "Kéo & Thả tệp vào đây, hoặc nhấp để chọn tệp"
 		},
 		"progress": "Đang nhập ghi chú. Giai đoạn: {{stage}} {{processed}}/{{total}}"
 	}

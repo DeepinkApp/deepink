@@ -2,7 +2,7 @@
 	"version": "Versione {{version}}",
 	"environment": "Librerie utilizzate",
 	"links": {
-		"label": "Collegamenti",
-		"reportBug": "Segnala un problema"
+		"label": "Link",
+		"reportBug": "Segnala un errore"
 	}
 }

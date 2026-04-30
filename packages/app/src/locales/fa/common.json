@@ -1,7 +1,7 @@
 {
 	"actions": {
-		"cancel": "انصراف",
-		"confirm": "تأیید",
+		"cancel": "لغو",
+		"confirm": "تایید",
 		"apply": "اعمال",
 		"save": "ذخیره",
 		"saveChanges": "ذخیره تغییرات",
@@ -9,10 +9,10 @@
 		"reset": "بازنشانی",
 		"update": "به‌روزرسانی",
 		"add": "افزودن",
-		"create": "ایجاد",
+		"create": "ساخت",
 		"close": "بستن"
 	},
 	"form": {
-		"suggestTemplate": "پیشنهاد: <suggests>"
+		"suggestTemplate": "پیشنهاد ما: <suggests>"
 	}
 }

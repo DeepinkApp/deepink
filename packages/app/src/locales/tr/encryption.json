@@ -1,7 +1,7 @@
 {
 	"password": {
 		"score": {
-			"good": "İyi parola: {{length}} karakter, {{entropy}} bit entropi",
+			"good": "Güçlü parola: {{length}} karakter, {{entropy}} bit entropi",
 			"bad": "Zayıf parola: {{length}} karakter, {{entropy}} bit entropi"
 		}
 	}

@@ -1,7 +1,7 @@
 {
 	"password": {
 		"score": {
-			"good": "Dobré heslo: {{length}} znaků, {{entropy}} bitů entropie",
+			"good": "Silné heslo: {{length}} znaků, {{entropy}} bitů entropie",
 			"bad": "Slabé heslo: {{length}} znaků, {{entropy}} bitů entropie"
 		}
 	}

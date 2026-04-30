@@ -1,16 +1,16 @@
 {
 	"chooseVault": {
-		"title": "Válasszon egy tárolót",
+		"title": "Válaszson egy tárolót",
 		"actions": {
 			"createNew": "Új tároló létrehozása"
 		}
 	},
 	"creator": {
-		"title": "Tároló létrehozása",
+		"title": "Tárgó létrehozása",
 		"field": {
 			"name": {
 				"label": "Tároló neve",
-				"placeholder": "pl., Az én tárolóm, Megosztva Alexszel",
+				"placeholder": "pl. Saját tároló, Megosztva Alexszel",
 				"random": "Véletlenszerű név generálása",
 				"suggests": {
 					"0": "Marginalia",
@@ -18,93 +18,93 @@
 					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Fülke",
+					"5": "Alcove",
 					"6": "Penumbra",
-					"7": "Holdfényes Korrespondencia",
-					"8": "Esti Térképészet",
-					"9": "Lámpás & Tinta",
-					"10": "Gyertyafényes Archívum",
-					"11": "Felfelé Mászó Borítékok",
-					"12": "Cédrusfa Levelek",
-					"13": "Rózsafa Írószoba",
-					"14": "A Kötetlen Kódex",
-					"15": "Marginalia & Suttogások",
-					"16": "Endpaper Vallomások",
-					"17": "A Megjegyzett Csend",
-					"18": "Árnyék Térképészet",
-					"19": "A Megemlékezett Szoba",
-					"20": "A Nem Aláírt Levelek",
-					"21": "Suttogott Koordináták",
-					"22": "A Meg nem Írt Almanach",
-					"23": "Elveszett Viasszal Írt Levelek",
-					"24": "A Láthatatlan Könyvtár",
-					"25": "Felfedezetlen Margók",
-					"26": "A Csendes Összeesküvés",
-					"27": "A Meg nem Kézbesített Posta",
-					"28": "Örökzöld Archívum",
-					"29": "Papír Hold",
-					"30": "Papír Virág",
-					"31": "Éjjeli Virág",
-					"32": "Puha Atlasz",
-					"33": "Velúr",
-					"34": "Tinta Kő",
-					"35": "Csend",
+					"7": "Holdfényes levelezés",
+					"8": "Estei kartográfia",
+					"9": "Lámpa és tinta",
+					"10": "Gyertyafényes archívum",
+					"11": "Öregedő futólevel",
+					"12": "Puszpár gecangyák",
+					"13": "Rózsadalmás scrivenerium",
+					"14": "A szabad kodex",
+					"15": "Marginalia és suttogások",
+					"16": "Endpaper vallomások",
+					"17": "A jegyzett csend",
+					"18": "Árnyékos kartográfia",
+					"19": "Az emlékezett szoba",
+					"20": "A aláíratlan levelek",
+					"21": "Suttogott koordináták",
+					"22": "A ki nem mondott naptár",
+					"23": "Viaszöntött levelek",
+					"24": "A láthatatlan könyvtár",
+					"25": "Felfedezetlen margók",
+					"26": "A csendes össze conspiracy",
+					"27": "A kézbesítetlen posták",
+					"28": "Örökzöld archívum",
+					"29": "Papírhold",
+					"30": "Papírvirág",
+					"31": "Éjszakai virágzás",
+					"32": "Lágy atlasz",
+					"33": "Velour",
+					"34": "Tintatál",
+					"35": "Hush",
 					"36": "Árnyék",
-					"37": "Nyugodt Áramlás",
-					"38": "Mély Rét",
-					"39": "Meg nem Írt Könyvelés",
-					"40": "Csendes Vázlatfüzet",
-					"41": "Meg nem Szólalt Archívum",
-					"42": "Lebegő Napló",
-					"43": "Napfúvás Krónika",
-					"44": "Csendes Fjord",
-					"45": "Emlékezet Törmelékek",
-					"46": "Csendes Pillanat",
-					"47": "Eltűnt Percek"
+					"37": "Nyugodt sodródás",
+					"38": "Mély mező",
+					"39": "Íratlan napló",
+					"40": "Csendes vázlatfüzet",
+					"41": "Kimondatlan archívum",
+					"42": "Sodródó napló",
+					"43": "Napszél krónika",
+					"44": "Csendült fiord",
+					"45": "Emlékfragmentumok",
+					"46": "Csendes pillanat",
+					"47": "Elveszett percek"
 				}
 			},
 			"password": {
 				"label": "Titkosítási jelszó",
 				"recommended": "(ajánlott)",
-				"placeholder": "Írjon be egy erős jelszót",
-				"description": "A tárban tárolt összes adat titkosítva lesz ezzel a jelszóval."
+				"placeholder": "Adjon meg egy erős jelszót",
+				"description": "A titkosítási jelszó minden adatot a tárolóban védelmez"
 			},
 			"algorithm": {
 				"label": "Titkosítási algoritmus"
 			}
 		},
 		"actions": {
-			"create": "Tároló létrehozása",
+			"create": "Létrehozás titkosított tárolóval",
 			"continueNoPassword": "Folytatás jelszó nélkül",
 			"cancel": "Mégse"
 		},
 		"noEncryptionDialog": {
-			"title": "Tároló létrehozása titkosítás nélkül",
-			"description": "A jegyzetei és adatai sima szövegként lesznek tárolva. Bármely alkalmazás vagy személy, aki hozzáfér a tároló könyvtárához a lemezen, olvasni tudja az összes benne lévőt.",
+			"title": "Titkosítás nélküli tároló létrehozása",
+			"description": "A jegyzeteket és adatokat szöveges formátumban tároljuk. Bármilyen alkalmazás vagy személy, aki hozzáfér a tároló mappájához a meghajtón, elolvashatja a tartalmat.",
 			"actions": {
 				"confirm": "Folytatás titkosítás nélkül",
 				"cancel": "Mégse"
 			}
 		},
 		"errors": {
-			"nameRequired": "Adja meg a tároló nevét",
+			"nameRequired": "Adjon meg egy nevet a tárolónak",
 			"passwordRequired": "Adja meg a jelszót"
 		},
 		"section": {
 			"advancedConfig": {
-				"label": "Speciális titkosítási beállítások",
-				"description": "Állítsa be a titkosítási alapokat, amelyek védik a tárolóját — titkosító lánc, KDF paraméterek és egyebek. A beállítások részletes ismertetéséért és azok előnyeiért lásd <encryption>hogyan van védve a tárolója</encryption>."
+				"label": "Haladó titkosítási opciók",
+				"description": "A tárolót védő titkosítási alapelvek konfigurálása – titkosítási lánc, KDF-paraméterek és egyéb beállítások. A gyári beállítások részletes ismertetéséért és azok előnyeivel a hátrányokkal kapcsolatban olvasd el: <encryption>hogyan védve van a tárolód</encryption>."
 			},
 			"kdf": {
-				"label": "Kulcsleképezési funkció",
-				"description": "Segít megvédeni a gyenge vagy újrahasznált jelszavakat azáltal, hogy minden találgatást lassabbá és költségesebbé tesz. Emelje meg ezeket a beállításokat a nagyobb védelem érdekében, vagy tartsa meg az alapértelmezetteket a kiegyensúlyozott élmény érdekében.",
+				"label": "Jelszóderivációs funkció (KDF)",
+				"description": "Segít a gyenge vagy ismételt jelszavakat megvédeni azáltal, hogy minden próbálatot lassabbá és költségesebbé tesz. A nagyobb biztonság érdekében emelje ezeket a beállításokat, vagy használja az alapértelmezetteket a kiegyensúlyozott működéshez.",
 				"memory": {
 					"label": "Memóriahasználat",
-					"description": "Minden jelszó találgatásához több memóriát igényel. Ez különösen hatékony a nagyszabású támadások ellen, mert a memória drágább és nehezebben skálázható hatékonyan, mint a nyers számítás."
+					"description": "A jelszó-ellenőrzés során nagyobb mennyiségű memóriát igényel. Ez különösen hatékony a nagyszámos támadások ellen, mivel a memória használata költségesebb és nehezebben skálázható, mint a puszta számítási erő."
 				},
 				"ops": {
-					"label": "Ismétlések",
-					"description": "Megismétli a leképezési munkát minden jelszó találgatásnál. Ez növeli a költségét minden egyes találgatásnak, főként lineáris módon: az ismétlések megduplázása körülbelül megduplázza a támadók és az eszközöd munkáját."
+					"label": "Iterációk száma",
+					"description": "Ismétli a jelszó-deriválási folyamatot minden próbálatnál. Ez lineárisan növeli a kísérletek nehézségét: az iterációk megduplázása nagyjából megduplázza a munka mennyiségét a támadók és az eszközöd számára egyaránt."
 				}
 			}
 		}
@@ -113,21 +113,21 @@
 		"title": "Tároló feloldása",
 		"field": {
 			"password": {
-				"placeholder": "Adja meg a jelszót"
+				"placeholder": "Jelszó megadása"
 			}
 		},
 		"actions": {
 			"unlock": "Feloldás",
-			"changeVault": "Tároló megváltoztatása"
+			"changeVault": "Másik tároló kiválasztása"
 		},
 		"errors": {
-			"cannotOpen": "Nem lehet megnyitni a tárolót",
-			"invalidPassword": "Érvénytelen jelszó",
+			"cannotOpen": "A tároló nem nyitható meg",
+			"invalidPassword": "Hibás jelszó",
 			"passwordRequired": "Adja meg a jelszót"
 		}
 	},
 	"errors": {
-		"failedToOpen": "A tároló megnyitása nem sikerült",
-		"corrupted": "\"{{name}}\" sérültnek tűnik."
+		"failedToOpen": "Nem sikerült megnyitni a tárolót",
+		"corrupted": "A \"{{name}}\" fájl sérültnek tűnik."
 	}
 }

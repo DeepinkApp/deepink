@@ -6,21 +6,21 @@
 		"general": "Opšte",
 		"appearance": "Izgled",
 		"hotkeys": "Prečice",
-		"vault": "Trezor",
+		"vault": "Skladište",
 		"workspace": "Prostor",
 		"importExport": "Uvoz i izvoz",
-		"vaultSettingsGroup": "Podešavanja trezora"
+		"vaultSettingsGroup": "Podešavanja skladišta"
 	},
 	"general": {
 		"title": "Opšta podešavanja",
-		"subtitle": "Upravljajte opštim podešavanjima aplikacije.",
+		"subtitle": "Upravljajte svojim opštim preferencijama u aplikaciji.",
 		"version": {
 			"title": "Verzija",
 			"checkForUpdates": "Proveri ažuriranja",
-			"upToDate": "Imate najnoviju verziju",
+			"upToDate": "Koristite najnoviju verziju",
 			"newVersionAvailable": "Dostupna je nova verzija <bold>{{version}}</bold>.",
 			"downloadLatest": "Preuzmi",
-			"downloadDescription": "najnoviju verziju sa novim funkcijama i poboljšanjima."
+			"downloadDescription": "najnoviju verziju kako biste dobili nove funkcije i poboljšanja."
 		},
 		"autoCheckUpdates": {
 			"label": "Automatska provera ažuriranja",
@@ -28,22 +28,22 @@
 		},
 		"language": {
 			"title": "Jezik",
-			"description": "Promenite jezik interfejsa."
+			"description": "Promenite jezik aplikacije."
 		},
 		"notifications": {
 			"title": "Obaveštenja",
-			"description": "Sistemska obaveštenja se koriste samo za podsetnike. Kada su isključena, podsetnici će se prikazivati samo u listi obaveštenja unutar aplikacije.",
+			"description": "Sistemska obaveštenja će se koristiti samo za podsetnike. Kada su isključena, podsetnici će se pojavljivati samo u listi obaveštenja unutar aplikacije.",
 			"useSystem": "Koristi sistemska obaveštenja"
 		},
 		"vaultLock": {
-			"groupTitle": "Zaključavanje trezora",
+			"groupTitle": "Zaključavanje skladišta",
 			"lockOnSystemLock": {
-				"label": "Zaključaj trezor kada se sistem zaključa",
-				"description": "Trezor će biti zaključan kada se pokrene čuvar ekrana ili uređaj pređe u stanje mirovanja."
+				"label": "Zaključaj skladište kada se sistem zaključa",
+				"description": "Skladište će biti zaključano kada se pokrene čuvar ekrana ili kada uređaj ode u režim mirovanja."
 			},
 			"lockAfterIdle": {
-				"title": "Zaključaj trezor nakon neaktivnosti",
-				"description": "Trezor će biti zaključan nakon izabranog perioda neaktivnosti.",
+				"title": "Zaključaj skladište nakon mirovanja",
+				"description": "Skladište će biti zaključano nakon odabranog vremena mirovanja.",
 				"never": "Ne zaključavaj",
 				"minutes5": "nakon 5 minuta",
 				"minutes10": "nakon 10 minuta",
@@ -66,44 +66,44 @@
 		},
 		"accentColor": {
 			"title": "Akcentna boja",
-			"zenNotApplicable": "Akcentna boja se ne primenjuje na izabranu temu."
+			"zenNotApplicable": "Akcentna boja nije primenljiva na izabranu temu."
 		},
 		"zoomLevel": {
 			"title": "Nivo zumiranja",
-			"description": "Podesite podrazumevani nivo uvećanja za sve prozore.\nAko vaš sistem ne skalira aplikacije automatski, možete promeniti nivo uvećanja kako biste ga prilagodili stvarnom odnosu piksela na ekranu (DPR). Vaš odnos piksela na ekranu je {{dpr}}.",
+			"description": "Prilagodite podrazumevani nivo zumiranja za sve prozore.\nU slučaju da vaš sistem ne skalira aplikacije automatski, možete promeniti zumiranje kako bi se prilagodilo stvarnom odnosu piksela ekrana (DPR). Vaš odnos piksela ekrana je {{dpr}}.",
 			"apply": "Primeni",
 			"reset": "Resetuj",
 			"errors": {
-				"enterNumber": "Unesite broj za podešavanje zuma",
-				"tooSmall": "Zum ne može biti manji od {{min}}%",
-				"tooBig": "Zum ne može biti veći od {{max}}%"
+				"enterNumber": "Unesite broj za zumiranje",
+				"tooSmall": "Zumiranje ne može biti manje od {{min}}%",
+				"tooBig": "Zumiranje ne može biti veće od {{max}}%"
 			}
 		}
 	},
 	"editor": {
-		"groupTitle": "Uređivač",
+		"groupTitle": "Editor",
 		"mode": {
-			"title": "Režim uređivača"
+			"title": "Režim editora"
 		},
 		"fontFamily": {
-			"title": "Font",
-			"description": "Postavite font koji će se koristiti u svim uređivačima, ili ostavite prazno za podrazumevani.",
-			"placeholder": "Unesite naziv fonta"
+			"title": "Porodični font",
+			"description": "Postavite porodični font za sve editore, ili ostavite prazno da biste koristili podrazumevane.",
+			"placeholder": "Unesite naziv porodičnog fonta"
 		},
 		"fontSize": {
 			"title": "Veličina fonta"
 		},
 		"lineHeight": {
-			"title": "Visina reda"
+			"title": "Prored"
 		},
 		"dateFormat": {
 			"title": "Format datuma",
-			"description": "Postavite format datuma koji se koristi pri umetanju datuma. Podržava standardnu sintaksu tokena kao DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "referenca formata datuma",
+			"description": "Postavite format datuma koji se koristi prilikom unosa datuma. Podržava standardnu sintaksu poput DD/MM/YYYY HH:mm:ss.",
+			"formatReference": "referenca za format datuma",
 			"example": "Primer"
 		},
 		"plainText": {
-			"groupTitle": "Uređivač čistog teksta",
+			"groupTitle": "Editor običnog teksta",
 			"lineNumbers": "Prikaži brojeve redova",
 			"miniMap": "Omogući mini mapu"
 		}
@@ -116,27 +116,27 @@
 			"restoreClosedNote": "Vrati nedavno zatvorenu belešku",
 			"focusNextNote": "Idi na sledeću otvorenu belešku",
 			"focusPreviousNote": "Idi na prethodnu otvorenu belešku",
-			"toggleArchive": "Premesti aktivnu belešku u/iz arhive",
-			"toggleBookmark": "Premesti aktivnu belešku u/iz obeleživača",
+			"toggleArchive": "Prebaci aktivnu belešku u arhivu ili iz nje",
+			"toggleBookmark": "Prebaci aktivnu belešku u obeleženo ili iz njega",
 			"deleteNote": "Obriši aktivnu belešku",
-			"restoreFromBin": "Vrati aktivnu belešku iz korpe",
+			"restoreFromBin": "Vrati aktivnu belešku iz kante",
 			"toggleHistory": "Prikaži ili sakrij istoriju aktivne beleške",
 			"focusSearch": "Pretraži beleške",
-			"syncDatabase": "Sinhronizuj trezor na disk",
-			"lockVault": "Zaključaj trezor",
+			"syncDatabase": "Sinhronizuj skladište sa diskom",
+			"lockVault": "Zaključaj skladište",
 			"openSettings": "Otvori podešavanja"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Naziv trezora"
+			"title": "Naziv skladišta"
 		},
 		"rememberPasswords": {
-			"label": "Zapamti lozinke prostora",
-			"description": "Lozinke prostora će biti šifrovane glavnim ključem i sačuvane u bazi podataka, kako bi se šifrovani prostori automatski otvarali bez unosa lozinke."
+			"label": "Zapamti lozinke za prostore",
+			"description": "Lozinke za prostore će biti šifrovane master ključem i sačuvane u bazi, kako biste automatski otvarali šifrovane prostore bez unosa lozinke."
 		},
 		"filesAndData": {
-			"groupTitle": "Fajlovi i podaci",
+			"groupTitle": "Datoteke i podaci",
 			"imagesCompression": {
 				"title": "Kompresija slika",
 				"compress": "Kompresuj slike",
@@ -144,8 +144,8 @@
 				"alwaysAsk": "Uvek pitaj"
 			},
 			"deleteOrphaned": {
-				"label": "Obriši nekorišćene fajlove",
-				"description": "Obriši fajlove koji se više ne koriste."
+				"label": "Obriši nepovezane datoteke",
+				"description": "Obriši datoteke koje se više ne koriste."
 			}
 		},
 		"encryption": {
@@ -156,18 +156,18 @@
 			},
 			"password": {
 				"title": "Lozinka",
-				"update": "Promeni lozinku"
+				"update": "Ažuriraj lozinku"
 			}
 		},
 		"synchronization": {
 			"groupTitle": "Sinhronizacija",
 			"enable": {
 				"label": "Omogući sinhronizaciju",
-				"description": "Držite trezor sinhronizovanim na svim uređajima. Svi podaci se šifruju pre nego što napuste vaš uređaj."
+				"description": "Održavajte skladište sinhronizovanim na svim uređajima. Svi podaci se šifruju pre nego što napuste vaš uređaj."
 			},
 			"method": {
-				"title": "Metod sinhronizacije",
-				"fileSystem": "Fajl sistem",
+				"title": "Metoda sinhronizacije",
+				"fileSystem": "Datoteka sistema",
 				"server": "Server"
 			},
 			"directory": {
@@ -176,33 +176,33 @@
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Snimci",
+			"groupTitle": "Snimci stanja",
 			"record": {
-				"label": "Čuvaj snimke beleški",
-				"description": "Kada je omogućeno, snimci sadržaja beleške će se kreirati pri svakoj izmeni. Možete kontrolisati čuvanje snimaka za svaku belešku u panelu istorije beleške."
+				"label": "Snimaj verzije beležnica",
+				"description": "Kada je ovo uključeno, pravi se snimak sadržaja beležnice prilikom svake izmene. Kontrolišite snimanje verzija za svaku pojedinačnu beležnicu u panelu za istoriju."
 			},
 			"delay": {
-				"title": "Odlaganje snimka",
-				"description": "Koliko sekundi čekati nakon izmene beleške pre čuvanja novog snimka. Kraći intervali znače češće snimke — i veći trezor."
+				"title": "Kašnjenje za snimanje",
+				"description": "Koliko sekundi sačekati nakon izmene beležnice pre čuvanja novog snimka. Kraći intervali znače češće snimke, ali veći prostor zauzet u skladištu."
 			}
 		},
 		"trashBin": {
-			"groupTitle": "Korpa za otpatke",
+			"groupTitle": "Korpa",
 			"confirmDeletion": {
 				"label": "Potvrdi brisanje",
-				"description": "Pitaj pre brisanja beleške."
+				"description": "Traži potvrdu pre brisanja beležnice."
 			},
 			"moveToBin": {
-				"label": "Premesti beleške u korpu",
-				"description": "Premesti beleške u korpu umesto trajnog brisanja, kako biste ih mogli kasnije vratiti."
+				"label": "Prebaci beležnice u korpu",
+				"description": "Umesto trajnog brisanja, prebaci beležnice u korpu kako bi ih kasnije mogli vratiti."
 			},
 			"autoPurge": {
-				"label": "Trajno obriši stare beleške iz korpe",
-				"description": "Beleške premeštene u korpu će biti trajno obrisane nakon određenog vremena."
+				"label": "Trajno obriši stare beležnice iz korpe",
+				"description": "Beležnice u korpi će biti trajno obrisane nakon određenog vremena."
 			},
 			"purgeDelay": {
-				"title": "Odlaganje trajnog brisanja",
-				"description": "Beleške u korpi će biti trajno obrisane nakon ovoliko dana, računajući od trenutka premeštanja.",
+				"title": "Kašnjenje trajnog brisanja",
+				"description": "Beležnice u korpi će biti trajno obrisane nakon ovog broja dana, računajući od trenutka kada su prebačene u nju.",
 				"unit": "dana"
 			}
 		}
@@ -213,38 +213,38 @@
 			"update": "Ažuriraj"
 		},
 		"newNoteTitle": {
-			"title": "Naslov nove beleške",
-			"description": "Postavite naslov za nove beleške. Možete koristiti datum putem sintakse {date} ili {date:FORMAT} kao {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "referenca formata",
-			"placeholder": "npr. Beleška {date:DD/MM/YYYY HH:mm}",
+			"title": "Naslov nove beležnice",
+			"description": "Postavite naslov za nove beležnice. Možete koristiti datum pomoću oznake {date} ili {date:FORMAT} poput {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "referenca za format",
+			"placeholder": "npr. Beležnica {date:DD/MM/YYYY HH:mm}",
 			"example": "Primer"
 		},
 		"tagsForNewNote": {
-			"title": "Tagovi za novu belešku",
-			"none": "Ne postavljaj tagove",
-			"selected": "Isti kao izabrani tag"
+			"title": "Oznake za novu beležnicu",
+			"none": "Bez oznaka",
+			"selected": "Isto kao izabrana oznaka"
 		},
 		"dangerousZone": {
 			"groupTitle": "Opasna zona",
 			"delete": {
-				"label": "Obriši prostor i sve povezane podatke, uključujući beleške, tagove i fajlove",
+				"label": "Obriši prostor i sve povezane podatke, uključujući beležnice, oznake i datoteke",
 				"action": "Obriši prostor",
-				"cannotDeleteLast": "Nije moguće obrisati poslednji prostor u trezoru.",
-				"createAnother": "Kreirajte",
-				"createAnotherSuffix": "drugi prostor prvo."
+				"cannotDeleteLast": "Nije moguće obrisati poslednji prostor u skladištu.",
+				"createAnother": "Prvo kreirajte",
+				"createAnotherSuffix": "drugi prostor."
 			},
-			"confirmDelete": "Upravo ćete obrisati prostor \"{{name}}\". Da li ste sigurni?\n\nAko nastavite, svi podaci vezani za ovaj prostor će biti obrisani, uključujući beleške, tagove i fajlove."
+			"confirmDelete": "Čete obrisati prostor \"{{name}}\". Da li ste sigurni?\n\nAko nastavite, svi podaci povezani sa ovim prostorom biće obrisani, uključujući beležnice, oznake i datoteke."
 		}
 	},
 	"importExport": {
-		"importNotes": "Uvezi beleške",
-		"exportNotes": "Izvezi beleške",
-		"importFromZip": "Uvezi beleške iz .zip arhive",
-		"importFromDirectory": "Uvezi direktorijum sa Markdown fajlovima",
+		"importNotes": "Uvezi beležnice",
+		"exportNotes": "Izvezi beležnice",
+		"importFromZip": "Uvezi beležnice iz .zip arhive",
+		"importFromDirectory": "Uvezi direktorijum sa Markdown datotekama",
 		"dropzone": {
-			"title": "Prevucite Markdown fajlove ili .zip arhivu za uvoz",
-			"description": "Prevucite fajlove ovde ili kliknite da izaberete"
+			"title": "Prebacite Markdown datoteke ili .zip arhivu za uvoz",
+			"description": "Prevucite datoteke ovde ili kliknite da ih izaberete"
 		},
-		"progress": "Uvoz beleški je u toku. Faza: {{stage}} {{processed}}/{{total}}"
+		"progress": "Uvoz beležnica je u toku. Faza: {{stage}} {{processed}}/{{total}}"
 	}
 }

@@ -14,60 +14,60 @@
 				"random": "Générer un nom aléatoire",
 				"suggests": {
 					"0": "Marginalia",
-					"1": "Vélin",
-					"2": "Page de garde",
+					"1": "Vellum",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
 					"5": "Alcôve",
-					"6": "Pénombre",
+					"6": "Penumbra",
 					"7": "Correspondance au clair de lune",
 					"8": "Cartographie du soir",
 					"9": "Lanterne & Encre",
-					"10": "Archive à la chandelle",
+					"10": "Archives à la bougie",
 					"11": "Manuscrits de lierre",
 					"12": "Lettres de cèdre",
-					"13": "Scriptorium de palissandre",
-					"14": "Le Codex délié",
+					"13": "Scriptorium d'ébène",
+					"14": "Le Codex libre",
 					"15": "Marginalia & Murmures",
-					"16": "Confessions en page de garde",
+					"16": "Confessions d'endpaper",
 					"17": "Le Silence annoté",
-					"18": "Cartographie des ombres",
-					"19": "La Chambre remémorée",
-					"20": "Les Lettres non signées",
+					"18": "Cartographie d'ombres",
+					"19": "La pièce mémorisée",
+					"20": "Les Lettres sans signature",
 					"21": "Coordonnées murmurées",
 					"22": "L'Almanach inédit",
 					"23": "Lettres à la cire perdue",
 					"24": "La Bibliothèque invisible",
 					"25": "Marges inexplorées",
-					"26": "La Conspiration tranquille",
-					"27": "Le Courrier non remis",
-					"28": "Archive persistante",
+					"26": "La Discrète conspiration",
+					"27": "Le Courrier non délivré",
+					"28": "Archives éternelles",
 					"29": "Lune de papier",
 					"30": "Éclosion de papier",
 					"31": "Floraison nocturne",
 					"32": "Atlas doux",
 					"33": "Velours",
-					"34": "Pierre d'encre",
+					"34": "Pierre à encre",
 					"35": "Silence",
-					"36": "Ombre",
-					"37": "Dérive calme",
+					"36": "Ombrage",
+					"37": "Dérive sereine",
 					"38": "Prairie profonde",
 					"39": "Registre non écrit",
-					"40": "Carnet d'esquisses muet",
-					"41": "Archive tacite",
-					"42": "Journal à la dérive",
+					"40": "Carnet de brouillon muet",
+					"41": "Archives tacites",
+					"42": "Journal dérivant",
 					"43": "Chronique du vent solaire",
-					"44": "Fjord silencieux",
+					"44": "Fjord paisible",
 					"45": "Fragments de mémoire",
-					"46": "Instant silencieux",
-					"47": "Minutes évanouies"
+					"46": "Instant de silence",
+					"47": "Minutes envolées"
 				}
 			},
 			"password": {
 				"label": "Mot de passe de chiffrement",
 				"recommended": "(recommandé)",
 				"placeholder": "Saisissez un mot de passe robuste",
-				"description": "Toutes les données dans l'espace seront chiffrées via ce mot de passe"
+				"description": "Toutes les données du coffre seront chiffrées avec ce mot de passe"
 			},
 			"algorithm": {
 				"label": "Algorithme de chiffrement"
@@ -80,7 +80,7 @@
 		},
 		"noEncryptionDialog": {
 			"title": "Créer un coffre sans chiffrement",
-			"description": "Vos notes et données seront stockées en texte brut. Toute application ou personne ayant accès au dossier du coffre pourra en lire l'intégralité du contenu.",
+			"description": "Vos notes et données seront stockées en texte clair. Toute application ou personne ayant accès au répertoire du coffre sur votre disque pourra tout lire.",
 			"actions": {
 				"confirm": "Continuer sans chiffrement",
 				"cancel": "Annuler"
@@ -93,18 +93,18 @@
 		"section": {
 			"advancedConfig": {
 				"label": "Options de chiffrement avancées",
-				"description": "Configurez les primitives de cryptage qui protègent votre coffre-fort — cascade de chiffrements, paramètres de KDF, et plus encore. Pour une explication complète des valeurs par défaut et de leurs compromis, consultez <encryption>comment votre coffre-fort est protégé</encryption>."
+				"description": "Configurez les primitives de chiffrement qui protègent votre coffre — cascade de chiffrement, paramètres KDF, et plus encore. Pour comprendre les réglages par défaut et leurs implications, consultez <encryption>la protection de votre coffre</encryption>."
 			},
 			"kdf": {
-				"label": "Fonction de dérivation de clé",
-				"description": "Aide à protéger les mots de passe faibles ou réutilisés en ralentissant la vitesse et en augmentant le coût de chaque essai. Augmentez ces paramètres pour une protection renforcée, ou conservez les valeurs par défaut pour une expérience équilibrée.",
+				"label": "Fonction de dérivation de clé (KDF)",
+				"description": "Protège les mots de passe faibles ou réutilisés en ralentissant chaque tentative de déduction. Augmentez ces paramètres pour une protection accrue, ou conservez les réglages par défaut pour un équilibre optimal.",
 				"memory": {
 					"label": "Utilisation de la mémoire",
-					"description": "Fait en sorte que chaque essai de mot de passe utilise plus de mémoire. Cela est particulièrement efficace contre les attaques à grande échelle, car la mémoire est coûteuse et plus difficile à échelonner efficacement que le calcul brut."
+					"description": "Augmente la mémoire requise pour chaque tentative de mot de passe. Cela est particulièrement efficace contre les attaques à grande échelle, la mémoire étant plus coûteuse et difficile à mobiliser que la simple puissance de calcul."
 				},
 				"ops": {
 					"label": "Itérations",
-					"description": "Répète le travail de dérivation pour chaque essai de mot de passe. Cela augmente le coût de chaque essai de manière principalement linéaire : doubler les itérations double à peu près le travail pour les attaquants et votre appareil."
+					"description": "Répète le processus de dérivation pour chaque tentative. Cela augmente le coût de chaque essai de manière linéaire : doubler les itérations double approximativement le travail requis pour les attaquants comme pour votre appareil."
 				}
 			}
 		}
@@ -127,7 +127,7 @@
 		}
 	},
 	"errors": {
-		"failedToOpen": "Impossible d'ouvrir le coffre",
-		"corrupted": "« {{name}} » semble être corrompu."
+		"failedToOpen": "Échec de l'ouverture du coffre",
+		"corrupted": "\"{{name}}\" semble être corrompu."
 	}
 }

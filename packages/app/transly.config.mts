@@ -131,7 +131,8 @@ export default defineConfig({
 
 		// model: 'anthropic/claude-sonnet-4.6',
 		// model: 'anthropic/claude-opus-4.6',
-		model: 'openai/gpt-4o-mini',
+		// model: 'openai/gpt-4o-mini',
+		model: 'google/gemma-4-26b-a4b-it',
 		contextPrompt: context,
 	},
 

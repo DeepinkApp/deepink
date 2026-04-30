@@ -14,88 +14,88 @@
 			"field": {
 				"name": {
 					"label": "Nama tag",
-					"placeholder": "mis. Ide"
+					"placeholder": "misalnya: Ide"
 				},
 				"parent": {
 					"label": "Tag induk",
-					"placeholder": "mis. Resep/Dessert"
+					"placeholder": "misalnya: Resep/Kue"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Tidak dapat menyimpan perubahan karena kesalahan yang tidak diketahui.",
-				"format": "Tag tidak boleh kosong, diawali atau diakhiri dengan \"/\", atau mengandung \"//\".",
+				"unknownSubmitError": "Gagal menyimpan karena kesalahan yang tidak diketahui.",
+				"format": "Tag tidak boleh kosong, tidak boleh diawali atau diakhiri dengan \"/\", dan tidak boleh mengandung \"//\".",
 				"duplicate": "Tag '{{name}}' sudah ada.",
 				"parentTagNotFound": "Tag induk tidak ditemukan, silakan pilih tag lain."
 			}
 		},
 		"deletion": {
-			"confirm": "Yakin ingin menghapus tag \"{{name}}\" beserta semua sub tag-nya?"
+			"confirm": "Hapus tag \"{{name}}\" dan semua sub-tag di dalamnya?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Buku Catatan",
 		"creator": {
-			"title": "Buat workspace baru",
-			"description": "Setiap workspace adalah ruang tersendiri untuk catatan, tag, dan file Anda. Semuanya terpisah, namun tetap tersimpan di dalam vault terenkripsi Anda — siap saat Anda beralih.",
+			"title": "Buat ruang kerja baru",
+			"description": "Setiap ruang kerja adalah area terpisah untuk catatan, tag, dan file Anda. Semuanya tersimpan secara mandiri di dalam vault terenkripsi Anda.",
 			"action": {
 				"add": "Buat",
 				"cancel": "Batal"
 			},
 			"field": {
 				"name": {
-					"label": "Nama workspace",
-					"placeholder": "mis. Jurnal Kesehatan, Ide Bisnis",
+					"label": "Nama ruang kerja",
+					"placeholder": "misalnya: Jurnal Kesehatan, Ide Bisnis",
 					"suggests": {
 						"0": "Keuangan",
 						"1": "Kesehatan",
 						"2": "Karier",
 						"3": "Keluarga",
 						"4": "Jurnal",
-						"5": "Target",
+						"5": "Tujuan",
 						"6": "Ide",
-						"7": "Legal",
+						"7": "Hukum",
 						"8": "Perjalanan",
-						"9": "Pribadi"
+						"9": "Privat"
 					}
 				}
 			},
 			"error": {
-				"unknown": "Terjadi kesalahan yang tidak diketahui. Silakan coba lagi.",
-				"format": "Nama workspace tidak boleh kosong."
+				"unknown": "Terjadi kesalahan. Silakan coba lagi.",
+				"format": "Nama ruang kerja tidak boleh kosong."
 			}
 		},
 		"error": {
-			"title": "Workspace \"{{name}}\" gagal dimuat",
-			"description": "Gagal memuat workspace ini. Data mungkin rusak. Beralih ke workspace lain atau buat yang baru untuk melanjutkan.",
-			"chooseAnother": "Pilih workspace lain",
+			"title": "Gagal memuat ruang kerja \"{{name}}\"",
+			"description": "Gagal memuat ruang kerja ini. Data mungkin rusak. Beralih ke ruang kerja lain atau buat baru untuk melanjutkan.",
+			"chooseAnother": "Pilih ruang kerja lain",
 			"dividerText": "atau",
-			"createNew": "Buat workspace baru",
-			"createWorkspace": "Buat workspace",
+			"createNew": "Buat ruang kerja baru",
+			"createWorkspace": "Buat ruang kerja",
 			"closeVault": "Tutup vault saat ini"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "Tanpa Judul",
-			"defaultTemplate": "Tanpa Judul - {{date}}",
+			"placeholder": "Tanpa judul",
+			"defaultTemplate": "Tanpa judul - {{date}}",
 			"duplicate": "Duplikat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Tulis ide, tugas, atau pemikiran…",
+			"placeholder": "Tulis ide, tugas, atau pemikiran...",
 			"modes": {
 				"plaintext": "Mode teks",
-				"richtext": "Editor visual",
-				"split-screen": "Layar terbagi"
+				"richtext": "Editor kaya teks",
+				"split-screen": "Layar terpisah"
 			}
 		},
 		"actions": {
 			"addToFavorites": "Tambah ke favorit",
 			"removeFromFavorites": "Hapus dari favorit",
 			"moveToArchive": "Pindahkan ke arsip",
-			"removeFromArchive": "Keluarkan dari arsip"
+			"removeFromArchive": "Hapus dari arsip"
 		},
 		"tags": {
-			"addPlaceholder": "Ketik untuk menambah tag…"
+			"addPlaceholder": "Ketik untuk tambah tag..."
 		},
 		"versionPreview": {
 			"versionAt": "Versi pada {{date}}",
@@ -108,13 +108,13 @@
 			"history": "Riwayat",
 			"backLinks": "Tautan balik",
 			"readonlyMode": "Mode baca saja",
-			"spellcheck": "Periksa ejaan",
+			"spellcheck": "Ejaan",
 			"export": "Ekspor...",
 			"passwordProtection": "Proteksi kata sandi...",
-			"disableSync": "Nonaktifkan sinkronisasi",
+			"disableSync": "Matikan sinkronisasi",
 			"moveToArchive": "Pindahkan ke arsip",
-			"removeFromArchive": "Keluarkan dari arsip",
-			"deleteToBin": "Hapus ke tempat sampah",
+			"removeFromArchive": "Hapus dari arsip",
+			"deleteToBin": "Pindahkan ke tempat sampah",
 			"deletePermanently": "Hapus permanen",
 			"restoreFromBin": "Pulihkan dari tempat sampah"
 		},
@@ -122,7 +122,7 @@
 			"chars": "{{count}} karakter",
 			"apply": {
 				"title": "Terapkan versi",
-				"readonlyTitle": "Versi tidak dapat diterapkan pada catatan baca saja"
+				"readonlyTitle": "Versi tidak dapat diterapkan pada catatan mode baca saja"
 			},
 			"open": {
 				"title": "Buka versi"
@@ -133,15 +133,15 @@
 		},
 		"versions": {
 			"saveVersion": {
-				"label": "Simpan snapshot",
-				"title": "Simpan kondisi catatan saat ini sebagai versi baru di riwayat"
+				"label": "Simpan cuplikan",
+				"title": "Simpan kondisi catatan saat ini sebagai versi baru dalam riwayat"
 			},
 			"deleteAll": {
 				"label": "Hapus semua",
 				"title": "Hapus permanen semua versi tersimpan dari catatan ini"
 			},
-			"dontRecord": "Jangan rekam riwayat untuk catatan ini",
-			"empty": "Catatan ini belum memiliki versi yang direkam",
+			"dontRecord": "Jangan catat riwayat untuk catatan ini",
+			"empty": "Catatan ini tidak memiliki riwayat versi",
 			"loading": "Memuat...",
 			"confirmDeleteAll": {
 				"title": "Hapus semua versi catatan",
@@ -152,14 +152,14 @@
 			"confirmApply": {
 				"title": "Terapkan versi catatan",
 				"description": "Anda akan menerapkan versi catatan {{version}}.",
-				"warning": "Tindakan ini akan mengganti data catatan saat ini dengan teks dari snapshot yang dipilih. Apakah Anda yakin?",
+				"warning": "Tindakan ini akan mengganti data catatan saat ini dengan teks dari cuplikan yang dipilih. Anda yakin?",
 				"apply": "Terapkan",
 				"preview": "Pratinjau"
 			},
 			"confirmDelete": {
 				"title": "Hapus versi catatan",
 				"description": "Anda akan menghapus versi catatan {{version}}.",
-				"warning": "Tindakan ini akan menghapus versi catatan secara permanen. Apakah Anda yakin?",
+				"warning": "Tindakan ini akan menghapus versi catatan secara permanen. Anda yakin?",
 				"delete": "Hapus",
 				"preview": "Pratinjau"
 			}
@@ -185,13 +185,13 @@
 			"placeholder": "Cari..."
 		},
 		"filterBy": "Filter berdasarkan",
-		"empty": "Belum ada catatan di sini. <create>Buat catatan</create>"
+		"empty": "Belum ada catatan. <create>Buat catatan</create>"
 	},
 	"notesView": {
 		"allNotes": "Semua catatan",
 		"favorites": "Catatan favorit",
-		"archived": "Catatan diarsipkan",
-		"deleted": "Catatan dihapus"
+		"archived": "Catatan arsip",
+		"deleted": "Catatan terhapus"
 	},
 	"notesContainer": {
 		"empty": {
@@ -213,31 +213,31 @@
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Klik untuk menyisipkan header level {{level}}. Buka menu konteks untuk memilih opsi lain",
+			"insertTitle": "Klik untuk menyisipkan header level {{level}}. Buka menu konteks untuk opsi lain",
 			"level": "Header level {{level}}"
 		},
-		"bold": "Aktifkan/nonaktifkan gaya teks tebal",
-		"italic": "Aktifkan/nonaktifkan gaya teks miring",
-		"strikethrough": "Aktifkan/nonaktifkan gaya teks coret",
-		"unorderedList": "Sisipkan atau ubah ke daftar tak berurut",
-		"checkboxList": "Sisipkan atau ubah ke daftar centang",
-		"orderedList": "Sisipkan atau ubah ke daftar berurut",
+		"bold": "Gunakan gaya tebal",
+		"italic": "Gunakan gaya miring",
+		"strikethrough": "Gunakan gaya coret",
+		"unorderedList": "Sisipkan atau aktifkan daftar poin",
+		"checkboxList": "Sisipkan atau aktifkan daftar centang",
+		"orderedList": "Sisipkan atau aktifkan daftar angka",
 		"codeBlock": "Sisipkan atau bungkus teks dengan blok kode",
-		"quoteBlock": "Sisipkan atau bungkus teks dengan blok kutipan",
+		"quoteBlock": "Sisipkan atau bungkus teks dengan kutipan",
 		"insertDate": "Sisipkan tanggal",
-		"insertPageBreak": "Sisipkan pemisah halaman",
+		"insertPageBreak": "Sisipkan jeda halaman",
 		"insertFile": "Sisipkan file",
 		"image": {
 			"buttonTitle": "Sisipkan gambar",
 			"dialogTitle": "Tambah gambar",
-			"dialogDescription": "Gambar akan disisipkan di posisi kursor.",
+			"dialogDescription": "Gambar akan disisipkan pada posisi kursor.",
 			"field": {
 				"url": {
 					"label": "URL gambar",
-					"placeholder": "mis., https://example.com/image.png"
+					"placeholder": "misal., https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Teks alt gambar (opsional)",
+					"label": "Teks alternatif gambar (opsional)",
 					"placeholder": "Deskripsi singkat gambar"
 				}
 			},
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Sisipkan tautan",
 			"dialogTitle": "Tambah tautan",
-			"dialogDescription": "Teks yang dipilih akan menjadi tautan, atau tautan akan ditambahkan di posisi kursor jika tidak ada yang dipilih.",
+			"dialogDescription": "Teks yang dipilih akan menjadi tautan, atau tautan akan ditambahkan pada posisi kursor jika tidak ada yang dipilih.",
 			"field": {
 				"url": {
 					"label": "URL tautan",
-					"placeholder": "mis., https://example.com"
+					"placeholder": "misal., https://example.com"
 				}
 			},
 			"actions": {
@@ -272,11 +272,11 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Pembaruan aplikasi",
-			"reminderLater": "Pengingat akan ditampilkan seminggu kemudian"
+			"reminderLater": "Pengingat akan muncul seminggu lagi"
 		},
 		"newVersion": {
 			"title": "Versi baru tersedia",
-			"body": "Versi baru sudah siap. Perbarui untuk mendapatkan peningkatan dan perbaikan terbaru.",
+			"body": "Versi baru telah siap. Perbarui untuk mendapatkan peningkatan dan perbaikan terbaru.",
 			"download": "Unduh versi baru",
 			"ignore": "Abaikan"
 		}
@@ -285,7 +285,7 @@
 		"imageProperties": {
 			"title": "Properti gambar",
 			"urlLabel": "URL gambar",
-			"altLabel": "Teks alt gambar"
+			"altLabel": "Teks alternatif gambar"
 		},
 		"linkProperties": {
 			"title": "Properti tautan",
@@ -294,7 +294,7 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Klik untuk menyimpan perubahan ke disk",
+			"title": "Klik untuk simpan perubahan ke penyimpanan",
 			"saving": "Menyimpan perubahan..."
 		},
 		"changeVault": "Ganti vault",

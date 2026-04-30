@@ -1,116 +1,116 @@
 {
 	"chooseVault": {
-		"title": "Elige un vault",
+		"title": "Selecciona un espacio",
 		"actions": {
-			"createNew": "Crear nuevo vault"
+			"createNew": "Crear nuevo espacio"
 		}
 	},
 	"creator": {
-		"title": "Crear vault",
+		"title": "Crear espacio",
 		"field": {
 			"name": {
-				"label": "Nombre del vault",
-				"placeholder": "p. ej., Mi Vault, Compartido con Alex",
+				"label": "Nombre del espacio",
+				"placeholder": "p. ej., Mi espacio, Compartido con Alex",
 				"random": "Generar nombre aleatorio",
 				"suggests": {
 					"0": "Marginalia",
 					"1": "Vellum",
-					"2": "Endpaper",
+					"2": "Guardas",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alcove",
+					"5": "Alcoba",
 					"6": "Penumbra",
-					"7": "Moonlit Correspondence",
-					"8": "Evening Cartography",
-					"9": "Lantern & Ink",
-					"10": "Candlelit Archive",
-					"11": "Climbing Ivy Manuscripts",
-					"12": "Cedarwood Letters",
-					"13": "Rosewood Scriptorium",
-					"14": "The Unbound Codex",
-					"15": "Marginalia & Murmurs",
-					"16": "Endpaper Confessions",
-					"17": "The Annotated Silence",
-					"18": "Shadow Cartography",
-					"19": "The Remembered Room",
-					"20": "The Unsigned Letters",
-					"21": "Whispered Coordinates",
-					"22": "The Untold Almanac",
-					"23": "Lost Wax Letters",
-					"24": "The Invisible Library",
-					"25": "Uncharted Margins",
-					"26": "The Quiet Conspiracy",
-					"27": "The Undelivered Post",
-					"28": "Evergreen Archive",
-					"29": "Paper Moon",
-					"30": "Paper Bloom",
-					"31": "Night Bloom",
-					"32": "Soft Atlas",
-					"33": "Velour",
-					"34": "Inkstone",
-					"35": "Hush",
-					"36": "Shade",
-					"37": "Calm Drift",
-					"38": "Deep Meadow",
-					"39": "Unwritten Ledger",
-					"40": "Silent Draftbook",
-					"41": "Unspoken Archive",
-					"42": "Drifting Journal",
-					"43": "Solar Wind Chronicle",
-					"44": "Quiet Fjord",
-					"45": "Memory Fragments",
-					"46": "Silent Moment",
-					"47": "Vanished Minutes"
+					"7": "Correspondencia bajo la luna",
+					"8": "Cartografía nocturna",
+					"9": "Luz y tinta",
+					"10": "Archivo a la luz de las velas",
+					"11": "Manuscritos de hiedra",
+					"12": "Cartas de cedro",
+					"13": "Scriptorium de palisandro",
+					"14": "El códice libre",
+					"15": "Marginalia y susurros",
+					"16": "Confesiones en las guardas",
+					"17": "El silencio anotado",
+					"18": "Cartografía de sombras",
+					"19": "La estancia recordada",
+					"20": "Cartas sin firma",
+					"21": "Coordenadas susurradas",
+					"22": "El almanaque oculto",
+					"23": "Cartas de cera perdida",
+					"24": "La biblioteca invisible",
+					"25": "Márgenes inexplorados",
+					"26": "La conspiración silenciosa",
+					"27": "Correo sin entregar",
+					"28": "Archivo perenne",
+					"29": "Luna de papel",
+					"30": "Flor de papel",
+					"31": "Flor nocturna",
+					"32": "Atlas suave",
+					"33": "Terciopelo",
+					"34": "Tintero",
+					"35": "Calma",
+					"36": "Sombra",
+					"37": "Deriva tranquila",
+					"38": "Pradera profunda",
+					"39": "Libro de cuentas sin escribir",
+					"40": "Borrador silencioso",
+					"41": "Archivo tácito",
+					"42": "Diario errante",
+					"43": "Crónica del viento solar",
+					"44": "Fiordo tranquilo",
+					"45": "Fragmentos de memoria",
+					"46": "Momento de silencio",
+					"47": "Minutos perdidos"
 				}
 			},
 			"password": {
 				"label": "Contraseña de cifrado",
 				"recommended": "(recomendado)",
 				"placeholder": "Introduce una contraseña segura",
-				"description": "Todos los datos en el área de almacenamiento serán cifrados mediante esta contraseña"
+				"description": "Todos los datos del espacio estarán protegidos con esta contraseña"
 			},
 			"algorithm": {
 				"label": "Algoritmo de cifrado"
 			}
 		},
 		"actions": {
-			"create": "Crear vault",
+			"create": "Crear espacio",
 			"continueNoPassword": "Continuar sin contraseña",
 			"cancel": "Cancelar"
 		},
 		"noEncryptionDialog": {
-			"title": "Crear vault sin cifrado",
-			"description": "Tus notas y datos se almacenarán como texto sin cifrar. Cualquier aplicación o persona con acceso al directorio del vault podrá leer todo su contenido.",
+			"title": "Crear espacio sin cifrado",
+			"description": "Tus notas y datos se guardarán como texto sin cifrar. Cualquier aplicación o persona con acceso al directorio del espacio podrá leer todo su contenido.",
 			"actions": {
 				"confirm": "Continuar sin cifrado",
 				"cancel": "Cancelar"
 			}
 		},
 		"errors": {
-			"nameRequired": "Introduce un nombre para el vault",
+			"nameRequired": "Introduce un nombre para el espacio",
 			"passwordRequired": "Introduce la contraseña"
 		},
 		"section": {
 			"advancedConfig": {
 				"label": "Opciones avanzadas de cifrado",
-				"description": "Configura los elementos de cifrado que protegen tu espacio — cascada de cifrados, parámetros de KDF y más. Para un desglose completo de los valores predeterminados y sus compensaciones, consulta <encryption>cómo está protegido tu espacio</encryption>."
+				"description": "Configura los parámetros de cifrado que protegen tu espacio: cascada de cifrado, parámetros KDF y más. Para conocer los valores predeterminados y sus ventajas, consulta <encryption>cómo se protege tu espacio</encryption>."
 			},
 			"kdf": {
-				"label": "Función de derivación de clave",
-				"description": "Ayuda a proteger contraseñas débiles o reutilizadas al hacer que cada intento sea más lento y costoso. Aumenta estas configuraciones para una protección más fuerte, o mantén los valores predeterminados para una experiencia equilibrada.",
+				"label": "Función de derivación de claves (KDF)",
+				"description": "Protege contraseñas débiles o repetidas haciendo que cada intento de acceso sea más lento y costoso. Aumenta estos valores para mayor seguridad o mantén los predeterminados para un equilibrio óptimo.",
 				"memory": {
 					"label": "Uso de memoria",
-					"description": "Hace que cada intento de contraseña utilice más memoria. Esto es especialmente efectivo contra ataques a gran escala, ya que la memoria es costosa y más difícil de escalar de manera eficiente que el cálculo bruto."
+					"description": "Aumenta la memoria necesaria para cada intento de contraseña. Esto es especialmente eficaz contra ataques a gran escala, ya que la memoria es un recurso costoso y difícil de escalar."
 				},
 				"ops": {
 					"label": "Iteraciones",
-					"description": "Repite el trabajo de derivación para cada intento de contraseña. Esto aumenta el costo de cada intento de manera mayormente lineal: duplicar las iteraciones aproximadamente duplica el trabajo tanto para los atacantes como para tu dispositivo."
+					"description": "Repite el proceso de derivación para cada intento. Esto aumenta el coste de cada intento de forma lineal: duplicar las iteraciones duplica aproximadamente el trabajo tanto para atacantes como para tu dispositivo."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Desbloquear vault",
+		"title": "Desbloquear espacio",
 		"field": {
 			"password": {
 				"placeholder": "Introduce la contraseña"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Desbloquear",
-			"changeVault": "Cambiar de vault"
+			"changeVault": "Cambiar espacio"
 		},
 		"errors": {
-			"cannotOpen": "No se puede abrir el vault",
+			"cannotOpen": "No se puede abrir el espacio",
 			"invalidPassword": "Contraseña incorrecta",
 			"passwordRequired": "Introduce la contraseña"
 		}
 	},
 	"errors": {
-		"failedToOpen": "No se pudo abrir el vault",
-		"corrupted": "\"{{name}}\" parece estar dañado."
+		"failedToOpen": "Error al abrir el espacio",
+		"corrupted": "\"{{name}}\" parece estar corrupto."
 	}
 }

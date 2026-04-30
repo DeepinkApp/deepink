@@ -3,14 +3,14 @@
 		"appMenu": "برنامه",
 		"quit": "خروج",
 		"edit": "ویرایش",
-		"undo": "بازگردانی",
-		"redo": "انجام مجدد",
+		"undo": "بازگشت",
+		"redo": "بازگشت به جلو",
 		"cut": "برش",
 		"copy": "کپی",
-		"paste": "جای‌گذاری",
+		"paste": "چسباندن",
 		"selectAll": "انتخاب همه",
 		"help": "راهنما",
-		"toggleDevTools": "نمایش/مخفی‌کردن ابزار توسعه",
+		"toggleDevTools": "ابزارهای توسعه",
 		"about": "درباره برنامه"
 	},
 	"tray": {
@@ -18,16 +18,16 @@
 		"quit": "خروج"
 	},
 	"note": {
-		"export": "خروجی گرفتن…",
-		"duplicate": "ایجاد کپی",
-		"copyMarkdownLink": "کپی لینک Markdown",
+		"export": "خروجی گرفتن...",
+		"duplicate": "تکثیر",
+		"copyMarkdownLink": "کپی لینک مارک‌داون",
 		"deletePermanently": "حذف دائمی",
 		"restoreFromBin": "بازیابی از سطل زباله",
 		"deleteToBin": "انتقال به سطل زباله"
 	},
 	"tag": {
-		"addNestedTag": "ایجاد زیربرچسب…",
-		"edit": "ویرایش…",
+		"addNestedTag": "ایجاد سلسله‌مراتب برچسب...",
+		"edit": "ویرایش...",
 		"delete": "حذف"
 	}
 }

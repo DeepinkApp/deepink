@@ -13,6 +13,6 @@
 		"close": "Închide"
 	},
 	"form": {
-		"suggestTemplate": "Încearcă: <suggests>"
+		"suggestTemplate": "Încearcă acest model: <suggests>"
 	}
 }

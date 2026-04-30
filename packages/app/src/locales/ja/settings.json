@@ -3,28 +3,28 @@
 		"title": "設定"
 	},
 	"tabs": {
-		"general": "一般",
+		"general": "全般",
 		"appearance": "外観",
 		"hotkeys": "ショートカット",
-		"vault": "保管庫",
+		"vault": "Vault",
 		"workspace": "ワークスペース",
-		"importExport": "インポート・エクスポート",
-		"vaultSettingsGroup": "保管庫の設定"
+		"importExport": "インポート / エクスポート",
+		"vaultSettingsGroup": "Vault 設定"
 	},
 	"general": {
-		"title": "一般設定",
-		"subtitle": "アプリ全体の設定を管理します。",
+		"title": "全般設定",
+		"subtitle": "アプリの全体的な設定を管理します。",
 		"version": {
 			"title": "バージョン",
 			"checkForUpdates": "アップデートを確認",
 			"upToDate": "最新バージョンです",
 			"newVersionAvailable": "新しいバージョン <bold>{{version}}</bold> が利用可能です。",
 			"downloadLatest": "ダウンロード",
-			"downloadDescription": "最新バージョンをダウンロードして、新機能と改善をお使いください。"
+			"downloadDescription": "新機能や改善を含む最新バージョンをダウンロードします。"
 		},
 		"autoCheckUpdates": {
-			"label": "アップデートの自動確認",
-			"description": "定期的にアップデートを確認し、新しいバージョンがある場合に通知します。"
+			"label": "アップデートを自動確認",
+			"description": "アップデートを定期的に確認し、新しいバージョンがある場合に通知します。"
 		},
 		"language": {
 			"title": "言語",
@@ -32,51 +32,51 @@
 		},
 		"notifications": {
 			"title": "通知",
-			"description": "システム通知はリマインダーにのみ使用されます。無効にすると、リマインダーはアプリ内の通知一覧にのみ表示されます。",
-			"useSystem": "システム通知を使用"
+			"description": "システム通知はリマインダーにのみ使用されます。無効にすると、リマインダーはアプリ内の通知リストにのみ表示されます。",
+			"useSystem": "システム通知を使用する"
 		},
 		"vaultLock": {
-			"groupTitle": "保管庫のロック",
+			"groupTitle": "Vault ロック",
 			"lockOnSystemLock": {
-				"label": "システムロック時に保管庫をロック",
-				"description": "スクリーンセーバーの起動時やデバイスのスリープ時に保管庫をロックします。"
+				"label": "システムロック時に Vault をロック",
+				"description": "スクリーンセーバーの開始時やデバイスのスリープ時に Vault をロックします。"
 			},
 			"lockAfterIdle": {
 				"title": "一定時間操作がない場合にロック",
-				"description": "指定した時間操作がないと、保管庫をロックします。",
+				"description": "指定した時間、操作がない場合に Vault をロックします。",
 				"never": "ロックしない",
-				"minutes5": "5分後",
-				"minutes10": "10分後",
-				"minutes15": "15分後",
-				"minutes30": "30分後",
-				"hour1": "1時間後",
-				"hours2": "2時間後",
-				"hours3": "3時間後",
-				"hours5": "5時間後"
+				"minutes5": "5 分後",
+				"minutes10": "10 分後",
+				"minutes15": "15 分後",
+				"minutes30": "30 分後",
+				"hour1": "1 時間後",
+				"hours2": "2 時間後",
+				"hours3": "3 時間後",
+				"hours5": "5 時間後"
 			}
 		}
 	},
 	"appearance": {
 		"theme": {
 			"title": "テーマ",
-			"auto": "自動",
+			"auto": "システム設定に従う",
 			"dark": "ダーク",
 			"light": "ライト",
 			"zen": "Zen"
 		},
 		"accentColor": {
 			"title": "アクセントカラー",
-			"zenNotApplicable": "選択中のテーマにはアクセントカラーは適用されません。"
+			"zenNotApplicable": "選択したテーマではアクセントカラーは使用できません。"
 		},
 		"zoomLevel": {
 			"title": "ズームレベル",
-			"description": "すべてのウィンドウのデフォルトのズームレベルを調整します。\nシステムがアプリを自動的にスケールしない場合は、ズームを変更して実際のディスプレイピクセル比（DPR）に合わせることができます。あなたのディスプレイピクセル比は{{dpr}}です。",
+			"description": "すべてのウィンドウのデフォルトズームレベルを調整します。\nシステムによる自動スケーリングが行われない場合、表示の画素比（DPR）に合わせてズームを変更できます。現在の画素比は {{dpr}} です。",
 			"apply": "適用",
 			"reset": "リセット",
 			"errors": {
-				"enterNumber": "ズームを設定するには数値を入力してください",
-				"tooSmall": "ズームは {{min}}% 未満にできません",
-				"tooBig": "ズームは {{max}}% を超えられません"
+				"enterNumber": "ズーム設定には数値を入力してください",
+				"tooSmall": "ズームは {{min}}% 以上にする必要があります",
+				"tooBig": "ズームは {{max}}% 以下にする必要があります"
 			}
 		}
 	},
@@ -86,20 +86,20 @@
 			"title": "エディタモード"
 		},
 		"fontFamily": {
-			"title": "フォント",
-			"description": "すべてのエディタで使用するフォントを設定します。空欄の場合は既定のフォントが使用されます。",
+			"title": "フォントファミリー",
+			"description": "すべてのエディタで使用するフォントファミリーを設定します。空欄の場合はデフォルトが使用されます。",
 			"placeholder": "フォント名を入力"
 		},
 		"fontSize": {
 			"title": "フォントサイズ"
 		},
 		"lineHeight": {
-			"title": "行の高さ"
+			"title": "行間"
 		},
 		"dateFormat": {
 			"title": "日付形式",
-			"description": "日付挿入時に使用する形式を設定します。DD/MM/YYYY HH:mm:ss のような標準的なトークン構文に対応しています。",
-			"formatReference": "日付形式リファレンス",
+			"description": "日付挿入時に使用する形式を設定します。DD/MM/YYYY HH:mm:ss などの標準的なトークン構文に対応しています。",
+			"formatReference": "日付形式のリファレンス",
 			"example": "例"
 		},
 		"plainText": {
@@ -109,43 +109,43 @@
 		}
 	},
 	"hotkeys": {
-		"blank": "未設定",
+		"blank": "なし",
 		"shortcuts": {
 			"createNote": "新しいノートを作成",
-			"closeCurrentNote": "アクティブなノートを閉じる",
+			"closeCurrentNote": "現在のノートを閉じる",
 			"restoreClosedNote": "最近閉じたノートを復元",
-			"focusNextNote": "次のノートに移動",
-			"focusPreviousNote": "前のノートに移動",
-			"toggleArchive": "アクティブなノートをアーカイブに移動／解除",
-			"toggleBookmark": "アクティブなノートをブックマークに追加／解除",
-			"deleteNote": "アクティブなノートを削除",
-			"restoreFromBin": "アクティブなノートをゴミ箱から復元",
-			"toggleHistory": "アクティブなノートの履歴を表示／非表示",
+			"focusNextNote": "次のノートへ移動",
+			"focusPreviousNote": "前のノートへ移動",
+			"toggleArchive": "アーカイブに移動 / アーカイブから戻す",
+			"toggleBookmark": "ブックマークに追加 / ブックマークを解除",
+			"deleteNote": "ノートを削除",
+			"restoreFromBin": "ゴミ箱からノートを復元",
+			"toggleHistory": "履歴の表示 / 非表示",
 			"focusSearch": "ノートを検索",
-			"syncDatabase": "保管庫をディスクに同期",
-			"lockVault": "保管庫をロック",
+			"syncDatabase": "Vault をディスクに同期",
+			"lockVault": "Vault をロック",
 			"openSettings": "設定を開く"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "保管庫の名前"
+			"title": "Vault 名"
 		},
 		"rememberPasswords": {
-			"label": "ワークスペースのパスワードを記憶",
-			"description": "ワークスペースのパスワードをマスターキーで暗号化してデータベースに保存し、暗号化されたワークスペースをパスワード入力なしで自動的に開きます。"
+			"label": "ワークスペースのパスワードを保存",
+			"description": "ワークスペースのパスワードをマスターキーで暗号化して保存し、パスワード入力なしでワークスペースを自動的に開けるようにします。"
 		},
 		"filesAndData": {
 			"groupTitle": "ファイルとデータ",
 			"imagesCompression": {
 				"title": "画像の圧縮",
 				"compress": "画像を圧縮する",
-				"doNotCompress": "画像を圧縮しない",
+				"doNotCompress": "圧縮しない",
 				"alwaysAsk": "毎回確認する"
 			},
 			"deleteOrphaned": {
-				"label": "未使用ファイルを削除",
-				"description": "使用されなくなったファイルを削除します。"
+				"label": "不要なファイルを削除",
+				"description": "使用されていないファイルを削除します。"
 			}
 		},
 		"encryption": {
@@ -156,14 +156,14 @@
 			},
 			"password": {
 				"title": "パスワード",
-				"update": "パスワードを変更"
+				"update": "パスワードを更新"
 			}
 		},
 		"synchronization": {
 			"groupTitle": "同期",
 			"enable": {
 				"label": "同期を有効にする",
-				"description": "デバイス間で保管庫を同期します。すべてのデータはデバイスから送信される前に暗号化されます。"
+				"description": "デバイス間で Vault を同期します。すべてのデータはデバイスから送信される前に暗号化されます。"
 			},
 			"method": {
 				"title": "同期方法",
@@ -179,30 +179,30 @@
 			"groupTitle": "スナップショット",
 			"record": {
 				"label": "ノートのスナップショットを記録",
-				"description": "有効にすると、ノートの変更時にコンテンツのスナップショットが作成されます。ノートごとの記録設定は、ノートの履歴パネルで変更できます。"
+				"description": "有効にすると、ノートが変更された際にその内容のスナップショットが作成されます。スナップショットの記録設定は、ノートの履歴パネルからノートごとに管理できます。"
 			},
 			"delay": {
-				"title": "スナップショットの遅延",
-				"description": "ノートの編集後、新しいスナップショットを保存するまでの待機時間（秒）。間隔が短いほどスナップショットが増え、保管庫のサイズも大きくなります。"
+				"title": "スナップショットの待機時間",
+				"description": "ノートの編集後、新しいスナップショットを保存するまでの待機時間（秒）です。間隔を短くすると頻繁に記録されますが、Vaultの容量が増加します。"
 			}
 		},
 		"trashBin": {
 			"groupTitle": "ゴミ箱",
 			"confirmDeletion": {
-				"label": "削除時に確認する",
-				"description": "ノートを削除する前に確認します。"
+				"label": "削除の確認",
+				"description": "ノートを削除する前に確認を表示します。"
 			},
 			"moveToBin": {
 				"label": "ノートをゴミ箱に移動",
-				"description": "完全に削除する代わりにゴミ箱に移動し、後から復元できるようにします。"
+				"description": "ノートを完全に削除する代わりにゴミ箱に移動し、後で復元できるようにします。"
 			},
 			"autoPurge": {
-				"label": "ゴミ箱の古いノートを完全に削除",
-				"description": "ゴミ箱に移動されたノートは、一定期間後に完全に削除されます。"
+				"label": "ゴミ箱内の古いノートを完全に削除",
+				"description": "ゴミ箱に移動したノートを、一定期間後に完全に削除します。"
 			},
 			"purgeDelay": {
-				"title": "完全削除までの日数",
-				"description": "ゴミ箱に移動されてからこの日数が経過すると、ノートは完全に削除されます。",
+				"title": "完全削除までの期間",
+				"description": "ゴミ箱に移動してから、この日数が経過したノートは完全に削除されます。",
 				"unit": "日"
 			}
 		}
@@ -213,38 +213,38 @@
 			"update": "更新"
 		},
 		"newNoteTitle": {
-			"title": "新しいノートのタイトル",
-			"description": "新しいノートのタイトルを設定します。{date} や {date:FORMAT}（例: {date:DD/MM/YYYY HH:mm}）の構文で日付を使用できます。",
-			"formatReference": "形式リファレンス",
+			"title": "新規ノートのタイトル",
+			"description": "新しいノートのタイトル形式を設定します。{date} または {date:FORMAT}（例: {date:DD/MM/YYYY HH:mm}）を使用して日付を使用できます。",
+			"formatReference": "フォーマットの参照",
 			"placeholder": "例: ノート {date:DD/MM/YYYY HH:mm}",
 			"example": "例"
 		},
 		"tagsForNewNote": {
-			"title": "新しいノートのタグ",
+			"title": "新規ノートのタグ",
 			"none": "タグを設定しない",
 			"selected": "選択中のタグと同じ"
 		},
 		"dangerousZone": {
-			"groupTitle": "危険な操作",
+			"groupTitle": "危険区域",
 			"delete": {
-				"label": "ワークスペースと、ノート・タグ・ファイルを含むすべての関連データを削除",
+				"label": "ワークスペースと、ノート、タグ、ファイルを含むすべての関連データを削除",
 				"action": "ワークスペースを削除",
-				"cannotDeleteLast": "保管庫内の最後のワークスペースは削除できません。",
-				"createAnother": "作成",
-				"createAnotherSuffix": "してから削除してください。"
+				"cannotDeleteLast": "Vault内の最後のワークスペースは削除できません。",
+				"createAnother": "先に別の",
+				"createAnotherSuffix": "ワークスペースを作成してください。"
 			},
-			"confirmDelete": "ワークスペース「{{name}}」を削除しようとしています。本当に削除しますか？\n\n続行すると、ノート・タグ・ファイルを含むこのワークスペースのすべてのデータが削除されます。"
+			"confirmDelete": "ワークスペース「{{name}}」を削除しようとしています。本当に削除しますか？\n\n続行すると、ノート、タグ、ファイルを含む、このワークスペースに関連するすべてのデータが削除されます。"
 		}
 	},
 	"importExport": {
 		"importNotes": "ノートをインポート",
 		"exportNotes": "ノートをエクスポート",
 		"importFromZip": ".zipアーカイブからノートをインポート",
-		"importFromDirectory": "Markdownファイルのディレクトリをインポート",
+		"importFromDirectory": "Markdownファイルを含むディレクトリをインポート",
 		"dropzone": {
 			"title": "Markdownファイルまたは.zipアーカイブをドロップしてインポート",
-			"description": "ここにファイルをドラッグ＆ドロップするか、クリックして選択"
+			"description": "ファイルをここにドラッグ＆ドロップするか、クリックして選択してください"
 		},
-		"progress": "ノートのインポート中です。ステージ: {{stage}} {{processed}}/{{total}}"
+		"progress": "ノートをインポートしています。 ステージ: {{stage}} {{processed}}/{{total}}"
 	}
 }

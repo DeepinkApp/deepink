@@ -1,33 +1,33 @@
 {
 	"app": {
-		"appMenu": "יישום",
+		"appMenu": "אפליקציה",
 		"quit": "יציאה",
 		"edit": "עריכה",
 		"undo": "ביטול",
-		"redo": "שחזור",
-		"cut": "גזירה",
-		"copy": "העתקה",
-		"paste": "הדבקה",
-		"selectAll": "בחירת הכל",
+		"redo": "ביצוע מחדש",
+		"cut": "גזור",
+		"copy": "העתק",
+		"paste": "הדבק",
+		"selectAll": "בחר הכל",
 		"help": "עזרה",
-		"toggleDevTools": "הצגת כלי פיתוח",
-		"about": "אודות היישום"
+		"toggleDevTools": "כלי מפתחים",
+		"about": "אודות"
 	},
 	"tray": {
-		"open": "פתיחת פתקים",
+		"open": "פתח פתקים",
 		"quit": "יציאה"
 	},
 	"note": {
-		"export": "ייצוא…",
-		"duplicate": "שכפול",
-		"copyMarkdownLink": "העתקת קישור Markdown",
+		"export": "ייצוא...",
+		"duplicate": "שכפל",
+		"copyMarkdownLink": "העתק קישור Markdown",
 		"deletePermanently": "מחיקה לצמיתות",
-		"restoreFromBin": "שחזור מהאשפה",
-		"deleteToBin": "העברה לאשפה"
+		"restoreFromBin": "שחזור מהסל",
+		"deleteToBin": "העברה לסל"
 	},
 	"tag": {
-		"addNestedTag": "יצירת תגית משנה…",
-		"edit": "עריכה…",
+		"addNestedTag": "יצירת היררכיית תגיות...",
+		"edit": "עריכה...",
 		"delete": "מחיקה"
 	}
 }

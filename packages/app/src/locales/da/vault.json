@@ -1,73 +1,73 @@
 {
 	"chooseVault": {
-		"title": "Vælg et vault",
+		"title": "Vælg et arkiv",
 		"actions": {
-			"createNew": "Opret nyt vault"
+			"createNew": "Opret nyt arkiv"
 		}
 	},
 	"creator": {
-		"title": "Opret vault",
+		"title": "Opret arkiv",
 		"field": {
 			"name": {
-				"label": "Vault-navn",
-				"placeholder": "f.eks. Mit Vault, Delt med Alex",
-				"random": "Generér tilfældigt navn",
+				"label": "Navn på arkiv",
+				"placeholder": "f.eks. Mit arkiv, Delt med Alex",
+				"random": "Generer tilfældigt navn",
 				"suggests": {
 					"0": "Marginalia",
-					"1": "Pergament",
-					"2": "Forsatsblad",
+					"1": "Vellum",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alkove",
-					"6": "Halvskygge",
-					"7": "Månelys-korrespondance",
+					"5": "Alcove",
+					"6": "Penumbra",
+					"7": "Måneskinskorrespondance",
 					"8": "Aftenkartografi",
-					"9": "Lanterne & Blæk",
-					"10": "Levende Lys Arkiv",
-					"11": "Vildvin-manuskripter",
+					"9": "Lantern & Blæk",
+					"10": "Stearinlysarkiv",
+					"11": "Efeu-manuskripter",
 					"12": "Cedertræsbreve",
-					"13": "Rosentræs Scriptorium",
-					"14": "Den ubundne kodeks",
-					"15": "Marginalia & Mumlen",
-					"16": "Forsatsbladets bekendelser",
+					"13": "Rosentræsskriptorium",
+					"14": "Det ubundne kodex",
+					"15": "Marginalia & hvisken",
+					"16": "Endpaper-bekendelser",
 					"17": "Den annoterede stilhed",
 					"18": "Skyggekartografi",
-					"19": "Det erindrede rum",
+					"19": "Det huskede rum",
 					"20": "De usignerede breve",
 					"21": "Hviskede koordinater",
 					"22": "Den ufortalte almanak",
-					"23": "Tabte voksbreve",
+					"23": "Lost Wax-breve",
 					"24": "Det usynlige bibliotek",
-					"25": "Ukortlagte marginer",
-					"26": "Den stille sammensværgelse",
+					"25": "Uudforskede margener",
+					"26": "Den stille konspiration",
 					"27": "Den uleverede post",
-					"28": "Stedsegrønt arkiv",
+					"28": "Evergreen-arkiv",
 					"29": "Papirmåne",
 					"30": "Papirblomst",
 					"31": "Natblomst",
-					"32": "Blidt atlas",
+					"32": "Blødt atlas",
 					"33": "Velour",
 					"34": "Blæksten",
-					"35": "Stilhed",
+					"35": "Hush",
 					"36": "Skygge",
-					"37": "Stille strøm",
+					"37": "Rolig drift",
 					"38": "Dyb eng",
 					"39": "Uskrevet hovedbog",
-					"40": "Stille kladde",
+					"40": "Stille kladdebog",
 					"41": "Uudtalt arkiv",
 					"42": "Drivende journal",
-					"43": "Solvindskrønike",
+					"43": "Solvindskronik",
 					"44": "Stille fjord",
-					"45": "Erindringsfragmenter",
+					"45": "Mindefragmenter",
 					"46": "Stille øjeblik",
 					"47": "Forsvundne minutter"
 				}
 			},
 			"password": {
 				"label": "Krypteringsadgangskode",
-				"recommended": "(anbefalet)",
+				"recommended": "(anbefales)",
 				"placeholder": "Indtast en stærk adgangskode",
-				"description": "Alle data i vault vil blive krypteret med denne adgangskode"
+				"description": "Alle data i dit vault krypteres med denne adgangskode"
 			},
 			"algorithm": {
 				"label": "Krypteringsalgoritme"
@@ -80,31 +80,31 @@
 		},
 		"noEncryptionDialog": {
 			"title": "Opret vault uden kryptering",
-			"description": "Dine noter og data gemmes som almindelig tekst. Enhver app eller person med adgang til vault-mappen på disken vil kunne læse alt indholdet.",
+			"description": "Dine noter og data vil blive gemt som almindelig tekst. Enhver app eller person med adgang til vault-mappen på din enhed vil kunne læse alt indhold.",
 			"actions": {
 				"confirm": "Fortsæt uden kryptering",
 				"cancel": "Annuller"
 			}
 		},
 		"errors": {
-			"nameRequired": "Indtast et vault-navn",
-			"passwordRequired": "Indtast adgangskoden"
+			"nameRequired": "Indtast et navn til dit vault",
+			"passwordRequired": "Indtast adgangskode"
 		},
 		"section": {
 			"advancedConfig": {
 				"label": "Avancerede krypteringsindstillinger",
-				"description": "Konfigurer de krypteringsprimitiver, der beskytter din vault — chifferkaskade, KDF-parametre og mere. For en fuld gennemgang af standardindstillingerne og deres fordele og ulemper, se <encryption>hvordan din vault er beskyttet</encryption>."
+				"description": "Konfigurer de krypteringsprincipper, der beskytter dit vault — cipher cascade, KDF-parametre og mere. Se <encryption>hvordan dit vault beskyttes</encryption> for en gennemgang af standardindstillinger og deres fordele."
 			},
 			"kdf": {
-				"label": "Nøgleafledningsfunktion",
-				"description": "Hjælper med at beskytte svage eller genbrugte adgangskoder ved at gøre hver gæt langsommere og dyrere. Hæv disse indstillinger for stærkere beskyttelse, eller behold standardindstillingerne for en afbalanceret oplevelse.",
+				"label": "Key derivation function",
+				"description": "Beskytter mod svage eller genbrugte adgangskoder ved at gøre hvert gæt langsommere og mere ressourcekrævende. Øg disse indstillinger for stærkere beskyttelse, eller behold standardindstillingerne for en balanceret oplevelse.",
 				"memory": {
 					"label": "Hukommelsesforbrug",
-					"description": "Gør hvert adgangskodegæt til at bruge mere hukommelse. Dette er især effektivt mod storskala angreb, fordi hukommelse er kostbar og sværere at skalere effektivt end rå beregning."
+					"description": "Gør, at hvert forsøg på at gætte adgangskoden bruger mere hukommelse. Dette er særligt effektivt mod omfattende angreb, da hukommelse er dyrt og sværere at skalere effektivt end ren beregningskraft."
 				},
 				"ops": {
 					"label": "Iterationer",
-					"description": "Gentager afledningsarbejdet for hvert adgangskodegæt. Dette øger omkostningerne ved hver gæt på en stort set lineær måde: at fordoble iterationer fordobler omtrent arbejdet for både angribere og din enhed."
+					"description": "Gentager afledningsprocessen for hvert gæt på adgangskoden. Dette øger omkostningerne ved hvert gæt lineært: Ved at fordoble antallet af iterationer fordobles arbejdsbyrden for både angribere og din enhed."
 				}
 			}
 		}

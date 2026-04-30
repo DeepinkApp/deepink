@@ -2,15 +2,15 @@
 	"panel": {
 		"tags": {
 			"label": "Címkék",
-			"empty": "Hozz létre címkéket a jegyzeteid rendszerezéséhez. Építs belőlük hierarchiát.",
+			"empty": "Hozzon létre címkéket a jegyzeteinek rendszerezéséhez. Használjon címkehierarchiát a rugalmas szerkezet kialakításához.",
 			"actions": {
-				"add": "Új címke"
+				"add": "Címke hozzáadása"
 			}
 		},
 		"workspaces": {
-			"label": "Munkaterek",
+			"label": "Térálok",
 			"actions": {
-				"add": "Új munkatér"
+				"add": "Térárok létrehozása"
 			}
 		}
 	}

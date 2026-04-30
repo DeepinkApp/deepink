@@ -7,12 +7,12 @@
 		"saveChanges": "Zapisz zmiany",
 		"delete": "Usuń",
 		"reset": "Resetuj",
-		"update": "Zaktualizuj",
+		"update": "Aktualizuj",
 		"add": "Dodaj",
 		"create": "Utwórz",
 		"close": "Zamknij"
 	},
 	"form": {
-		"suggestTemplate": "Spróbuj: <suggests>"
+		"suggestTemplate": "Wypróbuj: <suggests>"
 	}
 }

@@ -23,27 +23,27 @@
 			},
 			"messages": {
 				"unknownSubmitError": "Nie można zapisać zmian z powodu nieznanego błędu.",
-				"format": "Tag nie może być pusty, zaczynać lub kończyć się na \"/\" ani zawierać \"//\".",
-				"duplicate": "Tag '{{name}}' już istnieje.",
-				"parentTagNotFound": "Tag nadrzędny nie został znaleziony, wybierz inny tag."
+				"format": "Tag nie może być pusty, zaczynać się ani kończyć znakiem \"/\", ani zawierać ciągu \"//\".",
+				"duplicate": "Tag „{{name}}” już istnieje.",
+				"parentTagNotFound": "Nie znaleziono tagu nadrzędnego, wybierz inny."
 			}
 		},
 		"deletion": {
-			"confirm": "Czy na pewno chcesz usunąć tag \"{{name}}\" oraz wszystkie podtagi?"
+			"confirm": "Czy na pewno chcesz usunąć tag „{{name}}” i wszystkie jego podtagi?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Notatnik",
 		"creator": {
-			"title": "Utwórz nową przestrzeń roboczą",
-			"description": "Każda przestrzeń robocza to samodzielna przestrzeń dla Twoich notatek, tagów i plików. Wszystko pozostaje oddzielne, a jednocześnie znajduje się w Twoim zaszyfrowanym sejfie — gotowe, gdy przełączysz.",
+			"title": "Utwórz nową przestrzeń",
+			"description": "Każda przestrzeń to odrębny obszar dla Twoich notatek, tagów i plików. Wszystko pozostaje odseparowane, a jednocześnie znajduje się w Twoim zaszyfrowanym schowku — gotowe do użycia, gdy tylko przełączysz widok.",
 			"action": {
 				"add": "Utwórz",
 				"cancel": "Anuluj"
 			},
 			"field": {
 				"name": {
-					"label": "Nazwa przestrzeni roboczej",
+					"label": "Nazwa przestrzeni",
 					"placeholder": "np. Dziennik zdrowia, Pomysły biznesowe",
 					"suggests": {
 						"0": "Finanse",
@@ -60,18 +60,18 @@
 				}
 			},
 			"error": {
-				"unknown": "Wystąpił nieznany błąd. Proszę spróbować ponownie.",
-				"format": "Nazwa przestrzeni roboczej nie może być pusta."
+				"unknown": "Wystąpił nieznany błąd. Spróbuj ponownie.",
+				"format": "Nazwa przestrzeni nie może być pusta."
 			}
 		},
 		"error": {
-			"title": "Nie udało się załadować przestrzeni roboczej \"{{name}}\"",
-			"description": "Nie udało się załadować tej przestrzeni roboczej. Dane mogą być uszkodzone. Przełącz się na inną przestrzeń roboczą lub utwórz nową, aby kontynuować pracę.",
-			"chooseAnother": "Wybierz inną przestrzeń roboczą",
+			"title": "Nie udało się załadować przestrzeni „{{name}}”",
+			"description": "Nie można załadować tej przestrzeni. Dane mogą być uszkodzone. Przełącz się na inną przestrzeń lub utwórz nową, aby kontynuować pracę.",
+			"chooseAnother": "Wybierz inną przestrzeń",
 			"dividerText": "lub",
-			"createNew": "Utwórz nową przestrzeń roboczą",
-			"createWorkspace": "Utwórz przestrzeń roboczą",
-			"closeVault": "Zamknij bieżący sejf"
+			"createNew": "Utwórz nową przestrzeń",
+			"createWorkspace": "Utwórz przestrzeń",
+			"closeVault": "Zamknij obecny schowek"
 		}
 	},
 	"note": {
@@ -81,10 +81,10 @@
 			"duplicate": "Duplikat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Zapisz pomysł, zadanie lub myśl…",
+			"placeholder": "Zapisz pomysł, zadanie lub myśl...",
 			"modes": {
 				"plaintext": "Tryb tekstowy",
-				"richtext": "Edytor bogaty",
+				"richtext": "Edytor wzbogacony",
 				"split-screen": "Podzielony ekran"
 			}
 		},
@@ -95,15 +95,15 @@
 			"removeFromArchive": "Usuń z archiwum"
 		},
 		"tags": {
-			"addPlaceholder": "Wpisz, aby dodać tag…"
+			"addPlaceholder": "Wpisz, aby dodać tag..."
 		},
 		"versionPreview": {
-			"versionAt": "Wersja z {{date}}",
-			"backToEditing": "Wróć do edytowania"
+			"versionAt": "Wersja z dnia {{date}}",
+			"backToEditing": "Powrót do edycji"
 		},
 		"menu": {
 			"title": "Opcje notatki",
-			"copyReference": "Skopiuj link do notatki",
+			"copyReference": "Kopiuj link do notatki",
 			"remindMe": "Przypomnij mi",
 			"history": "Historia",
 			"backLinks": "Linki zwrotne",
@@ -114,7 +114,7 @@
 			"disableSync": "Wyłącz synchronizację",
 			"moveToArchive": "Przenieś do archiwum",
 			"removeFromArchive": "Usuń z archiwum",
-			"deleteToBin": "Usuń do kosza",
+			"deleteToBin": "Przenieś do kosza",
 			"deletePermanently": "Usuń na stałe",
 			"restoreFromBin": "Przywróć z kosza"
 		},
@@ -122,7 +122,7 @@
 			"chars": "{{count}} znaków",
 			"apply": {
 				"title": "Zastosuj wersję",
-				"readonlyTitle": "Wersja nie może być zastosowana dla notatki tylko do odczytu"
+				"readonlyTitle": "Nie można zastosować wersji w trybie tylko do odczytu"
 			},
 			"open": {
 				"title": "Otwórz wersję"
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Zapisz migawkę",
-				"title": "Zapisz bieżący stan tej notatki jako nową wersję w historii"
+				"title": "Zapisz obecny stan notatki jako nową wersję w historii"
 			},
 			"deleteAll": {
-				"label": "Usuń wszystkie",
-				"title": "Na stałe usuń wszystkie zapisane wersje tej notatki"
+				"label": "Usuń wszystko",
+				"title": "Trwale usuń wszystkie zapisane wersje tej notatki"
 			},
-			"dontRecord": "Nie rejestruj historii dla tej notatki",
+			"dontRecord": "Nie zapisuj historii dla tej notatki",
 			"empty": "Ta notatka nie ma zapisanych wersji",
 			"loading": "Ładowanie...",
 			"confirmDeleteAll": {
 				"title": "Usuń wszystkie wersje notatki",
-				"description": "Ta akcja na stałe usunie wszystkie wersje notatki.",
-				"confirm": "Czy jesteś tego pewny?",
+				"description": "Ta operacja trwale usunie wszystkie wersje notatki.",
+				"confirm": "Czy na pewno?",
 				"action": "Zastosuj"
 			},
 			"confirmApply": {
 				"title": "Zastosuj wersję notatki",
-				"description": "Zamierzasz zastosować wersję notatki {{version}}.",
-				"warning": "Ta akcja zastąpi bieżące dane notatki tekstem wybranej migawki. Czy jesteś pewny?",
+				"description": "Zamierzasz zastosować wersję {{version}}.",
+				"warning": "Ta operacja zastąpi obecne dane notatki tekstem wybranej migawki. Czy na pewno?",
 				"apply": "Zastosuj",
 				"preview": "Podgląd"
 			},
 			"confirmDelete": {
 				"title": "Usuń wersję notatki",
-				"description": "Zamierzasz usunąć wersję notatki {{version}}.",
-				"warning": "Ta akcja na stałe usunie wersję notatki. Czy jesteś pewny?",
+				"description": "Zamierzasz usunąć wersję {{version}}.",
+				"warning": "Ta operacja nieodwracalnie usunie wersję notatki. Czy na pewno?",
 				"delete": "Usuń",
 				"preview": "Podgląd"
 			}
@@ -174,7 +174,7 @@
 		},
 		"bin": {
 			"confirmMoveToBin": "Czy chcesz przenieść tę notatkę do kosza?",
-			"confirmPermanentDeletion": "Czy chcesz na stałe usunąć tę notatkę?"
+			"confirmPermanentDeletion": "Czy chcesz trwale usunąć tę notatkę?"
 		}
 	},
 	"files": {
@@ -189,13 +189,13 @@
 	},
 	"notesView": {
 		"allNotes": "Wszystkie notatki",
-		"favorites": "Ulubione notatki",
-		"archived": "Archiwum notatek",
-		"deleted": "Usunięte notatki"
+		"favorites": "Ulubione",
+		"archived": "Zarchiwizowane",
+		"deleted": "Usunięte"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Wybierz notatkę, aby rozpocząć czytanie lub edytowanie"
+			"placeholder": "Wybierz notatkę, aby ją czytać lub edytować"
 		}
 	},
 	"activityBar": {
@@ -204,9 +204,9 @@
 		"reminders": "Przypomnienia",
 		"extensions": "Rozszerzenia",
 		"inbox": "Skrzynka odbiorcza",
-		"publishNotes": "Opublikuj notatki",
-		"lockVault": "Zablokuj sejf",
-		"globalSettings": "Ustawienia globalne"
+		"publishNotes": "Publikuj notatki",
+		"lockVault": "Zablokuj schowek",
+		"globalSettings": "Ustawienia ogólne"
 	},
 	"tabBar": {
 		"closeTab": "Zamknij kartę"
@@ -216,14 +216,14 @@
 			"insertTitle": "Kliknij, aby wstawić nagłówek poziomu {{level}}. Otwórz menu kontekstowe, aby wybrać inną opcję",
 			"level": "Poziom nagłówka {{level}}"
 		},
-		"bold": "Przełącz styl tekstu pogrubionego",
-		"italic": "Przełącz styl tekstu kursywą",
-		"strikethrough": "Przełącz styl tekstu przekreślonego",
-		"unorderedList": "Wstaw lub przełącz listę nieuporządkowaną",
-		"checkboxList": "Wstaw lub przełącz listę z polem wyboru",
-		"orderedList": "Wstaw lub przełącz listę uporządkowaną",
-		"codeBlock": "Wstaw lub owiń tekst blokiem kodu",
-		"quoteBlock": "Wstaw lub owiń tekst blokiem cytatu",
+		"bold": "Pogrub tekst",
+		"italic": "Kursywa",
+		"strikethrough": "Przekreślenie",
+		"unorderedList": "Lista punktowana",
+		"checkboxList": "Lista zadań",
+		"orderedList": "Lista numerowana",
+		"codeBlock": "Blok kodu",
+		"quoteBlock": "Cytat",
 		"insertDate": "Wstaw datę",
 		"insertPageBreak": "Wstaw podział strony",
 		"insertFile": "Wstaw plik",
@@ -233,11 +233,11 @@
 			"dialogDescription": "Obraz zostanie wstawiony w miejscu kursora.",
 			"field": {
 				"url": {
-					"label": "URL obrazu",
+					"label": "Adres URL obrazu",
 					"placeholder": "np. https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Tekst alternatywny obrazu (opcjonalnie)",
+					"label": "Tekst alternatywny (opcjonalnie)",
 					"placeholder": "Krótki opis obrazu"
 				}
 			},
@@ -249,10 +249,10 @@
 		"link": {
 			"buttonTitle": "Wstaw link",
 			"dialogTitle": "Dodaj link",
-			"dialogDescription": "Wybrany tekst staje się linkiem, lub link zostanie dodany w miejscu kursora, jeśli nic nie jest wybrane.",
+			"dialogDescription": "Wybrany tekst stanie się linkiem, lub link zostanie wstawiony w miejscu kursora.",
 			"field": {
 				"url": {
-					"label": "URL linku",
+					"label": "Adres URL linku",
 					"placeholder": "np. https://example.com"
 				}
 			},
@@ -264,7 +264,7 @@
 	},
 	"image": {
 		"loading": "Ładowanie obrazu",
-		"brokenImage": "Obraz nie może zostać załadowany"
+		"brokenImage": "Nie można załadować obrazu"
 	},
 	"notifications": {
 		"title": "Powiadomienia"
@@ -272,32 +272,32 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Aktualizacja aplikacji",
-			"reminderLater": "Przypomnienie zostanie wyświetlone za tydzień"
+			"reminderLater": "Przypomnienie pojawi się za tydzień"
 		},
 		"newVersion": {
-			"title": "Dostępna jest nowa wersja",
-			"body": "Nowa wersja jest gotowa. Zaktualizuj, aby uzyskać najnowsze ulepszenia i poprawki.",
+			"title": "Dostępna nowa wersja",
+			"body": "Gotowa jest nowa wersja. Aktualizuj, aby korzystać z najnowszych usprawnień i poprawek.",
 			"download": "Pobierz nową wersję",
-			"ignore": "Ignoruj"
+			"ignore": "Pomiń"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
 			"title": "Właściwości obrazu",
-			"urlLabel": "URL obrazu",
-			"altLabel": "Tekst alternatywny obrazu"
+			"urlLabel": "Adres URL obrazu",
+			"altLabel": "Tekst alternatywny"
 		},
 		"linkProperties": {
 			"title": "Właściwości linku",
-			"urlLabel": "URL linku"
+			"urlLabel": "Adres URL linku"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Kliknij, aby zapisać zmiany na dysku",
+			"title": "Kliknij, aby zapisać zmiany",
 			"saving": "Zapisywanie zmian..."
 		},
-		"changeVault": "Zmień sejf",
+		"changeVault": "Zmień schowek",
 		"history": "Historia",
 		"notifications": "Powiadomienia"
 	}

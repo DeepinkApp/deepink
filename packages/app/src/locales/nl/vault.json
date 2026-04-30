@@ -1,17 +1,17 @@
 {
 	"chooseVault": {
-		"title": "Kies een kluis",
+		"title": "Kies een vault",
 		"actions": {
-			"createNew": "Nieuwe kluis aanmaken"
+			"createNew": "Nieuwe vault maken"
 		}
 	},
 	"creator": {
-		"title": "Kluis aanmaken",
+		"title": "Vault aanmaken",
 		"field": {
 			"name": {
-				"label": "Kluisnaam",
-				"placeholder": "bijv. Mijn Kluis, Gedeeld met Alex",
-				"random": "Willekeurige naam genereren",
+				"label": "Naam van de vault",
+				"placeholder": "bijv. Mijn Vault, Gedeeld met Alex",
+				"random": "Genereer willekeurige naam",
 				"suggests": {
 					"0": "Marginalia",
 					"1": "Vellum",
@@ -20,97 +20,97 @@
 					"4": "Memento",
 					"5": "Alcove",
 					"6": "Penumbra",
-					"7": "Moonlit Correspondence",
-					"8": "Evening Cartography",
-					"9": "Lantern & Ink",
-					"10": "Candlelit Archive",
-					"11": "Climbing Ivy Manuscripts",
-					"12": "Cedarwood Letters",
-					"13": "Rosewood Scriptorium",
-					"14": "The Unbound Codex",
-					"15": "Marginalia & Murmurs",
-					"16": "Endpaper Confessions",
-					"17": "The Annotated Silence",
-					"18": "Shadow Cartography",
-					"19": "The Remembered Room",
-					"20": "The Unsigned Letters",
-					"21": "Whispered Coordinates",
-					"22": "The Untold Almanac",
-					"23": "Lost Wax Letters",
-					"24": "The Invisible Library",
-					"25": "Uncharted Margins",
-					"26": "The Quiet Conspiracy",
-					"27": "The Undelivered Post",
-					"28": "Evergreen Archive",
-					"29": "Paper Moon",
-					"30": "Paper Bloom",
-					"31": "Night Bloom",
-					"32": "Soft Atlas",
-					"33": "Velour",
-					"34": "Inkstone",
+					"7": "Maanschijn-correspondentie",
+					"8": "Avondcartografie",
+					"9": "Lantaarn & Inkt",
+					"10": "Kaarslicht-archief",
+					"11": "Klimop Manuscripten",
+					"12": "Cederhouten Brieven",
+					"13": "Rozenhout Scriptorium",
+					"14": "De Ongebonden Codex",
+					"15": "Marginalia & Gefluister",
+					"16": "Endpaper Confessies",
+					"17": "De Geannoteerde Stilte",
+					"18": "Schaduwcartografie",
+					"19": "De Onthouden Kamer",
+					"20": "Ongetekende Brieven",
+					"21": "Gefluisterde Coördinaten",
+					"22": "Het Onvertelde Almanak",
+					"23": "Lost Wax Brieven",
+					"24": "De Onzichtbare Bibliotheek",
+					"25": "Onontdekte Marges",
+					"26": "De Stille Complot",
+					"27": "De Niet-bezorgde Post",
+					"28": "Evergreen Archief",
+					"29": "Papieren Maan",
+					"30": "Papieren Bloei",
+					"31": "Nachtbloei",
+					"32": "Zachte Atlas",
+					"33": "Velours",
+					"34": "Inktsteen",
 					"35": "Hush",
-					"36": "Shade",
-					"37": "Calm Drift",
-					"38": "Deep Meadow",
-					"39": "Unwritten Ledger",
-					"40": "Silent Draftbook",
-					"41": "Unspoken Archive",
-					"42": "Drifting Journal",
-					"43": "Solar Wind Chronicle",
-					"44": "Quiet Fjord",
-					"45": "Memory Fragments",
-					"46": "Silent Moment",
-					"47": "Vanished Minutes"
+					"36": "Schaduw",
+					"37": "Kalme Drift",
+					"38": "Diepe Weide",
+					"39": "Onbeschreven Grootboek",
+					"40": "Stil Conceptboek",
+					"41": "Onuitgesproken Archief",
+					"42": "Drijvend Dagboek",
+					"43": "Zonnestorm Kroniek",
+					"44": "Stille Fjord",
+					"45": "Geheugenfragmenten",
+					"46": "Stil Moment",
+					"47": "Verdwenen Minuten"
 				}
 			},
 			"password": {
 				"label": "Versleutelingswachtwoord",
 				"recommended": "(aanbevolen)",
-				"placeholder": "Voer een sterk wachtwoord in",
-				"description": "Alle gegevens in de kluis worden versleuteld met dit wachtwoord"
+				"placeholder": "Voer hier een sterk wachtwoord in",
+				"description": "Alle gegevens in de vault worden versleuteld met dit wachtwoord"
 			},
 			"algorithm": {
 				"label": "Versleutelingsalgoritme"
 			}
 		},
 		"actions": {
-			"create": "Kluis aanmaken",
+			"create": "Vault aanmaken",
 			"continueNoPassword": "Doorgaan zonder wachtwoord",
 			"cancel": "Annuleren"
 		},
 		"noEncryptionDialog": {
-			"title": "Kluis aanmaken zonder versleuteling",
-			"description": "Je notities en gegevens worden als platte tekst opgeslagen. Elke app of persoon met toegang tot de kluismap op schijf kan alles erin lezen.",
+			"title": "Vault aanmaken zonder versleuteling",
+			"description": "Je notities en gegevens worden als platte tekst opgeslagen. Elke app of persoon met toegang tot de vault-map op je schijf kan alles lezen.",
 			"actions": {
 				"confirm": "Doorgaan zonder versleuteling",
 				"cancel": "Annuleren"
 			}
 		},
 		"errors": {
-			"nameRequired": "Voer een kluisnaam in",
+			"nameRequired": "Voer een naam in voor de vault",
 			"passwordRequired": "Voer het wachtwoord in"
 		},
 		"section": {
 			"advancedConfig": {
-				"label": "Geavanceerde encryptie-opties",
-				"description": "Configureer de encryptie-elementen die je vault beschermen — versleutelingstoepassing, KDF-parameters, en meer. Voor een volledige uitleg van de standaardinstellingen en hun afwegingen, zie <encryption>hoe je vault beschermd is</encryption>."
+				"label": "Geavanceerde versleutelingsopties",
+				"description": "Configureer de versleutelingsparameters die je vault beschermen — cipher cascade, KDF-parameters en meer. Bekijk <encryption>hoe je vault wordt beschermd</encryption> voor een volledig overzicht van de standaardinstellingen en de afwegingen."
 			},
 			"kdf": {
-				"label": "Sleuteldifferentiatiefunctie",
-				"description": "Helpt zwakke of hergebruikte wachtwoorden te beschermen door elke gok trager en kostbaarder te maken. Verhoog deze instellingen voor een sterkere bescherming of houd de standaardinstellingen voor een evenwichtige ervaring.",
+				"label": "Key derivation function",
+				"description": "Helpt zwakke of hergebruikte wachtwoorden te beschermen door elke poging trager en kostbaarder te maken. Verhoog deze instellingen voor sterkere bescherming, of behoud de standaardinstellingen voor een gebalanceerde ervaring.",
 				"memory": {
 					"label": "Geheugengebruik",
-					"description": "Laat elke wachtwoordgok meer geheugen gebruiken. Dit is vooral effectief tegen grootschalige aanvallen, omdat geheugen kostbaar is en moeilijker efficiënt te schalen dan ruwe berekening."
+					"description": "Zorgt ervoor dat elke poging tot wachtwoordraden meer geheugen verbruikt. Dit is vooral effectief tegen grootschalige aanvallen, omdat geheugen kostbaar is en moeilijker efficiënt op te schalen is dan pure rekenkracht."
 				},
 				"ops": {
-					"label": "Herhalingen",
-					"description": "Herhaalt het afgeleide werk voor elke wachtwoordgok. Dit verhoogt de kosten van elke gok op een grotendeels lineaire manier: het verdubbelen van herhalingen verdubbelt ongeveer het werk voor zowel aanvallers als je apparaat."
+					"label": "Iteraties",
+					"description": "Herhaalt het afleidingsproces voor elke wachtwoordpoging. Dit verhoogt de kosten van elke poging vrijwel lineair: het verdubbelen van de iteraties verdubbelt ongeveer de werklast voor zowel aanvallers als je apparaat."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Kluis ontgrendelen",
+		"title": "Vault ontgrendelen",
 		"field": {
 			"password": {
 				"placeholder": "Voer wachtwoord in"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Ontgrendelen",
-			"changeVault": "Andere kluis kiezen"
+			"changeVault": "Vault wijzigen"
 		},
 		"errors": {
-			"cannotOpen": "Kan kluis niet openen",
+			"cannotOpen": "Vault kan niet worden geopend",
 			"invalidPassword": "Ongeldig wachtwoord",
 			"passwordRequired": "Voer wachtwoord in"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Kan kluis niet openen",
+		"failedToOpen": "Openen van vault mislukt",
 		"corrupted": "\"{{name}}\" lijkt beschadigd te zijn."
 	}
 }

@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Taggar",
-			"empty": "Skapa taggar för att organisera dina anteckningar. Ordna dem i hierarkier för flexibel struktur.",
+			"empty": "Skapa taggar för att organisera dina anteckningar. Använd tagghierarkier för att skapa ordning.",
 			"actions": {
 				"add": "Lägg till tagg"
 			}

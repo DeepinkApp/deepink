@@ -3,302 +3,302 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "Креирај ознаку",
-					"action": "Креирај"
+					"title": "Kreiraj oznaku",
+					"action": "Kreiraj"
 				},
 				"edit": {
-					"title": "Измени ознаку",
-					"action": "Сачувај"
+					"title": "Izmeni oznaku",
+					"action": "Sačuvaj"
 				}
 			},
 			"field": {
 				"name": {
-					"label": "Назив ознаке",
-					"placeholder": "нпр. Идеје"
+					"label": "Naziv oznake",
+					"placeholder": "npr. Ideje"
 				},
 				"parent": {
-					"label": "Надређена ознака",
-					"placeholder": "нпр. Рецепти/Десерти"
+					"label": "Roditeljska oznaka",
+					"placeholder": "npr. Recepti/Deserti"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Није могуће сачувати измене због непознате грешке.",
-				"format": "Ознака не може бити празна, почињати или завршавати се са \"/\", нити садржати \"//\".",
-				"duplicate": "Ознака '{{name}}' већ постоји.",
-				"parentTagNotFound": "Надређена ознака није пронађена, изаберите другу ознаку."
+				"unknownSubmitError": "Promene se ne mogu sačuvati zbog nepoznate greške.",
+				"format": "Oznaka ne može biti prazna, ne sme početi ili završiti sa \"/\", niti sadržati \"//\".",
+				"duplicate": "Oznaka '{{name}}' već postoji.",
+				"parentTagNotFound": "Roditeljska oznaka nije pronađena, izaberite drugu."
 			}
 		},
 		"deletion": {
-			"confirm": "Заиста желите да обришете ознаку \"{{name}}\" и све подознаке?"
+			"confirm": "Da li zaista želite da obrišete oznaku \"{{name}}\" i sve njene podoznake?"
 		}
 	},
 	"workspace": {
-		"defaultName": "Бележница",
+		"defaultName": "Beležnica",
 		"creator": {
-			"title": "Креирај нови простор",
-			"description": "Сваки простор је засебно окружење за белешке, ознаке и фајлове. Све остаје одвојено, а чува се у шифрованом трезору — спремно кад вам затреба.",
+			"title": "Kreiraj novi prostor",
+			"description": "Svaki prostor je zasebna celina za vaše beleške, oznake i datoteke. Sve ostaje odvojeno, a i dalje je unutar vašeg enkriptovanog skladišta — spremno kada god pređete na njega.",
 			"action": {
-				"add": "Креирај",
-				"cancel": "Откажи"
+				"add": "Kreiraj",
+				"cancel": "Otkaži"
 			},
 			"field": {
 				"name": {
-					"label": "Назив простора",
-					"placeholder": "нпр. Здравље, Пословне идеје",
+					"label": "Naziv prostora",
+					"placeholder": "npr. Dnevnik zdravlja, Poslovne ideje",
 					"suggests": {
-						"0": "Финансије",
-						"1": "Здравље",
-						"2": "Каријера",
-						"3": "Породица",
-						"4": "Дневник",
-						"5": "Циљеви",
-						"6": "Идеје",
-						"7": "Правно",
-						"8": "Путовања",
-						"9": "Приватно"
+						"0": "Finansije",
+						"1": "Zdravlje",
+						"2": "Karijera",
+						"3": "Porodica",
+						"4": "Dnevnik",
+						"5": "Ciljevi",
+						"6": "Ideje",
+						"7": "Pravne stvari",
+						"8": "Putovanja",
+						"9": "Privatno"
 					}
 				}
 			},
 			"error": {
-				"unknown": "Дошло је до непознате грешке. Покушајте поново.",
-				"format": "Назив простора не може бити празан."
+				"unknown": "Došlo je do nepoznate greške. Pokušajte ponovo.",
+				"format": "Naziv prostora ne može biti prazan."
 			}
 		},
 		"error": {
-			"title": "Простор \"{{name}}\" није успео да се учита",
-			"description": "Учитавање овог простора није успело. Подаци су можда оштећени. Пређите на други простор или креирајте нови да бисте наставили са радом.",
-			"chooseAnother": "Изаберите други простор",
-			"dividerText": "или",
-			"createNew": "Креирајте нови простор",
-			"createWorkspace": "Креирај простор",
-			"closeVault": "Затвори тренутни трезор"
+			"title": "Neuspešno učitavanje prostora \"{{name}}\"",
+			"description": "Nije moguće učitati ovaj prostor. Podaci mogu biti oštećeni. Pređite na drugi prostor ili kreirajte novi kako biste nastavili rad.",
+			"chooseAnother": "Izaberite drugi prostor",
+			"dividerText": "ili",
+			"createNew": "Kreirajte novi prostor",
+			"createWorkspace": "Kreiraj prostor",
+			"closeVault": "Zatvori trenutno skladište"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "Без наслова",
-			"defaultTemplate": "Без наслова - {{date}}",
-			"duplicate": "Копија: {{title}}"
+			"placeholder": "Naslov bez imena",
+			"defaultTemplate": "Naslov bez imena - {{date}}",
+			"duplicate": "Duplikat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Забележите идеју, задатак или мисао…",
+			"placeholder": "Zabeležite ideju, zadatak ili misao...",
 			"modes": {
-				"plaintext": "Текстуални режим",
-				"richtext": "Обогаћени уређивач",
-				"split-screen": "Подељен екран"
+				"plaintext": "Običan tekst",
+				"richtext": "Bogati editor",
+				"split-screen": "Podeljen ekran"
 			}
 		},
 		"actions": {
-			"addToFavorites": "Додај у омиљене",
-			"removeFromFavorites": "Уклони из омиљених",
-			"moveToArchive": "Премести у архиву",
-			"removeFromArchive": "Уклони из архиве"
+			"addToFavorites": "Dodaj u omiljene",
+			"removeFromFavorites": "Ukloni iz omiljenih",
+			"moveToArchive": "Prebaci u arhivu",
+			"removeFromArchive": "Ukloni iz arhive"
 		},
 		"tags": {
-			"addPlaceholder": "Унесите ознаку…"
+			"addPlaceholder": "Ukucajte za dodavanje oznake..."
 		},
 		"versionPreview": {
-			"versionAt": "Верзија од {{date}}",
-			"backToEditing": "Назад на уређивање"
+			"versionAt": "Verzija od {{date}}",
+			"backToEditing": "Vrati se na uređivanje"
 		},
 		"menu": {
-			"title": "Опције белешке",
-			"copyReference": "Копирај линк белешке",
-			"remindMe": "Подсети ме",
-			"history": "Историја",
-			"backLinks": "Повратни линкови",
-			"readonlyMode": "Режим само за читање",
-			"spellcheck": "Провера правописа",
-			"export": "Извези...",
-			"passwordProtection": "Заштита лозинком...",
-			"disableSync": "Искључи синхронизацију",
-			"moveToArchive": "Премести у архиву",
-			"removeFromArchive": "Уклони из архиве",
-			"deleteToBin": "Обриши у корпу",
-			"deletePermanently": "Трајно обриши",
-			"restoreFromBin": "Врати из корпе"
+			"title": "Opcije beleške",
+			"copyReference": "Kopiraj link beleške",
+			"remindMe": "Podseti me",
+			"history": "Istorija",
+			"backLinks": "Povratne veze",
+			"readonlyMode": "Režim za čitanje",
+			"spellcheck": "Provera pravopisa",
+			"export": "Izvezi...",
+			"passwordProtection": "Zaštita lozinkom...",
+			"disableSync": "Isključi sinhronizaciju",
+			"moveToArchive": "Prebaci u arhivu",
+			"removeFromArchive": "Ukloni iz arhive",
+			"deleteToBin": "Prebaci u kantu",
+			"deletePermanently": "Obriši trajno",
+			"restoreFromBin": "Vrati iz kante"
 		},
 		"version": {
-			"chars": "{{count}} карактера",
+			"chars": "{{count}} karaktera",
 			"apply": {
-				"title": "Примени верзију",
-				"readonlyTitle": "Верзија се не може применити на белешку само за читање"
+				"title": "Primeni verziju",
+				"readonlyTitle": "Verzija se ne može primeniti na belešku u režimu čitanja"
 			},
 			"open": {
-				"title": "Отвори верзију"
+				"title": "Otvori verziju"
 			},
 			"delete": {
-				"title": "Обриши верзију"
+				"title": "Obriši verziju"
 			}
 		},
 		"versions": {
 			"saveVersion": {
-				"label": "Сачувај снимак",
-				"title": "Сачувајте тренутно стање белешке као нову верзију у историји"
+				"label": "Sačuvaj snimak",
+				"title": "Sačuvaj trenutno stanje ove beleške kao novu verziju u istoriji"
 			},
 			"deleteAll": {
-				"label": "Обриши све",
-				"title": "Трајно обришите све сачуване верзије ове белешке"
+				"label": "Obriši sve",
+				"title": "Trajno obriši sve sačuvane verzije ove beleške"
 			},
-			"dontRecord": "Не бележи историју за ову белешку",
-			"empty": "Ова белешка нема сачуваних верзија",
-			"loading": "Учитавање...",
+			"dontRecord": "Ne beleži istoriju za ovu belešku",
+			"empty": "Ova beleška nema sačuvanih verzija",
+			"loading": "Učitavanje...",
 			"confirmDeleteAll": {
-				"title": "Обриши све верзије белешке",
-				"description": "Ова радња ће трајно обрисати све верзије белешке.",
-				"confirm": "Да ли сте сигурни?",
-				"action": "Примени"
+				"title": "Obriši sve verzije beleške",
+				"description": "Ova radnja će trajno obrisati sve verzije beleške.",
+				"confirm": "Da li ste sigurni?",
+				"action": "Primeni"
 			},
 			"confirmApply": {
-				"title": "Примени верзију белешке",
-				"description": "Управо примењујете верзију белешке {{version}}.",
-				"warning": "Ова радња ће заменити тренутни садржај белешке текстом изабраног снимка. Да ли сте сигурни?",
-				"apply": "Примени",
-				"preview": "Преглед"
+				"title": "Primeni verziju beleške",
+				"description": "Želite da primenite verziju {{version}} beleške.",
+				"warning": "Ova radnja će zameniti trenutne podatke izabraniim snimkom. Da li ste sigurni?",
+				"apply": "Primeni",
+				"preview": "Pregled"
 			},
 			"confirmDelete": {
-				"title": "Обриши верзију белешке",
-				"description": "Управо бришете верзију белешке {{version}}.",
-				"warning": "Ова радња ће неповратно обрисати верзију белешке. Да ли сте сигурни?",
-				"delete": "Обриши",
-				"preview": "Преглед"
+				"title": "Obriši verziju beleške",
+				"description": "Želite da obrišete verziju {{version}} beleške.",
+				"warning": "Ova radnja će trajno obrisati verziju beleške. Da li ste sigurni?",
+				"delete": "Obriši",
+				"preview": "Pregled"
 			}
 		},
 		"sidebar": {
-			"closePanel": "Затвори панел",
+			"closePanel": "Zatvori panel",
 			"tabs": {
-				"history": "Верзије белешке",
-				"backLinks": "Повратни линкови",
-				"files": "Приложени фајлови"
+				"history": "Verzije beleške",
+				"backLinks": "Povratne veze",
+				"files": "Priložene datoteke"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Да ли желите да преместите ову белешку у корпу?",
-			"confirmPermanentDeletion": "Да ли желите да трајно обришете ову белешку?"
+			"confirmPermanentDeletion": "Da li želite trajno da obrišete ovu belešku?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Да ли сте сигурни да желите да отпремите {{filesCount}} фајлова (укупно {{size}})?"
+		"confirmLargeUpload": "Da li ste sigurni da želite da otpremite {{filesCount}} datoteka (ukupno {{size}})?"
 	},
 	"notesList": {
 		"search": {
-			"placeholder": "Претрага..."
+			"placeholder": "Pretraži..."
 		},
-		"filterBy": "Филтрирај по",
-		"empty": "Овде још нема белешки. <create>Креирајте белешку</create>"
+		"filterBy": "Filtriraj po",
+		"empty": "Još nema beleški. <create>Kreiraj belešku</create>"
 	},
 	"notesView": {
-		"allNotes": "Све белешке",
-		"favorites": "Омиљене белешке",
-		"archived": "Архивиране белешке",
-		"deleted": "Обрисане белешке"
+		"allNotes": "Sve beleške",
+		"favorites": "Omiljene beleške",
+		"archived": "Arhivirane beleške",
+		"deleted": "Obrisane beleške"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Изаберите белешку за читање или уређивање"
+			"placeholder": "Izaberi belešku za čitanje ili uređivanje"
 		}
 	},
 	"activityBar": {
-		"newNote": "Нова белешка",
-		"files": "Фајлови",
-		"reminders": "Подсетници",
-		"extensions": "Додаци",
-		"inbox": "Пријемно",
-		"publishNotes": "Објави белешке",
-		"lockVault": "Закључај трезор",
-		"globalSettings": "Општа подешавања"
+		"newNote": "Nova beleška",
+		"files": "Datoteke",
+		"reminders": "Podsetnici",
+		"extensions": "Ekstenzije",
+		"inbox": "Primljeno",
+		"publishNotes": "Objavljene beleške",
+		"lockVault": "Zaključaj skladište",
+		"globalSettings": "Globalna podešavanja"
 	},
 	"tabBar": {
-		"closeTab": "Затвори картицу"
+		"closeTab": "Zatvori karticu"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Кликните да уметнете наслов нивоа {{level}}. Отворите контекстни мени за друге опције",
-			"level": "Ниво наслова {{level}}"
+			"insertTitle": "Klikni za umetanje naslova nivoa {{level}}. Otvori meni za druge opcije",
+			"level": "Nivo naslova {{level}}"
 		},
-		"bold": "Укључи/искључи подебљан текст",
-		"italic": "Укључи/искључи курзив",
-		"strikethrough": "Укључи/искључи прецртан текст",
-		"unorderedList": "Уметни или укључи ненумерисану листу",
-		"checkboxList": "Уметни или укључи листу са квачицама",
-		"orderedList": "Уметни или укључи нумерисану листу",
-		"codeBlock": "Уметни или обмотај текст блоком кода",
-		"quoteBlock": "Уметни или обмотај текст блоком цитата",
-		"insertDate": "Уметни датум",
-		"insertPageBreak": "Уметни прелом странице",
-		"insertFile": "Уметни фајл",
+		"bold": "Podebljaj tekst",
+		"italic": "Izdvajaj tekst kurzivom",
+		"strikethrough": "Prekriži tekst",
+		"unorderedList": "Lista bez brojeva",
+		"checkboxList": "Lista sa poljima za potvrdu",
+		"orderedList": "Numerisana lista",
+		"codeBlock": "Blok koda",
+		"quoteBlock": "Citirani tekst",
+		"insertDate": "Umetni datum",
+		"insertPageBreak": "Ubaci prelom stranice",
+		"insertFile": "Umetni datoteku",
 		"image": {
-			"buttonTitle": "Уметни слику",
-			"dialogTitle": "Додај слику",
-			"dialogDescription": "Слика ће бити уметнута на позицији курсора.",
+			"buttonTitle": "Umetni sliku",
+			"dialogTitle": "Dodaj sliku",
+			"dialogDescription": "Slika će biti umetnuta na mestu kursora.",
 			"field": {
 				"url": {
-					"label": "URL слике",
-					"placeholder": "нпр. https://example.com/image.png"
+					"label": "URL slike",
+					"placeholder": "npr. https://primer.com/slika.png"
 				},
 				"altText": {
-					"label": "Алтернативни текст слике (опционо)",
-					"placeholder": "Кратак опис слике"
+					"label": "Opis slike (opciono)",
+					"placeholder": "Kratak opis slike"
 				}
 			},
 			"actions": {
-				"add": "Додај",
-				"cancel": "Откажи"
+				"add": "Dodaj",
+				"cancel": "Otkaži"
 			}
 		},
 		"link": {
-			"buttonTitle": "Уметни линк",
-			"dialogTitle": "Додај линк",
-			"dialogDescription": "Означени текст постаје линк, или ће линк бити додат на позицији курсора ако ништа није означено.",
+			"buttonTitle": "Umetni link",
+			"dialogTitle": "Dodaj link",
+			"dialogDescription": "Izabrani tekst postaje link, ili će link biti dodat na mesto kursora.",
 			"field": {
 				"url": {
-					"label": "URL линка",
-					"placeholder": "нпр. https://example.com"
+					"label": "URL linka",
+					"placeholder": "npr. https://primer.com"
 				}
 			},
 			"actions": {
-				"add": "Додај",
-				"cancel": "Откажи"
+				"add": "Dodaj",
+				"cancel": "Otkaži"
 			}
 		}
 	},
 	"image": {
-		"loading": "Учитавање слике",
+		"loading": "Učitavanje slike",
 		"brokenImage": "Slika se ne može učitati"
 	},
 	"notifications": {
-		"title": "Обавештења"
+		"title": "Obaveštenja"
 	},
 	"updates": {
 		"appUpdate": {
-			"title": "Ажурирање апликације",
-			"reminderLater": "Подсетник ће бити приказан за недељу дана"
+			"title": "Ažuriranje aplikacije",
+			"reminderLater": "Podsetnik će se ponoviti za nedelju dana"
 		},
 		"newVersion": {
-			"title": "Нова верзија је доступна",
-			"body": "Нова верзија је спремна. Ажурирајте да бисте добили најновија побољшања и исправке.",
-			"download": "Преузми нову верзију",
-			"ignore": "Игнориши"
+			"title": "Dostupna je nova verzija",
+			"body": "Nova verzija je spremna. Ažuriraj aplikaciju za najnovija poboljšanja i ispravke.",
+			"download": "Preuzmi novu verziju",
+			"ignore": "Ignoriši"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
-			"title": "Својства слике",
-			"urlLabel": "URL слике",
-			"altLabel": "Алтернативни текст слике"
+			"title": "Svojstva slike",
+			"urlLabel": "URL slike",
+			"altLabel": "Opis slike"
 		},
 		"linkProperties": {
-			"title": "Својства линка",
-			"urlLabel": "URL линка"
+			"title": "Svojstva linka",
+			"urlLabel": "URL linka"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Кликните да сачувате измене на диск",
-			"saving": "Чување измена..."
+			"title": "Klikni da sačuvaš izmene",
+			"saving": "Čuvanje izmena..."
 		},
-		"changeVault": "Промени трезор",
-		"history": "Историја",
-		"notifications": "Обавештења"
+		"changeVault": "Promeni skladište",
+		"history": "Istorija",
+		"notifications": "Obaveštenja"
 	}
 }

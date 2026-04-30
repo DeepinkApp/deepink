@@ -18,16 +18,16 @@
 		"quit": "Çıkış"
 	},
 	"note": {
-		"export": "Dışa Aktar…",
-		"duplicate": "Çoğalt",
+		"export": "Dışa Aktar...",
+		"duplicate": "Kopyasını Oluştur",
 		"copyMarkdownLink": "Markdown bağlantısını kopyala",
 		"deletePermanently": "Kalıcı olarak sil",
 		"restoreFromBin": "Çöp kutusundan geri yükle",
 		"deleteToBin": "Çöp kutusuna taşı"
 	},
 	"tag": {
-		"addNestedTag": "Alt etiket oluştur…",
-		"edit": "Düzenle…",
+		"addNestedTag": "Etiket hiyerarşisi oluştur...",
+		"edit": "Düzenle...",
 		"delete": "Sil"
 	}
 }

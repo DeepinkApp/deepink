@@ -1,10 +1,10 @@
 {
 	"window": {
-		"title": "환경설정"
+		"title": "설정"
 	},
 	"tabs": {
 		"general": "일반",
-		"appearance": "모양",
+		"appearance": "화면 설정",
 		"hotkeys": "단축키",
 		"vault": "보관함",
 		"workspace": "워크스페이스",
@@ -13,18 +13,18 @@
 	},
 	"general": {
 		"title": "일반 설정",
-		"subtitle": "앱의 전반적인 환경설정을 관리합니다.",
+		"subtitle": "앱의 전반적인 환경 설정을 관리합니다.",
 		"version": {
 			"title": "버전",
 			"checkForUpdates": "업데이트 확인",
-			"upToDate": "최신 버전입니다",
-			"newVersionAvailable": "새 버전 <bold>{{version}}</bold>을 사용할 수 있습니다.",
+			"upToDate": "최신 버전을 사용 중입니다",
+			"newVersionAvailable": "새 버전 <bold>{{version}}</bold>을(를) 사용할 수 있습니다.",
 			"downloadLatest": "다운로드",
-			"downloadDescription": "최신 버전을 다운로드하여 새로운 기능과 개선 사항을 확인하세요."
+			"downloadDescription": "새로운 기능과 개선 사항이 포함된 최신 버전을 다운로드합니다."
 		},
 		"autoCheckUpdates": {
-			"label": "자동 업데이트 확인",
-			"description": "앱이 주기적으로 업데이트를 확인하고 새 버전이 있으면 알려줍니다."
+			"label": "업데이트 자동 확인",
+			"description": "앱이 주기적으로 업데이트를 확인하고 새 버전이 있으면 알림을 보냅니다."
 		},
 		"language": {
 			"title": "언어",
@@ -32,18 +32,18 @@
 		},
 		"notifications": {
 			"title": "알림",
-			"description": "시스템 알림은 리마인더에만 사용됩니다. 비활성화하면 리마인더가 앱 내 알림 목록에만 표시됩니다.",
+			"description": "시스템 알림은 리마인더 용도로만 사용됩니다. 비활성화하면 리마인더는 앱 내 알림 목록에만 표시됩니다.",
 			"useSystem": "시스템 알림 사용"
 		},
 		"vaultLock": {
 			"groupTitle": "보관함 잠금",
 			"lockOnSystemLock": {
 				"label": "시스템 잠금 시 보관함 잠금",
-				"description": "화면 보호기가 시작되거나 기기가 절전 모드에 들어가면 보관함이 잠깁니다."
+				"description": "화면 보호기가 시작되거나 기기가 절전 모드에 진입하면 보관함이 잠깁니다."
 			},
 			"lockAfterIdle": {
-				"title": "유휴 시 보관함 잠금",
-				"description": "선택한 유휴 시간이 지나면 보관함이 잠깁니다.",
+				"title": "유휴 상태 시 보관함 잠금",
+				"description": "설정한 유휴 시간 이후에 보관함이 잠깁니다.",
 				"never": "잠그지 않음",
 				"minutes5": "5분 후",
 				"minutes10": "10분 후",
@@ -66,65 +66,65 @@
 		},
 		"accentColor": {
 			"title": "강조 색상",
-			"zenNotApplicable": "선택한 테마에는 강조 색상이 적용되지 않습니다."
+			"zenNotApplicable": "선택한 테마에는 강조 색상을 적용할 수 없습니다."
 		},
 		"zoomLevel": {
-			"title": "확대/축소",
-			"description": "모든 창의 기본 확대 수준을 조정합니다.\n시스템이 앱을 자동으로 배율 조정하지 않는 경우, 실제 화면 픽셀 비율(DPR)에 맞도록 확대 수준을 변경할 수 있습니다. 현재 화면 픽셀 비율은 {{dpr}}입니다.",
+			"title": "확대/축소 비율",
+			"description": "모든 창의 기본 확대/축소 비율을 조절합니다.\n시스템에서 앱 크기를 자동으로 조절하지 않는 경우, 디스플레이 픽셀 비율(DPR)에 맞게 조절할 수 있습니다. 현재 디스플레이 픽셀 비율은 {{dpr}}입니다.",
 			"apply": "적용",
 			"reset": "초기화",
 			"errors": {
-				"enterNumber": "확대/축소 값을 숫자로 입력하세요",
-				"tooSmall": "확대/축소는 {{min}}% 미만으로 설정할 수 없습니다",
-				"tooBig": "확대/축소는 {{max}}%를 초과할 수 없습니다"
+				"enterNumber": "확대/축소 비율을 설정하려면 숫자를 입력하세요",
+				"tooSmall": "확대/축소 비율은 {{min}}% 미만일 수 없습니다",
+				"tooBig": "확대/축소 비율은 {{max}}%를 초과할 수 없습니다"
 			}
 		}
 	},
 	"editor": {
-		"groupTitle": "편집기",
+		"groupTitle": "에디터",
 		"mode": {
-			"title": "편집기 모드"
+			"title": "에디터 모드"
 		},
 		"fontFamily": {
 			"title": "글꼴",
-			"description": "모든 편집기에서 사용할 글꼴을 설정합니다. 비워두면 기본 글꼴이 사용됩니다.",
+			"description": "모든 에디터에 사용할 글꼴을 설정합니다. 비워 두면 기본 글꼴이 사용됩니다.",
 			"placeholder": "글꼴 이름 입력"
 		},
 		"fontSize": {
 			"title": "글꼴 크기"
 		},
 		"lineHeight": {
-			"title": "줄 높이"
+			"title": "줄 간격"
 		},
 		"dateFormat": {
 			"title": "날짜 형식",
-			"description": "날짜 삽입 시 사용할 형식을 설정합니다. DD/MM/YYYY HH:mm:ss와 같은 표준 토큰 구문을 지원합니다.",
+			"description": "날짜를 입력할 때 사용할 형식을 설정합니다. DD/MM/YYYY HH:mm:ss와 같은 표준 토큰 형식을 지원합니다.",
 			"formatReference": "날짜 형식 참조",
 			"example": "예시"
 		},
 		"plainText": {
-			"groupTitle": "일반 텍스트 편집기",
+			"groupTitle": "텍스트 에디터",
 			"lineNumbers": "줄 번호 표시",
-			"miniMap": "미니맵 사용"
+			"miniMap": "미니맵 활성화"
 		}
 	},
 	"hotkeys": {
 		"blank": "없음",
 		"shortcuts": {
-			"createNote": "새 노트 만들기",
+			"createNote": "새 노트 생성",
 			"closeCurrentNote": "현재 노트 닫기",
-			"restoreClosedNote": "최근 닫은 노트 복원",
+			"restoreClosedNote": "최근에 닫은 노트 복구",
 			"focusNextNote": "다음 노트로 이동",
 			"focusPreviousNote": "이전 노트로 이동",
-			"toggleArchive": "현재 노트 보관 처리/해제",
-			"toggleBookmark": "현재 노트 북마크 추가/해제",
+			"toggleArchive": "노트 보관 처리",
+			"toggleBookmark": "노트 북마크 설정/해제",
 			"deleteNote": "현재 노트 삭제",
-			"restoreFromBin": "휴지통에서 현재 노트 복원",
-			"toggleHistory": "현재 노트 기록 표시/숨기기",
+			"restoreFromBin": "휴지통에서 노트 복구",
+			"toggleHistory": "노트 기록 표시/숨기기",
 			"focusSearch": "노트 검색",
 			"syncDatabase": "보관함을 디스크에 동기화",
 			"lockVault": "보관함 잠금",
-			"openSettings": "환경설정 열기"
+			"openSettings": "설정 열기"
 		}
 	},
 	"vault": {
@@ -133,7 +133,7 @@
 		},
 		"rememberPasswords": {
 			"label": "워크스페이스 비밀번호 기억",
-			"description": "워크스페이스 비밀번호가 마스터 키로 암호화되어 데이터베이스에 저장되며, 암호화된 워크스페이스를 비밀번호 입력 없이 자동으로 열 수 있습니다."
+			"description": "워크스페이스 비밀번호를 마스터 키로 암호화하여 저장합니다. 비밀번호 입력 없이 암호화된 워크스페이스를 자동으로 열 수 있습니다."
 		},
 		"filesAndData": {
 			"groupTitle": "파일 및 데이터",
@@ -144,7 +144,7 @@
 				"alwaysAsk": "항상 확인"
 			},
 			"deleteOrphaned": {
-				"label": "사용하지 않는 파일 삭제",
+				"label": "사용되지 않는 파일 삭제",
 				"description": "더 이상 사용되지 않는 파일을 삭제합니다."
 			}
 		},
@@ -162,8 +162,8 @@
 		"synchronization": {
 			"groupTitle": "동기화",
 			"enable": {
-				"label": "동기화 사용",
-				"description": "여러 기기에서 보관함을 동기화합니다. 모든 데이터는 기기를 떠나기 전에 암호화됩니다."
+				"label": "동기화 활성화",
+				"description": "기기 간에 보관함을 동기화합니다. 모든 데이터는 기기를 떠나기 전에 암호화됩니다."
 			},
 			"method": {
 				"title": "동기화 방식",
@@ -171,38 +171,38 @@
 				"server": "서버"
 			},
 			"directory": {
-				"title": "동기화 디렉토리",
-				"placeholder": "디렉토리 경로 입력"
+				"title": "동기화 디렉터리",
+				"placeholder": "디렉터리 경로 입력"
 			}
 		},
 		"snapshots": {
 			"groupTitle": "스냅샷",
 			"record": {
 				"label": "노트 스냅샷 기록",
-				"description": "활성화하면 노트가 변경될 때 내용의 스냅샷이 생성됩니다. 노트 기록 패널에서 개별 노트의 스냅샷 기록을 제어할 수 있습니다."
+				"description": "활성화하면 노트 내용이 변경될 때마다 스냅샷이 생성됩니다. 노트 기록 패널에서 노트별로 기록 여부를 설정할 수 있습니다."
 			},
 			"delay": {
-				"title": "스냅샷 저장 지연",
-				"description": "노트 편집 후 새 스냅샷을 저장하기까지 대기할 시간(초)입니다. 간격이 짧을수록 스냅샷이 자주 생성되며 보관함 크기가 커집니다."
+				"title": "스냅샷 생성 지연 시간",
+				"description": "노트 수정 후 새 스냅샷을 저장하기까지 대기하는 시간(초)입니다. 간격이 짧을수록 스냅샷이 더 자주 생성되며, 볼트 용량이 커질 수 있습니다."
 			}
 		},
 		"trashBin": {
 			"groupTitle": "휴지통",
 			"confirmDeletion": {
 				"label": "삭제 확인",
-				"description": "노트를 삭제하기 전에 확인합니다."
+				"description": "노트를 삭제하기 전에 확인 과정을 거칩니다."
 			},
 			"moveToBin": {
 				"label": "노트를 휴지통으로 이동",
-				"description": "노트를 영구 삭제하지 않고 휴지통으로 이동하여 나중에 복원할 수 있도록 합니다."
+				"description": "노트를 즉시 삭제하는 대신 휴지통으로 이동하여 나중에 복구할 수 있습니다."
 			},
 			"autoPurge": {
-				"label": "휴지통의 오래된 노트 영구 삭제",
-				"description": "휴지통으로 이동된 노트는 일정 시간이 지나면 영구 삭제됩니다."
+				"label": "휴지통의 오래된 노트 자동 삭제",
+				"description": "휴지통으로 이동한 노트가 일정 시간이 지나면 영구 삭제됩니다."
 			},
 			"purgeDelay": {
-				"title": "영구 삭제 기한",
-				"description": "휴지통에 있는 노트는 이동된 시점부터 지정된 일수가 지나면 영구 삭제됩니다.",
+				"title": "영구 삭제 지연 기간",
+				"description": "휴지통으로 이동한 시점부터 설정된 일수가 지나면 노트가 영구 삭제됩니다.",
 				"unit": "일"
 			}
 		}
@@ -210,40 +210,40 @@
 	"workspace": {
 		"name": {
 			"title": "워크스페이스 이름",
-			"update": "변경"
+			"update": "업데이트"
 		},
 		"newNoteTitle": {
 			"title": "새 노트 제목",
-			"description": "새 노트의 제목을 설정합니다. {date} 또는 {date:FORMAT}(예: {date:DD/MM/YYYY HH:mm}) 구문으로 날짜를 사용할 수 있습니다.",
+			"description": "새 노트의 제목 형식을 설정합니다. {date} 또는 {date:FORMAT} (예: {date:DD/MM/YYYY HH:mm}) 형식을 사용하여 날짜를 넣을 수 있습니다.",
 			"formatReference": "형식 참조",
 			"placeholder": "예: 노트 {date:DD/MM/YYYY HH:mm}",
 			"example": "예시"
 		},
 		"tagsForNewNote": {
-			"title": "새 노트에 태그 지정",
-			"none": "태그를 지정하지 않음",
+			"title": "새 노트에 적용할 태그",
+			"none": "태그 없음",
 			"selected": "선택한 태그와 동일"
 		},
 		"dangerousZone": {
 			"groupTitle": "위험 구역",
 			"delete": {
-				"label": "워크스페이스와 노트, 태그, 파일을 포함한 모든 관련 데이터 삭제",
+				"label": "워크스페이스 및 관련 데이터(노트, 태그, 파일 포함) 전체 삭제",
 				"action": "워크스페이스 삭제",
-				"cannotDeleteLast": "보관함의 마지막 워크스페이스는 삭제할 수 없습니다.",
-				"createAnother": "생성",
-				"createAnotherSuffix": "후 다른 워크스페이스를 먼저 만드세요."
+				"cannotDeleteLast": "볼트 내 마지막 워크스페이스는 삭제할 수 없습니다.",
+				"createAnother": "새로운",
+				"createAnotherSuffix": "워크스페이스를 먼저 생성해야 합니다."
 			},
-			"confirmDelete": "워크스페이스 \"{{name}}\"을(를) 삭제하려고 합니다. 정말 삭제하시겠습니까?\n\n계속하면 노트, 태그, 파일을 포함한 이 워크스페이스의 모든 데이터가 삭제됩니다."
+			"confirmDelete": "\"{{name}}\" 워크스페이스를 삭제하려고 합니다. 정말 삭제하시겠습니까?\n\n계속하면 이 워크스페이스와 관련된 모든 데이터(노트, 태그, 파일 포함)가 삭제됩니다."
 		}
 	},
 	"importExport": {
 		"importNotes": "노트 가져오기",
 		"exportNotes": "노트 내보내기",
-		"importFromZip": ".zip 아카이브에서 노트 가져오기",
-		"importFromDirectory": "Markdown 파일이 있는 디렉토리 가져오기",
+		"importFromZip": ".zip 압축 파일에서 노트 가져오기",
+		"importFromDirectory": "Markdown 파일이 포함된 디렉터리 가져오기",
 		"dropzone": {
-			"title": "Markdown 파일 또는 .zip 아카이브를 여기에 놓으세요",
-			"description": "파일을 드래그 앤 드롭하거나 클릭하여 선택하세요"
+			"title": "Markdown 파일 또는 .zip 파일을 드롭하여 가져오기",
+			"description": "파일을 이곳에 끌어다 놓거나 클릭하여 선택하세요"
 		},
 		"progress": "노트를 가져오는 중입니다. 단계: {{stage}} {{processed}}/{{total}}"
 	}

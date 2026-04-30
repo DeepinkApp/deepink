@@ -1,116 +1,116 @@
 {
 	"chooseVault": {
-		"title": "Wybierz sejf",
+		"title": "Wybierz schowek",
 		"actions": {
-			"createNew": "Utwórz nowy sejf"
+			"createNew": "Utwórz nowy schowek"
 		}
 	},
 	"creator": {
-		"title": "Utwórz sejf",
+		"title": "Utwórz schowek",
 		"field": {
 			"name": {
-				"label": "Nazwa sejfu",
-				"placeholder": "np. Mój sejf, Wspólny z Olą",
-				"random": "Losowa nazwa",
+				"label": "Nazwa schowka",
+				"placeholder": "np. Mój schowek, Współdzielone z Aleks",
+				"random": "Generuj losową nazwę",
 				"suggests": {
 					"0": "Marginalia",
 					"1": "Vellum",
-					"2": "Wyklejka",
+					"2": "Endpaper",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alkowa",
-					"6": "Półcień",
-					"7": "Korespondencja w świetle księżyca",
-					"8": "Wieczorna kartografia",
-					"9": "Latarnia i atrament",
+					"5": "Alcove",
+					"6": "Penumbra",
+					"7": "Księżycowa Korespondencja",
+					"8": "Wieczorna Kartografia",
+					"9": "Lampa i Atrament",
 					"10": "Archiwum przy świecach",
-					"11": "Rękopisy w bluszczu",
-					"12": "Cedrowe listy",
-					"13": "Skryptorium z palisandru",
-					"14": "Nieoprawiony kodeks",
-					"15": "Marginalia i szepty",
-					"16": "Wyznania na wyklejce",
-					"17": "Opatrzona cisza",
-					"18": "Kartografia cieni",
-					"19": "Zapamiętany pokój",
-					"20": "Niepodpisane listy",
-					"21": "Szeptane współrzędne",
-					"22": "Nieopowiedziany almanach",
-					"23": "Listy z wosku",
-					"24": "Niewidzialna biblioteka",
-					"25": "Niezbadane marginesy",
-					"26": "Cichy spisek",
-					"27": "Niedoręczona poczta",
-					"28": "Wiecznie zielone archiwum",
-					"29": "Papierowy księżyc",
-					"30": "Papierowy kwiat",
-					"31": "Nocny kwiat",
-					"32": "Miękki atlas",
-					"33": "Velour",
-					"34": "Kamień atramentowy",
+					"11": "Bluszczowe Manuskrypty",
+					"12": "Cedrowe Listy",
+					"13": "Skryptorium z Różanego Drewna",
+					"14": "Niewiązany Kodeks",
+					"15": "Marginalia i Szepty",
+					"16": "Wyznania na Marginesie",
+					"17": "Anotowana Cisza",
+					"18": "Kartografia Cieni",
+					"19": "Pokój Wspomnień",
+					"20": "Niepodpisane Listy",
+					"21": "Szeptane Współrzędne",
+					"22": "Niewypowiedziany Almanach",
+					"23": "Listy z Wosku",
+					"24": "Niewidzialna Biblioteka",
+					"25": "Nieodkryte Marginesy",
+					"26": "Cicha Konspiracja",
+					"27": "Niedostarczona Poczta",
+					"28": "Wieczyste Archiwum",
+					"29": "Papierowy Księżyc",
+					"30": "Papierowy Rozkwit",
+					"31": "Nocny Rozkwit",
+					"32": "Miękki Atlas",
+					"33": "Aksamit",
+					"34": "Kamień do Atramentu",
 					"35": "Cisza",
 					"36": "Cień",
-					"37": "Spokojny dryf",
-					"38": "Głęboka łąka",
-					"39": "Niepisana księga",
-					"40": "Cichy szkicownik",
-					"41": "Niewypowiedziane archiwum",
-					"42": "Dryfujący dziennik",
-					"43": "Kronika słonecznego wiatru",
+					"37": "Spokojny Dryf",
+					"38": "Głęboka Łąka",
+					"39": "Niezapisany Rejestr",
+					"40": "Cichy Szkicownik",
+					"41": "Niewypowiedziane Archiwum",
+					"42": "Dryfujący Dziennik",
+					"43": "Kronika Wiatru Słonecznego",
 					"44": "Cichy fiord",
 					"45": "Fragmenty wspomnień",
 					"46": "Cicha chwila",
-					"47": "Zniknięte minuty"
+					"47": "Ulotne minuty"
 				}
 			},
 			"password": {
-				"label": "Hasło szyfrowania",
+				"label": "Hasło szyfrujące",
 				"recommended": "(zalecane)",
 				"placeholder": "Wprowadź silne hasło",
-				"description": "Wszystkie dane w skarbcu będą szyfrowane za pomocą tego hasła"
+				"description": "Wszystkie dane w zasobnym schowku zostaną zaszyfrowane za pomocą tego hasła"
 			},
 			"algorithm": {
 				"label": "Algorytm szyfrowania"
 			}
 		},
 		"actions": {
-			"create": "Utwórz sejf",
+			"create": "Utwórz schowek",
 			"continueNoPassword": "Kontynuuj bez hasła",
 			"cancel": "Anuluj"
 		},
 		"noEncryptionDialog": {
-			"title": "Utwórz sejf bez szyfrowania",
-			"description": "Notatki i dane będą przechowywane jako zwykły tekst. Każda aplikacja lub osoba z dostępem do katalogu sejfu na dysku będzie mogła odczytać całą jego zawartość.",
+			"title": "Utwórz schowek bez szyfrowania",
+			"description": "Twoje notatki i dane będą przechowywane jako tekst jawny. Każda aplikacja lub osoba mająca dostęp do katalogu schowka na dysku będzie mogła odczytać całą jego zawartość.",
 			"actions": {
 				"confirm": "Kontynuuj bez szyfrowania",
 				"cancel": "Anuluj"
 			}
 		},
 		"errors": {
-			"nameRequired": "Podaj nazwę sejfu",
-			"passwordRequired": "Podaj hasło"
+			"nameRequired": "Wprowadź nazwę schowka",
+			"passwordRequired": "Wprowadź hasło"
 		},
 		"section": {
 			"advancedConfig": {
 				"label": "Zaawansowane opcje szyfrowania",
-				"description": "Skonfiguruj prymitywy szyfrowania, które chronią twoje zaszyfrowane miejsce — kaskadę szyfrów, parametry KDF i inne. Aby uzyskać pełny przegląd domyślnych ustawień i ich kompromisów, zobacz <encryption>jak twoje miejsce jest chronione</encryption>."
+				"description": "Skonfiguruj parametry szyfrowania chroniące Twój schowek — kaskadę szyfrów, parametry KDF i inne. Pełny opis ustawień domyślnych i ich wpływu na bezpieczeństwo znajdziesz w sekcji <encryption>jak chroniony jest Twój schowek</encryption>."
 			},
 			"kdf": {
-				"label": "Funkcja derivacji klucza",
-				"description": "Pomaga chronić słabe lub powtarzane hasła, spowalniając każdy atak i czyniąc go bardziej kosztownym. Podnieś te ustawienia dla silniejszej ochrony lub zachowaj domyślne ustawienia dla zrównoważonego doświadczenia.",
+				"label": "Funkcja pochodzenia klucza (KDF)",
+				"description": "Pomaga chronić słabe lub powtarzalne hasła, sprawiając, że każda próba odgadnięcia staje się wolniejsza i bardziej kosztowna. Zwiększ te ustawienia, aby uzyskać silniejszą ochronę, lub pozostaw domyślne dla zachowania płynności działania.",
 				"memory": {
-					"label": "Wykorzystanie pamięci",
-					"description": "Sprawia, że każde zgadnięcie hasła wykorzystuje więcej pamięci. Jest to szczególnie skuteczne przeciwko atakom na dużą skalę, ponieważ pamięć jest kosztowna i trudniejsza do efektywnego skalowania niż surowa obliczeniowa moc."
+					"label": "Zużycie pamięci",
+					"description": "Sprawia, że każda próba odgadnięcia hasła wymaga większej ilości pamięci. Jest to szczególnie skuteczne przeciwko atakom wielkoskalowym, ponieważ pamięć jest zasobem kosztownym i trudniejszym do efektywnego skalowania niż sama moc obliczeniowa."
 				},
 				"ops": {
 					"label": "Iteracje",
-					"description": "Powtarza pracę derivacyjną dla każdego zgadnięcia hasła. Zwiększa to koszt każdego zgadnięcia w głównie liniowy sposób: podwajając iteracje, w przybliżeniu podwajasz pracę zarówno dla atakujących, jak i dla Twojego urządzenia."
+					"description": "Powtarza proces generowania klucza przy każdej próbie odgadnięcia hasła. Zwiększa to koszt każdej próby w sposób niemal liniowy: podwojenie liczby iteracji w przybliżeniu podwaja nakład pracy zarówno dla atakującego, jak i Twojego urządzenia."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Odblokuj sejf",
+		"title": "Odblokuj schowek",
 		"field": {
 			"password": {
 				"placeholder": "Wprowadź hasło"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Odblokuj",
-			"changeVault": "Zmień sejf"
+			"changeVault": "Zmień schowek"
 		},
 		"errors": {
-			"cannotOpen": "Nie można otworzyć sejfu",
+			"cannotOpen": "Nie można otworzyć schowka",
 			"invalidPassword": "Nieprawidłowe hasło",
 			"passwordRequired": "Wprowadź hasło"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Nie udało się otworzyć sejfu",
-		"corrupted": "\"{{name}}\" wydaje się uszkodzony."
+		"failedToOpen": "Nie udało się otworzyć schowka",
+		"corrupted": "„{{name}}” wydaje się uszkodzony."
 	}
 }

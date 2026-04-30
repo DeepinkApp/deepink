@@ -5,10 +5,10 @@
 	"tabs": {
 		"general": "Allmänt",
 		"appearance": "Utseende",
-		"hotkeys": "Kortkommandon",
+		"hotkeys": "Snabbkommandon",
 		"vault": "Vault",
-		"workspace": "Arbetsyta",
-		"importExport": "Import & Export",
+		"workspace": "Workspace",
+		"importExport": "Importera & exportera",
 		"vaultSettingsGroup": "Vault-inställningar"
 	},
 	"general": {
@@ -18,13 +18,13 @@
 			"title": "Version",
 			"checkForUpdates": "Sök efter uppdateringar",
 			"upToDate": "Du har den senaste versionen",
-			"newVersionAvailable": "Ny version <bold>{{version}}</bold> är tillgänglig.",
-			"downloadLatest": "Ladda ned",
-			"downloadDescription": "senaste versionen för nya funktioner och förbättringar."
+			"newVersionAvailable": "En ny version <bold>{{version}}</bold> är tillgänglig.",
+			"downloadLatest": "Ladda ner",
+			"downloadDescription": "senaste versionen för att få nya funktioner och förbättringar."
 		},
 		"autoCheckUpdates": {
-			"label": "Sök automatiskt efter uppdateringar",
-			"description": "Appen söker regelbundet efter uppdateringar och meddelar dig om en ny version finns."
+			"label": "Automatiska uppdateringar",
+			"description": "Appen kontrollerar regelbundet efter uppdateringar och meddelar om en ny version finns tillgänglig."
 		},
 		"language": {
 			"title": "Språk",
@@ -32,98 +32,98 @@
 		},
 		"notifications": {
 			"title": "Aviseringar",
-			"description": "Systemaviseringar används bara för påminnelser. När de är inaktiverade visas påminnelser bara i appens aviseringslista.",
+			"description": "Systemaviseringar används endast för påminnelser. Om de inaktiveras visas påminnelser endast i appens aviseringar.",
 			"useSystem": "Använd systemaviseringar"
 		},
 		"vaultLock": {
-			"groupTitle": "Vault-lås",
+			"groupTitle": "Lås din Vault",
 			"lockOnSystemLock": {
-				"label": "Lås vault när systemet låses",
-				"description": "Vault låses när skärmsläckaren startar eller enheten går i viloläge."
+				"label": "Lås Vault vid systemlås",
+				"description": "Vault låses när skärmsläckaren startar eller när enheten går i viloläge."
 			},
 			"lockAfterIdle": {
-				"title": "Lås vault efter inaktivitet",
-				"description": "Vault låses efter vald tid av inaktivitet.",
-				"never": "Lås inte",
-				"minutes5": "efter 5 minuter",
-				"minutes10": "efter 10 minuter",
-				"minutes15": "efter 15 minuter",
-				"minutes30": "efter 30 minuter",
-				"hour1": "efter 1 timme",
-				"hours2": "efter 2 timmar",
-				"hours3": "efter 3 timmar",
-				"hours5": "efter 5 timmar"
+				"title": "Lås Vault efter inaktivitet",
+				"description": "Vault låses efter en vald tid av inaktivitet.",
+				"never": "Lås aldrig",
+				"minutes5": "i 5 minuter",
+				"minutes10": "i 10 minuter",
+				"minutes15": "i 15 minuter",
+				"minutes30": "i 30 minuter",
+				"hour1": "i 1 timme",
+				"hours2": "i 2 timmar",
+				"hours3": "i 3 timmar",
+				"hours5": "i 5 timmar"
 			}
 		}
 	},
 	"appearance": {
 		"theme": {
 			"title": "Tema",
-			"auto": "Auto",
+			"auto": "Automatiskt",
 			"dark": "Mörkt",
 			"light": "Ljust",
 			"zen": "Zen"
 		},
 		"accentColor": {
 			"title": "Accentfärg",
-			"zenNotApplicable": "Accentfärg gäller inte för det valda temat."
+			"zenNotApplicable": "Accentfärg kan inte användas med det valda temat."
 		},
 		"zoomLevel": {
 			"title": "Zoomnivå",
-			"description": "Justera standardzoomnivån för alla fönster.\nOm ditt system inte automatiskt anpassar appar kan du ändra zoomnivån för att passa den faktiska pixeldensiteten (DPR). Din pixeldensitet är {{dpr}}.",
-			"apply": "Tillämpa",
+			"description": "Justera standardzoom för alla fönster.\nOm ditt system inte skalar appar automatiskt kan du ändra zoomen för att passa skärmens upplösning. Din skärmupplösning är {{dpr}}.",
+			"apply": "Verkställ",
 			"reset": "Återställ",
 			"errors": {
-				"enterNumber": "Ange ett tal för att ställa in zoom",
-				"tooSmall": "Zoom kan inte vara mindre än {{min}} %",
-				"tooBig": "Zoom kan inte vara mer än {{max}} %"
+				"enterNumber": "Ange ett nummer för att ställa in zoom",
+				"tooSmall": "Zoom kan inte vara lägre än {{min}}%",
+				"tooBig": "Zoom kan inte vara högre än {{max}}%"
 			}
 		}
 	},
 	"editor": {
-		"groupTitle": "Redigerare",
+		"groupTitle": "Editor",
 		"mode": {
-			"title": "Redigeringsläge"
+			"title": "Editorns läge"
 		},
 		"fontFamily": {
 			"title": "Typsnitt",
-			"description": "Ange ett typsnitt för alla redigerare, eller lämna tomt för standardvalet.",
-			"placeholder": "Ange typsnittsnamn"
+			"description": "Välj ett typsnitt för alla editorer, eller lämna tomt för standardinställningar.",
+			"placeholder": "Ange typsnittets namn"
 		},
 		"fontSize": {
-			"title": "Teckenstorlek"
+			"title": "Textstorlek"
 		},
 		"lineHeight": {
-			"title": "Radhöjd"
+			"title": "Radavstånd"
 		},
 		"dateFormat": {
 			"title": "Datumformat",
-			"description": "Ange datumformatet som används vid infogning av datum. Stöder standardsyntax som DD/MM/YYYY HH:mm:ss.",
+			"description": "Ställ in datumformatet som används när du infogar datum. Stödjer standardsyntax som DD/MM/YYYY HH:mm:ss.",
 			"formatReference": "referens för datumformat",
 			"example": "Exempel"
 		},
 		"plainText": {
-			"groupTitle": "Redigerare för ren text",
+			"groupTitle": "Texteditor",
 			"lineNumbers": "Visa radnummer",
 			"miniMap": "Aktivera minikarta"
 		}
 	},
 	"hotkeys": {
-		"blank": "Tom",
+		"blank": "Ingen",
 		"shortcuts": {
-			"createNote": "Skapa ny anteckning",
+			"createNote": "Skapa en ny anteckning",
 			"closeCurrentNote": "Stäng aktiv anteckning",
 			"restoreClosedNote": "Återställ nyligen stängd anteckning",
 			"focusNextNote": "Gå till nästa öppna anteckning",
 			"focusPreviousNote": "Gå till föregående öppna anteckning",
 			"toggleArchive": "Flytta aktiv anteckning till/från arkiv",
-			"toggleBookmark": "Lägg till/ta bort bokmärke för aktiv anteckning",
+			"toggleBookmark": "Flytta aktiv anteckning till/från bokmärken",
 			"deleteNote": "Radera aktiv anteckning",
-			"restoreFromBin": "Återställ aktiv anteckning från papperskorgen",
+			"restoreFromBin": "Återställ anteckning från papperskorgen",
 			"toggleHistory": "Visa eller dölj historik för aktiv anteckning",
 			"focusSearch": "Sök anteckningar",
-			"syncDatabase": "Synka vault till disk",
-			"lockVault": "Lås vault",
+			"syncDatabase": "Synkronisera Vault till disk",
+			"lockVault": "Lås Vault",
 			"openSettings": "Öppna inställningar"
 		}
 	},
@@ -132,8 +132,8 @@
 			"title": "Vault-namn"
 		},
 		"rememberPasswords": {
-			"label": "Kom ihåg lösenord för arbetsytor",
-			"description": "Lösenord för arbetsytor krypteras med huvudnyckeln och sparas i databasen, så att krypterade arbetsytor öppnas automatiskt utan att du behöver ange lösenord."
+			"label": "Kom ihåg lösenord för workspaces",
+			"description": "Lösenord för workspaces krypteras med din huvudnyckel och sparas för att du automatiskt ska kunna öppna krypterade workspaces."
 		},
 		"filesAndData": {
 			"groupTitle": "Filer och data",
@@ -144,7 +144,7 @@
 				"alwaysAsk": "Fråga alltid"
 			},
 			"deleteOrphaned": {
-				"label": "Ta bort oanvända filer",
+				"label": "Radera oanvända filer",
 				"description": "Ta bort filer som inte längre används."
 			}
 		},
@@ -163,11 +163,11 @@
 			"groupTitle": "Synkronisering",
 			"enable": {
 				"label": "Aktivera synkronisering",
-				"description": "Håll din vault synkroniserad mellan enheter. All data krypteras innan den lämnar din enhet."
+				"description": "Håll din Vault synkroniserad mellan enheter. All data krypteras innan den lämnar din enhet."
 			},
 			"method": {
 				"title": "Synkroniseringsmetod",
-				"fileSystem": "Filsystem",
+				"fileSystem": "Filformat",
 				"server": "Server"
 			},
 			"directory": {
@@ -178,12 +178,12 @@
 		"snapshots": {
 			"groupTitle": "Ögonblicksbilder",
 			"record": {
-				"label": "Spara ögonblicksbilder av anteckningar",
-				"description": "När aktiverat skapas ögonblicksbilder av anteckningens innehåll vid ändringar. Du kan styra inspelningen per anteckning i historikpanelen."
+				"label": "Spara ögonblicksbilder",
+				"description": "När detta är aktiverat skapas ögonblicksbilder av anteckningens innehåll vid ändringar. Du kan styra detta för varje enskild anteckning i historikpanelen."
 			},
 			"delay": {
 				"title": "Fördröjning för ögonblicksbild",
-				"description": "Hur länge appen väntar efter en redigering innan en ny ögonblicksbild sparas, i sekunder. Kortare intervall ger fler ögonblicksbilder — och en större vault."
+				"description": "Antal sekunder som väntas efter en redigering innan en ny ögonblicksbild sparas. Kortare intervall ger fler bilder, men gör din vault större."
 			}
 		},
 		"trashBin": {
@@ -201,39 +201,39 @@
 				"description": "Anteckningar i papperskorgen raderas permanent efter en viss tid."
 			},
 			"purgeDelay": {
-				"title": "Tid innan permanent radering",
-				"description": "Anteckningar i papperskorgen raderas permanent efter detta antal dagar, räknat från när de flyttades dit.",
+				"title": "Fördröjning för permanent radering",
+				"description": "Anteckningar i papperskorgen raderas permanent efter detta antal dagar från det att de flyttades dit.",
 				"unit": "dagar"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "Namn på arbetsyta",
+			"title": "Namn på område",
 			"update": "Uppdatera"
 		},
 		"newNoteTitle": {
-			"title": "Titel för ny anteckning",
-			"description": "Ange titel för nya anteckningar. Du kan använda datum med syntaxen {date} eller {date:FORMAT}, t.ex. {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "formatreferens",
+			"title": "Titel för nya anteckningar",
+			"description": "Ange titel för nya anteckningar. Du kan använda datum via syntaxen {date} eller {date:FORMAT}, till exempel {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "referens för format",
 			"placeholder": "t.ex. Anteckning {date:DD/MM/YYYY HH:mm}",
 			"example": "Exempel"
 		},
 		"tagsForNewNote": {
-			"title": "Taggar för ny anteckning",
-			"none": "Ange inga taggar",
+			"title": "Taggar för nya anteckningar",
+			"none": "Inga taggar",
 			"selected": "Samma som vald tagg"
 		},
 		"dangerousZone": {
 			"groupTitle": "Riskzon",
 			"delete": {
-				"label": "Radera arbetsytan och all tillhörande data, inklusive anteckningar, taggar och filer",
-				"action": "Radera arbetsyta",
-				"cannotDeleteLast": "Det går inte att radera den sista arbetsytan i en vault.",
+				"label": "Radera område och all tillhörande data, inklusive anteckningar, taggar och filer",
+				"action": "Radera område",
+				"cannotDeleteLast": "Det går inte att radera det sista området i en vault.",
 				"createAnother": "Skapa",
-				"createAnotherSuffix": "en annan arbetsyta först."
+				"createAnotherSuffix": "ett annat område först."
 			},
-			"confirmDelete": "Du är på väg att radera arbetsytan \"{{name}}\". Är du säker?\n\nOm du fortsätter raderas all data kopplad till denna arbetsyta, inklusive anteckningar, taggar och filer."
+			"confirmDelete": "Du håller på att radera området \"{{name}}\". Är du säker på att du vill fortsätta?\n\nOm du fortsätter kommer all data kopplad till detta område att raderas, inklusive anteckningar, taggar och filer."
 		}
 	},
 	"importExport": {
@@ -242,9 +242,9 @@
 		"importFromZip": "Importera anteckningar från .zip-arkiv",
 		"importFromDirectory": "Importera mapp med Markdown-filer",
 		"dropzone": {
-			"title": "Släpp Markdown-filer eller .zip-arkiv för att importera",
-			"description": "Dra och släpp filer här, eller klicka för att välja filer"
+			"title": "Dra Markdown-filer eller .zip-arkiv hit för att importera",
+			"description": "Dra och släpp filer hit, eller klicka för att välja filer"
 		},
-		"progress": "Import av anteckningar pågår. Steg: {{stage}} {{processed}}/{{total}}"
+		"progress": "Importerar anteckningar. Steg: {{stage}} {{processed}}/{{total}}"
 	}
 }

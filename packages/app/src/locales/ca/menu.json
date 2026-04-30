@@ -3,31 +3,31 @@
 		"appMenu": "Aplicació",
 		"quit": "Sortir",
 		"edit": "Edita",
-		"undo": "Desfés",
-		"redo": "Refés",
-		"cut": "Retalla",
-		"copy": "Copia",
-		"paste": "Enganxa",
+		"undo": "Desfà",
+		"redo": "Refà",
+		"cut": "Tallar",
+		"copy": "Copiar",
+		"paste": "Enganxer",
 		"selectAll": "Selecciona-ho tot",
 		"help": "Ajuda",
-		"toggleDevTools": "Eines de desenvolupament",
+		"toggleDevTools": "Obre eines de desenvolupament",
 		"about": "Sobre l'aplicació"
 	},
 	"tray": {
-		"open": "Obrir notes",
+		"open": "Obre les notes",
 		"quit": "Sortir"
 	},
 	"note": {
-		"export": "Exporta…",
-		"duplicate": "Duplica",
-		"copyMarkdownLink": "Copia l'enllaç Markdown",
-		"deletePermanently": "Elimina permanentment",
-		"restoreFromBin": "Restaura de la paperera",
-		"deleteToBin": "Mou a la paperera"
+		"export": "Exportar...",
+		"duplicate": "Duplicar",
+		"copyMarkdownLink": "Copiar enllaç Markdown",
+		"deletePermanently": "Eliminar permanentment",
+		"restoreFromBin": "Restaurar de la paperera",
+		"deleteToBin": "Moure a la paperera"
 	},
 	"tag": {
-		"addNestedTag": "Crea una subetiqueta…",
-		"edit": "Edita…",
-		"delete": "Suprimeix"
+		"addNestedTag": "Crear jerarquia de etiquetes...",
+		"edit": "Edita...",
+		"delete": "Elimina"
 	}
 }

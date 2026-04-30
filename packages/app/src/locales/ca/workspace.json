@@ -2,15 +2,15 @@
 	"panel": {
 		"tags": {
 			"label": "Etiquetes",
-			"empty": "Crea etiquetes per organitzar les teves notes. Agrupa-les en jerarquies flexibles.",
+			"empty": "Crea etiquetes per organitzar les teves notes. Utilitza la jerarquia per tenir més flexibilitat.",
 			"actions": {
-				"add": "Afegir etiqueta"
+				"add": "Afegeix etiqueta"
 			}
 		},
 		"workspaces": {
 			"label": "Espais",
 			"actions": {
-				"add": "Afegir espai"
+				"add": "Afegeix espai"
 			}
 		}
 	}

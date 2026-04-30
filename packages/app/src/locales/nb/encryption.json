@@ -1,8 +1,8 @@
 {
 	"password": {
 		"score": {
-			"good": "Bra passord: {{length}} tegn, {{entropy}} biter entropi",
-			"bad": "Svakt passord: {{length}} tegn, {{entropy}} biter entropi"
+			"good": "Godt passord: {{length}} tegn, {{entropy}} bits entropi",
+			"bad": "Svakt passord: {{length}} tegn, {{entropy}} bits entropi"
 		}
 	}
 }

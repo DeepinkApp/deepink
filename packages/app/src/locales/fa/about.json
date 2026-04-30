@@ -1,6 +1,6 @@
 {
 	"version": "نسخه {{version}}",
-	"environment": "کتابخانه‌های استفاده شده",
+	"environment": "کتابخانه‌های مورد استفاده",
 	"links": {
 		"label": "لینک‌ها",
 		"reportBug": "گزارش خطا"

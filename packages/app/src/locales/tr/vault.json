@@ -1,6 +1,6 @@
 {
 	"chooseVault": {
-		"title": "Kasa seçin",
+		"title": "Bir kasa seçin",
 		"actions": {
 			"createNew": "Yeni kasa oluştur"
 		}
@@ -10,64 +10,64 @@
 		"field": {
 			"name": {
 				"label": "Kasa adı",
-				"placeholder": "ör. Kişisel Kasam, Alex ile Paylaşılan",
-				"random": "Rastgele ad oluştur",
+				"placeholder": "Örn: Kişisel Kasam, Alex ile Paylaşılan",
+				"random": "Rastgele bir isim oluştur",
 				"suggests": {
-					"0": "Marginalia",
-					"1": "Vellum",
-					"2": "Endpaper",
+					"0": "Kenar Notları",
+					"1": "Parşömen",
+					"2": "Kitap Ayracı",
 					"3": "Verso",
-					"4": "Memento",
-					"5": "Alcove",
-					"6": "Penumbra",
-					"7": "Moonlit Correspondence",
-					"8": "Evening Cartography",
-					"9": "Lantern & Ink",
-					"10": "Candlelit Archive",
-					"11": "Climbing Ivy Manuscripts",
-					"12": "Cedarwood Letters",
-					"13": "Rosewood Scriptorium",
-					"14": "The Unbound Codex",
-					"15": "Marginalia & Murmurs",
-					"16": "Endpaper Confessions",
-					"17": "The Annotated Silence",
-					"18": "Shadow Cartography",
-					"19": "The Remembered Room",
-					"20": "The Unsigned Letters",
-					"21": "Whispered Coordinates",
-					"22": "The Untold Almanac",
-					"23": "Lost Wax Letters",
-					"24": "The Invisible Library",
-					"25": "Uncharted Margins",
-					"26": "The Quiet Conspiracy",
-					"27": "The Undelivered Post",
-					"28": "Evergreen Archive",
-					"29": "Paper Moon",
-					"30": "Paper Bloom",
-					"31": "Night Bloom",
-					"32": "Soft Atlas",
-					"33": "Velour",
-					"34": "Inkstone",
-					"35": "Hush",
-					"36": "Shade",
-					"37": "Calm Drift",
-					"38": "Deep Meadow",
-					"39": "Unwritten Ledger",
-					"40": "Silent Draftbook",
-					"41": "Unspoken Archive",
-					"42": "Drifting Journal",
-					"43": "Solar Wind Chronicle",
-					"44": "Quiet Fjord",
-					"45": "Memory Fragments",
-					"46": "Silent Moment",
-					"47": "Vanished Minutes"
+					"4": "Hatıra",
+					"5": "Niş",
+					"6": "Yarı Gölge",
+					"7": "Ay Işığı Yazışmaları",
+					"8": "Akşam Kartografisi",
+					"9": "Fener ve Mürekkep",
+					"10": "Mum Işığı Arşivi",
+					"11": "Sarmaşık Yazmaları",
+					"12": "Sedir Ağacı Mektupları",
+					"13": "Gül Ağacı Yazıhanesi",
+					"14": "Sınırsız Kodeks",
+					"15": "Notlar ve Fısıltılar",
+					"16": "Sayfa Arası İtiraflar",
+					"17": "İşaretlenmiş Sessizlik",
+					"18": "Gölge Kartografisi",
+					"19": "Hatırlanan Oda",
+					"20": "İmzasız Mektuplar",
+					"21": "Fısıltılı Koordinatlar",
+					"22": "Anlatılmamış Almanak",
+					"23": "Mühürlü Mektuplar",
+					"24": "Görünmez Kütüphane",
+					"25": "Keşfedilmemiş Kenarlar",
+					"26": "Sessiz Komplo",
+					"27": "Ulaşmamış Posta",
+					"28": "Ölümsüz Arşiv",
+					"29": "Kağıttan Ay",
+					"30": "Kağıttan Çiçek",
+					"31": "Gece Çiçeği",
+					"32": "Yumuşak Atlas",
+					"33": "Kadife",
+					"34": "Mürekkep Taşı",
+					"35": "Sessizlik",
+					"36": "Gölge",
+					"37": "Sakin Akış",
+					"38": "Derin Çayır",
+					"39": "Yazılmamış Defter",
+					"40": "Sessiz Taslak",
+					"41": "Söylenmemiş Arşiv",
+					"42": "Süzülen Günlük",
+					"43": "Güneş Rüzgarı Güncesi",
+					"44": "Sessiz Fiyort",
+					"45": "Hafıza Parçaları",
+					"46": "Sessiz An",
+					"47": "Kaybolan Dakikalar"
 				}
 			},
 			"password": {
 				"label": "Şifreleme parolası",
-				"recommended": "(önerilir)",
+				"recommended": "(önerilen)",
 				"placeholder": "Güçlü bir parola girin",
-				"description": "Vault'taki tüm veriler bu şifre ile şifrelenecektir."
+				"description": "Kasadaki tüm veriler bu parola ile şifrelenecektir"
 			},
 			"algorithm": {
 				"label": "Şifreleme algoritması"
@@ -75,36 +75,36 @@
 		},
 		"actions": {
 			"create": "Kasa oluştur",
-			"continueNoPassword": "Parolasız devam et",
+			"continueNoPassword": "Parola olmadan devam et",
 			"cancel": "İptal"
 		},
 		"noEncryptionDialog": {
-			"title": "Şifrelenmemiş kasa oluştur",
-			"description": "Notlarınız ve verileriniz düz metin olarak saklanır. Diskteki kasa dizinine erişimi olan herhangi bir uygulama veya kişi içeriğin tamamını okuyabilir.",
+			"title": "Şifreleme olmadan kasa oluştur",
+			"description": "Notlarınız ve verileriniz düz metin olarak saklanacaktır. Disk üzerindeki kasa dizinine erişimi olan her uygulama veya kişi içindeki her şeyi okuyabilir.",
 			"actions": {
 				"confirm": "Şifreleme olmadan devam et",
 				"cancel": "İptal"
 			}
 		},
 		"errors": {
-			"nameRequired": "Kasa adı girin",
-			"passwordRequired": "Parolayı girin"
+			"nameRequired": "Lütfen bir kasa adı girin",
+			"passwordRequired": "Lütfen parolayı girin"
 		},
 		"section": {
 			"advancedConfig": {
 				"label": "Gelişmiş şifreleme seçenekleri",
-				"description": "Açık alanını koruyan şifreleme ilkelerini ayarlayın - şifreleme kaskadı, KDF parametreleri ve daha fazlası. Varsayılanların ve bunların ticari değerlerinin tam ayrıntılı incelemesi için <encryption>kasasıınızın nasıl korunduğunu</encryption> görün."
+				"description": "Kasanızı koruyan şifreleme bileşenlerini yapılandırın — şifreleme zinciri, KDF parametreleri ve daha fazlası. Varsayılan ayarlar ve kullanım farkları hakkında bilgi için <encryption>kasanızın nasıl korunduğuna</encryption> göz atın."
 			},
 			"kdf": {
 				"label": "Anahtar türetme fonksiyonu",
-				"description": "Her tahmini yavaş ve maliyetli hale getirerek zayıf veya tekrar kullanılan şifreleri korumaya yardımcı olur. Daha güçlü koruma için bu ayarları artırın veya dengeli bir deneyim için varsayılanları koruyun.",
+				"description": "Her denemeyi daha yavaş ve maliyetli hale getirerek zayıf veya tekrar kullanılan parolaları korumaya yardımcı olur. Daha güçlü koruma için bu ayarları artırın veya dengeli bir deneyim için varsayılanları kullanın.",
 				"memory": {
 					"label": "Bellek kullanımı",
-					"description": "Her şifre tahmininin daha fazla bellek kullanmasını sağlar. Bu, büyük ölçekli saldırılara karşı özellikle etkilidir çünkü bellek, ham hesaplamalardan daha maliyetli ve verimli bir şekilde ölçeklenmesi zor bir kaynaktır."
+					"description": "Her parola denemesinin daha fazla bellek kullanmasını sağlar. Bellek maliyetli ve ölçeklendirilmesi işlem gücüne göre daha zor olduğundan, bu yöntem büyük ölçekli saldırılara karşı özellikle etkilidir."
 				},
 				"ops": {
-					"label": "Tekrarlar",
-					"description": "Her şifre tahmini için türetim işlemini tekrar eder. Bu, her tahminin maliyetini genellikle doğrusal bir şekilde artırır: tekrarları iki katına çıkarmak, hem saldırganlar hem de cihazınız için çalışmayı yaklaşık olarak iki katına çıkarır."
+					"label": "Yinelemeler",
+					"description": "Her parola denemesi için türetme işlemini tekrarlar. Bu, her denemenin maliyetini doğrusal bir şekilde artırır: yineleme sayısını iki katına çıkarmak, hem saldırganlar hem de cihazınız için iş yükünü kabaca iki katına çıkarır."
 				}
 			}
 		}
@@ -113,17 +113,17 @@
 		"title": "Kasayı aç",
 		"field": {
 			"password": {
-				"placeholder": "Parolayı girin"
+				"placeholder": "Parola girin"
 			}
 		},
 		"actions": {
-			"unlock": "Kilidi Aç",
-			"changeVault": "Kasa değiştir"
+			"unlock": "Kilidi aç",
+			"changeVault": "Kasayı değiştir"
 		},
 		"errors": {
 			"cannotOpen": "Kasa açılamıyor",
 			"invalidPassword": "Geçersiz parola",
-			"passwordRequired": "Parolayı girin"
+			"passwordRequired": "Parola girin"
 		}
 	},
 	"errors": {

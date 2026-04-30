@@ -6,77 +6,77 @@
 		"general": "Obecné",
 		"appearance": "Vzhled",
 		"hotkeys": "Klávesové zkratky",
-		"vault": "Trezor",
+		"vault": "Úschovna",
 		"workspace": "Prostor",
-		"importExport": "Import & Export",
-		"vaultSettingsGroup": "Nastavení trezoru"
+		"importExport": "Import a export",
+		"vaultSettingsGroup": "Nastavení úschovny"
 	},
 	"general": {
-		"title": "Obecná nastavení",
+		"title": "Obecné nastavení",
 		"subtitle": "Spravujte své celkové preference v aplikaci.",
 		"version": {
 			"title": "Verze",
 			"checkForUpdates": "Zkontrolovat aktualizace",
-			"upToDate": "Jste na nejnovější verzi",
-			"newVersionAvailable": "Nová verze <bold>{{version}}</bold> je k dispozici.",
+			"upToDate": "Máte nejnovější verzi",
+			"newVersionAvailable": "Je dostupná nová verze <bold>{{version}}</bold>.",
 			"downloadLatest": "Stáhnout",
-			"downloadDescription": "nejnovější verzi pro získání nových funkcí a vylepšení."
+			"downloadDescription": "nejnovější verzi pro nové funkce a vylepšení."
 		},
 		"autoCheckUpdates": {
 			"label": "Automatická kontrola aktualizací",
-			"description": "Aplikace bude pravidelně kontrolovat aktualizace a upozorní, pokud je k dispozici nová verze."
+			"description": "Aplikace bude periodicky kontrolovat aktualizace a upozorní vás, pokud bude dostupná nová verze."
 		},
 		"language": {
 			"title": "Jazyk",
-			"description": "Změňte jazyk zobrazení."
+			"description": "Změna jazyka zobrazení."
 		},
 		"notifications": {
-			"title": "Oznámení",
-			"description": "Systémová oznámení budou používána pouze pro připomínky. Při vypnutí se připomínky zobrazí pouze v seznamu oznámení aplikace.",
-			"useSystem": "Použít systémová oznámení"
+			"title": "Upozornění",
+			"description": "Systémová upozornění se budou používat pouze pro připomínky. Pokud jsou vypnutá, připomínky se zobrazí pouze v seznamu upozornění v aplikaci.",
+			"useSystem": "Používat systémová upozornění"
 		},
 		"vaultLock": {
-			"groupTitle": "Zamčení trezoru",
+			"groupTitle": "Uzamčení úschovny",
 			"lockOnSystemLock": {
-				"label": "Zamknout trezor při zamknutí systému",
-				"description": "Trezor bude zamčen, když se spustí spořič obrazovky nebo když zařízení přejde do režimu spánku."
+				"label": "Uzamknout úschovnu při uzamčení systému",
+				"description": "Úschovna se uzamkne při spuštění šetřiče obrazovky nebo při přechodu zařízení do režimu spánku."
 			},
 			"lockAfterIdle": {
-				"title": "Zamknout trezor po nečinnosti",
-				"description": "Trezor bude zamčen po vybraném čase nečinnosti.",
-				"never": "Nezamykat",
-				"minutes5": "na 5 minut",
-				"minutes10": "na 10 minut",
-				"minutes15": "na 15 minut",
-				"minutes30": "na 30 minut",
-				"hour1": "na 1 hodinu",
-				"hours2": "na 2 hodiny",
-				"hours3": "na 3 hodiny",
-				"hours5": "na 5 hodin"
+				"title": "Uzamknout úschovnu po nečinnosti",
+				"description": "Úschovna se uzamkne po zvolené době nečinnosti.",
+				"never": "Neuzamýkat",
+				"minutes5": "po 5 minutách",
+				"minutes10": "po 10 minutách",
+				"minutes15": "po 15 minutách",
+				"minutes30": "po 30 minutách",
+				"hour1": "po 1 hodině",
+				"hours2": "po 2 hodinách",
+				"hours3": "po 3 hodinách",
+				"hours5": "po 5 hodinách"
 			}
 		}
 	},
 	"appearance": {
 		"theme": {
-			"title": "Téma",
-			"auto": "Automatické",
-			"dark": "Tmavé",
-			"light": "Světlé",
+			"title": "Motiv",
+			"auto": "Automaticky",
+			"dark": "Tmavý",
+			"light": "Světlý",
 			"zen": "Zen"
 		},
 		"accentColor": {
 			"title": "Akcentní barva",
-			"zenNotApplicable": "Akcentní barva není pro vybrané téma použitelná."
+			"zenNotApplicable": "Akcentní barva není pro vybraný motiv dostupná."
 		},
 		"zoomLevel": {
 			"title": "Úroveň přiblížení",
-			"description": "Upravte výchozí úroveň přiblížení pro všechna okna.\nPokud váš systém automaticky neskaluje aplikace, můžete změnit přiblížení tak, aby odpovídalo aktuálnímu poměru pixelů na displeji (DPR). Váš poměr pixelů na displeji je {{dpr}}.",
+			"description": "Upravte výchozí úroveň přiblížení pro všechna okna.\nPokud váš systém automaticky nezměřuje velikost aplikací, můžete přiblížení upravit tak, aby odpovídalo poměru pixelů na vašem displeji (DPR). Poměr pixelů vašeho displeje je {{dpr}}.",
 			"apply": "Použít",
 			"reset": "Obnovit",
 			"errors": {
 				"enterNumber": "Zadejte číslo pro nastavení přiblížení",
-				"tooSmall": "Přiblížení nemůže být menší než {{min}}%",
-				"tooBig": "Přiblížení nemůže být větší než {{max}}%"
+				"tooSmall": "Přiblížení nemůže být menší než {{min}} %",
+				"tooBig": "Přiblížení nemůže být větší než {{max}} %"
 			}
 		}
 	},
@@ -87,71 +87,71 @@
 		},
 		"fontFamily": {
 			"title": "Rodina písma",
-			"description": "Nastavte rodinu písma, kterou chcete používat ve všech editorech, nebo nechte prázdné pro použití výchozích.",
+			"description": "Nastavte rodinu písma pro všechny editory nebo jej nechte prázdné pro použití výchozích hodnot.",
 			"placeholder": "Zadejte název rodiny písma"
 		},
 		"fontSize": {
 			"title": "Velikost písma"
 		},
 		"lineHeight": {
-			"title": "Výška řádku"
+			"title": "Řádkování"
 		},
 		"dateFormat": {
 			"title": "Formát data",
-			"description": "Nastavte formát data používaný při vkládání dat. Podporuje standardní syntaxi tokenů jako DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "reference formátu data",
+			"description": "Nastavte formát data používaný při vkládání dat. Podporuje standardní syntaxi tokenů, jako je DD/MM/RRRR HH:mm:ss.",
+			"formatReference": "odkaz na formát data",
 			"example": "Příklad"
 		},
 		"plainText": {
-			"groupTitle": "Editor prostého textu",
-			"lineNumbers": "Zobrazit čísla řádků",
-			"miniMap": "Povolit mini mapu"
+			"groupTitle": "Editor čistého textu",
+			"lineNumbers": "Zobrazovat čísla řádků",
+			"miniMap": "Zapnout mini mapu"
 		}
 	},
 	"hotkeys": {
-		"blank": "Prázdné",
+		"blank": "Žádná",
 		"shortcuts": {
 			"createNote": "Vytvořit novou poznámku",
 			"closeCurrentNote": "Zavřít aktivní poznámku",
 			"restoreClosedNote": "Obnovit nedávno zavřenou poznámku",
 			"focusNextNote": "Přejít na další otevřenou poznámku",
 			"focusPreviousNote": "Přejít na předchozí otevřenou poznámku",
-			"toggleArchive": "Přesunout aktivní poznámku do/ze archivu",
-			"toggleBookmark": "Přesunout aktivní poznámku do/ze záložky",
+			"toggleArchive": "Přesunout aktivní poznámku do archivu / z archivu",
+			"toggleBookmark": "Přidat/odebrat aktivní poznámku do záložek",
 			"deleteNote": "Smazat aktivní poznámku",
 			"restoreFromBin": "Obnovit aktivní poznámku z koše",
-			"toggleHistory": "Zobrazit nebo skrýt historii aktivní poznámky",
+			"toggleHistory": "Zobrazit/skrýt historii aktivní poznámky",
 			"focusSearch": "Hledat poznámky",
-			"syncDatabase": "Synchronizovat trezor s diskem",
-			"lockVault": "Zamknout trezor",
+			"syncDatabase": "Synchronizovat úschovnu na disk",
+			"lockVault": "Uzamknout úschovnu",
 			"openSettings": "Otevřít nastavení"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Název trezoru"
+			"title": "Název úschovny"
 		},
 		"rememberPasswords": {
-			"label": "Pamatovat si hesla prostorů",
-			"description": "Hesla prostorů budou šifrována hlavním klíčem a uložena v databázi, aby bylo možné automaticky otevřít šifrované prostory bez zadání hesla."
+			"label": "Zapamatovat si hesla prostorů",
+			"description": "Hesla prostorů budou šifrována hlavním klíčem a uložena v databázi, aby bylo možné šifrované prostory otevírat automaticky bez zadávání hesla."
 		},
 		"filesAndData": {
 			"groupTitle": "Soubory a data",
 			"imagesCompression": {
 				"title": "Komprese obrázků",
 				"compress": "Komprimovat obrázky",
-				"doNotCompress": "Nekomprimovat obrázky",
+				"doNotCompress": "Komprimovat nekomprimovat",
 				"alwaysAsk": "Vždy se ptát"
 			},
 			"deleteOrphaned": {
-				"label": "Smazat osamělé soubory",
+				"label": "Smazat osamocené soubory",
 				"description": "Smazat soubory, které již nejsou používány."
 			}
 		},
 		"encryption": {
 			"groupTitle": "Šifrování",
 			"algorithm": {
-				"title": "Šifrovací algoritmus",
+				"title": "Algoritmus šifrování",
 				"none": "Žádný"
 			},
 			"password": {
@@ -162,47 +162,47 @@
 		"synchronization": {
 			"groupTitle": "Synchronizace",
 			"enable": {
-				"label": "Povolit synchronizaci",
-				"description": "Udržujte svůj trezor synchronizovaný napříč zařízeními. Všechna data jsou šifrována před tím, než opustí vaše zařízení."
+				"label": "Zapnout synchronizaci",
+				"description": "Udržujte svou úschovnu synchronizovanou napříč zařízeními. Všechna data jsou před opuštěním vašeho zařízení šifrována."
 			},
 			"method": {
 				"title": "Metoda synchronizace",
-				"fileSystem": "Soubory",
+				"fileSystem": "Souborový systém",
 				"server": "Server"
 			},
 			"directory": {
-				"title": "Adresář synchronizace",
-				"placeholder": "Zadejte cestu k adresáři"
+				"title": "Synchronizační složka",
+				"placeholder": "Zadejte cestu k složce"
 			}
 		},
 		"snapshots": {
 			"groupTitle": "Snímky",
 			"record": {
-				"label": "Zaznamenat snímky poznámek",
-				"description": "Pokud je povoleno, snímky obsahu poznámky budou vytvářeny při změně poznámky. Můžete řídit nahrávání snímků pro každou poznámku v panelu historie poznámek."
+				"label": "Záznam snímků poznámek",
+				"description": "Po zapnutí se při každé změně poznámky vytvoří její snímek. Záznam snímků můžete spravovat u jednotlivých poznámek v historii."
 			},
 			"delay": {
-				"title": "Zpoždění pro snímek",
-				"description": "Jak dlouho čekat po úpravě poznámky před uložením nového snímku, v sekundách. Kratší intervaly znamenají častější snímky — a větší trezor."
+				"title": "Zpoždění snímku",
+				"description": "Počet sekund, které počkat po úpravě poznámky před uložením nového snímku. Kratší intervaly znamenají častější snímky a větší objem dat."
 			}
 		},
 		"trashBin": {
 			"groupTitle": "Koš",
 			"confirmDeletion": {
 				"label": "Potvrdit smazání",
-				"description": "Zeptat se před smazáním poznámky."
+				"description": "Před smazáním poznámky se vás budu ptát."
 			},
 			"moveToBin": {
-				"label": "Přesunout poznámky do koše",
-				"description": "Přesunout poznámky do koše místo trvalého smazání, abyste je mohli později obnovit."
+				"label": "Přesunout do koše",
+				"description": "Poznámky místo trvalého smazání přesunete do koše, odkud je lze později obnovit."
 			},
 			"autoPurge": {
-				"label": "Trvale smazat staré poznámky v koši",
-				"description": "Poznámky přesunuté do koše budou trvale smazány po určité době."
+				"label": "Trvale mazat staré poznámky v koši",
+				"description": "Poznámky v koši budou po určité době trvale smazány."
 			},
 			"purgeDelay": {
-				"title": "Zpoždění trvalého smazání",
-				"description": "Poznámky v koši budou trvale smazány po tolika dnech, počítáno od doby, kdy byly přesunuty tam.",
+				"title": "Doba trvalého mazání",
+				"description": "Poznámky v koši budou trvale smazány po tomto počtu dní od jejich přesunu.",
 				"unit": "dny"
 			}
 		}
@@ -214,37 +214,37 @@
 		},
 		"newNoteTitle": {
 			"title": "Název nové poznámky",
-			"description": "Nastavte název pro nové poznámky. Můžete použít datum pomocí syntaxe {date} nebo {date:FORMAT} jako {date:DD/MM/YYYY HH:mm}.",
+			"description": "Nastavte název pro nové poznámky. Můžete použít datum pomocí syntaxe {date} nebo {date:FORMAT}, například {date:DD/MM/YYYY HH:mm}.",
 			"formatReference": "reference formátu",
 			"placeholder": "např. Poznámka {date:DD/MM/YYYY HH:mm}",
 			"example": "Příklad"
 		},
 		"tagsForNewNote": {
 			"title": "Štítky pro novou poznámku",
-			"none": "Nastavit žádné štítky",
+			"none": "Žádné štítky",
 			"selected": "Stejné jako vybraný štítek"
 		},
 		"dangerousZone": {
 			"groupTitle": "Nebezpečná zóna",
 			"delete": {
-				"label": "Smazat prostor a všechna související data, včetně poznámek, štítků a souborů",
+				"label": "Smazat prostor i všechna související data, včetně poznámek, štítků a souborů",
 				"action": "Smazat prostor",
-				"cannotDeleteLast": "Nelze smazat poslední prostor v trezoru.",
-				"createAnother": "Vytvořit",
-				"createAnotherSuffix": "další prostor nejprve."
+				"cannotDeleteLast": "Poslední prostor v úložišti nelze smazat.",
+				"createAnother": "Nejdříve vytvořte",
+				"createAnotherSuffix": "jiný prostor."
 			},
-			"confirmDelete": "Chystáte se smazat prostor \"{{name}}\". Opravdu to chcete udělat?\n\nPokud pokračujete, všechna data související s tímto prostorem budou smazána, včetně poznámek, štítků a souborů."
+			"confirmDelete": "Chystáte se smazat prostor „{{name}}“. Jste si tím jisti?\n\nPokud budete pokračovat, všechna data spojená s tímto prostorem budou smazána, včetně poznámek, štítků a souborů."
 		}
 	},
 	"importExport": {
 		"importNotes": "Importovat poznámky",
 		"exportNotes": "Exportovat poznámky",
-		"importFromZip": "Importovat poznámky z .zip archivu",
-		"importFromDirectory": "Importovat adresář s Markdown soubory",
+		"importFromZip": "Importovat poznámky ze .zip archivu",
+		"importFromDirectory": "Importovat složku s Markdown soubory",
 		"dropzone": {
 			"title": "Přetáhněte Markdown soubory nebo .zip archiv pro import",
-			"description": "Přetáhněte sem nějaké soubory, nebo klikněte pro výběr souborů"
+			"description": "Soubory sem přetáhněte nebo klikněte pro jejich výběr"
 		},
-		"progress": "Import poznámek probíhá. Fáze: {{stage}} {{processed}}/{{total}}"
+		"progress": "Probíhá import poznámek. Fáze: {{stage}} {{processed}}/{{total}}"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"version": "Wersja {{version}}",
-	"environment": "Używane biblioteki",
+	"environment": "Użyte biblioteki",
 	"links": {
 		"label": "Linki",
 		"reportBug": "Zgłoś błąd"

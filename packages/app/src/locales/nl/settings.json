@@ -4,11 +4,11 @@
 	},
 	"tabs": {
 		"general": "Algemeen",
-		"appearance": "Weergave",
+		"appearance": "Uiterlijk",
 		"hotkeys": "Sneltoetsen",
 		"vault": "Vault",
-		"workspace": "Werkruimte",
-		"importExport": "Import & Export",
+		"workspace": "Workspace",
+		"importExport": "Importeren & exporteren",
 		"vaultSettingsGroup": "Vault-instellingen"
 	},
 	"general": {
@@ -16,34 +16,34 @@
 		"subtitle": "Beheer je algemene voorkeuren in de app.",
 		"version": {
 			"title": "Versie",
-			"checkForUpdates": "Controleer op updates",
-			"upToDate": "Je hebt de nieuwste versie",
+			"checkForUpdates": "Controleren op updates",
+			"upToDate": "Je gebruikt de nieuwste versie",
 			"newVersionAvailable": "Nieuwe versie <bold>{{version}}</bold> is beschikbaar.",
-			"downloadLatest": "Download",
-			"downloadDescription": "de nieuwste versie voor nieuwe functies en verbeteringen."
+			"downloadLatest": "Downloaden",
+			"downloadDescription": "download de nieuwste versie voor nieuwe functies en verbeteringen."
 		},
 		"autoCheckUpdates": {
 			"label": "Automatisch controleren op updates",
-			"description": "De app controleert regelmatig op updates en meldt het als er een nieuwe versie beschikbaar is."
+			"description": "De app controleert periodiek op updates en geeft een melding als er een nieuwe versie beschikbaar is."
 		},
 		"language": {
 			"title": "Taal",
-			"description": "Wijzig de weergavetaal."
+			"description": "Wijzig de taal van de interface."
 		},
 		"notifications": {
 			"title": "Meldingen",
-			"description": "Systeemmeldingen worden alleen gebruikt voor herinneringen. Wanneer uitgeschakeld, verschijnen herinneringen alleen in de meldingenlijst van de app.",
-			"useSystem": "Gebruik systeemmeldingen"
+			"description": "Systeemmeldingen worden alleen gebruikt voor herinneringen. Als dit is uitgeschakeld, verschijnen herinneringen alleen in de meldingslijst van de app.",
+			"useSystem": "Systeemmeldingen gebruiken"
 		},
 		"vaultLock": {
 			"groupTitle": "Vault vergrendelen",
 			"lockOnSystemLock": {
 				"label": "Vault vergrendelen bij systeemvergrendeling",
-				"description": "De vault wordt vergrendeld wanneer de schermbeveiliging start of het apparaat in slaapstand gaat."
+				"description": "De vault wordt vergrendeld wanneer de screensaver start of het apparaat in slaapstand gaat."
 			},
 			"lockAfterIdle": {
 				"title": "Vault vergrendelen na inactiviteit",
-				"description": "De vault wordt vergrendeld na de geselecteerde inactieve tijd.",
+				"description": "De vault wordt vergrendeld na een ingestelde periode van inactiviteit.",
 				"never": "Niet vergrendelen",
 				"minutes5": "na 5 minuten",
 				"minutes10": "na 10 minuten",
@@ -58,7 +58,7 @@
 	},
 	"appearance": {
 		"theme": {
-			"title": "Thema",
+			"title": " Thema",
 			"auto": "Automatisch",
 			"dark": "Donker",
 			"light": "Licht",
@@ -70,13 +70,13 @@
 		},
 		"zoomLevel": {
 			"title": "Zoomniveau",
-			"description": "Pas het standaard zoomniveau voor alle vensters aan.\nAls uw systeem apps niet automatisch schaalt, kunt u de zoom aanpassen om deze aan te passen aan de werkelijke weergavepixelsverhouding (DPR). Uw weergavepixelsverhouding is {{dpr}}.",
+			"description": "Pas het standaard zoomniveau aan voor alle vensters.\nAls je systeem apps niet automatisch schaalt, kun je het zoomniveau aanpassen zodat het past bij de pixelverhouding (DPR) van je scherm. Je huidige pixelverhouding is {{dpr}}.",
 			"apply": "Toepassen",
-			"reset": "Herstellen",
+			"reset": "Resetten",
 			"errors": {
-				"enterNumber": "Voer een getal in om het zoomniveau in te stellen",
-				"tooSmall": "Zoom kan niet minder zijn dan {{min}}%",
-				"tooBig": "Zoom kan niet meer zijn dan {{max}}%"
+				"enterNumber": "Voer een getal in voor het zoomniveau",
+				"tooSmall": "Zoom kan niet lager zijn dan {{min}}%",
+				"tooBig": "Zoom kan niet hoger zijn dan {{max}}%"
 			}
 		}
 	},
@@ -86,65 +86,65 @@
 			"title": "Editormodus"
 		},
 		"fontFamily": {
-			"title": "Lettertype",
-			"description": "Stel een lettertype in voor alle editors, of laat leeg voor de standaardinstelling.",
-			"placeholder": "Voer lettertypenaam in"
+			"title": "Lettertypefamilie",
+			"description": "Stel een lettertypefamilie in voor alle editors, of laat dit leeg voor de standaardinstellingen.",
+			"placeholder": "Voer de naam van de lettertypefamilie in"
 		},
 		"fontSize": {
 			"title": "Lettergrootte"
 		},
 		"lineHeight": {
-			"title": "Regelhoogte"
+			"title": "Regelafstand"
 		},
 		"dateFormat": {
-			"title": "Datumnotatie",
-			"description": "Stel de datumnotatie in voor het invoegen van datums. Ondersteunt standaard tokensyntaxis zoals DD/MM/YYYY HH:mm:ss.",
-			"formatReference": "referentie datumnotatie",
+			"title": "Datumformaat",
+			"description": "Stel het datumformaat in dat wordt gebruikt bij het invoegen van datums. Ondersteunt standaard tokens zoals DD/MM/YYYY HH:mm:ss.",
+			"formatReference": "referentie datumformaten",
 			"example": "Voorbeeld"
 		},
 		"plainText": {
-			"groupTitle": "Platte-teksteditor",
-			"lineNumbers": "Regelnummers tonen",
+			"groupTitle": "Plain text editor",
+			"lineNumbers": "Linnummers tonen",
 			"miniMap": "Minimap inschakelen"
 		}
 	},
 	"hotkeys": {
-		"blank": "Leeg",
+		"blank": "Geen",
 		"shortcuts": {
-			"createNote": "Nieuwe notitie aanmaken",
+			"createNote": "Nieuwe notitie maken",
 			"closeCurrentNote": "Actieve notitie sluiten",
-			"restoreClosedNote": "Laatst gesloten notitie herstellen",
-			"focusNextNote": "Naar volgende geopende notitie",
-			"focusPreviousNote": "Naar vorige geopende notitie",
-			"toggleArchive": "Actieve notitie archiveren/uit archief halen",
-			"toggleBookmark": "Actieve notitie als bladwijzer in-/uitschakelen",
-			"deleteNote": "Actieve notitie verwijderen",
-			"restoreFromBin": "Actieve notitie uit prullenbak herstellen",
-			"toggleHistory": "Geschiedenis van actieve notitie tonen of verbergen",
-			"focusSearch": "Notities zoeken",
-			"syncDatabase": "Vault synchroniseren naar schijf",
+			"restoreClosedNote": "Onlangs gesloten notitie herstellen",
+			"focusNextNote": "Ga naar volgende open notitie",
+			"focusPreviousNote": "Ga naar vorige open notitie",
+			"toggleArchive": "Verplaats actieve notitie naar/uit archief",
+			"toggleBookmark": "Verplaats actieve notitie naar/uit bladwijzer",
+			"deleteNote": "Verwijder actieve notitie",
+			"restoreFromBin": "Herstel actieve notitie uit prullenbak",
+			"toggleHistory": "Toon of verberg geschiedenis van actieve notitie",
+			"focusSearch": "Zoek notities",
+			"syncDatabase": "Vault synchroniseren met schijf",
 			"lockVault": "Vault vergrendelen",
 			"openSettings": "Voorkeuren openen"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Vaultnaam"
+			"title": "Naam van de vault"
 		},
 		"rememberPasswords": {
-			"label": "Wachtwoorden van werkruimtes onthouden",
-			"description": "Wachtwoorden van werkruimtes worden versleuteld met de hoofdsleutel en opgeslagen in de database, zodat versleutelde werkruimtes automatisch geopend worden zonder een wachtwoord in te voeren."
+			"label": "Wachtwoorden voor workspaces onthouden",
+			"description": "Wachtwoorden voor workspaces worden versleuteld met je hoofdsleutel en opgeslagen in de database, zodat je versleutelde workspaces automatisch kunt openen zonder wachtwoord."
 		},
 		"filesAndData": {
 			"groupTitle": "Bestanden en gegevens",
 			"imagesCompression": {
-				"title": "Afbeeldingscompressie",
+				"title": "Afbeeldingcompressie",
 				"compress": "Afbeeldingen comprimeren",
 				"doNotCompress": "Afbeeldingen niet comprimeren",
 				"alwaysAsk": "Altijd vragen"
 			},
 			"deleteOrphaned": {
-				"label": "Ongebruikte bestanden verwijderen",
+				"label": "Verwijder ongebruikte bestanden",
 				"description": "Verwijder bestanden die niet meer in gebruik zijn."
 			}
 		},
@@ -156,14 +156,14 @@
 			},
 			"password": {
 				"title": "Wachtwoord",
-				"update": "Wachtwoord wijzigen"
+				"update": "Wachtwoord bijwerken"
 			}
 		},
 		"synchronization": {
 			"groupTitle": "Synchronisatie",
 			"enable": {
 				"label": "Synchronisatie inschakelen",
-				"description": "Houd je vault gesynchroniseerd tussen apparaten. Alle gegevens worden versleuteld voordat ze je apparaat verlaten."
+				"description": "Houd je vault gesynchroniseerd op al je apparaten. Alle gegevens worden versleuteld voordat ze je apparaat verlaten."
 			},
 			"method": {
 				"title": "Synchronisatiemethode",
@@ -171,19 +171,19 @@
 				"server": "Server"
 			},
 			"directory": {
-				"title": "Synchronisatiemap",
-				"placeholder": "Voer pad naar map in"
+				"title": "Synchronisatie-map",
+				"placeholder": "Voer het pad naar de map in"
 			}
 		},
 		"snapshots": {
 			"groupTitle": "Snapshots",
 			"record": {
-				"label": "Snapshots van notities opslaan",
-				"description": "Wanneer ingeschakeld, worden snapshots van de notitie-inhoud aangemaakt bij wijzigingen. Je kunt het opslaan van snapshots per notitie beheren in het geschiedenispaneel."
+				"label": "Notitie-snapshots vastleggen",
+				"description": "Wanneer ingeschakeld, worden er snapshots van de notitie-inhoud gemaakt bij elke wijziging. Je kunt het vastleggen per notitie beheren via het geschiedenispaneel."
 			},
 			"delay": {
 				"title": "Vertraging voor snapshot",
-				"description": "Hoe lang er gewacht wordt na een bewerking voordat een nieuwe snapshot wordt opgeslagen, in seconden. Kortere intervallen betekenen meer snapshots — en een grotere vault."
+				"description": "Hoeveel seconden er moet worden gewacht na het bewerken van een notitie voordat er een nieuwe snapshot wordt opgeslagen. Kortere intervallen betekenen meer snapshots en een grotere vault."
 			}
 		},
 		"trashBin": {
@@ -201,39 +201,39 @@
 				"description": "Notities in de prullenbak worden na verloop van tijd definitief verwijderd."
 			},
 			"purgeDelay": {
-				"title": "Termijn voor definitieve verwijdering",
-				"description": "Notities in de prullenbak worden na dit aantal dagen definitief verwijderd, gerekend vanaf het moment dat ze erin zijn geplaatst.",
+				"title": "Vertraging definitieve verwijdering",
+				"description": "Notities in de prullenbak worden na dit aantal dagen definitief verwijderd, gerekend vanaf het moment van verplaatsen.",
 				"unit": "dagen"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "Naam werkruimte",
+			"title": "Naam ruimte",
 			"update": "Bijwerken"
 		},
 		"newNoteTitle": {
-			"title": "Titel nieuwe notitie",
-			"description": "Stel een titel in voor nieuwe notities. Je kunt een datum gebruiken via de syntax {date} of {date:FORMAT} zoals {date:DD/MM/YYYY HH:mm}.",
-			"formatReference": "notatiereferentie",
+			"title": "Titel voor nieuwe notities",
+			"description": "Stel een titel in voor nieuwe notities. Je kunt de datum gebruiken via de syntax {date} of {date:FORMAT}, zoals {date:DD/MM/YYYY HH:mm}.",
+			"formatReference": "formaatreferentie",
 			"placeholder": "bijv. Notitie {date:DD/MM/YYYY HH:mm}",
 			"example": "Voorbeeld"
 		},
 		"tagsForNewNote": {
-			"title": "Tags voor nieuwe notitie",
+			"title": "Tags voor nieuwe notities",
 			"none": "Geen tags instellen",
-			"selected": "Zelfde als geselecteerde tag"
+			"selected": "Hetzelfde als de geselecteerde tag"
 		},
 		"dangerousZone": {
-			"groupTitle": "Gevarenzone",
+			"groupTitle": "Gevaarlijke zone",
 			"delete": {
-				"label": "Verwijder werkruimte en alle bijbehorende gegevens, inclusief notities, tags en bestanden",
-				"action": "Werkruimte verwijderen",
-				"cannotDeleteLast": "De laatste werkruimte in een vault kan niet worden verwijderd.",
-				"createAnother": "Maak",
-				"createAnotherSuffix": "eerst een andere werkruimte aan."
+				"label": "Verwijder ruimte en alle bijbehorende gegevens, inclusief notities, tags en bestanden",
+				"action": "Ruimte verwijderen",
+				"cannotDeleteLast": "De laatste ruimte in een vault kan niet worden verwijderd.",
+				"createAnother": "Maak eerst",
+				"createAnotherSuffix": "een andere ruimte aan."
 			},
-			"confirmDelete": "Je staat op het punt werkruimte \"{{name}}\" te verwijderen. Weet je zeker dat je dit wilt doen?\n\nAls je doorgaat, worden alle gegevens van deze werkruimte verwijderd, inclusief notities, tags en bestanden."
+			"confirmDelete": "Je staat op het punt de ruimte \"{{name}}\" te verwijderen. Weet je het zeker?\n\nAls je doorgaat, worden alle gegevens die bij deze ruimte horen verwijderd, inclusief notities, tags en bestanden."
 		}
 	},
 	"importExport": {
@@ -243,8 +243,8 @@
 		"importFromDirectory": "Map met Markdown-bestanden importeren",
 		"dropzone": {
 			"title": "Sleep Markdown-bestanden of een .zip-archief hierheen om te importeren",
-			"description": "Sleep bestanden hierheen, of klik om bestanden te selecteren"
+			"description": "Sleep bestanden hierheen of klik om bestanden te selecteren"
 		},
-		"progress": "Notities worden geïmporteerd. Fase: {{stage}} {{processed}}/{{total}}"
+		"progress": "Notities importeren... Fase: {{stage}} {{processed}}/{{total}}"
 	}
 }

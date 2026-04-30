@@ -1,116 +1,116 @@
 {
 	"chooseVault": {
-		"title": "Izaberite sef",
+		"title": "Izaber skladište",
 		"actions": {
-			"createNew": "Kreirajte novi sef"
+			"createNew": "Kreiraj novo skladište"
 		}
 	},
 	"creator": {
-		"title": "Kreirajte sef",
+		"title": "Kreiraj skladište",
 		"field": {
 			"name": {
-				"label": "Ime sefa",
-				"placeholder": "npr., Moj sef, Podeljeno sa Aleksom",
-				"random": "Generiši nasumično ime",
+				"label": "Naziv skladišta",
+				"placeholder": "npr. Moje skladište, Deljeno sa Aleks",
+				"random": "Generiši nasumičan naziv",
 				"suggests": {
 					"0": "Marginalije",
-					"1": "Vellum",
-					"2": "Krajna stranica",
+					"1": "Velum",
+					"2": "Završni list",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Niša",
-					"6": "Polusena",
-					"7": "Mesečeva korespondencija",
+					"5": "Alkov",
+					"6": "Penumbra",
+					"7": "Mesečev korrespondencija",
 					"8": "Večernja kartografija",
-					"9": "Lanterne i tinta",
-					"10": "Arhiv osvetljen svećom",
-					"11": "Rastući bršljan rukopisi",
-					"12": "Cedarova pisma",
-					"13": "Pisma od ružinog drveta",
-					"14": "Nevezani kodeks",
-					"15": "Marginalije i šapti",
-					"16": "Ispovesti na kraju stranice",
+					"9": "Fenjer i mastilo",
+					"10": "Arhiva uz sveću",
+					"11": "Manuskripti brdašica",
+					"12": "Pisma od kedrovine",
+					"13": "Skriptorij od ružinog drveta",
+					"14": "Nepovezani kodeks",
+					"15": "Marginalije i šapati",
+					"16": "Ispovesti sa završnog lista",
 					"17": "Anotirana tišina",
-					"18": "Senčna kartografija",
-					"19": "Zapamljena soba",
+					"18": "Kartografija senki",
+					"19": "Sećanje na sobu",
 					"20": "Nepotpisana pisma",
-					"21": "Šapnute koordinate",
-					"22": "Nepretreseni almanah",
-					"23": "Pisma izgubljenog voska",
+					"21": "Šaputi koordinate",
+					"22": "Neispričani almanah",
+					"23": "Pisma od izgubljenog voska",
 					"24": "Nevidljiva biblioteka",
 					"25": "Nepoznate margine",
 					"26": "Tiha zavera",
-					"27": "Neporučena pošta",
-					"28": "Večnozeleni arhiv",
+					"27": "Nedostavljena pošta",
+					"28": "Večiti arhiv",
 					"29": "Papirni mesec",
 					"30": "Papirni cvet",
 					"31": "Noćni cvet",
-					"32": "Mekani atlas",
+					"32": "Meki atlas",
 					"33": "Velur",
-					"34": "Tinta",
+					"34": "Tužanj",
 					"35": "Tišina",
 					"36": "Senka",
-					"37": "Mirna struja",
+					"37": "Mirno strujanje",
 					"38": "Duboka livada",
-					"39": "Nepisani dnevnik",
-					"40": "Tih beležnik",
+					"39": "Nepisana knjiga",
+					"40": "Tihi nacrt",
 					"41": "Neizgovoreni arhiv",
-					"42": "Driftajući dnevnik",
-					"43": "Hronika solarnih vetrova",
-					"44": "Tihi fjord",
+					"42": "Lutajući dnevnik",
+					"43": "Hronika solarnog vetra",
+					"44": "Tihi u tišini",
 					"45": "Fragmenti sećanja",
-					"46": "Tih trenutak",
-					"47": "Nestali trenuci"
+					"46": "Tihi trenutak",
+					"47": "Prošla vremena"
 				}
 			},
 			"password": {
 				"label": "Lozinka za enkripciju",
 				"recommended": "(preporučeno)",
-				"placeholder": "Unesite jaku lozinku ovde",
-				"description": "Svi podaci u prostoru će biti šifrovani putem ove lozinke"
+				"placeholder": "Unesite jaku lozinku",
+				"description": "Svi podaci u okviru ovog prostora biće enkriptovani ovom lozinkom"
 			},
 			"algorithm": {
-				"label": "Enkripcioni algoritam"
+				"label": "Algoritam enkripcije"
 			}
 		},
 		"actions": {
-			"create": "Kreirajte sef",
-			"continueNoPassword": "Nastavite bez lozinke",
+			"create": "Kreiraj prostor",
+			"continueNoPassword": "Nastavi bez lozinke",
 			"cancel": "Otkaži"
 		},
 		"noEncryptionDialog": {
-			"title": "Kreirajte sef bez enkripcije",
-			"description": "Vaše beleške i podaci biće sačuvani kao običan tekst. Svaka aplikacija ili osoba sa pristupom direktorijumu sefa na disku moći će da pročita sve unutar njega.",
+			"title": "Kreiraj prostor bez enkripcije",
+			"description": "Vaše beleške i podaci biće sačuvani kao običan tekst. Svaka aplikacija ili osoba koja ima pristup folderu u kojem se nalazi prostor moći će da pročita sve što je unutra.",
 			"actions": {
-				"confirm": "Nastavite bez enkripcije",
+				"confirm": "Nastavi bez enkripcije",
 				"cancel": "Otkaži"
 			}
 		},
 		"errors": {
-			"nameRequired": "Unesite ime sefa",
+			"nameRequired": "Unesite naziv prostora",
 			"passwordRequired": "Unesite lozinku"
 		},
 		"section": {
 			"advancedConfig": {
-				"label": "Napredne opcije šifrovanja",
-				"description": "Konfigurišite enkripcijske parametre koji štite vaš prostor — kaskada šifara, KDF parametri i još mnogo toga. Za detaljno objašnjenje podrazumevanih postavki i njihovih prednosti i slabosti, pogledajte <encryption>kako je vaš prostor zaštićen</encryption>."
+				"label": "Napredne opcije enkripcije",
+				"description": "Konfigurišite parametre koji štite vaš prostor — niz šifara, KDF parametre i drugo. Za detaljno objašnjenje osnovnih podešavanja i njihovih prednosti i mana, pogledajte <encryption>kako je vaš prostor zaštićen</encryption>."
 			},
 			"kdf": {
-				"label": "Funkcija derivacije ključa",
-				"description": "Pomaže u zaštiti slabih ili ponovo korišćenih lozinki usporavajući svaki pokušaj i čineći ga skupljim. Povećajte ove postavke za jaču zaštitu ili zadržite podrazumevane za izbalansirano iskustvo.",
+				"label": "Funkcija za generisanje ključa (KDF)",
+				"description": "Pomaže u zaštiti slabih ili ponovljenih lozinki tako što proces pokušaja nagađanja čini sporijim i zahtevnijim. Povećajte ove parametre za jaču zaštitu ili zadržite fabrička podešavanja za optimalan balans.",
 				"memory": {
 					"label": "Korišćenje memorije",
-					"description": "Svaki pokušaj lozinke koristi više memorije. Ovo je posebno efikasno protiv velikih napada, jer je memorija skupa i teže ju je efikasno skalirati od sirove obrade."
+					"description": "Svaki pokušaj nagađanja lozinke zahteva više memorije. Ovo je posebno efikasno protiv masovnih napada, jer je memorija skupa i teže je skalirati njenu upotrebu u poređenju sa čistom procesorskom snagom."
 				},
 				"ops": {
 					"label": "Iteracije",
-					"description": "Ponavlja rad derivacije za svaku pokušaj lozinke. Ovo povećava trošak svakog pokušaja većinom linearno: dupliranje iteracija otprilike duplira rad i za napadače i za vaš uređaj."
+					"description": "Ponavlja proces generisanja ključa pri svakom pokušaju nagađanja lozinke. Ovo linearno povećava težinu svakog pokušaja: dupliranje broja iteracija otprilike duplira rad i za napadača i za vaš uređaj."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Otključajte sef",
+		"title": "Otključaj prostor",
 		"field": {
 			"password": {
 				"placeholder": "Unesite lozinku"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Otključaj",
-			"changeVault": "Promeni sef"
+			"changeVault": "Promeni prostor"
 		},
 		"errors": {
-			"cannotOpen": "Nije moguće otvoriti sef",
-			"invalidPassword": "Nevažeća lozinka",
+			"cannotOpen": "Nemoguće je otvoriti prostor",
+			"invalidPassword": "Neispravna lozinka",
 			"passwordRequired": "Unesite lozinku"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Nije uspelo otvaranje sefa",
-		"corrupted": "\"{{name}}\" izgleda da je oštećen."
+		"failedToOpen": "Greška pri otvaranju prostora",
+		"corrupted": "\"{{name}}\" deluje kao da je oštećen."
 	}
 }

@@ -3,28 +3,28 @@
 		"title": "Preferenze"
 	},
 	"tabs": {
-		"general": "Generali",
+		"general": "Generale",
 		"appearance": "Aspetto",
 		"hotkeys": "Scorciatoie",
 		"vault": "Vault",
-		"workspace": "Spazio",
+		"workspace": "Spazio di lavoro",
 		"importExport": "Importa ed esporta",
-		"vaultSettingsGroup": "Impostazioni vault"
+		"vaultSettingsGroup": "Impostazioni Vault"
 	},
 	"general": {
 		"title": "Impostazioni generali",
-		"subtitle": "Gestisci le preferenze generali dell'app.",
+		"subtitle": "Gestisci le tue preferenze generali nell'app.",
 		"version": {
 			"title": "Versione",
-			"checkForUpdates": "Verifica aggiornamenti",
-			"upToDate": "Hai già l'ultima versione",
-			"newVersionAvailable": "È disponibile la nuova versione <bold>{{version}}</bold>.",
+			"checkForUpdates": "Controlla aggiornamenti",
+			"upToDate": "Stai utilizzando l'ultima versione",
+			"newVersionAvailable": "È disponibile una nuova versione <bold>{{version}}</bold>.",
 			"downloadLatest": "Scarica",
-			"downloadDescription": "l'ultima versione per ottenere nuove funzionalità e miglioramenti."
+			"downloadDescription": "l'ultima versione per accedere a nuove funzioni e miglioramenti."
 		},
 		"autoCheckUpdates": {
-			"label": "Verifica automatica degli aggiornamenti",
-			"description": "L'app verificherà periodicamente la disponibilità di aggiornamenti e ti avviserà se è disponibile una nuova versione."
+			"label": "Controllo automatico aggiornamenti",
+			"description": "L'app cercherà periodicamente aggiornamenti e ti avviserà se ne è disponibile uno nuovo."
 		},
 		"language": {
 			"title": "Lingua",
@@ -36,23 +36,23 @@
 			"useSystem": "Usa notifiche di sistema"
 		},
 		"vaultLock": {
-			"groupTitle": "Blocco vault",
+			"groupTitle": "Blocco Vault",
 			"lockOnSystemLock": {
-				"label": "Blocca il vault al blocco del sistema",
-				"description": "Il vault verrà bloccato all'avvio del salvaschermo o alla sospensione del dispositivo."
+				"label": "Blocca Vault al blocco del sistema",
+				"description": "Il Vault verrà bloccato all'avvio dello screensaver o quando il dispositivo va in standby."
 			},
 			"lockAfterIdle": {
-				"title": "Blocca il vault dopo inattività",
-				"description": "Il vault verrà bloccato dopo il periodo di inattività selezionato.",
+				"title": "Blocca Vault dopo inattività",
+				"description": "Il Vault verrà bloccato dopo il tempo di inattività selezionato.",
 				"never": "Non bloccare",
-				"minutes5": "dopo 5 minuti",
-				"minutes10": "dopo 10 minuti",
-				"minutes15": "dopo 15 minuti",
-				"minutes30": "dopo 30 minuti",
-				"hour1": "dopo 1 ora",
-				"hours2": "dopo 2 ore",
-				"hours3": "dopo 3 ore",
-				"hours5": "dopo 5 ore"
+				"minutes5": "per 5 minuti",
+				"minutes10": "per 10 minuti",
+				"minutes15": "per 15 minuti",
+				"minutes30": "per 30 minuti",
+				"hour1": "per 1 ora",
+				"hours2": "per 2 ore",
+				"hours3": "per 3 ore",
+				"hours5": "per 5 ore"
 			}
 		}
 	},
@@ -70,13 +70,13 @@
 		},
 		"zoomLevel": {
 			"title": "Livello di zoom",
-			"description": "Regola il livello di zoom predefinito per tutte le finestre.\nSe il tuo sistema non scala automaticamente le app, puoi modificare lo zoom per adattarlo al rapporto pixel reale del display (DPR). Il tuo rapporto pixel del display è {{dpr}}.",
+			"description": "Regola il livello di zoom predefinito per tutte le finestre.\nSe il sistema non scala automaticamente le app, puoi modificare lo zoom per adattarlo al rapporto pixel dello schermo (DPR). Il tuo rapporto pixel è {{dpr}}.",
 			"apply": "Applica",
 			"reset": "Ripristina",
 			"errors": {
 				"enterNumber": "Inserisci un numero per impostare lo zoom",
-				"tooSmall": "Lo zoom non può essere inferiore a {{min}}%",
-				"tooBig": "Lo zoom non può essere superiore a {{max}}%"
+				"tooSmall": "Lo zoom non può essere inferiore al {{min}}%",
+				"tooBig": "Lo zoom non può essere superiore al {{max}}%"
 			}
 		}
 	},
@@ -87,8 +87,8 @@
 		},
 		"fontFamily": {
 			"title": "Famiglia di font",
-			"description": "Imposta la famiglia di font da usare in tutti gli editor, oppure lascia vuoto per usare quella predefinita.",
-			"placeholder": "Inserisci il nome della famiglia di font"
+			"description": "Imposta un font da usare in tutti gli editor, oppure lascia vuoto per usare quello predefinito.",
+			"placeholder": "Inserisci il nome del font"
 		},
 		"fontSize": {
 			"title": "Dimensione font"
@@ -98,7 +98,7 @@
 		},
 		"dateFormat": {
 			"title": "Formato data",
-			"description": "Imposta il formato data usato per l'inserimento delle date. Supporta la sintassi standard come DD/MM/YYYY HH:mm:ss.",
+			"description": "Imposta il formato data da usare quando inserisci le date. Supporta la sintassi standard come DD/MM/YYYY HH:mm:ss.",
 			"formatReference": "riferimento formato data",
 			"example": "Esempio"
 		},
@@ -112,35 +112,35 @@
 		"blank": "Nessuna",
 		"shortcuts": {
 			"createNote": "Crea una nuova nota",
-			"closeCurrentNote": "Chiudi la nota attiva",
-			"restoreClosedNote": "Ripristina l'ultima nota chiusa",
+			"closeCurrentNote": "Chiudi nota attiva",
+			"restoreClosedNote": "Ripristina nota chiusa di recente",
 			"focusNextNote": "Vai alla nota successiva",
 			"focusPreviousNote": "Vai alla nota precedente",
-			"toggleArchive": "Sposta la nota attiva dentro/fuori dall'archivio",
-			"toggleBookmark": "Aggiungi/rimuovi la nota attiva dai preferiti",
-			"deleteNote": "Elimina la nota attiva",
-			"restoreFromBin": "Ripristina la nota attiva dal cestino",
-			"toggleHistory": "Mostra o nascondi la cronologia della nota attiva",
+			"toggleArchive": "Sposta nota attiva in/da archivio",
+			"toggleBookmark": "Sposta nota attiva in/da preferiti",
+			"deleteNote": "Elimina nota attiva",
+			"restoreFromBin": "Ripristina nota attiva dal cestino",
+			"toggleHistory": "Mostra o nascondi cronologia nota attiva",
 			"focusSearch": "Cerca note",
-			"syncDatabase": "Sincronizza il vault su disco",
-			"lockVault": "Blocca il vault",
+			"syncDatabase": "Sincronizza Vault su disco",
+			"lockVault": "Blocca Vault",
 			"openSettings": "Apri preferenze"
 		}
 	},
 	"vault": {
 		"name": {
-			"title": "Nome del vault"
+			"title": "Nome Vault"
 		},
 		"rememberPasswords": {
-			"label": "Ricorda le password degli spazi",
-			"description": "Le password degli spazi verranno cifrate con la chiave principale e salvate nel database, per aprire automaticamente gli spazi cifrati senza inserire la password."
+			"label": "Ricorda password spazi di lavoro",
+			"description": "Le password degli spazi di lavoro verranno criptate con la chiave principale e salvate nel database, per aprire automaticamente gli spazi criptati senza inserire la password."
 		},
 		"filesAndData": {
 			"groupTitle": "File e dati",
 			"imagesCompression": {
 				"title": "Compressione immagini",
-				"compress": "Comprimi le immagini",
-				"doNotCompress": "Non comprimere le immagini",
+				"compress": "Comprimi immagini",
+				"doNotCompress": "Non comprimere immagini",
 				"alwaysAsk": "Chiedi sempre"
 			},
 			"deleteOrphaned": {
@@ -163,7 +163,7 @@
 			"groupTitle": "Sincronizzazione",
 			"enable": {
 				"label": "Abilita sincronizzazione",
-				"description": "Mantieni il vault sincronizzato tra i dispositivi. Tutti i dati vengono cifrati prima di lasciare il dispositivo."
+				"description": "Mantieni il tuo Vault sincronizzato tra i dispositivi. Tutti i dati vengono criptati prima di lasciare il tuo dispositivo."
 			},
 			"method": {
 				"title": "Metodo di sincronizzazione",
@@ -171,19 +171,19 @@
 				"server": "Server"
 			},
 			"directory": {
-				"title": "Cartella di sincronizzazione",
-				"placeholder": "Inserisci il percorso della cartella"
+				"title": "Directory di sincronizzazione",
+				"placeholder": "Inserisci il percorso della directory"
 			}
 		},
 		"snapshots": {
-			"groupTitle": "Istantanee",
+			"groupTitle": "Snapshot",
 			"record": {
-				"label": "Registra istantanee delle note",
-				"description": "Se attivo, verrà creata un'istantanea del contenuto della nota a ogni modifica. Puoi controllare la registrazione delle istantanee per ogni nota dal pannello cronologia."
+				"label": "Registra snapshot delle note",
+				"description": "Quando attivata, verranno creati degli snapshot del contenuto ogni volta che una nota viene modificata. Puoi gestire la registrazione per singola nota nel pannello cronologia."
 			},
 			"delay": {
-				"title": "Ritardo per l'istantanea",
-				"description": "Tempo di attesa, in secondi, dopo la modifica di una nota prima di salvare una nuova istantanea. Intervalli più brevi generano istantanee più frequenti e un vault più grande."
+				"title": "Ritardo snapshot",
+				"description": "Tempo di attesa in secondi dopo la modifica di una nota prima di salvare un nuovo snapshot. Intervalli più brevi generano snapshot più frequenti e un archivio più grande."
 			}
 		},
 		"trashBin": {
@@ -193,57 +193,57 @@
 				"description": "Chiedi conferma prima di eliminare una nota."
 			},
 			"moveToBin": {
-				"label": "Sposta le note nel cestino",
-				"description": "Sposta le note nel cestino anziché eliminarle definitivamente, per poterle ripristinare in seguito."
+				"label": "Sposta note nel cestino",
+				"description": "Sposta le note nel cestino invece di eliminarle definitivamente, così potrai ripristinarle in seguito."
 			},
 			"autoPurge": {
-				"label": "Elimina definitivamente le note vecchie nel cestino",
+				"label": "Elimina automaticamente le note vecchie nel cestino",
 				"description": "Le note spostate nel cestino verranno eliminate definitivamente dopo un certo periodo."
 			},
 			"purgeDelay": {
 				"title": "Ritardo eliminazione definitiva",
-				"description": "Le note nel cestino verranno eliminate definitivamente dopo questo numero di giorni, a partire da quando sono state spostate.",
+				"description": "Le note nel cestino verranno eliminate definitivamente dopo questo numero di giorni, calcolati dal momento del loro inserimento.",
 				"unit": "giorni"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "Nome dello spazio",
+			"title": "Nome spazio",
 			"update": "Aggiorna"
 		},
 		"newNoteTitle": {
-			"title": "Titolo nuova nota",
-			"description": "Imposta il titolo per le nuove note. Puoi usare la data con la sintassi {date} o {date:FORMATO} come {date:DD/MM/YYYY HH:mm}.",
+			"title": "Titolo nuove note",
+			"description": "Imposta il titolo per le nuove note. Puoi usare la data con la sintassi {date} o {date:FORMAT}, come {date:DD/MM/YYYY HH:mm}.",
 			"formatReference": "riferimento formato",
 			"placeholder": "es. Nota {date:DD/MM/YYYY HH:mm}",
 			"example": "Esempio"
 		},
 		"tagsForNewNote": {
-			"title": "Tag per le nuove note",
-			"none": "Non assegnare tag",
+			"title": "Tag per nuove note",
+			"none": "Nessun tag",
 			"selected": "Stesso tag selezionato"
 		},
 		"dangerousZone": {
-			"groupTitle": "Zona critica",
+			"groupTitle": "Area critica",
 			"delete": {
-				"label": "Elimina lo spazio e tutti i dati associati, incluse note, tag e file",
+				"label": "Elimina lo spazio e tutti i dati correlati, inclusi note, tag e file",
 				"action": "Elimina spazio",
-				"cannotDeleteLast": "Non è possibile eliminare l'ultimo spazio del vault.",
+				"cannotDeleteLast": "Non è possibile eliminare l'ultimo spazio in un archivio.",
 				"createAnother": "Crea",
-				"createAnotherSuffix": "prima un altro spazio."
+				"createAnotherSuffix": "un altro spazio prima di procedere."
 			},
-			"confirmDelete": "Stai per eliminare lo spazio \"{{name}}\". Vuoi procedere?\n\nSe continui, tutti i dati associati a questo spazio verranno eliminati, incluse note, tag e file."
+			"confirmDelete": "Stai per eliminare lo spazio \"{{name}}\". Sei sicuro di voler procedere?\n\nSe continui, tutti i dati relativi a questo spazio verranno eliminati, inclusi note, tag e file."
 		}
 	},
 	"importExport": {
 		"importNotes": "Importa note",
 		"exportNotes": "Esporta note",
 		"importFromZip": "Importa note da archivio .zip",
-		"importFromDirectory": "Importa cartella con file Markdown",
+		"importFromDirectory": "Importa directory con file Markdown",
 		"dropzone": {
-			"title": "Trascina file Markdown o un archivio .zip per importare",
-			"description": "Trascina i file qui oppure fai clic per selezionarli"
+			"title": "Trascina qui i file Markdown o l'archivio .zip per importare",
+			"description": "Trascina i file qui o clicca per selezionarli"
 		},
 		"progress": "Importazione note in corso. Fase: {{stage}} {{processed}}/{{total}}"
 	}

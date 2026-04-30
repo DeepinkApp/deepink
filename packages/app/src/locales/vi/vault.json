@@ -1,16 +1,16 @@
 {
 	"chooseVault": {
-		"title": "Chọn vault",
+		"title": "Chọn kho lưu trữ",
 		"actions": {
-			"createNew": "Tạo vault mới"
+			"createNew": "Tạo kho lưu trữ mới"
 		}
 	},
 	"creator": {
-		"title": "Tạo Vault",
+		"title": "Tạo kho lưu trữ",
 		"field": {
 			"name": {
-				"label": "Tên vault",
-				"placeholder": "ví dụ: Vault của tôi, Chia sẻ với Alex",
+				"label": "Tên kho lưu trữ",
+				"placeholder": "ví dụ: Kho lưu trữ của tôi, Chia sẻ với Alex",
 				"random": "Tạo tên ngẫu nhiên",
 				"suggests": {
 					"0": "Marginalia",
@@ -20,97 +20,97 @@
 					"4": "Memento",
 					"5": "Alcove",
 					"6": "Penumbra",
-					"7": "Moonlit Correspondence",
-					"8": "Evening Cartography",
-					"9": "Lantern & Ink",
-					"10": "Candlelit Archive",
-					"11": "Climbing Ivy Manuscripts",
-					"12": "Cedarwood Letters",
-					"13": "Rosewood Scriptorium",
-					"14": "The Unbound Codex",
-					"15": "Marginalia & Murmurs",
-					"16": "Endpaper Confessions",
-					"17": "The Annotated Silence",
-					"18": "Shadow Cartography",
-					"19": "The Remembered Room",
-					"20": "The Unsigned Letters",
-					"21": "Whispered Coordinates",
-					"22": "The Untold Almanac",
-					"23": "Lost Wax Letters",
-					"24": "The Invisible Library",
-					"25": "Uncharted Margins",
-					"26": "The Quiet Conspiracy",
-					"27": "The Undelivered Post",
-					"28": "Evergreen Archive",
-					"29": "Paper Moon",
-					"30": "Paper Bloom",
-					"31": "Night Bloom",
-					"32": "Soft Atlas",
+					"7": "Thư dưới ánh trăng",
+					"8": "Bản đồ buổi tối",
+					"9": "Đèn lồng & Mực",
+					"10": "Lưu trữ dưới ánh nến",
+					"11": "Bản thảo dây leo",
+					"12": "Thư gỗ tuyết tùng",
+					"13": "Phòng viết gỗ hồng sắc",
+					"14": "Codex không ràng buộc",
+					"15": "Ghi chú & Lời thì thầm",
+					"16": "Lời tự sự trang cuối",
+					"17": "Khoảng lặng được ghi chú",
+					"18": "Bản đồ bóng tối",
+					"19": "Căn phòng ký ức",
+					"20": "Những bức thư không ký tên",
+					"21": "Tọa độ thì thầm",
+					"22": "Niên giám chưa kể",
+					"23": "Thư sáp mất dấu",
+					"24": "Thư viện vô hình",
+					"25": "Lề sách chưa khám phá",
+					"26": "Âm mưu tĩnh lặng",
+					"27": "Bưu phẩm chưa gửi",
+					"28": "Lưu trữ xanh ngát",
+					"29": "Trăng giấy",
+					"30": "Hoa giấy",
+					"31": "Hoa nở đêm",
+					"32": "Atlas mềm mại",
 					"33": "Velour",
-					"34": "Inkstone",
-					"35": "Hush",
-					"36": "Shade",
-					"37": "Calm Drift",
-					"38": "Deep Meadow",
-					"39": "Unwritten Ledger",
-					"40": "Silent Draftbook",
-					"41": "Unspoken Archive",
-					"42": "Drifting Journal",
-					"43": "Solar Wind Chronicle",
-					"44": "Quiet Fjord",
-					"45": "Memory Fragments",
-					"46": "Silent Moment",
-					"47": "Vanished Minutes"
+					"34": "Nghiên mực",
+					"35": "Yên lặng",
+					"36": "Bóng râm",
+					"37": "Trôi dạt êm đềm",
+					"38": "Đồng cỏ sâu",
+					"39": "Sổ cái chưa viết",
+					"40": "Sổ nháp tĩnh lặng",
+					"41": "Lưu trữ không lời",
+					"42": "Nhật ký trôi dạt",
+					"43": "Biên niên sử gió mặt trời",
+					"44": "Vịnh tĩnh lặng",
+					"45": "Mảnh ghép ký ức",
+					"46": "Khoảnh khắc lặng im",
+					"47": "Phút giây vụt mất"
 				}
 			},
 			"password": {
 				"label": "Mật khẩu mã hóa",
 				"recommended": "(khuyên dùng)",
-				"placeholder": "Nhập mật khẩu mạnh",
-				"description": "Tất cả dữ liệu trong kho sẽ được mã hóa qua mật khẩu này"
+				"placeholder": "Nhập mật khẩu mạnh tại đây",
+				"description": "Mọi dữ liệu trong kho lưu trữ sẽ được mã hóa bằng mật khẩu này"
 			},
 			"algorithm": {
 				"label": "Thuật toán mã hóa"
 			}
 		},
 		"actions": {
-			"create": "Tạo vault",
+			"create": "Tạo kho lưu trữ",
 			"continueNoPassword": "Tiếp tục không dùng mật khẩu",
 			"cancel": "Hủy"
 		},
 		"noEncryptionDialog": {
-			"title": "Tạo vault không mã hóa",
-			"description": "Ghi chú và dữ liệu sẽ được lưu dưới dạng văn bản thuần. Bất kỳ ứng dụng hoặc người nào có quyền truy cập thư mục vault trên ổ đĩa đều có thể đọc toàn bộ nội dung bên trong.",
+			"title": "Tạo kho lưu trữ không mã hóa",
+			"description": "Ghi chú và dữ liệu của bạn sẽ được lưu dưới dạng văn bản thuần túy. Bất kỳ ứng dụng hoặc người nào có quyền truy cập vào thư mục lưu trữ trên ổ đĩa đều có thể đọc được mọi thứ bên trong.",
 			"actions": {
 				"confirm": "Tiếp tục không mã hóa",
 				"cancel": "Hủy"
 			}
 		},
 		"errors": {
-			"nameRequired": "Nhập tên vault",
-			"passwordRequired": "Nhập mật khẩu"
+			"nameRequired": "Vui lòng nhập tên kho lưu trữ",
+			"passwordRequired": "Vui lòng nhập mật khẩu"
 		},
 		"section": {
 			"advancedConfig": {
 				"label": "Tùy chọn mã hóa nâng cao",
-				"description": "Cấu hình các nguyên tắc mã hóa bảo vệ kho lưu trữ của bạn — chuỗi mã hóa, tham số KDF, và nhiều hơn nữa. Để biết chi tiết về các mặc định và những đánh đổi của chúng, xem <encryption>cách mà kho lưu trữ của bạn được bảo vệ</encryption>."
+				"description": "Cấu hình các thành phần mã hóa để bảo vệ kho lưu trữ của bạn — bao gồm chuỗi mã hóa, tham số KDF và hơn thế nữa. Để tìm hiểu chi tiết về các cài đặt mặc định và ưu nhược điểm, hãy xem <encryption>cách kho lưu trữ của bạn được bảo vệ</encryption>."
 			},
 			"kdf": {
-				"label": "Hàm sinh khóa",
-				"description": "Giúp bảo vệ mật khẩu yếu hoặc đã tái sử dụng bằng cách làm cho mỗi lần đoán trở nên chậm hơn và tốn kém hơn. Tăng cường các cài đặt này để có sự bảo vệ mạnh mẽ hơn, hoặc giữ nguyên các mặc định để có trải nghiệm cân bằng.",
+				"label": "Hàm dẫn xuất khóa (KDF)",
+				"description": "Giúp bảo vệ các mật khẩu yếu hoặc mật khẩu dùng lại bằng cách làm cho mỗi lần thử đoán trở nên chậm hơn và tốn kém hơn. Hãy tăng các cài đặt này để được bảo vệ mạnh mẽ hơn, hoặc giữ mặc định để có trải nghiệm cân bằng.",
 				"memory": {
 					"label": "Sử dụng bộ nhớ",
-					"description": "Khiến mỗi lần đoán mật khẩu sử dụng nhiều bộ nhớ hơn. Điều này đặc biệt hiệu quả đối phó với các cuộc tấn công quy mô lớn, vì bộ nhớ tốn kém và khó mở rộng hiệu quả hơn so với tính toán thô."
+					"description": "Khiến mỗi lần thử mật khẩu tiêu tốn nhiều bộ nhớ hơn. Điều này đặc biệt hiệu quả chống lại các cuộc tấn công quy mô lớn, vì bộ nhớ tốn kém và khó mở rộng hiệu quả hơn so với khả năng tính toán thuần túy."
 				},
 				"ops": {
-					"label": "Số lần lặp lại",
-					"description": "Lặp lại quá trình sinh khóa cho mỗi lần đoán mật khẩu. Điều này làm tăng chi phí cho mỗi lần đoán theo cách chủ yếu là tuyến tính: gấp đôi số lần lặp lại thì sẽ gấp đôi công việc cho cả kẻ tấn công và thiết bị của bạn."
+					"label": "Số lần lặp",
+					"description": "Lặp lại quá trình dẫn xuất cho mỗi lần thử mật khẩu. Điều này làm tăng chi phí của mỗi lần thử theo tỷ lệ tuyến tính: tăng gấp đôi số lần lặp sẽ làm tăng gấp đôi khối lượng công việc cho cả kẻ tấn công và thiết bị của bạn."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Mở khóa vault",
+		"title": "Mở khóa kho lưu trữ",
 		"field": {
 			"password": {
 				"placeholder": "Nhập mật khẩu"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Mở khóa",
-			"changeVault": "Đổi vault"
+			"changeVault": "Đổi kho lưu trữ"
 		},
 		"errors": {
-			"cannotOpen": "Không thể mở vault",
-			"invalidPassword": "Mật khẩu không đúng",
-			"passwordRequired": "Nhập mật khẩu"
+			"cannotOpen": "Không thể mở kho lưu trữ",
+			"invalidPassword": "Mật khẩu không chính xác",
+			"passwordRequired": "Vui lòng nhập mật khẩu"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Không thể mở vault",
-		"corrupted": "\"{{name}}\" có vẻ đã bị hỏng."
+		"failedToOpen": "Không thể mở kho lưu trữ",
+		"corrupted": "\"{{name}}\" có vẻ đã bị lỗi dữ liệu."
 	}
 }

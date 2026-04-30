@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Tags",
-			"empty": "Erstelle Tags, um deine Notizen zu ordnen. Verschachtele sie zu einer flexiblen Hierarchie.",
+			"empty": "Erstelle Tags, um deine Notizen zu organisieren. Nutze Tag-Hierarchien für mehr Flexibilität.",
 			"actions": {
 				"add": "Tag hinzufügen"
 			}

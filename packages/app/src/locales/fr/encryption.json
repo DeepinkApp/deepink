@@ -1,7 +1,7 @@
 {
 	"password": {
 		"score": {
-			"good": "Bon mot de passe : {{length}} caractères, {{entropy}} bits d'entropie",
+			"good": "Mot de passe robuste : {{length}} caractères, {{entropy}} bits d'entropie",
 			"bad": "Mot de passe faible : {{length}} caractères, {{entropy}} bits d'entropie"
 		}
 	}

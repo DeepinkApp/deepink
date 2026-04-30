@@ -1,8 +1,8 @@
 {
 	"welcome": {
-		"title": "Benvingut a Deepink",
-		"description": "Dediqueu un moment a ajustar Deepink al vostre gust. O skip this step and begin with the default setup.",
-		"terms": "En continuar, accepteu els nostres <terms>Termes d'Ús</terms> i la <privacy>Política de Privacitat</privacy>.",
-		"continue": "Comenceu"
+		"title": "Benvinguda a Deepink",
+		"description": "Configura Deepink al teu gust o salta aquest pas per utilitzar la configuració predeterminada.",
+		"terms": "En continuar, acceptes els nostres <terms>Termes d'ús</terms> i la <privacy>Política de privacitat</privacy>.",
+		"continue": "Començar"
 	}
 }

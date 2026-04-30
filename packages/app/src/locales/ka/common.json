@@ -6,13 +6,13 @@
 		"save": "შენახვა",
 		"saveChanges": "ცვლილებების შენახვა",
 		"delete": "წაშლა",
-		"reset": "აღდგენა",
+		"reset": "გადატვირთვა",
 		"update": "განახლება",
 		"add": "დამატება",
 		"create": "შექმნა",
 		"close": "დახურვა"
 	},
 	"form": {
-		"suggestTemplate": "სცადეთ: <suggests>"
+		"suggestTemplate": "სცადეთ ეს: <suggests>"
 	}
 }

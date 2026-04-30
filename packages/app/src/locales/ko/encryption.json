@@ -1,8 +1,8 @@
 {
 	"password": {
 		"score": {
-			"good": "강력한 비밀번호: {{length}}자, {{entropy}} 비트의 엔트로피",
-			"bad": "약한 비밀번호: {{length}}자, {{entropy}} 비트의 엔트로피"
+			"good": "안전한 비밀번호: {{length}}자, 엔트로피 {{entropy}}비트",
+			"bad": "취약한 비밀번호: {{length}}자, 엔트로피 {{entropy}}비트"
 		}
 	}
 }

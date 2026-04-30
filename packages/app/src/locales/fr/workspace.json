@@ -2,7 +2,7 @@
 	"panel": {
 		"tags": {
 			"label": "Tags",
-			"empty": "Créez des tags pour organiser vos notes. Structurez-les en hiérarchie pour plus de flexibilité.",
+			"empty": "Créez des tags pour organiser vos notes. Utilisez des hiérarchies pour plus de flexibilité.",
 			"actions": {
 				"add": "Ajouter un tag"
 			}

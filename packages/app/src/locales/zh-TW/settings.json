@@ -5,9 +5,9 @@
 	"tabs": {
 		"general": "一般",
 		"appearance": "外觀",
-		"hotkeys": "快捷鍵",
+		"hotkeys": "快速鍵",
 		"vault": "保險庫",
-		"workspace": "工作區",
+		"workspace": "工作空間",
 		"importExport": "匯入與匯出",
 		"vaultSettingsGroup": "保險庫設定"
 	},
@@ -18,13 +18,13 @@
 			"title": "版本",
 			"checkForUpdates": "檢查更新",
 			"upToDate": "已是最新版本",
-			"newVersionAvailable": "新版本 <bold>{{version}}</bold> 已可使用。",
+			"newVersionAvailable": "有新版本 <bold>{{version}}</bold> 可供下載。",
 			"downloadLatest": "下載",
-			"downloadDescription": "最新版本，取得新功能與改進。"
+			"downloadDescription": "下載最新版本以取得新功能與改進。"
 		},
 		"autoCheckUpdates": {
 			"label": "自動檢查更新",
-			"description": "應用程式會定期檢查更新，並在有新版本時通知你。"
+			"description": "應用程式會定期檢查更新，並在有新版本時通知您。"
 		},
 		"language": {
 			"title": "語言",
@@ -32,27 +32,27 @@
 		},
 		"notifications": {
 			"title": "通知",
-			"description": "系統通知僅用於提醒事項。停用後，提醒將只顯示在應用程式的通知列表中。",
+			"description": "系統通知僅用於提醒。停用後，提醒將僅顯示在應用程式內的通知列表中。",
 			"useSystem": "使用系統通知"
 		},
 		"vaultLock": {
 			"groupTitle": "保險庫鎖定",
 			"lockOnSystemLock": {
 				"label": "系統鎖定時鎖定保險庫",
-				"description": "螢幕保護程式啟動或裝置進入睡眠時，保險庫將自動鎖定。"
+				"description": "當螢幕保護程式啟動或裝置進入睡眠狀態時，保險庫將自動鎖定。"
 			},
 			"lockAfterIdle": {
 				"title": "閒置後鎖定保險庫",
-				"description": "閒置一段時間後，保險庫將自動鎖定。",
+				"description": "在指定的閒置時間後鎖定保險庫。",
 				"never": "不鎖定",
-				"minutes5": "閒置 5 分鐘",
-				"minutes10": "閒置 10 分鐘",
-				"minutes15": "閒置 15 分鐘",
-				"minutes30": "閒置 30 分鐘",
-				"hour1": "閒置 1 小時",
-				"hours2": "閒置 2 小時",
-				"hours3": "閒置 3 小時",
-				"hours5": "閒置 5 小時"
+				"minutes5": "5 分鐘後",
+				"minutes10": "10 分鐘後",
+				"minutes15": "15 分鐘後",
+				"minutes30": "30 分鐘後",
+				"hour1": "1 小時後",
+				"hours2": "2 小時後",
+				"hours3": "3 小時後",
+				"hours5": "5 小時後"
 			}
 		}
 	},
@@ -62,64 +62,64 @@
 			"auto": "自動",
 			"dark": "深色",
 			"light": "淺色",
-			"zen": "Zen"
+			"zen": "禪意"
 		},
 		"accentColor": {
 			"title": "強調色",
-			"zenNotApplicable": "強調色不適用於目前選取的主題。"
+			"zenNotApplicable": "所選主題不支援強調色。"
 		},
 		"zoomLevel": {
 			"title": "縮放比例",
-			"description": "調整所有窗口的預設縮放級別。\n如果您的系統不會自動調整應用程序的縮放，您可以更改縮放以適合實際顯示的像素比率 (DPR)。您的顯示像素比率為 {{dpr}}.",
+			"description": "調整所有視窗的預設縮放比例。\n若您的系統未自動縮放應用程式，您可以調整縮放比例以符合實際顯示器像素比 (DPR)。您的顯示器像素比為 {{dpr}}。",
 			"apply": "套用",
 			"reset": "重設",
 			"errors": {
 				"enterNumber": "請輸入數字以設定縮放比例",
-				"tooSmall": "縮放比例不能小於 {{min}}%",
-				"tooBig": "縮放比例不能大於 {{max}}%"
+				"tooSmall": "縮放比例不能低於 {{min}}%",
+				"tooBig": "縮放比例不能高於 {{max}}%"
 			}
 		}
 	},
 	"editor": {
 		"groupTitle": "編輯器",
 		"mode": {
-			"title": "編輯器模式"
+			"title": "編輯模式"
 		},
 		"fontFamily": {
-			"title": "字型",
-			"description": "設定所有編輯器使用的字型，留空則使用預設字型。",
-			"placeholder": "輸入字型名稱"
+			"title": "字體系列",
+			"description": "設定所有編輯器使用的字體系列，或留空以使用預設值。",
+			"placeholder": "輸入字體名稱"
 		},
 		"fontSize": {
-			"title": "字型大小"
+			"title": "字體大小"
 		},
 		"lineHeight": {
 			"title": "行高"
 		},
 		"dateFormat": {
 			"title": "日期格式",
-			"description": "設定插入日期時使用的格式。支援標準語法，如 DD/MM/YYYY HH:mm:ss。",
+			"description": "設定插入日期時使用的格式。支援標準 Token 語法，例如 DD/MM/YYYY HH:mm:ss。",
 			"formatReference": "日期格式參考",
 			"example": "範例"
 		},
 		"plainText": {
 			"groupTitle": "純文字編輯器",
 			"lineNumbers": "顯示行號",
-			"miniMap": "啟用迷你地圖"
+			"miniMap": "啟用縮圖導覽"
 		}
 	},
 	"hotkeys": {
-		"blank": "未設定",
+		"blank": "無",
 		"shortcuts": {
-			"createNote": "新增筆記",
+			"createNote": "建立新筆記",
 			"closeCurrentNote": "關閉目前筆記",
-			"restoreClosedNote": "恢復最近關閉的筆記",
-			"focusNextNote": "切換至下一個已開啟的筆記",
-			"focusPreviousNote": "切換至上一個已開啟的筆記",
-			"toggleArchive": "將目前筆記移入／移出封存",
-			"toggleBookmark": "將目前筆記加入／移除書籤",
+			"restoreClosedNote": "復原最近關閉的筆記",
+			"focusNextNote": "切換至下一則開啟的筆記",
+			"focusPreviousNote": "切換至前一則開啟的筆記",
+			"toggleArchive": "將目前筆記移入/移出封存",
+			"toggleBookmark": "將目前筆記加入/移除書籤",
 			"deleteNote": "刪除目前筆記",
-			"restoreFromBin": "從垃圾桶還原目前筆記",
+			"restoreFromBin": "從垃圾桶復原目前筆記",
 			"toggleHistory": "顯示或隱藏目前筆記的歷史紀錄",
 			"focusSearch": "搜尋筆記",
 			"syncDatabase": "將保險庫同步至磁碟",
@@ -132,8 +132,8 @@
 			"title": "保險庫名稱"
 		},
 		"rememberPasswords": {
-			"label": "記住工作區密碼",
-			"description": "工作區密碼將以主密鑰加密後儲存於資料庫中，以便自動開啟加密的工作區，無需再次輸入密碼。"
+			"label": "記住工作空間密碼",
+			"description": "工作空間密碼將使用主密鑰加密並儲存在資料庫中，以便自動開啟加密的工作空間，無需再次輸入密碼。"
 		},
 		"filesAndData": {
 			"groupTitle": "檔案與資料",
@@ -141,11 +141,11 @@
 				"title": "圖片壓縮",
 				"compress": "壓縮圖片",
 				"doNotCompress": "不壓縮圖片",
-				"alwaysAsk": "每次詢問"
+				"alwaysAsk": "每次都詢問"
 			},
 			"deleteOrphaned": {
-				"label": "刪除未使用的檔案",
-				"description": "刪除不再被引用的檔案。"
+				"label": "刪除孤立檔案",
+				"description": "刪除不再使用的檔案。"
 			}
 		},
 		"encryption": {
@@ -163,7 +163,7 @@
 			"groupTitle": "同步",
 			"enable": {
 				"label": "啟用同步",
-				"description": "在多台裝置間保持保險庫同步。所有資料在離開裝置前皆會加密。"
+				"description": "在不同裝置間同步您的保險庫。所有資料在離開您的裝置前皆已加密。"
 			},
 			"method": {
 				"title": "同步方式",
@@ -179,71 +179,71 @@
 			"groupTitle": "快照",
 			"record": {
 				"label": "記錄筆記快照",
-				"description": "啟用後，筆記內容變更時會自動建立快照。你可以在筆記歷史面板中控制個別筆記的快照記錄。"
+				"description": "啟用後，筆記內容變更時將自動建立快照。您可以在筆記歷史紀錄面板中針對單一筆記調整快照設定。"
 			},
 			"delay": {
 				"title": "快照延遲",
-				"description": "筆記編輯後等待多久才儲存新快照（以秒為單位）。間隔越短，快照越頻繁，保險庫也會越大。"
+				"description": "筆記編輯後等待多久才儲存新快照（以秒為單位）。間隔越短，快照頻率越高，也會占用更多儲存空間。"
 			}
 		},
 		"trashBin": {
 			"groupTitle": "垃圾桶",
 			"confirmDeletion": {
-				"label": "確認刪除",
-				"description": "刪除筆記前先確認。"
+				"label": "刪除前確認",
+				"description": "刪除筆記前先進行確認。"
 			},
 			"moveToBin": {
 				"label": "將筆記移至垃圾桶",
-				"description": "刪除筆記時先移至垃圾桶，而非永久刪除，以便日後還原。"
+				"description": "將筆記移至垃圾桶而非直接永久刪除，以便日後還原。"
 			},
 			"autoPurge": {
-				"label": "自動永久刪除垃圾桶中的舊筆記",
+				"label": "自動永久刪除垃圾桶內的舊筆記",
 				"description": "移至垃圾桶的筆記將在一段時間後被永久刪除。"
 			},
 			"purgeDelay": {
-				"title": "永久刪除延遲",
-				"description": "垃圾桶中的筆記將在移入後指定天數後被永久刪除。",
+				"title": "永久刪除延遲時間",
+				"description": "筆記移至垃圾桶後，將在此天數後被永久刪除。",
 				"unit": "天"
 			}
 		}
 	},
 	"workspace": {
 		"name": {
-			"title": "工作區名稱",
+			"title": "空間名稱",
 			"update": "更新"
 		},
 		"newNoteTitle": {
 			"title": "新筆記標題",
-			"description": "設定新筆記的標題。可使用 {date} 或 {date:FORMAT} 語法插入日期，例如 {date:DD/MM/YYYY HH:mm}。",
+			"description": "設定新筆記的預設標題。您可以使用 {date} 或 {date:FORMAT} 語法，例如 {date:DD/MM/YYYY HH:mm}。",
 			"formatReference": "格式參考",
 			"placeholder": "例如：筆記 {date:DD/MM/YYYY HH:mm}",
 			"example": "範例"
 		},
 		"tagsForNewNote": {
-			"title": "新筆記的標籤",
-			"none": "不設定任何標籤",
+			"title": "新筆記標籤",
+			"none": "不設定標籤",
 			"selected": "與目前選取的標籤相同"
 		},
 		"dangerousZone": {
 			"groupTitle": "危險區域",
 			"delete": {
-				"label": "刪除工作區及所有相關資料，包括筆記、標籤和檔案",
-				"action": "刪除工作區",
-				"cannotDeleteLast": "無法刪除保險庫中的最後一個工作區。",
-				"createAnother": "建立",
-				"createAnotherSuffix": "另一個工作區後再執行此操作。"
+				"label": "刪除此空間及其所有相關資料（包含筆記、標籤與檔案）",
+				"action": "刪除空間",
+				"cannotDeleteLast": "無法刪除空間內最後一個空間。",
+				"createAnother": "請先建立",
+				"createAnotherSuffix": "另一個空間。"
 			},
-			"confirmDelete": "你即將刪除工作區「{{name}}」。確定要繼續嗎？\n\n繼續後，此工作區的所有相關資料都將被刪除，包括筆記、標籤和檔案。"
+			"confirmDelete": "您即將刪除空間「{{name}}」。確定要執行此操作嗎？\n\n若繼續，此空間的所有相關資料（包括筆記、標籤與檔案）都將被刪除。"
 		}
 	},
 	"importExport": {
 		"importNotes": "匯入筆記",
 		"exportNotes": "匯出筆記",
 		"importFromZip": "從 .zip 壓縮檔匯入筆記",
-		"importFromDirectory": "匯入包含 Markdown 檔案的資料夾",
+		"importFromDirectory": "匯入包含 Markdown 檔案的目錄",
 		"dropzone": {
-			"title": "拖放 Markdown 檔案或 .zip 壓縮檔以匯入",
-			"description": "將檔案拖放至此處，或點擊選取檔案"
+			"title": "拖放 Markdown 檔案或 .zip 壓縮檔進行匯入",
+			"description": "將檔案拖曳至此，或點擊選擇檔案"
 		},
 		"progress": "正在匯入筆記。階段：{{stage}} {{processed}}/{{total}}"
 	}

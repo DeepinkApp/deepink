@@ -1,7 +1,7 @@
 {
 	"welcome": {
 		"title": "欢迎使用 Deepink",
-		"description": "花点时间根据您的喜好设置 Deepink，或者跳过此步骤直接开始默认设置。",
+		"description": "花点时间根据您的喜好进行设置。也可以跳过此步骤，直接使用默认设置。",
 		"terms": "继续即表示您接受我们的<terms>使用条款</terms>和<privacy>隐私政策</privacy>。",
 		"continue": "开始使用"
 	}

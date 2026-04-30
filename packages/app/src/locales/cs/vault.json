@@ -1,65 +1,65 @@
 {
 	"chooseVault": {
-		"title": "Vyberte trezor",
+		"title": "Vyberte úložiště",
 		"actions": {
-			"createNew": "Vytvořit nový trezor"
+			"createNew": "Vytvořit nové úložiště"
 		}
 	},
 	"creator": {
-		"title": "Vytvořit trezor",
+		"title": "Vytvořit úložiště",
 		"field": {
 			"name": {
-				"label": "Název trezoru",
-				"placeholder": "např. Můj trezor, Sdíleno s Alexem",
-				"random": "Vygenerovat náhodný název",
+				"label": "Název úložiště",
+				"placeholder": "např. Moje úložiště, Sdílené s Alexem",
+				"random": "Generovat náhodný název",
 				"suggests": {
 					"0": "Marginalia",
-					"1": "Vellum",
-					"2": "Endpaper",
+					"1": "Pergamen",
+					"2": "Lepicí list",
 					"3": "Verso",
 					"4": "Memento",
-					"5": "Alcove",
+					"5": "Alkov",
 					"6": "Penumbra",
 					"7": "Měsíční korespondence",
 					"8": "Večerní kartografie",
-					"9": "Lucerna & Inkoust",
-					"10": "Archív při svíčkách",
-					"11": "Manuskripty popínavého břečťanu",
-					"12": "Cédrové dopisy",
-					"13": "Růžové dřevo Scriptorium",
-					"14": "Neomezený kodex",
-					"15": "Marginalia & Šepoty",
-					"16": "Endpaper Vyznání",
-					"17": "Anotované ticho",
+					"9": "Lampa a inkoust",
+					"10": "Archiv při svíčkách",
+					"11": "Manuskrity s břečťánem",
+					"12": "Cedrové dopisy",
+					"13": "Růžové skriptorium",
+					"14": "Nekonečný kodex",
+					"15": "Marginalia a šepot",
+					"16": "Lepicí vyznání",
+					"17": "Poznamenaná tichost",
 					"18": "Stínová kartografie",
-					"19": "Pamětihodná místnost",
+					"19": "Vzpomínaná místnost",
 					"20": "Nepodepsané dopisy",
-					"21": "Šeptané souřadnice",
-					"22": "Nevyprávěný almanach",
-					"23": "Ztracené voskové dopisy",
+					"21": "Šepotané souřadnice",
+					"22": "Nepopsaný almanach",
+					"23": "Dopisy z vosku",
 					"24": "Neviditelná knihovna",
-					"25": "Neprozkoumané okraje",
+					"25": "Nepopsané okraje",
 					"26": "Tichá konspirace",
 					"27": "Nedoručená pošta",
-					"28": "Věčně zelený archív",
+					"28": "Věčně zelený archiv",
 					"29": "Papírový měsíc",
 					"30": "Papírový květ",
-					"31": "Noční květ",
-					"32": "Měkký atlas",
-					"33": "Velour",
-					"34": "Inkoustový kámen",
+					"31": "Noční rozkvět",
+					"32": "Měkká atlas",
+					"33": "Samet",
+					"34": "Inkoustnice",
 					"35": "Ticho",
 					"36": "Stín",
-					"37": "Klidný drift",
+					"37": "Klidný odplav",
 					"38": "Hluboká louka",
-					"39": "Nepopsaný účet",
+					"39": "Nepopsaná kniha",
 					"40": "Tichý zápisník",
-					"41": "Nevyslovený archív",
-					"42": "Plovoucí deník",
-					"43": "Kronika slunečního větru",
+					"41": "Nevypowídaný archiv",
+					"42": "Plující deník",
+					"43": "Chronika slunečního větru",
 					"44": "Tichý fjord",
-					"45": "Fragmenty paměti",
-					"46": "Tichý okamžik",
+					"45": "Úlomky vzpomínek",
+					"46": "Tiché okamžiky",
 					"47": "Zmizelé minuty"
 				}
 			},
@@ -67,50 +67,50 @@
 				"label": "Heslo pro šifrování",
 				"recommended": "(doporučeno)",
 				"placeholder": "Zadejte silné heslo",
-				"description": "Všechna data ve vaultu budou šifrována pomocí tohoto hesla"
+				"description": "Všechna data v prostoru budou chráněna tímto heslem"
 			},
 			"algorithm": {
-				"label": "Šifrovací algoritmus"
+				"label": "Algoritmus šifrování"
 			}
 		},
 		"actions": {
-			"create": "Vytvořit trezor",
+			"create": "Vytvořit prostor",
 			"continueNoPassword": "Pokračovat bez hesla",
 			"cancel": "Zrušit"
 		},
 		"noEncryptionDialog": {
-			"title": "Vytvořit trezor bez šifrování",
-			"description": "Vaše poznámky a data budou uložena jako prostý text. Jakákoli aplikace nebo osoba s přístupem k adresáři trezoru na disku bude moci přečíst vše uvnitř.",
+			"title": "Vytvořit prostor bez šifrování",
+			"description": "Vaše poznámky a data budou uložena v nešifrované podobě. Každá aplikace nebo osoba se přístupem k adresáři prostoru na disku bude moci vše přečíst.",
 			"actions": {
 				"confirm": "Pokračovat bez šifrování",
 				"cancel": "Zrušit"
 			}
 		},
 		"errors": {
-			"nameRequired": "Zadejte název trezoru",
+			"nameRequired": "Zadejte název prostoru",
 			"passwordRequired": "Zadejte heslo"
 		},
 		"section": {
 			"advancedConfig": {
 				"label": "Pokročilé možnosti šifrování",
-				"description": "Konfigurujte šifrovací prvky, které chrání váš trezor — kaskádu šifer, parametry KDF a další. Pro podrobné informace o výchozích hodnotách a jejich výhodách a nevýhodách, viz <encryption>jak je váš trezor chráněn</encryption>."
+				"description": "Nastavte parametry šifrování, které chrání váš prostor – kaskádu šifer, parametry KDF a další. Podrobný přehled výchozích nastavení a jejich výhod a nevýhod naleznete v sekci <encryption>jak je váš prostor chráněn</encryption>."
 			},
 			"kdf": {
-				"label": "Funkce odvození klíče",
-				"description": "Pomáhá chránit slabá nebo opakovaně použitá hesla tím, že zpomaluje a zvyšuje náklady na každé uhádnutí. Zvyšte tato nastavení pro silnější ochranu, nebo si ponechte výchozí hodnoty pro vyvážený zážitek.",
+				"label": "Derivační funkce klíče (KDF)",
+				"description": "Pomáhá chránit slabá nebo opakovaná hesla tím, že zpomaluje a ztěžuje každou pokus o odhad. Pro vyšší úroveň ochrany zvyšte tyto hodnoty, nebo ponechte výchozí nastavení pro vyvážený výkon.",
 				"memory": {
 					"label": "Využití paměti",
-					"description": "Způsobuje, že každé uhádnutí hesla používá více paměti. To je zvláště účinné proti velkým útokům, protože paměť je nákladná a hůře se efektivně škáluje než surové výpočty."
+					"description": "Každý pokus o odhad hesla vyžaduje více paměti. To je obzvláště účinné proti rozsáhlým útokům, protože paměť je nákladná a hůře se škáluje než čistý výpočet."
 				},
 				"ops": {
 					"label": "Počet iterací",
-					"description": "Opakuje práci s odvozením pro každé uhádnutí hesla. To zvyšuje náklady na každé uhádnutí většinou lineárním způsobem: zdvojnásobení iterací přibližně zdvojnásobí práci pro útočníky i vaše zařízení."
+					"description": "Opakuje proces derivace při každém pokusu o odhad hesla. To zvyšuje náročnost každého pokusu lineárně: zdvojnásobení počtu iterací zhruba zdvojnásobí náročnost pro útočníky i vaše zařízení."
 				}
 			}
 		}
 	},
 	"login": {
-		"title": "Odemknout trezor",
+		"title": "Odemknout prostor",
 		"field": {
 			"password": {
 				"placeholder": "Zadejte heslo"
@@ -118,16 +118,16 @@
 		},
 		"actions": {
 			"unlock": "Odemknout",
-			"changeVault": "Změnit trezor"
+			"changeVault": "Změnit prostor"
 		},
 		"errors": {
-			"cannotOpen": "Nelze otevřít trezor",
-			"invalidPassword": "Neplatné heslo",
+			"cannotOpen": "Nelze otevřít prostor",
+			"invalidPassword": "Nesprávné heslo",
 			"passwordRequired": "Zadejte heslo"
 		}
 	},
 	"errors": {
-		"failedToOpen": "Nepodařilo se otevřít trezor",
-		"corrupted": "\"{{name}}\" se zdá být poškozený."
+		"failedToOpen": "Nepodařilo se otevřít prostor",
+		"corrupted": "\"{{name}}\" se zdá být poškozen."
 	}
 }

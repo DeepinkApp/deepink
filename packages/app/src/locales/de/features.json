@@ -14,37 +14,37 @@
 			"field": {
 				"name": {
 					"label": "Tag-Name",
-					"placeholder": "z.B. Ideen"
+					"placeholder": "z. B. Ideen"
 				},
 				"parent": {
 					"label": "Übergeordneter Tag",
-					"placeholder": "z.B. Rezepte/Desserts"
+					"placeholder": "z. B. Rezepte/Desserts"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Änderungen können aufgrund eines unbekannten Fehlers nicht gespeichert werden.",
-				"format": "Tag darf nicht leer sein, nicht mit \"/\" beginnen oder enden und keine \"//\" enthalten.",
-				"duplicate": "Tag '{{name}}' existiert bereits.",
-				"parentTagNotFound": "Übergeordneter Tag nicht gefunden, bitte wählen Sie einen anderen Tag."
+				"unknownSubmitError": "Änderungen konnten aufgrund eines unbekannten Fehlers nicht gespeichert werden.",
+				"format": "Der Tag darf nicht leer sein, nicht mit „/“ beginnen oder enden und darf kein „//“ enthalten.",
+				"duplicate": "Tag „{{name}}“ existiert bereits.",
+				"parentTagNotFound": "Übergeordneter Tag nicht gefunden. Bitte wähle einen anderen Tag."
 			}
 		},
 		"deletion": {
-			"confirm": "Möchten Sie den Tag \"{{name}}\" und alle Untertags wirklich löschen?"
+			"confirm": "Möchtest du den Tag „{{name}}“ und alle zugehörigen Tags wirklich löschen?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Notizbuch",
 		"creator": {
-			"title": "Neuen Arbeitsbereich erstellen",
-			"description": "Jeder Arbeitsbereich ist ein eigenständiger Raum für Ihre Notizen, Tags und Dateien. Alles bleibt getrennt, während es in Ihrem verschlüsselten Tresor lebt – bereit, wenn Sie wechseln.",
+			"title": "Neuen Bereich erstellen",
+			"description": "Jeder Bereich ist ein eigener Raum für deine Notizen, Tags und Dateien. Alles bleibt getrennt und sicher in deinem verschlüsselten Vault – bereit, wenn du wechselst.",
 			"action": {
 				"add": "Erstellen",
 				"cancel": "Abbrechen"
 			},
 			"field": {
 				"name": {
-					"label": "Arbeitsbereichsname",
-					"placeholder": "z.B. Gesundheitsjournal, Geschäftsideen",
+					"label": "Bereichsname",
+					"placeholder": "z. B. Gesundheitstagebuch, Geschäftsideen",
 					"suggests": {
 						"0": "Finanzen",
 						"1": "Gesundheit",
@@ -60,62 +60,62 @@
 				}
 			},
 			"error": {
-				"unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
-				"format": "Der Arbeitsbereichsname darf nicht leer sein."
+				"unknown": "Ein unbekannter Fehler ist aufgetreten. Bitte versuche es erneut.",
+				"format": "Der Bereichsname darf nicht leer sein."
 			}
 		},
 		"error": {
-			"title": "Arbeitsbereich \"{{name}}\" konnte nicht geladen werden",
-			"description": "Der Arbeitsbereich konnte nicht geladen werden. Die Daten könnten beschädigt sein. Wechseln Sie zu einem anderen Arbeitsbereich oder erstellen Sie einen neuen, um weiterzuarbeiten.",
-			"chooseAnother": "Wählen Sie einen anderen Arbeitsbereich",
+			"title": "Bereich „{{name}}“ konnte nicht geladen werden",
+			"description": "Dieser Bereich konnte nicht geladen werden. Die Daten könnten beschädigt sein. Wechsel zu einem anderen Bereich oder erstelle einen neuen, um weiterzuarbeiten.",
+			"chooseAnother": "Anderen Bereich wählen",
 			"dividerText": "oder",
-			"createNew": "Neuen Arbeitsbereich erstellen",
-			"createWorkspace": "Arbeitsbereich erstellen",
-			"closeVault": "Aktuellen Tresor schließen"
+			"createNew": "Neuen Bereich erstellen",
+			"createWorkspace": "Bereich erstellen",
+			"closeVault": "Aktuellen Vault schließen"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "Ohne Titel",
-			"defaultTemplate": "Ohne Titel - {{date}}",
+			"placeholder": "Unbetitelt",
+			"defaultTemplate": "Unbetitelt – {{date}}",
 			"duplicate": "Duplikat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Eine Idee, Aufgabe oder einen Gedanken festhalten…",
+			"placeholder": "Idee, Aufgabe oder Gedanken festhalten…",
 			"modes": {
 				"plaintext": "Textmodus",
-				"richtext": "Rich-Editor",
+				"richtext": "Editor",
 				"split-screen": "Geteilter Bildschirm"
 			}
 		},
 		"actions": {
 			"addToFavorites": "Zu Favoriten hinzufügen",
-			"removeFromFavorites": "Von Favoriten entfernen",
-			"moveToArchive": "In Archiv verschieben",
-			"removeFromArchive": "Aus Archiv entfernen"
+			"removeFromFavorites": "Aus Favoriten entfernen",
+			"moveToArchive": "Im Archiv ablegen",
+			"removeFromArchive": "Aus dem Archiv entfernen"
 		},
 		"tags": {
-			"addPlaceholder": "Tippen Sie, um Tag hinzuzufügen…"
+			"addPlaceholder": "Tippen, um Tag hinzuzufügen…"
 		},
 		"versionPreview": {
 			"versionAt": "Version vom {{date}}",
-			"backToEditing": "Zurück zur Bearbeitung"
+			"backToEditing": "Zur Bearbeitung zurückkehren"
 		},
 		"menu": {
 			"title": "Notizoptionen",
-			"copyReference": "Notizlink kopieren",
-			"remindMe": "Erinnere mich",
+			"copyReference": "Notiz-Link kopieren",
+			"remindMe": "Erinnerung",
 			"history": "Verlauf",
-			"backLinks": "Rückverweise",
+			"backLinks": "Backlinks",
 			"readonlyMode": "Nur-Lese-Modus",
 			"spellcheck": "Rechtschreibprüfung",
 			"export": "Exportieren...",
 			"passwordProtection": "Passwortschutz...",
 			"disableSync": "Synchronisierung deaktivieren",
-			"moveToArchive": "In Archiv verschieben",
-			"removeFromArchive": "Aus Archiv entfernen",
-			"deleteToBin": "In den Papierkorb löschen",
-			"deletePermanently": "Permanent löschen",
+			"moveToArchive": "Im Archiv ablegen",
+			"removeFromArchive": "Aus dem Archiv entfernen",
+			"deleteToBin": "In den Papierkorb verschieben",
+			"deletePermanently": "Unwiderruflich löschen",
 			"restoreFromBin": "Aus dem Papierkorb wiederherstellen"
 		},
 		"version": {
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Snapshot speichern",
-				"title": "Den aktuellen Zustand dieser Notiz als neue Version im Verlauf speichern"
+				"title": "Aktuellen Stand dieser Notiz als neue Version im Verlauf speichern"
 			},
 			"deleteAll": {
 				"label": "Alle löschen",
-				"title": "Alle gespeicherten Versionen dieser Notiz dauerhaft löschen"
+				"title": "Alle gespeicherten Versionen dieser Notiz unwiderruflich löschen"
 			},
 			"dontRecord": "Verlauf für diese Notiz nicht aufzeichnen",
-			"empty": "Diese Notiz hat keine aufgezeichneten Versionen",
-			"loading": "Laden...",
+			"empty": "Keine gespeicherten Versionen vorhanden",
+			"loading": "Lädt...",
 			"confirmDeleteAll": {
 				"title": "Alle Notizversionen löschen",
-				"description": "Diese Aktion löscht alle Notizversionen dauerhaft.",
-				"confirm": "Sind Sie sich sicher?",
+				"description": "Diese Aktion löscht alle gespeicherten Versionen dieser Notiz unwiderruflich.",
+				"confirm": "Wirklich löschen?",
 				"action": "Anwenden"
 			},
 			"confirmApply": {
 				"title": "Notizversion anwenden",
-				"description": "Sie sind dabei, die Notizversion {{version}} anzuwenden.",
-				"warning": "Diese Aktion ersetzt die aktuellen Notizdaten durch den Text eines ausgewählten Snapshots. Sind Sie sicher?",
+				"description": "Du möchtest die Version {{version}} anwenden.",
+				"warning": "Diese Aktion ersetzt die aktuellen Notizdaten durch den Text des ausgewählten Snapshots. Sicher?",
 				"apply": "Anwenden",
 				"preview": "Vorschau"
 			},
 			"confirmDelete": {
 				"title": "Notizversion löschen",
-				"description": "Sie sind dabei, die Notizversion {{version}} zu löschen.",
-				"warning": "Diese Aktion löscht die Notizversion unwiderruflich. Sind Sie sicher?",
+				"description": "Du möchtest die Version {{version}} löschen.",
+				"warning": "Diese Aktion löscht die Version unwiderruflich. Sicher?",
 				"delete": "Löschen",
 				"preview": "Vorschau"
 			}
@@ -168,34 +168,34 @@
 			"closePanel": "Panel schließen",
 			"tabs": {
 				"history": "Notizversionen",
-				"backLinks": "Rückverweise",
+				"backLinks": "Backlinks",
 				"files": "Angehängte Dateien"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Möchten Sie diese Notiz in den Papierkorb verschieben?",
-			"confirmPermanentDeletion": "Möchten Sie diese Notiz dauerhaft löschen?"
+			"confirmPermanentDeletion": "Möchtest du diese Notiz unwiderruflich löschen?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Sind Sie sicher, dass Sie {{filesCount}} Dateien (insgesamt {{size}}) hochladen möchten?"
+		"confirmLargeUpload": "Möchtest du wirklich {{filesCount}} Dateien (insgesamt {{size}}) hochladen?"
 	},
 	"notesList": {
 		"search": {
-			"placeholder": "Suchen..."
+			"placeholder": "Suche..."
 		},
 		"filterBy": "Filtern nach",
-		"empty": "Hier sind noch keine Notizen. <create>Erstellen Sie eine Notiz</create>"
+		"empty": "Noch keine Notizen vorhanden. <create>Erstelle eine Notiz</create>"
 	},
 	"notesView": {
 		"allNotes": "Alle Notizen",
-		"favorites": "Favorisierte Notizen",
-		"archived": "Archivierte Notizen",
-		"deleted": "Gelöschte Notizen"
+		"favorites": "Favoriten",
+		"archived": "Archiviert",
+		"deleted": "Gelöscht"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Wählen Sie eine Notiz aus, um zu lesen oder zu bearbeiten"
+			"placeholder": "Wähle eine Notiz zum Lesen oder Bearbeiten"
 		}
 	},
 	"activityBar": {
@@ -205,25 +205,25 @@
 		"extensions": "Erweiterungen",
 		"inbox": "Posteingang",
 		"publishNotes": "Notizen veröffentlichen",
-		"lockVault": "Tresor sperren",
-		"globalSettings": "Globale Einstellungen"
+		"lockVault": "Vault sperren",
+		"globalSettings": "Einstellungen"
 	},
 	"tabBar": {
 		"closeTab": "Tab schließen"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Klicken Sie, um eine Überschrift der Ebene {{level}} einzufügen. Öffnen Sie das Kontextmenü, um eine andere Option auszuwählen",
-			"level": "Überschriftsebene {{level}}"
+			"insertTitle": "Klicken, um Überschrift der Ebene {{level}} einzufügen. Nutze das Kontextmenü für weitere Optionen",
+			"level": "Überschrift Ebene {{level}}"
 		},
-		"bold": "Fettstil umschalten",
-		"italic": "Kursivstil umschalten",
-		"strikethrough": "Durchgestrichen-Stil umschalten",
-		"unorderedList": "Ungeordnete Liste einfügen oder umschalten",
-		"checkboxList": "Checkbox-Liste einfügen oder umschalten",
-		"orderedList": "Geordnete Liste einfügen oder umschalten",
-		"codeBlock": "Text mit Codeblock einfügen oder umschließen",
-		"quoteBlock": "Text mit Zitatblock einfügen oder umschließen",
+		"bold": "Fettdruck umschalten",
+		"italic": "Kursivschrift umschalten",
+		"strikethrough": "Durchstreichen umschalten",
+		"unorderedList": "Aufzählungsliste einfügen oder umschalten",
+		"checkboxList": "Checkliste einfügen oder umschalten",
+		"orderedList": "Nummerierte Liste einfügen oder umschalten",
+		"codeBlock": "Codeblock einfügen oder umschließen",
+		"quoteBlock": "Zitatblock einfügen oder umschließen",
 		"insertDate": "Datum einfügen",
 		"insertPageBreak": "Seitenumbruch einfügen",
 		"insertFile": "Datei einfügen",
@@ -234,10 +234,10 @@
 			"field": {
 				"url": {
 					"label": "Bild-URL",
-					"placeholder": "z.B. https://example.com/image.png"
+					"placeholder": "z. B. https://beispiel.de/bild.png"
 				},
 				"altText": {
-					"label": "Alternativtext für das Bild (optional)",
+					"label": "Alternativtext (optional)",
 					"placeholder": "Kurze Beschreibung des Bildes"
 				}
 			},
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Link einfügen",
 			"dialogTitle": "Link hinzufügen",
-			"dialogDescription": "Der ausgewählte Text wird zu einem Link, oder der Link wird an der Cursorposition hinzugefügt, wenn nichts ausgewählt ist.",
+			"dialogDescription": "Der markierte Text wird zum Link. Falls nichts markiert ist, wird der Link an der Cursorposition eingefügt.",
 			"field": {
 				"url": {
 					"label": "Link-URL",
-					"placeholder": "z.B. https://example.com"
+					"placeholder": "z. B. https://beispiel.de"
 				}
 			},
 			"actions": {
@@ -264,7 +264,7 @@
 	},
 	"image": {
 		"loading": "Bild wird geladen",
-		"brokenImage": "Bild kann nicht geladen werden"
+		"brokenImage": "Bild konnte nicht geladen werden"
 	},
 	"notifications": {
 		"title": "Benachrichtigungen"
@@ -272,12 +272,12 @@
 	"updates": {
 		"appUpdate": {
 			"title": "App-Update",
-			"reminderLater": "Die Erinnerung wird in einer Woche angezeigt"
+			"reminderLater": "Die Erinnerung wird in einer Woche erneut angezeigt"
 		},
 		"newVersion": {
 			"title": "Neue Version verfügbar",
-			"body": "Eine neue Version ist bereit. Aktualisieren Sie, um die neuesten Verbesserungen und Fehlerbehebungen zu erhalten.",
-			"download": "Neue Version herunterladen",
+			"body": "Eine neue Version ist bereit. Aktualisiere die App, um die neuesten Verbesserungen und Fehlerbehebungen zu erhalten.",
+			"download": "Neue Version laden",
 			"ignore": "Ignorieren"
 		}
 	},
@@ -285,7 +285,7 @@
 		"imageProperties": {
 			"title": "Bildeigenschaften",
 			"urlLabel": "Bild-URL",
-			"altLabel": "Alternativtext für das Bild"
+			"altLabel": "Alternativtext"
 		},
 		"linkProperties": {
 			"title": "Linkeigenschaften",
@@ -294,10 +294,10 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Klicken Sie, um Änderungen auf der Festplatte zu speichern",
+			"title": "Klicken, um Änderungen zu speichern",
 			"saving": "Änderungen werden gespeichert..."
 		},
-		"changeVault": "Tresor wechseln",
+		"changeVault": "Vault wechseln",
 		"history": "Verlauf",
 		"notifications": "Benachrichtigungen"
 	}

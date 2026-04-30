@@ -10,7 +10,7 @@
 		"paste": "貼上",
 		"selectAll": "全選",
 		"help": "說明",
-		"toggleDevTools": "切換開發者工具",
+		"toggleDevTools": "開啟開發者工具",
 		"about": "關於應用程式"
 	},
 	"tray": {
@@ -18,16 +18,16 @@
 		"quit": "結束"
 	},
 	"note": {
-		"export": "匯出⋯",
-		"duplicate": "建立副本",
+		"export": "匯出...",
+		"duplicate": "重複",
 		"copyMarkdownLink": "複製 Markdown 連結",
 		"deletePermanently": "永久刪除",
 		"restoreFromBin": "從回收桶還原",
 		"deleteToBin": "移至回收桶"
 	},
 	"tag": {
-		"addNestedTag": "建立子標籤⋯",
-		"edit": "編輯⋯",
+		"addNestedTag": "新增標籤層級...",
+		"edit": "編輯...",
 		"delete": "刪除"
 	}
 }

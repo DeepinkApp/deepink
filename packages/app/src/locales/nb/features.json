@@ -3,54 +3,54 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "Opprett tagg",
+					"title": "Opprett emneknagg",
 					"action": "Opprett"
 				},
 				"edit": {
-					"title": "Rediger tagg",
+					"title": "Rediger emneknagg",
 					"action": "Lagre"
 				}
 			},
 			"field": {
 				"name": {
-					"label": "Taggnavn",
+					"label": "Navn på emneknagg",
 					"placeholder": "f.eks. Ideer"
 				},
 				"parent": {
-					"label": "Overordnet tagg",
-					"placeholder": "f.eks. Oppskrifter/Desserter"
+					"label": "Forelderemneknagg",
+					"placeholder": "f.eks. Oppskrifter/Dessert"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Kan ikke lagre endringer på grunn av en ukjent feil.",
-				"format": "Taggen kan ikke være tom, starte eller slutte med «/», eller inneholde «//».",
-				"duplicate": "Taggen «{{name}}» finnes allerede.",
-				"parentTagNotFound": "Overordnet tagg ble ikke funnet. Velg en annen tagg."
+				"unknownSubmitError": "Kunne ikke lagre endringene på grunn av en ukjent feil.",
+				"format": "Emneknaggen kan ikke være tom, starte eller slutte med \"/\", eller inneholde \"//\".",
+				"duplicate": "Emneknaggen '{{name}}' finnes allerede.",
+				"parentTagNotFound": "Forelderemneknagg ble ikke funnet, vennligst velg en annen."
 			}
 		},
 		"deletion": {
-			"confirm": "Er du sikker på at du vil slette taggen «{{name}}» og alle underliggende tagger?"
+			"confirm": "Vil du virkelig slette emneknaggen \"{{name}}\" og alle underliggende emneknagger?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Notatbok",
 		"creator": {
-			"title": "Opprett nytt arbeidsområde",
-			"description": "Hvert arbeidsområde er et eget område for notater, tagger og filer. Alt holdes adskilt, men ligger trygt i det krypterte hvelvet ditt — klart når du bytter.",
+			"title": "Opprett nytt område",
+			"description": "Hvert område er en separat enhet for dine never, emneknagger og filer. Alt holdes adskilt, men ligger fortsatt trygt i din krypterte boks.",
 			"action": {
 				"add": "Opprett",
 				"cancel": "Avbryt"
 			},
 			"field": {
 				"name": {
-					"label": "Navn på arbeidsområde",
-					"placeholder": "f.eks. Helsedagbok, Forretningsideer",
+					"label": "Navn på område",
+					"placeholder": "f.eks. Helsejournal, Forretningsideer",
 					"suggests": {
 						"0": "Økonomi",
 						"1": "Helse",
 						"2": "Karriere",
 						"3": "Familie",
-						"4": "Dagbok",
+						"4": "Journal",
 						"5": "Mål",
 						"6": "Ideer",
 						"7": "Juridisk",
@@ -60,32 +60,32 @@
 				}
 			},
 			"error": {
-				"unknown": "En ukjent feil oppsto. Prøv igjen.",
-				"format": "Navnet på arbeidsområdet kan ikke være tomt."
+				"unknown": "En ukjent feil oppstod. Vennligst prøv igjen.",
+				"format": "Navnet på området kan ikke være tomt."
 			}
 		},
 		"error": {
-			"title": "Arbeidsområdet «{{name}}» kunne ikke lastes",
-			"description": "Kunne ikke laste dette arbeidsområdet. Dataene kan være skadet. Bytt til et annet arbeidsområde eller opprett et nytt for å fortsette.",
-			"chooseAnother": "Velg et annet arbeidsområde",
+			"title": "Kunne ikke laste området \"{{name}}\"",
+			"description": "Kunne ikke laste dette området. Dataene kan være skadet. Velg et annet område eller opprett et nytt for å fortsette.",
+			"chooseAnother": "Velg et annet område",
 			"dividerText": "eller",
-			"createNew": "Opprett et nytt arbeidsområde",
-			"createWorkspace": "Opprett arbeidsområde",
-			"closeVault": "Lukk gjeldende vault"
+			"createNew": "Opprett et nytt område",
+			"createWorkspace": "Opprett område",
+			"closeVault": "Lukk boks"
 		}
 	},
 	"note": {
 		"title": {
 			"placeholder": "Uten tittel",
-			"defaultTemplate": "Uten tittel – {{date}}",
-			"duplicate": "Kopi: {{title}}"
+			"defaultTemplate": "Uten tittel - {{date}}",
+			"duplicate": "Duplikat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Skriv ned en idé, oppgave eller tanke…",
+			"placeholder": "Skriv ned en idé, oppgave eller tanke...",
 			"modes": {
 				"plaintext": "Tekstmodus",
-				"richtext": "Riktekst",
-				"split-screen": "Delt visning"
+				"richtext": "Rich text-editor",
+				"split-screen": "Splitt skjerm"
 			}
 		},
 		"actions": {
@@ -95,26 +95,26 @@
 			"removeFromArchive": "Fjern fra arkiv"
 		},
 		"tags": {
-			"addPlaceholder": "Skriv for å legge til tagg…"
+			"addPlaceholder": "Skriv for å legge til emneknagg..."
 		},
 		"versionPreview": {
 			"versionAt": "Versjon fra {{date}}",
-			"backToEditing": "Tilbake til redigering"
+			"backToEditing": "Gå tilbake til redigering"
 		},
 		"menu": {
-			"title": "Notatvalg",
-			"copyReference": "Kopier notatlenke",
+			"title": "Notatinnstillinger",
+			"copyReference": "Kopier lenke til notat",
 			"remindMe": "Påminn meg",
 			"history": "Historikk",
-			"backLinks": "Tilbakelenker",
+			"backLinks": "Tilbakekoblinger",
 			"readonlyMode": "Skrivebeskyttet modus",
 			"spellcheck": "Stavekontroll",
-			"export": "Eksporter…",
-			"passwordProtection": "Passordbeskyttelse…",
+			"export": "Eksporter...",
+			"passwordProtection": "Passordbeskyttelse...",
 			"disableSync": "Deaktiver synkronisering",
 			"moveToArchive": "Flytt til arkiv",
 			"removeFromArchive": "Fjern fra arkiv",
-			"deleteToBin": "Slett til papirkurv",
+			"deleteToBin": "Flytt til papirkurv",
 			"deletePermanently": "Slett permanent",
 			"restoreFromBin": "Gjenopprett fra papirkurv"
 		},
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Lagre øyeblikksbilde",
-				"title": "Lagre gjeldende tilstand av dette notatet som en ny versjon i historikken"
+				"title": "Lagre nåværende tilstand som en ny versjon i historikken"
 			},
 			"deleteAll": {
 				"label": "Slett alle",
 				"title": "Slett alle lagrede versjoner av dette notatet permanent"
 			},
-			"dontRecord": "Ikke registrer historikk for dette notatet",
+			"dontRecord": "Ikke lagre historikk for dette notatet",
 			"empty": "Dette notatet har ingen lagrede versjoner",
-			"loading": "Laster…",
+			"loading": "Laster...",
 			"confirmDeleteAll": {
 				"title": "Slett alle notatversjoner",
-				"description": "Denne handlingen sletter alle notatversjoner permanent.",
+				"description": "Denne handlingen vil slette alle notatversjoner permanent.",
 				"confirm": "Er du sikker?",
 				"action": "Utfør"
 			},
 			"confirmApply": {
 				"title": "Bruk notatversjon",
 				"description": "Du er i ferd med å bruke notatversjon {{version}}.",
-				"warning": "Denne handlingen erstatter gjeldende notatinnhold med teksten fra det valgte øyeblikksbildet. Er du sikker?",
+				"warning": "Dette vil erstatte nåværende notat med teksten fra det valgte øyeblikksbildet. Er du sikker?",
 				"apply": "Bruk",
 				"preview": "Forhåndsvis"
 			},
 			"confirmDelete": {
 				"title": "Slett notatversjon",
 				"description": "Du er i ferd med å slette notatversjon {{version}}.",
-				"warning": "Denne handlingen sletter notatversjonen permanent. Er du sikker?",
+				"warning": "Denne handlingen kan ikke angres. Er du sikker?",
 				"delete": "Slett",
 				"preview": "Forhåndsvis"
 			}
@@ -168,7 +168,7 @@
 			"closePanel": "Lukk panel",
 			"tabs": {
 				"history": "Notatversjoner",
-				"backLinks": "Tilbakelenker",
+				"backLinks": "Tilbakekoblinger",
 				"files": "Vedlagte filer"
 			}
 		},
@@ -178,18 +178,18 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Er du sikker på at du vil laste opp {{filesCount}} filer ({{size}} totalt)?"
+		"confirmLargeUpload": "Er du sikker på at du vil laste opp {{filesCount}} filer (totalt {{size}}?)"
 	},
 	"notesList": {
 		"search": {
-			"placeholder": "Søk…"
+			"placeholder": "Søk..."
 		},
 		"filterBy": "Filtrer etter",
 		"empty": "Ingen notater her ennå. <create>Opprett et notat</create>"
 	},
 	"notesView": {
 		"allNotes": "Alle notater",
-		"favorites": "Favorittnotater",
+		"favorites": "Favoritter",
 		"archived": "Arkiverte notater",
 		"deleted": "Slettede notater"
 	},
@@ -205,39 +205,39 @@
 		"extensions": "Utvidelser",
 		"inbox": "Innboks",
 		"publishNotes": "Publiser notater",
-		"lockVault": "Lås vault",
-		"globalSettings": "Globale innstillinger"
+		"lockVault": "Lås hvelv",
+		"globalSettings": "Innstillinger"
 	},
 	"tabBar": {
 		"closeTab": "Lukk fane"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Klikk for å sette inn overskrift med nivå {{level}}. Åpne kontekstmenyen for andre valg",
+			"insertTitle": "Klikk for å sette inn overskrift på nivå {{level}}. Åpne kontekstmenyen for andre valg",
 			"level": "Overskriftsnivå {{level}}"
 		},
-		"bold": "Slå av/på fet tekst",
-		"italic": "Slå av/på kursiv tekst",
-		"strikethrough": "Slå av/på gjennomstreking",
-		"unorderedList": "Sett inn eller slå av/på punktliste",
-		"checkboxList": "Sett inn eller slå av/på avkrysningsliste",
-		"orderedList": "Sett inn eller slå av/på nummerert liste",
-		"codeBlock": "Sett inn eller pakk tekst i kodeblokk",
-		"quoteBlock": "Sett inn eller pakk tekst i sitatblokk",
+		"bold": "Fet skrift",
+		"italic": "Kursiv",
+		"strikethrough": "Gjennomstreking",
+		"unorderedList": "Punktliste",
+		"checkboxList": "Sjekkliste",
+		"orderedList": "Nummerert liste",
+		"codeBlock": "Kodeblokk",
+		"quoteBlock": "Sitatblokk",
 		"insertDate": "Sett inn dato",
-		"insertPageBreak": "Sett inn sideskift",
+		"insertPageBreak": "Sett inn sidetrekk",
 		"insertFile": "Sett inn fil",
 		"image": {
 			"buttonTitle": "Sett inn bilde",
 			"dialogTitle": "Legg til bilde",
-			"dialogDescription": "Bildet settes inn ved markørposisjonen.",
+			"dialogDescription": "Bildet settes inn der markøren står.",
 			"field": {
 				"url": {
 					"label": "Bilde-URL",
-					"placeholder": "f.eks. https://example.com/image.png"
+					"placeholder": "f.eks. https://eksempel.no/bilde.png"
 				},
 				"altText": {
-					"label": "Alternativ tekst for bilde (valgfritt)",
+					"label": "Alternativ tekst (valgfritt)",
 					"placeholder": "Kort beskrivelse av bildet"
 				}
 			},
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Sett inn lenke",
 			"dialogTitle": "Legg til lenke",
-			"dialogDescription": "Markert tekst blir en lenke, eller lenken settes inn ved markørposisjonen hvis ingenting er markert.",
+			"dialogDescription": "Markert tekst blir en lenke, eller lenken legges til der markøren står.",
 			"field": {
 				"url": {
 					"label": "Lenke-URL",
-					"placeholder": "f.eks. https://example.com"
+					"placeholder": "f.eks. https://eksempel.no"
 				}
 			},
 			"actions": {
@@ -264,19 +264,19 @@
 	},
 	"image": {
 		"loading": "Laster bilde",
-		"brokenImage": "Bildet kan ikke lastes inn"
+		"brokenImage": "Kunne ikke laste bildet"
 	},
 	"notifications": {
-		"title": "Varsler"
+		"title": "Varslinger"
 	},
 	"updates": {
 		"appUpdate": {
-			"title": "Appoppdatering",
+			"title": "App-oppdatering",
 			"reminderLater": "Påminnelsen vises igjen om en uke"
 		},
 		"newVersion": {
-			"title": "Ny versjon tilgjengelig",
-			"body": "En ny versjon er klar. Oppdater for å få de siste forbedringene og rettelsene.",
+			"title": "Ny versjon er tilgjengelig",
+			"body": "En ny versjon er klar. Oppdater for å få de nyeste forbedringene og feilrettingene.",
 			"download": "Last ned ny versjon",
 			"ignore": "Ignorer"
 		}
@@ -285,7 +285,7 @@
 		"imageProperties": {
 			"title": "Bildeegenskaper",
 			"urlLabel": "Bilde-URL",
-			"altLabel": "Alternativ tekst for bilde"
+			"altLabel": "Alternativ tekst"
 		},
 		"linkProperties": {
 			"title": "Lenkeegenskaper",
@@ -294,11 +294,11 @@
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Klikk for å lagre endringer til disk",
-			"saving": "Lagrer endringer…"
+			"title": "Klikk for å lagre endringer",
+			"saving": "Lagrer endringer..."
 		},
-		"changeVault": "Bytt vault",
+		"changeVault": "Bytt hvelv",
 		"history": "Historikk",
-		"notifications": "Varsler"
+		"notifications": "Varslinger"
 	}
 }

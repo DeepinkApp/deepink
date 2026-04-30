@@ -1,18 +1,18 @@
 {
 	"actions": {
-		"cancel": "Откажи",
-		"confirm": "Потврди",
-		"apply": "Примени",
-		"save": "Сачувај",
-		"saveChanges": "Сачувај измене",
-		"delete": "Обриши",
-		"reset": "Поништи",
-		"update": "Ажурирај",
-		"add": "Додај",
-		"create": "Направи",
-		"close": "Затвори"
+		"cancel": "Otkaži",
+		"confirm": "Potvrdi",
+		"apply": "Primeni",
+		"save": "Sačuvaj",
+		"saveChanges": "Sačuvaj izmene",
+		"delete": "Obriši",
+		"reset": "Resetuj",
+		"update": "Ažuriraj",
+		"add": "Dodaj",
+		"create": "Kreiraj",
+		"close": "Zatvori"
 	},
 	"form": {
-		"suggestTemplate": "Пробајте ово: <suggests>"
+		"suggestTemplate": "Probaj ovo: <suggests>"
 	}
 }

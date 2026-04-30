@@ -2,7 +2,7 @@
 	"password": {
 		"score": {
 			"good": "Dobra lozinka: {{length}} karaktera, {{entropy}} bita entropije",
-			"bad": "Slaba lozinka: {{length}} karaktera, {{entropy}} bita entropije"
+			"bad": "Slabija lozinka: {{length}} karaktera, {{entropy}} bita entropije"
 		}
 	}
 }

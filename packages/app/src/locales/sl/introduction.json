@@ -1,8 +1,8 @@
 {
 	"welcome": {
 		"title": "Dobrodošli v Deepink",
-		"description": "Vzemite trenutek, da Deepink prilagodite svojim željam. Ali preskočite ta korak in začnite z privzetimi nastavitvami.",
-		"terms": "Z nadaljevanjem sprejemate naše <terms>Obvezne pogoje</terms> in <privacy>Politiko zasebnosti</privacy>.",
+		"description": "Prilagodite Deepink svojim željam ali pa preskočite ta korak in začnete s privzetimi nastavitvami.",
+		"terms": "Z nadaljevanjem se strinjate z našimi <terms>pogoji uporabe</terms> in <privacy>politiko zasebnosti</privacy>.",
 		"continue": "Začnite"
 	}
 }

@@ -10,8 +10,8 @@
 		"paste": "Incolla",
 		"selectAll": "Seleziona tutto",
 		"help": "Aiuto",
-		"toggleDevTools": "Attiva/disattiva strumenti sviluppatore",
-		"about": "Informazioni sull'applicazione"
+		"toggleDevTools": "Strumenti sviluppatore",
+		"about": "Informazioni"
 	},
 	"tray": {
 		"open": "Apri note",
@@ -26,7 +26,7 @@
 		"deleteToBin": "Sposta nel cestino"
 	},
 	"tag": {
-		"addNestedTag": "Crea sotto-tag...",
+		"addNestedTag": "Crea gerarchia tag...",
 		"edit": "Modifica...",
 		"delete": "Elimina"
 	}

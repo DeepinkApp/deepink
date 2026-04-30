@@ -17,34 +17,34 @@
 					"placeholder": "es. Idee"
 				},
 				"parent": {
-					"label": "Tag principale",
+					"label": "Tag genitore",
 					"placeholder": "es. Ricette/Dolci"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Impossibile salvare le modifiche a causa di un errore sconosciuto.",
-				"format": "Il tag non può essere vuoto, iniziare o terminare con \"/\" o contenere \"//\".",
+				"unknownSubmitError": "Impossibile salvare le modifiche a causa di un errore imprevisto.",
+				"format": "Il tag non può essere vuoto, non può iniziare o finire con \"/\" e non può contenere \"//\".",
 				"duplicate": "Il tag '{{name}}' esiste già.",
-				"parentTagNotFound": "Tag principale non trovato, selezionane un altro."
+				"parentTagNotFound": "Tag genitore non trovato, seleziona un altro tag."
 			}
 		},
 		"deletion": {
-			"confirm": "Vuoi davvero eliminare il tag \"{{name}}\" e tutti i sotto-tag?"
+			"confirm": "Vuoi davvero eliminare il tag \"{{name}}\" e tutti i suoi sottotag?"
 		}
 	},
 	"workspace": {
-		"defaultName": "Quaderno",
+		"defaultName": "Notebook",
 		"creator": {
-			"title": "Crea un nuovo spazio",
-			"description": "Ogni spazio è un ambiente autonomo per le tue note, tag e file. Tutto resta separato, ma sempre all'interno del tuo vault crittografato — pronto quando ne hai bisogno.",
+			"title": "Crea nuovo spazio di lavoro",
+			"description": "Ogni spazio di lavoro è un'area indipendente per le tue note, i tag e i file. Tutto rimane separato, pur risiedendo all'interno del tuo vault criptato — pronto quando deciderai di cambiare.",
 			"action": {
 				"add": "Crea",
 				"cancel": "Annulla"
 			},
 			"field": {
 				"name": {
-					"label": "Nome dello spazio",
-					"placeholder": "es. Diario salute, Idee di business",
+					"label": "Nome dello spazio di lavoro",
+					"placeholder": "es. Diario Salute, Idee Business",
 					"suggests": {
 						"0": "Finanze",
 						"1": "Salute",
@@ -60,28 +60,28 @@
 				}
 			},
 			"error": {
-				"unknown": "Si è verificato un errore sconosciuto. Riprova.",
-				"format": "Il nome dello spazio non può essere vuoto."
+				"unknown": "Si è verificato un errore imprevisto. Riprova.",
+				"format": "Il nome dello spazio di lavoro non può essere vuoto."
 			}
 		},
 		"error": {
-			"title": "Impossibile caricare lo spazio \"{{name}}\"",
-			"description": "Caricamento dello spazio non riuscito. I dati potrebbero essere danneggiati. Passa a un altro spazio o creane uno nuovo per continuare.",
-			"chooseAnother": "Scegli un altro spazio",
+			"title": "Impossibile caricare lo spazio di lavoro \"{{name}}\"",
+			"description": "Caricamento fallito. I dati potrebbero essere corrotti. Passa a un altro spazio di lavoro o creane uno nuovo per continuare.",
+			"chooseAnother": "Scegli un altro spazio di lavoro",
 			"dividerText": "oppure",
-			"createNew": "Crea un nuovo spazio",
-			"createWorkspace": "Crea spazio",
-			"closeVault": "Chiudi il vault attuale"
+			"createNew": "Crea un nuovo spazio di lavoro",
+			"createWorkspace": "Crea spazio di lavoro",
+			"closeVault": "Chiudi vault attuale"
 		}
 	},
 	"note": {
 		"title": {
 			"placeholder": "Senza titolo",
 			"defaultTemplate": "Senza titolo - {{date}}",
-			"duplicate": "Copia: {{title}}"
+			"duplicate": "Duplicato: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Annota un'idea, un'attività o un pensiero…",
+			"placeholder": "Scrivi un'idea, un compito o un pensiero...",
 			"modes": {
 				"plaintext": "Testo semplice",
 				"richtext": "Editor avanzato",
@@ -95,7 +95,7 @@
 			"removeFromArchive": "Rimuovi dall'archivio"
 		},
 		"tags": {
-			"addPlaceholder": "Digita per aggiungere un tag…"
+			"addPlaceholder": "Scrivi per aggiungere un tag..."
 		},
 		"versionPreview": {
 			"versionAt": "Versione del {{date}}",
@@ -103,11 +103,11 @@
 		},
 		"menu": {
 			"title": "Opzioni nota",
-			"copyReference": "Copia link alla nota",
-			"remindMe": "Ricordami",
+			"copyReference": "Copia link nota",
+			"remindMe": "Ricordamelo",
 			"history": "Cronologia",
-			"backLinks": "Riferimenti",
-			"readonlyMode": "Sola lettura",
+			"backLinks": "Link correlati",
+			"readonlyMode": "Modalità sola lettura",
 			"spellcheck": "Controllo ortografico",
 			"export": "Esporta...",
 			"passwordProtection": "Protezione con password...",
@@ -115,7 +115,7 @@
 			"moveToArchive": "Sposta in archivio",
 			"removeFromArchive": "Rimuovi dall'archivio",
 			"deleteToBin": "Sposta nel cestino",
-			"deletePermanently": "Elimina definitivamente",
+			"deletePermanently": "Elimina permanentemente",
 			"restoreFromBin": "Ripristina dal cestino"
 		},
 		"version": {
@@ -137,29 +137,29 @@
 				"title": "Salva lo stato attuale di questa nota come nuova versione nella cronologia"
 			},
 			"deleteAll": {
-				"label": "Elimina tutte",
-				"title": "Elimina definitivamente tutte le versioni salvate di questa nota"
+				"label": "Elimina tutto",
+				"title": "Elimina permanentemente tutte le versioni salvate di questa nota"
 			},
 			"dontRecord": "Non registrare la cronologia per questa nota",
-			"empty": "Questa nota non ha versioni registrate",
+			"empty": "Nessuna versione registrata per questa nota",
 			"loading": "Caricamento...",
 			"confirmDeleteAll": {
-				"title": "Elimina tutte le versioni della nota",
-				"description": "Questa azione eliminerà definitivamente tutte le versioni della nota.",
-				"confirm": "Vuoi procedere?",
+				"title": "Elimina tutte le versioni",
+				"description": "Questa azione eliminerà permanentemente tutte le versioni della nota.",
+				"confirm": "Sei sicuro?",
 				"action": "Applica"
 			},
 			"confirmApply": {
-				"title": "Applica versione della nota",
-				"description": "Stai per applicare la versione {{version}} della nota.",
-				"warning": "Questa azione sostituirà il contenuto attuale della nota con il testo dell'istantanea selezionata. Vuoi procedere?",
+				"title": "Applica versione nota",
+				"description": "Stai per applicare la versione {{version}}.",
+				"warning": "Questa azione sostituirà il contenuto attuale della nota con il testo dell'istantanea selezionata. Sei sicuro?",
 				"apply": "Applica",
 				"preview": "Anteprima"
 			},
 			"confirmDelete": {
-				"title": "Elimina versione della nota",
+				"title": "Elimina versione nota",
 				"description": "Stai per eliminare la versione {{version}} della nota.",
-				"warning": "Questa azione eliminerà la versione in modo irreversibile. Vuoi procedere?",
+				"warning": "Questa azione eliminerà la versione in modo irreversibile. Sei sicuro?",
 				"delete": "Elimina",
 				"preview": "Anteprima"
 			}
@@ -167,35 +167,35 @@
 		"sidebar": {
 			"closePanel": "Chiudi pannello",
 			"tabs": {
-				"history": "Versioni della nota",
-				"backLinks": "Riferimenti",
+				"history": "Versioni nota",
+				"backLinks": "Link correlati",
 				"files": "File allegati"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Vuoi spostare questa nota nel cestino?",
-			"confirmPermanentDeletion": "Vuoi eliminare definitivamente questa nota?"
+			"confirmPermanentDeletion": "Vuoi eliminare permanentemente questa nota?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Vuoi caricare {{filesCount}} file ({{size}} in totale)?"
+		"confirmLargeUpload": "Sei sicuro di voler caricare {{filesCount}} file ({{size}} totali)?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Cerca..."
 		},
 		"filterBy": "Filtra per",
-		"empty": "Nessuna nota qui. <create>Crea una nota</create>"
+		"empty": "Ancora nessuna nota. <create>Crea una nota</create>"
 	},
 	"notesView": {
 		"allNotes": "Tutte le note",
-		"favorites": "Note preferite",
-		"archived": "Note archiviate",
-		"deleted": "Note eliminate"
+		"favorites": "Preferite",
+		"archived": "Archiviate",
+		"deleted": "Eliminate"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Seleziona una nota per leggerla o modificarla"
+			"placeholder": "Seleziona una nota per iniziare a leggere o modificare"
 		}
 	},
 	"activityBar": {
@@ -203,7 +203,7 @@
 		"files": "File",
 		"reminders": "Promemoria",
 		"extensions": "Estensioni",
-		"inbox": "In arrivo",
+		"inbox": "Inbox",
 		"publishNotes": "Pubblica note",
 		"lockVault": "Blocca vault",
 		"globalSettings": "Impostazioni generali"
@@ -216,14 +216,14 @@
 			"insertTitle": "Clicca per inserire un'intestazione di livello {{level}}. Apri il menu contestuale per altre opzioni",
 			"level": "Intestazione livello {{level}}"
 		},
-		"bold": "Attiva/disattiva grassetto",
-		"italic": "Attiva/disattiva corsivo",
-		"strikethrough": "Attiva/disattiva barrato",
-		"unorderedList": "Inserisci o attiva elenco puntato",
-		"checkboxList": "Inserisci o attiva elenco con caselle",
-		"orderedList": "Inserisci o attiva elenco numerato",
-		"codeBlock": "Inserisci o racchiudi in blocco di codice",
-		"quoteBlock": "Inserisci o racchiudi in blocco citazione",
+		"bold": "Applica grassetto",
+		"italic": "Applica corsivo",
+		"strikethrough": "Applica sbarrato",
+		"unorderedList": "Elenco puntato",
+		"checkboxList": "Elenco con checkbox",
+		"orderedList": "Elenco numerato",
+		"codeBlock": "Inserisci blocco di codice",
+		"quoteBlock": "Inserisci citazione",
 		"insertDate": "Inserisci data",
 		"insertPageBreak": "Inserisci interruzione di pagina",
 		"insertFile": "Inserisci file",
@@ -234,10 +234,10 @@
 			"field": {
 				"url": {
 					"label": "URL immagine",
-					"placeholder": "es. https://example.com/image.png"
+					"placeholder": "es., https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Testo alternativo (facoltativo)",
+					"label": "Testo alt immagine (opzionale)",
 					"placeholder": "Breve descrizione dell'immagine"
 				}
 			},
@@ -249,11 +249,11 @@
 		"link": {
 			"buttonTitle": "Inserisci link",
 			"dialogTitle": "Aggiungi link",
-			"dialogDescription": "Il testo selezionato diventerà un link. Se non è selezionato nulla, il link verrà aggiunto nella posizione del cursore.",
+			"dialogDescription": "Il testo selezionato diventerà un link, oppure il link verrà inserito nella posizione del cursore.",
 			"field": {
 				"url": {
-					"label": "URL del link",
-					"placeholder": "es. https://example.com"
+					"label": "URL link",
+					"placeholder": "es., https://example.com"
 				}
 			},
 			"actions": {
@@ -264,7 +264,7 @@
 	},
 	"image": {
 		"loading": "Caricamento immagine",
-		"brokenImage": "Immagine non disponibile"
+		"brokenImage": "Impossibile caricare l'immagine"
 	},
 	"notifications": {
 		"title": "Notifiche"
@@ -276,7 +276,7 @@
 		},
 		"newVersion": {
 			"title": "Nuova versione disponibile",
-			"body": "Una nuova versione è pronta. Aggiorna per ottenere le ultime migliorie e correzioni.",
+			"body": "È disponibile una nuova versione. Aggiorna per ottenere le ultime migliorie e correzioni.",
 			"download": "Scarica nuova versione",
 			"ignore": "Ignora"
 		}
@@ -285,16 +285,16 @@
 		"imageProperties": {
 			"title": "Proprietà immagine",
 			"urlLabel": "URL immagine",
-			"altLabel": "Testo alternativo immagine"
+			"altLabel": "Testo alt immagine"
 		},
 		"linkProperties": {
 			"title": "Proprietà link",
-			"urlLabel": "URL del link"
+			"urlLabel": "URL link"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Clicca per salvare le modifiche su disco",
+			"title": "Clicca per salvare le modifiche",
 			"saving": "Salvataggio in corso..."
 		},
 		"changeVault": "Cambia vault",

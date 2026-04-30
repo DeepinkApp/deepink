@@ -1,8 +1,8 @@
 {
 	"password": {
 		"score": {
-			"good": "良いパスワード: {{length}} 文字, {{entropy}} ビットのエントロピー",
-			"bad": "弱いパスワード: {{length}} 文字, {{entropy}} ビットのエントロピー"
+			"good": "強力なパスワード: 長さ {{length}} 文字、エントロピー {{entropy}} ビット",
+			"bad": "脆弱なパスワード: 長さ {{length}} 文字、エントロピー {{entropy}} ビット"
 		}
 	}
 }

@@ -14,37 +14,37 @@
 			"field": {
 				"name": {
 					"label": "Címke neve",
-					"placeholder": "pl. Ötletek"
+					"placeholder": "pl. ötletek"
 				},
 				"parent": {
-					"label": "Szülő címke",
-					"placeholder": "pl. Receptek/Édességek"
+					"label": "Főcímke",
+					"placeholder": "pl. receptek/desszertek"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "A változtatások mentése ismeretlen hiba miatt nem lehetséges.",
-				"format": "A címke nem lehet üres, nem kezdődhet vagy végződhet \"/\"-val, és nem tartalmazhat \"//\"-t.",
-				"duplicate": "A címke '{{name}}' már létezik.",
-				"parentTagNotFound": "A szülő címke nem található, kérjük, válasszon egy másik címkét."
+				"unknownSubmitError": "Ismeretlen hiba miatt nem menthető a változtatás.",
+				"format": "A címke nem lehet üres, nem kezdhet vagy nem afslalhat \"/\" karakterrel, és nem tartalmazhat \"//\" karaktereket.",
+				"duplicate": "A '{{name}}' címke már létezik.",
+				"parentTagNotFound": "A főcímke nem található, kérjük, válasszon egy mást."
 			}
 		},
 		"deletion": {
-			"confirm": "Valóban törölni szeretné a \"{{name}}\" címkét és az összes almappát?"
+			"confirm": "Biztosan törli a \"{{name}}\" címkét és az összes alcímkét?"
 		}
 	},
 	"workspace": {
-		"defaultName": "Füzet",
+		"defaultName": "Napló",
 		"creator": {
-			"title": "Új munkaterület létrehozása",
-			"description": "Minden munkaterület egy önálló tér a jegyzeteid, címkéid és fájljaid számára. Minden külön marad, miközben az titkosított páncéltermedben él — készen áll, amikor váltasz.",
+			"title": "Új tér рассчитыt létrehozása",
+			"description": "Minden tér рассчиты különálló helyszín a jegyzetek, címkék és fájlok számára. Minden elkülönül, de azáltal, hogy a titkosított tárolódban marad — bármikor elérhető, amikor váltasz.",
 			"action": {
 				"add": "Létrehozás",
 				"cancel": "Mégse"
 			},
 			"field": {
 				"name": {
-					"label": "Munkaterület neve",
-					"placeholder": "pl. Egészségnapló, Üzleti ötletek",
+					"label": "Tér рассчиты neve",
+					"placeholder": "pl. Egészség, Üzleti ötletek",
 					"suggests": {
 						"0": "Pénzügyek",
 						"1": "Egészség",
@@ -61,68 +61,68 @@
 			},
 			"error": {
 				"unknown": "Ismeretlen hiba történt. Kérjük, próbálja újra.",
-				"format": "A munkaterület neve nem lehet üres."
+				"format": "A tér рассчиты neve nem lehet üres."
 			}
 		},
 		"error": {
-			"title": "A \"{{name}}\" munkaterület betöltése nem sikerült",
-			"description": "A munkaterület betöltése nem sikerült. Az adatok megsérülhettek. Válts egy másik munkaterületre, vagy hozz létre egy újat a folytatáshoz.",
-			"chooseAnother": "Válassz egy másik munkaterületet",
+			"title": "A \"{{name}}\" tér рассчиты nem tölthető be",
+			"description": "Nem sikerült betölteni ezt a tér рассчитыt. A adatok sérülhettek. Váltson másik tér рассчитыra, vagy hozzon létre újat a munka folytatásához.",
+			"chooseAnother": "Válasszon egy másik tér рассчитыt",
 			"dividerText": "vagy",
-			"createNew": "Hozz létre egy új munkaterületet",
-			"createWorkspace": "Munkaterület létrehozása",
-			"closeVault": "Páncélterem bezárása"
+			"createNew": "Hozzon létre egy új tér рассчитыt",
+			"createWorkspace": "Létrehozás",
+			"closeVault": "Bezárás"
 		}
 	},
 	"note": {
 		"title": {
-			"placeholder": "Névtelen",
-			"defaultTemplate": "Névtelen - {{date}}",
+			"placeholder": "Cím nélküli jegyzet",
+			"defaultTemplate": "Cím nélküli - {{date}}",
 			"duplicate": "Másolat: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Rögzíts egy ötletet, feladatot vagy gondolatot…",
+			"placeholder": "Rögzítsön egy ötletet, feladatot vagy gondolatot...",
 			"modes": {
 				"plaintext": "Szöveges mód",
-				"richtext": "Gazdag szerkesztő",
+				"richtext": "Gazdag szövegszerkesztő",
 				"split-screen": "Osztott képernyő"
 			}
 		},
 		"actions": {
-			"addToFavorites": "Hozzáadás a kedvencekhez",
+			"addToFavorites": "Kedvencekhez ad",
 			"removeFromFavorites": "Eltávolítás a kedvencekből",
-			"moveToArchive": "Áthelyezés az archívumba",
-			"removeFromArchive": "Eltávolítás az archívumból"
+			"moveToArchive": "Archívumba helyezés",
+			"removeFromArchive": "Archívumból kivétel"
 		},
 		"tags": {
-			"addPlaceholder": "Írj a címke hozzáadásához…"
+			"addPlaceholder": "Írjon a címke hozzáadásához..."
 		},
 		"versionPreview": {
-			"versionAt": "Verzió: {{date}}",
+			"versionAt": "{{date}} állapot",
 			"backToEditing": "Vissza a szerkesztéshez"
 		},
 		"menu": {
 			"title": "Jegyzet opciók",
-			"copyReference": "Jegyzet hivatkozás másolása",
-			"remindMe": "Emlékeztess",
-			"history": "Történelem",
-			"backLinks": "Visszautalások",
+			"copyReference": "Jegyzet link másolása",
+			"remindMe": "Emlékeztető",
+			"history": "Történet",
+			"backLinks": "Visszahivatkozások",
 			"readonlyMode": "Csak olvasható mód",
 			"spellcheck": "Helyesírás-ellenőrzés",
 			"export": "Exportálás...",
-			"passwordProtection": "Jelszóvédelem...",
+			"passwordProtection": "Jelszó védelem...",
 			"disableSync": "Szinkronizálás letiltása",
-			"moveToArchive": "Áthelyezés az archívumba",
-			"removeFromArchive": "Eltávolítás az archívumból",
+			"moveToArchive": "Archívumba helyezés",
+			"removeFromArchive": "Archívumból kivétel",
 			"deleteToBin": "Törlés a kukába",
-			"deletePermanently": "Törlés véglegesen",
+			"deletePermanently": "Végleges törlés",
 			"restoreFromBin": "Visszaállítás a kukából"
 		},
 		"version": {
 			"chars": "{{count}} karakter",
 			"apply": {
 				"title": "Verzió alkalmazása",
-				"readonlyTitle": "A verzió nem alkalmazható egy csak olvasható jegyzetre"
+				"readonlyTitle": "A verzió nem alkalmazható csak olvasható módú jegyzetnél"
 			},
 			"open": {
 				"title": "Verzió megnyitása"
@@ -133,33 +133,33 @@
 		},
 		"versions": {
 			"saveVersion": {
-				"label": "Állapot mentése",
-				"title": "A jegyzet aktuális állapotának mentése új verzióként a történelemben"
+				"label": "Mentés pillanatképre",
+				"title": "Mentse el a jegyzet jelenlegi állapotát új verzióként a történetben"
 			},
 			"deleteAll": {
 				"label": "Összes törlése",
-				"title": "Minden mentett verzió végleges törlése"
+				"title": "A jegyzet összes mentett verziójának végleges törlése"
 			},
-			"dontRecord": "Ne rögzítsd a történetet ehhez a jegyzethez",
-			"empty": "Ennek a jegyzetnek nincsenek rögzített verziói",
+			"dontRecord": "A történet rögzítése le van tiltva",
+			"empty": "Nincsenek rögzített verziók ehhez a jegyhez",
 			"loading": "Betöltés...",
 			"confirmDeleteAll": {
-				"title": "Minden jegyzetverzió törlése",
-				"description": "Ez a művelet véglegesen törli az összes jegyzetverziót.",
-				"confirm": "Biztos benne?",
+				"title": "Összes verzió törlése",
+				"description": "Ez a művelet véglegesen törli a jegyzet összes verzióját.",
+				"confirm": "Biztos ebben?",
 				"action": "Alkalmaz"
 			},
 			"confirmApply": {
-				"title": "Jegyzet verzió alkalmazása",
-				"description": "A(z) {{version}} verziót fogja alkalmazni.",
-				"warning": "Ez a művelet felülírja a jelenlegi jegyzetadatokat a kiválasztott állapot szövegével. Biztos benne?",
+				"title": "Jegyzetverzió alkalmazása",
+				"description": "A(z) {{version}} verziót kívánja alkalmazni.",
+				"warning": "Ez a művelet felváltja a jelenlegi jegyzetet a kiválasztott pillanatképpel. Biztos?",
 				"apply": "Alkalmaz",
 				"preview": "Előnézet"
 			},
 			"confirmDelete": {
-				"title": "Jegyzet verzió törlése",
-				"description": "A(z) {{version}} verziót fogja törölni.",
-				"warning": "Ez a művelet véglegesen törli a jegyzet verziót. Biztos benne?",
+				"title": "Jegyzetverzió törlése",
+				"description": "A(z) {{version}} verziót kívánja törölni.",
+				"warning": "Ez a művelet visszafordíthatatlanul törli a verziót. Biztos?",
 				"delete": "Törlés",
 				"preview": "Előnézet"
 			}
@@ -167,35 +167,35 @@
 		"sidebar": {
 			"closePanel": "Panel bezárása",
 			"tabs": {
-				"history": "Jegyzet verziók",
-				"backLinks": "Visszautalások",
-				"files": "Csatolt fájlok"
+				"history": "Jegyzetverziók",
+				"backLinks": "Visszahivatkozások",
+				"files": "Mellékelt fájlok"
 			}
 		},
 		"bin": {
 			"confirmMoveToBin": "Szeretné ezt a jegyzetet a kukába helyezni?",
-			"confirmPermanentDeletion": "Szeretné véglegesen törölni ezt a jegyzetet?"
+			"confirmPermanentDeletion": "Véglegesen törli ezt a jegyzetet?"
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Biztos benne, hogy {{filesCount}} fájlt ({{size}} összesen) szeretne feltölteni?"
+		"confirmLargeUpload": "Biztosan feltölti {{filesCount}} fájlt (összesen {{size}})??"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Keresés..."
 		},
-		"filterBy": "Szűrés",
-		"empty": "Itt még nincsenek jegyzetek. <create>Hozz létre egy jegyzetet</create>"
+		"filterBy": "Szűrés:",
+		"empty": "Még nincsenek jegyzetek. <create>Létrehoz egy jegyzetet</create>"
 	},
 	"notesView": {
 		"allNotes": "Összes jegyzet",
-		"favorites": "Kedvenc jegyzetek",
-		"archived": "Archívált jegyzetek",
-		"deleted": "Törölt jegyzetek"
+		"favorites": "Kedvencek",
+		"archived": "Archivált",
+		"deleted": "Törölt"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "Válassz egy jegyzetet az olvasás vagy szerkesztés megkezdéséhez"
+			"placeholder": "Válassz egy jegyzetet a megtekintéshez vagy szerkesztéshez"
 		}
 	},
 	"activityBar": {
@@ -204,40 +204,40 @@
 		"reminders": "Emlékeztetők",
 		"extensions": "Bővítmények",
 		"inbox": "Bejövő",
-		"publishNotes": "Jegyzetek közzététele",
-		"lockVault": "Páncélterem lezárása",
-		"globalSettings": "Globális beállítások"
+		"publishNotes": "Közzététel",
+		"lockVault": "Zárolás",
+		"globalSettings": "Beállítások"
 	},
 	"tabBar": {
-		"closeTab": "Fül bezárása"
+		"closeTab": "Fülem bezárása"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Kattintson a {{level}} szintű fejléc beszúrásához. Nyissa meg a kontextusmenüt, hogy másik lehetőséget válasszon",
-			"level": "{{level}} szintű fejléc"
+			"insertTitle": "Kattintson a {{level}}. szintű fejléc beillesztéséhez. A további lehetőségek a jobb klikk menüben érhetők el",
+			"level": "{{level}}. szintű fejléc"
 		},
-		"bold": "Félkövér szövegstílus váltása",
-		"italic": "Dőlt szövegstílus váltása",
-		"strikethrough": "Áthúzott szövegstílus váltása",
-		"unorderedList": "Rendezetlen lista beszúrása vagy váltása",
-		"checkboxList": "Jelölőlista beszúrása vagy váltása",
-		"orderedList": "Rendezett lista beszúrása vagy váltása",
-		"codeBlock": "Szöveg beszúrása vagy keretezése kódrészlettel",
-		"quoteBlock": "Szöveg beszúrása vagy keretezése idézetblokkra",
-		"insertDate": "Dátum beszúrása",
-		"insertPageBreak": "Oldaltörés beszúrása",
-		"insertFile": "Fájl beszúrása",
+		"bold": "Félkövér szöveg",
+		"italic": "Kurszív szöveg",
+		"strikethrough": "Áthúzott szöveg",
+		"unorderedList": "Váltás felsorolásra",
+		"checkboxList": "Váltás feladatlistára",
+		"orderedList": "Váltás számozott listára",
+		"codeBlock": "Beillesztés kódblokkba",
+		"quoteBlock": "Beillesztés idézetblokkba",
+		"insertDate": "Dátum beillesztése",
+		"insertPageBreak": "Oldaltörés beillesztése",
+		"insertFile": "Fájl beillesztése",
 		"image": {
-			"buttonTitle": "Kép beszúrása",
+			"buttonTitle": "Kép beillesztése",
 			"dialogTitle": "Kép hozzáadása",
-			"dialogDescription": "A kép a kurzor pozíciójánál lesz beszúrva.",
+			"dialogDescription": "A kép a kurzor pozíciójában lesz beillesztve.",
 			"field": {
 				"url": {
-					"label": "Kép URL",
+					"label": "Kép URL címe",
 					"placeholder": "pl. https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Kép alternatív szövege (opcionális)",
+					"label": "Alternatív szöveg (opcionális)",
 					"placeholder": "Rövid leírás a képről"
 				}
 			},
@@ -247,12 +247,12 @@
 			}
 		},
 		"link": {
-			"buttonTitle": "Hivatkozás beszúrása",
-			"dialogTitle": "Hivatkozás hozzáadása",
-			"dialogDescription": "A kiválasztott szöveg hivatkozássá válik, vagy a hivatkozás a kurzor pozíciójánál lesz hozzáadva, ha semmi nincs kiválasztva.",
+			"buttonTitle": "Link beillesztése",
+			"dialogTitle": "Link hozzáadása",
+			"dialogDescription": "A kijelölt szövegből link lesz létrehozva, különben a kurzor pozíciójában lesz beillesztve.",
 			"field": {
 				"url": {
-					"label": "Hivatkozás URL",
+					"label": "Link URL címe",
 					"placeholder": "pl. https://example.com"
 				}
 			},
@@ -263,8 +263,8 @@
 		}
 	},
 	"image": {
-		"loading": "Kép betöltése",
-		"brokenImage": "A képet nem lehet betölteni"
+		"loading": "Kép betöltése...",
+		"brokenImage": "A kép nem tölthető be"
 	},
 	"notifications": {
 		"title": "Értesítések"
@@ -272,33 +272,33 @@
 	"updates": {
 		"appUpdate": {
 			"title": "Alkalmazás frissítése",
-			"reminderLater": "Az emlékeztető egy hét múlva jelenik meg"
+			"reminderLater": "Az emlékeztető egy héttel később jelenik meg"
 		},
 		"newVersion": {
-			"title": "Új verzió érhető el",
-			"body": "Egy új verzió készen áll. Frissítsen, hogy megkapja a legújabb fejlesztéseket és javításokat.",
+			"title": "Új verzió elérhető",
+			"body": "Új verzió áll rendelkezésre. Frissítsen a legújabb fejlesztésekért és javításokért.",
 			"download": "Új verzió letöltése",
-			"ignore": "Figyelmen kívül hagy"
+			"ignore": "Figyelmen kívül hagyás"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
 			"title": "Kép tulajdonságai",
-			"urlLabel": "Kép URL",
-			"altLabel": "Kép alternatív szövege"
+			"urlLabel": "Kép URL címe",
+			"altLabel": "Alternatív szöveg"
 		},
 		"linkProperties": {
-			"title": "Hivatkozás tulajdonságai",
-			"urlLabel": "Hivatkozás URL"
+			"title": "Link tulajdonságai",
+			"urlLabel": "Link URL címe"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Kattintson a változtatások lemezre mentéséhez",
-			"saving": "Változtatások mentése..."
+			"title": "Kattintson a mentéshez",
+			"saving": "Mentés..."
 		},
-		"changeVault": "Páncélterem megváltoztatása",
-		"history": "Történelem",
+		"changeVault": "Tárhely váltása",
+		"history": "Történet",
 		"notifications": "Értesítések"
 	}
 }

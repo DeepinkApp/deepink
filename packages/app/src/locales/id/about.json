@@ -1,6 +1,6 @@
 {
 	"version": "Versi {{version}}",
-	"environment": "Pustaka yang digunakan",
+	"environment": "Library yang digunakan",
 	"links": {
 		"label": "Tautan",
 		"reportBug": "Laporkan Bug"

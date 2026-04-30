@@ -3,31 +3,31 @@
 		"appMenu": "Alkalmazás",
 		"quit": "Kilépés",
 		"edit": "Szerkesztés",
-		"undo": "Visszavonás",
-		"redo": "Újra",
+		"undo": "Visszaállítás",
+		"redo": "Ismétlés",
 		"cut": "Kivágás",
 		"copy": "Másolás",
 		"paste": "Beillesztés",
-		"selectAll": "Összes kijelölése",
-		"help": "Súgó",
-		"toggleDevTools": "Fejlesztői eszközök",
+		"selectAll": "Összes kiválasztása",
+		"help": "Segítség",
+		"toggleDevTools": "Fejlesztői eszközök megnyitása",
 		"about": "Az alkalmazásról"
 	},
 	"tray": {
-		"open": "Jegyzetek megnyitása",
+		"open": "Megnyitás",
 		"quit": "Kilépés"
 	},
 	"note": {
-		"export": "Exportálás…",
-		"duplicate": "Másolat készítése",
-		"copyMarkdownLink": "Markdown-hivatkozás másolása",
+		"export": "Exportálás...",
+		"duplicate": "Duplikálás",
+		"copyMarkdownLink": "Markdown link másolása",
 		"deletePermanently": "Végleges törlés",
 		"restoreFromBin": "Visszaállítás a kukából",
-		"deleteToBin": "Áthelyezés a kukába"
+		"deleteToBin": "Kukába helyezés"
 	},
 	"tag": {
-		"addNestedTag": "Alcímke létrehozása…",
-		"edit": "Szerkesztés…",
+		"addNestedTag": "Címke hierarchia létrehozása...",
+		"edit": "Szerkesztés...",
 		"delete": "Törlés"
 	}
 }

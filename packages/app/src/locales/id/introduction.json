@@ -1,8 +1,8 @@
 {
 	"welcome": {
 		"title": "Selamat datang di Deepink",
-		"description": "Luangkan waktu sejenak untuk menyesuaikan Deepink sesuai selera Anda. Atau lewati langkah ini dan mulai dengan pengaturan default.",
-		"terms": "Dengan melanjutkan, Anda menerima <terms>Syarat Penggunaan</terms> dan <privacy>Kebijakan Privasi</privacy> kami.",
+		"description": "Sesuaikan Deepink dengan preferensi Anda, atau lewati langkah ini untuk menggunakan pengaturan bawaan.",
+		"terms": "Dengan melanjutkan, Anda menyetujui <terms>Ketentuan Penggunaan</terms> dan <privacy>Kebijakan Privasi</privacy> kami.",
 		"continue": "Mulai"
 	}
 }

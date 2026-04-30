@@ -3,40 +3,40 @@
 		"editor": {
 			"mode": {
 				"add": {
-					"title": "タグを作成",
+					"title": "タグの作成",
 					"action": "作成"
 				},
 				"edit": {
-					"title": "タグを編集",
+					"title": "タグの編集",
 					"action": "保存"
 				}
 			},
 			"field": {
 				"name": {
 					"label": "タグ名",
-					"placeholder": "例: アイデア"
+					"placeholder": "例：アイデア"
 				},
 				"parent": {
 					"label": "親タグ",
-					"placeholder": "例: レシピ/デザート"
+					"placeholder": "例：レシピ/デザート"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "不明なエラーにより変更を保存できません。",
-				"format": "タグは空にできません。また「/」で始まる・終わる、「//」を含むことはできません。",
-				"duplicate": "タグ「{{name}}」はすでに存在します。",
+				"unknownSubmitError": "予期しないエラーにより保存できませんでした。",
+				"format": "タグは空にできません。「/」で始めたり終わらせたりすることはできず、「//」も使用できません。",
+				"duplicate": "「{{name}}」は既に存在します。",
 				"parentTagNotFound": "親タグが見つかりません。別のタグを選択してください。"
 			}
 		},
 		"deletion": {
-			"confirm": "タグ「{{name}}」とすべての下位タグを削除しますか？"
+			"confirm": "タグ「{{name}}」と、その配下のすべてのタグを削除しますか？"
 		}
 	},
 	"workspace": {
 		"defaultName": "ノートブック",
 		"creator": {
 			"title": "新しいワークスペースを作成",
-			"description": "ワークスペースはノート、タグ、ファイルを独立して管理できるスペースです。すべてのデータは暗号化された保管領域の中で分離され、いつでも切り替えられます。",
+			"description": "ワークスペースは、ノート、タグ、ファイルを管理するための独立した空間です。すべてのデータは暗号化されたVault内に安全に保管され、切り替えるだけで即座にアクセスできます。",
 			"action": {
 				"add": "作成",
 				"cancel": "キャンセル"
@@ -44,7 +44,7 @@
 			"field": {
 				"name": {
 					"label": "ワークスペース名",
-					"placeholder": "例: 健康記録、ビジネスアイデア",
+					"placeholder": "例：健康日記、ビジネスアイデア",
 					"suggests": {
 						"0": "家計",
 						"1": "健康",
@@ -60,7 +60,7 @@
 				}
 			},
 			"error": {
-				"unknown": "不明なエラーが発生しました。もう一度お試しください。",
+				"unknown": "予期しないエラーが発生しました。もう一度お試しください。",
 				"format": "ワークスペース名を入力してください。"
 			}
 		},
@@ -71,7 +71,7 @@
 			"dividerText": "または",
 			"createNew": "新しいワークスペースを作成",
 			"createWorkspace": "ワークスペースを作成",
-			"closeVault": "現在の保管領域を閉じる"
+			"closeVault": "現在のVaultを閉じる"
 		}
 	},
 	"note": {
@@ -81,48 +81,48 @@
 			"duplicate": "複製: {{title}}"
 		},
 		"editor": {
-			"placeholder": "アイデア、タスク、メモを書き留める…",
+			"placeholder": "アイデア、タスク、思考などを書き留める...",
 			"modes": {
 				"plaintext": "テキストモード",
 				"richtext": "リッチエディタ",
-				"split-screen": "分割表示"
+				"split-screen": "分割画面"
 			}
 		},
 		"actions": {
 			"addToFavorites": "お気に入りに追加",
-			"removeFromFavorites": "お気に入りから外す",
+			"removeFromFavorites": "お気に入りから削除",
 			"moveToArchive": "アーカイブに移動",
-			"removeFromArchive": "アーカイブから戻す"
+			"removeFromArchive": "アーカイブから削除"
 		},
 		"tags": {
-			"addPlaceholder": "タグを入力して追加…"
+			"addPlaceholder": "タグを入力..."
 		},
 		"versionPreview": {
-			"versionAt": "{{date}} 時点のバージョン",
+			"versionAt": "{{date}} のバージョン",
 			"backToEditing": "編集に戻る"
 		},
 		"menu": {
-			"title": "ノートのオプション",
-			"copyReference": "ノートリンクをコピー",
-			"remindMe": "リマインダー",
+			"title": "ノートオプション",
+			"copyReference": "ノートのリンクをコピー",
+			"remindMe": "リマインダーを設定",
 			"history": "履歴",
 			"backLinks": "バックリンク",
 			"readonlyMode": "読み取り専用モード",
 			"spellcheck": "スペルチェック",
-			"export": "エクスポート...",
+			"export": "書き出し...",
 			"passwordProtection": "パスワード保護...",
-			"disableSync": "同期を無効にする",
+			"disableSync": "同期をオフにする",
 			"moveToArchive": "アーカイブに移動",
-			"removeFromArchive": "アーカイブから戻す",
-			"deleteToBin": "ごみ箱に移動",
+			"removeFromArchive": "アーカイブから削除",
+			"deleteToBin": "ゴミ箱へ移動",
 			"deletePermanently": "完全に削除",
-			"restoreFromBin": "ごみ箱から復元"
+			"restoreFromBin": "ゴミ箱から復元"
 		},
 		"version": {
 			"chars": "{{count}} 文字",
 			"apply": {
 				"title": "バージョンを適用",
-				"readonlyTitle": "読み取り専用のノートにはバージョンを適用できません"
+				"readonlyTitle": "読み取り専用ノートにはバージョンを適用できません"
 			},
 			"open": {
 				"title": "バージョンを開く"
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "スナップショットを保存",
-				"title": "現在のノートの状態を新しいバージョンとして履歴に保存します"
+				"title": "現在の状態を履歴の新しいバージョンとして保存します"
 			},
 			"deleteAll": {
 				"label": "すべて削除",
-				"title": "このノートの保存済みバージョンをすべて完全に削除します"
+				"title": "このノートの保存されたすべてのバージョンを完全に削除します"
 			},
 			"dontRecord": "このノートの履歴を記録しない",
-			"empty": "このノートには記録されたバージョンがありません",
+			"empty": "保存されたバージョンはありません",
 			"loading": "読み込み中...",
 			"confirmDeleteAll": {
-				"title": "すべてのバージョンを削除",
-				"description": "このノートのすべてのバージョンが完全に削除されます。",
-				"confirm": "本当に削除しますか？",
-				"action": "適用"
+				"title": "すべてのノートバージョンを削除",
+				"description": "この操作を行うと、すべてのノートバージョンが完全に削除されます。",
+				"confirm": "よろしいですか？",
+				"action": "実行"
 			},
 			"confirmApply": {
-				"title": "バージョンを適用",
+				"title": "ノートバージョンを適用",
 				"description": "バージョン {{version}} を適用しようとしています。",
-				"warning": "現在のノートの内容が選択したスナップショットのテキストに置き換わります。よろしいですか？",
+				"warning": "この操作を行うと、現在のノートの内容が選択したスナップショットの内容に置き換わります。よろしいですか？",
 				"apply": "適用",
 				"preview": "プレビュー"
 			},
 			"confirmDelete": {
-				"title": "バージョンを削除",
+				"title": "ノートバージョンを削除",
 				"description": "バージョン {{version}} を削除しようとしています。",
-				"warning": "この操作は取り消せません。本当に削除しますか？",
+				"warning": "この操作により、このバージョンは復元できなくなります。よろしいですか？",
 				"delete": "削除",
 				"preview": "プレビュー"
 			}
@@ -167,7 +167,7 @@
 		"sidebar": {
 			"closePanel": "パネルを閉じる",
 			"tabs": {
-				"history": "バージョン履歴",
+				"history": "ノートの履歴",
 				"backLinks": "バックリンク",
 				"files": "添付ファイル"
 			}
@@ -178,52 +178,52 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "{{filesCount}} 件のファイル（合計 {{size}}）をアップロードしますか？"
+		"confirmLargeUpload": "{{filesCount}} 個のファイル（合計 {{size}}）をアップロードしてもよろしいですか？"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "検索..."
 		},
-		"filterBy": "フィルター",
-		"empty": "ノートはまだありません。<create>ノートを作成</create>"
+		"filterBy": "絞り込み",
+		"empty": "ノートがありません。<create>ノートを作成</create>"
 	},
 	"notesView": {
 		"allNotes": "すべてのノート",
 		"favorites": "お気に入り",
-		"archived": "アーカイブ",
-		"deleted": "ごみ箱"
+		"archived": "アーカイブ済み",
+		"deleted": "ゴミ箱"
 	},
 	"notesContainer": {
 		"empty": {
-			"placeholder": "ノートを選択して閲覧・編集を開始"
+			"placeholder": "ノートを選択して閲覧または編集を開始します"
 		}
 	},
 	"activityBar": {
-		"newNote": "新規ノート",
+		"newNote": "新しいノート",
 		"files": "ファイル",
 		"reminders": "リマインダー",
 		"extensions": "拡張機能",
-		"inbox": "受信トレイ",
+		"inbox": "インボックス",
 		"publishNotes": "ノートを公開",
-		"lockVault": "保管領域をロック",
-		"globalSettings": "全般設定"
+		"lockVault": "Vaultをロック",
+		"globalSettings": "設定"
 	},
 	"tabBar": {
 		"closeTab": "タブを閉じる"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "クリックでレベル {{level}} の見出しを挿入。右クリックで他のオプションを選択",
+			"insertTitle": "クリックしてレベル {{level}} の見出しを挿入します。他のオプションはコンテキストメニューから選択してください",
 			"level": "見出しレベル {{level}}"
 		},
-		"bold": "太字の切り替え",
-		"italic": "斜体の切り替え",
-		"strikethrough": "取り消し線の切り替え",
-		"unorderedList": "箇条書きリストの挿入・切り替え",
-		"checkboxList": "チェックリストの挿入・切り替え",
-		"orderedList": "番号付きリストの挿入・切り替え",
-		"codeBlock": "コードブロックの挿入・切り替え",
-		"quoteBlock": "引用ブロックの挿入・切り替え",
+		"bold": "太字",
+		"italic": "斜体",
+		"strikethrough": "打ち消し線",
+		"unorderedList": "箇条書き",
+		"checkboxList": "チェックリスト",
+		"orderedList": "番号付きリスト",
+		"codeBlock": "コードブロック",
+		"quoteBlock": "引用ブロック",
 		"insertDate": "日付を挿入",
 		"insertPageBreak": "改ページを挿入",
 		"insertFile": "ファイルを挿入",
@@ -233,12 +233,12 @@
 			"dialogDescription": "カーソル位置に画像が挿入されます。",
 			"field": {
 				"url": {
-					"label": "画像URL",
+					"label": "画像のURL",
 					"placeholder": "例: https://example.com/image.png"
 				},
 				"altText": {
 					"label": "代替テキスト（任意）",
-					"placeholder": "画像の簡単な説明"
+					"placeholder": "画像の説明"
 				}
 			},
 			"actions": {
@@ -249,10 +249,10 @@
 		"link": {
 			"buttonTitle": "リンクを挿入",
 			"dialogTitle": "リンクを追加",
-			"dialogDescription": "選択中のテキストがリンクになります。未選択の場合はカーソル位置に挿入されます。",
+			"dialogDescription": "テキストを選択している場合はその場所にリンクを作成し、未選択の場合はカーソル位置にリンクを追加します。",
 			"field": {
 				"url": {
-					"label": "リンクURL",
+					"label": "リンクのURL",
 					"placeholder": "例: https://example.com"
 				}
 			},
@@ -264,7 +264,7 @@
 	},
 	"image": {
 		"loading": "画像を読み込み中",
-		"brokenImage": "画像を読み込めません"
+		"brokenImage": "画像を読み込めませんでした"
 	},
 	"notifications": {
 		"title": "通知"
@@ -272,32 +272,32 @@
 	"updates": {
 		"appUpdate": {
 			"title": "アプリのアップデート",
-			"reminderLater": "1週間後に再度お知らせします"
+			"reminderLater": "リマインダーは1週間後に再度表示されます"
 		},
 		"newVersion": {
 			"title": "新しいバージョンが利用可能です",
-			"body": "新しいバージョンの準備ができました。アップデートして最新の改善と修正を入手してください。",
+			"body": "新しいバージョンが利用可能です。アップデートして最新の改善と修正を適用してください。",
 			"download": "新しいバージョンをダウンロード",
-			"ignore": "無視"
+			"ignore": "後で"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
-			"title": "画像のプロパティ",
-			"urlLabel": "画像URL",
+			"title": "画像プロパティ",
+			"urlLabel": "画像のURL",
 			"altLabel": "代替テキスト"
 		},
 		"linkProperties": {
-			"title": "リンクのプロパティ",
-			"urlLabel": "リンクURL"
+			"title": "リンクプロパティ",
+			"urlLabel": "リンクのURL"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "クリックして変更をディスクに保存",
+			"title": "クリックして変更を保存",
 			"saving": "保存中..."
 		},
-		"changeVault": "保管領域を変更",
+		"changeVault": "Vaultを切り替え",
 		"history": "履歴",
 		"notifications": "通知"
 	}

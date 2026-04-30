@@ -13,38 +13,38 @@
 			},
 			"field": {
 				"name": {
-					"label": "Tagnavn",
+					"label": "Tag-navn",
 					"placeholder": "f.eks. Idéer"
 				},
 				"parent": {
 					"label": "Overordnet tag",
-					"placeholder": "f.eks. Opskrifter/Desserter"
+					"placeholder": "f.eks. Opskrifter/Dessert"
 				}
 			},
 			"messages": {
-				"unknownSubmitError": "Ændringerne kunne ikke gemmes på grund af en ukendt fejl.",
-				"format": "Tag må ikke være tomt, starte eller slutte med \"/\" eller indeholde \"//\".",
-				"duplicate": "Tagget '{{name}}' findes allerede.",
-				"parentTagNotFound": "Overordnet tag blev ikke fundet. Vælg et andet tag."
+				"unknownSubmitError": "Kunne ikke gemme ændringer på grund af en ukendt fejl.",
+				"format": "Taget må ikke være tomt, må ikke starte eller slutte med \"/\", og må ikke indeholde \"//\".",
+				"duplicate": "Taget '{{name}}' findes allerede.",
+				"parentTagNotFound": "Overordnet tag blev ikke fundet, vælg venligst et andet tag."
 			}
 		},
 		"deletion": {
-			"confirm": "Er du sikker på, at du vil slette tagget \"{{name}}\" og alle undertags?"
+			"confirm": "Vil du virkelig slette tagget \"{{name}}\" og alle underliggende tags?"
 		}
 	},
 	"workspace": {
 		"defaultName": "Notesbog",
 		"creator": {
 			"title": "Opret nyt område",
-			"description": "Hvert område er et selvstændigt rum til dine noter, tags og filer. Alt holdes adskilt, men ligger stadig i dit krypterede vault — klar når du skifter.",
+			"description": "Hvert område er et selvstændigt rum til dine noter, tags og filer. Alt holdes adskilt, mens det stadig ligger i din krypterede vault — klar, når du skifter.",
 			"action": {
 				"add": "Opret",
 				"cancel": "Annuller"
 			},
 			"field": {
 				"name": {
-					"label": "Områdenavn",
-					"placeholder": "f.eks. Sundhedsjournal, Forretningsidéer",
+					"label": "Navn på område",
+					"placeholder": "f.eks. Sundhed, Forretningsidéer",
 					"suggests": {
 						"0": "Økonomi",
 						"1": "Sundhed",
@@ -60,13 +60,13 @@
 				}
 			},
 			"error": {
-				"unknown": "Der opstod en ukendt fejl. Prøv igen.",
-				"format": "Områdenavn må ikke være tomt."
+				"unknown": "Der opstod en ukendt fejl. Prøv venligst igen.",
+				"format": "Navnet på området må ikke være tomt."
 			}
 		},
 		"error": {
-			"title": "Området \"{{name}}\" kunne ikke indlæses",
-			"description": "Området kunne ikke indlæses. Data kan være beskadiget. Skift til et andet område, eller opret et nyt for at fortsætte.",
+			"title": "Kunne ikke indlæse område \"{{name}}\"",
+			"description": "Kunne ikke indlæse dette område. Data kan være beskadigede. Skift til et andet område eller opret et nyt for at fortsætte.",
 			"chooseAnother": "Vælg et andet område",
 			"dividerText": "eller",
 			"createNew": "Opret et nyt område",
@@ -81,11 +81,11 @@
 			"duplicate": "Kopi: {{title}}"
 		},
 		"editor": {
-			"placeholder": "Skriv en idé, opgave eller tanke…",
+			"placeholder": "Skriv en idé, opgave eller tanke...",
 			"modes": {
 				"plaintext": "Teksttilstand",
-				"richtext": "Formateret editor",
-				"split-screen": "Delt skærm"
+				"richtext": "Rig tekst-editor",
+				"split-screen": "Split-skærm"
 			}
 		},
 		"actions": {
@@ -95,23 +95,23 @@
 			"removeFromArchive": "Fjern fra arkiv"
 		},
 		"tags": {
-			"addPlaceholder": "Skriv for at tilføje tag…"
+			"addPlaceholder": "Skriv for at tilføje tag..."
 		},
 		"versionPreview": {
 			"versionAt": "Version fra {{date}}",
-			"backToEditing": "Tilbage til redigering"
+			"backToEditing": "Gå tilbage til redigering"
 		},
 		"menu": {
-			"title": "Noteindstillinger",
-			"copyReference": "Kopiér notelink",
+			"title": "Note-indstillinger",
+			"copyReference": "Kopiér link til note",
 			"remindMe": "Påmind mig",
 			"history": "Historik",
-			"backLinks": "Tilbagelinks",
+			"backLinks": "Tilbagevisninger",
 			"readonlyMode": "Skrivebeskyttet tilstand",
 			"spellcheck": "Stavekontrol",
-			"export": "Eksportér...",
+			"export": "Eksporter...",
 			"passwordProtection": "Adgangskodebeskyttelse...",
-			"disableSync": "Deaktivér synkronisering",
+			"disableSync": "Deaktiver synkronisering",
 			"moveToArchive": "Flyt til arkiv",
 			"removeFromArchive": "Fjern fra arkiv",
 			"deleteToBin": "Slet til papirkurv",
@@ -122,7 +122,7 @@
 			"chars": "{{count}} tegn",
 			"apply": {
 				"title": "Anvend version",
-				"readonlyTitle": "Version kan ikke anvendes på en skrivebeskyttet note"
+				"readonlyTitle": "Versionen kan ikke anvendes på en skrivebeskyttet note"
 			},
 			"open": {
 				"title": "Åbn version"
@@ -134,32 +134,32 @@
 		"versions": {
 			"saveVersion": {
 				"label": "Gem øjebliksbillede",
-				"title": "Gem den aktuelle tilstand af denne note som en ny version i historikken"
+				"title": "Gem den nuværende tilstand af denne note som en ny version i historikken"
 			},
 			"deleteAll": {
 				"label": "Slet alle",
 				"title": "Slet alle gemte versioner af denne note permanent"
 			},
-			"dontRecord": "Optag ikke historik for denne note",
+			"dontRecord": "Gem ikke historik for denne note",
 			"empty": "Denne note har ingen gemte versioner",
 			"loading": "Indlæser...",
 			"confirmDeleteAll": {
 				"title": "Slet alle noteversioner",
-				"description": "Denne handling sletter alle noteversioner permanent.",
+				"description": "Denne handling vil slette alle noteversioner permanent.",
 				"confirm": "Er du sikker?",
 				"action": "Anvend"
 			},
 			"confirmApply": {
 				"title": "Anvend noteversion",
 				"description": "Du er ved at anvende noteversion {{version}}.",
-				"warning": "Denne handling erstatter den aktuelle note med teksten fra det valgte øjebliksbillede. Er du sikker?",
+				"warning": "Denne handling vil erstatte de nuværende notedata med teksten fra det valgte øjebliksbillede. Er du sikker?",
 				"apply": "Anvend",
 				"preview": "Forhåndsvis"
 			},
 			"confirmDelete": {
 				"title": "Slet noteversion",
 				"description": "Du er ved at slette noteversion {{version}}.",
-				"warning": "Denne handling sletter noteversionen permanent. Er du sikker?",
+				"warning": "Denne handling vil slette noteversionen uigenkaldeligt. Er du sikker?",
 				"delete": "Slet",
 				"preview": "Forhåndsvis"
 			}
@@ -168,7 +168,7 @@
 			"closePanel": "Luk panel",
 			"tabs": {
 				"history": "Noteversioner",
-				"backLinks": "Tilbagelinks",
+				"backLinks": "Tilbagevisninger",
 				"files": "Vedhæftede filer"
 			}
 		},
@@ -178,14 +178,14 @@
 		}
 	},
 	"files": {
-		"confirmLargeUpload": "Er du sikker på, at du vil uploade {{filesCount}} filer ({{size}} i alt)?"
+		"confirmLargeUpload": "Er du sikker på, at du vil uploade {{filesCount}} filer (i alt {{size}} MB)?"
 	},
 	"notesList": {
 		"search": {
 			"placeholder": "Søg..."
 		},
 		"filterBy": "Filtrer efter",
-		"empty": "Ingen noter her endnu. <create>Opret en note</create>"
+		"empty": "Ingen noter endnu. <create>Opret en note</create>"
 	},
 	"notesView": {
 		"allNotes": "Alle noter",
@@ -204,40 +204,40 @@
 		"reminders": "Påmindelser",
 		"extensions": "Udvidelser",
 		"inbox": "Indbakke",
-		"publishNotes": "Publicér noter",
+		"publishNotes": "Publicer noter",
 		"lockVault": "Lås vault",
-		"globalSettings": "Globale indstillinger"
+		"globalSettings": "Generelle indstillinger"
 	},
 	"tabBar": {
 		"closeTab": "Luk fane"
 	},
 	"editorPanel": {
 		"header": {
-			"insertTitle": "Klik for at indsætte overskrift med niveau {{level}}. Åbn kontekstmenuen for at vælge en anden mulighed",
+			"insertTitle": "Klik for at indsætte overskrift på niveau {{level}}. Åbn kontekstmenuen for at vælge en anden mulighed",
 			"level": "Overskriftsniveau {{level}}"
 		},
-		"bold": "Skift fed tekststil",
-		"italic": "Skift kursiv tekststil",
-		"strikethrough": "Skift gennemstreget tekststil",
+		"bold": "Skift fed skrift",
+		"italic": "Skift kursiv skrift",
+		"strikethrough": "Skift gennemstregning",
 		"unorderedList": "Indsæt eller skift punktliste",
 		"checkboxList": "Indsæt eller skift tjekliste",
 		"orderedList": "Indsæt eller skift nummereret liste",
 		"codeBlock": "Indsæt eller omslut tekst med kodeblok",
 		"quoteBlock": "Indsæt eller omslut tekst med citatblok",
 		"insertDate": "Indsæt dato",
-		"insertPageBreak": "Indsæt sideskift",
+		"insertPageBreak": "Indsæt sidetal",
 		"insertFile": "Indsæt fil",
 		"image": {
 			"buttonTitle": "Indsæt billede",
 			"dialogTitle": "Tilføj billede",
-			"dialogDescription": "Billedet indsættes ved markørens position.",
+			"dialogDescription": "Billedet indsættes ved markøren.",
 			"field": {
 				"url": {
 					"label": "Billed-URL",
 					"placeholder": "f.eks. https://example.com/image.png"
 				},
 				"altText": {
-					"label": "Alternativ billedtekst (valgfrit)",
+					"label": "Alt-tekst (valgfri)",
 					"placeholder": "Kort beskrivelse af billedet"
 				}
 			},
@@ -249,7 +249,7 @@
 		"link": {
 			"buttonTitle": "Indsæt link",
 			"dialogTitle": "Tilføj link",
-			"dialogDescription": "Markeret tekst bliver til et link, eller linket indsættes ved markørens position, hvis intet er markeret.",
+			"dialogDescription": "Den valgte tekst bliver til et link, eller et link indsættes ved markøren, hvis intet er valgt.",
 			"field": {
 				"url": {
 					"label": "Link-URL",
@@ -263,42 +263,42 @@
 		}
 	},
 	"image": {
-		"loading": "Billede indlæses",
+		"loading": "Indlæser billede",
 		"brokenImage": "Billedet kan ikke indlæses"
 	},
 	"notifications": {
-		"title": "Notifikationer"
+		"title": "Meddelelser"
 	},
 	"updates": {
 		"appUpdate": {
-			"title": "Appopdatering",
+			"title": "Opdatering af app",
 			"reminderLater": "Påmindelsen vises igen om en uge"
 		},
 		"newVersion": {
-			"title": "Ny version tilgængelig",
-			"body": "En ny version er klar. Opdatér for at få de seneste forbedringer og rettelser.",
+			"title": "Ny version er tilgængelig",
+			"body": "En ny version er klar. Opdater for at få de seneste forbedringer og rettelser.",
 			"download": "Download ny version",
 			"ignore": "Ignorer"
 		}
 	},
 	"contextMenu": {
 		"imageProperties": {
-			"title": "Billedegenskaber",
+			"title": "Billedindstillinger",
 			"urlLabel": "Billed-URL",
-			"altLabel": "Alternativ billedtekst"
+			"altLabel": "Alt-tekst"
 		},
 		"linkProperties": {
-			"title": "Linkegenskaber",
+			"title": "Linkindstillinger",
 			"urlLabel": "Link-URL"
 		}
 	},
 	"statusBar": {
 		"sync": {
-			"title": "Klik for at gemme ændringer på disk",
+			"title": "Klik for at gemme ændringer",
 			"saving": "Gemmer ændringer..."
 		},
 		"changeVault": "Skift vault",
 		"history": "Historik",
-		"notifications": "Notifikationer"
+		"notifications": "Meddelelser"
 	}
 }
