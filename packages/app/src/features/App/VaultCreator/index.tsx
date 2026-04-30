@@ -203,6 +203,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 	const vaultNameInputRef = useRef<HTMLInputElement | null>(null);
 	const passwordInputRef = useRef<HTMLInputElement | null>(null);
+	const isSubmittingRef = useRef(false);
 
 	const [isPending, setIsPending] = useState(false);
 
@@ -225,6 +226,8 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 	const onPressCreate = useCallback(
 		async (usePassword = true) => {
+			if (isSubmittingRef.current) return;
+
 			if (!vaultName) {
 				setVaultNameError(t('creator.errors.nameRequired'));
 				vaultNameInputRef.current?.focus();
@@ -237,6 +240,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 				return;
 			}
 
+			isSubmittingRef.current = true;
 			setIsPending(true);
 			setVaultNameError(null);
 			setPasswordError(null);
@@ -254,6 +258,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						}
 					: null,
 			}).finally(() => {
+				isSubmittingRef.current = false;
 				setIsPending(false);
 			});
 
