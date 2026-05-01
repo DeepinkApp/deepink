@@ -14,10 +14,6 @@ export const serveFiles = () =>
 			return filesUtils.getUserDataPath(path);
 		},
 
-		async getResourcesPath({ req: [path] }) {
-			return filesUtils.getResourcesPath(path);
-		},
-
 		async selectDirectory({ ctx: evt }) {
 			const window = BrowserWindow.getAllWindows().find(
 				(win) => win.webContents.id === evt.sender.id,

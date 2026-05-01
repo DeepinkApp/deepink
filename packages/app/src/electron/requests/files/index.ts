@@ -4,5 +4,4 @@ export const filesChannel = createChannel<{
 	importNotes(): Promise<Record<string, ArrayBuffer>>;
 	selectDirectory(): Promise<null | string[]>;
 	getUserDataPath(path?: string): Promise<string>;
-	getResourcesPath(path: string): Promise<string>;
 }>({ name: 'files' });
