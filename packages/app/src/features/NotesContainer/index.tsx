@@ -17,7 +17,12 @@ import { useTelemetryTracker } from '@features/telemetry';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useUpdateNotes } from '@hooks/notes/useUpdateNotes';
 import { useImmutableCallback } from '@hooks/useImmutableCallback';
-import { useVaultSelector, useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { useAppDispatch } from '@state/redux/hooks';
+import {
+	useVaultSelector,
+	useWorkspaceActions,
+	useWorkspaceSelector,
+} from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import { createWorkspaceSelector } from '@state/redux/vaults/utils';
 import { selectActiveNoteId, selectOpenedNotes } from '@state/redux/vaults/vaults';
@@ -30,6 +35,8 @@ export type NotesContainerProps = Partial<StackProps>;
 export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const telemetry = useTelemetryTracker();
+	const workspaceActions = useWorkspaceActions();
+	const dispatch = useAppDispatch();
 
 	const updateNotes = useUpdateNotes();
 	const noteActions = useNoteActions();
@@ -118,14 +125,23 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 							},
-							onPick(id) {
-								noteActions.click(id);
-								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
-									context: 'top bar',
-								});
-							},
-							onOpenPersistently(id) {
-								noteActions.click(id, { isTemporary: false });
+							onPick(id, { isTemporary }: { isTemporary: boolean }) {
+								if (isTemporary) {
+									noteActions.click(id);
+
+									telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
+										context: 'top bar',
+									});
+									return;
+								}
+
+								// Update note state to non-temporary
+								dispatch(
+									workspaceActions.setNoteTemporaryState({
+										noteId: id,
+										isTemporary: false,
+									}),
+								);
 							},
 						}}
 					/>
