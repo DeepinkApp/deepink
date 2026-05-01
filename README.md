@@ -40,6 +40,28 @@ Deepink takes privacy seriously — beyond surface-level encryption:
 
 Visit [deepink.app](https://deepink.app) to download the app. **Free to use. No limits.**
 
+## ❤️ Support & Contribute
+
+This project is open-source under the Apache 2.0 License — it not only allows you to use and modify the code freely, but also protects contributors by explicitly granting patent rights and requiring proper attribution.
+
+Contributions are very welcome — whether it’s code, ideas, bug reports, or improvements.
+
+If you find this tool useful:
+
+* ⭐ Star the [repository](https://github.com/vitonsky/deepink/)
+* 📢 Share it with others
+* 💡 Help shape it with your feedback
+
+*Good tools get better when people care.*
+
+Want to help?
+
+* Fix something
+* Suggest something
+* Break something (and [report it](https://github.com/vitonsky/deepink/issues))
+
+And if you like it, a [⭐ on GitHub](https://github.com/vitonsky/deepink/) goes a long way.
+
 # Build
 
 To build in dev mode run `npm run dev`, to run production code run `npm run build`.
