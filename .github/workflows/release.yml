@@ -17,7 +17,8 @@ jobs:
       matrix:
         # TODO: add `macos-15-intel` for production releases
         # See docs https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for-public-repositories
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        # os: [ macos-latest, ubuntu-latest, windows-latest ]
+        os: [ windows-latest ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
