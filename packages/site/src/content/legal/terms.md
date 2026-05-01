@@ -30,8 +30,8 @@ Our Privacy Policy explains how we handle personal data and analytics. It is par
 
 Deepink is open source and distributed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-- License text: https://github.com/vitonsky/deepink/blob/master/LICENSE  
-- Source repository: https://github.com/vitonsky/deepink
+- License text: https://github.com/DeepinkApp/deepink/blob/master/LICENSE  
+- Source repository: https://github.com/DeepinkApp/deepink
 
 **Important:** The AGPL-3.0 governs the App’s source code and your rights to use, modify, and redistribute that code. These Terms govern your use of the **Hosted Services**, the **Deepink name/branding**, and the **website**, and set rules for using our infrastructure.
 

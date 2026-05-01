@@ -1,5 +1,5 @@
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen.svg)](https://github.com/vitonsky/deepink)
+[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen.svg)](https://github.com/DeepinkApp/deepink)
 [![Free to Use](https://img.shields.io/badge/Pricing-Free%20%26%20No%20Limits-success.svg)](https://deepink.app)
 
 # Deepink — Snapshot Your Thoughts
@@ -48,7 +48,7 @@ Contributions are very welcome — whether it’s code, ideas, bug reports, or i
 
 If you find this tool useful:
 
-* ⭐ Star the [repository](https://github.com/vitonsky/deepink/)
+* ⭐ Star the [repository](https://github.com/DeepinkApp/deepink/)
 * 📢 Share it with others
 * 💡 Help shape it with your feedback
 
@@ -58,9 +58,9 @@ Want to help?
 
 * Fix something
 * Suggest something
-* Break something (and [report it](https://github.com/vitonsky/deepink/issues))
+* Break something (and [report it](https://github.com/DeepinkApp/deepink/issues))
 
-And if you like it, a [⭐ on GitHub](https://github.com/vitonsky/deepink/) goes a long way.
+And if you like it, a [⭐ on GitHub](https://github.com/DeepinkApp/deepink/) goes a long way.
 
 # Build
 
@@ -76,7 +76,7 @@ There are specific prerequisites per each platform. All instructions listed belo
 
 <!-- TODO: add step to push artifacts from build machine to an S3 -->
 Once requirements are meet
-- Clone repo `git clone https://github.com/vitonsky/deepink.git`
+- Clone repo `git clone https://github.com/DeepinkApp/deepink.git`
 - Checkout `cd deepink`
 - Build and pack. Example for Windows: `make build artifacts`
 

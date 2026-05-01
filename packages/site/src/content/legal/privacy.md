@@ -225,7 +225,7 @@ Deepink is not intended for children under **13**. If you believe a child under 
 
 ## 14) Open source
 
-Deepink is open source: https://github.com/vitonsky/deepink
+Deepink is open source: https://github.com/DeepinkApp/deepink
 
 This Privacy Policy applies to official Deepink services (such as sync and the website). If you build and run your own version, your setup may differ.
 
