@@ -469,7 +469,7 @@ export const vaultsSlice = createSlice({
 			if (!meta) return;
 
 			if (isTemporary) {
-				// Only one note can be open in temporary mode — remove all previous temporary notes
+				// When a new temporary note is opened, close the previously opened temporary note
 				workspace.openedNotes = workspace.openedNotes.filter(({ id }) => {
 					if (id !== noteId && workspace.openedNotesMeta[id]?.isTemporary) {
 						// Cleanup meta so it stays in sync with openedNotes after filtering
