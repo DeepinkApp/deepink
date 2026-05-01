@@ -1,161 +1,161 @@
 [
 	{
-		"url": "https://github.com/vitonsky/deepink/releases/tag/v0.0.2-preview.8",
+		"url": "https://github.com/DeepinkApp/deepink/releases/tag/v0.0.2-preview.8",
 		"name": "v0.0.2-preview.8",
 		"publishedAt": "2025-11-15T17:45:34Z",
 		"prerelease": true,
 		"assets": [
 			{
 				"name": "Deepink-0.0.2-preview.8.AppImage",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/Deepink-0.0.2-preview.8.AppImage"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/Deepink-0.0.2-preview.8.AppImage"
 			},
 			{
 				"name": "deepink-0.0.2-preview.8.deb",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/deepink-0.0.2-preview.8.deb"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/deepink-0.0.2-preview.8.deb"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.8.dmg",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/Deepink-0.0.2-preview.8.dmg"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/Deepink-0.0.2-preview.8.dmg"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.8.msi",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/Deepink-0.0.2-preview.8.msi"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/Deepink-0.0.2-preview.8.msi"
 			},
 			{
 				"name": "deepink-0.0.2-preview.8.rpm",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/deepink-0.0.2-preview.8.rpm"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/deepink-0.0.2-preview.8.rpm"
 			},
 			{
 				"name": "deepink-darwin-arm64-0.0.2-preview.8.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/deepink-darwin-arm64-0.0.2-preview.8.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/deepink-darwin-arm64-0.0.2-preview.8.zip"
 			},
 			{
 				"name": "deepink-linux-x64-0.0.2-preview.8.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/deepink-linux-x64-0.0.2-preview.8.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/deepink-linux-x64-0.0.2-preview.8.zip"
 			},
 			{
 				"name": "deepink-win32-x64-0.0.2-preview.8.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.8/deepink-win32-x64-0.0.2-preview.8.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.8/deepink-win32-x64-0.0.2-preview.8.zip"
 			}
 		]
 	},
 	{
-		"url": "https://github.com/vitonsky/deepink/releases/tag/v0.0.2-preview.7",
+		"url": "https://github.com/DeepinkApp/deepink/releases/tag/v0.0.2-preview.7",
 		"name": "v0.0.2-preview.7",
 		"publishedAt": "2025-11-14T23:59:36Z",
 		"prerelease": true,
 		"assets": [
 			{
 				"name": "Deepink-0.0.2-preview.7.AppImage",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/Deepink-0.0.2-preview.7.AppImage"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/Deepink-0.0.2-preview.7.AppImage"
 			},
 			{
 				"name": "deepink-0.0.2-preview.7.deb",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/deepink-0.0.2-preview.7.deb"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/deepink-0.0.2-preview.7.deb"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.7.dmg",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/Deepink-0.0.2-preview.7.dmg"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/Deepink-0.0.2-preview.7.dmg"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.7.msi",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/Deepink-0.0.2-preview.7.msi"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/Deepink-0.0.2-preview.7.msi"
 			},
 			{
 				"name": "deepink-0.0.2-preview.7.rpm",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/deepink-0.0.2-preview.7.rpm"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/deepink-0.0.2-preview.7.rpm"
 			},
 			{
 				"name": "deepink-darwin-arm64-0.0.2-preview.7.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/deepink-darwin-arm64-0.0.2-preview.7.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/deepink-darwin-arm64-0.0.2-preview.7.zip"
 			},
 			{
 				"name": "deepink-linux-x64-0.0.2-preview.7.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/deepink-linux-x64-0.0.2-preview.7.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/deepink-linux-x64-0.0.2-preview.7.zip"
 			},
 			{
 				"name": "deepink-win32-x64-0.0.2-preview.7.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.7/deepink-win32-x64-0.0.2-preview.7.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.7/deepink-win32-x64-0.0.2-preview.7.zip"
 			}
 		]
 	},
 	{
-		"url": "https://github.com/vitonsky/deepink/releases/tag/v0.0.2-preview.6",
+		"url": "https://github.com/DeepinkApp/deepink/releases/tag/v0.0.2-preview.6",
 		"name": "v0.0.2-preview.6",
 		"publishedAt": "2025-11-11T17:55:34Z",
 		"prerelease": true,
 		"assets": [
 			{
 				"name": "Deepink-0.0.2-preview.6.AppImage",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/Deepink-0.0.2-preview.6.AppImage"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/Deepink-0.0.2-preview.6.AppImage"
 			},
 			{
 				"name": "deepink-0.0.2-preview.6.deb",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/deepink-0.0.2-preview.6.deb"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/deepink-0.0.2-preview.6.deb"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.6.dmg",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/Deepink-0.0.2-preview.6.dmg"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/Deepink-0.0.2-preview.6.dmg"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.6.msi",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/Deepink-0.0.2-preview.6.msi"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/Deepink-0.0.2-preview.6.msi"
 			},
 			{
 				"name": "deepink-0.0.2-preview.6.rpm",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/deepink-0.0.2-preview.6.rpm"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/deepink-0.0.2-preview.6.rpm"
 			},
 			{
 				"name": "deepink-darwin-arm64-0.0.2-preview.6.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/deepink-darwin-arm64-0.0.2-preview.6.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/deepink-darwin-arm64-0.0.2-preview.6.zip"
 			},
 			{
 				"name": "deepink-linux-x64-0.0.2-preview.6.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/deepink-linux-x64-0.0.2-preview.6.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/deepink-linux-x64-0.0.2-preview.6.zip"
 			},
 			{
 				"name": "deepink-win32-x64-0.0.2-preview.6.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.6/deepink-win32-x64-0.0.2-preview.6.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.6/deepink-win32-x64-0.0.2-preview.6.zip"
 			}
 		]
 	},
 	{
-		"url": "https://github.com/vitonsky/deepink/releases/tag/v0.0.2-preview.5",
+		"url": "https://github.com/DeepinkApp/deepink/releases/tag/v0.0.2-preview.5",
 		"name": "v0.0.2-preview.5",
 		"publishedAt": "2025-11-11T08:18:56Z",
 		"prerelease": true,
 		"assets": [
 			{
 				"name": "Deepink-0.0.2-preview.5.AppImage",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/Deepink-0.0.2-preview.5.AppImage"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/Deepink-0.0.2-preview.5.AppImage"
 			},
 			{
 				"name": "deepink-0.0.2-preview.5.deb",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/deepink-0.0.2-preview.5.deb"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/deepink-0.0.2-preview.5.deb"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.5.dmg",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/Deepink-0.0.2-preview.5.dmg"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/Deepink-0.0.2-preview.5.dmg"
 			},
 			{
 				"name": "Deepink-0.0.2-preview.5.msi",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/Deepink-0.0.2-preview.5.msi"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/Deepink-0.0.2-preview.5.msi"
 			},
 			{
 				"name": "deepink-0.0.2-preview.5.rpm",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/deepink-0.0.2-preview.5.rpm"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/deepink-0.0.2-preview.5.rpm"
 			},
 			{
 				"name": "deepink-darwin-arm64-0.0.2-preview.5.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/deepink-darwin-arm64-0.0.2-preview.5.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/deepink-darwin-arm64-0.0.2-preview.5.zip"
 			},
 			{
 				"name": "deepink-linux-x64-0.0.2-preview.5.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/deepink-linux-x64-0.0.2-preview.5.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/deepink-linux-x64-0.0.2-preview.5.zip"
 			},
 			{
 				"name": "deepink-win32-x64-0.0.2-preview.5.zip",
-				"url": "https://github.com/vitonsky/deepink/releases/download/v0.0.2-preview.5/deepink-win32-x64-0.0.2-preview.5.zip"
+				"url": "https://github.com/DeepinkApp/deepink/releases/download/v0.0.2-preview.5/deepink-win32-x64-0.0.2-preview.5.zip"
 			}
 		]
 	}

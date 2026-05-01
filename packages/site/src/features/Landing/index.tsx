@@ -45,7 +45,7 @@ export default WithLayout(() => {
 						<b key={1} />,
 						<Link
 							key={2}
-							href="https://github.com/vitonsky/deepink"
+							href="https://github.com/DeepinkApp/deepink"
 							target="_blank"
 						/>,
 					]}

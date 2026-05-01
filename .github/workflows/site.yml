@@ -2,11 +2,9 @@ name: "Site"
 
 on:
   push:
-    branches: [master]
-    paths:
-      - "packages/site/**"
+    branches: [ master ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [ opened, synchronize, reopened ]
     paths:
       - "packages/site/**"
 
@@ -27,9 +25,10 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: "22"
+          cache: "npm"
 
       - name: Install deps
-        run: npm install
+        run: npm ci
 
       - name: Build
         working-directory: packages/site
@@ -45,4 +44,5 @@ jobs:
           cloudflare-project-name: ${{ vars.CLOUDFLARE_PROJECT_NAME }}
           directory: packages/site/dist
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          github-environment: ${{ (github.ref == 'refs/heads/master' && 'production') || 'preview' }}
+          github-environment: ${{ (github.ref == 'refs/heads/master' && 'production') ||
+            'preview' }}

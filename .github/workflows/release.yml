@@ -11,13 +11,54 @@ on:
   workflow_dispatch:
 
 jobs:
+  wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Cache WASM build
+        id: twofish-cache
+        uses: actions/cache@v4
+        with:
+          path: packages/twofish/dist
+          key: twofish-${{ hashFiles( 'packages/twofish/**', '!packages/twofish/dist/**' )
+            }}
+
+      - name: Set UID/GID
+        shell: bash
+        run: |
+          echo "DOCKER_UID=$(id -u)" >> "$GITHUB_ENV"
+          echo "DOCKER_GID=$(id -g)" >> "$GITHUB_ENV"
+          echo "UID: $(id -u) GID: $(id -g)"
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Build WASM
+        if: steps.twofish-cache.outputs.cache-hit != 'true'
+        run: cd packages/twofish && npm run build
+
+      - name: Upload WASM build
+        uses: actions/upload-artifact@v4
+        with:
+          name: twofish
+          path: packages/twofish/dist
+
   build:
     # build for macOS, Windows and Linux
+    needs: wasm
     strategy:
       matrix:
         # TODO: add `macos-15-intel` for production releases
         # See docs https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for-public-repositories
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
@@ -30,6 +71,12 @@ jobs:
         with:
           node-version: "22"
           cache: "npm"
+
+      - name: Download WASM
+        uses: actions/download-artifact@v4
+        with:
+          name: twofish
+          path: packages/twofish/dist
 
       # Setup macOS
       - name: "macOS: accept Xcode license (required before building)"
@@ -61,11 +108,19 @@ jobs:
           light.exe -? 2>&1 | Select-Object -First 1
           exit 0  # Force success exit code
 
+      - name: Install packages
+        run: npm ci
+
       - name: Build app
-        run: make package artifacts
+        working-directory: packages/app
+        run: |
+          npm run build
+          npx electron-forge package
+          npm run make
 
       - name: Upload artifacts to release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: packages/app
         run: |
-          make publish
+          npx tsx ./scripts/publish --dir ./out/make

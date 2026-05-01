@@ -1,6 +1,66 @@
-This is notes app project, focused on security and user experience.
+[![License: Apache 2.0](<https://img.shields.io/badge/License-Apache%202.0-blue.svg>)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen.svg)](https://github.com/DeepinkApp/deepink)
+[![Free to Use](https://img.shields.io/badge/Pricing-Free%20%26%20No%20Limits-success.svg)](https://deepink.app)
 
-If you can't find a good notes solution that respect your privacy and not ugly - **it is messages from the stars for you**, stay tunned.
+# Deepink — Snapshot Your Thoughts
+
+![Deepink application interface showing the note editor and workspace](./packages/site/src/features/Landing/screenshots/app.png)
+
+> A better place for your notes. Deepink makes note-taking ergonomic, secure, and fun.
+
+[**Deepink**](https://deepink.app) is an open-source, privacy-first note-taking application focused on security and user experience. Everything lives inside a single encrypted vault — your notes, files, attachments, and metadata — all unreadable to anyone but you.
+
+With up to **80% fewer actions** than other note-taking apps for common tasks, Deepink is engineered for speed, clarity, and ergonomic everyday use.
+
+[Download](https://deepink.app) the Deepink today, **build your safe space for thinking**!
+
+## ✨ Features
+
+| Feature | Description |
+|---|---|
+| 🔐 **Full Vault Encryption** | Notes, attachments, files, and metadata are [all encrypted](https://deepink.app/introduction/encryption/). Even file sizes are obfuscated. You choose the algorithm. (Read [Why it does even matter?](https://deepink.app/introduction/security/)) |
+| ⚡ **Ergonomic by Design** | Friction removed from the most common tasks — up to 80% fewer actions than other apps. |
+| 🗂️ **Workspaces** | Separate contexts (e.g. Client Projects, Personal Journal, Health Notes) inside one secure vault — no leaking between spaces. |
+| 🔗 **Linked Notes** | Reference any note from anywhere. Backlinks make it easy to trace connections and navigate your knowledge graph naturally. |
+| 🏷️ **Nested Tags** | Hierarchical tag structure (e.g. `Finance/Taxes`, `Clients/Acme`) with multi-tag support per note for flexible organization. |
+| 🕓 **Note Version History** | Every note keeps a full change history. Restore any previous draft or trace how an idea evolved over time. |
+| ⏰ **Reminders** | Attach reminders directly to notes. Get notified at the right time with all context already open and ready. |
+| 📦 **Everything in One Vault** | Project specs, contracts, code snippets, book quotes, journal entries, research — all in one place. |
+
+## 🔒 Privacy & Security
+
+Deepink takes privacy seriously — beyond surface-level encryption:
+
+- ✅ **End-to-end encryption** of all vault contents (not just sync data or note text, [unlike others](https://deepink.app/introduction/security/#why-deepink))
+- ✅ **Metadata is encrypted** — including file sizes, which are obfuscated to prevent analysis
+- ✅ **Open source** — code you can verify, not just trust
+- ✅ **Your data stays yours** — unreadable even to the Deepink team
+
+## Download
+
+Visit [deepink.app](https://deepink.app) to download the app. **Free to use. No limits.**
+
+## ❤️ Support & Contribute
+
+This project is open-source under the Apache 2.0 License — it not only allows you to use and modify the code freely, but also protects contributors by explicitly granting patent rights and requiring proper attribution.
+
+Contributions are very welcome — whether it’s code, ideas, bug reports, or improvements.
+
+If you find this tool useful:
+
+* ⭐ Star the [repository](https://github.com/DeepinkApp/deepink/)
+* 📢 Share it with others
+* 💡 Help shape it with your feedback
+
+*Good tools get better when people care.*
+
+Want to help?
+
+* Fix something
+* Suggest something
+* Break something (and [report it](https://github.com/DeepinkApp/deepink/issues))
+
+And if you like it, a [⭐ on GitHub](https://github.com/DeepinkApp/deepink/) goes a long way.
 
 # Build
 
@@ -16,7 +76,7 @@ There are specific prerequisites per each platform. All instructions listed belo
 
 <!-- TODO: add step to push artifacts from build machine to an S3 -->
 Once requirements are meet
-- Clone repo `git clone https://github.com/vitonsky/deepink.git`
+- Clone repo `git clone https://github.com/DeepinkApp/deepink.git`
 - Checkout `cd deepink`
 - Build and pack. Example for Windows: `make build artifacts`
 

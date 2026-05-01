@@ -17,7 +17,7 @@ import remarkMermaid from './src/plugins/renderMermaid'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://deepink.io',
+	site: 'https://deepink.app',
 
 	vite: {
 		ssr: {
@@ -93,7 +93,7 @@ export default defineConfig({
 				{
 					icon: 'github',
 					label: 'GitHub',
-					href: 'https://github.com/vitonsky/deepink',
+					href: 'https://github.com/DeepinkApp/deepink',
 				},
 			],
 			sidebar: [

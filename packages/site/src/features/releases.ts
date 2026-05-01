@@ -5,7 +5,7 @@ import { Octokit } from '@octokit/rest';
 export const getReleases = async (token?: string) => {
 	const octokit = new Octokit({ auth: token });
 	const releases = await octokit.repos.listReleases({
-		owner: 'vitonsky',
+		owner: 'DeepinkApp',
 		repo: 'deepink',
 	});
 

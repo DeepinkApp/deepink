@@ -30,7 +30,7 @@ import { LocaleContext, useLocalePath } from '../Locale';
 import { Text } from '../Text';
 import { Logo } from './Logo';
 
-export const CHANGELOG_URL = 'https://github.com/vitonsky/deepink/releases';
+export const CHANGELOG_URL = 'https://github.com/DeepinkApp/deepink/releases';
 
 type SimpleLink = {
 	text: string;
@@ -236,7 +236,7 @@ const LayoutContent = ({
 								>
 									<Box as="li">
 										<Link
-											href="https://github.com/vitonsky/deepink"
+											href="https://github.com/DeepinkApp/deepink"
 											target="_blank"
 										>
 											GitHub

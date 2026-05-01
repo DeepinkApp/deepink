@@ -3,13 +3,13 @@
 	"productName": "Deepink",
 	"description": "Privacy focused notes",
 	"author": "Robert Vitonsky",
-	"version": "0.0.2-preview.8",
+	"version": "0.0.0",
 	"main": "dist/main.js",
-	"homepage": "https://github.com/vitonsky/deepink",
+	"homepage": "https://github.com/DeepinkApp/deepink",
 	"bugs": {
-		"url": "https://github.com/vitonsky/deepink/issues"
+		"url": "https://github.com/DeepinkApp/deepink/issues"
 	},
-	"license": " AGPL-3.0",
+	"license": " Apache 2.0",
 	"engines": {
 		"node": ">=22"
 	},

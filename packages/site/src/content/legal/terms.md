@@ -15,8 +15,8 @@ If you do not agree, do not use the App or Hosted Services.
 
 ## 1) Who we are / contact
 
-- Support: `contact@deepink.io`  
-- Security: `security@deepink.io`
+- Support: `contact@deepink.app`  
+- Security: `security@deepink.app`
 
 ---
 
@@ -26,14 +26,14 @@ Our Privacy Policy explains how we handle personal data and analytics. It is par
 
 ---
 
-## 3) Open source software license (AGPL-3.0)
+## 3) Open source software license (Apache 2.0)
 
-Deepink is open source and distributed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+Deepink is open source and distributed under the **Apache 2.0**.
 
-- License text: https://github.com/vitonsky/deepink/blob/master/LICENSE  
-- Source repository: https://github.com/vitonsky/deepink
+- License text: https://github.com/DeepinkApp/deepink/blob/master/LICENSE  
+- Source repository: https://github.com/DeepinkApp/deepink
 
-**Important:** The AGPL-3.0 governs the App’s source code and your rights to use, modify, and redistribute that code. These Terms govern your use of the **Hosted Services**, the **Deepink name/branding**, and the **website**, and set rules for using our infrastructure.
+**Important:** The Apache 2.0 governs the App’s source code and your rights to use, modify, and redistribute that code. These Terms govern your use of the **Deepink name/branding**, and the **website**, and set rules for using our infrastructure.
 
 ---
 
@@ -99,9 +99,9 @@ If you provide suggestions or feedback, you grant us the right to use it without
 
 ## 9) Deepink name, logo, and branding
 
-The App’s source code is licensed under AGPL-3.0, but the **Deepink name, logo, and other branding** are **not** automatically granted for your use.
+The App’s source code is licensed under Apache 2.0, but the **Deepink name, logo, and other branding** are **not** automatically granted for your use.
 
-You may truthfully state that your fork/build is “based on Deepink” or “built from Deepink (AGPL-3.0),” but you may not:
+You may truthfully state that your fork/build is “based on Deepink” or “built from Deepink (Apache 2.0),” but you may not:
 - present your fork as the “official” Deepink product, or
 - use Deepink branding in a way that implies endorsement or affiliation,
 unless you have our permission.
@@ -131,7 +131,7 @@ Termination of Hosted Services access does not affect your local data stored on 
 
 ## 12) Disputes (informal resolution first)
 
-If you have a dispute or concern, please contact us at `contact@deepink.io`. You agree to try to resolve disputes informally with us first.
+If you have a dispute or concern, please contact us at `contact@deepink.app`. You agree to try to resolve disputes informally with us first.
 
 We do not include an arbitration clause in these Terms.
 
@@ -182,11 +182,11 @@ The App or website may reference or link to third-party services. We do not cont
 ## 17) Miscellaneous
 
 - If any provision of these Terms is found unenforceable, the remaining provisions will remain in effect.
-- These Terms are the entire agreement between you and Deepink regarding the App and Hosted Services, except where the AGPL-3.0 license governs the software code.
+- These Terms are the entire agreement between you and Deepink regarding the App and Hosted Services, except where the Apache 2.0 license governs the software code.
 
 ---
 
 ## 18) Contact
 
-Questions about these Terms: `contact@deepink.io`  
-Security issues: `security@deepink.io`
+Questions about these Terms: `contact@deepink.app`  
+Security issues: `security@deepink.app`
