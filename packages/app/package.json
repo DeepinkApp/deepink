@@ -31,6 +31,7 @@
 		"build": "rm -Rf dist && cross-env NODE_OPTIONS=--max-old-space-size=4096 NODE_ENV=production webpack -c webpack.config.ts",
 		"make": "electron-forge make",
 		"bench": "node scripts/datasets/prepare-bench-data.ts  && vitest bench",
+		"release": "git tag -a \"v`jq -r .version package.json`\" -m \"build: publish v`jq -r .version package.json`\"",
 		"typecheck": "tsc --noEmit --watch",
 		"update-icons": "tsx ./scripts/icons/build.ts",
 		"update-locales": "transly cache seed && transly translate",
