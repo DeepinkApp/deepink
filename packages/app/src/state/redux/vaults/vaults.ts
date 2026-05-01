@@ -121,13 +121,13 @@ export type LoadingStatus = {
 	isTagsLoaded: boolean;
 };
 
-export const OpenedNotesMetaSchema = z.record(
+export const NotesMetaSchema = z.record(
 	z.string(),
 	z.object({
 		isTemporary: z.boolean(),
 	}),
 );
-export type OpenedNotesMeta = z.output<typeof OpenedNotesMetaSchema>;
+export type NotesMeta = z.output<typeof NotesMetaSchema>;
 
 export type WorkspaceData = {
 	id: string;
@@ -145,7 +145,7 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
-	openedNotesMeta: OpenedNotesMeta;
+	openedNotesMeta: NotesMeta;
 
 	noteIds: NoteId[];
 
@@ -523,7 +523,7 @@ export const vaultsSlice = createSlice({
 			state,
 			{
 				payload: { vaultId, workspaceId, notes, meta },
-			}: PayloadAction<WorkspaceScoped<{ notes: INote[]; meta: OpenedNotesMeta }>>,
+			}: PayloadAction<WorkspaceScoped<{ notes: INote[]; meta: NotesMeta }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
@@ -549,9 +549,9 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			// Ignore if the note is not open
-			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
-			if (!isNoteOpen) return;
+			// Skip if metadata for this note does not exist
+			const meta = workspace.openedNotesMeta[noteId];
+			if (!meta) return;
 
 			if (isTemporary) {
 				// Only one note can be open in temporary mode — remove all previous temporary notes
@@ -564,15 +564,9 @@ export const vaultsSlice = createSlice({
 					}
 					return true;
 				});
-
-				workspace.openedNotesMeta[noteId].isTemporary = true;
-			} else {
-				// Skip if metadata for this note does not exist
-				const meta = workspace.openedNotesMeta[noteId];
-				if (!meta) return;
-
-				workspace.openedNotesMeta[noteId].isTemporary = false;
 			}
+
+			workspace.openedNotesMeta[noteId].isTemporary = isTemporary;
 		},
 
 		setSelectedTag: (
