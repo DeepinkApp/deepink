@@ -4,7 +4,7 @@
 
 # Deepink — Snapshot Your Thoughts
 
-![](./packages/site/src/features/Landing/screenshots/app.png)
+![Deepink application interface showing the note editor and workspace](./packages/site/src/features/Landing/screenshots/app.png)
 
 > A better place for your notes. Deepink makes note-taking ergonomic, secure, and fun.
 
@@ -42,7 +42,7 @@ Visit [deepink.app](https://deepink.app) to download the app. **Free to use. No 
 
 ## ❤️ Support & Contribute
 
-This project is open-source under the Apache 2.0 License — it not only allows you to use and modify the code freely, but also protects contributors by explicitly granting patent rights and requiring proper attribution.
+This project is open-source under the Affero General Public License (AGPL-3.0) — it not only allows you to use and modify the code freely, but also protects contributors by explicitly granting patent rights and requiring proper attribution.
 
 Contributions are very welcome — whether it’s code, ideas, bug reports, or improvements.
 
