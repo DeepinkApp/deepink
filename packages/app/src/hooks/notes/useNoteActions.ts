@@ -30,25 +30,15 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId, { isTemporary = true }: { isTemporary?: boolean } = {}) => {
+		(id: NoteId) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
-
-				// Update temporary note to permanent
-				if (!isTemporary) {
-					dispatch(
-						workspaceActions.setNoteTemporaryState({
-							noteId: id,
-							isTemporary,
-						}),
-					);
-				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
-					if (note) openNote(note, { isTemporary });
+					if (note) openNote(note);
 				});
 			}
 		},
