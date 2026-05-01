@@ -39,7 +39,12 @@ export const useNoteActions = () => {
 
 				// Update temporary note to permanent
 				if (!isTemporary) {
-					dispatch(workspaceActions.markNoteAsPermanent({ noteId: id }));
+					dispatch(
+						workspaceActions.setNoteTemporaryState({
+							noteId: id,
+							isTemporary,
+						}),
+					);
 				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {

@@ -189,7 +189,12 @@ export const Note: FC<NoteEditorProps> = memo(
 			// Skip if note is already permanent
 			if (!isNoteTemporary) return;
 
-			dispatch(workspaceAction.markNoteAsPermanent({ noteId: note.id }));
+			dispatch(
+				workspaceAction.setNoteTemporaryState({
+					noteId: note.id,
+					isTemporary: false,
+				}),
+			);
 		}, [title, text, dispatch, workspaceAction, note.id, isNoteTemporary]);
 
 		const attachments = useAttachmentsController();

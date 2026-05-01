@@ -540,11 +540,11 @@ export const vaultsSlice = createSlice({
 			workspace.openedNotesMeta = filteredMeta;
 		},
 
-		markNoteAsTemporary: (
+		setNoteTemporaryState: (
 			state,
 			{
-				payload: { vaultId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
+				payload: { vaultId, workspaceId, noteId, isTemporary },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId; isTemporary: boolean }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
@@ -553,34 +553,26 @@ export const vaultsSlice = createSlice({
 			const isNoteOpen = workspace.openedNotes.some(({ id }) => id === noteId);
 			if (!isNoteOpen) return;
 
-			// Only one note can be open in temporary mode — remove all previous temporary notes
-			workspace.openedNotes = workspace.openedNotes.filter(({ id }) => {
-				if (id !== noteId && workspace.openedNotesMeta[id]?.isTemporary) {
-					// Cleanup meta so it stays in sync with openedNotes after filtering
-					delete workspace.openedNotesMeta[id];
+			if (isTemporary) {
+				// Only one note can be open in temporary mode — remove all previous temporary notes
+				workspace.openedNotes = workspace.openedNotes.filter(({ id }) => {
+					if (id !== noteId && workspace.openedNotesMeta[id]?.isTemporary) {
+						// Cleanup meta so it stays in sync with openedNotes after filtering
+						delete workspace.openedNotesMeta[id];
 
-					return false;
-				}
-				return true;
-			});
+						return false;
+					}
+					return true;
+				});
 
-			workspace.openedNotesMeta[noteId].isTemporary = true;
-		},
+				workspace.openedNotesMeta[noteId].isTemporary = true;
+			} else {
+				// Skip if metadata for this note does not exist
+				const meta = workspace.openedNotesMeta[noteId];
+				if (!meta) return;
 
-		markNoteAsPermanent: (
-			state,
-			{
-				payload: { vaultId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId }>>,
-		) => {
-			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
-			if (!workspace) return;
-
-			// Skip if metadata for this note does not exist
-			const meta = workspace.openedNotesMeta[noteId];
-			if (!meta) return;
-
-			workspace.openedNotesMeta[noteId].isTemporary = false;
+				workspace.openedNotesMeta[noteId].isTemporary = false;
+			}
 		},
 
 		setSelectedTag: (
