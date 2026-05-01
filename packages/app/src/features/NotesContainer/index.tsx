@@ -25,7 +25,11 @@ import {
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import { createWorkspaceSelector } from '@state/redux/vaults/utils';
-import { selectActiveNoteId, selectOpenedNotes } from '@state/redux/vaults/vaults';
+import {
+	NotesMeta,
+	selectActiveNoteId,
+	selectOpenedNotes,
+} from '@state/redux/vaults/vaults';
 import { joinCallbacks } from '@utils/react/joinCallbacks';
 
 import { EditorModePicker } from './EditorModePicker/EditorModePicker';
@@ -125,23 +129,20 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 							},
-							onPick(id, { isTemporary }: { isTemporary: boolean }) {
-								if (isTemporary) {
-									noteActions.click(id);
+							onPick(id, { isTemporary }: NotesMeta[string]) {
+								noteActions.click(id);
+								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
+									context: 'top bar',
+								});
 
-									telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
-										context: 'top bar',
-									});
-									return;
+								if (!isTemporary) {
+									dispatch(
+										workspaceActions.setNoteTemporaryState({
+											noteId: id,
+											isTemporary: false,
+										}),
+									);
 								}
-
-								// Update note state to non-temporary
-								dispatch(
-									workspaceActions.setNoteTemporaryState({
-										noteId: id,
-										isTemporary: false,
-									}),
-								);
 							},
 						}}
 					/>
