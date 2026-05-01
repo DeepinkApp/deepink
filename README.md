@@ -1,4 +1,4 @@
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![License: Apache 2.0](<https://img.shields.io/badge/License-Apache%202.0-blue.svg>)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Open Source](https://img.shields.io/badge/Open%20Source-Yes-brightgreen.svg)](https://github.com/DeepinkApp/deepink)
 [![Free to Use](https://img.shields.io/badge/Pricing-Free%20%26%20No%20Limits-success.svg)](https://deepink.app)
 
@@ -42,7 +42,7 @@ Visit [deepink.app](https://deepink.app) to download the app. **Free to use. No 
 
 ## ❤️ Support & Contribute
 
-This project is open-source under the Affero General Public License (AGPL-3.0) — it not only allows you to use and modify the code freely, but also protects contributors by explicitly granting patent rights and requiring proper attribution.
+This project is open-source under the Apache 2.0 License — it not only allows you to use and modify the code freely, but also protects contributors by explicitly granting patent rights and requiring proper attribution.
 
 Contributions are very welcome — whether it’s code, ideas, bug reports, or improvements.
 
