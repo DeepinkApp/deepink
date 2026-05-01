@@ -15,8 +15,8 @@ If you do not agree, do not use the App or Hosted Services.
 
 ## 1) Who we are / contact
 
-- Support: `contact@deepink.io`  
-- Security: `security@deepink.io`
+- Support: `contact@deepink.app`  
+- Security: `security@deepink.app`
 
 ---
 
@@ -131,7 +131,7 @@ Termination of Hosted Services access does not affect your local data stored on 
 
 ## 12) Disputes (informal resolution first)
 
-If you have a dispute or concern, please contact us at `contact@deepink.io`. You agree to try to resolve disputes informally with us first.
+If you have a dispute or concern, please contact us at `contact@deepink.app`. You agree to try to resolve disputes informally with us first.
 
 We do not include an arbitration clause in these Terms.
 
@@ -188,5 +188,5 @@ The App or website may reference or link to third-party services. We do not cont
 
 ## 18) Contact
 
-Questions about these Terms: `contact@deepink.io`  
-Security issues: `security@deepink.io`
+Questions about these Terms: `contact@deepink.app`  
+Security issues: `security@deepink.app`

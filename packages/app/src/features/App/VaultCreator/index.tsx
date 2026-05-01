@@ -443,7 +443,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 								i18nKey="creator.section.advancedConfig.description"
 								components={{
 									encryption: (
-										<Link href="https://deepink.io/introduction/encryption/" />
+										<Link href="https://deepink.app/introduction/encryption/" />
 									),
 								}}
 							/>

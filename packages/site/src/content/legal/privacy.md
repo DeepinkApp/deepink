@@ -11,9 +11,9 @@ Deepink is a privacy-first note-taking app. This Privacy Policy explains what in
 - If you **create an account** (optional), we collect **your email address**.
 - We collect **limited usage and device data** (such as app opens, feature usage, IP address, and device/app details) to understand how Deepink is used and to keep it reliable.
 - If you choose **“decrypted sharing”**, the shared note is stored and served in **plaintext** so anyone with the link can read it. This is optional and controlled by you.
-- Our website (`deepink.io`) uses **Google Analytics** and cookies. There is currently **no cookie consent banner**.
+- Our website (`deepink.app`) uses **Google Analytics** and cookies. There is currently **no cookie consent banner**.
 
-If you have questions, contact: **contact@deepink.io**.
+If you have questions, contact: **contact@deepink.app**.
 
 ---
 
@@ -21,8 +21,8 @@ If you have questions, contact: **contact@deepink.io**.
 
 Deepink is operated by **Deepink Project (maintained by Robert Vitonsky)**.
 
-- Contact email: **contact@deepink.io**
-- Security email: **security@deepink.io**
+- Contact email: **contact@deepink.app**
+- Security email: **security@deepink.app**
 
 ---
 
@@ -30,7 +30,7 @@ Deepink is operated by **Deepink Project (maintained by Robert Vitonsky)**.
 
 This policy covers:
 - The **Deepink desktop app** (all supported platforms).
-- The **Deepink website** at `deepink.io`.
+- The **Deepink website** at `deepink.app`.
 
 This policy does **not** cover third-party websites, apps, or services you may access via links from Deepink.
 
@@ -105,7 +105,7 @@ We may collect:
 
 ### C) Information we collect automatically (website)
 
-On `deepink.io`, we collect website data such as:
+On `deepink.app`, we collect website data such as:
 - pages viewed and interactions
 - approximate location derived from IP address
 - device/browser information
@@ -120,7 +120,7 @@ We may also use our own internal website analytics.
 
 ## 6) Cookies and similar technologies (website)
 
-`deepink.io` uses cookies and similar technologies for:
+`deepink.app` uses cookies and similar technologies for:
 - essential website operation
 - analytics (including Google Analytics)
 - potential future product experiments such as **A/B testing** (planned to be run using our own tools)
@@ -144,7 +144,7 @@ We use information for purposes such as:
 - **Security and abuse prevention**
   - detecting suspicious activity and preventing misuse
 - **Support**
-  - responding to messages sent to contact@deepink.io
+  - responding to messages sent to contact@deepink.app
 
 ---
 
@@ -205,7 +205,7 @@ In-app analytics collection is currently enabled. We intend to add a setting so 
 You control whether to share notes and whether shared notes are encrypted or decrypted. If privacy is important for a shared note, avoid decrypted sharing and protect share links.
 
 ### Access and deletion
-You can request deletion of your account by contacting **contact@deepink.io**.
+You can request deletion of your account by contacting **contact@deepink.app**.
 
 ---
 
@@ -213,13 +213,13 @@ You can request deletion of your account by contacting **contact@deepink.io**.
 
 We use technical and organizational measures designed to protect information, including encryption for notes in the default encrypted mode and secure transport (such as HTTPS) for data in transit.
 
-No system can be guaranteed $100\%$ secure. If you believe you found a security issue, contact **security@deepink.io**.
+No system can be guaranteed $100\%$ secure. If you believe you found a security issue, contact **security@deepink.app**.
 
 ---
 
 ## 13) Children
 
-Deepink is not intended for children under **13**. If you believe a child under 13 has provided personal information to Deepink, contact **contact@deepink.io**.
+Deepink is not intended for children under **13**. If you believe a child under 13 has provided personal information to Deepink, contact **contact@deepink.app**.
 
 ---
 
@@ -246,7 +246,7 @@ We may update this Privacy Policy from time to time. If we make changes, we will
 ## 17) Contact
 
 Questions or requests:
-- **contact@deepink.io**
+- **contact@deepink.app**
 
 Security issues:
-- **security@deepink.io**
+- **security@deepink.app**
