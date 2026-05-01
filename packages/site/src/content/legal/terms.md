@@ -28,7 +28,7 @@ Our Privacy Policy explains how we handle personal data and analytics. It is par
 
 ## 3) Open source software license (Apache 2.0)
 
-Deepink is open source and distributed under the **GNU Affero General Public License v3.0 (Apache 2.0)**.
+Deepink is open source and distributed under the **Apache 2.0**.
 
 - License text: https://github.com/DeepinkApp/deepink/blob/master/LICENSE  
 - Source repository: https://github.com/DeepinkApp/deepink
