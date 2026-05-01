@@ -25,11 +25,7 @@ import {
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import { createWorkspaceSelector } from '@state/redux/vaults/utils';
-import {
-	NotesMeta,
-	selectActiveNoteId,
-	selectOpenedNotes,
-} from '@state/redux/vaults/vaults';
+import { selectActiveNoteId, selectOpenedNotes } from '@state/redux/vaults/vaults';
 import { joinCallbacks } from '@utils/react/joinCallbacks';
 
 import { EditorModePicker } from './EditorModePicker/EditorModePicker';
@@ -129,13 +125,13 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 							},
-							onPick(id, { isTemporary }: NotesMeta[string]) {
+							onPick(id, options: { isTemporary: boolean }) {
 								noteActions.click(id);
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
 								});
 
-								if (!isTemporary) {
+								if (!options.isTemporary) {
 									dispatch(
 										workspaceActions.setNoteTemporaryState({
 											noteId: id,

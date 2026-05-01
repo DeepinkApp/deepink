@@ -7,14 +7,14 @@ import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
-import { NotesMeta, selectOpenedNotesMeta } from '@state/redux/vaults/vaults';
+import { selectOpenedNotesMeta } from '@state/redux/vaults/vaults';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 
 export type TopBarProps = {
 	tabs: NoteId[];
 	activeTab: NoteId | null;
-	onPick: (id: NoteId, options: NotesMeta[string]) => void;
+	onPick: (id: NoteId, options: { isTemporary: boolean }) => void;
 	onClose: (id: NoteId) => void;
 
 	notes: INote[];
