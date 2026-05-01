@@ -177,16 +177,16 @@ export const Note: FC<NoteEditorProps> = memo(
 			}
 		}, [title, text, debouncedUpdateNote]);
 
-		// Immediately update a temporary note to permanent if content has changed
-		const isFirstRunRef = useRef(true);
+		// When note content changes, mark it as not temporary
+		const isInitialRenderRef = useRef(true);
 		const isNoteTemporary = useWorkspaceSelector(selectIsNoteTemporary(note.id));
 		useEffect(() => {
-			if (isFirstRunRef.current) {
-				isFirstRunRef.current = false;
+			if (isInitialRenderRef.current) {
+				isInitialRenderRef.current = false;
 				return;
 			}
 
-			// Skip if note is already permanent
+			// Skip if note is already not temporary
 			if (!isNoteTemporary) return;
 
 			dispatch(
