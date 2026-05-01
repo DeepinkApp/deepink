@@ -213,7 +213,7 @@ You can request deletion of your account by contacting **contact@deepink.app**.
 
 We use technical and organizational measures designed to protect information, including encryption for notes in the default encrypted mode and secure transport (such as HTTPS) for data in transit.
 
-No system can be guaranteed $100\%$ secure. If you believe you found a security issue, contact **security@deepink.app**.
+No system can be guaranteed 100% secure. If you believe you found a security issue, contact **security@deepink.app**.
 
 ---
 
