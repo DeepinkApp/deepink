@@ -12,8 +12,6 @@ on:
 
 jobs:
   build:
-    needs: tests
-
     # build for macOS, Windows and Linux
     strategy:
       matrix:
