@@ -95,7 +95,7 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 
 						if (isTemporary) {
 							dispatch(
-								workspaceActions.setNoteTemporaryState({
+								workspaceActions.setTemporaryNote({
 									noteId: note.id,
 									isTemporary: true,
 								}),

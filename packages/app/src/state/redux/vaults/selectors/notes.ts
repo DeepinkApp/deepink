@@ -40,20 +40,14 @@ export const selectActiveNoteId = createWorkspaceSelector(
 	},
 );
 
-export const selectOpenedNotesMeta = createWorkspaceSelector(
+export const selectTemporaryNoteId = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
-		if (!workspace) return {};
+		if (!workspace) return null;
 
-		return workspace.openedNotesMeta;
+		return workspace.temporaryNoteId;
 	},
 );
-export const selectIsNoteTemporary = (noteId: string) =>
-	createWorkspaceSelector([selectWorkspaceRoot], (workspace) => {
-		if (!workspace) return false;
-
-		return workspace.openedNotesMeta[noteId]?.isTemporary ?? false;
-	});
 
 export const selectSearch = createWorkspaceSelector(
 	[selectWorkspaceRoot],

@@ -7,7 +7,7 @@ import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
-import { selectOpenedNotesMeta } from '@state/redux/vaults/vaults';
+import { selectTemporaryNoteId } from '@state/redux/vaults/selectors/notes';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 
@@ -46,7 +46,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		activeTabRef.current?.scrollIntoView();
 	}, [tabIndex]);
 
-	const tabsMeta = useWorkspaceSelector(selectOpenedNotesMeta);
+	const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
 
 	return (
 		<Tabs
@@ -75,7 +75,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					}
 
 					const title = getNoteTitle(note.content, 50);
-					const isTemporaryTab = tabsMeta[noteId]?.isTemporary;
+					const isTemporaryTab = temporaryNote === note.id;
 
 					return (
 						<Tab
