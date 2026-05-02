@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { NoteId } from '@core/features/notes';
+import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceActions, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectIsNoteTemporary } from '@state/redux/vaults/vaults';
@@ -11,6 +12,7 @@ export const useResetNoteTemporaryState = (
 ) => {
 	const dispatch = useAppDispatch();
 	const workspaceAction = useWorkspaceActions();
+	const noteActions = useNoteActions();
 
 	// When note content changes, mark it as not temporary
 	const isFirstRenderRef = useRef(true);
@@ -22,12 +24,7 @@ export const useResetNoteTemporaryState = (
 		}
 
 		if (isNoteTemporary) {
-			dispatch(
-				workspaceAction.setNoteTemporaryState({
-					noteId: noteId,
-					isTemporary: false,
-				}),
-			);
+			noteActions.makeNotTemporary(noteId);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [title, text, dispatch, workspaceAction, noteId]);

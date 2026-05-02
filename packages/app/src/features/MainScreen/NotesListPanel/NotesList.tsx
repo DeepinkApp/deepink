@@ -12,8 +12,7 @@ import { useTelemetryTracker } from '@features/telemetry';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
-import { useAppDispatch } from '@state/redux/hooks';
-import { useWorkspaceActions, useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import {
 	selectActiveNoteId,
 	selectNoteIds,
@@ -34,8 +33,6 @@ export const NotesList: FC<NotesListProps> = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const localizedDate = useLocalizedDate();
 	const telemetry = useTelemetryTracker();
-	const workspaceActions = useWorkspaceActions();
-	const dispatch = useAppDispatch();
 
 	const createNote = useCreateNote();
 
@@ -204,12 +201,7 @@ export const NotesList: FC<NotesListProps> = () => {
 									}}
 									onDoubleClick={() => {
 										// Update note state to non-temporary
-										dispatch(
-											workspaceActions.setNoteTemporaryState({
-												noteId: note.id,
-												isTemporary: false,
-											}),
-										);
+										noteActions.makeNotTemporary(note.id);
 									}}
 								/>
 							);
