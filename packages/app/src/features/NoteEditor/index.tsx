@@ -44,21 +44,17 @@ import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommand
 import { useAppDispatch } from '@state/redux/hooks';
 import {
 	useVaultSelector,
-	useWorkspaceActions,
 	useWorkspaceData,
 	useWorkspaceSelector,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import {
-	selectIsNoteTemporary,
-	selectTags,
-	workspacesApi,
-} from '@state/redux/vaults/vaults';
+import { selectTags, workspacesApi } from '@state/redux/vaults/vaults';
 
 import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
 import { NoteSidebar } from './NoteSidebar';
 import { NoteVersions } from './NoteVersions';
+import { useResetNoteTemporaryState } from './useResetNoteTemporaryState';
 
 export enum NoteSidebarTabs {
 	HISTORY = 'HISTORY',
@@ -82,7 +78,6 @@ export const Note: FC<NoteEditorProps> = memo(
 		const telemetry = useTelemetryTracker();
 		const dispatch = useAppDispatch();
 		const workspaceData = useWorkspaceData();
-		const workspaceAction = useWorkspaceActions();
 
 		const eventBus = useEventBus();
 		const notesRegistry = useNotesRegistry();
@@ -91,6 +86,8 @@ export const Note: FC<NoteEditorProps> = memo(
 
 		const [title, setTitle] = useState(note.content.title);
 		const [text, setText] = useState(note.content.text);
+
+		useResetNoteTemporaryState(note.id, text, title);
 
 		// Forced update for note data
 		const forceUpdateLocalStateRef = useRef(false);
@@ -176,26 +173,6 @@ export const Note: FC<NoteEditorProps> = memo(
 				});
 			}
 		}, [title, text, debouncedUpdateNote]);
-
-		// When note content changes, mark it as not temporary
-		const isInitialRenderRef = useRef(true);
-		const isNoteTemporary = useWorkspaceSelector(selectIsNoteTemporary(note.id));
-		useEffect(() => {
-			if (isInitialRenderRef.current) {
-				isInitialRenderRef.current = false;
-				return;
-			}
-
-			// Skip if note is already not temporary
-			if (!isNoteTemporary) return;
-
-			dispatch(
-				workspaceAction.setNoteTemporaryState({
-					noteId: note.id,
-					isTemporary: false,
-				}),
-			);
-		}, [title, text, dispatch, workspaceAction, note.id, isNoteTemporary]);
 
 		const attachments = useAttachmentsController();
 
