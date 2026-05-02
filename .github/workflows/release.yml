@@ -94,6 +94,8 @@ jobs:
         # Import certificate
       - name: Setup keychain
         if: runner.os == 'macOS'
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
         run: |
           printf "%s" "$APPLE_CERTIFICATE"
           printf "%s" "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
