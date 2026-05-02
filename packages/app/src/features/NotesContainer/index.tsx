@@ -118,14 +118,14 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 							},
-							onPick(id, options?: { makePermanent: boolean }) {
+							onPick(id, options?: { notTemporary: boolean }) {
 								noteActions.click(id);
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
 								});
 
 								// Notes open as temporary by default, so we only handle the non-temporary case
-								if (options?.makePermanent) {
+								if (options?.notTemporary) {
 									noteActions.makeNotTemporary(id);
 								}
 							},
