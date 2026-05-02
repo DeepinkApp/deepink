@@ -45,6 +45,18 @@ export const useNoteActions = () => {
 		[dispatch, notesRegistry, openNote, store, workspaceActions, workspaceData],
 	);
 
+	const makeNotTemporary = useCallback(
+		(id: NoteId) => {
+			dispatch(
+				workspaceActions.setNoteTemporaryState({
+					noteId: id,
+					isTemporary: false,
+				}),
+			);
+		},
+		[dispatch, workspaceActions],
+	);
+
 	const eventBus = useEventBus();
 	const noteHistory = useNotesHistory();
 	const { enabled: isSnapshotsEnabled } = useVaultSelector(selectSnapshotSettings);
@@ -65,5 +77,5 @@ export const useNoteActions = () => {
 		[eventBus, isSnapshotsEnabled, noteClosed, noteHistory, notesRegistry],
 	);
 
-	return { click, close };
+	return { click, close, makeNotTemporary };
 };

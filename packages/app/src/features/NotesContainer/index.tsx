@@ -17,12 +17,7 @@ import { useTelemetryTracker } from '@features/telemetry';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useUpdateNotes } from '@hooks/notes/useUpdateNotes';
 import { useImmutableCallback } from '@hooks/useImmutableCallback';
-import { useAppDispatch } from '@state/redux/hooks';
-import {
-	useVaultSelector,
-	useWorkspaceActions,
-	useWorkspaceSelector,
-} from '@state/redux/vaults/hooks';
+import { useVaultSelector, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import { createWorkspaceSelector } from '@state/redux/vaults/utils';
 import { selectActiveNoteId, selectOpenedNotes } from '@state/redux/vaults/vaults';
@@ -35,8 +30,6 @@ export type NotesContainerProps = Partial<StackProps>;
 export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const telemetry = useTelemetryTracker();
-	const workspaceActions = useWorkspaceActions();
-	const dispatch = useAppDispatch();
 
 	const updateNotes = useUpdateNotes();
 	const noteActions = useNoteActions();
@@ -131,14 +124,9 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 
-								// Notes are opened as temporary by, so we need to explicitly set the not temporary
+								// By default note in temporary state, update note state to non-temporary
 								if (!options.isTemporary) {
-									dispatch(
-										workspaceActions.setNoteTemporaryState({
-											noteId: id,
-											isTemporary: false,
-										}),
-									);
+									noteActions.makeNotTemporary(id);
 								}
 							},
 						}}
