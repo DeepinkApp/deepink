@@ -32,7 +32,7 @@ export default WithLayout(() => {
 				Our system have logged the missing page.
 				<br />
 				If something seems broken{' '}
-				<Link href="mailto:contact@deepink.io" variant="native">
+				<Link href="mailto:contact@deepink.app" variant="native">
 					let us know
 				</Link>
 				.

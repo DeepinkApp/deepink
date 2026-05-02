@@ -19,7 +19,7 @@ const updatesChecker = new AppUpdatesChecker({ host: 'https://site.com' });
 
 test('Greater version must be considered as new version', async () => {
 	const latestVersion = {
-		url: 'https://github.com/vitonsky/deepink/releases/tag/v0.0.2-preview.8',
+		url: 'https://github.com/DeepinkApp/deepink/releases/tag/v0.0.2-preview.8',
 		version: '0.0.2-preview.8',
 	};
 

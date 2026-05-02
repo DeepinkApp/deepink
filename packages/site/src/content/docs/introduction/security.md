@@ -40,7 +40,7 @@ Others mean that they encrypt the sync data sent to their server. That’s a goo
 
 At Deepink, we researched over 60 note-taking apps, and none of them are good enough to trust with your private notes.
 
-Deepink is [open source](https://github.com/vitonsky/deepink), secure by design, and still built for normal people—not only geeks.
+Deepink is [open source](https://github.com/DeepinkApp/deepink), secure by design, and still built for normal people—not only geeks.
 
 ## The credibility
 
@@ -56,7 +56,7 @@ These aren’t all the reasons, but they are the most important ones.
 
 This is why any proprietary note-taking app cannot be considered credible or reliable.
 
-And that’s why Deepink is [open source](https://github.com/vitonsky/deepink).
+And that’s why Deepink is [open source](https://github.com/DeepinkApp/deepink).
 
 Everybody is welcome to audit the code, rebuild it, contribute a patch or even a new feature, and star the repo 😉
 

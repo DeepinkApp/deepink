@@ -18,9 +18,7 @@ export const joinPath = (root: string, ...segments: string[]) => {
 };
 
 export const getResourcesPath = (resourcePath?: string) => {
-	const rootPath = isDevMode()
-		? joinPath(app.getAppPath(), 'dist')
-		: process.resourcesPath;
+	const rootPath = joinPath(app.getAppPath(), 'dist');
 	return resourcePath ? joinPath(rootPath, resourcePath) : rootPath;
 };
 

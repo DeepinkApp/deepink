@@ -15,7 +15,7 @@ import { getSessionId } from 'plausible-client/utils/uid';
 export const createPlausibleInstance = () => {
 	const plausible = new Plausible({
 		apiHost: 'https://uxt.vitonsky.net',
-		domain: 'deepink.io',
+		domain: 'deepink.app',
 		filter: filters(skipForHosts(['localhost'])),
 		transform: transformers(userId(), (event) => {
 			let sessionId = sessionStorage.getItem('sessionId');

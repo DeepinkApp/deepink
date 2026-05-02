@@ -63,7 +63,7 @@ export const useGetAppUpdates = () => {
 				}
 			}
 
-			const appReleases = new AppUpdatesChecker({ host: 'https://deepink.io' });
+			const appReleases = new AppUpdatesChecker({ host: 'https://deepink.app' });
 
 			return appReleases
 				.getUpdate({
@@ -72,7 +72,7 @@ export const useGetAppUpdates = () => {
 				.then((newVersion) => {
 					if (!newVersion) return null;
 
-					const updateUrl = 'https://deepink.io/download';
+					const updateUrl = 'https://deepink.app/download';
 
 					showToast({
 						duration: null,
