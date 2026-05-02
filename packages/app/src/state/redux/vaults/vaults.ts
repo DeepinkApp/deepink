@@ -75,7 +75,7 @@ export const createWorkspaceObject = ({
 	activeNote: null,
 	recentlyClosedNotes: [],
 	openedNotes: [],
-	openedNotesMeta: {},
+	temporaryNoteId: null,
 
 	noteIds: [],
 
@@ -121,14 +121,6 @@ export type LoadingStatus = {
 	isTagsLoaded: boolean;
 };
 
-export const NotesMetaSchema = z.record(
-	z.string(),
-	z.object({
-		isTemporary: z.boolean(),
-	}),
-);
-export type NotesMeta = z.output<typeof NotesMetaSchema>;
-
 export type WorkspaceData = {
 	id: string;
 	name: string;
@@ -145,7 +137,7 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
-	openedNotesMeta: NotesMeta;
+	temporaryNoteId: NoteId | null;
 
 	noteIds: NoteId[];
 
@@ -381,9 +373,6 @@ export const vaultsSlice = createSlice({
 			if (workspace.recentlyClosedNotes.length !== filteredClosedNotes.length) {
 				workspace.recentlyClosedNotes = filteredClosedNotes;
 			}
-
-			// Initialize note meta with defaults
-			workspace.openedNotesMeta[note.id] = { isTemporary: false };
 		},
 
 		removeOpenedNote: (
@@ -408,8 +397,10 @@ export const vaultsSlice = createSlice({
 
 			workspace.recentlyClosedNotes.push(noteId);
 
-			// Cleanup note meta
-			delete workspace.openedNotesMeta[noteId];
+			// Reset temporary note
+			if (workspace.temporaryNoteId === noteId) {
+				workspace.temporaryNoteId = null;
+			}
 		},
 
 		updateOpenedNote: (
@@ -437,25 +428,16 @@ export const vaultsSlice = createSlice({
 		setOpenedNotes: (
 			state,
 			{
-				payload: { vaultId, workspaceId, notes, meta },
-			}: PayloadAction<WorkspaceScoped<{ notes: INote[]; meta: NotesMeta }>>,
+				payload: { vaultId, workspaceId, notes },
+			}: PayloadAction<WorkspaceScoped<{ notes: INote[] }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
 			workspace.openedNotes = notes;
-
-			// Ensure meta only contains entries for notes and provide defaults for any missing metadata
-			const filteredMeta = Object.fromEntries(
-				workspace.openedNotes.map((note) => [
-					note.id,
-					meta[note.id] ?? { isTemporary: false },
-				]),
-			);
-			workspace.openedNotesMeta = filteredMeta;
 		},
 
-		setNoteTemporaryState: (
+		setTemporaryNote: (
 			state,
 			{
 				payload: { vaultId, workspaceId, noteId, isTemporary },
@@ -464,27 +446,19 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			// Skip if metadata for this note does not exist
-			const meta = workspace.openedNotesMeta[noteId];
-			if (!meta) return;
-
 			if (isTemporary) {
-				const idsToRemove: string[] = [];
+				if (noteId === workspace.temporaryNoteId) return;
 
 				// When a new temporary note is opened, close the previously opened temporary note
-				workspace.openedNotes = workspace.openedNotes.filter(({ id }) => {
-					if (id !== noteId && workspace.openedNotesMeta[id]?.isTemporary) {
-						idsToRemove.push(id);
-						return false;
-					}
-					return true;
-				});
+				workspace.openedNotes = workspace.openedNotes.filter(
+					({ id }) => id !== workspace.temporaryNoteId,
+				);
 
-				// Cleanup meta so it stays in sync with openedNotes after filtering
-				idsToRemove.forEach((id) => delete workspace.openedNotesMeta[id]);
+				workspace.temporaryNoteId = noteId;
+			} else {
+				if (workspace.temporaryNoteId !== noteId) return;
+				workspace.temporaryNoteId = null;
 			}
-
-			workspace.openedNotesMeta[noteId].isTemporary = isTemporary;
 		},
 
 		setSelectedTag: (

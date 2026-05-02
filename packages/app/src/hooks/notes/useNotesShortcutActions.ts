@@ -4,8 +4,7 @@ import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
-import { useAppDispatch } from '@state/redux/hooks';
-import { useWorkspaceActions, useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import {
 	selectActiveNoteId,
 	selectOpenedNotes,
@@ -18,8 +17,6 @@ import { getItemByOffset } from '@utils/collections/getItemByOffset';
  */
 export const useNotesShortcutActions = () => {
 	const telemetry = useTelemetryTracker();
-	const workspaceActions = useWorkspaceActions();
-	const dispatch = useAppDispatch();
 
 	const noteActions = useNoteActions();
 	const createNote = useCreateNote();
@@ -51,12 +48,7 @@ export const useNotesShortcutActions = () => {
 
 		// Open note as non-temporary
 		noteActions.click(lastClosedNote);
-		dispatch(
-			workspaceActions.setNoteTemporaryState({
-				noteId: lastClosedNote,
-				isTemporary: false,
-			}),
-		);
+		noteActions.makeNotTemporary(lastClosedNote);
 	});
 
 	const focusNoteInDirection = (direction: 'next' | 'previous') => {

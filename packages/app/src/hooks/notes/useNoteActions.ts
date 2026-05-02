@@ -48,7 +48,7 @@ export const useNoteActions = () => {
 	const makeNotTemporary = useCallback(
 		(id: NoteId) => {
 			dispatch(
-				workspaceActions.setNoteTemporaryState({
+				workspaceActions.setTemporaryNote({
 					noteId: id,
 					isTemporary: false,
 				}),
