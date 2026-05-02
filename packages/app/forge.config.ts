@@ -28,6 +28,14 @@ export default {
 			return !isAllowed;
 		},
 		extraResource: ['./dist/assets'],
+		osxSign: {
+			identity: process.env.OSX_SIGN_IDENTITY,
+		},
+		osxNotarize: {
+			appleId: process.env.APPLE_ID!,
+			appleIdPassword: process.env.APPLE_ID_PASSWORD!,
+			teamId: process.env.APPLE_TEAM_ID!,
+		},
 	},
 	makers: [
 		{

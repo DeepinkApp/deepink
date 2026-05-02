@@ -8,6 +8,7 @@ on:
   push:
     tags:
       - "v*.*.*"
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -58,7 +59,8 @@ jobs:
       matrix:
         # TODO: add `macos-15-intel` for production releases
         # See docs https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for-public-repositories
-        os: [ macos-latest, ubuntu-latest, windows-latest ]
+        os: [ macos-latest ]
+        # os: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
@@ -89,6 +91,23 @@ jobs:
           else
             echo "Warning: /Applications/Xcode.app not found on runner. If this step fails on self-hosted mac runners, ensure Xcode is installed."
           fi
+        # Import certificate
+      - name: Setup keychain
+        if: runner.os == 'macOS'
+        run: |
+          echo "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
+
+          security create-keychain -p "" build.keychain
+          security set-keychain-settings build.keychain
+          security unlock-keychain -p "" build.keychain
+
+          security import cert.p12 \
+            -k build.keychain \
+            -P "$APPLE_CERTIFICATE_PASSWORD" \
+            -T /usr/bin/codesign
+
+          security list-keychains -s build.keychain
+          security default-keychain -s build.keychain
 
       # Setup Windows
       # - name: Install WiX Toolset v3 (via Chocolatey)
@@ -113,6 +132,11 @@ jobs:
 
       - name: Build app
         working-directory: packages/app
+        env:
+          OSX_SIGN_IDENTITY: ${{ secrets.OSX_SIGN_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           npm run build
           npx electron-forge package
