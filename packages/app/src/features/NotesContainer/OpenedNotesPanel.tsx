@@ -14,7 +14,7 @@ import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 export type TopBarProps = {
 	tabs: NoteId[];
 	activeTab: NoteId | null;
-	onPick: (id: NoteId, options: { isTemporary: boolean }) => void;
+	onPick: (id: NoteId, options?: { makePermanent: boolean }) => void;
 	onClose: (id: NoteId) => void;
 
 	notes: INote[];
@@ -52,7 +52,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		<Tabs
 			index={tabIndex}
 			onChange={(index) => {
-				onPick(existsTabs[index], { isTemporary: true });
+				onPick(existsTabs[index]);
 			}}
 			w="100%"
 			maxH="100px"
@@ -120,7 +120,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 									getContextMenuCoords(evt.nativeEvent),
 								);
 							}}
-							onDoubleClick={() => onPick(note.id, { isTemporary: false })}
+							onDoubleClick={() => onPick(note.id, { makePermanent: true })}
 						>
 							<HStack gap=".5rem" w="100%" justifyContent="space-between">
 								<Text
