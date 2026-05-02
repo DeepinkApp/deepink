@@ -469,16 +469,17 @@ export const vaultsSlice = createSlice({
 			if (!meta) return;
 
 			if (isTemporary) {
+				const idsToRemove: string[] = [];
 				// When a new temporary note is opened, close the previously opened temporary note
 				workspace.openedNotes = workspace.openedNotes.filter(({ id }) => {
 					if (id !== noteId && workspace.openedNotesMeta[id]?.isTemporary) {
 						// Cleanup meta so it stays in sync with openedNotes after filtering
-						delete workspace.openedNotesMeta[id];
-
+						idsToRemove.push(id);
 						return false;
 					}
 					return true;
 				});
+				idsToRemove.forEach((id) => delete workspace.openedNotesMeta[id]);
 			}
 
 			workspace.openedNotesMeta[noteId].isTemporary = isTemporary;
