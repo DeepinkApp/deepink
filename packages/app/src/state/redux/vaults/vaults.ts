@@ -440,25 +440,25 @@ export const vaultsSlice = createSlice({
 		setTemporaryNote: (
 			state,
 			{
-				payload: { vaultId, workspaceId, noteId, isTemporary },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId; isTemporary: boolean }>>,
+				payload: { vaultId, workspaceId, noteId },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId | null }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			if (isTemporary) {
-				if (noteId === workspace.temporaryNoteId) return;
-
-				// When a new temporary note is opened, close the previously opened temporary note
-				workspace.openedNotes = workspace.openedNotes.filter(
-					({ id }) => id !== workspace.temporaryNoteId,
-				);
-
-				workspace.temporaryNoteId = noteId;
-			} else {
-				if (workspace.temporaryNoteId !== noteId) return;
+			if (noteId === null) {
 				workspace.temporaryNoteId = null;
+				return;
 			}
+
+			if (noteId === workspace.temporaryNoteId) return;
+
+			// When a new temporary note is opened, close the previously opened temporary note
+			workspace.openedNotes = workspace.openedNotes.filter(
+				({ id }) => id !== workspace.temporaryNoteId,
+			);
+
+			workspace.temporaryNoteId = noteId;
 		},
 
 		setSelectedTag: (

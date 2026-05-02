@@ -94,7 +94,6 @@ export const WorkspaceStateInitializer = () => {
 							dispatch(
 								workspaceActions.setTemporaryNote({
 									noteId: state.temporaryNoteId,
-									isTemporary: true,
 								}),
 							);
 						}
