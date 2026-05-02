@@ -95,6 +95,7 @@ jobs:
       - name: Setup keychain
         if: runner.os == 'macOS'
         run: |
+          printf "%s" "$APPLE_CERTIFICATE"
           printf "%s" "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
           file cert.p12
           cat cert.p12
