@@ -27,6 +27,7 @@ export const useResetNoteTemporaryState = (
 
 		makeNotTemporary(noteId);
 
+		// Effect should only trigger on content change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [title, text]);
 };
