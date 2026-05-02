@@ -131,6 +131,7 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 
+								// Notes are opened as temporary by, so we need to explicitly set the not temporary
 								if (!options.isTemporary) {
 									dispatch(
 										workspaceActions.setNoteTemporaryState({
