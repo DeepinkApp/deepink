@@ -74,9 +74,7 @@ export const WorkspaceStateInitializer = () => {
 
 					if (openedNoteList && openedNoteList.length > 0) {
 						dispatch(
-							workspaceActions.setOpenedNotes({
-								notes: openedNoteList,
-							}),
+							workspaceActions.setOpenedNotes({ notes: openedNoteList }),
 						);
 
 						let activeNote = openedNoteList[0];
@@ -90,13 +88,11 @@ export const WorkspaceStateInitializer = () => {
 						);
 
 						// Restore temporary note
-						if (state.temporaryNoteId) {
-							dispatch(
-								workspaceActions.setTemporaryNote({
-									noteId: state.temporaryNoteId,
-								}),
-							);
-						}
+						dispatch(
+							workspaceActions.setTemporaryNote({
+								noteId: state.temporaryNoteId,
+							}),
+						);
 					}
 				}
 
