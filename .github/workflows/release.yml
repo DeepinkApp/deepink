@@ -103,7 +103,10 @@ jobs:
           printf "%s" "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
 
           security create-keychain -p "" build.keychain
-          security set-keychain-settings build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
+
+          # Make it default + unlocked
+          security default-keychain -s build.keychain
           security unlock-keychain -p "" build.keychain
 
           # See details in https://github.com/electron/forge/issues/3315#issuecomment-1721732436
@@ -111,6 +114,8 @@ jobs:
             -k build.keychain \
             -P "$APPLE_CERTIFICATE_PASSWORD" \
             -T /usr/bin/codesign -T /usr/bin/productbuild
+
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
 
           security list-keychains -s build.keychain
           security default-keychain -s build.keychain
