@@ -14,12 +14,11 @@ on:
 jobs:
   wasm:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: "npm"
@@ -29,32 +28,74 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/twofish/dist
-          key: twofish-${{ hashFiles( 'packages/twofish/**', '!packages/twofish/dist/**' )
+          key: twofish-${{ hashFiles('packages/twofish/**', '!packages/twofish/dist/**')
             }}
 
-      - name: Set UID/GID
+      - name: Install deps
+        if: steps.twofish-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Set Docker UID/GID
+        if: steps.twofish-cache.outputs.cache-hit != 'true'
         shell: bash
         run: |
           echo "DOCKER_UID=$(id -u)" >> "$GITHUB_ENV"
           echo "DOCKER_GID=$(id -g)" >> "$GITHUB_ENV"
           echo "UID: $(id -u) GID: $(id -g)"
 
-      - name: Install packages
-        run: npm ci
-
       - name: Build WASM
         if: steps.twofish-cache.outputs.cache-hit != 'true'
-        run: cd packages/twofish && npm run build
+        working-directory: packages/twofish
+        run: npm run build
 
-      - name: Upload WASM build
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: twofish
           path: packages/twofish/dist
 
-  build:
-    # build for macOS, Windows and Linux
+  app-build:
     needs: wasm
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Download WASM deps
+        uses: actions/download-artifact@v4
+        with:
+          name: twofish
+          path: packages/twofish/dist
+
+      - name: Cache app build
+        id: app-cache
+        uses: actions/cache@v4
+        with:
+          path: packages/app/dist
+          key: app-${{ hashFiles('packages/app/**', '!packages/app/dist/**') }}
+
+      - name: Install deps
+        if: steps.app-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build app
+        if: steps.app-cache.outputs.cache-hit != 'true'
+        working-directory: packages/app
+        run: npm run build
+
+      - name: Upload app build
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: packages/app/dist
+
+  package:
+    needs: app-build
     strategy:
       matrix:
         # TODO: add `macos-15-intel` for production releases
@@ -65,20 +106,18 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: "npm"
 
-      - name: Download WASM
+      - name: Download app build
         uses: actions/download-artifact@v4
         with:
-          name: twofish
-          path: packages/twofish/dist
+          name: app-build
+          path: packages/app/dist
 
       # Setup macOS
       - name: "macOS: accept Xcode license (required before building)"
@@ -92,7 +131,7 @@ jobs:
             echo "Warning: /Applications/Xcode.app not found on runner. If this step fails on self-hosted mac runners, ensure Xcode is installed."
           fi
 
-      # Import certificate
+      # macOS signing setup
       - name: Setup keychain
         if: runner.os == 'macOS'
         env:
@@ -132,11 +171,10 @@ jobs:
           light.exe -? 2>&1 | Select-Object -First 1
           exit 0  # Force success exit code
 
-      - name: Install packages
+      - name: Install deps
         run: npm ci
 
-      # TODO: move the build into cache, and only package and sign it here
-      - name: Build app
+      - name: Package app
         working-directory: packages/app
         env:
           OSX_SIGN_IDENTITY: ${{ secrets.OSX_SIGN_IDENTITY }}
@@ -144,13 +182,10 @@ jobs:
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
           DEBUG: electron-notarize*
-        run: |
-          npm run build
-          npm run make
+        run: npm run make
 
       - name: Upload artifacts to release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: packages/app
-        run: |
-          npx tsx ./scripts/publish --dir ./out/make --overwrite
+        run: npx tsx ./scripts/publish --dir ./out/make --overwrite
