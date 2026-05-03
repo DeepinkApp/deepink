@@ -13,12 +13,11 @@ on:
 jobs:
   wasm:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: "npm"
@@ -28,32 +27,74 @@ jobs:
         uses: actions/cache@v4
         with:
           path: packages/twofish/dist
-          key: twofish-${{ hashFiles( 'packages/twofish/**', '!packages/twofish/dist/**' )
+          key: twofish-${{ hashFiles('packages/twofish/**', '!packages/twofish/dist/**')
             }}
 
-      - name: Set UID/GID
+      - name: Install deps
+        if: steps.twofish-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Set Docker UID/GID
+        if: steps.twofish-cache.outputs.cache-hit != 'true'
         shell: bash
         run: |
           echo "DOCKER_UID=$(id -u)" >> "$GITHUB_ENV"
           echo "DOCKER_GID=$(id -g)" >> "$GITHUB_ENV"
           echo "UID: $(id -u) GID: $(id -g)"
 
-      - name: Install packages
-        run: npm ci
-
       - name: Build WASM
         if: steps.twofish-cache.outputs.cache-hit != 'true'
-        run: cd packages/twofish && npm run build
+        working-directory: packages/twofish
+        run: npm run build
 
-      - name: Upload WASM build
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: twofish
           path: packages/twofish/dist
 
-  build:
-    # build for macOS, Windows and Linux
+  app-build:
     needs: wasm
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Download WASM deps
+        uses: actions/download-artifact@v4
+        with:
+          name: twofish
+          path: packages/twofish/dist
+
+      - name: Cache app build
+        id: app-cache
+        uses: actions/cache@v4
+        with:
+          path: packages/app/dist
+          key: app-${{ hashFiles('packages/app/**', '!packages/app/dist/**') }}
+
+      - name: Install deps
+        if: steps.app-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build app
+        if: steps.app-cache.outputs.cache-hit != 'true'
+        working-directory: packages/app
+        run: npm run build
+
+      - name: Upload app build
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: packages/app/dist
+
+  package:
+    needs: app-build
     strategy:
       matrix:
         # TODO: add `macos-15-intel` for production releases
@@ -63,20 +104,18 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: "npm"
 
-      - name: Download WASM
+      - name: Download app build
         uses: actions/download-artifact@v4
         with:
-          name: twofish
-          path: packages/twofish/dist
+          name: app-build
+          path: packages/app/dist
 
       # Setup macOS
       - name: "macOS: accept Xcode license (required before building)"
@@ -90,13 +129,35 @@ jobs:
             echo "Warning: /Applications/Xcode.app not found on runner. If this step fails on self-hosted mac runners, ensure Xcode is installed."
           fi
 
-      # Setup Windows
-      # - name: Install WiX Toolset v3 (via Chocolatey)
-      #   if: runner.os == 'Windows'
-      #   shell: powershell
-      #   run: |
-      #     choco install -y wixtoolset --version=3.14.0
-      #     echo "C:\Program Files (x86)\WiX Toolset v3.14\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      # macOS signing setup
+      - name: Setup keychain
+        if: runner.os == 'macOS'
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        run: |
+          # Setup keychain
+          security create-keychain -p "" build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
+
+          # Make it default + unlocked
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+
+          # Import certificate
+          printf "%s" "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
+          # See details in https://github.com/electron/forge/issues/3315#issuecomment-1721732436
+          security import cert.p12 \
+            -k build.keychain \
+            -P "$APPLE_CERTIFICATE_PASSWORD" \
+            -T /usr/bin/codesign -T /usr/bin/productbuild
+
+          # Set access
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+
+          # Print info for debug
+          security find-identity -v -p codesigning
+          security list-keychains -s build.keychain
 
       - name: Verify WiX installation
         if: runner.os == 'Windows'
@@ -108,19 +169,21 @@ jobs:
           light.exe -? 2>&1 | Select-Object -First 1
           exit 0  # Force success exit code
 
-      - name: Install packages
+      - name: Install deps
         run: npm ci
 
-      - name: Build app
+      - name: Package app
         working-directory: packages/app
-        run: |
-          npm run build
-          npx electron-forge package
-          npm run make
+        env:
+          OSX_SIGN_IDENTITY: ${{ secrets.OSX_SIGN_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          DEBUG: electron-notarize*
+        run: npm run make
 
       - name: Upload artifacts to release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: packages/app
-        run: |
-          npx tsx ./scripts/publish --dir ./out/make
+        run: npx tsx ./scripts/publish --dir ./out/make --overwrite
