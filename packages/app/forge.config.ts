@@ -1,4 +1,6 @@
 /* eslint-disable @cspell/spellchecker */
+import 'dotenv/config';
+
 import type { MakerDebConfig } from '@electron-forge/maker-deb';
 import type { MakerDMGConfig } from '@electron-forge/maker-dmg';
 import type { MakerWixConfig } from '@electron-forge/maker-wix';
