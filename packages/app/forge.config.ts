@@ -51,8 +51,8 @@ export default {
 				autoRun: true,
 				icon: 'dist/assets/icons/app.ico',
 				features: {
-					autoLaunch: true,
-					autoUpdate: false,
+					autoUpdate: true,
+					autoLaunch: false,
 				},
 				ui: {
 					chooseDirectory: true,
