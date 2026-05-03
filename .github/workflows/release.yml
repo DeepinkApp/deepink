@@ -59,8 +59,7 @@ jobs:
       matrix:
         # TODO: add `macos-15-intel` for production releases
         # See docs https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#standard-github-hosted-runners-for-public-repositories
-        os: [ macos-latest ]
-        # os: [ macos-latest, ubuntu-latest, windows-latest ]
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
@@ -98,10 +97,8 @@ jobs:
         env:
           APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
           APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
-          DEBUG: "*"
         run: |
-          printf "%s" "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
-
+          # Setup keychain
           security create-keychain -p "" build.keychain
           security set-keychain-settings -lut 21600 build.keychain
 
@@ -109,17 +106,20 @@ jobs:
           security default-keychain -s build.keychain
           security unlock-keychain -p "" build.keychain
 
+          # Import certificate
+          printf "%s" "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
           # See details in https://github.com/electron/forge/issues/3315#issuecomment-1721732436
           security import cert.p12 \
             -k build.keychain \
             -P "$APPLE_CERTIFICATE_PASSWORD" \
             -T /usr/bin/codesign -T /usr/bin/productbuild
 
+          # Set access
           security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
 
+          # Print info for debug
           security find-identity -v -p codesigning
           security list-keychains -s build.keychain
-          security default-keychain -s build.keychain
 
       # Setup Windows
       # - name: Install WiX Toolset v3 (via Chocolatey)
@@ -142,6 +142,7 @@ jobs:
       - name: Install packages
         run: npm ci
 
+      # TODO: move the build into cache, and only package and sign it here
       - name: Build app
         working-directory: packages/app
         env:
@@ -149,10 +150,10 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          DEBUG: electron-notarize*
         run: |
           npm run build
-          # npx electron-forge package
-          DEBUG=electron-notarize* npm run make
+          npm run make
 
       - name: Upload artifacts to release
         env:
