@@ -7,16 +7,16 @@
 name: "CodeQL"
 
 on:
-  # push:
-  #   branches: [ master ]
-  # pull_request:
-  #   types: [ opened, synchronize, reopened ]
-  # pull_request_review:
-  #   types: [ submitted ]
-  # schedule:
-  #   # At 04:35 AM, every 3 days
-  #   # test expression on https://crontab.cronhub.io/
-  #   - cron: "35 4 */3 * *"
+  push:
+    branches: [ master ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+  pull_request_review:
+    types: [ submitted ]
+  schedule:
+    # At 04:35 AM, every 3 days
+    # test expression on https://crontab.cronhub.io/
+    - cron: "35 4 */3 * *"
 
   workflow_dispatch:
 
