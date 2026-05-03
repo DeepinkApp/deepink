@@ -21,7 +21,7 @@ export default {
 	packagerConfig: {
 		asar: true,
 		name: about.displayName,
-		executableName: process.platform === 'darwin' ? about.displayName : about.name,
+		executableName: process.platform === 'linux' ? about.name : about.displayName,
 		icon: 'assets/icons/app',
 		ignore(path) {
 			const isAllowed =
