@@ -159,4 +159,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: packages/app
         run: |
-          npx tsx ./scripts/publish --dir ./out/make
+          npx tsx ./scripts/publish --dir ./out/make --overwrite
