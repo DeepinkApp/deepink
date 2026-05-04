@@ -5,6 +5,7 @@ APP_ID := app.deepink.Deepink
 # 
 # The scripts
 # 
+.PHONY: install clean
 
 # Install dev build locally
 install:
