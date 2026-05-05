@@ -1,20 +1,8 @@
-import React, { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { BiCloudDownload } from 'react-icons/bi';
 import { FaApple, FaLinux, FaWindows } from 'react-icons/fa6';
 import { SiFlatpak, SiHomebrew } from 'react-icons/si';
-import {
-	Box,
-	Code,
-	CodeBlock,
-	type CodeBlockRootProps,
-	Float,
-	Heading,
-	HStack,
-	IconButton,
-	Separator,
-	VStack,
-} from '@chakra-ui/react';
+import { Code, Heading, Separator, VStack } from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -22,6 +10,9 @@ import { WithLayout } from '../../components/Layout';
 import { Link, LinkContext } from '../../components/Link';
 import { Text } from '../../components/Text';
 import { TheRock } from '../../components/TheRock';
+
+import { PlatformDownloads } from './PlatformDownloads';
+import { SimpleCodeBlock } from './SimpleCodeBlock';
 
 const getPlatform = () => {
 	let os: 'Windows' | 'macOS' | 'Linux' = 'Windows';
@@ -38,90 +29,6 @@ const getPlatform = () => {
 	}
 
 	return os;
-};
-
-const SimpleCodeBlock = (props: Omit<CodeBlockRootProps, 'children'>) => {
-	return (
-		<CodeBlock.Root width="100%" size="md" {...props}>
-			<CodeBlock.Content>
-				<Float placement="middle-end" offset={[5, 5]} zIndex="1">
-					<CodeBlock.CopyTrigger asChild>
-						<IconButton variant="ghost" size="sm">
-							<CodeBlock.CopyIndicator />
-						</IconButton>
-					</CodeBlock.CopyTrigger>
-				</Float>
-				<CodeBlock.Code margin={0}>
-					<CodeBlock.CodeText paddingRight="3rem" />
-				</CodeBlock.Code>
-			</CodeBlock.Content>
-		</CodeBlock.Root>
-	);
-};
-
-const PlatformDownloads = ({
-	platform,
-	icon,
-	content,
-	links,
-}: {
-	platform: string;
-	icon?: ReactNode;
-	content?: ReactNode;
-	links: {
-		title: string;
-		url: string;
-	}[];
-}) => {
-	const analytics = useAnalytics();
-
-	return (
-		<VStack gap="1.5rem" maxWidth="100%">
-			<Heading
-				as="h2"
-				textAlign="start"
-				fontSize="2rem"
-				alignItems="start"
-				margin={0}
-			>
-				<HStack as="span" gap=".3em" alignItems="center">
-					{icon}
-					<span>{platform}</span>
-				</HStack>
-			</Heading>
-
-			<VStack align="center" gap="1.5rem" maxWidth="100%">
-				<HStack
-					gap=".5rem"
-					align="start"
-					separator={<Box paddingInline=".1rem">|</Box>}
-					alignItems="center"
-				>
-					{links.map((link) => (
-						<Link
-							key={link.url}
-							href={link.url}
-							fontSize="inherit"
-							onClick={analytics.callback(
-								ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
-								{
-									context: `Download page: Platform - ${platform}`,
-									fileName: link.url.split('/').at(-1),
-								},
-							)}
-						>
-							<HStack gap=".3em">
-								<Box as={BiCloudDownload} />
-								<span>{link.title}</span>
-							</HStack>
-						</Link>
-					))}
-				</HStack>
-
-				{content && <Box width="100%">{content}</Box>}
-			</VStack>
-		</VStack>
-	);
 };
 
 const script = `(function(){
