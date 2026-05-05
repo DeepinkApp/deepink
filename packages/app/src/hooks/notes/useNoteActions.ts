@@ -14,14 +14,9 @@ import {
 	useVaultSelector,
 	useWorkspaceActions,
 	useWorkspaceData,
-	useWorkspaceSelector,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import {
-	selectIsNoteOpened,
-	selectTemporaryNoteId,
-	selectWorkspace,
-} from '@state/redux/vaults/vaults';
+import { selectIsNoteOpened, selectWorkspace } from '@state/redux/vaults/vaults';
 
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();
@@ -50,17 +45,16 @@ export const useNoteActions = () => {
 		[dispatch, notesRegistry, openNote, store, workspaceActions, workspaceData],
 	);
 
-	const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
 	const makeNotTemporary = useCallback(
 		(id: NoteId) => {
-			if (temporaryNote !== id) return;
 			dispatch(
 				workspaceActions.setTemporaryTab({
-					noteId: null,
+					noteId: id,
+					isTemporary: false,
 				}),
 			);
 		},
-		[dispatch, temporaryNote, workspaceActions],
+		[dispatch, workspaceActions],
 	);
 
 	const eventBus = useEventBus();

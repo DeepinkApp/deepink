@@ -525,13 +525,14 @@ export const vaultsSlice = createSlice({
 		setTemporaryTab: (
 			state,
 			{
-				payload: { vaultId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId | null }>>,
+				payload: { vaultId, workspaceId, noteId, isTemporary },
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId; isTemporary?: boolean }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			if (noteId === null) {
+			if (isTemporary === false) {
+				if (workspace.temporaryNoteId !== noteId) return;
 				workspace.temporaryNoteId = null;
 				return;
 			}
