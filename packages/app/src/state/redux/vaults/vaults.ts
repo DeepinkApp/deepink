@@ -522,7 +522,7 @@ export const vaultsSlice = createSlice({
 			workspace.openedNotes = notes;
 		},
 
-		setTemporaryNote: (
+		setTemporaryTab: (
 			state,
 			{
 				payload: { vaultId, workspaceId, noteId },

@@ -55,7 +55,7 @@ export const useNoteActions = () => {
 		(id: NoteId) => {
 			if (temporaryNote !== id) return;
 			dispatch(
-				workspaceActions.setTemporaryNote({
+				workspaceActions.setTemporaryTab({
 					noteId: null,
 				}),
 			);
