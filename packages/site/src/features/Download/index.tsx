@@ -2,7 +2,19 @@ import React, { Fragment, type ReactNode, useEffect, useMemo, useState } from 'r
 import { Trans, useTranslation } from 'react-i18next';
 import { BiCloudDownload } from 'react-icons/bi';
 import { FaApple, FaLinux, FaWindows } from 'react-icons/fa6';
-import { Box, Heading, HStack, SimpleGrid, VStack } from '@chakra-ui/react';
+import { SiFlatpak, SiHomebrew } from 'react-icons/si';
+import {
+	Box,
+	Code,
+	CodeBlock,
+	type CodeBlockRootProps,
+	Float,
+	Heading,
+	HStack,
+	IconButton,
+	Separator,
+	VStack,
+} from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -28,6 +40,90 @@ const getPlatform = () => {
 	return os;
 };
 
+const SimpleCodeBlock = (props: Omit<CodeBlockRootProps, 'children'>) => {
+	return (
+		<CodeBlock.Root width="100%" size="md" {...props}>
+			<CodeBlock.Content>
+				<Float placement="middle-end" offset={[5, 5]} zIndex="1">
+					<CodeBlock.CopyTrigger asChild>
+						<IconButton variant="ghost" size="sm">
+							<CodeBlock.CopyIndicator />
+						</IconButton>
+					</CodeBlock.CopyTrigger>
+				</Float>
+				<CodeBlock.Code margin={0}>
+					<CodeBlock.CodeText paddingRight="3rem" />
+				</CodeBlock.Code>
+			</CodeBlock.Content>
+		</CodeBlock.Root>
+	);
+};
+
+const PlatformDownloads = ({
+	platform,
+	icon,
+	content,
+	links,
+}: {
+	platform: string;
+	icon?: ReactNode;
+	content?: ReactNode;
+	links: {
+		title: string;
+		url: string;
+	}[];
+}) => {
+	const analytics = useAnalytics();
+
+	return (
+		<VStack gap="1.5rem" maxWidth="100%">
+			<Heading
+				as="h2"
+				textAlign="start"
+				fontSize="2rem"
+				alignItems="start"
+				margin={0}
+			>
+				<HStack as="span" gap=".3em" alignItems="center">
+					{icon}
+					<span>{platform}</span>
+				</HStack>
+			</Heading>
+
+			<VStack align="center" gap="1.5rem" maxWidth="100%">
+				<HStack
+					gap=".5rem"
+					align="start"
+					separator={<Box paddingInline=".1rem">|</Box>}
+					alignItems="center"
+				>
+					{links.map((link) => (
+						<Link
+							key={link.url}
+							href={link.url}
+							fontSize="inherit"
+							onClick={analytics.callback(
+								ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
+								{
+									context: `Download page: Platform - ${platform}`,
+									fileName: link.url.split('/').at(-1),
+								},
+							)}
+						>
+							<HStack gap=".3em">
+								<Box as={BiCloudDownload} />
+								<span>{link.title}</span>
+							</HStack>
+						</Link>
+					))}
+				</HStack>
+
+				{content && <Box width="100%">{content}</Box>}
+			</VStack>
+		</VStack>
+	);
+};
+
 const script = `(function(){
   var s = document.currentScript.previousElementSibling;
   var p = navigator.platform;
@@ -47,15 +143,6 @@ export const PlatformName = () => {
 			<script dangerouslySetInnerHTML={{ __html: script }} />
 		</>
 	);
-};
-
-type DownloadGroup = {
-	title: string;
-	icon: ReactNode;
-	links: {
-		title: string;
-		url: string;
-	}[];
 };
 
 export default WithLayout(function Page({
@@ -79,7 +166,7 @@ export default WithLayout(function Page({
 		i18n: { language },
 	} = useTranslation('downloads');
 
-	const { downloads, linkMap } = useMemo(() => {
+	const { links, linkMap } = useMemo(() => {
 		const msi = versions[0].assets.find((version) =>
 			version.name.endsWith('.msi'),
 		)?.url;
@@ -97,30 +184,26 @@ export default WithLayout(function Page({
 			version.name.endsWith('.rpm'),
 		)?.url;
 
-		const downloads: DownloadGroup[] = [];
+		const links: Record<
+			string,
+			{
+				title: string;
+				url: string;
+			}[]
+		> = {
+			windows: [],
+			linux: [],
+			mac: [],
+		};
 
-		if (msi)
-			downloads.push({
-				title: 'Windows',
-				icon: <FaWindows />,
-				links: [{ title: 'Universal', url: msi }],
-			});
-		if (mac)
-			downloads.push({
-				title: 'Mac',
-				icon: <FaApple />,
-				links: [{ title: 'Apple Silicon', url: mac }],
-			});
+		if (msi) links.windows = [{ title: 'Universal Installer', url: msi }];
+		if (mac) links.mac = [{ title: 'Apple Silicon', url: mac }];
 		if (appImage || deb || rpm)
-			downloads.push({
-				title: 'Linux',
-				icon: <FaLinux />,
-				links: [
-					appImage ? { title: 'AppImage', url: appImage } : undefined,
-					deb ? { title: 'Deb', url: deb } : undefined,
-					rpm ? { title: 'Rpm', url: rpm } : undefined,
-				].filter((i) => i !== undefined),
-			});
+			links.linux = [
+				appImage ? { title: 'AppImage', url: appImage } : undefined,
+				deb ? { title: 'Deb', url: deb } : undefined,
+				rpm ? { title: 'Rpm', url: rpm } : undefined,
+			].filter((i) => i !== undefined);
 
 		const linkMap = {
 			Windows: msi,
@@ -129,7 +212,7 @@ export default WithLayout(function Page({
 		};
 
 		return {
-			downloads,
+			links,
 			linkMap,
 		};
 	}, [versions]);
@@ -156,7 +239,7 @@ export default WithLayout(function Page({
 		<LinkContext value="internal">
 			<VStack paddingBlock="8rem" justifyContent="center" gap="3rem">
 				<VStack gap="3rem">
-					<TheRock maxW="100%" width="350px" />
+					<TheRock maxW="100%" width="250px" />
 
 					<VStack gap="1rem">
 						<Link
@@ -193,75 +276,82 @@ export default WithLayout(function Page({
 					</VStack>
 				</VStack>
 
-				<VStack
-					maxWidth="500px"
-					width="100%"
-					padding="2rem"
-					border="3px solid"
-					borderColor="border.contrast"
-					borderRadius="6px"
-					gap="3rem"
-				>
-					<Heading>{t('links.title')}</Heading>
-					<SimpleGrid
-						columns={{ base: 1, sm: 2 }}
-						width="100%"
-						fontSize="1.4rem"
-						css={{
-							rowGap: '1.5rem',
+				<VStack width="100%" gap="5rem" fontSize="1.6rem">
+					<Text fontSize="1.2rem">
+						Deepink is widely available on all major platforms.
+					</Text>
 
-							smDown: {
-								'& > *:not(:nth-last-child(-n + 1))': {
-									paddingBottom: '1.5rem',
-									borderBottom: '1px solid',
-									borderColor: 'border.thin',
-								},
-							},
-							sm: {
-								'& > *:not(:nth-last-child(-n + 2))': {
-									paddingBottom: '1.5rem',
-									borderBottom: '1px solid',
-									borderColor: 'border.thin',
-								},
-							},
-						}}
+					<VStack
+						maxWidth="100%"
+						gap="4rem"
+						separator={<Separator width="100%" />}
 					>
-						{downloads.map((section) => (
-							<Fragment key={section.title}>
-								<Text
-									textAlign="start"
-									fontSize="inherit"
-									alignItems="start"
-								>
-									<HStack as="span" gap=".3em" alignItems="center">
-										{section.icon}
-										<span>{section.title}</span>
-									</HStack>
-								</Text>
-								<VStack align="start">
-									{section.links.map((link) => (
-										<Link
-											key={link.url}
-											href={link.url}
-											fontSize="inherit"
-											onClick={analytics.callback(
-												ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
-												{
-													context: `Download page: Platform - ${section.title}`,
-													fileName: link.url.split('/').at(-1),
-												},
-											)}
-										>
-											<HStack gap=".3em">
-												<Box as={BiCloudDownload} />
-												<span>{link.title}</span>
-											</HStack>
-										</Link>
-									))}
-								</VStack>
-							</Fragment>
-						))}
-					</SimpleGrid>
+						{links.windows.length > 0 && (
+							<PlatformDownloads
+								platform="Windows"
+								icon={<FaWindows />}
+								links={links.windows}
+							/>
+						)}
+
+						{links.mac.length > 0 && (
+							<PlatformDownloads
+								platform="macOS"
+								icon={<FaApple />}
+								links={links.mac}
+								content={
+									<VStack fontSize="1rem" align="start" gap="1rem">
+										<Heading margin={0}>
+											<SiHomebrew /> Homebrew
+										</Heading>
+										<Text whiteSpace="pre-line">
+											Deepink is available via{' '}
+											<Link href="https://brew.sh/">Homebrew</Link>{' '}
+											packages manager. It makes updates smooth via{' '}
+											<Code>brew update</Code>.{'\n'}
+											Install Deepink from our official{' '}
+											<Link href="https://docs.brew.sh/Taps">
+												Homebrew Tap
+											</Link>
+											:
+										</Text>
+										<SimpleCodeBlock code="brew install deepinkapp/tap/deepink" />
+									</VStack>
+								}
+							/>
+						)}
+
+						{links.linux.length > 0 && (
+							<PlatformDownloads
+								platform="Linux"
+								icon={<FaLinux />}
+								links={links.linux}
+								content={
+									<VStack fontSize="1rem" align="start">
+										<Heading margin={0}>
+											<SiFlatpak /> Flatpak
+										</Heading>
+										<Text whiteSpace="pre-line">
+											Deepink is available via{' '}
+											<Link href="https://flatpak.org/">
+												Flatpak
+											</Link>{' '}
+											packages manager. It makes updates smooth via{' '}
+											<Code>flatpak update</Code>.
+										</Text>
+										<Text whiteSpace="pre-line">
+											Add the Deepink repository via
+										</Text>
+										<SimpleCodeBlock code="flatpak remote-add --user --if-not-exists deepink https://deepink.app/flatpakrepo" />
+										<Text whiteSpace="pre-line">
+											Then install Deepink via Flatpak
+										</Text>
+										<SimpleCodeBlock code="flatpak install app.deepink.Deepink" />
+									</VStack>
+								}
+							/>
+						)}
+					</VStack>
 				</VStack>
 			</VStack>
 		</LinkContext>
