@@ -1,4 +1,6 @@
 /* eslint-disable @cspell/spellchecker */
+import 'dotenv/config';
+
 import type { MakerDebConfig } from '@electron-forge/maker-deb';
 import type { MakerDMGConfig } from '@electron-forge/maker-dmg';
 import type { MakerWixConfig } from '@electron-forge/maker-wix';
@@ -19,7 +21,7 @@ export default {
 	packagerConfig: {
 		asar: true,
 		name: about.displayName,
-		executableName: process.platform === 'darwin' ? about.displayName : about.name,
+		executableName: process.platform === 'linux' ? about.name : about.displayName,
 		icon: 'assets/icons/app',
 		ignore(path) {
 			const isAllowed =
@@ -28,6 +30,14 @@ export default {
 			return !isAllowed;
 		},
 		extraResource: ['./dist/assets'],
+		osxSign: {
+			identity: process.env.OSX_SIGN_IDENTITY,
+		},
+		osxNotarize: {
+			appleId: process.env.APPLE_ID!,
+			appleIdPassword: process.env.APPLE_ID_PASSWORD!,
+			teamId: process.env.APPLE_TEAM_ID!,
+		},
 	},
 	makers: [
 		{
@@ -41,8 +51,8 @@ export default {
 				autoRun: true,
 				icon: 'dist/assets/icons/app.ico',
 				features: {
-					autoLaunch: true,
-					autoUpdate: false,
+					autoUpdate: true,
+					autoLaunch: false,
 				},
 				ui: {
 					chooseDirectory: true,
