@@ -23,6 +23,9 @@ repo-update: lint
 	flatpak-builder ${BUILD_DIR} ${APP_ID}.yaml --repo=${REPO_DIR} --gpg-sign=${GPG_SIGN_ID} --force-clean
 	flatpak build-update-repo --gpg-sign=${GPG_SIGN_ID} --generate-static-deltas ${REPO_DIR}
 
+repo-push:
+	rclone sync ${REPO_DIR}/ ${REPO_REMOTE} --transfers=32 --checksum --progress
+
 # 
 # The declarative description
 # 
