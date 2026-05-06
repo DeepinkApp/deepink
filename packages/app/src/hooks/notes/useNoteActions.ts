@@ -45,8 +45,8 @@ export const useNoteActions = () => {
 		[dispatch, notesRegistry, openNote, store, workspaceActions, workspaceData],
 	);
 
-	const makeNotTemporary = useCallback(
-		(id: NoteId, { isTemporary = false }: { isTemporary?: boolean } = {}) => {
+	const setTemporary = useCallback(
+		(id: NoteId, isTemporary: boolean) => {
 			dispatch(
 				workspaceActions.setTemporaryTab({
 					noteId: id,
@@ -77,5 +77,5 @@ export const useNoteActions = () => {
 		[eventBus, isSnapshotsEnabled, noteClosed, noteHistory, notesRegistry],
 	);
 
-	return { click, close, makeNotTemporary };
+	return { click, close, setTemporary };
 };
