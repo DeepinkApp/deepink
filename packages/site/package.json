@@ -34,6 +34,7 @@
 	"devDependencies": {
 		"@octokit/rest": "^22.0.1",
 		"remark-external-links": "^9.0.1",
+		"transly": "^1.0.0",
 		"vite-plugin-svgr": "^4.5.0"
 	}
 }
