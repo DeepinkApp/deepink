@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "Un posto migliore per i tuoi appunti."
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "Deepink rende la scrittura di note ergonomica e piacevole."
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "Scarica Deepink"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "Scopri di più"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "Un archivio di cui fidarsi"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "Tutto nel tuo archivio è crittografato. A differenza di molte altre app, questo significa davvero <0>tutti i tuoi dati</0>: contenuto delle note, file e metadati. L'algoritmo di crittografia è a tua scelta.\n\nDeepink è un'app <1>open source</1>, con codice che puoi verificare, non solo fidarti."
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "L'ergonomia"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "Deepink è progettata per essere veloce nell'uso quotidiano, eliminando ogni attrito dalle operazioni più comuni. Per la maggior parte delle attività servono <0>fino all'80% di azioni in meno</0> rispetto ad altre app per appunti."
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "Il tuo archivio contiene tutto"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "Conserva tutto nel tuo archivio. Workspace e tag annidati aiutano a separare i contesti e trovare rapidamente ciò che serve: specifiche di progetto, contratti, frammenti di codice, citazioni da libri, diario personale, ricerche e molto altro."
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "Gratuita. Senza limiti."
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "Scarica ora"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "Dai struttura al tuo pensiero"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "Un'intuizione veloce o un progetto complesso. Deepink porta ordine e concentrazione in tutto ciò che scrivi."
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Link"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "I link permettono di fare riferimento a qualsiasi nota ovunque nel tuo archivio. Collega gli appunti di una riunione alle decisioni, la ricerca alle conclusioni, i piani all'esecuzione, senza duplicare lo stesso paragrafo.\n\nI backlink mostrano ogni nota che rimanda a quella che stai leggendo, così è facile risalire alle connessioni e navigare tra le tue conoscenze in modo naturale.\n\nI link mantengono il contesto collegato: le note correlate restano sempre facili da seguire."
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "Workspace"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "Tieni separati i diversi ambiti della tua vita senza creare più archivi.\n\nI workspace creano spazi dedicati all'interno di un unico archivio sicuro. Sblocca l'archivio una volta, poi passa da un contesto all'altro — Progetti Clienti, Diario Personale, Note Salute, Studio — senza mescolare nulla.\n\nOrganizzazione chiara e specifica per ogni contesto. Condividi lo schermo con tranquillità: i contenuti privati non appariranno per errore.\n\nUn archivio. Confini netti. Zero attriti."
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "Versioni delle note"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "Ogni nota conserva una cronologia completa delle modifiche.\n\nDeepink salva le versioni automaticamente: puoi vedere cosa è cambiato, ripristinare una bozza precedente o seguire come un'idea si è sviluppata nel tempo. Che la modifica risalga a ieri o a un anno fa, nulla di importante va perso.\n\nLe versioni precedenti sono sempre disponibili quando servono."
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "Promemoria"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "Associa un promemoria a qualsiasi nota e ricevi una notifica al momento giusto.\n\nPromemoria di follow-up per gli appunti di una riunione, scadenze per i piani di progetto, date di rinnovo per i documenti, check-in per gli obiettivi personali. Ogni promemoria resta collegato alla nota esatta, non come un'attività separata in un'altra app.\n\nQuando arriva il momento, la nota si apre con ogni dettaglio al suo posto.\n\nI promemoria aiutano ad agire sulle tue informazioni, non solo a conservarle."
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "Tag annidati"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "Organizza le note con tag che riflettono una gerarchia chiara.\n\nI tag annidati permettono di creare una struttura padre/figlio, così gli argomenti generali possono contenere sotto-argomenti specifici. Ad esempio, Clienti può includere i nomi dei singoli clienti, e Finanza può includere Tasse, Fatture e Report.\n\nA differenza delle cartelle, i tag non sono esclusivi. Una nota può avere più tag contemporaneamente — cliente, finanza e un periodo temporale.\n\nI tag annidati offrono precisione e flessibilità, anche quando gli argomenti si sovrappongono."
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Crittografia"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "L'intero archivio è crittografato. Alcune app proteggono i dati solo durante la sincronizzazione o il testo delle note. Deepink protegge l'intera struttura del tuo archivio.\n\nLe note, gli allegati e i metadati sono illeggibili per chiunque tranne te, inclusi noi. Anche le dimensioni dei file vengono offuscate per ridurre il rischio di analisi.\n\nCiò che conservi resta privato per design."
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "Uno spazio per ogni aspetto della tua vita"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "Note quotidiane, letture e piani in un unico luogo privato. Cambia contesto con un clic, mantieni l'ordine e continua a scrivere senza interrompere il flusso."
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "Scarica Deepink"
+	}
+}

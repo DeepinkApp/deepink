@@ -1,0 +1,14 @@
+{
+	"main.download": {
+		"hash": "e31dece9e5f7441f4a9c8ecda25323b67f18db45fc7222ef0e9baac7929b37d9",
+		"translation": "Stáhnout pro <0/>"
+	},
+	"main.releaseDate": {
+		"hash": "972ef1ecee3ad0bdc14afbe4b643da160b00e4d342d8795b343d72715bc583ae",
+		"translation": "Aktualizováno {{date}}"
+	},
+	"links.title": {
+		"hash": "6d46bb346f19a539f1d3771f7f46bb39dbc1e77425a7c65f3492be2b72c761c5",
+		"translation": "Všechny platformy"
+	}
+}

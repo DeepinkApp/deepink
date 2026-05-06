@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "更好的笔记归属地。"
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "Deepink 让记笔记变得高效且愉悦。"
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "下载 Deepink"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "了解更多"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "值得信赖的数据库"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "数据库中的一切都经过加密。与许多其他应用不同，这里的加密真正覆盖了<0>您的所有数据</0>，包括笔记内容、文件和元数据。您可以选择自己信任的加密算法。\n\nDeepink 是一款<1>开源</1>应用，代码可供审查，而非仅凭信任。"
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "人体工学设计"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "Deepink 专为日常高效使用而设计，最大程度减少常见操作中的阻力。完成大多数任务所需的操作，比其他笔记应用<0>最多减少 80%</0>。"
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "数据库容纳一切"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "将所有内容集中在数据库中。工作区和嵌套标签帮助您区分不同场景，快速找到所需内容——无论是项目文档、合同、代码片段，还是读书摘录、日记、研究资料等。"
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "免费使用，无任何限制。"
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "立即下载"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "让思维更有条理"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "随手记录灵感，或构建复杂内容。Deepink 为您写下的一切带来秩序与专注。"
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "链接"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "链接可以引用数据库中任何位置的笔记。将会议记录关联到决策，将研究关联到结论，将计划关联到执行，无需重复粘贴同一段内容。\n\n反向链接会显示所有链接到当前笔记的笔记，方便追溯关联、自然地浏览您的知识体系。\n\n链接让上下文保持连贯，相关笔记一目了然。"
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "工作区"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "无需创建多个数据库，即可将生活的不同领域分开管理。\n\n工作区在同一个安全数据库内创建独立的专注空间。解锁一次数据库，即可在\"客户项目\"、\"个人日记\"、\"健康笔记\"、\"学习资料\"等场景之间自由切换，互不干扰。\n\n保持井然有序，专注当前场景。共享屏幕时也无需担心：私密内容不会意外出现。\n\n一个数据库，清晰的边界，零阻力。"
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "笔记版本"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "每条笔记都保留完整的修改历史。\n\nDeepink 自动保存版本，您可以查看变更内容、恢复早期草稿，或回顾一个想法的演变过程。无论是昨天还是一年前的编辑，重要内容都不会丢失。\n\n历史版本随时可供查阅。"
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "提醒"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "为任意笔记添加提醒，在合适的时间收到通知。\n\n为会议记录设置跟进提醒，为项目计划设置截止日期，为文件设置续期提醒，或为个人目标设置定期回顾。每个提醒都附在对应的笔记上，而非散落在其他应用的任务列表中。\n\n到了时间，打开笔记即可看到所有细节。\n\n提醒帮助您将信息转化为行动，而不仅仅是存储。"
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "嵌套标签"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "用层级清晰的标签来组织笔记。\n\n嵌套标签支持创建父子结构，让宽泛的主题包含具体的子主题。例如，\"客户\"下可以包含各个客户名称，\"财务\"下可以包含\"税务\"、\"发票\"和\"报告\"。\n\n与文件夹不同，标签不是排他的。一条笔记可以同时拥有多个标签——客户、财务、时间段。\n\n嵌套标签兼具精确性与灵活性，即使主题之间有交叉也能从容应对。"
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "加密"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "整个数据库都经过加密。有些应用只在同步时或仅对笔记文本进行加密，而 Deepink 保护的是数据库的完整结构。\n\n您的笔记、附件和元数据对除您之外的任何人都不可读，包括我们。甚至文件大小也经过混淆处理，以降低被分析的风险。\n\n您存储的内容，从设计层面即确保私密。"
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "为生活的每个方面留出空间"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "将日常笔记、阅读和计划集中在一个私密空间。一键切换场景，保持井然有序，书写不被打断。"
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "获取 Deepink"
+	}
+}
