@@ -6,7 +6,7 @@ REPO_BRANCH = stable
 -include .env
 export
 
-.PHONY: clean lint dev-install repo-export repo-update repo-push repo-pull
+.PHONY: clean dev-install repo-export repo-update repo-push repo-pull
 
 clean:
 	rm -rf $(BUILD_DIR) $(REPO_DIR)
