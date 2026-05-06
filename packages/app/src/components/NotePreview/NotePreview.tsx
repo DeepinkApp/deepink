@@ -2,7 +2,6 @@ import React, { forwardRef, ReactNode } from 'react';
 import { FaThumbtack } from 'react-icons/fa6';
 import {
 	Box,
-	Button,
 	HStack,
 	StackProps,
 	Text,
@@ -19,14 +18,10 @@ export const NotePreview = forwardRef<
 		text: string;
 		meta?: ReactNode;
 		isSelected?: boolean;
-		pin: {
-			title: string;
-			isActive: boolean;
-			onToggle: () => void;
-		};
+		isPinned: boolean;
 		textToHighlight?: string;
 	} & StackProps
->(({ title, text, textToHighlight, meta, isSelected, pin, ...props }, ref) => {
+>(({ title, text, textToHighlight, meta, isSelected, isPinned, ...props }, ref) => {
 	const styles = useMultiStyleConfig('NotePreview');
 	return (
 		<VStack
@@ -60,30 +55,16 @@ export const NotePreview = forwardRef<
 					) : undefined}
 				</VStack>
 
-				<Button
-					variant="ghost"
-					size="xs"
-					alignSelf="baseline"
-					aria-label={pin.title}
-					title={pin.title}
-					color={pin.isActive ? undefined : 'typography.secondary'}
-					visibility={pin.isActive ? 'visible' : 'hidden'}
-					_groupHover={{
-						visibility: 'visible',
-					}}
-					_groupFocusWithin={{
-						visibility: 'visible',
-					}}
-					_focus={{
-						visibility: 'visible',
-					}}
-					onClick={(evt) => {
-						evt.stopPropagation();
-						pin.onToggle();
-					}}
-				>
-					<Box as={FaThumbtack} />
-				</Button>
+				{isPinned && (
+					<Box
+						color="typography.secondary"
+						transform="rotate(45deg)"
+						fontSize="sm"
+						alignSelf="baseline"
+					>
+						<FaThumbtack />
+					</Box>
+				)}
 			</HStack>
 
 			{meta && <Box sx={styles.meta}>{meta}</Box>}

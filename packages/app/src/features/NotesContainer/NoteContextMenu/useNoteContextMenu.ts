@@ -48,6 +48,10 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 					runCommand(GLOBAL_COMMANDS.RESTORE_NOTE_FROM_BIN, { noteId });
 				},
 
+				[NoteActions.PIN_NOTE]: (noteId: string) => {
+					runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, { noteId });
+				},
+
 				[NoteActions.DUPLICATE]: (noteId: string) => {
 					runCommand(GLOBAL_COMMANDS.DUPLICATE_NOTE, { noteId });
 				},
@@ -125,6 +129,16 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 				...(!note.isDeleted
 					? [{ id: NoteActions.DUPLICATE, label: t('duplicate') }]
 					: []),
+
+				note.isPinned
+					? {
+							id: NoteActions.PIN_NOTE,
+							label: t('unpinNote'),
+						}
+					: {
+							id: NoteActions.PIN_NOTE,
+							label: t('pinNote'),
+						},
 
 				{
 					id: NoteActions.EXPORT,
