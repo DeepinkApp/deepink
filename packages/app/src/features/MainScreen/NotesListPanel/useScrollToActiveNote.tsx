@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { WorkspaceEvents } from '@api/events/workspace';
 import { NoteId } from '@core/features/notes';
 import { useEventBus } from '@features/App/Workspace/WorkspaceProvider';
+import { GLOBAL_COMMANDS } from '@hooks/commands';
+import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { useImmutableCallback } from '@hooks/useImmutableCallback';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectNotesView } from '@state/redux/vaults/selectors/view';
@@ -38,6 +40,15 @@ export const useScrollToActiveNote = ({
 	// Reset the scroll once filters changed
 	useOnFiltersChange(() => {
 		virtualizer.scrollToOffset(0);
+	});
+
+	useWorkspaceCommandCallback(GLOBAL_COMMANDS.SCROLL_TO_NOTE, async ({ noteId }) => {
+		const index = noteIds.indexOf(noteId);
+		if (index === -1) return;
+
+		virtualizer.scrollToIndex(index, {
+			align: scrollAlignment,
+		});
 	});
 
 	const isScrollFixNeededRef = useRef(false);
