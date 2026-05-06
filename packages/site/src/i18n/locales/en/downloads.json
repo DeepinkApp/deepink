@@ -1,7 +1,7 @@
 {
 	"main": {
 		"download": "Download for <0/>",
-		"releaseDate": "Version {{version}} released at {{date}}"
+		"releaseDate": "<strong>Version {{version}}</strong> released at {{date}}"
 	},
 	"intro": "Deepink is widely available on all major platforms.",
 	"windows": {

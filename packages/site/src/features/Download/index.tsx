@@ -173,11 +173,16 @@ export default WithLayout(function Page({
 								variant="description"
 								fontFamily="monospace"
 								suppressHydrationWarning
+								textAlign="center"
 							>
-								{t('main.releaseDate', {
-									date: lastReleaseDate,
-									version: versions[0].name,
-								})}
+								<Trans
+									t={t}
+									i18nKey="main.releaseDate"
+									values={{
+										date: lastReleaseDate,
+										version: versions[0].name,
+									}}
+								/>
 							</Text>
 						)}
 					</VStack>
