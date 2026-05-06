@@ -8,7 +8,7 @@
 		"installer": "Windows Installer"
 	},
 	"mac": {
-		"package": "Apple Silicon Installer",
+		"package": "Apple Silicon",
 		"homebrew": {
 			"description": "Deepink is available via the <brew>Homebrew</brew> package manager, enabling seamless updates via <cmd-update/>.\nInstall Deepink from our official <tap/>:"
 		}
@@ -17,8 +17,7 @@
 		"appImage": "AppImage",
 		"debPackage": "Debian package (.deb)",
 		"flatpak": {
-			"addRepo": "Deepink is available via the <flatpak>Flatpak</flatpak> package manager, enabling seamless updates via <cmd-update/>.\nAdd the Deepink repository:",
-			"install": "Install Deepink via Flatpak:"
+			"instruction": "Deepink is available via the <flatpak>Flatpak</flatpak> package manager, enabling seamless updates via <cmd-update/>.\nAdd the Flatpak repository, then install Deepink:"
 		}
 	}
 }

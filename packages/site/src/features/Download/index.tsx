@@ -223,7 +223,7 @@ export default WithLayout(function Page({
 														<Link href="https://brew.sh/" />
 													),
 													'cmd-update': (
-														<Code>brew update</Code>
+														<Code>brew upgrade</Code>
 													),
 													tap: (
 														<Link href="https://docs.brew.sh/Taps">
@@ -252,7 +252,7 @@ export default WithLayout(function Page({
 										<Text whiteSpace="pre-line">
 											<Trans
 												t={t}
-												i18nKey="linux.flatpak.addRepo"
+												i18nKey="linux.flatpak.instruction"
 												components={{
 													flatpak: (
 														<Link href="https://flatpak.org/" />
@@ -263,11 +263,11 @@ export default WithLayout(function Page({
 												}}
 											/>
 										</Text>
-										<SimpleCodeBlock code="flatpak remote-add --user --if-not-exists deepink https://deepink.app/flatpakrepo" />
-										<Text whiteSpace="pre-line">
-											{t('linux.flatpak.install')}
-										</Text>
-										<SimpleCodeBlock code="flatpak install app.deepink.Deepink" />
+										<SimpleCodeBlock
+											code={
+												'flatpak remote-add --user --if-not-exists deepink https://deepink.app/flatpakrepo\nflatpak install --user deepink app.deepink.Deepink'
+											}
+										/>
 									</VStack>
 								}
 							/>
