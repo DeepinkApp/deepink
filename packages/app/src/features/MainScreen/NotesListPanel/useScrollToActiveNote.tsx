@@ -42,15 +42,6 @@ export const useScrollToActiveNote = ({
 		virtualizer.scrollToOffset(0);
 	});
 
-	useWorkspaceCommandCallback(GLOBAL_COMMANDS.SCROLL_TO_NOTE, async ({ noteId }) => {
-		const index = noteIds.indexOf(noteId);
-		if (index === -1) return;
-
-		virtualizer.scrollToIndex(index, {
-			align: scrollAlignment,
-		});
-	});
-
 	const isScrollFixNeededRef = useRef(false);
 	const scrollToActiveNote = useImmutableCallback(() => {
 		if (!activeNoteId) return;
@@ -127,4 +118,20 @@ export const useScrollToActiveNote = ({
 		wasActiveNoteInViewport.current = false;
 		scrollToActiveNote();
 	});
+
+	// Handle command to set scroll
+	// Defer scroll until noteIds is updated, otherwise scroll happens before index changes
+	const scrollTargetNoteIdRef = useRef<NoteId | null>(null);
+	useWorkspaceCommandCallback(GLOBAL_COMMANDS.SCROLL_TO_NOTE, ({ noteId }) => {
+		scrollTargetNoteIdRef.current = noteId;
+	});
+	useEffect(() => {
+		if (!scrollTargetNoteIdRef.current) return;
+
+		const index = noteIds.indexOf(scrollTargetNoteIdRef.current);
+		if (index === -1) return;
+
+		scrollTargetNoteIdRef.current = null;
+		virtualizer.scrollToIndex(index, { align: scrollAlignment });
+	}, [noteIds, virtualizer]);
 };
