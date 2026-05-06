@@ -54,12 +54,22 @@ modules:
       - install -Dm755 deepink.sh /app/bin/deepink
 
       # Install the application icon
-      # The icon is bundled in the verified zip as an extra resource.
-      # If this path does not exist after extraction, run:
-      #   unzip -l deepink-linux-x64-0.1.3.zip | grep -i png
-      # to find the real path and adjust accordingly.
-      - install -Dm644 /app/lib/deepink/resources/assets/icons/app.png
-        /app/share/icons/hicolor/256x256/apps/app.deepink.Deepink.png
+      # Generate PNGs from SVG
+      - |
+        for size in 256 128 64 48 32; do \
+          rsvg-convert -w $size -h $size /app/lib/deepink/resources/assets/icons/app.svg -o app-$size.png; \
+        done
+
+      # Install SVG
+      - install -Dm644 /app/lib/deepink/resources/assets/icons/app.svg \
+        /app/share/icons/hicolor/scalable/apps/app.deepink.Deepink.svg
+
+      # Install PNGs
+      - |
+        for size in 256 128 64 48 32; do \
+          install -Dm644 app-$size.png \
+          /app/share/icons/hicolor/${size}x${size}/apps/app.deepink.Deepink.png; \
+        done
 
       # Install the desktop entry
       - install -Dm644 app.deepink.Deepink.desktop
