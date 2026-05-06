@@ -167,9 +167,9 @@ function getFetchQuery(
 		filterQuery.push(qb.sql`updated_at <= ${updatedAt.to.getTime()}`);
 	}
 
-	// Sort
-	orderQuery.push(qb.line('pinned DESC'));
 	if (sort) {
+		if (sort.pinned) orderQuery.push(qb.line('pinned DESC'));
+
 		orderQuery.push(
 			qb.line(sortFieldMap[sort.by], sort.order === 'desc' ? 'DESC' : 'ASC'),
 		);
