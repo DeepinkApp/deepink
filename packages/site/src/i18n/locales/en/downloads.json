@@ -3,7 +3,7 @@
 		"download": "Download for <0/>",
 		"releaseDate": "<strong>Version {{version}}</strong> released on {{date}}"
 	},
-	"intro": "Deepink is available on all major platforms.",
+	"intro": "Your notes, always with you.",
 	"windows": {
 		"installer": "Windows Installer"
 	},
