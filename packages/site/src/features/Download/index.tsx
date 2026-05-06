@@ -103,12 +103,12 @@ export default WithLayout(function Page({
 			mac: [],
 		};
 
-		if (msi) links.windows = [{ title: 'Universal Installer', url: msi }];
-		if (mac) links.mac = [{ title: 'Apple Silicon', url: mac }];
+		if (msi) links.windows = [{ title: t('windows.installer'), url: msi }];
+		if (mac) links.mac = [{ title: t('mac.package'), url: mac }];
 		if (appImage || deb || rpm)
 			links.linux = [
-				appImage ? { title: 'AppImage', url: appImage } : undefined,
-				deb ? { title: 'Deb', url: deb } : undefined,
+				appImage ? { title: t('linux.appImage'), url: appImage } : undefined,
+				deb ? { title: t('linux.debPackage'), url: deb } : undefined,
 				rpm ? { title: 'Rpm', url: rpm } : undefined,
 			].filter((i) => i !== undefined);
 
@@ -122,7 +122,7 @@ export default WithLayout(function Page({
 			links,
 			linkMap,
 		};
-	}, [versions]);
+	}, [t, versions]);
 
 	const [downloadLink, setDownloadLink] = useState(linkMap.Windows);
 	useEffect(() => {
@@ -184,9 +184,7 @@ export default WithLayout(function Page({
 				</VStack>
 
 				<VStack width="100%" gap="5rem" fontSize="1.6rem">
-					<Text fontSize="1.2rem">
-						Deepink is widely available on all major platforms.
-					</Text>
+					<Text fontSize="1.2rem">{t('intro')}</Text>
 
 					<VStack
 						maxWidth="100%"
@@ -212,15 +210,23 @@ export default WithLayout(function Page({
 											<SiHomebrew /> Homebrew
 										</Heading>
 										<Text whiteSpace="pre-line">
-											Deepink is available via{' '}
-											<Link href="https://brew.sh/">Homebrew</Link>{' '}
-											packages manager. It makes updates smooth via{' '}
-											<Code>brew update</Code>.{'\n'}
-											Install Deepink from our official{' '}
-											<Link href="https://docs.brew.sh/Taps">
-												Homebrew Tap
-											</Link>
-											:
+											<Trans
+												t={t}
+												i18nKey="mac.homebrew.description"
+												components={{
+													brew: (
+														<Link href="https://brew.sh/" />
+													),
+													'cmd-update': (
+														<Code>brew update</Code>
+													),
+													tap: (
+														<Link href="https://docs.brew.sh/Taps">
+															Homebrew Tap
+														</Link>
+													),
+												}}
+											/>
 										</Text>
 										<SimpleCodeBlock code="brew install deepinkapp/tap/deepink" />
 									</VStack>
@@ -239,19 +245,22 @@ export default WithLayout(function Page({
 											<SiFlatpak /> Flatpak
 										</Heading>
 										<Text whiteSpace="pre-line">
-											Deepink is available via{' '}
-											<Link href="https://flatpak.org/">
-												Flatpak
-											</Link>{' '}
-											packages manager. It makes updates smooth via{' '}
-											<Code>flatpak update</Code>.
-										</Text>
-										<Text whiteSpace="pre-line">
-											Add the Deepink repository via
+											<Trans
+												t={t}
+												i18nKey="linux.flatpak.addRepo"
+												components={{
+													flatpak: (
+														<Link href="https://flatpak.org/" />
+													),
+													'cmd-update': (
+														<Code>flatpak update</Code>
+													),
+												}}
+											/>
 										</Text>
 										<SimpleCodeBlock code="flatpak remote-add --user --if-not-exists deepink https://deepink.app/flatpakrepo" />
 										<Text whiteSpace="pre-line">
-											Then install Deepink via Flatpak
+											{t('linux.flatpak.install')}
 										</Text>
 										<SimpleCodeBlock code="flatpak install app.deepink.Deepink" />
 									</VStack>
