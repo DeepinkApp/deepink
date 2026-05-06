@@ -38,7 +38,7 @@ function getSupportedLangs(localesPath: string) {
 			// .cache dir may appears while development
 			// it is created by translation tools
 			// so we can ignore that directory
-			.filter((dirent) => dirent.isDirectory() && dirent.name !== '.cache')
+			.filter((dirent) => dirent.isDirectory() && dirent.name !== '.transly')
 			.map((dirent) => dirent.name)
 	);
 }
