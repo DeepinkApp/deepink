@@ -25,7 +25,7 @@ export const WorkspaceStateInitializer = () => {
 	const updateNoteList = useUpdateNotes();
 	const updateNoteListRef = useRef(updateNoteList);
 	updateNoteListRef.current = updateNoteList;
-	const { makeNotTemporary: restoreTemporaryTab } = useNoteActions();
+	const { setTemporary } = useNoteActions();
 
 	const handleWorkspaceError = useWorkspaceError();
 
@@ -91,9 +91,7 @@ export const WorkspaceStateInitializer = () => {
 
 						// Restore temporary note
 						if (state.temporaryNoteId)
-							restoreTemporaryTab(state.temporaryNoteId, {
-								isTemporary: true,
-							});
+							setTemporary(state.temporaryNoteId, true);
 					}
 				}
 
@@ -120,7 +118,7 @@ export const WorkspaceStateInitializer = () => {
 		notesRegistry,
 		tagsRegistry,
 		handleWorkspaceError,
-		restoreTemporaryTab,
+		setTemporary,
 	]);
 
 	return null;

@@ -200,7 +200,7 @@ export const NotesList: FC<NotesListProps> = () => {
 									}}
 									onDoubleClick={() => {
 										// Update note state to non-temporary
-										noteActions.makeNotTemporary(note.id);
+										noteActions.setTemporary(note.id, false);
 									}}
 								/>
 							);
