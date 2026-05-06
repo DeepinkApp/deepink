@@ -262,7 +262,7 @@ export default WithLayout(function Page({
 										</Text>
 										<SimpleCodeBlock
 											code={
-												'flatpak remote-add --user --if-not-exists deepink https://deepink.app/flatpak\nflatpak install --user deepink app.deepink.Deepink'
+												'flatpak remote-add --user --if-not-exists deepink https://deepink.app/deepink.flatpakrepo\nflatpak install --user deepink app.deepink.Deepink'
 											}
 										/>
 									</VStack>
