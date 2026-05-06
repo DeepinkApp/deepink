@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "<0/>版をダウンロード",
-		"releaseDate": "最終更新日：{{date}}"
+		"releaseDate": "<strong>バージョン {{version}}</strong> が {{date}} にリリースされました"
 	},
 	"links": {
 		"title": "対応プラットフォーム"
+	},
+	"intro": "ノートを、いつでもどこでも。",
+	"windows": {
+		"installer": "Windows インストーラー"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepinkはパッケージマネージャー <brew>Homebrew</brew> を通じて利用可能です。<cmd-update/> を使用してスムーズにアップデートできます。\n公式 <tap/> からDeepinkをインストールしてください："
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian パッケージ (.deb)",
+		"flatpak": {
+			"instruction": "Deepinkはパッケージマネージャー <flatpak>Flatpak</flatpak> を通じて利用可能です。<cmd-update/> を使用してスムーズにアップデートできます。\nFlatpakリポジトリを追加し、Deepinkをインストールしてください："
+		}
 	}
 }

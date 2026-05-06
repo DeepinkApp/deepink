@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Descarrega per a <0/>",
-		"releaseDate": "Actualitzat el {{date}}"
+		"releaseDate": "<strong>Versió {{version}}</strong> publicada el {{date}}"
 	},
 	"links": {
 		"title": "Totes les plataformes"
+	},
+	"intro": "Les teves notes, sempre amb tu.",
+	"windows": {
+		"installer": "Instal·lador de Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink està disponible a través del gestor de paquets <brew>Homebrew</brew>, cosa que permet actualitzacions automàtiques amb <cmd-update/>.\nInstal·la Deepink des del nostre <tap/> oficial:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Paquet Debian (.deb)",
+		"flatpak": {
+			"instruction": "Deepink està disponible a través del gestor de paquets <flatpak>Flatpak</flatpak>, cosa que permet actualitzacions automàtiques amb <cmd-update/>.\nAfegeix el repositori Flatpak i després instal·la Deepink:"
+		}
 	}
 }

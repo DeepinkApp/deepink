@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "Nơi lý tưởng cho ghi chú của bạn."
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "Deepink giúp việc ghi chú trở nên tiện dụng và thú vị."
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "Tải Deepink"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "Tìm hiểu thêm"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "Kho dữ liệu đáng tin cậy"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "Mọi thứ trong kho dữ liệu của bạn đều được mã hóa. Khác với nhiều ứng dụng khác, điều này thực sự có nghĩa là <0>toàn bộ dữ liệu</0> bao gồm nội dung ghi chú, tệp đính kèm và siêu dữ liệu. Bạn có thể chọn thuật toán mã hóa mà mình tin tưởng.\n\nDeepink là ứng dụng <1>mã nguồn mở</1>, với mã nguồn bạn có thể tự kiểm chứng, không chỉ tin lời."
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "Thiết kế tiện dụng"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "Deepink được xây dựng để thao tác nhanh trong sử dụng hàng ngày, loại bỏ những bước thừa khỏi các tác vụ phổ biến nhất. Với hầu hết các tác vụ, Deepink cần <0>ít hơn đến 80% thao tác</0> so với các ứng dụng ghi chú khác."
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "Kho dữ liệu chứa được mọi thứ"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "Lưu trữ mọi thứ trong kho dữ liệu của bạn. Không gian làm việc và thẻ phân cấp giúp bạn tách biệt ngữ cảnh và tìm kiếm nhanh chóng — từ tài liệu dự án, hợp đồng, đoạn mã đến trích dẫn sách, nhật ký hàng ngày, nghiên cứu và nhiều hơn nữa."
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "Miễn phí sử dụng. Không giới hạn."
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "Tải ngay"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "Hệ thống hóa suy nghĩ"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "Ghi lại một ý tưởng chợt đến hay xây dựng nội dung phức tạp. Deepink mang lại sự ngăn nắp và tập trung cho mọi thứ bạn viết."
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Liên kết"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "Liên kết cho phép tham chiếu đến bất kỳ ghi chú nào trong kho dữ liệu. Kết nối biên bản cuộc họp với quyết định, nghiên cứu với kết luận, kế hoạch với triển khai — mà không cần sao chép lại cùng một đoạn văn.\n\nLiên kết ngược hiển thị mọi ghi chú đang tham chiếu đến ghi chú bạn đang xem, giúp dễ dàng truy vết các mối liên hệ và điều hướng kiến thức một cách tự nhiên.\n\nLiên kết giữ ngữ cảnh được kết nối, để các ghi chú liên quan luôn dễ theo dõi."
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "Không gian làm việc"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "Tách biệt các lĩnh vực khác nhau trong cuộc sống mà không cần tạo nhiều kho dữ liệu.\n\nKhông gian làm việc tạo ra các khu vực riêng biệt bên trong một kho dữ liệu bảo mật duy nhất. Mở khóa kho dữ liệu một lần, sau đó chuyển đổi giữa các ngữ cảnh như Dự án Khách hàng, Nhật ký Cá nhân, Ghi chú Sức khỏe hay Học tập mà không lẫn lộn.\n\nMọi thứ được sắp xếp rõ ràng theo ngữ cảnh. Chia sẻ màn hình một cách tự tin — nội dung riêng tư sẽ không vô tình hiển thị.\n\nMột kho dữ liệu. Ranh giới rõ ràng. Không rào cản."
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "Lịch sử phiên bản"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "Mỗi ghi chú lưu giữ toàn bộ lịch sử thay đổi.\n\nDeepink tự động lưu các phiên bản, giúp bạn xem những gì đã thay đổi, khôi phục bản nháp trước đó, hoặc theo dõi quá trình phát triển của một ý tưởng. Dù được chỉnh sửa hôm qua hay một năm trước, không có gì quan trọng bị mất.\n\nCác phiên bản trước luôn sẵn sàng khi bạn cần."
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "Nhắc nhở"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "Đặt nhắc nhở cho bất kỳ ghi chú nào và nhận thông báo đúng thời điểm.\n\nĐặt nhắc theo dõi cho biên bản cuộc họp, hạn chót cho kế hoạch dự án, ngày gia hạn cho tài liệu, hoặc lịch kiểm tra cho mục tiêu cá nhân. Mỗi nhắc nhở gắn liền với chính ghi chú đó, không phải một tác vụ riêng trong ứng dụng khác.\n\nKhi đến lúc, bạn mở ghi chú với mọi chi tiết đầy đủ.\n\nNhắc nhở giúp bạn hành động dựa trên thông tin, không chỉ lưu trữ nó."
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "Thẻ phân cấp"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "Sắp xếp ghi chú bằng hệ thống thẻ có cấu trúc phân cấp rõ ràng.\n\nThẻ phân cấp cho phép tạo cấu trúc cha/con, để các chủ đề rộng có thể chứa các chủ đề con cụ thể. Ví dụ, Khách hàng có thể bao gồm tên từng khách hàng, và Tài chính có thể bao gồm Thuế, Hóa đơn và Báo cáo.\n\nKhác với thư mục, thẻ không loại trừ lẫn nhau. Một ghi chú có thể mang nhiều thẻ cùng lúc — khách hàng, tài chính và khoảng thời gian.\n\nThẻ phân cấp mang lại cả sự chính xác lẫn linh hoạt, ngay cả khi các chủ đề chồng chéo."
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Mã hóa"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "Toàn bộ kho dữ liệu được mã hóa. Một số ứng dụng chỉ mã hóa dữ liệu khi đồng bộ hoặc chỉ nội dung ghi chú. Deepink bảo vệ toàn bộ cấu trúc kho dữ liệu của bạn.\n\nGhi chú, tệp đính kèm và siêu dữ liệu của bạn không thể đọc được bởi bất kỳ ai ngoài bạn, kể cả chúng tôi. Ngay cả kích thước tệp cũng được che giấu để giảm thiểu rủi ro phân tích.\n\nNhững gì bạn lưu trữ luôn được bảo mật theo thiết kế."
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "Không gian cho mọi khía cạnh cuộc sống"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "Lưu giữ ghi chú hàng ngày, tài liệu đọc và kế hoạch trong một nơi riêng tư duy nhất. Chuyển đổi ngữ cảnh chỉ với một cú nhấp, duy trì sự ngăn nắp và tiếp tục viết mà không bị gián đoạn."
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "Tải Deepink"
+	}
+}

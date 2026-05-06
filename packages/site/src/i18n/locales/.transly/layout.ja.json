@@ -1,0 +1,82 @@
+{
+	"nav.download": {
+		"hash": "d6eafe82359100423c93c5ce53c352c1b51ca1e699215fcec3f5c5dd9bf12d24",
+		"translation": "ダウンロード"
+	},
+	"nav.features": {
+		"hash": "5697d03daef4de9cf8db7cb11755f71358a32b4acca94909a9d449f71040d2dd",
+		"translation": "機能"
+	},
+	"nav.docs": {
+		"hash": "7af023c43013b9a53fbff7dd4b5821588bba3319308878229740489152c43f6d",
+		"translation": "ドキュメント"
+	},
+	"nav.blog": {
+		"hash": "8c6bc099534a0251b576f6b88bd2db124ae9497c64bd9242e92a6aec23e6a73a",
+		"translation": "ブログ"
+	},
+	"nav.changelog": {
+		"hash": "ead07c84baac57a9542f388a07a2a5209456ce790b04251bc9bd7d179ea85cb1",
+		"translation": "変更履歴"
+	},
+	"links.followUs.title": {
+		"hash": "14fcf6f28ed65e0b2e20763301743f905f86e9bdf7ba89b9545df433901358bc",
+		"translation": "フォローする"
+	},
+	"links.introduction.title": {
+		"hash": "61e8d44ad423a4a0951b21b9d11440a1c23a881fe79335c367f63be251c64800",
+		"translation": "はじめに"
+	},
+	"links.introduction.content.download": {
+		"hash": "d6eafe82359100423c93c5ce53c352c1b51ca1e699215fcec3f5c5dd9bf12d24",
+		"translation": "ダウンロード"
+	},
+	"links.introduction.content.docs": {
+		"hash": "7af023c43013b9a53fbff7dd4b5821588bba3319308878229740489152c43f6d",
+		"translation": "ドキュメント"
+	},
+	"links.introduction.content.overview": {
+		"hash": "d4b1ea5708dd532930a85188b45aff6f0a3ed458500c7577e0127a538eb0d100",
+		"translation": "概要"
+	},
+	"links.learn.title": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "詳しく知る"
+	},
+	"links.learn.content.help": {
+		"hash": "b79cac926e0b2e347e72cc91d5174037c9e17ae7733fd7bdb570f71b10cd7bfc",
+		"translation": "ヘルプ"
+	},
+	"links.learn.content.changelog": {
+		"hash": "ead07c84baac57a9542f388a07a2a5209456ce790b04251bc9bd7d179ea85cb1",
+		"translation": "変更履歴"
+	},
+	"links.learn.content.about": {
+		"hash": "4efca0d10c5feb8e9b35eb1d994f2905bb71714e6a271f511d713b539ea5faa1",
+		"translation": "Deepinkについて"
+	},
+	"links.learn.content.security": {
+		"hash": "8f6fb4eb7f42c0e245e29e63f5b82cc3ba19852681d1ed9aed291f59cf75ec0e",
+		"translation": "セキュリティ"
+	},
+	"links.learn.content.roadmap": {
+		"hash": "92375f997ffe65ab7f04eeda8cb2d7f69ebea949a06132afd53c83fff276ef54",
+		"translation": "ロードマップ"
+	},
+	"links.resources.title": {
+		"hash": "e89b30aa1dc30a6ad8c34610689bede83b3ef645a24c3a84a0990826687fb735",
+		"translation": "リソース"
+	},
+	"links.resources.content.terms": {
+		"hash": "12a0015fa32217778863154566bce500732726db6ea596518712c12955d9a225",
+		"translation": "利用規約"
+	},
+	"links.resources.content.privacy": {
+		"hash": "506ff394621596dd88138642eddfc1e41833b3ae92d95e5c77c94327098abd9a",
+		"translation": "プライバシーポリシー"
+	},
+	"mobileMenuLabel": {
+		"hash": "b40b3713b43dc702682dc967ea5c2dbe20ae414c30baf100d162a8250a928065",
+		"translation": "メニューを開く"
+	}
+}

@@ -1,9 +1,23 @@
 {
 	"main": {
 		"download": "Download for <0/>",
-		"releaseDate": "Updated on {{date}}"
+		"releaseDate": "<strong>Version {{version}}</strong> released on {{date}}"
 	},
-	"links": {
-		"title": "All platforms"
+	"intro": "Your notes, always with you.",
+	"windows": {
+		"installer": "Windows Installer"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink is available via the <brew>Homebrew</brew> package manager, enabling seamless updates via <cmd-update/>.\nInstall Deepink from our official <tap/>:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian package (.deb)",
+		"flatpak": {
+			"instruction": "Deepink is available via the <flatpak>Flatpak</flatpak> package manager, enabling seamless updates via <cmd-update/>.\nAdd the Flatpak repository, then install Deepink:"
+		}
 	}
 }

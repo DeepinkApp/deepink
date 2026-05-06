@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "Un loc mai bun pentru notițele tale."
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "Deepink face procesul de notare ergonomic și plăcut."
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "Descarcă Deepink"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "Află mai multe"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "Un seif digital de încredere"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "Tot ce se află în seiful tău este criptat. Spre deosebire de multe alte aplicații, asta înseamnă cu adevărat <0>toate datele tale</0> — conținutul notițelor, fișierele și metadatele. Poți alege algoritmul în care ai încredere.\n\nDeepink este o aplicație <1>open source</1>, cu cod pe care îl poți verifica, nu doar în care să ai încredere."
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "Ergonomia"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "Deepink este conceput pentru a fi rapid în utilizarea zilnică, eliminând fricțiunile din sarcinile cele mai frecvente. Pentru majoritatea operațiunilor, necesită <0>cu până la 80% mai puține acțiuni</0> decât alte aplicații de notițe."
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "Seiful tău cuprinde totul"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "Păstrează totul în seiful tău. Spațiile de lucru și etichetele ierarhice te ajută să separi contextele și să găsești rapid ce ai nevoie — de la specificații de proiect, contracte și fragmente de cod, până la citate din cărți, jurnal zilnic, cercetare și multe altele."
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "Gratuit. Fără limite."
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "Descarcă acum"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "Structurează-ți gândirea"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "O idee rapidă sau un proiect complex. Deepink aduce ordine și claritate în tot ce notezi."
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Linkuri"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "Linkurile permit referirea oricărei notițe din seiful tău. Conectează notițele de ședință cu deciziile, cercetarea cu concluziile și planurile cu execuția — fără a duplica același paragraf.\n\nBacklinkurile arată fiecare notiță care face referire la notița pe care o vizualizezi, astfel încât conexiunile sunt ușor de urmărit și navigarea prin cunoștințele tale devine naturală.\n\nLinkurile mențin contextul conectat, iar notițele asociate rămân ușor de parcurs."
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "Spații de lucru"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "Diferitele zone ale vieții tale rămân separate, fără a crea mai multe seifuri.\n\nSpațiile de lucru creează zone dedicate într-un singur seif securizat. Deblochezi seiful o singură dată, apoi comuți între contexte precum Proiecte Clienți, Jurnal Personal, Notițe Medicale sau Învățare — fără a amesteca nimic.\n\nOrganizare clară, specifică fiecărui context. Poți partaja ecranul cu încredere: conținutul privat nu va apărea din greșeală.\n\nUn singur seif. Granițe clare. Zero fricțiune."
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "Versiuni ale notițelor"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "Fiecare notiță păstrează un istoric complet al modificărilor.\n\nDeepink salvează versiunile automat, astfel încât poți vedea ce s-a schimbat, restaura o versiune anterioară sau urmări cum s-a dezvoltat o idee în timp. Fie că a fost editată ieri sau acum un an, nimic important nu se pierde.\n\nVersiunile anterioare sunt mereu disponibile când ai nevoie de ele."
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "Remindere"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "Un reminder poate fi atașat oricărei notițe, cu notificare la momentul potrivit.\n\nRemindere de follow-up pentru notițele de ședință, termene limită pentru planuri de proiect, date de reînnoire pentru documente sau verificări periodice pentru obiective personale. Fiecare reminder rămâne asociat exact notiței respective, nu ca o sarcină separată într-o altă aplicație.\n\nCând vine momentul, deschizi notița cu toate detaliile la locul lor.\n\nReminderele te ajută să acționezi pe baza informațiilor tale, nu doar să le stochezi."
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "Etichete ierarhice"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "Notițele se organizează cu etichete care reflectă o ierarhie clară.\n\nEtichetele ierarhice permit crearea unei structuri părinte/copil, astfel încât subiectele generale pot conține subteme specifice. De exemplu, Clienți poate include nume individuale de clienți, iar Finanțe poate include Taxe, Facturi și Rapoarte.\n\nSpre deosebire de foldere, etichetele nu sunt exclusive. O notiță poate avea mai multe etichete simultan — client, finanțe și o perioadă de timp.\n\nEtichetele ierarhice oferă atât precizie, cât și flexibilitate, chiar și când subiectele se suprapun."
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Criptare"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "Întregul seif este criptat. Unele aplicații criptează datele doar în timpul sincronizării sau doar textul notiței. Deepink protejează structura completă a seifului.\n\nNotițele, atașamentele și metadatele tale sunt ilizibile pentru oricine altcineva, inclusiv pentru noi. Chiar și dimensiunile fișierelor sunt mascate pentru a reduce riscul de analiză.\n\nCe stochezi rămâne privat prin design."
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "Un spațiu pentru fiecare parte a vieții tale"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "Notițe zilnice, lecturi și planuri — toate într-un singur loc privat. Comutarea între contexte se face dintr-un click, organizarea rămâne clară, iar fluxul de scriere nu se întrerupe."
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "Descarcă Deepink"
+	}
+}

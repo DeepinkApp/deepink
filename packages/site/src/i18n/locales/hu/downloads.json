@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Letöltés <0/> rendszerre",
-		"releaseDate": "Frissítve: {{date}}"
+		"releaseDate": "<strong>{{version}} verzió</strong> megjelent: {{date}}"
 	},
 	"links": {
 		"title": "Minden platform"
+	},
+	"intro": "A jegyzeleteid mindig nálad vannak.",
+	"windows": {
+		"installer": "Windows telepítő"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "A Deepink a <brew>Homebrew</brew> csomagkezelő segítségével is elérhető, így a <cmd-update/> paranccsal egyszerűen frissíthető.\nTelepítse a Deepinket a hivatalos <tap/> forrásunkból:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian csomag (.deb)",
+		"flatpak": {
+			"instruction": "A Deepink a <flatpak>Flatpak</flatpak> csomagkezelő segítségével is elérhető, így a <cmd-update/> paranccsal egyszerűen frissíthető.\nAdja hozzá a Flatpak tárolót, majd telepítse a Deepinket:"
+		}
 	}
 }

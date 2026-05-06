@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "Un meilleur endroit pour vos notes."
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "Deepink rend la prise de notes ergonomique et agréable."
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "Télécharger Deepink"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "En savoir plus"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "Un coffre-fort numérique fiable"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "Tout dans votre coffre-fort est chiffré. Contrairement à beaucoup d'autres applications, cela concerne réellement <0>toutes vos données</0> : contenu des notes, fichiers et métadonnées. L'algorithme de chiffrement est à votre choix.\n\nDeepink est une application <1>open source</1>, avec un code que vous pouvez vérifier, pas seulement croire sur parole."
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "L'ergonomie"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "Deepink est conçu pour être rapide au quotidien, en éliminant les frictions des tâches les plus courantes. Pour la plupart des opérations, il nécessite <0>jusqu'à 80 % d'actions en moins</0> que les autres applications de prise de notes."
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "Votre coffre-fort accueille tout"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "Centralisez tout dans votre coffre-fort. Les espaces de travail et les tags imbriqués permettent de séparer les contextes et de retrouver rapidement ce dont vous avez besoin : cahiers des charges, contrats, extraits de code, citations de livres, journal quotidien, recherches, et bien plus."
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "Gratuit. Sans limites."
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "Télécharger maintenant"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "Structurez votre réflexion"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "Capturez une idée rapide ou construisez quelque chose de complexe. Deepink apporte ordre et clarté à tout ce que vous écrivez."
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Liens"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "Les liens permettent de référencer n'importe quelle note, où qu'elle se trouve dans votre coffre-fort. Reliez vos comptes rendus de réunion aux décisions, vos recherches aux conclusions, vos plans à leur exécution — sans dupliquer le même paragraphe.\n\nLes rétroliens affichent chaque note qui pointe vers celle que vous consultez, ce qui facilite le suivi des connexions et la navigation naturelle dans vos connaissances.\n\nLes liens maintiennent le contexte relié, pour que les notes associées restent faciles à suivre."
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "Espaces de travail"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "Séparez les différents domaines de votre vie sans créer plusieurs coffres-forts.\n\nLes espaces de travail créent des zones dédiées au sein d'un seul coffre-fort sécurisé. Déverrouillez votre coffre-fort une fois, puis passez d'un contexte à l'autre — Projets clients, Journal personnel, Notes de santé ou Apprentissage — sans rien mélanger.\n\nL'organisation reste claire et contextuelle. Le partage d'écran se fait en toute confiance : le contenu privé n'apparaît pas par erreur.\n\nUn seul coffre-fort. Des frontières nettes. Zéro friction."
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "Versions des notes"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "Chaque note conserve un historique complet de ses modifications.\n\nDeepink enregistre les versions automatiquement : vous pouvez voir ce qui a changé, restaurer un brouillon antérieur ou suivre l'évolution d'une idée au fil du temps. Qu'une modification date d'hier ou d'il y a un an, rien d'important n'est perdu.\n\nLes versions précédentes restent toujours accessibles quand vous en avez besoin."
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "Rappels"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "Un rappel peut être associé à n'importe quelle note, avec une notification au moment voulu.\n\nRappels de suivi pour des comptes rendus de réunion, échéances pour des plans de projet, dates de renouvellement pour des documents, ou points d'étape pour des objectifs personnels. Chaque rappel reste attaché à la note concernée, pas dans une autre application.\n\nLe moment venu, la note s'ouvre avec tous les détails en place.\n\nLes rappels permettent d'agir sur vos informations, pas seulement de les stocker."
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "Tags imbriqués"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "Les notes s'organisent grâce à des tags qui reflètent une hiérarchie claire.\n\nLes tags imbriqués permettent de créer une structure parent/enfant : les thèmes généraux contiennent des sous-thèmes précis. Par exemple, Clients peut inclure les noms de chaque client, et Finance peut regrouper Impôts, Factures et Rapports.\n\nContrairement aux dossiers, les tags ne sont pas exclusifs. Une note peut porter plusieurs tags à la fois — client, finance et période.\n\nLes tags imbriqués offrent à la fois précision et flexibilité, même quand les sujets se recoupent."
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Chiffrement"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "L'intégralité du coffre-fort est chiffrée. Certaines applications ne chiffrent les données que pendant la synchronisation ou se limitent au texte des notes. Deepink protège la structure complète de votre coffre-fort.\n\nVos notes, pièces jointes et métadonnées sont illisibles pour quiconque sauf vous, y compris pour nous. Même la taille des fichiers est masquée pour réduire le risque d'analyse.\n\nCe que vous stockez reste privé, par conception."
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "Un espace pour chaque facette de votre vie"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "Notes du quotidien, lectures et projets réunis dans un seul espace privé. Changez de contexte en un clic, restez organisé et continuez à écrire sans perdre le fil."
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "Obtenir Deepink"
+	}
+}

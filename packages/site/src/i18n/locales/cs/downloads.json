@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Stáhnout pro <0/>",
-		"releaseDate": "Aktualizováno {{date}}"
+		"releaseDate": "<strong>Verze {{version}}</strong> vydána dne {{date}}"
 	},
 	"links": {
 		"title": "Všechny platformy"
+	},
+	"intro": "Vaše poznámky, vždy po ruce.",
+	"windows": {
+		"installer": "Instalační soubor pro Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink lze nainstalovat přes správce balíčků <brew>Homebrew</brew>, což umožňuje snadné aktualizace pomocí <cmd-update/>.\nNainstalujte si Deepink z našeho oficiálního <tap/>:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian balíček (.deb)",
+		"flatpak": {
+			"instruction": "Deepink je dostupný přes správce balíčků <flatpak>Flatpak</flatpak>, což umožňuje snadné aktualizace pomocí <cmd-update/>.\nPřidejte repozitář Flatpak a poté nainstalujte Deepink:"
+		}
 	}
 }

@@ -1,8 +1,8 @@
-import React, { Fragment, type ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { BiCloudDownload } from 'react-icons/bi';
 import { FaApple, FaLinux, FaWindows } from 'react-icons/fa6';
-import { Box, Heading, HStack, SimpleGrid, VStack } from '@chakra-ui/react';
+import { SiFlatpak, SiHomebrew } from 'react-icons/si';
+import { Code, Heading, VStack } from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -10,6 +10,9 @@ import { WithLayout } from '../../components/Layout';
 import { Link, LinkContext } from '../../components/Link';
 import { Text } from '../../components/Text';
 import { TheRock } from '../../components/TheRock';
+
+import { PlatformDownloads } from './PlatformDownloads';
+import { SimpleCodeBlock } from './SimpleCodeBlock';
 
 const getPlatform = () => {
 	let os: 'Windows' | 'macOS' | 'Linux' = 'Windows';
@@ -49,15 +52,6 @@ export const PlatformName = () => {
 	);
 };
 
-type DownloadGroup = {
-	title: string;
-	icon: ReactNode;
-	links: {
-		title: string;
-		url: string;
-	}[];
-};
-
 export default WithLayout(function Page({
 	versions,
 }: {
@@ -79,7 +73,7 @@ export default WithLayout(function Page({
 		i18n: { language },
 	} = useTranslation('downloads');
 
-	const { downloads, linkMap } = useMemo(() => {
+	const { links, linkMap } = useMemo(() => {
 		const msi = versions[0].assets.find((version) =>
 			version.name.endsWith('.msi'),
 		)?.url;
@@ -97,30 +91,26 @@ export default WithLayout(function Page({
 			version.name.endsWith('.rpm'),
 		)?.url;
 
-		const downloads: DownloadGroup[] = [];
+		const links: Record<
+			string,
+			{
+				title: string;
+				url: string;
+			}[]
+		> = {
+			windows: [],
+			linux: [],
+			mac: [],
+		};
 
-		if (msi)
-			downloads.push({
-				title: 'Windows',
-				icon: <FaWindows />,
-				links: [{ title: 'Universal', url: msi }],
-			});
-		if (mac)
-			downloads.push({
-				title: 'Mac',
-				icon: <FaApple />,
-				links: [{ title: 'Apple Silicon', url: mac }],
-			});
+		if (msi) links.windows = [{ title: t('windows.installer'), url: msi }];
+		if (mac) links.mac = [{ title: t('mac.package'), url: mac }];
 		if (appImage || deb || rpm)
-			downloads.push({
-				title: 'Linux',
-				icon: <FaLinux />,
-				links: [
-					appImage ? { title: 'AppImage', url: appImage } : undefined,
-					deb ? { title: 'Deb', url: deb } : undefined,
-					rpm ? { title: 'Rpm', url: rpm } : undefined,
-				].filter((i) => i !== undefined),
-			});
+			links.linux = [
+				appImage ? { title: t('linux.appImage'), url: appImage } : undefined,
+				deb ? { title: t('linux.debPackage'), url: deb } : undefined,
+				rpm ? { title: 'Rpm', url: rpm } : undefined,
+			].filter((i) => i !== undefined);
 
 		const linkMap = {
 			Windows: msi,
@@ -129,10 +119,10 @@ export default WithLayout(function Page({
 		};
 
 		return {
-			downloads,
+			links,
 			linkMap,
 		};
-	}, [versions]);
+	}, [t, versions]);
 
 	const [downloadLink, setDownloadLink] = useState(linkMap.Windows);
 	useEffect(() => {
@@ -154,114 +144,132 @@ export default WithLayout(function Page({
 
 	return (
 		<LinkContext value="internal">
-			<VStack paddingBlock="8rem" justifyContent="center" gap="3rem">
-				<VStack gap="3rem">
-					<TheRock maxW="100%" width="350px" />
+			<VStack paddingBlock="8rem" justifyContent="center" gap="5rem">
+				<VStack gap="2rem">
+					<TheRock maxW="100%" width="250px" />
 
-					<VStack gap="1rem">
-						<Link
-							variant="button-primary"
-							href={downloadLink}
-							onClick={analytics.callback(
-								ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
-								{
-									context: 'Download page: Download Button',
-									fileName: downloadLink
-										? downloadLink.split('/').at(-1)
-										: undefined,
-								},
-							)}
+					{lastReleaseDate && (
+						<Text
+							variant="description"
+							fontFamily="monospace"
+							suppressHydrationWarning
+							textAlign="center"
 						>
 							<Trans
 								t={t}
-								i18nKey="main.download"
-								components={[<PlatformName key={0} />]}
-							/>
-						</Link>
-						{lastReleaseDate && (
-							<Text
-								variant="description"
-								fontFamily="monospace"
-								suppressHydrationWarning
-							>
-								{t('main.releaseDate', {
+								i18nKey="main.releaseDate"
+								values={{
 									date: lastReleaseDate,
 									version: versions[0].name,
-								})}
-							</Text>
+								}}
+							/>
+						</Text>
+					)}
+
+					<Link
+						variant="button-primary"
+						href={downloadLink}
+						onClick={analytics.callback(
+							ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
+							{
+								context: 'Download page: Download Button',
+								fileName: downloadLink
+									? downloadLink.split('/').at(-1)
+									: undefined,
+							},
 						)}
-					</VStack>
+					>
+						<Trans
+							t={t}
+							i18nKey="main.download"
+							components={[<PlatformName key={0} />]}
+						/>
+					</Link>
 				</VStack>
 
-				<VStack
-					maxWidth="500px"
-					width="100%"
-					padding="2rem"
-					border="3px solid"
-					borderColor="border.contrast"
-					borderRadius="6px"
-					gap="3rem"
-				>
-					<Heading>{t('links.title')}</Heading>
-					<SimpleGrid
-						columns={{ base: 1, sm: 2 }}
-						width="100%"
-						fontSize="1.4rem"
-						css={{
-							rowGap: '1.5rem',
+				<VStack width="100%" gap="3rem" fontSize="1.6rem">
+					<Heading as="h2" fontSize="2rem" lineHeight="1.3">
+						{t('intro')}
+					</Heading>
 
-							smDown: {
-								'& > *:not(:nth-last-child(-n + 1))': {
-									paddingBottom: '1.5rem',
-									borderBottom: '1px solid',
-									borderColor: 'border.thin',
-								},
-							},
-							sm: {
-								'& > *:not(:nth-last-child(-n + 2))': {
-									paddingBottom: '1.5rem',
-									borderBottom: '1px solid',
-									borderColor: 'border.thin',
-								},
-							},
-						}}
-					>
-						{downloads.map((section) => (
-							<Fragment key={section.title}>
-								<Text
-									textAlign="start"
-									fontSize="inherit"
-									alignItems="start"
-								>
-									<HStack as="span" gap=".3em" alignItems="center">
-										{section.icon}
-										<span>{section.title}</span>
-									</HStack>
-								</Text>
-								<VStack align="start">
-									{section.links.map((link) => (
-										<Link
-											key={link.url}
-											href={link.url}
-											fontSize="inherit"
-											onClick={analytics.callback(
-												ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
-												{
-													context: `Download page: Platform - ${section.title}`,
-													fileName: link.url.split('/').at(-1),
-												},
-											)}
-										>
-											<HStack gap=".3em">
-												<Box as={BiCloudDownload} />
-												<span>{link.title}</span>
-											</HStack>
-										</Link>
-									))}
-								</VStack>
-							</Fragment>
-						))}
-					</SimpleGrid>
+					<VStack maxWidth="100%" gap="6rem" align="start">
+						{links.windows.length > 0 && (
+							<PlatformDownloads
+								platform="Windows"
+								icon={<FaWindows />}
+								links={links.windows}
+							/>
+						)}
+
+						{links.mac.length > 0 && (
+							<PlatformDownloads
+								platform="macOS"
+								icon={<FaApple />}
+								links={links.mac}
+								content={
+									<VStack fontSize="1rem" align="start" gap="1rem">
+										<Heading margin={0}>
+											<SiHomebrew /> Homebrew
+										</Heading>
+										<Text whiteSpace="pre-line">
+											<Trans
+												t={t}
+												i18nKey="mac.homebrew.description"
+												components={{
+													brew: (
+														<Link href="https://brew.sh/" />
+													),
+													'cmd-update': (
+														<Code>brew upgrade</Code>
+													),
+													tap: (
+														<Link href="https://docs.brew.sh/Taps">
+															Homebrew Tap
+														</Link>
+													),
+												}}
+											/>
+										</Text>
+										<SimpleCodeBlock code="brew install deepinkapp/tap/deepink" />
+									</VStack>
+								}
+							/>
+						)}
+
+						{links.linux.length > 0 && (
+							<PlatformDownloads
+								platform="Linux"
+								icon={<FaLinux />}
+								links={links.linux}
+								content={
+									<VStack fontSize="1rem" align="start">
+										<Heading margin={0}>
+											<SiFlatpak /> Flatpak
+										</Heading>
+										<Text whiteSpace="pre-line">
+											<Trans
+												t={t}
+												i18nKey="linux.flatpak.instruction"
+												components={{
+													flatpak: (
+														<Link href="https://flatpak.org/" />
+													),
+													'cmd-update': (
+														<Code>flatpak update</Code>
+													),
+												}}
+											/>
+										</Text>
+										<SimpleCodeBlock
+											code={
+												'flatpak remote-add --user --if-not-exists deepink https://deepink.app/flatpak\nflatpak install --user deepink app.deepink.Deepink'
+											}
+										/>
+									</VStack>
+								}
+							/>
+						)}
+					</VStack>
 				</VStack>
 			</VStack>
 		</LinkContext>

@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "ჩამოტვირთვა <0/>-ისთვის",
-		"releaseDate": "განახლებულია {{date}}"
+		"releaseDate": "<strong>ვერსია {{version}}</strong> გამოვიდა {{date}}-ს"
 	},
 	"links": {
 		"title": "ყველა პლატფორმა"
+	},
+	"intro": "თქვენი ჩანაწერები ყოველთვის თქვენთან ერთად.",
+	"windows": {
+		"installer": "Windows-ის ინსტალატორი"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink ხელმისაწვდომია <brew>Homebrew</brew> პაკეტების მენეჯერის მეშვეობით, რაც უზრუნველყოფს მარტივ განახლებებს <cmd-update/>-ს საშუალებით.\nდააინსტალირეთ Deepink ჩვენი ოფიციალური <tap/>-დან:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian-ის პაკეტი (.deb)",
+		"flatpak": {
+			"instruction": "Deepink ხელმისაწვდომია <flatpak>Flatpak</flatpak> პაკეტების მენეჯერის მეშვეობით, რაც უზრუნველყოფს მარტივ განახლებებს <cmd-update/>-ს საშუალებით.\nდაამატეთ Flatpak-ის რეპოზიტორი და დააინსტალირეთ Deepink:"
+		}
 	}
 }

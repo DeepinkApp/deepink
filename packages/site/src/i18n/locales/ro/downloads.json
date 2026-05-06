@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Descarcă pentru <0/>",
-		"releaseDate": "Actualizat pe {{date}}"
+		"releaseDate": "<strong>Versiunea {{version}}</strong> a fost lansată pe {{date}}"
 	},
 	"links": {
 		"title": "Toate platformele"
+	},
+	"intro": "Notele tale, întotdeauna cu tine.",
+	"windows": {
+		"installer": "Installer Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink este disponibil prin managerul de pachete <brew>Homebrew</brew>, oferind actualizări automate prin <cmd-update/>.\nInstalează Deepink din repository-ul nostru oficial <tap/>:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Pachet Debian (.deb)",
+		"flatpak": {
+			"instruction": "Deepink este disponibil prin managerul de pachete <flatpak>Flatpak</flatpak>, oferind actualizări automate prin <cmd-update/>.\nAdaugă repository-ul Flatpak, apoi instalează Deepink:"
+		}
 	}
 }
