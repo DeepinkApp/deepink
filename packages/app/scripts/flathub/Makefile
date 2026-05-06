@@ -8,7 +8,7 @@ export
 # 
 # The scripts
 # 
-.PHONY: clean lint install repo-update
+.PHONY: clean lint install repo-build
 
 lint:
 	flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest app.deepink.Deepink.yaml
@@ -19,21 +19,13 @@ clean:
 install:
 	flatpak-builder --user --install --force-clean ${BUILD_DIR} ${APP_ID}.yaml
 
-repo-update: lint
-	flatpak-builder ${BUILD_DIR} ${APP_ID}.yaml --repo=${REPO_DIR} --gpg-sign=${GPG_SIGN_ID} --force-clean
-	flatpak build-update-repo --gpg-sign=${GPG_SIGN_ID} --generate-static-deltas ${REPO_DIR}
+repo-build: lint
+	flatpak-builder --force-clean ${BUILD_DIR} ${APP_ID}.yaml
+	flatpak build-export ${REPO_DIR} ${BUILD_DIR} stable
+	flatpak build-update-repo \
+		--gpg-sign=${GPG_SIGN_ID} \
+		--generate-static-deltas \
+		${REPO_DIR}
 
 repo-push:
 	rclone sync ${REPO_DIR}/ ${REPO_REMOTE} --transfers=32 --checksum --progress
-
-# 
-# The declarative description
-# 
-${BUILD_DIR}:
-	flatpak-builder ${BUILD_DIR} ${APP_ID}.yaml --force-clean
-
-${REPO_DIR}: ${BUILD_DIR}
-	flatpak build-export ${REPO_DIR} ${BUILD_DIR} stable
-
-deepink.flatpak: ${REPO_DIR}
-	flatpak build-bundle ${REPO_DIR} deepink.flatpak ${APP_ID} stable
