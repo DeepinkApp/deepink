@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 import { BiCloudDownload } from 'react-icons/bi';
-import { Box, Heading, HStack, VStack } from '@chakra-ui/react';
+import { Box, Heading, HStack, Stack, VStack } from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -38,11 +38,19 @@ export const PlatformDownloads = ({
 			</Heading>
 
 			<VStack align="center" gap="1.5rem" maxWidth="100%">
-				<HStack
+				<Stack
 					gap=".5rem"
 					align="start"
-					separator={<Box paddingInline=".1rem">|</Box>}
+					separator={
+						<Box
+							paddingInline=".1rem"
+							display={{ base: 'none', md: 'block' }}
+						>
+							|
+						</Box>
+					}
 					alignItems="center"
+					direction={{ base: 'column', md: 'row' }}
 				>
 					{links.map((link) => (
 						<Link
@@ -63,7 +71,7 @@ export const PlatformDownloads = ({
 							</HStack>
 						</Link>
 					))}
-				</HStack>
+				</Stack>
 
 				{content && <Box width="100%">{content}</Box>}
 			</VStack>
