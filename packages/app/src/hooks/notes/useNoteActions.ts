@@ -46,11 +46,11 @@ export const useNoteActions = () => {
 	);
 
 	const makeNotTemporary = useCallback(
-		(id: NoteId) => {
+		(id: NoteId, { isTemporary = false }: { isTemporary?: boolean } = {}) => {
 			dispatch(
 				workspaceActions.setTemporaryTab({
 					noteId: id,
-					isTemporary: false,
+					isTemporary,
 				}),
 			);
 		},

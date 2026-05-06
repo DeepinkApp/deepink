@@ -91,7 +91,9 @@ export const WorkspaceStateInitializer = () => {
 
 						// Restore temporary note
 						if (state.temporaryNoteId)
-							restoreTemporaryTab(state.temporaryNoteId);
+							restoreTemporaryTab(state.temporaryNoteId, {
+								isTemporary: true,
+							});
 					}
 				}
 

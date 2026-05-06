@@ -441,12 +441,12 @@ export const vaultsSlice = createSlice({
 			state,
 			{
 				payload: { vaultId, workspaceId, noteId, isTemporary },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId; isTemporary?: boolean }>>,
+			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId; isTemporary: boolean }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			if (isTemporary === false) {
+			if (!isTemporary) {
 				if (workspace.temporaryNoteId !== noteId) return;
 				workspace.temporaryNoteId = null;
 				return;

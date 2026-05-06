@@ -97,6 +97,7 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 							dispatch(
 								workspaceActions.setTemporaryTab({
 									noteId: note.id,
+									isTemporary,
 								}),
 							);
 						}
