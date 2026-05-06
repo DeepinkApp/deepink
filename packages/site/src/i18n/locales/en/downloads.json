@@ -1,24 +1,24 @@
 {
 	"main": {
 		"download": "Download for <0/>",
-		"releaseDate": "<strong>Version {{version}}</strong> released at {{date}}"
+		"releaseDate": "<strong>Version {{version}}</strong> released on {{date}}"
 	},
-	"intro": "Deepink is widely available on all major platforms.",
+	"intro": "Deepink is available on all major platforms.",
 	"windows": {
-		"installer": "Universal Installer"
+		"installer": "Windows Installer"
 	},
 	"mac": {
-		"package": "Apple Silicon",
+		"package": "Apple Silicon Installer",
 		"homebrew": {
-			"description": "Deepink is available via <brew>Homebrew</brew> packages manager. It makes updates smooth via <cmd-update/>.\nInstall Deepink from our official <tap/>:"
+			"description": "Deepink is available via the <brew>Homebrew</brew> package manager, enabling seamless updates via <cmd-update/>.\nInstall Deepink from our official <tap/>:"
 		}
 	},
 	"linux": {
 		"appImage": "AppImage",
-		"debPackage": "APT package (.deb)",
+		"debPackage": "Debian package (.deb)",
 		"flatpak": {
-			"addRepo": "Deepink is available via <flatpak>Flatpak</flatpak> packages manager. It makes updates smooth via <cmd-update/>.\nAdd the Deepink repository via:",
-			"install": "Then install Deepink via Flatpak:"
+			"addRepo": "Deepink is available via the <flatpak>Flatpak</flatpak> package manager, enabling seamless updates via <cmd-update/>.\nAdd the Deepink repository:",
+			"install": "Install Deepink via Flatpak:"
 		}
 	}
 }
