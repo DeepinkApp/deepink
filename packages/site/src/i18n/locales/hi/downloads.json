@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "<0/> के लिए डाउनलोड करें",
-		"releaseDate": "{{date}} को अपडेट किया गया"
+		"releaseDate": "<strong>वर्जन {{version}}</strong> {{date}} को जारी किया गया"
 	},
 	"links": {
 		"title": "सभी प्लेटफ़ॉर्म"
+	},
+	"intro": "Deepink सभी प्रमुख प्लेटफॉर्म्स पर उपलब्ध है।",
+	"windows": {
+		"installer": "Windows इंस्टॉलर"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink <brew>Homebrew</brew> पैकेज मैनेजर के ज़रिए उपलब्ध है, जिससे <cmd-update/> के माध्यम से आसानी से अपडेट किए जा सकते हैं।\nहमारे आधिकारिक <tap/> से Deepink इंस्टॉल करें:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian पैकेज (.deb)",
+		"flatpak": {
+			"instruction": "Deepink <flatpak>Flatpak</flatpak> पैकेज मैनेजर के ज़रिए उपलब्ध है, जिससे <cmd-update/> के माध्यम से आसानी से अपडेट किए जा सकते हैं।\nFlatpak रिपॉजिटरी जोड़ें, फिर Deepink इंस्टॉल करें:"
+		}
 	}
 }

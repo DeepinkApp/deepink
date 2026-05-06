@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "הורדה עבור <0/>",
-		"releaseDate": "עודכן בתאריך {{date}}"
+		"releaseDate": "<strong>גרסה {{version}}</strong> שוחררה בתאריך {{date}}"
 	},
 	"links": {
 		"title": "כל הפלטפורמות"
+	},
+	"intro": "Deepink זמינה בכל הפלטפורמות המובילות.",
+	"windows": {
+		"installer": "מתקין Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "ניתן להתקין את Deepink באמצעות מנהל החבילות <brew>Homebrew</brew>, המאפשר עדכונים פשוטים בעזרת <cmd-update/>.\nלהתקנת Deepink דרך ה-<tap/> הרשמי שלנו:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "חבילת Debian (.deb)",
+		"flatpak": {
+			"instruction": "ניתן להתקין את Deepink באמצעות מנהל החבילות <flatpak>Flatpak</flatpak>, המאפשר עדכונים פשוטים בעזרת <cmd-update/>.\nיש להוסיף את מאגר ה-Flatpak ולאחר מכן להתקין את Deepink:"
+		}
 	}
 }

@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "تحميل لـ <0/>",
-		"releaseDate": "آخر تحديث في {{date}}"
+		"releaseDate": "تم إصدار <strong>الإصدار {{version}}</strong> بتاريخ {{date}}"
 	},
 	"links": {
 		"title": "جميع المنصات"
+	},
+	"intro": "تطبيق Deepink متاح على جميع المنصات الرئيسية.",
+	"windows": {
+		"installer": "مثبّت Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "يمكن الحصول على Deepink عبر مدير الحزم <brew>Homebrew</brew>، مما يتيح تحديثات سلسة عبر <cmd-update/>.\nثبّت Deepink من المستودع الرسمي الخاص بنا <tap/>:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "حزمة Debian (.deb)",
+		"flatpak": {
+			"instruction": "Deepink متاح عبر مدير الحزم <flatpak>Flatpak</flatpak>، مما يتيح تحديثات سلسة عبر <cmd-update/>.\nأضف مستودع Flatpak، ثم ثبّت Deepink:"
+		}
 	}
 }

@@ -4,11 +4,39 @@
 		"translation": "<0/>版をダウンロード"
 	},
 	"main.releaseDate": {
-		"hash": "972ef1ecee3ad0bdc14afbe4b643da160b00e4d342d8795b343d72715bc583ae",
-		"translation": "最終更新日：{{date}}"
+		"hash": "dbb5b1206f6a47110220dea262b670a8c5cd9916b5c717b430ddaad99eda101f",
+		"translation": "<strong>バージョン {{version}}</strong> が {{date}} にリリースされました"
 	},
 	"links.title": {
 		"hash": "6d46bb346f19a539f1d3771f7f46bb39dbc1e77425a7c65f3492be2b72c761c5",
 		"translation": "対応プラットフォーム"
+	},
+	"intro": {
+		"hash": "5c0a9d03f3b828474e6b6e87e3a71b42761985978b8ca2a2159b997d6be9b390",
+		"translation": "Deepinkは主要なすべてのプラットフォームでご利用いただけます。"
+	},
+	"windows.installer": {
+		"hash": "27f0130350612989ced20e742dc0095bba19dc969e0d265fed62c06c305dd737",
+		"translation": "Windows インストーラー"
+	},
+	"mac.package": {
+		"hash": "6ad30660ad546afa36a33bec62ae86fa4478e352200d25b7f138bf831b54953e",
+		"translation": "Apple Silicon"
+	},
+	"mac.homebrew.description": {
+		"hash": "8444b0076e1d1dcddcf872c972ae928ecdd1abb9dfc7de5162eebbe37aa7dcfc",
+		"translation": "Deepinkはパッケージマネージャー <brew>Homebrew</brew> を通じて利用可能です。<cmd-update/> を使用してスムーズにアップデートできます。\n公式 <tap/> からDeepinkをインストールしてください："
+	},
+	"linux.appImage": {
+		"hash": "87eebc7b02335915e690ef4548bbfe64b7d644d57f2038bd80f52c3d369cf601",
+		"translation": "AppImage"
+	},
+	"linux.debPackage": {
+		"hash": "20d05e5c73bc74f0890baa4936b6aa687414682c84d702b90239d99bb841ee87",
+		"translation": "Debian パッケージ (.deb)"
+	},
+	"linux.flatpak.instruction": {
+		"hash": "1612f1ad7e1b9d91565c2f5df9f4ac335a2599cb544233f5badf83b208724249",
+		"translation": "Deepinkはパッケージマネージャー <flatpak>Flatpak</flatpak> を通じて利用可能です。<cmd-update/> を使用してスムーズにアップデートできます。\nFlatpakリポジトリを追加し、Deepinkをインストールしてください："
 	}
 }

@@ -74,5 +74,9 @@
 	"links.resources.content.privacy": {
 		"hash": "506ff394621596dd88138642eddfc1e41833b3ae92d95e5c77c94327098abd9a",
 		"translation": "Privacybeleid"
+	},
+	"mobileMenuLabel": {
+		"hash": "b40b3713b43dc702682dc967ea5c2dbe20ae414c30baf100d162a8250a928065",
+		"translation": "Open menu"
 	}
 }

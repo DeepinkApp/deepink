@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "下载 <0/> 版本",
-		"releaseDate": "更新于 {{date}}"
+		"releaseDate": "<strong>版本 {{version}}</strong> 已于 {{date}} 发布"
 	},
 	"links": {
 		"title": "所有平台"
+	},
+	"intro": "Deepink 已支持所有主流平台。",
+	"windows": {
+		"installer": "Windows 安装程序"
+	},
+	"mac": {
+		"package": "Apple Silicon 版本",
+		"homebrew": {
+			"description": "您可以通过 <brew>Homebrew</brew> 包管理器安装 Deepink，并使用 <cmd-update/> 进行无缝更新。\n请通过我们的官方 <tap/> 安装 Deepink："
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian 软件包 (.deb)",
+		"flatpak": {
+			"instruction": "您可以通过 <flatpak>Flatpak</flatpak> 包管理器安装 Deepink，并使用 <cmd-update/> 进行无缝更新。\n请先添加 Flatpak 仓库，然后安装 Deepink："
+		}
 	}
 }

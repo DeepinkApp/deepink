@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Unduh untuk <0/>",
-		"releaseDate": "Diperbarui pada {{date}}"
+		"releaseDate": "<strong>Versi {{version}}</strong> dirilis pada {{date}}"
 	},
 	"links": {
 		"title": "Semua platform"
+	},
+	"intro": "Deepink tersedia di berbagai platform utama.",
+	"windows": {
+		"installer": "Installer Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink tersedia melalui manajer paket <brew>Homebrew</brew>, memungkinkan pembaruan lancar melalui <cmd-update/>.\nInstal Deepink dari <tap/> resmi kami:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Paket Debian (.deb)",
+		"flatpak": {
+			"instruction": "Deepink tersedia melalui manajer paket <flatpak>Flatpak</flatpak>, memungkinkan pembaruan lancar melalui <cmd-update/>.\nTambahkan repositori Flatpak, lalu instal Deepink:"
+		}
 	}
 }

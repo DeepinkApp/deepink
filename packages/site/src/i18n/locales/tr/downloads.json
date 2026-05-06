@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "<0/> için indir",
-		"releaseDate": "{{date}} tarihinde güncellendi"
+		"releaseDate": "<strong>Sürüm {{version}}</strong>, {{date}} tarihinde yayınlandı"
 	},
 	"links": {
 		"title": "Tüm platformlar"
+	},
+	"intro": "Deepink tüm ana platformlarda mevcuttur.",
+	"windows": {
+		"installer": "Windows Yükleyici"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink, <cmd-update/> ile sorunsuz güncellemeler sağlayan <brew>Homebrew</brew> paket yöneticisi üzerinden kullanılabilir.\nDeepink'i resmi <tap/> adresimizden yükleyin:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian paketi (.deb)",
+		"flatpak": {
+			"instruction": "Deepink, <cmd-update/> ile sorunsuz güncellemeler sağlayan <flatpak>Flatpak</flatpak> paket yöneticisi üzerinden kullanılabilir.\nFlatpak deposunu ekleyin ve ardından Deepink'i yükleyin:"
+		}
 	}
 }

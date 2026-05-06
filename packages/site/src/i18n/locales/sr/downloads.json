@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Преузмите за <0/>",
-		"releaseDate": "Ажурирано {{date}}"
+		"releaseDate": "<strong class=\"version\">Verzija {{version}}</strong> objavljena {{date}}"
 	},
 	"links": {
 		"title": "Све платформе"
+	},
+	"intro": "Deepink je dostupan na svim glavnim platformama.",
+	"windows": {
+		"installer": "Windows instalater"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink je dostupan putem <brew>Homebrew</brew> menadžera paketa, što omogućava jednostavna ažuriranja pomoću <cmd-update/>.\nInstalirajte Deepink preko našeg zvaničnog <tap/> repozitorijuma:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian paket (.deb)",
+		"flatpak": {
+			"instruction": "Deepink je dostupan putem <flatpak>Flatpak</flatpak> menadžera paketa, što omogućava jednostavna ažuriranja pomoću <cmd-update/>.\nDodajte Flatpak repozitorijum, a zatim instalirajte Deepink:"
+		}
 	}
 }

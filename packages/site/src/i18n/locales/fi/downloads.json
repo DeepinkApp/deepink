@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Lataa – <0/>",
-		"releaseDate": "Päivitetty {{date}}"
+		"releaseDate": "<strong>Versio {{version}}</strong> julkaistu {{date}}"
 	},
 	"links": {
 		"title": "Kaikki alustat"
+	},
+	"intro": "Deepink on saatavilla kaikilla tärkeimmillä alustoilla.",
+	"windows": {
+		"installer": "Windows-asennusohjelma"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink on saatavilla <brew>Homebrew</brew>-pakettienhallinnan kautta, mikä mahdollistaa saumattomat päivitykset komennolla <cmd-update/>.\nAsenna Deepink virallisesta <tap/>-lähteestä:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian-paketti (.deb)",
+		"flatpak": {
+			"instruction": "Deepink on saatavilla <flatpak>Flatpak</flatpak>-pakettienhallinnan kautta, mikä mahdollistaa saumattomat päivitykset komennolla <cmd-update/>.\nLisää Flatpak-arkisto ja asenna Deepink:"
+		}
 	}
 }
