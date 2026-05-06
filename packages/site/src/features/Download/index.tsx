@@ -188,7 +188,7 @@ export default WithLayout(function Page({
 				</VStack>
 
 				<VStack width="100%" gap="3rem" fontSize="1.6rem">
-					<Heading as="h2" fontSize="2rem">
+					<Heading as="h2" fontSize="2rem" lineHeight="1.3">
 						{t('intro')}
 					</Heading>
 
