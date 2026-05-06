@@ -1,6 +1,6 @@
 import React, { type ReactNode } from 'react';
 import { BiCloudDownload } from 'react-icons/bi';
-import { Box, Heading, HStack, Stack, VStack } from '@chakra-ui/react';
+import { Box, Heading, HStack, List, VStack } from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -23,7 +23,7 @@ export const PlatformDownloads = ({
 	const analytics = useAnalytics();
 
 	return (
-		<VStack gap="1.5rem" maxWidth="100%">
+		<VStack gap="1.5rem" maxWidth="100%" align="start">
 			<Heading
 				as="h2"
 				textAlign="start"
@@ -37,41 +37,34 @@ export const PlatformDownloads = ({
 				</HStack>
 			</Heading>
 
-			<VStack align="center" gap="1.5rem" maxWidth="100%">
-				<Stack
-					gap=".5rem"
-					align="start"
-					separator={
-						<Box
-							paddingInline=".1rem"
-							display={{ base: 'none', md: 'block' }}
-						>
-							|
-						</Box>
-					}
-					alignItems="center"
-					direction={{ base: 'column', md: 'row' }}
+			<VStack align="start" gap="2rem" maxWidth="100%">
+				<List.Root
+					fontSize="1.2rem"
+					margin={0}
+					listStyle="none"
+					paddingInlineStart="1rem"
 				>
 					{links.map((link) => (
-						<Link
-							key={link.url}
-							href={link.url}
-							fontSize="inherit"
-							onClick={analytics.callback(
-								ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
-								{
-									context: `Download page: Platform - ${platform}`,
-									fileName: link.url.split('/').at(-1),
-								},
-							)}
-						>
-							<HStack gap=".3em">
-								<Box as={BiCloudDownload} />
-								<span>{link.title}</span>
-							</HStack>
-						</Link>
+						<List.Item key={link.url} _marker={{ color: 'inherit' }}>
+							<List.Indicator asChild>
+								<BiCloudDownload />
+							</List.Indicator>
+							<Link
+								href={link.url}
+								fontSize="inherit"
+								onClick={analytics.callback(
+									ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
+									{
+										context: `Download page: Platform - ${platform}`,
+										fileName: link.url.split('/').at(-1),
+									},
+								)}
+							>
+								{link.title}
+							</Link>
+						</List.Item>
 					))}
-				</Stack>
+				</List.Root>
 
 				{content && <Box width="100%">{content}</Box>}
 			</VStack>

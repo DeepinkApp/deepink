@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaApple, FaLinux, FaWindows } from 'react-icons/fa6';
 import { SiFlatpak, SiHomebrew } from 'react-icons/si';
-import { Code, Heading, Separator, VStack } from '@chakra-ui/react';
+import { Code, Heading, VStack } from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -144,58 +144,55 @@ export default WithLayout(function Page({
 
 	return (
 		<LinkContext value="internal">
-			<VStack paddingBlock="8rem" justifyContent="center" gap="3rem">
-				<VStack gap="3rem">
+			<VStack paddingBlock="8rem" justifyContent="center" gap="5rem">
+				<VStack gap="2rem">
 					<TheRock maxW="100%" width="250px" />
 
-					<VStack gap="1rem">
-						<Link
-							variant="button-primary"
-							href={downloadLink}
-							onClick={analytics.callback(
-								ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
-								{
-									context: 'Download page: Download Button',
-									fileName: downloadLink
-										? downloadLink.split('/').at(-1)
-										: undefined,
-								},
-							)}
+					{lastReleaseDate && (
+						<Text
+							variant="description"
+							fontFamily="monospace"
+							suppressHydrationWarning
+							textAlign="center"
 						>
 							<Trans
 								t={t}
-								i18nKey="main.download"
-								components={[<PlatformName key={0} />]}
+								i18nKey="main.releaseDate"
+								values={{
+									date: lastReleaseDate,
+									version: versions[0].name,
+								}}
 							/>
-						</Link>
-						{lastReleaseDate && (
-							<Text
-								variant="description"
-								fontFamily="monospace"
-								suppressHydrationWarning
-								textAlign="center"
-							>
-								<Trans
-									t={t}
-									i18nKey="main.releaseDate"
-									values={{
-										date: lastReleaseDate,
-										version: versions[0].name,
-									}}
-								/>
-							</Text>
+						</Text>
+					)}
+
+					<Link
+						variant="button-primary"
+						href={downloadLink}
+						onClick={analytics.callback(
+							ANALYTICS_EVENT.DOWNLOAD_BUTTON_CLICK,
+							{
+								context: 'Download page: Download Button',
+								fileName: downloadLink
+									? downloadLink.split('/').at(-1)
+									: undefined,
+							},
 						)}
-					</VStack>
+					>
+						<Trans
+							t={t}
+							i18nKey="main.download"
+							components={[<PlatformName key={0} />]}
+						/>
+					</Link>
 				</VStack>
 
-				<VStack width="100%" gap="5rem" fontSize="1.6rem">
-					<Text fontSize="1.2rem">{t('intro')}</Text>
+				<VStack width="100%" gap="3rem" fontSize="1.6rem">
+					<Heading as="h2" fontSize="2rem">
+						{t('intro')}
+					</Heading>
 
-					<VStack
-						maxWidth="100%"
-						gap="4rem"
-						separator={<Separator width="100%" />}
-					>
+					<VStack maxWidth="100%" gap="6rem" align="start">
 						{links.windows.length > 0 && (
 							<PlatformDownloads
 								platform="Windows"
