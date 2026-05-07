@@ -50,7 +50,7 @@ export const useUpdateNotes = () => {
 			sort: {
 				by: 'updatedAt',
 				order: 'desc',
-				pinned: notesView !== NOTES_VIEW.BIN && searchText.length === 0,
+				pinnedFirst: notesView !== NOTES_VIEW.BIN && searchText.length === 0,
 			},
 			search: searchText
 				? {
