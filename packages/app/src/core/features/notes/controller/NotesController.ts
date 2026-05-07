@@ -197,7 +197,7 @@ function getFetchQuery(
 					),
 				),
 			),
-		qb.sql`ORDER BY ${qb.set(orderQuery)}`,
+		orderQuery.length > 0 ? qb.sql`ORDER BY ${qb.set(orderQuery)}` : undefined,
 		limit ? qb.limit(limit) : undefined,
 		page && limit ? qb.offset((page - 1) * limit) : undefined,
 	);
