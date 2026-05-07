@@ -75,7 +75,7 @@ export type NotesControllerFetchOptions = {
 	sort?: {
 		by: NoteSortField;
 		order?: 'desc' | 'asc';
-		pinned?: boolean;
+		pinnedFirst?: boolean;
 	};
 };
 
