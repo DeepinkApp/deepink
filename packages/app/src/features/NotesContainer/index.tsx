@@ -126,7 +126,7 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 
 								// Notes open as temporary by default, so we only handle the non-temporary case
 								if (options?.temporary) {
-									noteActions.setTemporary(id, false);
+									noteActions.click(id, { isTemporary: false });
 								}
 							},
 						}}

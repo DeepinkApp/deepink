@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useVaultStorage } from '@features/files';
 import { getWorkspacePath } from '@features/files/paths';
+import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useUpdateNotes } from '@hooks/notes/useUpdateNotes';
 import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceActions, useWorkspaceData } from '@state/redux/vaults/hooks';
@@ -24,6 +25,7 @@ export const WorkspaceStateInitializer = () => {
 	const updateNoteList = useUpdateNotes();
 	const updateNoteListRef = useRef(updateNoteList);
 	updateNoteListRef.current = updateNoteList;
+	const { setTemporaryNote: restoreTemporaryNote } = useNoteActions();
 
 	const handleWorkspaceError = useWorkspaceError();
 
@@ -87,12 +89,8 @@ export const WorkspaceStateInitializer = () => {
 							workspaceActions.setActiveNote({ noteId: activeNote.id }),
 						);
 
-						// Restore temporary note
-						dispatch(
-							workspaceActions.setTemporaryTab({
-								noteId: state.temporaryNoteId,
-							}),
-						);
+						if (state.temporaryNoteId)
+							restoreTemporaryNote(state.temporaryNoteId);
 					}
 				}
 
@@ -119,6 +117,7 @@ export const WorkspaceStateInitializer = () => {
 		notesRegistry,
 		tagsRegistry,
 		handleWorkspaceError,
+		restoreTemporaryNote,
 	]);
 
 	return null;

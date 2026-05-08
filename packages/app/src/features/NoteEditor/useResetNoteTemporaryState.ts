@@ -12,7 +12,7 @@ export const useResetNoteTemporaryState = (
 	text: string,
 	title: string,
 ) => {
-	const { setTemporary } = useNoteActions();
+	const { setTemporaryNote } = useNoteActions();
 	const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
 
 	const isFirstRenderRef = useRef(true);
@@ -25,7 +25,7 @@ export const useResetNoteTemporaryState = (
 		// Ignore if the current note is not temporary
 		if (temporaryNote !== noteId) return;
 
-		setTemporary(noteId, false);
+		setTemporaryNote(null);
 
 		// Effect should only trigger on content change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
