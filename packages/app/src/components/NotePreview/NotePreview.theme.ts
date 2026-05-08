@@ -6,6 +6,8 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 	'title',
 	'text',
 	'meta',
+	'icon',
+	'header',
 ]).defineMultiStyleConfig({
 	baseStyle: {
 		root: {
@@ -21,6 +23,11 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 			gap: '0.2rem',
 			alignItems: 'start',
 			maxWidth: '100%',
+			width: '100%',
+		},
+		header: {
+			width: '100%',
+			justifyContent: 'space-between',
 		},
 		title: {
 			fontWeight: 'bold',
@@ -34,6 +41,11 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 			fontSize: '12px',
 			fontWeight: '500',
 			width: '100%',
+		},
+		icon: {
+			color: 'typography.secondary',
+			transform: 'rotate(45deg)',
+			fontSize: '12px',
 		},
 	},
 	variants: {
