@@ -1,27 +1,35 @@
 BUILD_DIR := build-dir
 REPO_DIR := flatpak-repo
 APP_ID := app.deepink.Deepink
+REPO_BRANCH = stable
 
-# 
-# The scripts
-# 
-.PHONY: install clean
+-include .env
+export
 
-# Install dev build locally
-install:
-	flatpak-builder --user --install --force-clean ${BUILD_DIR} ${APP_ID}.yaml
+.PHONY: clean dev-install repo-export repo-update repo-push repo-pull
 
 clean:
-	rm -rf ./${BUILD_DIR} ./${REPO_DIR}
+	rm -rf $(BUILD_DIR) $(REPO_DIR)
 
-# 
-# The declarative description
-# 
-${BUILD_DIR}:
-	flatpak-builder ${BUILD_DIR} ${APP_ID}.yaml --force-clean
+# Dev commands for QA and local testing
+dev-install:
+	flatpak-builder --user --install --force-clean ${BUILD_DIR} ${APP_ID}.yaml
 
-${REPO_DIR}: ${BUILD_DIR}
-	flatpak build-export ${REPO_DIR} ${BUILD_DIR} stable
+repo-export:
+	flatpak-builder --force-clean $(BUILD_DIR) $(APP_ID).yaml
+	flatpak build-export \
+		--gpg-sign=$(GPG_SIGN_ID) \
+		$(REPO_DIR) $(BUILD_DIR) ${REPO_BRANCH}
 
-deepink.flatpak: ${REPO_DIR}
-	flatpak build-bundle ${REPO_DIR} deepink.flatpak ${APP_ID} stable
+repo-update: repo-export
+	flatpak build-update-repo \
+		--gpg-sign=$(GPG_SIGN_ID) \
+		--generate-static-deltas \
+		--prune \
+		$(REPO_DIR)
+
+repo-push:
+	rclone sync $(REPO_DIR)/ $(REPO_REMOTE) --transfers=32 --checksum --progress
+
+repo-pull:
+	rclone sync $(REPO_REMOTE) $(REPO_DIR) --transfers=32 --checksum --progress

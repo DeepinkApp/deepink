@@ -1,0 +1,17 @@
+{
+	"files.watcherExclude": {
+		"**/build-dir/**": true,
+		"**/.flatpak-builder/**": true,
+		"**/flatpak-repo/**": true
+	},
+	"search.exclude": {
+		"**/build-dir/**": true,
+		"**/.flatpak-builder/**": true,
+		"**/flatpak-repo/**": true
+	},
+	"files.exclude": {
+		"**/build-dir": true,
+		"**/.flatpak-builder/**": true,
+		"**/flatpak-repo/**": true
+	}
+}

@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "下載 <0/> 版本",
-		"releaseDate": "更新日期：{{date}}"
+		"releaseDate": "<strong>版本 {{version}}</strong> 已於 {{date}} 發佈"
 	},
 	"links": {
 		"title": "所有平台"
+	},
+	"intro": "隨時隨地，紀錄您的思緒。",
+	"windows": {
+		"installer": "Windows 安裝程式"
+	},
+	"mac": {
+		"package": "Apple Silicon 版本",
+		"homebrew": {
+			"description": "您可以使用 <brew>Homebrew</brew> 套件管理工具安裝 Deepink，並透過 <cmd-update/> 進行無縫更新。\n請從我們的官方 <tap/> 安裝 Deepink："
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian 套件 (.deb)",
+		"flatpak": {
+			"instruction": "您可以使用 <flatpak>Flatpak</flatpak> 套件管理工具安裝 Deepink，並透過 <cmd-update/> 進行無縫更新。\n請先新增 Flatpak 儲存庫，然後安裝 Deepink："
+		}
 	}
 }

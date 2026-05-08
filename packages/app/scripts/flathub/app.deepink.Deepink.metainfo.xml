@@ -12,6 +12,12 @@
   <name>Deepink</name>
   <summary>Snapshot Your Thoughts</summary>
 
+  <developer id="net.vitonsky">
+    <name>Robert Vitonsky</name>
+  </developer>
+
+  <update_contact>contact@deepink.app</update_contact>
+
   <description>
     <p>
       Deepink is an open-source, privacy-first note-taking application focused
@@ -63,7 +69,7 @@
   </screenshots>
 
   <releases>
-    <release version="0.1.3" date="2026-05-04">
+    <release version="0.1.3-preview.1" date="2026-05-04">
       <description>
         <p>Initial public release of Deepink.</p>
       </description>

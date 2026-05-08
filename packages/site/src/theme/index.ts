@@ -93,6 +93,11 @@ const customConfig = defineConfig({
 			},
 		},
 		recipes: {
+			code: defineRecipe({
+				defaultVariants: {
+					variant: 'outline',
+				},
+			}),
 			link: linkRecipe,
 			text: textRecipe,
 			heading: defineRecipe({

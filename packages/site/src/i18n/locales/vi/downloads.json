@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Tải về cho <0/>",
-		"releaseDate": "Cập nhật ngày {{date}}"
+		"releaseDate": "<strong>Phiên bản {{version}}</strong> đã được phát hành vào ngày {{date}}"
 	},
 	"links": {
 		"title": "Tất cả nền tảng"
+	},
+	"intro": "Ghi chú của bạn, luôn bên bạn.",
+	"windows": {
+		"installer": "Bộ cài Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Có thể cài đặt Deepink thông qua trình quản lý gói <brew>Homebrew</brew>, giúp cập nhật dễ dàng bằng lệnh <cmd-update/>.\nCài đặt Deepink từ <tap/> chính thức của chúng tôi:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Gói Debian (.deb)",
+		"flatpak": {
+			"instruction": "Có thể cài đặt Deepink thông qua trình quản lý gói <flatpak>Flatpak</flatpak>, giúp cập nhật dễ dàng bằng lệnh <cmd-update/>.\nThêm kho lưu trữ Flatpak, sau đó cài đặt Deepink:"
+		}
 	}
 }

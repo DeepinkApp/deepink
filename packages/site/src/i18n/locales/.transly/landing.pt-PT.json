@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "Um lugar melhor para as suas notas."
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "O Deepink torna a escrita de notas ergonómica e agradável."
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "Transferir o Deepink"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "Saber mais"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "Um cofre em que pode confiar"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "Tudo no seu cofre é encriptado. Ao contrário de muitas outras aplicações, isto significa realmente <0>todos os seus dados</0>, incluindo o conteúdo das notas, ficheiros e metadados. Pode escolher o algoritmo em que confia.\n\nO Deepink é uma aplicação <1>open source</1>, com código que pode verificar, não apenas confiar."
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "A ergonomia"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "O Deepink foi concebido para ser rápido no uso diário, eliminando o atrito das tarefas mais comuns. Para a maioria das tarefas, necessita de <0>até 80% menos ações</0> do que outras aplicações de notas."
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "O seu cofre acomoda tudo"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "Guarde tudo no seu cofre. Os espaços de trabalho e as etiquetas hierárquicas ajudam a separar contextos e a encontrar rapidamente o que precisa — desde especificações de projetos, contratos e excertos de código até citações de livros, um diário pessoal, investigação e muito mais."
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "Gratuito. Sem limites."
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "Transferir agora"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "Estruture o seu pensamento"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "Capture uma ideia rápida ou construa algo complexo. O Deepink traz ordem e foco a tudo o que escreve."
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Ligações"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "As ligações permitem referenciar qualquer nota em qualquer parte do seu cofre. Conecte notas de reuniões a decisões, investigação a conclusões e planos a execução, sem duplicar o mesmo parágrafo.\n\nAs ligações inversas mostram todas as notas que apontam para a nota que está a visualizar, facilitando o rastreio de conexões e a navegação natural pelo seu conhecimento.\n\nAs ligações mantêm o contexto conectado, para que as notas relacionadas sejam fáceis de seguir."
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "Espaços de trabalho"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "Mantenha diferentes áreas da sua vida separadas sem criar múltiplos cofres.\n\nOs espaços de trabalho criam ambientes focados dentro de um único cofre seguro. Desbloqueie o cofre uma vez e alterne entre contextos como Projetos de Clientes, Diário Pessoal, Notas de Saúde ou Aprendizagem, sem misturar nada.\n\nOrganização clara e específica por contexto. Partilhe o ecrã com confiança: conteúdo privado não aparece por engano.\n\nUm cofre. Limites claros. Zero atrito."
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "Versões das notas"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "Cada nota mantém um histórico completo de alterações.\n\nO Deepink guarda versões automaticamente, permitindo ver o que mudou, restaurar um rascunho anterior ou acompanhar a evolução de uma ideia ao longo do tempo. Quer tenha sido editada ontem ou há um ano, nada de importante se perde.\n\nAs versões anteriores estão sempre disponíveis quando precisa delas."
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "Lembretes"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "Associe um lembrete a qualquer nota e receba uma notificação no momento certo.\n\nDefina lembretes de acompanhamento para notas de reuniões, prazos para planos de projetos, datas de renovação de documentos ou verificações de objetivos pessoais. Cada lembrete fica associado à nota exata, não como uma tarefa separada noutra aplicação.\n\nQuando chegar a hora, a nota abre-se com todos os detalhes no lugar.\n\nOs lembretes ajudam a agir com base na sua informação, não apenas a guardá-la."
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "Etiquetas hierárquicas"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "Organize as suas notas com etiquetas que refletem uma hierarquia clara.\n\nAs etiquetas hierárquicas permitem criar uma estrutura de pai/filho, para que temas abrangentes possam conter subtemas específicos. Por exemplo, Clientes pode incluir nomes de clientes individuais, e Finanças pode incluir Impostos, Faturas e Relatórios.\n\nAo contrário das pastas, as etiquetas não são exclusivas. Uma nota pode ter várias etiquetas em simultâneo — cliente, finanças e um período temporal.\n\nAs etiquetas hierárquicas oferecem precisão e flexibilidade, mesmo quando os temas se sobrepõem."
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Encriptação"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "O cofre inteiro é encriptado. Algumas aplicações encriptam apenas os dados durante a sincronização ou o texto das notas. O Deepink protege a estrutura completa do seu cofre.\n\nAs suas notas, anexos e metadados são ilegíveis para qualquer pessoa que não seja você — incluindo nós. Até os tamanhos dos ficheiros são ofuscados para reduzir o risco de análise.\n\nO que guarda permanece privado por conceção."
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "Um espaço para cada parte da sua vida"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "Mantenha notas do dia a dia, leituras e planos num único lugar privado. Alterne entre contextos com um clique, mantenha a organização e continue a escrever sem perder o ritmo."
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "Obter o Deepink"
+	}
+}

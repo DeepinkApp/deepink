@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "دانلود برای <0/>",
-		"releaseDate": "به‌روزرسانی در {{date}}"
+		"releaseDate": "<strong>نسخه {{version}}</strong> در تاریخ {{date}} منتشر شد"
 	},
 	"links": {
 		"title": "همه پلتفرم‌ها"
+	},
+	"intro": "یادداشت‌های شما، همیشه همراهتان.",
+	"windows": {
+		"installer": "نصب‌کننده ویندوز"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink از طریق مدیریت بسته <brew>Homebrew</brew> در دسترس است که به‌روزرسانی آسان را از طریق <cmd-update/> فراهم می‌کند.\nنصب Deepink از طریق مخزن رسمی ما <tap/>:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "بسته دبیان (.deb)",
+		"flatpak": {
+			"instruction": "Deepink از طریق مدیریت بسته <flatpak>Flatpak</flatpak> در دسترس است که به‌روزرسانی آسان را از طریق <cmd-update/> فراهم می‌کند.\nابتدا مخزن Flatpak را اضافه کرده و سپس Deepink را نصب کنید:"
+		}
 	}
 }

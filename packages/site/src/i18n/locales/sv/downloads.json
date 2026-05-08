@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Ladda ner för <0/>",
-		"releaseDate": "Uppdaterad {{date}}"
+		"releaseDate": "<strong>Version {{version}}</strong> släpptes {{date}}"
 	},
 	"links": {
 		"title": "Alla plattformar"
+	},
+	"intro": "Dina anteckningar, alltid med dig.",
+	"windows": {
+		"installer": "Windows-installationsprogram"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Deepink finns tillgängligt via pakethanteraren <brew>Homebrew</brew>, vilket möjliggör smidiga uppdateringar via <cmd-update/>.\nInstallera Deepink från vår officiella <tap/>:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Debian-paket (.deb)",
+		"flatpak": {
+			"instruction": "Deepink finns tillgängligt via pakethanteraren <flatpak>Flatpak</flatpak>, vilket möjliggör smidiga uppdateringar via <cmd-update/>.\nLägg till Flatpak-arkivet och installera sedan Deepink:"
+		}
 	}
 }

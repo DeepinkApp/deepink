@@ -1,9 +1,26 @@
 {
 	"main": {
 		"download": "Λήψη για <0/>",
-		"releaseDate": "Ενημερώθηκε στις {{date}}"
+		"releaseDate": "<strong>Έκδοση {{version}}</strong> κυκλοφόρησε στις {{date}}"
 	},
 	"links": {
 		"title": "Όλες οι πλατφόρμες"
+	},
+	"intro": "Οι σημειώσεις σας, πάντα μαζί σας.",
+	"windows": {
+		"installer": "Εγκαταστάτης Windows"
+	},
+	"mac": {
+		"package": "Apple Silicon",
+		"homebrew": {
+			"description": "Το Deepink είναι διαθέσιμο μέσω του διαχειριστή πακέτων <brew>Homebrew</brew>, επιτρέποντας άμεσες ενημερώσεις με το <cmd-update/>.\nΕγκαταστήστε το Deepink από το επίσημο <tap/> μας:"
+		}
+	},
+	"linux": {
+		"appImage": "AppImage",
+		"debPackage": "Πακέτο Debian (.deb)",
+		"flatpak": {
+			"instruction": "Το Deepink είναι διαθέσιμο μέσω του διαχειριστή πακέτων <flatpak>Flatpak</flatpak>, επιτρέποντας άμεσες ενημερώσεις με το <cmd-update/>.\nΠροσθέστε το αποθετήριο Flatpak και στη συνέχεια εγκαταστήστε το Deepink:"
+		}
 	}
 }

@@ -91,6 +91,7 @@ const LayoutContent = ({
 										ANALYTICS_EVENT.MOBILE_MENU,
 										{ state: 'opened' },
 									)}
+									aria-label={t('mobileMenuLabel')}
 								>
 									<Box as={IoIosMenu} boxSize="100%" />
 								</IconButton>

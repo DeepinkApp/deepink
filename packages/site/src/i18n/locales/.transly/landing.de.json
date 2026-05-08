@@ -1,0 +1,118 @@
+{
+	"hero.title": {
+		"hash": "fde8f58540e9a204504c9dc0b845581a6f24817c1337980db56da1f468a8958b",
+		"translation": "Ein besserer Ort für Ihre Notizen."
+	},
+	"hero.subtitle": {
+		"hash": "e61ca54845d68221e1c9cfa9b02d3f20919af2ebef8cd5f6f829f7fed24c7fa8",
+		"translation": "Deepink macht das Notieren ergonomisch und angenehm."
+	},
+	"hero.button.get": {
+		"hash": "3467a0f15c8951b5a7447fa2cc7cb75c8363a553f1c702954fc0fd80b4faf411",
+		"translation": "Deepink herunterladen"
+	},
+	"hero.button.features": {
+		"hash": "1445799c033a2d17e2bad5d8610879e71ff0d73a8a3c2b932b43ad0449dac3a1",
+		"translation": "Mehr erfahren"
+	},
+	"highlights.content.encryption.title": {
+		"hash": "178f387401b1756e6fbf077e3d3b560c53a8bc4e765bd8e1f347ca09c0f11d12",
+		"translation": "Ein Tresor, dem Sie vertrauen können"
+	},
+	"highlights.content.encryption.text": {
+		"hash": "db359e6588b5a74c0ee74a2d5c829a2db17f30d1b5efe78419b6c354eea11bda",
+		"translation": "Alles in Ihrem Tresor ist verschlüsselt. Anders als bei vielen anderen Apps bedeutet das wirklich <0>alle Ihre Daten</0> – Notizeninhalt, Dateien und Metadaten. Sie können den Algorithmus wählen, dem Sie vertrauen.\n\nDeepink ist eine <1>Open-Source</1>-App mit Code, den Sie selbst überprüfen können – nicht nur vertrauen müssen."
+	},
+	"highlights.content.workflow.title": {
+		"hash": "aa31459fe9f6fa5b1793c133c70da23c70c27f0f144d1b955856f8cfd46bf81d",
+		"translation": "Die Ergonomie"
+	},
+	"highlights.content.workflow.text": {
+		"hash": "7d448a5abcf1d78c6c5cc90e77c054e8cde08ccea36ff3019124b583c699137d",
+		"translation": "Deepink ist für den schnellen Einsatz im Alltag gebaut – mit möglichst wenig Reibung bei den häufigsten Aufgaben. Für die meisten Aktionen braucht es <0>bis zu 80 % weniger Schritte</0> als andere Notiz-Apps."
+	},
+	"highlights.content.universality.title": {
+		"hash": "566f0d75f532efe2d15bd788956a76583d1d362013380585f5280c84990c7e0e",
+		"translation": "Ihr Tresor fasst alles"
+	},
+	"highlights.content.universality.text": {
+		"hash": "735af58865fe65e0edebf903dbbabd1fece440df6ab09b418eaac1b9ec1fab51",
+		"translation": "Bewahren Sie alles in Ihrem Tresor auf. Arbeitsbereiche und verschachtelte Tags helfen, Kontexte zu trennen und schnell zu finden, was Sie brauchen – von Projektspezifikationen, Verträgen und Code-Snippets bis hin zu Buchzitaten, Tagebuch, Recherchen und mehr."
+	},
+	"highlights.cta.text": {
+		"hash": "7f7b5b4bae19eaddcd78102b2d47b40e81b1902730c5af583ccfcbef5d683b13",
+		"translation": "Kostenlos nutzbar. Ohne Einschränkungen."
+	},
+	"highlights.cta.button": {
+		"hash": "003977f0b57db89d336bbcc42c2cd551a67d477e35685bdd385f2cac2425880b",
+		"translation": "Jetzt herunterladen"
+	},
+	"features.intro.title": {
+		"hash": "810025da166393974ad7cffcd34a4831a83638a8b8b203a9d25107dece5acccb",
+		"translation": "Struktur für Ihre Gedanken"
+	},
+	"features.intro.text": {
+		"hash": "b36d4e4c16daf7cd9b837161db7eb99175fb60bf1c3c418ca49d6a4450fdeb2a",
+		"translation": "Einen schnellen Gedanken festhalten oder etwas Komplexes aufbauen. Deepink bringt Ordnung und Fokus in alles, was Sie aufschreiben."
+	},
+	"features.content.links.title": {
+		"hash": "9024c197d84940e47ff6aa631b7711c4cbff4e7fb2fe1a574a3592b662983a0d",
+		"translation": "Links"
+	},
+	"features.content.links.text": {
+		"hash": "02a7575fe026c0640f38845055b89a9239bd6f87083d510fa7fc95989ba1d27b",
+		"translation": "Mit Links können Sie jede Notiz überall in Ihrem Tresor referenzieren. Besprechungsnotizen mit Entscheidungen verbinden, Recherchen mit Ergebnissen, Pläne mit der Umsetzung – ohne denselben Absatz zu duplizieren.\n\nBacklinks zeigen jede Notiz, die auf die aktuell geöffnete Notiz verweist. So lassen sich Zusammenhänge leicht nachverfolgen und Wissen natürlich navigieren.\n\nLinks halten den Kontext verbunden – verwandte Notizen bleiben leicht nachvollziehbar."
+	},
+	"features.content.workspaces.title": {
+		"hash": "1377264ba3b0a7172621971b49ac3e82e33b64b14328d9275d02807e67ea8460",
+		"translation": "Arbeitsbereiche"
+	},
+	"features.content.workspaces.text": {
+		"hash": "e2b0198de732200adc68fec1af0edb3f6a5118b7da9f872bb5ea07cdb3076f09",
+		"translation": "Verschiedene Lebensbereiche lassen sich trennen, ohne mehrere Tresore anlegen zu müssen.\n\nArbeitsbereiche schaffen fokussierte Bereiche innerhalb eines einzigen sicheren Tresors. Tresor einmal entsperren, dann zwischen Kontexten wie Kundenprojekte, Persönliches Tagebuch, Gesundheitsnotizen oder Lernen wechseln – ohne Vermischung.\n\nAlles bleibt organisiert und kontextbezogen. Bildschirm teilen mit gutem Gewissen: Private Inhalte tauchen nicht versehentlich auf.\n\nEin Tresor. Klare Grenzen. Kein Aufwand."
+	},
+	"features.content.history.title": {
+		"hash": "f610d536a33dd96095e89ef506d61cecc2ad1f8419822fc38e83bc634239298c",
+		"translation": "Notizversionen"
+	},
+	"features.content.history.text": {
+		"hash": "6034cc5924963c3d1a277b533a092a4a462740545567d3db1e57e56f7674d909",
+		"translation": "Jede Notiz bewahrt eine vollständige Änderungshistorie.\n\nDeepink speichert Versionen automatisch – so lässt sich nachvollziehen, was sich geändert hat, ein früherer Entwurf wiederherstellen oder die Entwicklung einer Idee über die Zeit verfolgen. Ob gestern oder vor einem Jahr bearbeitet – nichts Wichtiges geht verloren.\n\nFrühere Versionen sind jederzeit verfügbar, wenn sie gebraucht werden."
+	},
+	"features.content.reminders.title": {
+		"hash": "7971dd7526694c6ae3f2db570e44bfaa79cf30a63067a47f161b6e62c5426ef8",
+		"translation": "Erinnerungen"
+	},
+	"features.content.reminders.text": {
+		"hash": "18060f1732ec807e2f5a47a6902245bd2a091f4ad8b8fd7296681bb71472d4fe",
+		"translation": "An jede Notiz lässt sich eine Erinnerung anhängen – mit Benachrichtigung zum richtigen Zeitpunkt.\n\nFollow-up-Erinnerungen für Besprechungsnotizen, Fristen für Projektpläne, Verlängerungsdaten für Dokumente oder Check-ins für persönliche Ziele. Jede Erinnerung bleibt bei der zugehörigen Notiz – nicht als separate Aufgabe in einer anderen App.\n\nWenn es so weit ist, öffnet sich die Notiz mit allen Details an Ort und Stelle.\n\nErinnerungen helfen, Informationen nicht nur zu speichern, sondern auch danach zu handeln."
+	},
+	"features.content.tags.title": {
+		"hash": "162ce352e7897437a7a2bf7885d3d5a004f940b168480b92a9b319993e7c9abc",
+		"translation": "Verschachtelte Tags"
+	},
+	"features.content.tags.text": {
+		"hash": "9e5ac0dd8d23b0ac427a6683aed478bda161ba485146be4f14fa20a6ae1648e1",
+		"translation": "Notizen lassen sich mit Tags organisieren, die eine klare Hierarchie abbilden.\n\nVerschachtelte Tags ermöglichen eine Eltern-Kind-Struktur: Übergeordnete Themen können spezifische Unterthemen enthalten. Zum Beispiel kann Kunden einzelne Kundennamen umfassen, und Finanzen kann Steuern, Rechnungen und Berichte enthalten.\n\nAnders als Ordner sind Tags nicht exklusiv. Eine Notiz kann mehrere Tags gleichzeitig tragen – Kunde, Finanzen und einen Zeitraum.\n\nVerschachtelte Tags bieten Präzision und Flexibilität, auch wenn sich Themen überschneiden."
+	},
+	"features.content.encryption.title": {
+		"hash": "82f4e719a19ce7e573734543f366f55117e4048116b3892adcd1831fb1775d8f",
+		"translation": "Verschlüsselung"
+	},
+	"features.content.encryption.text": {
+		"hash": "eba7bfdd067d90c0cacd953b5ef1e87c8df833626b48bf76da36d724742b32b8",
+		"translation": "Der gesamte Tresor ist verschlüsselt. Manche Apps verschlüsseln nur Daten während der Synchronisierung oder den Notiztext. Deepink schützt die vollständige Struktur Ihres Tresors.\n\nIhre Notizen, Anhänge und Metadaten sind für niemanden lesbar außer für Sie – auch nicht für uns. Selbst Dateigrößen werden verschleiert, um das Risiko einer Analyse zu reduzieren.\n\nWas Sie speichern, bleibt privat – by Design."
+	},
+	"cta.title": {
+		"hash": "d64204f836cbe6842b322bb59ab577ce2030657eee385fb40068c239cc954ba9",
+		"translation": "Ein Ort für jeden Bereich Ihres Lebens"
+	},
+	"cta.text": {
+		"hash": "89c95d6d4595c16981d7755afcb2fc4c155fa4250528a686020df113bd303c70",
+		"translation": "Alltägliche Notizen, Lektüre und Pläne an einem privaten Ort. Mit einem Klick den Kontext wechseln, organisiert bleiben und weiterschreiben, ohne den Fluss zu unterbrechen."
+	},
+	"cta.button": {
+		"hash": "0a6772006fcad7c5f6ffb87e363718f8433c797d97ebe7ce8945beb6e234135e",
+		"translation": "Deepink holen"
+	}
+}
