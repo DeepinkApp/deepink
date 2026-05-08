@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { WorkspaceEvents } from '@api/events/workspace';
 import { NoteId } from '@core/features/notes';
 import { useEventBus } from '@features/App/Workspace/WorkspaceProvider';
-import { GLOBAL_COMMANDS } from '@hooks/commands';
-import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { useImmutableCallback } from '@hooks/useImmutableCallback';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectNotesView } from '@state/redux/vaults/selectors/view';
@@ -118,20 +116,4 @@ export const useScrollToActiveNote = ({
 		wasActiveNoteInViewport.current = false;
 		scrollToActiveNote();
 	});
-
-	// Handle command to set scroll
-	// Defer scroll until noteIds is updated, otherwise scroll happens before index changes
-	const scrollTargetNoteIdRef = useRef<NoteId | null>(null);
-	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, ({ noteId }) => {
-		scrollTargetNoteIdRef.current = noteId;
-	});
-	useEffect(() => {
-		if (!scrollTargetNoteIdRef.current) return;
-
-		const index = noteIds.indexOf(scrollTargetNoteIdRef.current);
-		if (index === -1) return;
-
-		scrollTargetNoteIdRef.current = null;
-		virtualizer.scrollToIndex(index, { align: scrollAlignment });
-	}, [noteIds, virtualizer]);
 };
