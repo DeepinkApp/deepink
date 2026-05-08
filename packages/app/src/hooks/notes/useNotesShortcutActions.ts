@@ -1,8 +1,4 @@
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
-import {
-	useNotesContext,
-	useNotesRegistry,
-} from '@features/App/Workspace/WorkspaceProvider';
 import { useTelemetryTracker } from '@features/telemetry';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
@@ -46,16 +42,12 @@ export const useNotesShortcutActions = () => {
 		});
 	});
 
-	const { openNote } = useNotesContext();
-	const notesRegistry = useNotesRegistry();
 	useWorkspaceCommandCallback(GLOBAL_COMMANDS.RESTORE_CLOSED_NOTE, () => {
 		const lastClosedNote = recentlyClosedNotes[recentlyClosedNotes.length - 1];
 		if (!lastClosedNote) return;
 
 		// Open note as not temporary
-		notesRegistry.getById([lastClosedNote]).then(([note]) => {
-			if (note) openNote(note, { isTemporary: false });
-		});
+		noteActions.click(lastClosedNote, { isTemporary: false });
 	});
 
 	const focusNoteInDirection = (direction: 'next' | 'previous') => {

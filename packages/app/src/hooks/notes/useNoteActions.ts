@@ -16,7 +16,11 @@ import {
 	useWorkspaceData,
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
-import { selectIsNoteOpened, selectWorkspace } from '@state/redux/vaults/vaults';
+import {
+	selectIsNoteOpened,
+	selectTemporaryNoteId,
+	selectWorkspace,
+} from '@state/redux/vaults/vaults';
 
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();
@@ -30,29 +34,29 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId) => {
+		(id: NoteId, { isTemporary = true }: { isTemporary?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
+			const temporaryNote = selectTemporaryNoteId(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspaceActions.setActiveNote({ noteId: id }));
+
+				if (!isTemporary && temporaryNote === id) {
+					dispatch(workspaceActions.setTemporaryTab({ noteId: null }));
+				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
-					if (note) openNote(note);
+					if (note) openNote(note, { isTemporary });
 				});
 			}
 		},
 		[dispatch, notesRegistry, openNote, store, workspaceActions, workspaceData],
 	);
 
-	const setTemporary = useCallback(
-		(id: NoteId, isTemporary: boolean) => {
-			dispatch(
-				workspaceActions.setTemporaryTab({
-					noteId: id,
-					isTemporary,
-				}),
-			);
+	const setTemporaryNote = useCallback(
+		(id: NoteId | null) => {
+			dispatch(workspaceActions.setTemporaryTab({ noteId: id }));
 		},
 		[dispatch, workspaceActions],
 	);
@@ -77,5 +81,5 @@ export const useNoteActions = () => {
 		[eventBus, isSnapshotsEnabled, noteClosed, noteHistory, notesRegistry],
 	);
 
-	return { click, close, setTemporary };
+	return { click, close, setTemporaryNote };
 };
