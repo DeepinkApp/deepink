@@ -50,7 +50,6 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 
 				[NoteActions.PIN_NOTE]: (noteId: string) => {
 					runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, { noteId });
-					runCommand(GLOBAL_COMMANDS.SCROLL_TO_NOTE, { noteId });
 				},
 
 				[NoteActions.DUPLICATE]: (noteId: string) => {
