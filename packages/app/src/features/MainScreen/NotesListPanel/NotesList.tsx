@@ -1,14 +1,17 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Box, Button, Skeleton, Text, VStack } from '@chakra-ui/react';
 import { NotePreview } from '@components/NotePreview/NotePreview';
+import { NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useNoteContextMenu } from '@features/NotesContainer/NoteContextMenu/useNoteContextMenu';
 import { useTelemetryTracker } from '@features/telemetry';
+import { GLOBAL_COMMANDS } from '@hooks/commands';
+import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
@@ -72,6 +75,14 @@ export const NotesList: FC<NotesListProps> = () => {
 		noteIds,
 		activeNoteId,
 		activeNoteRef,
+	});
+
+	const [flashingNoteId, setFlashingNoteId] = useState<NoteId | null>(null);
+	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, ({ noteId }) => {
+		setFlashingNoteId(noteId);
+		setTimeout(() => {
+			setFlashingNoteId(null);
+		}, 800);
 	});
 
 	// TODO: implement dragging and moving items
@@ -143,6 +154,7 @@ export const NotesList: FC<NotesListProps> = () => {
 						{virtualNoteItems.map((virtualRow) => {
 							const id = noteIds[virtualRow.index];
 							const isActive = id === activeNoteId;
+							const isFlashing = flashingNoteId === id;
 
 							const note = notesData.get(id);
 							if (!note)
@@ -198,6 +210,7 @@ export const NotesList: FC<NotesListProps> = () => {
 											},
 										);
 									}}
+									isFlashing={isFlashing}
 									isPinned={Boolean(note.isPinned)}
 									onDoubleClick={() => {
 										// Convert preview tab to regular

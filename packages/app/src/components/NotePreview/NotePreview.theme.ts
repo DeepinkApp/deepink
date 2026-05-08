@@ -53,6 +53,12 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 					backgroundColor: 'control.option.active.background',
 					color: 'control.option.active.foreground',
 				},
+
+				'&[data-flashing="true"]': {
+					boxShadow:
+						'inset 4px 0 0 0 var(--chakra-colors-control-action-active-background)',
+				},
+				transition: 'box-shadow 0.2s ease',
 			},
 		},
 	},
