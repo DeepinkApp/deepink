@@ -57,8 +57,8 @@ export const NotePreviewContent = memo(
 				}}
 				role="group"
 			>
-				<HStack w="100%" justifyContent="space-between">
-					<VStack sx={styles.body}>
+				<VStack sx={styles.body}>
+					<HStack sx={styles.header}>
 						<Text as="h3" sx={styles.title}>
 							<TextSample
 								text={title}
@@ -67,28 +67,23 @@ export const NotePreviewContent = memo(
 							/>
 						</Text>
 
-						{text.length > 0 ? (
-							<Text sx={styles.text}>
-								<TextSample
-									text={text}
-									highlightText={textToHighlight}
-									lengthLimit={150}
-								/>
-							</Text>
-						) : undefined}
-					</VStack>
+						{isPinned && (
+							<Box sx={styles.icon}>
+								<FaThumbtack />
+							</Box>
+						)}
+					</HStack>
 
-					{isPinned && (
-						<Box
-							color="typography.secondary"
-							transform="rotate(45deg)"
-							fontSize="sm"
-							alignSelf="baseline"
-						>
-							<FaThumbtack />
-						</Box>
-					)}
-				</HStack>
+					{text.length > 0 ? (
+						<Text sx={styles.text}>
+							<TextSample
+								text={text}
+								highlightText={textToHighlight}
+								lengthLimit={150}
+							/>
+						</Text>
+					) : undefined}
+				</VStack>
 
 				{meta && <Box sx={styles.meta}>{meta}</Box>}
 			</VStack>
