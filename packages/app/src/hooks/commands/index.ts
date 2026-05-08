@@ -47,8 +47,6 @@ export enum GLOBAL_COMMANDS {
 	FOCUS_SEARCH = 'Focus search input',
 
 	SHORTCUT_PRESSED = 'Shortcut pressed',
-
-	SCROLL_TO_NOTE = 'Scroll to note',
 }
 
 type CommandsWithPayload = {
@@ -66,8 +64,6 @@ type CommandsWithPayload = {
 	[GLOBAL_COMMANDS.DUPLICATE_NOTE]: { noteId: string };
 
 	[GLOBAL_COMMANDS.SHORTCUT_PRESSED]: { shortcut: Shortcuts };
-
-	[GLOBAL_COMMANDS.SCROLL_TO_NOTE]: { noteId: string };
 };
 
 export type CommandPayloadsMap = {

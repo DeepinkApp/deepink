@@ -27,6 +27,7 @@ import { useLocalizedDate } from '../../../hooks/useLocalizedDate';
 
 import { useNotesData } from './useNotesData';
 import { useScrollToActiveNote } from './useScrollToActiveNote';
+import { useScrollToNoteAfterPin } from './useScrollToNoteAfterPin';
 
 export const scrollAlignment: ScrollToOptions['align'] = 'start';
 
@@ -77,12 +78,16 @@ export const NotesList: FC<NotesListProps> = () => {
 		activeNoteRef,
 	});
 
+	useScrollToNoteAfterPin({ noteIds, virtualizer });
+
 	const [flashingNoteId, setFlashingNoteId] = useState<NoteId | null>(null);
 	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, ({ noteId }) => {
 		setFlashingNoteId(noteId);
-		setTimeout(() => {
+		const timer = setTimeout(() => {
 			setFlashingNoteId(null);
 		}, 800);
+
+		return () => clearTimeout(timer);
 	});
 
 	// TODO: implement dragging and moving items

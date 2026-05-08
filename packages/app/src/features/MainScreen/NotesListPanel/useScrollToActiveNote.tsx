@@ -122,7 +122,7 @@ export const useScrollToActiveNote = ({
 	// Handle command to set scroll
 	// Defer scroll until noteIds is updated, otherwise scroll happens before index changes
 	const scrollTargetNoteIdRef = useRef<NoteId | null>(null);
-	useWorkspaceCommandCallback(GLOBAL_COMMANDS.SCROLL_TO_NOTE, ({ noteId }) => {
+	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, ({ noteId }) => {
 		scrollTargetNoteIdRef.current = noteId;
 	});
 	useEffect(() => {
