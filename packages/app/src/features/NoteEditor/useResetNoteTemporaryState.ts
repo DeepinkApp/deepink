@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { NoteId } from '@core/features/notes';
-import { useNoteActions } from '@hooks/notes/useNoteActions';
-import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { useAppDispatch } from '@state/redux/hooks';
+import { useWorkspaceActions, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectTemporaryNoteId } from '@state/redux/vaults/vaults';
 
 /**
@@ -12,7 +12,8 @@ export const useResetNoteTemporaryState = (
 	text: string,
 	title: string,
 ) => {
-	const { setTemporaryNote } = useNoteActions();
+	const dispatch = useAppDispatch();
+	const workspaceActions = useWorkspaceActions();
 	const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
 
 	const isFirstRenderRef = useRef(true);
@@ -25,7 +26,7 @@ export const useResetNoteTemporaryState = (
 		// Ignore if the current note is not temporary
 		if (temporaryNote !== noteId) return;
 
-		setTemporaryNote(null);
+		dispatch(workspaceActions.setTemporaryTab({ noteId: null }));
 
 		// Effect should only trigger on content change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
