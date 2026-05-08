@@ -28,56 +28,72 @@ export const NotePreviewContent = memo(
 		isSelected?: boolean;
 		isPinned: boolean;
 		textToHighlight?: string;
+		isFlashing?: boolean;
 	} & StackProps
->(({ title, text, textToHighlight, meta, isSelected, isPinned, ...props }, ref) => {
-	const styles = useMultiStyleConfig('NotePreview');
-	return (
-		<VStack
-			ref={ref}
-			aria-selected={isSelected}
-			{...props}
-			sx={{
-				...styles.root,
-				...props.sx,
-			}}
-			role="group"
-		>
-			<HStack w="100%" justifyContent="space-between">
-				<VStack sx={styles.body}>
-					<Text as="h3" sx={styles.title}>
-						<TextSample
-							text={title}
-							highlightText={textToHighlight}
-							lengthLimit={50}
-						/>
-					</Text>
-
-					{text.length > 0 ? (
-						<Text sx={styles.text}>
+>(
+	(
+		{
+			title,
+			text,
+			textToHighlight,
+			meta,
+			isSelected,
+			isPinned,
+			isFlashing,
+			...props
+		},
+		ref,
+	) => {
+		const styles = useMultiStyleConfig('NotePreview');
+		return (
+			<VStack
+				ref={ref}
+				aria-selected={isSelected}
+				data-flashing={isFlashing}
+				{...props}
+				sx={{
+					...styles.root,
+					...props.sx,
+				}}
+				role="group"
+			>
+				<HStack w="100%" justifyContent="space-between">
+					<VStack sx={styles.body}>
+						<Text as="h3" sx={styles.title}>
 							<TextSample
-								text={text}
+								text={title}
 								highlightText={textToHighlight}
-								lengthLimit={150}
+								lengthLimit={50}
 							/>
 						</Text>
-					) : undefined}
-				</VStack>
 
-				{isPinned && (
-					<Box
-						color="typography.secondary"
-						transform="rotate(45deg)"
-						fontSize="sm"
-						alignSelf="baseline"
-					>
-						<FaThumbtack />
-					</Box>
-				)}
-			</HStack>
+						{text.length > 0 ? (
+							<Text sx={styles.text}>
+								<TextSample
+									text={text}
+									highlightText={textToHighlight}
+									lengthLimit={150}
+								/>
+							</Text>
+						) : undefined}
+					</VStack>
 
-			{meta && <Box sx={styles.meta}>{meta}</Box>}
-		</VStack>
-	);
-});
+					{isPinned && (
+						<Box
+							color="typography.secondary"
+							transform="rotate(45deg)"
+							fontSize="sm"
+							alignSelf="baseline"
+						>
+							<FaThumbtack />
+						</Box>
+					)}
+				</HStack>
+
+				{meta && <Box sx={styles.meta}>{meta}</Box>}
+			</VStack>
+		);
+	},
+);
 
 NotePreview.displayName = 'NotePreview';
