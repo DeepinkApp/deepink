@@ -1,17 +1,14 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Box, Button, Skeleton, Text, VStack } from '@chakra-ui/react';
 import { NotePreview } from '@components/NotePreview/NotePreview';
-import { NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useNoteContextMenu } from '@features/NotesContainer/NoteContextMenu/useNoteContextMenu';
 import { useTelemetryTracker } from '@features/telemetry';
-import { GLOBAL_COMMANDS } from '@hooks/commands';
-import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
 import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
@@ -26,8 +23,8 @@ import { ScrollToOptions, useVirtualizer } from '@tanstack/react-virtual';
 import { useLocalizedDate } from '../../../hooks/useLocalizedDate';
 
 import { useNotesData } from './useNotesData';
+import { usePinNoteEffect } from './usePinNoteEffect';
 import { useScrollToActiveNote } from './useScrollToActiveNote';
-import { useScrollToNoteAfterPin } from './useScrollToNoteAfterPin';
 
 export const scrollAlignment: ScrollToOptions['align'] = 'start';
 
@@ -78,17 +75,7 @@ export const NotesList: FC<NotesListProps> = () => {
 		activeNoteRef,
 	});
 
-	useScrollToNoteAfterPin({ noteIds, virtualizer });
-
-	const [flashingNoteId, setFlashingNoteId] = useState<NoteId | null>(null);
-	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, ({ noteId }) => {
-		setFlashingNoteId(noteId);
-		const timer = setTimeout(() => {
-			setFlashingNoteId(null);
-		}, 800);
-
-		return () => clearTimeout(timer);
-	});
+	const { flashingNoteId } = usePinNoteEffect({ noteIds, virtualizer });
 
 	// TODO: implement dragging and moving items
 	return (
