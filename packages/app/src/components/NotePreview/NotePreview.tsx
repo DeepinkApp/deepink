@@ -55,7 +55,6 @@ export const NotePreviewContent = memo(
 					...styles.root,
 					...props.sx,
 				}}
-				role="group"
 			>
 				<VStack sx={styles.body}>
 					<HStack sx={styles.header}>
@@ -68,7 +67,7 @@ export const NotePreviewContent = memo(
 						</Text>
 
 						{isPinned && (
-							<Box sx={styles.icon}>
+							<Box sx={styles.pinIcon}>
 								<FaThumbtack />
 							</Box>
 						)}
