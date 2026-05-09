@@ -29,7 +29,7 @@ const RowScheme = z
 		deleted_at: z.coerce.date().nullable(),
 		archived: z.coerce.boolean(),
 		bookmarked: z.coerce.boolean(),
-		pinned: z.coerce.boolean(),
+		pinned_at: z.coerce.date().nullable(),
 	})
 	.transform(
 		({
@@ -42,8 +42,8 @@ const RowScheme = z
 			visible,
 			deleted_at,
 			archived,
-			pinned,
 			bookmarked,
+			pinned_at,
 		}): INote => ({
 			id,
 			createdTimestamp: created_at.getTime(),
@@ -54,7 +54,7 @@ const RowScheme = z
 			deletedAt: deleted_at?.getTime(),
 			isArchived: archived,
 			isBookmarked: bookmarked,
-			isPinned: pinned,
+			isPinned: pinned_at !== null,
 			content: { title, text },
 		}),
 	);
@@ -84,7 +84,7 @@ function formatNoteMeta(meta: Partial<NoteMeta>) {
 				fields['bookmarked'] = Number(value);
 				break;
 			case 'isPinned':
-				fields['pinned'] = Number(value);
+				fields['pinned_at'] = value ? new Date().getTime() : null;
 				break;
 		}
 	}
@@ -169,7 +169,10 @@ function getFetchQuery(
 
 	// Sort
 	if (sort) {
-		if (sort.pinnedFirst) orderQuery.push(qb.line('pinned DESC'));
+		if (sort.pinnedFirst) {
+			orderQuery.push(qb.line('pinned_at IS NULL ASC'));
+			orderQuery.push(qb.line('pinned_at DESC'));
+		}
 
 		orderQuery.push(
 			qb.line(sortFieldMap[sort.by], sort.order === 'desc' ? 'DESC' : 'ASC'),
