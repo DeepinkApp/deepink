@@ -66,7 +66,7 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 					color: 'control.option.active.foreground',
 				},
 
-				'&[data-flashing="true"]': {
+				'&[data-flashing]': {
 					boxShadow:
 						'inset 4px 0 0 0 var(--chakra-colors-control-action-active-background)',
 				},
