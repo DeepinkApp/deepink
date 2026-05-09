@@ -4,8 +4,6 @@ import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { Virtualizer } from '@tanstack/react-virtual';
 
-import { scrollAlignment } from './NotesList';
-
 export const useScrollToNoteAfterPin = ({
 	noteIds,
 	virtualizer,
@@ -26,6 +24,6 @@ export const useScrollToNoteAfterPin = ({
 		if (noteIndex === -1) return;
 
 		scrollTargetNoteIdRef.current = null;
-		virtualizer.scrollToIndex(noteIndex, { align: scrollAlignment });
+		virtualizer.scrollToIndex(noteIndex, { align: 'auto' });
 	}, [noteIds, virtualizer]);
 };
