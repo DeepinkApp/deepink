@@ -61,7 +61,7 @@ export const notePreviewRecipe = defineSlotRecipe({
 					},
 				},
 
-				'&[data-flashing="true"]': {
+				'&[data-flashing]': {
 					boxShadow:
 						'inset 4px 0 0 0 var(--chakra-colors-control-action-active-background)',
 				},

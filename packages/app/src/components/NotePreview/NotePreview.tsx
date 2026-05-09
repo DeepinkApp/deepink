@@ -49,7 +49,7 @@ export const NotePreviewContent = memo(
 			<VStack
 				ref={ref}
 				aria-selected={isSelected}
-				data-flashing={isFlashing}
+				data-flashing={isFlashing || undefined}
 				{...props}
 				sx={{
 					...styles.root,
