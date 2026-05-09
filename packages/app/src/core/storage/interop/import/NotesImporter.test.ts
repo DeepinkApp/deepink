@@ -117,7 +117,7 @@ describe('Base notes import cases', () => {
 		const notesRegistry = new NotesController(db, workspaceId);
 
 		await expect(
-			notesRegistry.get({ sort: { by: 'createdAt', order: 'asc' } }),
+			notesRegistry.get({ sort: [{ by: 'createdAt', order: 'asc' }] }),
 		).resolves.toEqual([
 			expect.objectContaining({
 				// TODO: fix unnecessary new line
