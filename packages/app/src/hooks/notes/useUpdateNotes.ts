@@ -40,11 +40,15 @@ export const useUpdateNotes = () => {
 
 		const noteIds = await notesRegistry.query({
 			tags,
-			sort: {
-				by: 'updatedAt',
-				order: 'desc',
-				pinnedFirst: notesView !== NOTES_VIEW.BIN && searchText.length === 0,
-			},
+			sort: [
+				...(notesView !== NOTES_VIEW.BIN && searchText.length === 0
+					? [{ by: 'pinnedAt', order: 'desc' } as const]
+					: []),
+				{
+					by: 'updatedAt',
+					order: 'desc',
+				},
+			],
 			search: searchText
 				? {
 						text: searchText,

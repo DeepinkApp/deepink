@@ -194,14 +194,14 @@ test('Get notes by pages', async () => {
 	const page1 = await registry.get({
 		limit: 100,
 		page: 1,
-		sort: { by: 'createdAt', order: 'asc' },
+		sort: [{ by: 'createdAt', order: 'asc' }],
 	});
 	expect(page1[0].content).toMatchObject(notesSample[0]);
 
 	const page2 = await registry.get({
 		limit: 100,
 		page: 2,
-		sort: { by: 'createdAt', order: 'asc' },
+		sort: [{ by: 'createdAt', order: 'asc' }],
 	});
 	expect(page2[0].content).toMatchObject(notesSample[100]);
 });

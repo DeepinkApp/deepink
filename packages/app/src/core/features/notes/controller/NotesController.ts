@@ -118,6 +118,7 @@ function getFetchQuery(
 		createdAt: 'created_at',
 		updatedAt: 'updated_at',
 		deletedAt: 'deleted_at',
+		pinnedAt: 'pinned_at',
 	};
 
 	const withQuery: { name: string; query: Query<DBTypes> }[] = [];
@@ -169,13 +170,11 @@ function getFetchQuery(
 
 	// Sort
 	if (sort) {
-		if (sort.pinnedFirst) {
-			orderQuery.push(qb.line('pinned_at DESC'));
-		}
-
-		orderQuery.push(
-			qb.line(sortFieldMap[sort.by], sort.order === 'desc' ? 'DESC' : 'ASC'),
-		);
+		sort.forEach((rule) => {
+			orderQuery.push(
+				qb.line(sortFieldMap[rule.by], rule.order === 'desc' ? 'DESC' : 'ASC'),
+			);
+		});
 	}
 
 	return qb.line(

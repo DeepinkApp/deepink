@@ -27,7 +27,7 @@ test('filter by update time', async () => {
 	await expect(
 		notes.get({
 			updatedAt: { from: new Date('01/01/2002 12:00') },
-			sort: { by: 'createdAt', order: 'asc' },
+			sort: [{ by: 'createdAt', order: 'asc' }],
 		}),
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2002' }) }),
@@ -37,7 +37,7 @@ test('filter by update time', async () => {
 	await expect(
 		notes.get({
 			updatedAt: { to: new Date('01/01/2002 12:00') },
-			sort: { by: 'createdAt', order: 'asc' },
+			sort: [{ by: 'createdAt', order: 'asc' }],
 		}),
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2001' }) }),
