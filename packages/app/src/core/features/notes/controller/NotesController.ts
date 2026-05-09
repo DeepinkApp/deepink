@@ -170,7 +170,6 @@ function getFetchQuery(
 	// Sort
 	if (sort) {
 		if (sort.pinnedFirst) {
-			orderQuery.push(qb.line('pinned_at IS NULL ASC'));
 			orderQuery.push(qb.line('pinned_at DESC'));
 		}
 
