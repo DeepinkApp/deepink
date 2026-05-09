@@ -3,11 +3,11 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
 export const NotePreviewTheme = createMultiStyleConfigHelpers([
 	'root',
 	'body',
+	'header',
 	'title',
 	'text',
 	'meta',
-	'icon',
-	'header',
+	'pinIcon',
 ]).defineMultiStyleConfig({
 	baseStyle: {
 		root: {
@@ -42,7 +42,7 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 			fontWeight: '500',
 			width: '100%',
 		},
-		icon: {
+		pinIcon: {
 			color: 'typography.secondary',
 			transform: 'rotate(45deg)',
 			fontSize: '12px',

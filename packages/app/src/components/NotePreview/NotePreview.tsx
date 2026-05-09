@@ -47,7 +47,6 @@ export const NotePreview = forwardRef<
 					...styles.root,
 					...props.sx,
 				}}
-				role="group"
 			>
 				<VStack sx={styles.body}>
 					<HStack sx={styles.header}>
@@ -60,7 +59,7 @@ export const NotePreview = forwardRef<
 						</Text>
 
 						{isPinned && (
-							<Box sx={styles.icon}>
+							<Box sx={styles.pinIcon}>
 								<FaThumbtack />
 							</Box>
 						)}
