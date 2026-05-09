@@ -22,7 +22,6 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 		body: {
 			gap: '0.2rem',
 			alignItems: 'start',
-			maxWidth: '100%',
 			width: '100%',
 		},
 		header: {
