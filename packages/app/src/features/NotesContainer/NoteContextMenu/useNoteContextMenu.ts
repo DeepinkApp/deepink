@@ -130,6 +130,11 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 					? [{ id: NoteActions.DUPLICATE, label: t('duplicate') }]
 					: []),
 
+				{
+					id: NoteActions.EXPORT,
+					label: t('export'),
+				},
+
 				note.isPinned
 					? {
 							id: NoteActions.PIN_NOTE,
@@ -140,10 +145,6 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 							label: t('pinNote'),
 						},
 
-				{
-					id: NoteActions.EXPORT,
-					label: t('export'),
-				},
 				{
 					id: NoteActions.COPY_MARKDOWN_LINK,
 					label: t('copyMarkdownLink'),
