@@ -25,6 +25,7 @@ export const usePinNoteEffect = ({
 	});
 
 	// Wait for noteIds to update after pin before scrolling
+	// otherwise scrolling may use the old note position
 	useEffect(() => {
 		if (!targetNoteIdRef.current) return;
 
@@ -33,7 +34,7 @@ export const usePinNoteEffect = ({
 
 		targetNoteIdRef.current = null;
 
-		// If the note is in the viewport, do not scroll
+		// 'auto' allows skipping scroll if the element is already in the viewport
 		virtualizer.scrollToIndex(noteIndex, { align: 'auto' });
 	}, [noteIds, virtualizer]);
 
