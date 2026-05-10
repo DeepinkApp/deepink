@@ -12,15 +12,22 @@ export const usePinNoteEffect = ({
 	virtualizer: Virtualizer<any, any>;
 }) => {
 	const targetNoteIdRef = useRef<NoteId | null>(null);
+
 	const [flashingNoteId, setFlashingNoteId] = useState<NoteId | null>(null);
+	const flashTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, ({ noteId }) => {
 		targetNoteIdRef.current = noteId;
 
 		// Briefly highlight the note so the user can find it at its new position
 		setFlashingNoteId(noteId);
-		setTimeout(() => {
+
+		if (flashTimeoutRef.current) {
+			clearTimeout(flashTimeoutRef.current);
+		}
+		flashTimeoutRef.current = setTimeout(() => {
 			setFlashingNoteId(null);
+			flashTimeoutRef.current = null;
 		}, 800);
 	});
 
