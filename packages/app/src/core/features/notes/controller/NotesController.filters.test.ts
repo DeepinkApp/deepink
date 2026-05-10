@@ -66,7 +66,7 @@ test('filter by update time', async () => {
 	]);
 });
 
-test('sorts notes by pin time', async () => {
+test('sorts notes by pinned status', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
@@ -97,7 +97,7 @@ test('sorts notes by pin time', async () => {
 	).resolves.toEqual([note3, note1, note2]);
 });
 
-test('sorts pinned notes first, then by update time', async () => {
+test('sorts notes by pinned status and update time', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
