@@ -360,6 +360,24 @@ describe('data fetching', () => {
 		).resolves.toHaveLength(notesSample.length - 40);
 	});
 
+	test('filters notes by pinned status', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+
+		const registry = new NotesController(db, workspaceId);
+
+		const notesId = await registry
+			.get({ limit: 40 })
+			.then((notes) => notes.map((note) => note.id));
+
+		await registry.updateMeta(notesId, { isPinned: true });
+		await expect(registry.get({ meta: { isPinned: true } })).resolves.toHaveLength(
+			40,
+		);
+		await expect(registry.get({ meta: { isPinned: false } })).resolves.toHaveLength(
+			notesSample.length - 40,
+		);
+	});
+
 	test('method getLength consider filters', async () => {
 		const { db, workspaceId } = getWorkspaceContext();
 		const registry = new NotesController(db, workspaceId);

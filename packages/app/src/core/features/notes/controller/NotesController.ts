@@ -104,7 +104,7 @@ function getFetchQuery(
 		limit,
 		page,
 		tags = [],
-		meta: { isDeleted, ...meta } = {},
+		meta: { isDeleted, isPinned, ...meta } = {},
 		deletedAt = {},
 		updatedAt = {},
 		sort,
@@ -151,6 +151,11 @@ function getFetchQuery(
 	if (isDeleted !== undefined) {
 		filterQuery.push(
 			qb.sql`deleted_at IS ${isDeleted ? qb.sql`NOT NULL` : qb.sql`NULL`}`,
+		);
+	}
+	if (isPinned !== undefined) {
+		filterQuery.push(
+			qb.sql`pinned_at IS ${isPinned ? qb.sql`NOT NULL` : qb.sql`NULL`}`,
 		);
 	}
 
