@@ -5,7 +5,7 @@ import { WorkspacesController } from '@core/features/workspaces/WorkspacesContro
 import { createTestContext, TestValueCreatorConfig } from './createTestContext';
 import { makeAutoClosedSQLiteDB } from './makeAutoClosedSQLiteDB';
 
-export const createWorkspaceId = async (db: ManagedDatabase<SQLiteDB>) => {
+export const createWorkspaceId = async (db: SQLiteDB) => {
 	const controller = new WorkspacesController(db);
 	return await controller.create({ name: 'test' });
 };
@@ -22,8 +22,8 @@ export const createWorkspaceContext = ({
 	const getDB = dbFetcher || makeAutoClosedSQLiteDB().getDB;
 	return createTestContext(async () => {
 		const db = await getDB();
-		const workspaceId = await createWorkspaceId(db);
+		const workspaceId = await createWorkspaceId(db.get());
 
-		return { db, workspaceId };
+		return { managedDb: db, db: db.get(), workspaceId };
 	}, config);
 };

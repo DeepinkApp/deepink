@@ -2,7 +2,6 @@
 import { createEvent } from 'effector';
 import { Query } from 'nano-queries';
 import { z } from 'zod';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
 import { SQLiteDB } from '@core/database/sqlite';
 import { DBTypes, qb } from '@core/database/sqlite/utils/query-builder';
 import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
@@ -102,7 +101,7 @@ export class TagsController {
 	private readonly workspace;
 	private readonly onChanged;
 
-	constructor(db: ManagedDatabase<SQLiteDB>, workspace: string) {
+	constructor(db: SQLiteDB, workspace: string) {
 		this.db = db;
 		this.workspace = workspace;
 		this.onChanged = createEvent<ChangeEvent>();
@@ -117,7 +116,7 @@ export class TagsController {
 	 * Returns tags list.
 	 */
 	public async getTags(): Promise<IResolvedTag[]> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		const rows = await db.query(
 			qb.line(
@@ -135,7 +134,7 @@ export class TagsController {
 
 		let lastId: string | null = null;
 
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 		let resolvedTagName: string;
 		if (!parent) {
 			resolvedTagName = name;
@@ -238,7 +237,7 @@ export class TagsController {
 			);
 		}
 
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		if (parent) {
 			const [{ count }] = await db.query(
@@ -261,7 +260,7 @@ export class TagsController {
 	}
 
 	public async delete(id: string): Promise<void> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		// Recursive CTE to collect all descendant tag IDs
 		const tagsIdForRemove = await db.query(
@@ -296,7 +295,7 @@ export class TagsController {
 	 * Returns tags attached to an entity
 	 */
 	public async getAttachedTags(noteId: string): Promise<IResolvedTag[]> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		const rows = await db.query(
 			qb.line(
@@ -316,7 +315,7 @@ export class TagsController {
 		// attach only unique tags
 		const uniqueTags = Array.from(new Set(tags));
 
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		await db.query(
 			qb.sql`DELETE FROM note_tags WHERE workspace_id=${this.workspace} AND note_id=${noteId}`,

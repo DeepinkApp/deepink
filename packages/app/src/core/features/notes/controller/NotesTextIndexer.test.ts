@@ -18,8 +18,8 @@ test('incremental index building', async () => {
 
 	const index = new FlexSearchIndex(new InMemoryFS());
 
-	const workspaceId = await createWorkspaceId(db);
-	const notes = new NotesController(db, workspaceId, index);
+	const workspaceId = await createWorkspaceId(db.get());
+	const notes = new NotesController(db.get(), workspaceId, index);
 
 	const indexScannerFile = createFileControllerMock();
 	const indexScanner = new NotesTextIndexer(

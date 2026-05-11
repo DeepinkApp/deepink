@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
 import { SQLiteDB } from '@core/database/sqlite';
 import { qb } from '@core/database/sqlite/utils/query-builder';
 import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
@@ -14,13 +13,13 @@ import { IFilesStorage } from '.';
  */
 export class FilesController {
 	constructor(
-		protected readonly db: ManagedDatabase<SQLiteDB>,
+		protected readonly db: SQLiteDB,
 		protected readonly filesStorage: IFilesStorage,
 		protected readonly workspace: string,
 	) {}
 
 	public async add(file: File) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		// Insert in DB
 		const [{ id: fileId }] = await db.query(
@@ -37,7 +36,7 @@ export class FilesController {
 	}
 
 	public async get(fileId: string) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		// Insert in DB
 		const [fileEntry] = await db.query(
@@ -60,7 +59,7 @@ export class FilesController {
 
 	// TODO: remove attached files
 	public async delete(filesId: string[]) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		if (filesId.length === 0) return;
 
@@ -76,7 +75,7 @@ export class FilesController {
 	}
 
 	public async query() {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		return await db.query(
 			qb.sql`SELECT id, name, mimetype FROM files WHERE workspace_id=${this.workspace}`,

@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import { Query } from 'nano-queries';
 import { z } from 'zod';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
 import { SQLiteDB } from '@core/database/sqlite';
 import { DBTypes, qb } from '@core/database/sqlite/utils/query-builder';
 import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
@@ -213,13 +212,13 @@ function intersectSets<T>(a: Set<T>, b: Set<T>): Set<T> {
  */
 export class NotesController implements INotesController {
 	constructor(
-		private readonly db: ManagedDatabase<SQLiteDB>,
+		private readonly db: SQLiteDB,
 		private readonly workspace: string,
 		private readonly index?: FlexSearchIndex,
 	) {}
 
 	public async getById(ids: NoteId[]): Promise<INote[]> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		const rows = await db.query(
 			qb.sql`SELECT * FROM notes WHERE workspace_id = ${this.workspace} AND id IN ${qb.values(ids).withParenthesis()}`,
@@ -245,7 +244,7 @@ export class NotesController implements INotesController {
 	protected async searchCandidates(
 		query: NotesControllerFetchOptions,
 	): Promise<string[]> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		// Handle simple case
 		if (!query.search || !this.index) {
@@ -278,7 +277,7 @@ export class NotesController implements INotesController {
 	}
 
 	public async getLength(query: NotesControllerFetchOptions = {}): Promise<number> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		if (query.search && this.index)
 			return this.searchCandidates({
@@ -299,7 +298,7 @@ export class NotesController implements INotesController {
 	}
 
 	public async query(query: NotesControllerFetchOptions = {}): Promise<NoteId[]> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		if (query.search && this.index) {
 			return this.searchCandidates(query);
@@ -322,7 +321,7 @@ export class NotesController implements INotesController {
 		// Insert data
 		const metaEntries = Object.entries(formatNoteMeta(meta ?? {}));
 
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		const [id] = await db.query(
 			qb.sql`INSERT INTO notes (${qb.set([
@@ -343,7 +342,7 @@ export class NotesController implements INotesController {
 	}
 
 	public async update(id: string, updatedNote: INoteContent) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		await db.query(
 			qb.line(
@@ -361,7 +360,7 @@ export class NotesController implements INotesController {
 	public async delete(ids: NoteId[]): Promise<void> {
 		if (!ids.length) return;
 
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		await db.query(
 			qb.sql`DELETE FROM notes WHERE workspace_id=${
@@ -379,7 +378,7 @@ export class NotesController implements INotesController {
 	public async updateMeta(ids: NoteId[], meta: Partial<NoteMeta>): Promise<void> {
 		if (ids.length === 0) return;
 
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		await db.query(
 			qb.sql`UPDATE notes SET ${qb.values(formatNoteMeta(meta))}

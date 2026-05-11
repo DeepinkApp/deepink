@@ -676,7 +676,7 @@ describe('Import interruptions', () => {
 
 	const getWorkspaceContext = createWorkspaceContext();
 	test('Importer throw error if DB closed while importing', async () => {
-		const { db, workspaceId } = getWorkspaceContext();
+		const { managedDb, db, workspaceId } = getWorkspaceContext();
 
 		const fileManager = createFileManagerMock();
 
@@ -701,8 +701,8 @@ describe('Import interruptions', () => {
 				convertPathToTag: 'always',
 				// Slow down the processing
 				async throttle(callback) {
-					if (db.dbContainer.isOpened()) {
-						await db.dbContainer.close();
+					if (managedDb.dbContainer.isOpened()) {
+						await managedDb.dbContainer.close();
 					}
 
 					callback();

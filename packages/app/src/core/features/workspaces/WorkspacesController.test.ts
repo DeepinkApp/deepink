@@ -7,7 +7,7 @@ const { getDB } = makeAutoClosedSQLiteDB();
 test('basic usage', async () => {
 	const db = await getDB();
 
-	const workspaces = new WorkspacesController(db);
+	const workspaces = new WorkspacesController(db.get());
 
 	// Create
 	const workspacesIds = await Promise.all([
@@ -43,7 +43,7 @@ test('basic usage', async () => {
 test('update workspace', async () => {
 	const db = await getDB();
 
-	const workspaces = new WorkspacesController(db);
+	const workspaces = new WorkspacesController(db.get());
 
 	const id = await workspaces.create({ name: 'Workspace name' });
 	await expect(workspaces.get(id)).resolves.toEqual({

@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import { z } from 'zod';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
 import { SQLiteDB } from '@core/database/sqlite';
 import { qb } from '@core/database/sqlite/utils/query-builder';
 import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
@@ -23,7 +22,7 @@ export type NoteVersion = z.TypeOf<typeof NoteVersionMapScheme>;
 
 export class NoteVersions {
 	constructor(
-		private readonly db: ManagedDatabase<SQLiteDB>,
+		private readonly db: SQLiteDB,
 		private readonly workspace: string,
 	) {}
 
@@ -44,7 +43,7 @@ export class NoteVersions {
 			force?: boolean;
 		} = {},
 	) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		if (options.force) {
 			await db.query(
@@ -87,7 +86,7 @@ export class NoteVersions {
 	}
 
 	public async getList(noteId: string) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		return await db.query(
 			// Order by monotonic "rowid" in case of timestamp collisions
@@ -97,7 +96,7 @@ export class NoteVersions {
 	}
 
 	public async get(versionId: string) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		const [version] = await db.query(
 			qb.sql`SELECT * FROM note_versions WHERE id = ${versionId} LIMIT 1`,
@@ -108,14 +107,14 @@ export class NoteVersions {
 	}
 
 	public async delete(versionIds: string[]) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 		await db.query(
 			qb.sql`DELETE FROM note_versions WHERE id IN (${qb.values(versionIds)})`,
 		);
 	}
 
 	public async purge(noteIds: string[]) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 		await db.query(
 			qb.sql`DELETE FROM note_versions WHERE note_id IN (${qb.values(noteIds)})`,
 		);
