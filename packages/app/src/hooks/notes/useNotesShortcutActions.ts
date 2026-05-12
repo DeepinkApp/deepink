@@ -46,8 +46,7 @@ export const useNotesShortcutActions = () => {
 		const lastClosedNote = recentlyClosedNotes[recentlyClosedNotes.length - 1];
 		if (!lastClosedNote) return;
 
-		// Open note as not temporary
-		noteActions.click(lastClosedNote, { isTemporary: false });
+		noteActions.click(lastClosedNote, { preview: false });
 	});
 
 	const focusNoteInDirection = (direction: 'next' | 'previous') => {
