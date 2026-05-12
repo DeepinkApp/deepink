@@ -4,7 +4,7 @@ import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
 
-export const useUnsetPreviewTabOnChange = (noteId: NoteId, deps: unknown[]) => {
+export const useConvertPreviewTabOnChange = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();
 	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 	const workspaceData = useWorkspaceData();
@@ -19,7 +19,7 @@ export const useUnsetPreviewTabOnChange = (noteId: NoteId, deps: unknown[]) => {
 		// Ignore if the current note is not preview
 		if (previewTabId !== noteId) return;
 
-		dispatch(workspacesApi.unsetPreviewTab({ ...workspaceData }));
+		dispatch(workspacesApi.convertPreviewToRegular({ ...workspaceData }));
 
 		// Effect should only trigger on content change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
