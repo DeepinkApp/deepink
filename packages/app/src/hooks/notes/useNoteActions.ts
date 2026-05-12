@@ -30,7 +30,7 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId, { preview }: { preview?: boolean } = {}) => {
+		(id: NoteId, { preview = true }: { preview?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
 			const previewTabId = selectPreviewTabId(workspace);
@@ -38,7 +38,7 @@ export const useNoteActions = () => {
 			if (isNoteOpened) {
 				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
 
-				if (preview === false && previewTabId === id) {
+				if (!preview && previewTabId === id) {
 					dispatch(workspacesApi.convertPreviewToRegular({ ...workspaceData }));
 				}
 			} else {
