@@ -14,7 +14,7 @@ import { useVaultSelector, useWorkspaceData } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import {
 	selectIsNoteOpened,
-	selectTemporaryNoteId,
+	selectPreviewTabId,
 	selectWorkspace,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
@@ -33,12 +33,12 @@ export const useNoteActions = () => {
 		(id: NoteId, { preview }: { preview?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
-			const temporaryNote = selectTemporaryNoteId(workspace);
+			const previewTabId = selectPreviewTabId(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
 
-				if (preview === false && temporaryNote === id) {
+				if (preview === false && previewTabId === id) {
 					dispatch(workspacesApi.unsetPreviewTab({ ...workspaceData }));
 				}
 			} else {

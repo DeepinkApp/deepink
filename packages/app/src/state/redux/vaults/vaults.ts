@@ -75,7 +75,7 @@ export const createWorkspaceObject = ({
 	activeNote: null,
 	recentlyClosedNotes: [],
 	openedNotes: [],
-	temporaryNoteId: null,
+	previewTabId: null,
 
 	noteIds: [],
 
@@ -137,7 +137,7 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
-	temporaryNoteId: NoteId | null;
+	previewTabId: NoteId | null;
 
 	noteIds: NoteId[];
 
@@ -376,10 +376,10 @@ export const vaultsSlice = createSlice({
 			if (preview) {
 				// Only one preview note can be open at a time — replace the previous one
 				workspace.openedNotes = workspace.openedNotes.filter(
-					({ id }) => id !== workspace.temporaryNoteId,
+					({ id }) => id !== workspace.previewTabId,
 				);
 
-				workspace.temporaryNoteId = note.id;
+				workspace.previewTabId = note.id;
 			}
 
 			if (focus) workspace.activeNote = note.id;
@@ -414,9 +414,9 @@ export const vaultsSlice = createSlice({
 
 			workspace.recentlyClosedNotes.push(noteId);
 
-			// Reset temporary note
-			if (workspace.temporaryNoteId === noteId) {
-				workspace.temporaryNoteId = null;
+			// Reset preview note
+			if (workspace.previewTabId === noteId) {
+				workspace.previewTabId = null;
 			}
 		},
 
@@ -530,12 +530,12 @@ export const vaultsSlice = createSlice({
 		setOpenedNotes: (
 			state,
 			{
-				payload: { vaultId, workspaceId, notes, activeNoteId, previewTab },
+				payload: { vaultId, workspaceId, notes, activeNoteId, previewTabId },
 			}: PayloadAction<
 				WorkspaceScoped<{
 					notes: INote[];
 					activeNoteId: NoteId;
-					previewTab?: NoteId;
+					previewTabId: NoteId | null;
 				}>
 			>,
 		) => {
@@ -543,9 +543,8 @@ export const vaultsSlice = createSlice({
 			if (!workspace) return;
 
 			workspace.openedNotes = notes;
-			workspace.temporaryNoteId = activeNoteId;
-
-			if (previewTab) workspace.activeNote = previewTab;
+			workspace.activeNote = activeNoteId;
+			workspace.previewTabId = previewTabId;
 		},
 
 		unsetPreviewTab: (
@@ -555,7 +554,7 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			workspace.temporaryNoteId = null;
+			workspace.previewTabId = null;
 		},
 
 		setSelectedTag: (

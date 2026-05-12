@@ -84,7 +84,7 @@ export const WorkspaceStateInitializer = () => {
 							workspaceActions.setOpenedNotes({
 								notes: openedNoteList,
 								activeNoteId: activeNote.id,
-								previewTab: state.temporaryNoteId || undefined,
+								previewTabId: state.previewTabId,
 							}),
 						);
 					}

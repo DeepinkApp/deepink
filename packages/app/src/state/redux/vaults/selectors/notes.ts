@@ -40,12 +40,12 @@ export const selectActiveNoteId = createWorkspaceSelector(
 	},
 );
 
-export const selectTemporaryNoteId = createWorkspaceSelector(
+export const selectPreviewTabId = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
 		if (!workspace) return null;
 
-		return workspace.temporaryNoteId;
+		return workspace.previewTabId;
 	},
 );
 
