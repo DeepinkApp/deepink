@@ -118,15 +118,15 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 							},
-							onPick(id, options?: { temporary: boolean }) {
-								noteActions.click(id);
+							onPick(id, options?: { preview: boolean }) {
+								noteActions.click(id, { preview: true });
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
 								});
 
-								// Notes open as temporary by default, so we only handle the non-temporary case
-								if (options?.temporary) {
-									noteActions.click(id, { isTemporary: false });
+								// Convert preview tab to regular
+								if (!options?.preview) {
+									noteActions.click(id, { preview: false });
 								}
 							},
 						}}

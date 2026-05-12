@@ -190,8 +190,7 @@ export const NotesList: FC<NotesListProps> = () => {
 										);
 									}}
 									onClick={() => {
-										// Open note temporarily
-										noteActions.click(note.id);
+										noteActions.click(note.id, { preview: true });
 										telemetry.track(
 											TELEMETRY_EVENT_NAME.NOTE_OPENED,
 											{
@@ -200,10 +199,8 @@ export const NotesList: FC<NotesListProps> = () => {
 										);
 									}}
 									onDoubleClick={() => {
-										// Update note state to non-temporary
-										noteActions.click(note.id, {
-											isTemporary: false,
-										});
+										// Convert preview tab to regular
+										noteActions.click(note.id, { preview: false });
 									}}
 								/>
 							);
