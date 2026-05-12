@@ -4,16 +4,9 @@ import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectTemporaryNoteId, workspacesApi } from '@state/redux/vaults/vaults';
 
-/**
- * Update note to non-temporary when its content is changed
- */
-export const useResetNoteTemporaryState = (
-	noteId: NoteId,
-	text: string,
-	title: string,
-) => {
+export const useUnsetPreviewTabOnChange = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();
-	const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
+	const previewTabId = useWorkspaceSelector(selectTemporaryNoteId);
 	const workspaceData = useWorkspaceData();
 
 	const isFirstRenderRef = useRef(true);
@@ -23,12 +16,12 @@ export const useResetNoteTemporaryState = (
 			return;
 		}
 
-		// Ignore if the current note is not temporary
-		if (temporaryNote !== noteId) return;
+		// Ignore if the current note is not preview
+		if (previewTabId !== noteId) return;
 
 		dispatch(workspacesApi.unsetPreviewTab({ ...workspaceData }));
 
 		// Effect should only trigger on content change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [title, text]);
+	}, deps);
 };
