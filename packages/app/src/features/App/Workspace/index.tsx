@@ -88,18 +88,13 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 							isTemporary = true,
 						}: { focus?: boolean; isTemporary?: boolean } = {},
 					) => {
-						dispatch(workspaceActions.addOpenedNote({ note }));
-						if (focus) {
-							dispatch(workspaceActions.setActiveNote({ noteId: note.id }));
-						}
-
-						if (isTemporary) {
-							dispatch(
-								workspaceActions.setTemporaryTab({
-									noteId: note.id,
-								}),
-							);
-						}
+						dispatch(
+							workspaceActions.addOpenedNote({
+								note,
+								focus,
+								preview: isTemporary,
+							}),
+						);
 					},
 					noteUpdated: (note: INote) =>
 						dispatch(workspaceActions.updateOpenedNote({ note })),
