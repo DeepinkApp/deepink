@@ -7,7 +7,7 @@ import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
-import { selectTemporaryNoteId } from '@state/redux/vaults/selectors/notes';
+import { selectPreviewTabId } from '@state/redux/vaults/selectors/notes';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 
@@ -46,7 +46,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		activeTabRef.current?.scrollIntoView();
 	}, [tabIndex]);
 
-	const temporaryNote = useWorkspaceSelector(selectTemporaryNoteId);
+	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 
 	return (
 		<Tabs
@@ -75,7 +75,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					}
 
 					const title = getNoteTitle(note.content, 50);
-					const isTemporaryTab = temporaryNote === note.id;
+					const isPreviewTab = previewTabId === note.id;
 
 					return (
 						<Tab
@@ -83,8 +83,8 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 							ref={isActiveTab ? activeTabRef : undefined}
 							padding="0.4rem 0.7rem"
 							border="none"
-							fontStyle={isTemporaryTab ? 'italic' : undefined}
-							fontWeight={isTemporaryTab ? undefined : '600'}
+							fontStyle={isPreviewTab ? 'italic' : undefined}
+							fontWeight={isPreviewTab ? undefined : '600'}
 							fontSize="14"
 							maxW="250px"
 							minW="150px"

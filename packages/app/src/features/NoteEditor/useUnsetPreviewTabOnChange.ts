@@ -2,11 +2,11 @@ import { useEffect, useRef } from 'react';
 import { NoteId } from '@core/features/notes';
 import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
-import { selectTemporaryNoteId, workspacesApi } from '@state/redux/vaults/vaults';
+import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
 
 export const useUnsetPreviewTabOnChange = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();
-	const previewTabId = useWorkspaceSelector(selectTemporaryNoteId);
+	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 	const workspaceData = useWorkspaceData();
 
 	const isFirstRenderRef = useRef(true);
