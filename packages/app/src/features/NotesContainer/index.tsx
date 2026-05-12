@@ -125,7 +125,7 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 								});
 
 								// Convert preview tab to regular
-								if (!options?.preview) {
+								if (options?.preview === false) {
 									noteActions.click(id, { preview: false });
 								}
 							},
