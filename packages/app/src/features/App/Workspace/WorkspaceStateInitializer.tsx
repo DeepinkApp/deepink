@@ -73,24 +73,18 @@ export const WorkspaceStateInitializer = () => {
 					);
 
 					if (openedNoteList && openedNoteList.length > 0) {
-						dispatch(
-							workspaceActions.setOpenedNotes({ notes: openedNoteList }),
-						);
-
 						let activeNote = openedNoteList[0];
 						if (state.activeNoteId) {
 							activeNote =
 								openedNoteList.find((n) => n.id === state.activeNoteId) ||
 								openedNoteList[0];
 						}
-						dispatch(
-							workspaceActions.setActiveNote({ noteId: activeNote.id }),
-						);
 
-						// Restore temporary note
 						dispatch(
-							workspaceActions.setTemporaryTab({
-								noteId: state.temporaryNoteId,
+							workspaceActions.setOpenedNotes({
+								notes: openedNoteList,
+								activeNoteId: activeNote.id,
+								previewTab: state.temporaryNoteId || undefined,
 							}),
 						);
 					}

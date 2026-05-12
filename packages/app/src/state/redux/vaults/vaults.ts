@@ -530,37 +530,32 @@ export const vaultsSlice = createSlice({
 		setOpenedNotes: (
 			state,
 			{
-				payload: { vaultId, workspaceId, notes },
-			}: PayloadAction<WorkspaceScoped<{ notes: INote[] }>>,
+				payload: { vaultId, workspaceId, notes, activeNoteId, previewTab },
+			}: PayloadAction<
+				WorkspaceScoped<{
+					notes: INote[];
+					activeNoteId: NoteId;
+					previewTab?: NoteId;
+				}>
+			>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
 			workspace.openedNotes = notes;
+			workspace.temporaryNoteId = activeNoteId;
+
+			if (previewTab) workspace.activeNote = previewTab;
 		},
 
-		setTemporaryTab: (
+		unsetPreviewTab: (
 			state,
-			{
-				payload: { vaultId, workspaceId, noteId },
-			}: PayloadAction<WorkspaceScoped<{ noteId: NoteId | null }>>,
+			{ payload: { vaultId, workspaceId } }: PayloadAction<WorkspaceScoped>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			if (noteId === null) {
-				workspace.temporaryNoteId = null;
-				return;
-			}
-
-			if (noteId === workspace.temporaryNoteId) return;
-
-			// When a new temporary note is opened, close the previously opened temporary note
-			workspace.openedNotes = workspace.openedNotes.filter(
-				({ id }) => id !== workspace.temporaryNoteId,
-			);
-
-			workspace.temporaryNoteId = noteId;
+			workspace.temporaryNoteId = null;
 		},
 
 		setSelectedTag: (
