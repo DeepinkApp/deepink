@@ -81,7 +81,7 @@ export const WorkspaceStateInitializer = () => {
 						}
 
 						dispatch(
-							workspaceActions.setOpenedNotes({
+							workspaceActions.setOpenedNotesState({
 								notes: openedNoteList,
 								activeNoteId: activeNote.id,
 								previewTabId: state.previewTabId,

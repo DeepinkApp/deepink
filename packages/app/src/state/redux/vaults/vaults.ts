@@ -442,7 +442,7 @@ export const vaultsSlice = createSlice({
 			];
 		},
 
-		setOpenedNotes: (
+		setOpenedNotesState: (
 			state,
 			{
 				payload: { vaultId, workspaceId, notes, activeNoteId, previewTabId },
@@ -462,7 +462,7 @@ export const vaultsSlice = createSlice({
 			workspace.previewTabId = previewTabId;
 		},
 
-		unsetPreviewTab: (
+		convertPreviewToRegular: (
 			state,
 			{ payload: { vaultId, workspaceId } }: PayloadAction<WorkspaceScoped>,
 		) => {
