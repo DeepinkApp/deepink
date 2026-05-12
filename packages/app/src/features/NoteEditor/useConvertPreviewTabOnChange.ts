@@ -21,7 +21,7 @@ export const useConvertPreviewTabOnChange = (noteId: NoteId, deps: unknown[]) =>
 
 		dispatch(workspacesApi.convertPreviewToRegular({ ...workspaceData }));
 
-		// Effect should only trigger on content change
+		// Effect should only trigger on deps change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, deps);
 };
