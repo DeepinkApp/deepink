@@ -38,7 +38,7 @@ export const useWorkspace = (currentVault: VaultContainer) => {
 
 	const files = useVaultStorage();
 	useEffect(() => {
-		const { db } = currentVault;
+		const db = currentVault.db.get();
 
 		// TODO: index must be destroyed by unmount a workspace. That is privacy threat
 		const indexDir = new RootedFS(

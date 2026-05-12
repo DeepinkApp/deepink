@@ -35,7 +35,8 @@ export const WorkspaceErrorScreen = ({
 	const currentWorkspace = useAppSelector(selectActiveWorkspaceInfo({ vaultId }));
 
 	const [newWorkspaceName, setNewWorkspaceName] = useState('');
-	const workspacesManager = useMemo(() => new WorkspacesController(db), [db]);
+	const rawDB = db.get();
+	const workspacesManager = useMemo(() => new WorkspacesController(rawDB), [rawDB]);
 	const [isPending, setIsPending] = useState(false);
 
 	if (!currentWorkspace) return;

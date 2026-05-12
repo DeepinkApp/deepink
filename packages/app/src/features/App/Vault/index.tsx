@@ -50,6 +50,14 @@ export type VaultControls = {
 export const VaultControlsContext = createContext<VaultControls | null>(null);
 export const useVaultControls = createContextGetterHook(VaultControlsContext);
 
+export function useVaultDB(managed: true): ManagedDatabase<SQLiteDB>;
+export function useVaultDB(managed: false): SQLiteDB;
+export function useVaultDB(): SQLiteDB;
+export function useVaultDB(managed = false): SQLiteDB | ManagedDatabase<SQLiteDB> {
+	const db = useVaultControls().vault.db;
+	return managed ? db : db.get();
+}
+
 export type VaultProps = {
 	vault: VaultContainer;
 	controls: VaultControls;
