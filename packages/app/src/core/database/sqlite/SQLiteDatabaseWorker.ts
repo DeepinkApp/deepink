@@ -1,7 +1,7 @@
 import { proxy, transfer, wrap } from 'comlink';
 import { BindParams, UpdateHookCallback } from 'sql.js';
 
-import { SQLiteDB, SQLiteDBWorker } from '.';
+import { SQLiteDB, SQLiteDBWorker, SQLiteTransaction } from '.';
 
 export class SQLiteDatabaseWorker implements SQLiteDB {
 	protected db;
@@ -30,6 +30,19 @@ export class SQLiteDatabaseWorker implements SQLiteDB {
 	async query(query: string, params?: BindParams) {
 		const db = await this.getDb();
 		return db.query(query, params);
+	}
+
+	transaction<T extends unknown>(
+		cb: (tx: SQLiteTransaction) => Promise<T>,
+	): Promise<void>;
+	async transaction(): Promise<SQLiteTransaction>;
+	async transaction(
+		callback?: (tx: SQLiteTransaction) => Promise<unknown>,
+	): Promise<any> {
+		const db = await this.getDb();
+		return callback
+			? (db.transaction as unknown as SQLiteDB['transaction'])(proxy(callback))
+			: db.transaction();
 	}
 
 	async export() {

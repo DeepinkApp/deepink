@@ -1,7 +1,8 @@
+import { Mutex } from 'async-mutex';
 import sqlite, { Database, ParamsObject, QueryExecResult } from 'sql.js';
 import { v4 as uuidv4 } from 'uuid';
 
-import { SQLiteDB } from '.';
+import { SQLiteDB, SQLiteTransaction } from '.';
 
 export function queryResultsToParams(results: QueryExecResult[]): ParamsObject[] {
 	const allRows: ParamsObject[] = [];
@@ -31,6 +32,7 @@ const loadSQLite = async () => {
 
 export class SQLiteDatabase implements SQLiteDB {
 	protected db;
+	protected transactionMutex = new Mutex();
 	constructor(data?: ArrayLike<number> | Buffer | null) {
 		this.db = loadSQLite().then((sqlite) => {
 			const db = new sqlite.Database(data);
@@ -86,10 +88,11 @@ export class SQLiteDatabase implements SQLiteDB {
 		query: string,
 		params?: sqlite.BindParams,
 	): Promise<sqlite.ParamsObject[]> {
+		if (this.transactionMutex.isLocked()) await this.transactionMutex.waitForUnlock();
+
 		if (this.isClosed) throw new Error('Database is closed');
 
 		const db = await this.db;
-
 		try {
 			const result = db.exec(query, params);
 
@@ -98,6 +101,53 @@ export class SQLiteDatabase implements SQLiteDB {
 			console.debug(query);
 			throw error;
 		}
+	}
+
+	transaction<T extends unknown>(
+		cb: (tx: SQLiteTransaction) => Promise<T>,
+	): Promise<void>;
+	async transaction(): Promise<SQLiteTransaction>;
+	async transaction(
+		callback?: (tx: SQLiteTransaction) => Promise<unknown>,
+	): Promise<any> {
+		if (this.isClosed) throw new Error('Database is closed');
+
+		const release = await this.transactionMutex.acquire();
+
+		if (this.isClosed) throw new Error('Database is closed');
+		const db = await this.db;
+
+		let isCompleted = false;
+		const throwIfCompleted = () => {
+			if (isCompleted) throw new Error('Transaction is completed');
+		};
+
+		const transaction = {
+			async close() {
+				throwIfCompleted();
+
+				isCompleted = true;
+				release();
+			},
+			query: async (
+				query: string,
+				params?: sqlite.BindParams,
+			): Promise<sqlite.ParamsObject[]> => {
+				throwIfCompleted();
+
+				if (this.isClosed) throw new Error('Database is closed');
+				try {
+					const result = db.exec(query, params);
+
+					return queryResultsToParams(result);
+				} catch (error) {
+					console.debug(query);
+					throw error;
+				}
+			},
+		};
+
+		return callback ? callback(transaction).finally(transaction.close) : transaction;
 	}
 
 	private readonly onChangeCallbacks = new Set<sqlite.UpdateHookCallback>();

@@ -13,21 +13,25 @@ export class AttachmentsController {
 	) {}
 
 	public async set(targetId: string, attachments: string[]) {
-		const db = wrapSQLite(this.db);
+		await this.db.transaction(async (tx) => {
+			const db = wrapSQLite(tx);
 
-		await db.query(
-			qb.sql`DELETE FROM note_files WHERE workspace_id=${this.workspace} AND note_id=${targetId}`,
-		);
-
-		if (attachments.length > 0) {
 			await db.query(
-				qb.sql`INSERT INTO note_files ("workspace_id", "note_id", "file_id") VALUES ${qb.set(
-					attachments.map((fileId) =>
-						qb.values([this.workspace, targetId, fileId]).withParenthesis(),
-					),
-				)}`,
+				qb.sql`DELETE FROM note_files WHERE workspace_id=${this.workspace} AND note_id=${targetId}`,
 			);
-		}
+
+			if (attachments.length > 0) {
+				await db.query(
+					qb.sql`INSERT INTO note_files ("workspace_id", "note_id", "file_id") VALUES ${qb.set(
+						attachments.map((fileId) =>
+							qb
+								.values([this.workspace, targetId, fileId])
+								.withParenthesis(),
+						),
+					)}`,
+				);
+			}
+		});
 	}
 
 	public async get(targetId: string): Promise<string[]> {

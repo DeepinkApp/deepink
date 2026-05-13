@@ -106,6 +106,7 @@
 		"@reduxjs/toolkit": "^2.11.2",
 		"@tanstack/react-virtual": "^3.13.18",
 		"arrival-time": "^1.0.6",
+		"async-mutex": "^0.5.0",
 		"bytes": "^3.1.2",
 		"chalk": "5.6.2",
 		"check-disk-space": "^3.4.0",
