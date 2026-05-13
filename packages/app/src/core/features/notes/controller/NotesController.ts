@@ -10,6 +10,7 @@ import { FlexSearchIndex } from '../../../database/flexsearch/FlexSearchIndex';
 import { INote, INoteContent, NoteId } from '..';
 import {
 	INotesController,
+	NoteContentUpdateInfo,
 	NoteMeta,
 	NotesControllerFetchOptions,
 	NoteSortField,
@@ -342,18 +343,24 @@ export class NotesController implements INotesController {
 	}
 
 	public async update(id: string, updatedNote: INoteContent) {
-		const db = wrapSQLite(this.db);
+		await this.updateBatch([{ id, ...updatedNote }]);
+	}
 
+	public async updateBatch(notes: NoteContentUpdateInfo[]) {
+		if (notes.length === 0) return;
+
+		const db = wrapSQLite(this.db);
 		await db.query(
-			qb.line(
-				'UPDATE notes SET',
-				qb.values({
-					title: updatedNote.title,
-					text: updatedNote.text,
-					updated_at: Date.now(),
-				}),
-				qb.sql`WHERE id=${id} AND workspace_id=${this.workspace}`,
-			),
+			qb.sql`WITH updates(id, title, text) AS (
+				VALUES ${qb.set(notes.map(({ id, title, text }) => qb.values([id, title, text]).withParenthesis()))}
+			)
+			UPDATE notes
+			SET
+				title = updates.title,
+				text = updates.text,
+				updated_at = ${Date.now()}
+			FROM updates
+			WHERE notes.id = updates.id AND workspace_id=${this.workspace}`,
 		);
 	}
 
