@@ -371,19 +371,21 @@ export const vaultsSlice = createSlice({
 			// Ignore already exists note
 			if (foundNoteInList) return;
 
-			workspace.openedNotes.push(note);
-
 			if (preview) {
 				// Only one preview note can be open at a time — replace the previous one
 				workspace.openedNotes = workspace.openedNotes.filter(
 					({ id }) => id !== workspace.previewTabId,
 				);
-
 				workspace.previewTabId = note.id;
 			}
 
-			if (focus) workspace.activeNote = note.id;
+			workspace.openedNotes.push(note);
 
+			if (focus) {
+				workspace.activeNote = note.id;
+			}
+
+			// Remove from recently closed if it was there
 			const filteredClosedNotes = workspace.recentlyClosedNotes.filter(
 				(id) => id !== note.id,
 			);
