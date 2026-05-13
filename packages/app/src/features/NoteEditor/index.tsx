@@ -308,7 +308,7 @@ export const Note: FC<NoteEditorProps> = memo(
 							}}
 							isActive={note.isPinned}
 						>
-							<Box as={FaThumbtack} transform="scale(1.1)" />
+							<Box as={FaThumbtack} transform="scale(1.1) rotate(45deg)" />
 						</Button>
 					</HStack>
 
