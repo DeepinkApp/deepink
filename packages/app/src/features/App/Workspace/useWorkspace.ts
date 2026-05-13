@@ -47,13 +47,17 @@ export const useWorkspace = (currentVault: VaultContainer) => {
 		);
 		const notesIndex = new FlexSearchIndex(indexDir);
 		const notes = new NotesController(db, workspaceId, notesIndex);
+		const workspaceScopedFiles = new RootedFS(
+			files,
+			getWorkspaceFilesPath(workspaceId),
+		);
 
 		// Setup files
 		// TODO: implement methods to close the objects after use
 		setState({
-			filesController: new RootedFS(files, getWorkspaceFilesPath(workspaceId)),
+			filesController: workspaceScopedFiles,
 			attachmentsController: new AttachmentsController(db, workspaceId),
-			filesRegistry: new FilesController(db, files, workspaceId),
+			filesRegistry: new FilesController(db, workspaceScopedFiles, workspaceId),
 			tagsRegistry: new TagsController(db, workspaceId),
 			notesRegistry: notes,
 			notesHistory: new NoteVersions(db, workspaceId),
