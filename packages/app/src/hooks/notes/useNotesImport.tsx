@@ -2,11 +2,8 @@ import { useCallback, useState } from 'react';
 import { throttle } from 'lodash';
 import { WorkspaceEvents } from '@api/events/workspace';
 import { IFilesStorage } from '@core/features/files';
-import {
-	NotesImporter,
-	NotesImporterOptions,
-	OnProcessedPayload,
-} from '@core/storage/interop/import';
+import { NotesImporterConfig, OnProcessedPayload } from '@core/storage/interop/import';
+import { NotesImporterWorker } from '@core/storage/interop/import/NotesImporterWorker';
 import {
 	useAttachmentsController,
 	useEventBus,
@@ -31,7 +28,7 @@ export const useNotesImport = ({ snapshots }: { snapshots?: boolean } = {}) => {
 
 	const eventBus = useEventBus();
 	const importNotes = useCallback(
-		async (files: IFilesStorage, options: NotesImporterOptions = {}) => {
+		async (files: IFilesStorage, options: NotesImporterConfig = {}) => {
 			const abortController = new AbortController();
 
 			setImportSession({
@@ -44,7 +41,8 @@ export const useNotesImport = ({ snapshots }: { snapshots?: boolean } = {}) => {
 			});
 
 			const onProgress = throttle(setImportSession, 200);
-			await new NotesImporter(
+
+			await new NotesImporterWorker(
 				{
 					filesRegistry,
 					notesRegistry,
@@ -57,7 +55,6 @@ export const useNotesImport = ({ snapshots }: { snapshots?: boolean } = {}) => {
 
 					noteExtensions: ['.md', '.mdx'],
 					convertPathToTag: 'always',
-					throttle: requestAnimationFrame,
 					...options,
 				},
 			)
