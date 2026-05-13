@@ -3,13 +3,18 @@ import { NoteId } from '@core/features/notes';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { Virtualizer } from '@tanstack/react-virtual';
+import { isElementInViewport } from '@utils/dom/isElementInViewport';
+
+import { scrollAlignment } from './NotesList';
 
 export const usePinNoteEffect = ({
 	noteIds,
 	virtualizer,
+	pinNoteRef,
 }: {
 	noteIds: NoteId[];
 	virtualizer: Virtualizer<any, any>;
+	pinNoteRef: React.RefObject<HTMLDivElement | null>;
 }) => {
 	const targetNoteIdRef = useRef<NoteId | null>(null);
 
@@ -39,11 +44,12 @@ export const usePinNoteEffect = ({
 		const noteIndex = noteIds.indexOf(targetNoteIdRef.current);
 		if (noteIndex === -1) return;
 
-		targetNoteIdRef.current = null;
+		// Skip if pin note is in viewport
+		if (pinNoteRef.current && isElementInViewport(pinNoteRef.current)) return;
 
-		// 'auto' allows skipping scroll if the element is already in the viewport
-		virtualizer.scrollToIndex(noteIndex, { align: 'auto' });
-	}, [noteIds, virtualizer]);
+		targetNoteIdRef.current = null;
+		virtualizer.scrollToIndex(noteIndex, { align: scrollAlignment });
+	}, [noteIds, pinNoteRef, virtualizer]);
 
 	return { flashingNoteId };
 };

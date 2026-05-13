@@ -75,7 +75,8 @@ export const NotesList: FC<NotesListProps> = () => {
 		activeNoteRef,
 	});
 
-	const { flashingNoteId } = usePinNoteEffect({ noteIds, virtualizer });
+	const pinNoteRef = useRef<HTMLDivElement | null>(null);
+	const { flashingNoteId } = usePinNoteEffect({ noteIds, virtualizer, pinNoteRef });
 
 	// TODO: implement dragging and moving items
 	return (
@@ -173,6 +174,9 @@ export const NotesList: FC<NotesListProps> = () => {
 									ref={(node) => {
 										if (isActive) {
 											activeNoteRef.current = node;
+										}
+										if (isFlashing) {
+											pinNoteRef.current = node;
 										}
 
 										virtualizer.measureElement(node);
