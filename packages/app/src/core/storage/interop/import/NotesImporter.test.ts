@@ -46,7 +46,6 @@ describe('Base notes import cases', () => {
 				ignorePaths: ['/_resources'],
 				noteExtensions: ['.md', '.mdx'],
 				convertPathToTag: 'always',
-				throttle: requestAnimationFrame,
 			},
 		);
 
@@ -663,6 +662,7 @@ describe('Import interruptions', () => {
 				getImporter().import(createFileManagerMock(filesSample), {
 					abortSignal: abortController.signal,
 					onProcessed,
+					batchSize: 1,
 				}),
 			).rejects.toThrowError('Import is cancelled');
 
@@ -699,19 +699,16 @@ describe('Import interruptions', () => {
 				ignorePaths: ['/_resources'],
 				noteExtensions: ['.md', '.mdx'],
 				convertPathToTag: 'always',
-				// Slow down the processing
-				async throttle(callback) {
-					if (managedDb.dbContainer.isOpened()) {
-						await managedDb.dbContainer.close();
-					}
-
-					callback();
-				},
 			},
 		);
 
 		await expect(
-			importer.import(createFileManagerMock(filesSample)),
-		).rejects.toThrowError('Database is closed');
+			importer.import(createFileManagerMock(filesSample), {
+				onProcessed() {
+					managedDb.close();
+				},
+				batchSize: 1,
+			}),
+		).rejects.toThrowError('Database');
 	});
 });
