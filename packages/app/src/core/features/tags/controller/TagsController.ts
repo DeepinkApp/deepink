@@ -354,10 +354,12 @@ export class TagsController {
 					)
 					.flat();
 
-				await db.query(
-					qb.sql`INSERT INTO note_tags(workspace_id,tag_id,note_id)
-						VALUES ${qb.set(values)}`,
-				);
+				if (values.length > 0) {
+					await db.query(
+						qb.sql`INSERT INTO note_tags(workspace_id,tag_id,note_id)
+							VALUES ${qb.set(values)}`,
+					);
+				}
 
 				await db.query(qb.sql`COMMIT`);
 			} catch (error) {
