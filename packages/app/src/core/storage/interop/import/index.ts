@@ -4,7 +4,8 @@ import remarkParse from 'remark-parse';
 import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
-import { remove } from 'unist-util-remove';
+import { CONTINUE, EXIT, visit } from 'unist-util-visit';
+import { parse as parseYaml } from 'yaml';
 import { z } from 'zod';
 import { AttachmentsController } from '@core/features/attachments/AttachmentsController';
 import { IFilesStorage } from '@core/features/files';
@@ -90,7 +91,6 @@ export type NotesImportOptions = {
 	batchSize?: number;
 };
 
-// TODO: run import and export in worker
 export class NotesImporter {
 	private readonly config: Config;
 	constructor(
@@ -155,13 +155,26 @@ export class NotesImporter {
 				continue;
 			}
 
+			const fileAbsolutePathSegments = getPathSegments(filename);
 			const rawText = textDecoder.decode(fileContent);
 			const mdTree = markdownProcessor.parse(rawText);
 
-			const fileAbsolutePathSegments = getPathSegments(filename);
+			// Extract meta
+			let noteMeta: z.output<typeof RawNoteMetaScheme> = {};
+			visit(mdTree, (node, index, parent) => {
+				if (node.type === 'yaml') {
+					const rawMeta = parseYaml(node.value);
+					noteMeta = RawNoteMetaScheme.parse(rawMeta);
 
-			// Remove header node with meta data parsed by frontmatter
-			remove(mdTree, 'yaml');
+					// Remove header node with meta data
+					if (parent && index !== undefined) {
+						parent.children.splice(index, 1);
+					}
+					return EXIT;
+				}
+
+				return CONTINUE;
+			});
 
 			// Resolve URLs to absolute paths in AST and collect attachments in use
 			await replaceUrls(mdTree, async (nodeUrl) => {
@@ -188,10 +201,6 @@ export class NotesImporter {
 			});
 
 			// Add note draft
-			const noteMeta = RawNoteMetaScheme.parse(
-				markdownProcessor.processSync(rawText).data.frontmatter,
-			);
-
 			// Extract title
 			let title = noteMeta.title;
 			if (!title) {
