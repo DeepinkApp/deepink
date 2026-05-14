@@ -136,6 +136,10 @@ export class NotesImporter {
 			total: filePathsList.length,
 			callback: onProcessed,
 		});
+		const tagsToAttach: {
+			noteId: string;
+			tags: string[];
+		}[] = [];
 		for (const filename of filePathsList) {
 			checkForAbortion();
 
@@ -211,20 +215,35 @@ export class NotesImporter {
 			);
 
 			// Attach tags
-			if (noteMeta.tags && noteMeta.tags.length > 0) {
-				await tagsRegistry.setAttachedTags(
-					noteId,
-					await this.getTagIds(noteMeta.tags),
-				);
+			const tagNamesToAttach = noteMeta.tags ?? [];
+
+			// Attach tag equal to note directory path
+			const noteDirPath = fileAbsolutePathSegments.dirname;
+			const { convertPathToTag } = this.config;
+			if (convertPathToTag !== 'never' && noteDirPath !== '/') {
+				const isFallbackTagNeeded = tagNamesToAttach.length === 0;
+				if (isFallbackTagNeeded || convertPathToTag === 'always') {
+					const tagName = noteDirPath.split('/').filter(Boolean).join('/');
+
+					tagNamesToAttach.push(tagName);
+				}
 			}
+
+			const tagIds = await this.getTagIds(tagNamesToAttach);
+			tagsToAttach.push({
+				noteId,
+				tags: tagIds,
+			});
 
 			createdNotes[filename] = {
 				id: noteId,
-				path: fileAbsolutePathSegments.dirname,
+				path: noteDirPath,
 			};
 
 			parsingProgress.notify();
 		}
+
+		await tagsRegistry.setAttachedTagsInTransaction(tagsToAttach);
 
 		// TODO: limit concurrency for case with many large files
 		// Upload attached files concurrently
@@ -270,12 +289,8 @@ export class NotesImporter {
 				);
 
 			const updates: NoteContentUpdateInfo[] = [];
-			const tagsToAttach: {
-				noteId: string;
-				tags: string[];
-			}[] = [];
 			await Promise.all(
-				notesSlice.map(({ id: noteId, path: noteDirPath }, sliceIndex) =>
+				notesSlice.map(({ id: noteId }, sliceIndex) =>
 					Promise.resolve().then(async () => {
 						const note = notesContent[sliceIndex];
 						const noteTree = markdownProcessor.parse(note.content.text);
@@ -313,34 +328,11 @@ export class NotesImporter {
 							noteId,
 							Array.from(attachedFilesIds),
 						);
-
-						// Attach tag equal to note directory path
-						const { convertPathToTag } = this.config;
-						if (convertPathToTag !== 'never' && noteDirPath !== '/') {
-							const attachedTagIds = await tagsRegistry
-								.getAttachedTags(noteId)
-								.then((tags) => tags.map((tag) => tag.id));
-
-							const isFallbackTagNeeded = attachedTagIds.length === 0;
-							if (isFallbackTagNeeded || convertPathToTag === 'always') {
-								const tagName = noteDirPath
-									.split('/')
-									.filter(Boolean)
-									.join('/');
-								const [pathTagId] = await this.getTagIds([tagName]);
-
-								tagsToAttach.push({
-									noteId,
-									tags: [...attachedTagIds, pathTagId],
-								});
-							}
-						}
 					}),
 				),
 			);
 
 			await notesRegistry.updateBatch(updates);
-			await tagsRegistry.setAttachedTagsInTransaction(tagsToAttach);
 			if (noteVersions) {
 				await noteVersions.batchSnapshot(noteIds);
 			}
