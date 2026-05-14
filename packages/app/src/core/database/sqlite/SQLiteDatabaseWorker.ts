@@ -40,8 +40,25 @@ export class SQLiteDatabaseWorker implements SQLiteDB {
 		callback?: (tx: SQLiteTransaction) => Promise<unknown>,
 	): Promise<any> {
 		const db = await this.getDb();
+
+		let capturedCallbackError: unknown;
 		return callback
-			? (db.transaction as unknown as SQLiteDB['transaction'])(proxy(callback))
+			? (db.transaction as unknown as SQLiteDB['transaction'])(
+					proxy(async (tx) => {
+						try {
+							const result = await callback(tx);
+							return result;
+						} catch (error) {
+							capturedCallbackError = error;
+							throw error;
+						}
+					}),
+				).catch((reason) => {
+					// We want to throw the original error object in case it occurs in callback
+					// eslint-disable-next-line @typescript-eslint/only-throw-error
+					if (capturedCallbackError) throw capturedCallbackError;
+					throw reason;
+				})
 			: db.transaction();
 	}
 
