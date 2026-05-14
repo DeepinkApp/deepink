@@ -6,9 +6,7 @@ export interface SQLiteTransaction {
 }
 export interface SQLiteDB {
 	query(query: string, params?: sqlite.BindParams): Promise<sqlite.ParamsObject[]>;
-	transaction<T extends unknown>(
-		cb: (tx: SQLiteTransaction) => Promise<T>,
-	): Promise<void>;
+	transaction<T extends unknown>(cb: (tx: SQLiteTransaction) => Promise<T>): Promise<T>;
 	transaction(): Promise<SQLiteTransaction>;
 	export(): Promise<Uint8Array>;
 	close(): Promise<void>;
