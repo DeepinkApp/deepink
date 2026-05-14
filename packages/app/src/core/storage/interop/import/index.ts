@@ -1,4 +1,3 @@
-import pLimit from 'p-limit';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
@@ -11,10 +10,9 @@ import { AttachmentsController } from '@core/features/attachments/AttachmentsCon
 import { IFilesStorage } from '@core/features/files';
 import { FilesController } from '@core/features/files/FilesController';
 import { formatNoteLink, formatResourceLink } from '@core/features/links';
-import { INotesController } from '@core/features/notes/controller';
+import { INotesController, NoteContentUpdateInfo } from '@core/features/notes/controller';
 import { NoteVersions } from '@core/features/notes/history/NoteVersions';
 import { TagsController } from '@core/features/tags/controller/TagsController';
-import { findParentTag } from '@core/features/tags/utils';
 import { getPathSegments, getResolvedPath } from '@utils/fs/paths';
 
 import { replaceUrls } from '../utils/mdast';
@@ -60,8 +58,8 @@ const createNotifier = ({
 		getStats() {
 			return { total, processed: counter };
 		},
-		notify: () => {
-			counter++;
+		notify: (updates = 1) => {
+			counter += updates;
 			if (callback) callback({ stage, total, processed: counter });
 		},
 	};
@@ -257,77 +255,100 @@ export class NotesImporter {
 			callback: onProcessed,
 		});
 
-		const handleUpdate = pLimit(10);
-		await Promise.all(
-			notesToUpdate.map(({ id: noteId, path: noteDirPath }) =>
-				handleUpdate(async () => {
-					checkForAbortion();
+		const batchSize = 100;
+		for (let offset = 0; offset < notesToUpdate.length; offset += batchSize) {
+			checkForAbortion();
 
-					const [note] = await notesRegistry.getById([noteId]);
-					if (!note) throw new Error('Note with such id does not exist');
+			const notesSlice = notesToUpdate.slice(offset, offset + batchSize);
 
-					const noteTree = markdownProcessor.parse(note.content.text);
+			const notesContent = await notesRegistry.getById(
+				notesSlice.map(({ id }) => id),
+			);
+			if (notesContent.length !== notesSlice.length)
+				throw new Error(
+					`Not all notes found in DB (${notesContent.length}/${notesSlice.length})`,
+				);
 
-					// Update URLs and collect attached files
-					const attachedFilesIds = new Set<string>();
-					// Here we replace temporary absolute paths to app references
-					await replaceUrls(noteTree, async (absoluteUrl) => {
-						const createdNote = createdNotes[absoluteUrl];
-						if (createdNote) {
-							// TODO: record back-link to note
-							return formatNoteLink(createdNote.id);
+			const updates: NoteContentUpdateInfo[] = [];
+			const tagsToAttach: {
+				noteId: string;
+				tags: string[];
+			}[] = [];
+			await Promise.all(
+				notesSlice.map(({ id: noteId, path: noteDirPath }, sliceIndex) =>
+					Promise.resolve().then(async () => {
+						const note = notesContent[sliceIndex];
+						const noteTree = markdownProcessor.parse(note.content.text);
+
+						// Update URLs and collect attached files
+						const attachedFilesIds = new Set<string>();
+						// Here we replace temporary absolute paths to app references
+						await replaceUrls(noteTree, async (absoluteUrl) => {
+							const createdNote = createdNotes[absoluteUrl];
+							if (createdNote) {
+								// TODO: record back-link to note
+								return formatNoteLink(createdNote.id);
+							}
+
+							const fileId = filePathToIdMap[absoluteUrl];
+							if (fileId) {
+								// Record file id as used
+								attachedFilesIds.add(fileId);
+
+								return formatResourceLink(fileId);
+							}
+
+							return absoluteUrl;
+						});
+
+						// Update note text
+						updates.push({
+							id: note.id,
+							...note.content,
+							text: markdownProcessor.stringify(noteTree),
+						});
+
+						// Attach files
+						await attachmentsRegistry.set(
+							noteId,
+							Array.from(attachedFilesIds),
+						);
+
+						// Attach tag equal to note directory path
+						const { convertPathToTag } = this.config;
+						if (convertPathToTag !== 'never' && noteDirPath !== '/') {
+							const attachedTagIds = await tagsRegistry
+								.getAttachedTags(noteId)
+								.then((tags) => tags.map((tag) => tag.id));
+
+							const isFallbackTagNeeded = attachedTagIds.length === 0;
+							if (isFallbackTagNeeded || convertPathToTag === 'always') {
+								const tagName = noteDirPath
+									.split('/')
+									.filter(Boolean)
+									.join('/');
+								const [pathTagId] = await this.getTagIds([tagName]);
+
+								tagsToAttach.push({
+									noteId,
+									tags: [...attachedTagIds, pathTagId],
+								});
+							}
 						}
 
-						const fileId = filePathToIdMap[absoluteUrl];
-						if (fileId) {
-							// Record file id as used
-							attachedFilesIds.add(fileId);
-
-							return formatResourceLink(fileId);
+						// TODO: handle in batch
+						if (noteVersions) {
+							await noteVersions.snapshot(noteId);
 						}
+					}),
+				),
+			);
 
-						return absoluteUrl;
-					});
+			await notesRegistry.updateBatch(updates);
+			await tagsRegistry.setAttachedTagsInTransaction(tagsToAttach);
 
-					// Update note text
-					await notesRegistry.update(note.id, {
-						...note.content,
-						text: markdownProcessor.stringify(noteTree),
-					});
-
-					// Attach files
-					await attachmentsRegistry.set(noteId, Array.from(attachedFilesIds));
-
-					// Attach tag equal to note directory path
-					const { convertPathToTag } = this.config;
-					if (convertPathToTag !== 'never' && noteDirPath !== '/') {
-						const attachedTagIds = await tagsRegistry
-							.getAttachedTags(noteId)
-							.then((tags) => tags.map((tag) => tag.id));
-
-						const isFallbackTagNeeded = attachedTagIds.length === 0;
-						if (isFallbackTagNeeded || convertPathToTag === 'always') {
-							const tagName = noteDirPath
-								.split('/')
-								.filter(Boolean)
-								.join('/');
-							const [pathTagId] = await this.getTagIds([tagName]);
-
-							await tagsRegistry.setAttachedTags(noteId, [
-								...attachedTagIds,
-								pathTagId,
-							]);
-						}
-					}
-
-					if (noteVersions) {
-						await noteVersions.snapshot(noteId);
-					}
-
-					updatingProgress.notify();
-				}),
-			),
-		);
+			updatingProgress.notify(notesSlice.length);
+		}
 
 		await notesRegistry.updateMeta(
 			Object.values(createdNotes).map((note) => note.id),
@@ -351,39 +372,23 @@ export class NotesImporter {
 		return true;
 	}
 
+	private resolvedTagIds: Record<string, Promise<string>> = {};
 	private async getTagIds(tags: string[]) {
 		const { tagsRegistry } = this.deps;
 
-		const tagsToAttach: string[] = [];
-		for (const resolvedTagName of tags) {
-			const tags = await tagsRegistry.getTags();
+		return Promise.all(
+			tags.map(async (resolvedTagName) => {
+				if (!this.resolvedTagIds[resolvedTagName]) {
+					this.resolvedTagIds[resolvedTagName] = tagsRegistry.add(
+						resolvedTagName,
+						null,
+						{ returnIfExist: true },
+					);
+				}
 
-			// Find exists tag
-			const foundTag = tags.find((tag) => tag.resolvedName === resolvedTagName);
-			if (foundTag) {
-				tagsToAttach.push(foundTag.id);
-				continue;
-			}
-
-			// Find parent tag and create sub tag
-			const parentTag = findParentTag(resolvedTagName, tags);
-			if (parentTag) {
-				const parentTagWithPrefixLength = parentTag.resolvedName.length + 1;
-				const tagNamePartToAdd = resolvedTagName.slice(parentTagWithPrefixLength);
-				const createdTagId = await tagsRegistry.add(
-					tagNamePartToAdd,
-					parentTag.id,
-				);
-				tagsToAttach.push(createdTagId);
-				continue;
-			}
-
-			// Create full resolved tag
-			const createdTagId = await tagsRegistry.add(resolvedTagName, null);
-			tagsToAttach.push(createdTagId);
-		}
-
-		return tagsToAttach;
+				return this.resolvedTagIds[resolvedTagName];
+			}),
+		);
 	}
 
 	private readonly uploadedFiles: Record<string, Promise<string | null>> = {};
