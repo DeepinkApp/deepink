@@ -21,7 +21,7 @@ export class NotesImporterWorker {
 
 		const worker = new Worker(
 			/* webpackChunkName: "NotesImporter.worker" */ new URL(
-				'./NotesImporter.worker?worker',
+				'./NotesImporter.worker',
 				import.meta.url,
 			),
 			{ type: 'module' },
