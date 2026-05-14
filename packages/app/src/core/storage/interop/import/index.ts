@@ -87,6 +87,7 @@ export type NotesImporterConfig = Partial<Config>;
 export type NotesImportOptions = {
 	abortSignal?: AbortSignal;
 	onProcessed?: OnProcessedHook;
+	batchSize?: number;
 };
 
 // TODO: run import and export in worker
@@ -106,7 +107,7 @@ export class NotesImporter {
 
 	public async import(
 		files: IFilesStorage,
-		{ abortSignal, onProcessed }: NotesImportOptions = {},
+		{ abortSignal, onProcessed, batchSize = 100 }: NotesImportOptions = {},
 	) {
 		const checkForAbortion = () => {
 			abortSignal?.throwIfAborted();
@@ -255,15 +256,14 @@ export class NotesImporter {
 			callback: onProcessed,
 		});
 
-		const batchSize = 100;
 		for (let offset = 0; offset < notesToUpdate.length; offset += batchSize) {
 			checkForAbortion();
 
 			const notesSlice = notesToUpdate.slice(offset, offset + batchSize);
 
-			const notesContent = await notesRegistry.getById(
-				notesSlice.map(({ id }) => id),
-			);
+			const noteIds = notesSlice.map(({ id }) => id);
+
+			const notesContent = await notesRegistry.getById(noteIds);
 			if (notesContent.length !== notesSlice.length)
 				throw new Error(
 					`Not all notes found in DB (${notesContent.length}/${notesSlice.length})`,
@@ -335,17 +335,15 @@ export class NotesImporter {
 								});
 							}
 						}
-
-						// TODO: handle in batch
-						if (noteVersions) {
-							await noteVersions.snapshot(noteId);
-						}
 					}),
 				),
 			);
 
 			await notesRegistry.updateBatch(updates);
 			await tagsRegistry.setAttachedTagsInTransaction(tagsToAttach);
+			if (noteVersions) {
+				await noteVersions.batchSnapshot(noteIds);
+			}
 
 			updatingProgress.notify(notesSlice.length);
 		}

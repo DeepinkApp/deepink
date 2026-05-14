@@ -31,9 +31,32 @@ export class NoteVersions {
 	 *
 	 * In case a most recent snapshot is match latest note data, snapshot will not be created.
 	 * Use option `force` to control this behaviour.
+	 *
+	 * @deprecated use `batchSnapshot` instead
 	 */
 	public async snapshot(
 		noteId: string,
+		options: {
+			/**
+			 * Force snapshot creation.
+			 *
+			 * Creates snapshot even if most recent snapshot match latest note data
+			 */
+			force?: boolean;
+		} = {},
+	) {
+		await this.batchSnapshot([noteId], options);
+	}
+
+	// TODO: migrate code from `snapshot` method and rename back to `snapshot`
+	/**
+	 * Create note snapshot. Snapshot contains a latest note data.
+	 *
+	 * In case a most recent snapshot is match latest note data, snapshot will not be created.
+	 * Use option `force` to control this behaviour.
+	 */
+	public async batchSnapshot(
+		noteIds: string[],
 		options: {
 			/**
 			 * Force snapshot creation.
@@ -55,7 +78,7 @@ export class NoteVersions {
 						title,
 						text
 					FROM notes
-					WHERE id = ${noteId} AND workspace_id = ${this.workspace}
+					WHERE id IN (${qb.values(noteIds)}) AND workspace_id = ${this.workspace}
 				`,
 			);
 
@@ -79,7 +102,7 @@ export class NoteVersions {
 					LIMIT 1
 				) last ON last.note_id = n.id
 				WHERE
-					n.id = ${noteId} AND workspace_id = ${this.workspace}
+					n.id IN (${qb.values(noteIds)}) AND workspace_id = ${this.workspace}
 					AND (last.note_id IS NULL OR last.title != n.title OR last.text != n.text)
 			`,
 		);
