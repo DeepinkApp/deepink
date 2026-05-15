@@ -1,3 +1,4 @@
+import { stringify as yamlStringify } from 'yaml';
 import { AttachmentsController } from '@core/features/attachments/AttachmentsController';
 import { createFileManagerMock } from '@core/features/files/__tests__/mocks/createFileManagerMock';
 import { FilesController } from '@core/features/files/FilesController';
@@ -726,5 +727,109 @@ describe('Import interruptions', () => {
 				batchSize: 1,
 			}),
 		).rejects.toThrowError('Database');
+	});
+});
+
+describe('Import respects meta info', () => {
+	const fileManager = createFileManagerMock();
+	const getWorkspaceContext = createWorkspaceContext();
+	const getAppContext = createTestContext(
+		async () => {
+			const { db } = getWorkspaceContext();
+
+			const workspaceId = await createWorkspaceId(db);
+
+			const notesRegistry = new NotesController(db, workspaceId);
+			const noteVersions = new NoteVersions(db, workspaceId);
+			const tagsRegistry = new TagsController(db, workspaceId);
+
+			const attachmentsRegistry = new AttachmentsController(db, workspaceId);
+			const filesRegistry = new FilesController(db, fileManager, workspaceId);
+
+			return {
+				filesRegistry,
+				notesRegistry,
+				noteVersions,
+				attachmentsRegistry,
+				tagsRegistry,
+			};
+		},
+		{ hook: beforeEach },
+	);
+
+	test('Update timestamps is preserved', async () => {
+		const deps = getAppContext();
+		await new NotesImporter(deps, {
+			ignorePaths: ['/_resources'],
+			noteExtensions: ['.md', '.mdx'],
+			convertPathToTag: 'always',
+		}).import(
+			createFileManagerMock({
+				'/note-1.md': createTextBuffer(
+					'---\n' +
+						yamlStringify({
+							title: 'Note #1',
+							updatedAt: '2025-01-27 10:43:40Z',
+						}) +
+						'---\nHello world!',
+				),
+				'/note-2.md': createTextBuffer(
+					'---\n' +
+						yamlStringify({
+							title: 'Note #2',
+							updatedAt: 123456789,
+						}) +
+						'---\nHello world!',
+				),
+				'/note-3.md': createTextBuffer(
+					'---\n' +
+						yamlStringify({
+							title: 'Note #3',
+							updated: '11/11/2007',
+						}) +
+						'---\nHello world!',
+				),
+				'/note-4.md': createTextBuffer(
+					'---\n' +
+						yamlStringify({
+							title: 'Note #4',
+							created: '11.11.2007 11:22',
+						}) +
+						'---\nHello world!',
+				),
+			}),
+		);
+
+		const { notesRegistry } = deps;
+		await expect(
+			notesRegistry
+				.query({ sort: { by: 'createdAt' } })
+				.then((ids) => notesRegistry.getById(ids)),
+		).resolves.toMatchObject([
+			{
+				updatedTimestamp: new Date('2025-01-27 10:43:40Z').getTime(),
+				content: {
+					title: 'Note #1',
+				},
+			},
+			{
+				updatedTimestamp: new Date(123456789).getTime(),
+				content: {
+					title: 'Note #2',
+				},
+			},
+			{
+				updatedTimestamp: new Date('11/11/2007').getTime(),
+				content: {
+					title: 'Note #3',
+				},
+			},
+			{
+				updatedTimestamp: new Date('11.11.2007 11:22').getTime(),
+				content: {
+					title: 'Note #4',
+				},
+			},
+		]);
 	});
 });

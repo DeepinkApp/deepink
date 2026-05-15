@@ -75,6 +75,39 @@ const RawNoteMetaScheme = z
 			.transform((tags) => tags.map((tag) => tag.trim()).filter(Boolean))
 			.optional()
 			.catch(undefined),
+		updated: z.coerce
+			.date()
+			.transform((date) => date.getTime())
+			.or(z.number())
+			.optional(),
+		updatedAt: z.coerce
+			.date()
+			.transform((date) => date.getTime())
+			.or(z.number())
+			.optional(),
+		created: z.coerce
+			.date()
+			.transform((date) => date.getTime())
+			.or(z.number())
+			.optional(),
+		createdAt: z.coerce
+			.date()
+			.transform((date) => date.getTime())
+			.or(z.number())
+			.optional(),
+	})
+	.transform(({ title, tags, updated, updatedAt, created, createdAt }) => {
+		return {
+			title,
+			tags,
+			updatedAt: updatedAt ?? updated,
+			createdAt: createdAt ?? created,
+		} as {
+			title?: string;
+			tags?: string[];
+			updatedAt?: number;
+			createdAt?: number;
+		};
 	})
 	.catch({});
 
@@ -220,7 +253,7 @@ export class NotesImporter {
 					// TODO: do not change original note markup (like bullet points marker style, escaping chars)
 					text: markdownProcessor.stringify(mdTree),
 				},
-				{ isVisible: false },
+				{ isVisible: false, updatedAt: noteMeta.updatedAt ?? noteMeta.createdAt },
 			);
 
 			// Attach tags
@@ -330,6 +363,7 @@ export class NotesImporter {
 							id: note.id,
 							...note.content,
 							text: markdownProcessor.stringify(noteTree),
+							updatedAt: false,
 						});
 
 						// Attach files
