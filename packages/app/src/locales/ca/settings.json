@@ -246,5 +246,30 @@
 			"description": "Arrossega fitxers aquí o fes clic per seleccionar-los"
 		},
 		"progress": "Importació de notes en curs. Etapa: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importar notes",
+			"option": {
+				"zip": "Importar notes des d'un arxiu .zip",
+				"directory": "Importar un directori amb fitxers Markdown"
+			},
+			"progress": {
+				"info": "Important notes... Pas {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Cancel·la</cancel>",
+				"stage": {
+					"parsing": "Analitzant fitxers {{processed}}/{{total}}",
+					"uploading": "Mitjant adjunts {{processed}}/{{total}}",
+					"updating": "Actualitzant notes {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importa fitxers Markdown o arxius ZIP",
+				"description": "Arrossega fitxers aquí o clica per buscar"
+			}
+		},
+		"export": {
+			"button": "Exportar notes"
+		}
 	}
 }

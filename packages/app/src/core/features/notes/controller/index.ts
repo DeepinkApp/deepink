@@ -10,6 +10,8 @@ export type NoteMeta = {
 
 export type NoteSortField = 'id' | 'createdAt' | 'updatedAt' | 'deletedAt';
 
+export type NoteContentUpdateInfo = { id: NoteId } & INoteContent;
+
 type DateRange = {
 	/**
 	 * inclusive
@@ -103,8 +105,15 @@ export interface INotesController {
 
 	/**
 	 * Update note by unique id
+	 *
+	 * @deprecated use `updateBatch` instead
 	 */
 	update(id: NoteId, updatedNote: INoteContent): Promise<void>;
+
+	/**
+	 * Update multiple notes by their unique ids
+	 */
+	updateBatch(notes: NoteContentUpdateInfo[]): Promise<void>;
 
 	/**
 	 * Update note meta information

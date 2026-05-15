@@ -246,5 +246,30 @@
 			"description": "Dateien hierher ziehen oder klicken, um Dateien auszuwählen"
 		},
 		"progress": "Notiz-Import läuft. Schritt: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Notizen importieren",
+			"option": {
+				"zip": "Notizen aus .zip-Archiv importieren",
+				"directory": "Ordner mit Markdown-Dateien importieren"
+			},
+			"progress": {
+				"info": "Notizen werden importiert… Schritt {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Abbrechen</cancel>",
+				"stage": {
+					"parsing": "Dateien werden analysiert {{processed}}/{{total}}",
+					"uploading": "Anhänge werden hochgeladen {{processed}}/{{total}}",
+					"updating": "Notizen werden aktualisiert {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Markdown-Dateien oder ZIP-Archive importieren",
+				"description": "Dateien hierher ziehen oder zum Durchsuchen klicken"
+			}
+		},
+		"export": {
+			"button": "Notizen exportieren"
+		}
 	}
 }

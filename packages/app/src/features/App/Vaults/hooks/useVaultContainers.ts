@@ -115,7 +115,7 @@ export const useVaultContainers = () => {
 				cleanups.push(() => db.close());
 
 				// Ensure at least one workspace exists
-				const workspaces = new WorkspacesController(db);
+				const workspaces = new WorkspacesController(db.get());
 				const isWorkspacesExists = await workspaces
 					.getList()
 					.then((workspaces) => workspaces.length > 0);

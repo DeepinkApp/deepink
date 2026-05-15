@@ -246,5 +246,30 @@
 			"description": "גרור קבצים לכאן, או לחץ/י לבחירת קבצים"
 		},
 		"progress": "ייבוא ההערות מתבצע. שלב: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "ייבוא הערות",
+			"option": {
+				"zip": "ייבוא הערות מתוך ארכיון .zip",
+				"directory": "ייבוא תיקייה עם קובצי Markdown"
+			},
+			"progress": {
+				"info": "מייבא הערות... שלב {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>ביטול</cancel>",
+				"stage": {
+					"parsing": "מנתח קבצים {{processed}}/{{total}}",
+					"uploading": "מעלה קבצים מצורפים {{processed}}/{{total}}",
+					"updating": "מעדכן הערות {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "ייבוא קובצי Markdown או ארכיוני ZIP",
+				"description": "גרור קבצים לכאן או לחץ לדפדוף"
+			}
+		},
+		"export": {
+			"button": "ייצוא הערות"
+		}
 	}
 }

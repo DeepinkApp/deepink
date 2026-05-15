@@ -246,5 +246,30 @@
 			"description": "फाइल्स यहाँ ड्रैग और ड्रॉप करें, या चुनने के लिए क्लिक करें"
 		},
 		"progress": "नोट्स इम्पोर्ट हो रहे हैं। स्टेज: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "नोट्स इम्पोर्ट करें",
+			"option": {
+				"zip": ".zip आर्काइव से नोट्स इम्पोर्ट करें",
+				"directory": "Markdown फाइलों वाला फोल्डर इम्पोर्ट करें"
+			},
+			"progress": {
+				"info": "नोट्स इम्पोर्ट हो रहे हैं… स्टेप {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>रद्द करें</cancel>",
+				"stage": {
+					"parsing": "फाइलें जाँची जा रही हैं {{processed}}/{{total}}",
+					"uploading": "अटैचमेंट अपलोड हो रहे हैं {{processed}}/{{total}}",
+					"updating": "नोट्स अपडेट हो रहे हैं {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Markdown फाइलें या ZIP आर्काइव चुनें",
+				"description": "फाइलें यहाँ छोड़ें या ब्राउज़ करने के लिए क्लिक करें"
+			}
+		},
+		"export": {
+			"button": "नोट्स एक्सपोर्ट करें"
+		}
 	}
 }

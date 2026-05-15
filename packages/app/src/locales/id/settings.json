@@ -246,5 +246,30 @@
 			"description": "Tarik & lepas file ke sini, atau klik untuk memilih file"
 		},
 		"progress": "Impor catatan sedang berlangsung. Tahap: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Impor catatan",
+			"option": {
+				"zip": "Impor catatan dari arsip .zip",
+				"directory": "Impor direktori berisi file Markdown"
+			},
+			"progress": {
+				"info": "Mengimpor catatan… Langkah {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Batal</cancel>",
+				"stage": {
+					"parsing": "Menganalisis file {{processed}}/{{total}}",
+					"uploading": "Mengunggah lampiran {{processed}}/{{total}}",
+					"updating": "Memperbarui catatan {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Impor file Markdown atau arsip ZIP",
+				"description": "Seret file ke sini atau klik untuk mencari"
+			}
+		},
+		"export": {
+			"button": "Ekspor catatan"
+		}
 	}
 }

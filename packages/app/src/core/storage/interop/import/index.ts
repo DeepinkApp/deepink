@@ -4,19 +4,38 @@ import remarkParse from 'remark-parse';
 import remarkParseFrontmatter from 'remark-parse-frontmatter';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
-import { remove } from 'unist-util-remove';
+import { CONTINUE, EXIT, visit } from 'unist-util-visit';
+import { parse as parseYaml } from 'yaml';
 import { z } from 'zod';
 import { AttachmentsController } from '@core/features/attachments/AttachmentsController';
 import { IFilesStorage } from '@core/features/files';
 import { FilesController } from '@core/features/files/FilesController';
 import { formatNoteLink, formatResourceLink } from '@core/features/links';
-import { INotesController } from '@core/features/notes/controller';
+import { INotesController, NoteContentUpdateInfo } from '@core/features/notes/controller';
 import { NoteVersions } from '@core/features/notes/history/NoteVersions';
 import { TagsController } from '@core/features/tags/controller/TagsController';
-import { findParentTag } from '@core/features/tags/utils';
 import { getPathSegments, getResolvedPath } from '@utils/fs/paths';
 
 import { replaceUrls } from '../utils/mdast';
+
+export type NotesImporterDeps = {
+	notesRegistry: INotesController;
+	noteVersions?: NoteVersions;
+	tagsRegistry: TagsController;
+	filesRegistry: FilesController;
+	attachmentsRegistry: AttachmentsController;
+};
+
+export interface NotesImporterWorkerAPI {
+	import(
+		deps: NotesImporterDeps,
+		files: IFilesStorage,
+		config?: {
+			config?: NotesImporterConfig;
+			options?: NotesImportOptions;
+		},
+	): Promise<void>;
+}
 
 export type OnProcessedPayload = {
 	stage: 'parsing' | 'uploading' | 'updating';
@@ -40,15 +59,12 @@ const createNotifier = ({
 		getStats() {
 			return { total, processed: counter };
 		},
-		notify: () => {
-			counter++;
+		notify: (updates = 1) => {
+			counter += updates;
 			if (callback) callback({ stage, total, processed: counter });
 		},
 	};
 };
-
-const waitNextTick = (callback?: (callback: () => void) => void) =>
-	callback ? new Promise<void>((res) => callback(res)) : Promise.resolve();
 
 const RawNoteMetaScheme = z
 	.object({
@@ -66,23 +82,20 @@ type Config = {
 	ignorePaths: string[];
 	noteExtensions: string[];
 	convertPathToTag: 'never' | 'fallback' | 'always';
-	throttle?: (callback: () => void) => void;
 };
 
-export type NotesImporterOptions = Partial<Config>;
+export type NotesImporterConfig = Partial<Config>;
+export type NotesImportOptions = {
+	abortSignal?: AbortSignal;
+	onProcessed?: OnProcessedHook;
+	batchSize?: number;
+};
 
-// TODO: run import and export in worker
 export class NotesImporter {
 	private readonly config: Config;
 	constructor(
-		private readonly storage: {
-			notesRegistry: INotesController;
-			noteVersions?: NoteVersions;
-			tagsRegistry: TagsController;
-			filesRegistry: FilesController;
-			attachmentsRegistry: AttachmentsController;
-		},
-		options: NotesImporterOptions = {},
+		private readonly deps: NotesImporterDeps,
+		options: NotesImporterConfig = {},
 	) {
 		this.config = {
 			noteExtensions: ['.md'],
@@ -94,20 +107,14 @@ export class NotesImporter {
 
 	public async import(
 		files: IFilesStorage,
-		{
-			abortSignal,
-			onProcessed,
-		}: {
-			abortSignal?: AbortSignal;
-			onProcessed?: OnProcessedHook;
-		} = {},
+		{ abortSignal, onProcessed, batchSize = 100 }: NotesImportOptions = {},
 	) {
 		const checkForAbortion = () => {
 			abortSignal?.throwIfAborted();
 		};
 
 		const { notesRegistry, noteVersions, tagsRegistry, attachmentsRegistry } =
-			this.storage;
+			this.deps;
 
 		const textDecoder = new TextDecoder('utf-8');
 		const markdownProcessor = unified()
@@ -129,9 +136,12 @@ export class NotesImporter {
 			total: filePathsList.length,
 			callback: onProcessed,
 		});
+		const tagsToAttach: {
+			noteId: string;
+			tags: string[];
+		}[] = [];
 		for (const filename of filePathsList) {
 			checkForAbortion();
-			await waitNextTick(this.config.throttle);
 
 			// Handle only notes
 			if (!this.isNotePath(filename)) {
@@ -145,13 +155,26 @@ export class NotesImporter {
 				continue;
 			}
 
+			const fileAbsolutePathSegments = getPathSegments(filename);
 			const rawText = textDecoder.decode(fileContent);
 			const mdTree = markdownProcessor.parse(rawText);
 
-			const fileAbsolutePathSegments = getPathSegments(filename);
+			// Extract meta
+			let noteMeta: z.output<typeof RawNoteMetaScheme> = {};
+			visit(mdTree, (node, index, parent) => {
+				if (node.type === 'yaml') {
+					const rawMeta = parseYaml(node.value);
+					noteMeta = RawNoteMetaScheme.parse(rawMeta);
 
-			// Remove header node with meta data parsed by frontmatter
-			remove(mdTree, 'yaml');
+					// Remove header node with meta data
+					if (parent && index !== undefined) {
+						parent.children.splice(index, 1);
+					}
+					return EXIT;
+				}
+
+				return CONTINUE;
+			});
 
 			// Resolve URLs to absolute paths in AST and collect attachments in use
 			await replaceUrls(mdTree, async (nodeUrl) => {
@@ -178,10 +201,6 @@ export class NotesImporter {
 			});
 
 			// Add note draft
-			const noteMeta = RawNoteMetaScheme.parse(
-				markdownProcessor.processSync(rawText).data.frontmatter,
-			);
-
 			// Extract title
 			let title = noteMeta.title;
 			if (!title) {
@@ -205,20 +224,35 @@ export class NotesImporter {
 			);
 
 			// Attach tags
-			if (noteMeta.tags && noteMeta.tags.length > 0) {
-				await tagsRegistry.setAttachedTags(
-					noteId,
-					await this.getTagIds(noteMeta.tags),
-				);
+			const tagNamesToAttach = noteMeta.tags ?? [];
+
+			// Attach tag equal to note directory path
+			const noteDirPath = fileAbsolutePathSegments.dirname;
+			const { convertPathToTag } = this.config;
+			if (convertPathToTag !== 'never' && noteDirPath !== '/') {
+				const isFallbackTagNeeded = tagNamesToAttach.length === 0;
+				if (isFallbackTagNeeded || convertPathToTag === 'always') {
+					const tagName = noteDirPath.split('/').filter(Boolean).join('/');
+
+					tagNamesToAttach.push(tagName);
+				}
 			}
+
+			const tagIds = await this.getTagIds(tagNamesToAttach);
+			tagsToAttach.push({
+				noteId,
+				tags: tagIds,
+			});
 
 			createdNotes[filename] = {
 				id: noteId,
-				path: fileAbsolutePathSegments.dirname,
+				path: noteDirPath,
 			};
 
 			parsingProgress.notify();
 		}
+
+		await tagsRegistry.setAttachedTagsInTransaction(tagsToAttach);
 
 		// TODO: limit concurrency for case with many large files
 		// Upload attached files concurrently
@@ -249,69 +283,70 @@ export class NotesImporter {
 			total: notesToUpdate.length,
 			callback: onProcessed,
 		});
-		for (const { id: noteId, path: noteDirPath } of notesToUpdate) {
+
+		for (let offset = 0; offset < notesToUpdate.length; offset += batchSize) {
 			checkForAbortion();
-			await waitNextTick(this.config.throttle);
 
-			const [note] = await notesRegistry.getById([noteId]);
-			if (!note) throw new Error('Note with such id does not exist');
+			const notesSlice = notesToUpdate.slice(offset, offset + batchSize);
 
-			const noteTree = markdownProcessor.parse(note.content.text);
+			const noteIds = notesSlice.map(({ id }) => id);
 
-			// Update URLs and collect attached files
-			const attachedFilesIds = new Set<string>();
-			// Here we replace temporary absolute paths to app references
-			await replaceUrls(noteTree, async (absoluteUrl) => {
-				const createdNote = createdNotes[absoluteUrl];
-				if (createdNote) {
-					// TODO: record back-link to note
-					return formatNoteLink(createdNote.id);
-				}
+			const notesContent = await notesRegistry.getById(noteIds);
+			if (notesContent.length !== notesSlice.length)
+				throw new Error(
+					`Not all notes found in DB (${notesContent.length}/${notesSlice.length})`,
+				);
 
-				const fileId = filePathToIdMap[absoluteUrl];
-				if (fileId) {
-					// Record file id as used
-					attachedFilesIds.add(fileId);
+			const updates: NoteContentUpdateInfo[] = [];
+			await Promise.all(
+				notesSlice.map(({ id: noteId }, sliceIndex) =>
+					Promise.resolve().then(async () => {
+						const note = notesContent[sliceIndex];
+						const noteTree = markdownProcessor.parse(note.content.text);
 
-					return formatResourceLink(fileId);
-				}
+						// Update URLs and collect attached files
+						const attachedFilesIds = new Set<string>();
+						// Here we replace temporary absolute paths to app references
+						await replaceUrls(noteTree, async (absoluteUrl) => {
+							const createdNote = createdNotes[absoluteUrl];
+							if (createdNote) {
+								// TODO: record back-link to note
+								return formatNoteLink(createdNote.id);
+							}
 
-				return absoluteUrl;
-			});
+							const fileId = filePathToIdMap[absoluteUrl];
+							if (fileId) {
+								// Record file id as used
+								attachedFilesIds.add(fileId);
 
-			// Update note text
-			await notesRegistry.update(note.id, {
-				...note.content,
-				text: markdownProcessor.stringify(noteTree),
-			});
+								return formatResourceLink(fileId);
+							}
 
-			// Attach files
-			await attachmentsRegistry.set(noteId, Array.from(attachedFilesIds));
+							return absoluteUrl;
+						});
 
-			// Attach tag equal to note directory path
-			const { convertPathToTag } = this.config;
-			if (convertPathToTag !== 'never' && noteDirPath !== '/') {
-				const attachedTagIds = await tagsRegistry
-					.getAttachedTags(noteId)
-					.then((tags) => tags.map((tag) => tag.id));
+						// Update note text
+						updates.push({
+							id: note.id,
+							...note.content,
+							text: markdownProcessor.stringify(noteTree),
+						});
 
-				const isFallbackTagNeeded = attachedTagIds.length === 0;
-				if (isFallbackTagNeeded || convertPathToTag === 'always') {
-					const tagName = noteDirPath.split('/').filter(Boolean).join('/');
-					const [pathTagId] = await this.getTagIds([tagName]);
+						// Attach files
+						await attachmentsRegistry.set(
+							noteId,
+							Array.from(attachedFilesIds),
+						);
+					}),
+				),
+			);
 
-					await tagsRegistry.setAttachedTags(noteId, [
-						...attachedTagIds,
-						pathTagId,
-					]);
-				}
-			}
-
+			await notesRegistry.updateBatch(updates);
 			if (noteVersions) {
-				await noteVersions.snapshot(noteId);
+				await noteVersions.batchSnapshot(noteIds);
 			}
 
-			updatingProgress.notify();
+			updatingProgress.notify(notesSlice.length);
 		}
 
 		await notesRegistry.updateMeta(
@@ -336,47 +371,32 @@ export class NotesImporter {
 		return true;
 	}
 
+	private resolvedTagIds: Record<string, Promise<string>> = {};
 	private async getTagIds(tags: string[]) {
-		const { tagsRegistry } = this.storage;
+		const { tagsRegistry } = this.deps;
 
-		const tagsToAttach: string[] = [];
-		for (const resolvedTagName of tags) {
-			const tags = await tagsRegistry.getTags();
+		return Promise.all(
+			tags.map(async (resolvedTagName) => {
+				if (!this.resolvedTagIds[resolvedTagName]) {
+					this.resolvedTagIds[resolvedTagName] = tagsRegistry.add(
+						resolvedTagName,
+						null,
+						{ returnIfExist: true },
+					);
+				}
 
-			// Find exists tag
-			const foundTag = tags.find((tag) => tag.resolvedName === resolvedTagName);
-			if (foundTag) {
-				tagsToAttach.push(foundTag.id);
-				continue;
-			}
-
-			// Find parent tag and create sub tag
-			const parentTag = findParentTag(resolvedTagName, tags);
-			if (parentTag) {
-				const parentTagWithPrefixLength = parentTag.resolvedName.length + 1;
-				const tagNamePartToAdd = resolvedTagName.slice(parentTagWithPrefixLength);
-				const createdTagId = await tagsRegistry.add(
-					tagNamePartToAdd,
-					parentTag.id,
-				);
-				tagsToAttach.push(createdTagId);
-				continue;
-			}
-
-			// Create full resolved tag
-			const createdTagId = await tagsRegistry.add(resolvedTagName, null);
-			tagsToAttach.push(createdTagId);
-		}
-
-		return tagsToAttach;
+				return this.resolvedTagIds[resolvedTagName];
+			}),
+		);
 	}
 
 	private readonly uploadedFiles: Record<string, Promise<string | null>> = {};
+
 	/**
 	 * Returns file id by its path. Uploads file if not uploaded yet
 	 */
-	async getFileId(url: string, files: IFilesStorage) {
-		const { filesRegistry } = this.storage;
+	private async getFileId(url: string, files: IFilesStorage) {
+		const { filesRegistry } = this.deps;
 
 		// Upload new files
 		if (!(url in this.uploadedFiles)) {

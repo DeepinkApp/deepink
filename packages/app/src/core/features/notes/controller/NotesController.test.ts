@@ -53,12 +53,12 @@ describe('CRUD operations', () => {
 
 	test('delete entries', async () => {
 		const dbFile = createFileControllerMock();
-		const db = await openSQLite(dbFile);
-		onTestFinished(() => db.close());
+		const managedDB = await openSQLite(dbFile);
+		onTestFinished(() => managedDB.close());
 
-		const workspaceId = await createWorkspaceId(db);
+		const workspaceId = await createWorkspaceId(managedDB.get());
 
-		const registry = new NotesController(db, workspaceId);
+		const registry = new NotesController(managedDB.get(), workspaceId);
 
 		// Insert entries to test
 		const notesSample = Array(300)
@@ -92,24 +92,24 @@ describe('CRUD operations', () => {
 
 	test('delete with empty list does not throw', async () => {
 		const dbFile = createFileControllerMock();
-		const db = await openSQLite(dbFile);
-		onTestFinished(() => db.close());
-		const workspaceId = await createWorkspaceId(db);
+		const managedDB = await openSQLite(dbFile);
+		onTestFinished(() => managedDB.close());
+		const workspaceId = await createWorkspaceId(managedDB.get());
 
-		const registry = new NotesController(db, workspaceId);
+		const registry = new NotesController(managedDB.get(), workspaceId);
 
 		await expect(registry.delete([])).resolves.not.toThrow();
 	});
 });
 
 test('Many instances reads the data consistently', async () => {
-	const db = await openSQLite(createFileControllerMock());
-	onTestFinished(db.close);
+	const managedDB = await openSQLite(createFileControllerMock());
+	onTestFinished(managedDB.close);
 
-	const workspaceId = await createWorkspaceId(db);
+	const workspaceId = await createWorkspaceId(managedDB.get());
 
 	// Add few notes via one controller
-	const controller1 = new NotesController(db, workspaceId);
+	const controller1 = new NotesController(managedDB.get(), workspaceId);
 
 	const notes = [
 		{ title: 'Title 1', text: 'Text 1' },
@@ -123,17 +123,17 @@ test('Many instances reads the data consistently', async () => {
 	expect(notesList1).toHaveLength(3);
 
 	// Read the state in another controller
-	const controller2 = new NotesController(db, workspaceId);
+	const controller2 = new NotesController(managedDB.get(), workspaceId);
 
 	await expect(controller2.get()).resolves.toEqual(notesList1);
 });
 
 test('Get notes by pages', async () => {
-	const db = await openSQLite(createFileControllerMock());
-	onTestFinished(db.close);
+	const managedDB = await openSQLite(createFileControllerMock());
+	onTestFinished(managedDB.close);
 
-	const workspaceId = await createWorkspaceId(db);
-	const registry = new NotesController(db, workspaceId);
+	const workspaceId = await createWorkspaceId(managedDB.get());
+	const registry = new NotesController(managedDB.get(), workspaceId);
 
 	// Add data
 	const notesSample = Array(300)
@@ -150,7 +150,7 @@ test('Get notes by pages', async () => {
 		ids.push(await registry.add(note));
 	}
 
-	const tags = new TagsController(db, workspaceId);
+	const tags = new TagsController(managedDB.get(), workspaceId);
 	await tags.setAttachedTags(ids[0], [await tags.add('foo', null)]);
 	await tags.setAttachedTags(ids[1], [await tags.add('bar', null)]);
 

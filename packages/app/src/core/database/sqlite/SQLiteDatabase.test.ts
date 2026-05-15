@@ -1,4 +1,5 @@
 import { createFileControllerMock } from '@utils/mocks/fileControllerMock';
+import { wait } from '@utils/time';
 
 import { openSQLite } from './openSQLite';
 import { SQLiteDatabase } from './SQLiteDatabase';
@@ -86,5 +87,136 @@ describe('SQLite Database persistence', () => {
 			{ name: 'foo', id: expect.any(String) },
 			{ name: 'bar', id: expect.any(String) },
 		]);
+	});
+});
+
+describe('SQLite Database transactions', () => {
+	describe('Manual transaction management', () => {
+		test('Queries in transaction runs sequentially, other queries waits', async () => {
+			const db = new SQLiteDatabase();
+			onTestFinished(() => db.close());
+
+			await db.query('CREATE TABLE numbers(num INTEGER)');
+			await expect(db.query('SELECT num FROM numbers')).resolves.toEqual([]);
+
+			const tx = await db.transaction();
+			await tx.query('INSERT INTO numbers(num) VALUES (1),(2)');
+			const nonTxPromise = db.query('INSERT INTO numbers(num) VALUES (100)');
+			await tx.query('INSERT INTO numbers(num) VALUES (3)');
+			await tx.query('INSERT INTO numbers(num) VALUES (4),(5)');
+			await tx.close();
+
+			await expect(nonTxPromise).resolves.toEqual([]);
+
+			await expect(
+				db
+					.query('SELECT num FROM numbers ORDER BY rowid ASC')
+					.then((rows) => rows.map(({ num }) => num)),
+			).resolves.toEqual([1, 2, 3, 4, 5, 100]);
+		});
+
+		test('Transaction methods throws once the transaction is closed', async () => {
+			const db = new SQLiteDatabase();
+			onTestFinished(() => db.close());
+
+			const tx = await db.transaction();
+			await expect(tx.query('SELECT now() as now')).resolves.toEqual([
+				{ now: expect.any(String) },
+			]);
+			await tx.close();
+
+			await expect(tx.query('SELECT now() as now')).rejects.toThrow('completed');
+			await expect(tx.close()).rejects.toThrow('completed');
+		});
+	});
+
+	describe('Auto transaction management', () => {
+		test('Queries in transaction runs sequentially, other queries waits', async () => {
+			const db = new SQLiteDatabase();
+			onTestFinished(() => db.close());
+
+			await db.query('CREATE TABLE numbers(num INTEGER)');
+			await expect(db.query('SELECT num FROM numbers')).resolves.toEqual([]);
+
+			let nonTxPromise;
+			await db.transaction(async (tx) => {
+				await tx.query('INSERT INTO numbers(num) VALUES (1),(2)');
+				nonTxPromise = db.query('INSERT INTO numbers(num) VALUES (100)');
+				await tx.query('INSERT INTO numbers(num) VALUES (3)');
+				await tx.query('INSERT INTO numbers(num) VALUES (4),(5)');
+			});
+
+			await expect(nonTxPromise).resolves.toEqual([]);
+
+			await expect(
+				db
+					.query('SELECT num FROM numbers ORDER BY rowid ASC')
+					.then((rows) => rows.map(({ num }) => num)),
+			).resolves.toEqual([1, 2, 3, 4, 5, 100]);
+		});
+
+		test('Transactions and queries waits for active transaction', async () => {
+			const db = new SQLiteDatabase();
+			onTestFinished(() => db.close());
+
+			await db.query('CREATE TABLE numbers(num INTEGER)');
+			await expect(db.query('SELECT num FROM numbers')).resolves.toEqual([]);
+
+			const tx1 = db.transaction(async (tx) => {
+				await tx.query('INSERT INTO numbers(num) VALUES (1),(2)');
+				await tx.query('INSERT INTO numbers(num) VALUES (3)');
+				await wait(100);
+			});
+
+			const tx2 = db.transaction(async (tx) => {
+				await tx.query('INSERT INTO numbers(num) VALUES (4),(5)');
+				await tx.query('INSERT INTO numbers(num) VALUES (6)');
+			});
+
+			const nonTxPromise = db.query('INSERT INTO numbers(num) VALUES (100)');
+
+			await expect(tx1).resolves.toEqual(undefined);
+			await expect(tx2).resolves.toEqual(undefined);
+			await expect(nonTxPromise).resolves.toEqual([]);
+
+			await expect(
+				db
+					.query('SELECT num FROM numbers ORDER BY rowid ASC')
+					.then((rows) => rows.map(({ num }) => num)),
+			).resolves.toEqual([1, 2, 3, 4, 5, 6, 100]);
+		});
+
+		test('Transactions returns value', async () => {
+			const db = new SQLiteDatabase();
+			onTestFinished(() => db.close());
+
+			await db.query('CREATE TABLE numbers(num INTEGER)');
+			await expect(db.query('SELECT num FROM numbers')).resolves.toEqual([]);
+
+			await expect(
+				db.transaction(async (tx) => {
+					await tx.query('INSERT INTO numbers(num) VALUES (1),(2)');
+					return tx.query('INSERT INTO numbers(num) VALUES (3) returning num');
+				}),
+			).resolves.toEqual([{ num: 3 }]);
+		});
+
+		test('Error in transaction closes the transaction', async () => {
+			const db = new SQLiteDatabase();
+			onTestFinished(() => db.close());
+
+			await db.query('CREATE TABLE numbers(num INTEGER)');
+			await expect(db.query('SELECT num FROM numbers')).resolves.toEqual([]);
+
+			await expect(
+				db.transaction(async () => {
+					throw new Error('Test error');
+				}),
+			).rejects.toThrow('Test error');
+
+			await expect(db.query('SELECT now() as now')).resolves.toEqual([
+				{ now: expect.any(String) },
+			]);
+		});
 	});
 });

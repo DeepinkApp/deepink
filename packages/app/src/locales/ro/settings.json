@@ -246,5 +246,30 @@
 			"description": "Trageți fișierele aici sau faceți clic pentru a le selecta"
 		},
 		"progress": "Importul notelor este în curs. Etapă: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importă note",
+			"option": {
+				"zip": "Importă note dintr-o arhivă .zip",
+				"directory": "Importă un director cu fișiere Markdown"
+			},
+			"progress": {
+				"info": "Se importă notele... Pasul {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Anulează</cancel>",
+				"stage": {
+					"parsing": "Analizăm fișierele {{processed}}/{{total}}",
+					"uploading": "Se încarcă atașamentele {{processed}}/{{total}}",
+					"updating": "Se actualizează notele {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importă fișiere Markdown sau arhive ZIP",
+				"description": "Trage fișierele aici sau dă click pentru a le căuta"
+			}
+		},
+		"export": {
+			"button": "Exportă note"
+		}
 	}
 }

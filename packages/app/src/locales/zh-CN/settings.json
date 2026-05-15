@@ -246,5 +246,30 @@
 			"description": "将文件拖拽至此，或点击选择文件"
 		},
 		"progress": "正在导入笔记。阶段：{{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "导入笔记",
+			"option": {
+				"zip": "从 .zip 压缩包导入笔记",
+				"directory": "导入包含 Markdown 文件的目录"
+			},
+			"progress": {
+				"info": "正在导入笔记… 第 {{step}}/{{totalSteps}} 步",
+				"cancel": "<cancel>取消</cancel>",
+				"stage": {
+					"parsing": "正在解析文件 {{processed}}/{{total}}",
+					"uploading": "正在上传附件 {{processed}}/{{total}}",
+					"updating": "正在更新笔记 {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "导入 Markdown 文件或 ZIP 压缩包",
+				"description": "将文件拖到此处，或点击浏览"
+			}
+		},
+		"export": {
+			"button": "导出笔记"
+		}
 	}
 }

@@ -246,5 +246,30 @@
 			"description": "將檔案拖曳至此，或點擊選擇檔案"
 		},
 		"progress": "正在匯入筆記。階段：{{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "匯入筆記",
+			"option": {
+				"zip": "從 .zip 壓縮檔匯入筆記",
+				"directory": "匯入包含 Markdown 檔案的資料夾"
+			},
+			"progress": {
+				"info": "正在匯入筆記… 第 {{step}}/{{totalSteps}} 步",
+				"cancel": "<cancel>取消</cancel>",
+				"stage": {
+					"parsing": "正在分析檔案 {{processed}}/{{total}}",
+					"uploading": "正在上傳附件 {{processed}}/{{total}}",
+					"updating": "正在更新筆記 {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "匯入 Markdown 檔案或 ZIP 壓縮檔",
+				"description": "將檔案拖曳至此或點擊瀏覽"
+			}
+		},
+		"export": {
+			"button": "匯出筆記"
+		}
 	}
 }

@@ -246,5 +246,30 @@
 			"description": "파일을 이곳에 끌어다 놓거나 클릭하여 선택하세요"
 		},
 		"progress": "노트를 가져오는 중입니다. 단계: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "노트 가져오기",
+			"option": {
+				"zip": ".zip 압축 파일에서 노트 가져오기",
+				"directory": "Markdown 파일이 포함된 폴더 가져오기"
+			},
+			"progress": {
+				"info": "노트를 가져오는 중… {{step}}/{{totalSteps}}단계",
+				"cancel": "<cancel>취소</cancel>",
+				"stage": {
+					"parsing": "파일 분석 중 {{processed}}/{{total}}",
+					"uploading": "첨부 파일 업로드 중 {{processed}}/{{total}}",
+					"updating": "노트 업데이트 중 {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Markdown 파일 또는 ZIP 압축 파일 가져오기",
+				"description": "파일을 여기에 끌어다 놓거나 클릭하여 선택하세요"
+			}
+		},
+		"export": {
+			"button": "노트 내보내기"
+		}
 	}
 }

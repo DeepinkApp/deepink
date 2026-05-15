@@ -182,8 +182,8 @@ describe('Service must delete expired notes', () => {
 
 		const dbFile = createFileControllerMock();
 		const db = await openSQLite(dbFile);
-		const workspaceId = await createWorkspaceId(db);
-		const notesController = new NotesController(db, workspaceId);
+		const workspaceId = await createWorkspaceId(db.get());
+		const notesController = new NotesController(db.get(), workspaceId);
 		const bin = new DeletedNotesController(
 			{ notes: notesController },
 			{ retentionTime: ms('1d'), considerModificationTime: true },
@@ -267,8 +267,8 @@ describe('Service must delete expired notes', () => {
 
 		const dbFile = createFileControllerMock();
 		const db = await openSQLite(dbFile);
-		const workspaceId = await createWorkspaceId(db);
-		const notesController = new NotesController(db, workspaceId);
+		const workspaceId = await createWorkspaceId(db.get());
+		const notesController = new NotesController(db.get(), workspaceId);
 		const bin = new DeletedNotesController(
 			{ notes: notesController },
 			{ retentionTime: ms('5y'), considerModificationTime: true },
@@ -315,8 +315,8 @@ describe('Service must delete expired notes', () => {
 
 		const dbFile = createFileControllerMock();
 		const db = await openSQLite(dbFile);
-		const workspaceId = await createWorkspaceId(db);
-		const notesController = new NotesController(db, workspaceId);
+		const workspaceId = await createWorkspaceId(db.get());
+		const notesController = new NotesController(db.get(), workspaceId);
 		const bin = new DeletedNotesController(
 			{ notes: notesController },
 			{ retentionTime: ms('1d'), considerModificationTime: true },

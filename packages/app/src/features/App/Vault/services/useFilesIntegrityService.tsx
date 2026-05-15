@@ -14,16 +14,16 @@ import {
 } from '@state/redux/vaults/selectors/vault';
 import { wait } from '@utils/time';
 
-import { useVaultControls } from '..';
+import { useVaultControls, useVaultDB } from '..';
 
 export const useFilesIntegrityService = () => {
 	const {
 		vault: {
-			db,
 			vault: { id: vaultId },
 			encryptionController,
 		},
 	} = useVaultControls();
+	const db = useVaultDB();
 	const workspaces = useVaultSelector(selectWorkspacesSummary);
 	const { enabled: isServiceEnabled } = useVaultSelector(selectIntegrityServiceConfig);
 

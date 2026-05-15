@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import { z } from 'zod';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
 import { SQLiteDB } from '@core/database/sqlite';
 import { qb } from '@core/database/sqlite/utils/query-builder';
 import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
@@ -23,7 +22,7 @@ export type NoteVersion = z.TypeOf<typeof NoteVersionMapScheme>;
 
 export class NoteVersions {
 	constructor(
-		private readonly db: ManagedDatabase<SQLiteDB>,
+		private readonly db: SQLiteDB,
 		private readonly workspace: string,
 	) {}
 
@@ -32,6 +31,8 @@ export class NoteVersions {
 	 *
 	 * In case a most recent snapshot is match latest note data, snapshot will not be created.
 	 * Use option `force` to control this behaviour.
+	 *
+	 * @deprecated use `batchSnapshot` instead
 	 */
 	public async snapshot(
 		noteId: string,
@@ -44,7 +45,30 @@ export class NoteVersions {
 			force?: boolean;
 		} = {},
 	) {
-		const db = wrapSQLite(this.db.get());
+		await this.batchSnapshot([noteId], options);
+	}
+
+	// TODO: migrate code from `snapshot` method and rename back to `snapshot`
+	/**
+	 * Create note snapshot. Snapshot contains a latest note data.
+	 *
+	 * In case a most recent snapshot is match latest note data, snapshot will not be created.
+	 * Use option `force` to control this behaviour.
+	 */
+	public async batchSnapshot(
+		noteIds: string[],
+		options: {
+			/**
+			 * Force snapshot creation.
+			 *
+			 * Creates snapshot even if most recent snapshot match latest note data
+			 */
+			force?: boolean;
+		} = {},
+	) {
+		if (noteIds.length === 0) return;
+
+		const db = wrapSQLite(this.db);
 
 		if (options.force) {
 			await db.query(
@@ -56,7 +80,7 @@ export class NoteVersions {
 						title,
 						text
 					FROM notes
-					WHERE id = ${noteId} AND workspace_id = ${this.workspace}
+					WHERE id IN (${qb.values(noteIds)}) AND workspace_id = ${this.workspace}
 				`,
 			);
 
@@ -80,14 +104,14 @@ export class NoteVersions {
 					LIMIT 1
 				) last ON last.note_id = n.id
 				WHERE
-					n.id = ${noteId} AND workspace_id = ${this.workspace}
+					n.id IN (${qb.values(noteIds)}) AND workspace_id = ${this.workspace}
 					AND (last.note_id IS NULL OR last.title != n.title OR last.text != n.text)
 			`,
 		);
 	}
 
 	public async getList(noteId: string) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		return await db.query(
 			// Order by monotonic "rowid" in case of timestamp collisions
@@ -97,7 +121,7 @@ export class NoteVersions {
 	}
 
 	public async get(versionId: string) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		const [version] = await db.query(
 			qb.sql`SELECT * FROM note_versions WHERE id = ${versionId} LIMIT 1`,
@@ -108,14 +132,14 @@ export class NoteVersions {
 	}
 
 	public async delete(versionIds: string[]) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 		await db.query(
 			qb.sql`DELETE FROM note_versions WHERE id IN (${qb.values(versionIds)})`,
 		);
 	}
 
 	public async purge(noteIds: string[]) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 		await db.query(
 			qb.sql`DELETE FROM note_versions WHERE note_id IN (${qb.values(noteIds)})`,
 		);

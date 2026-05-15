@@ -246,5 +246,30 @@
 			"description": "ลากและวางไฟล์ที่นี่ หรือคลิกเพื่อเลือกไฟล์"
 		},
 		"progress": "กำลังนำเข้าโน้ต ขั้นตอน: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "นำเข้าโน้ต",
+			"option": {
+				"zip": "นำเข้าโน้ตจากไฟล์ .zip",
+				"directory": "นำเข้าโฟลเดอร์ที่มีไฟล์ Markdown"
+			},
+			"progress": {
+				"info": "กำลังนำเข้าโน้ต… ขั้นตอนที่ {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>ยกเลิก</cancel>",
+				"stage": {
+					"parsing": "กำลังวิเคราะห์ไฟล์ {{processed}}/{{total}}",
+					"uploading": "กำลังอัปโหลดไฟล์แนบ {{processed}}/{{total}}",
+					"updating": "กำลังอัปเดตโน้ต {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "นำเข้าไฟล์ Markdown หรือไฟล์ ZIP",
+				"description": "ลากไฟล์มาวางที่นี่หรือคลิกเพื่อเลือกไฟล์"
+			}
+		},
+		"export": {
+			"button": "ส่งออกโน้ต"
+		}
 	}
 }

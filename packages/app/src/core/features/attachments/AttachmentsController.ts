@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
 import { SQLiteDB } from '@core/database/sqlite';
 import { qb } from '@core/database/sqlite/utils/query-builder';
 import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
@@ -9,30 +8,34 @@ import { wrapSQLite } from '@core/database/sqlite/utils/wrapDB';
  */
 export class AttachmentsController {
 	constructor(
-		private readonly db: ManagedDatabase<SQLiteDB>,
+		private readonly db: SQLiteDB,
 		private readonly workspace: string,
 	) {}
 
 	public async set(targetId: string, attachments: string[]) {
-		const db = wrapSQLite(this.db.get());
+		await this.db.transaction(async (tx) => {
+			const db = wrapSQLite(tx);
 
-		await db.query(
-			qb.sql`DELETE FROM note_files WHERE workspace_id=${this.workspace} AND note_id=${targetId}`,
-		);
-
-		if (attachments.length > 0) {
 			await db.query(
-				qb.sql`INSERT INTO note_files ("workspace_id", "note_id", "file_id") VALUES ${qb.set(
-					attachments.map((fileId) =>
-						qb.values([this.workspace, targetId, fileId]).withParenthesis(),
-					),
-				)}`,
+				qb.sql`DELETE FROM note_files WHERE workspace_id=${this.workspace} AND note_id=${targetId}`,
 			);
-		}
+
+			if (attachments.length > 0) {
+				await db.query(
+					qb.sql`INSERT INTO note_files ("workspace_id", "note_id", "file_id") VALUES ${qb.set(
+						attachments.map((fileId) =>
+							qb
+								.values([this.workspace, targetId, fileId])
+								.withParenthesis(),
+						),
+					)}`,
+				);
+			}
+		});
 	}
 
 	public async get(targetId: string): Promise<string[]> {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		return await db.query(
 			qb.sql`
@@ -45,7 +48,7 @@ export class AttachmentsController {
 	}
 
 	public async delete(resources: string[]) {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		if (resources.length === 0) return;
 
@@ -57,7 +60,7 @@ export class AttachmentsController {
 	}
 
 	public async query() {
-		const db = wrapSQLite(this.db.get());
+		const db = wrapSQLite(this.db);
 
 		return await db.query(
 			qb.sql`SELECT file_id as file, note_id as note FROM note_files WHERE workspace_id=${this.workspace}`,

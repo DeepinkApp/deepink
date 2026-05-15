@@ -246,5 +246,30 @@
 			"description": "Przeciągnij pliki tutaj lub kliknij, aby wybrać je z urządzenia"
 		},
 		"progress": "Trwa import notatek. Etap: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importuj notatki",
+			"option": {
+				"zip": "Importuj notatki z archiwum .zip",
+				"directory": "Importuj folder z plikami Markdown"
+			},
+			"progress": {
+				"info": "Importowanie notatek… Krok {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Anuluj</cancel>",
+				"stage": {
+					"parsing": "Analizowanie plików {{processed}}/{{total}}",
+					"uploading": "Przesyłanie załączników {{processed}}/{{total}}",
+					"updating": "Aktualizowanie notatek {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importuj pliki Markdown lub archiwa ZIP",
+				"description": "Przeciągnij pliki tutaj lub kliknij, aby wybrać"
+			}
+		},
+		"export": {
+			"button": "Eksportuj notatki"
+		}
 	}
 }

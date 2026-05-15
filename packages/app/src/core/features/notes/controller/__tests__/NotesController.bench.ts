@@ -29,7 +29,9 @@ const benchConfig = {
 
 describe('Note ops performance', async () => {
 	const dbFile = createFileControllerMock();
-	const db = await openSQLite(dbFile);
+	const managedDB = await openSQLite(dbFile);
+	afterAll(() => managedDB.close());
+	const db = managedDB.get();
 	const workspaceId = await createWorkspaceId(db);
 
 	const index = new FlexSearchIndex(new InMemoryFS());

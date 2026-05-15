@@ -2,7 +2,7 @@ import { Query } from 'nano-queries';
 import { z } from 'zod';
 
 import { DBTypes, qb } from './query-builder';
-import { SQLiteDB } from '..';
+import { SQLiteDB, SQLiteTransaction } from '..';
 
 type WrappedDbMethods = {
 	query: <S extends z.ZodType>(
@@ -10,7 +10,7 @@ type WrappedDbMethods = {
 		scheme?: S,
 	) => Promise<z.TypeOf<S>[]>;
 };
-export const wrapSQLite = (db: SQLiteDB): WrappedDbMethods => {
+export const wrapSQLite = (db: SQLiteDB | SQLiteTransaction): WrappedDbMethods => {
 	return new Proxy<any>(
 		{},
 		{

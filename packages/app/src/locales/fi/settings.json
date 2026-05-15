@@ -246,5 +246,30 @@
 			"description": "Vedä ja pudota tiedostot tähän tai klikkaa valitaksesi tiedostot"
 		},
 		"progress": "Muistiinpanojen tuonti käynnissä. Vaihe: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": " tuo muistiinpanot",
+			"option": {
+				"zip": "Tuo muistiinpanot .zip-arkistosta",
+				"directory": "Tuo hakemisto, joka sisältää Markdown-tiedostoja"
+			},
+			"progress": {
+				"info": "Tuodaan muistiinpanoja… Vaihe {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Peruuta</cancel>",
+				"stage": {
+					"parsing": "Analysoidaan tiedostoja {{processed}}/{{total}}",
+					"uploading": "Ladataan liitteitä {{processed}}/{{total}}",
+					"updating": "Päivitetään muistiinpanoja {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Tuo Markdown-tiedostoja tai ZIP-arkistoja",
+				"description": "Pudota tiedostot tähän tai valitse tiedostot"
+			}
+		},
+		"export": {
+			"button": "Vie muistiinpanot"
+		}
 	}
 }

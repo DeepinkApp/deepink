@@ -246,5 +246,30 @@
 			"description": "Перетащите файлы сюда или нажмите для выбора"
 		},
 		"progress": "Импорт заметок выполняется. Этап: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Импортировать заметки",
+			"option": {
+				"zip": "Импорт из .zip архива",
+				"directory": "Импорт папки с Markdown-файлами"
+			},
+			"progress": {
+				"info": "Импорт заметок… Шаг {{step}} из {{totalSteps}}",
+				"cancel": "<cancel>Отмена</cancel>",
+				"stage": {
+					"parsing": "Анализ файлов {{processed}}/{{total}}",
+					"uploading": "Загрузка вложений {{processed}}/{{total}}",
+					"updating": "Обновление заметок {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Перетащите Markdown-файлы или ZIP-архивы",
+				"description": "Перетащите файлы сюда или нажмите для выбора"
+			}
+		},
+		"export": {
+			"button": "Экспортировать заметки"
+		}
 	}
 }

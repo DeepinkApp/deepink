@@ -246,5 +246,30 @@
 			"description": "ファイルをここにドラッグ＆ドロップするか、クリックして選択してください"
 		},
 		"progress": "ノートをインポートしています。 ステージ: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "ノートをインポート",
+			"option": {
+				"zip": ".zipアーカイブからノートをインポート",
+				"directory": "Markdownファイルが含まれたフォルダをインポート"
+			},
+			"progress": {
+				"info": "ノートをインポート中… ステップ {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>キャンセル</cancel>",
+				"stage": {
+					"parsing": "ファイルを解析中 {{processed}}/{{total}}",
+					"uploading": "添付ファイルをアップロード中 {{processed}}/{{total}}",
+					"updating": "ノートを更新中 {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "MarkdownファイルまたはZIPアーカイブをインポート",
+				"description": "ここにファイルをドロップするか、クリックして選択"
+			}
+		},
+		"export": {
+			"button": "ノートをエクスポート"
+		}
 	}
 }

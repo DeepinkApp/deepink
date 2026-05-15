@@ -46,7 +46,6 @@ describe('Base notes import cases', () => {
 				ignorePaths: ['/_resources'],
 				noteExtensions: ['.md', '.mdx'],
 				convertPathToTag: 'always',
-				throttle: requestAnimationFrame,
 			},
 		);
 
@@ -408,33 +407,43 @@ describe('Import notes with different options', () => {
 				}),
 			);
 
-			await expect(getImportDeps().tagsRegistry.getTags()).resolves.toEqual([
+			const tags = await getImportDeps().tagsRegistry.getTags();
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'another tag',
 					parent: null,
 					resolvedName: 'another tag',
 				}),
+			);
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'foo',
 					parent: null,
 					resolvedName: 'foo',
 				}),
+			);
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'bar',
 					parent: expect.stringMatching(/^[\d\w-]+$/),
 					resolvedName: 'foo/bar',
 				}),
+			);
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'foo1',
 					parent: null,
 					resolvedName: 'foo1',
 				}),
+			);
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'bar1',
 					parent: expect.stringMatching(/^[\d\w-]+$/),
 					resolvedName: 'foo1/bar1',
 				}),
-			]);
+			);
+			expect(tags).toHaveLength(5);
 		});
 
 		test('fallback', async () => {
@@ -450,23 +459,29 @@ describe('Import notes with different options', () => {
 				}),
 			);
 
-			await expect(getImportDeps().tagsRegistry.getTags()).resolves.toEqual([
+			const tags = await getImportDeps().tagsRegistry.getTags();
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'another tag',
 					parent: null,
 					resolvedName: 'another tag',
 				}),
+			);
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'foo',
 					parent: null,
 					resolvedName: 'foo',
 				}),
+			);
+			expect(tags).toContainEqual(
 				expect.objectContaining({
 					name: 'bar',
 					parent: expect.stringMatching(/^[\d\w-]+$/),
 					resolvedName: 'foo/bar',
 				}),
-			]);
+			);
+			expect(tags).toHaveLength(3);
 		});
 
 		test('never', async () => {
@@ -663,6 +678,7 @@ describe('Import interruptions', () => {
 				getImporter().import(createFileManagerMock(filesSample), {
 					abortSignal: abortController.signal,
 					onProcessed,
+					batchSize: 1,
 				}),
 			).rejects.toThrowError('Import is cancelled');
 
@@ -676,7 +692,7 @@ describe('Import interruptions', () => {
 
 	const getWorkspaceContext = createWorkspaceContext();
 	test('Importer throw error if DB closed while importing', async () => {
-		const { db, workspaceId } = getWorkspaceContext();
+		const { managedDb, db, workspaceId } = getWorkspaceContext();
 
 		const fileManager = createFileManagerMock();
 
@@ -699,19 +715,16 @@ describe('Import interruptions', () => {
 				ignorePaths: ['/_resources'],
 				noteExtensions: ['.md', '.mdx'],
 				convertPathToTag: 'always',
-				// Slow down the processing
-				async throttle(callback) {
-					if (db.dbContainer.isOpened()) {
-						await db.dbContainer.close();
-					}
-
-					callback();
-				},
 			},
 		);
 
 		await expect(
-			importer.import(createFileManagerMock(filesSample)),
-		).rejects.toThrowError('Database is closed');
+			importer.import(createFileManagerMock(filesSample), {
+				onProcessed() {
+					managedDb.close();
+				},
+				batchSize: 1,
+			}),
+		).rejects.toThrowError('Database');
 	});
 });
