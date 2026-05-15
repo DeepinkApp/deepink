@@ -61,7 +61,7 @@ export const useNotesImport = ({ snapshots }: { snapshots?: boolean } = {}) => {
 				.import(files, {
 					abortSignal: abortController.signal,
 					onProcessed(info) {
-						console.log('Import progress', info);
+						console.debug('Import progress', info);
 						onProgress((value) =>
 							value ? { ...value, progress: info } : value,
 						);
