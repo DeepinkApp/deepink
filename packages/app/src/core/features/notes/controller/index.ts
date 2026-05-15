@@ -10,7 +10,10 @@ export type NoteMeta = {
 
 export type NoteSortField = 'id' | 'createdAt' | 'updatedAt' | 'deletedAt';
 
-export type NoteContentUpdateInfo = { id: NoteId } & INoteContent;
+export type NoteContentUpdateInfo = {
+	id: NoteId;
+	updatedAt?: number | false;
+} & INoteContent;
 
 type DateRange = {
 	/**
@@ -74,6 +77,8 @@ export type NotesControllerFetchOptions = {
 	};
 };
 
+export type ControlledNoteMeta = Partial<NoteMeta> & { updatedAt?: number };
+
 /**
  * Notes controller interface
  */
@@ -101,7 +106,7 @@ export interface INotesController {
 	/**
 	 * Create note and return unique id of new note
 	 */
-	add(note: INoteContent, meta?: Partial<NoteMeta>): Promise<NoteId>;
+	add(note: INoteContent, meta?: Partial<ControlledNoteMeta>): Promise<NoteId>;
 
 	/**
 	 * Update note by unique id
@@ -118,7 +123,7 @@ export interface INotesController {
 	/**
 	 * Update note meta information
 	 */
-	updateMeta(ids: NoteId[], meta: Partial<NoteMeta>): Promise<void>;
+	updateMeta(ids: NoteId[], meta: Partial<ControlledNoteMeta>): Promise<void>;
 
 	/**
 	 * Deletes all notes with specified ids
