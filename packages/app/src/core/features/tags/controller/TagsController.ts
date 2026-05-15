@@ -338,7 +338,7 @@ export class TagsController {
 	) {
 		if (attachments.length === 0) return;
 
-		this.db.transaction(async (tx) => {
+		await this.db.transaction(async (tx) => {
 			const db = wrapSQLite(tx);
 			await db.query(qb.sql`BEGIN`);
 			try {

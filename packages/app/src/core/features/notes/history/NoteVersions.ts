@@ -66,6 +66,8 @@ export class NoteVersions {
 			force?: boolean;
 		} = {},
 	) {
+		if (noteIds.length === 0) return;
+
 		const db = wrapSQLite(this.db);
 
 		if (options.force) {
