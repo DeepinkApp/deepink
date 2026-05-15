@@ -236,15 +236,29 @@
 			"confirmDelete": "You are about to delete workspace \"{{name}}\". Are you sure you want to do it?\n\nIf you continue, all data related to this workspace will be deleted, including notes, tags and files."
 		}
 	},
-	"importExport": {
-		"importNotes": "Import notes",
-		"exportNotes": "Export notes",
-		"importFromZip": "Import notes from .zip archive",
-		"importFromDirectory": "Import directory with Markdown files",
-		"dropzone": {
-			"title": "Drop Markdown files or .zip archive to import",
-			"description": "Drag & Drop some files here, or click to select files"
+	"migration": {
+		"import": {
+			"button": "Import notes",
+			"option": {
+				"zip": "Import notes from .zip archive",
+				"directory": "Import directory with Markdown files"
+			},
+			"progress": {
+				"info": "Importing notes… Step {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Cancel</cancel>",
+				"stage": {
+					"parsing": "Analyzing files {{processed}}/{{total}}",
+					"uploading": "Uploading attachments {{processed}}/{{total}}",
+					"updating": "Updating notes {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Import Markdown files or ZIP archives",
+				"description": "Drop files here or click to browse"
+			}
 		},
-		"progress": "Notes import is in progress. Stage: {{stage}} {{processed}}/{{total}}"
+		"export": {
+			"button": "Export notes"
+		}
 	}
 }
