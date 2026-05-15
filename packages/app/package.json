@@ -34,7 +34,7 @@
 		"release": "git tag -a \"v`jq -r .version package.json`\" -m \"build: publish v`jq -r .version package.json`\" && git push && git push --tags",
 		"typecheck": "tsc --noEmit --watch",
 		"update-icons": "tsx ./scripts/icons/build.ts",
-		"update-locales": "transly cache seed && transly translate",
+		"update-locales": "transly cache seed && transly translate && prettier --write './src/locales/**/*.json'",
 		"release-preview": "npm version prerelease --preid=preview && git push --follow-tags"
 	},
 	"devDependencies": {
