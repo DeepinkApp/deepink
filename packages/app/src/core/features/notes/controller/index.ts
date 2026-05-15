@@ -105,11 +105,13 @@ export interface INotesController {
 
 	/**
 	 * Update note by unique id
+	 *
+	 * @deprecated use `updateBatch` instead
 	 */
 	update(id: NoteId, updatedNote: INoteContent): Promise<void>;
 
 	/**
-	 * Update note by unique id
+	 * Update multiple notes by their unique ids
 	 */
 	updateBatch(notes: NoteContentUpdateInfo[]): Promise<void>;
 
