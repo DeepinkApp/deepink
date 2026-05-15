@@ -103,9 +103,7 @@ export class SQLiteDatabase implements SQLiteDB {
 		}
 	}
 
-	transaction<T extends unknown>(
-		cb: (tx: SQLiteTransaction) => Promise<T>,
-	): Promise<void>;
+	transaction<T extends unknown>(cb: (tx: SQLiteTransaction) => Promise<T>): Promise<T>;
 	async transaction(): Promise<SQLiteTransaction>;
 	async transaction(
 		callback?: (tx: SQLiteTransaction) => Promise<unknown>,
