@@ -246,5 +246,30 @@
 			"description": "Kéo & Thả tệp vào đây, hoặc nhấp để chọn tệp"
 		},
 		"progress": "Đang nhập ghi chú. Giai đoạn: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Nhập ghi chú",
+			"option": {
+				"zip": "Nhập ghi chú từ tệp nén .zip",
+				"directory": "Nhập thư mục chứa các tệp Markdown"
+			},
+			"progress": {
+				"info": "Đang nhập ghi chú… Bước {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Hủy</cancel>",
+				"stage": {
+					"parsing": "Đang phân tích tệp {{processed}}/{{total}}",
+					"uploading": "Đang tải lên tệp đính kèm {{processed}}/{{total}}",
+					"updating": "Đang cập nhật ghi chú {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Nhập tệp Markdown hoặc tệp nén ZIP",
+				"description": "Kéo thả tệp vào đây hoặc nhấn để chọn tệp"
+			}
+		},
+		"export": {
+			"button": "Xuất ghi chú"
+		}
 	}
 }

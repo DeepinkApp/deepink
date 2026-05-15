@@ -246,5 +246,30 @@
 			"description": "فایل‌ها را اینجا بکشید و رها کنید، یا برای انتخاب کلیک کنید"
 		},
 		"progress": "در حال وارد کردن یادداشت‌ها. مرحله: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "وارد کردن یادداشت‌ها",
+			"option": {
+				"zip": "وارد کردن یادداشت‌ها از فایل .zip",
+				"directory": "وارد کردن پوشه‌ای شامل فایل‌های Markdown"
+			},
+			"progress": {
+				"info": "در حال وارد کردن یادداشت‌ها... مرحله {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>لغو</cancel>",
+				"stage": {
+					"parsing": "در حال بررسی فایل‌ها {{processed}}/{{total}}",
+					"uploading": "در حال آپلود پیوست‌ها {{processed}}/{{total}}",
+					"updating": "در حال به‌روزرسانی یادداشت‌ها {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "فایل‌های Markdown یا آرشیوهای ZIP را اینجا وارد کنید",
+				"description": "فایل‌ها را اینجا رها کنید یا برای انتخاب کلیک کنید"
+			}
+		},
+		"export": {
+			"button": "خروجی گرفتن از یادداشت‌ها"
+		}
 	}
 }

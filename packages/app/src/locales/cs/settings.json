@@ -246,5 +246,30 @@
 			"description": "Soubory sem přetáhněte nebo klikněte pro jejich výběr"
 		},
 		"progress": "Probíhá import poznámek. Fáze: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importovat poznámky",
+			"option": {
+				"zip": "Importovat poznámky ze .zip archivu",
+				"directory": "Importovat složku s Markdown soubory"
+			},
+			"progress": {
+				"info": "Importování poznámek… Krok {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Zrušit</cancel>",
+				"stage": {
+					"parsing": "Analýza souborů {{processed}}/{{total}}",
+					"uploading": "Nahrávání příloh {{processed}}/{{total}}",
+					"updating": "Aktualizace poznámek {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importujte Markdown soubory nebo ZIP archivy",
+				"description": "Soubory sem přetáhněte nebo kliknutím vyberte"
+			}
+		},
+		"export": {
+			"button": "Exportovat poznámky"
+		}
 	}
 }

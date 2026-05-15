@@ -246,5 +246,30 @@
 			"description": "Плъзнете файлове тук или кликнете, за да ги изберете"
 		},
 		"progress": "Импортирането на бележки е в ход. Етап: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Импортиране на бележки",
+			"option": {
+				"zip": "Импортиране на бележки от .zip архив",
+				"directory": "Импортиране на папка с Markdown файлове"
+			},
+			"progress": {
+				"info": "Импортиране на бележки… Стъпка {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Отказ</cancel>",
+				"stage": {
+					"parsing": "Анализиране на файлове {{processed}}/{{total}}",
+					"uploading": "Качване на прикачени файлове {{processed}}/{{total}}",
+					"updating": "Актуализиране на бележки {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Импортирайте Markdown файлове или ZIP архиви",
+				"description": "Плъзнете файлове тук или кликнете за преглед"
+			}
+		},
+		"export": {
+			"button": "Експортиране на бележки"
+		}
 	}
 }

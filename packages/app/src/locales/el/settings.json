@@ -246,5 +246,30 @@
 			"description": "Σύρετε και αφήστε αρχεία εδώ, ή κάντε κλικ για να τα επιλέξετε"
 		},
 		"progress": "Η εισαγωγή σημειωτών βρίσκεται σε εξέλιξη. Στάδιο: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Εισαγωγή σημειώσεων",
+			"option": {
+				"zip": "Εισαγωγή σημειώσεων από αρχείο .zip",
+				"directory": "Εισαγωγή φακέλου με αρχεία Markdown"
+			},
+			"progress": {
+				"info": "Εισαγωγή σημειώσεων… Βήμα {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Ακύρωση</cancel>",
+				"stage": {
+					"parsing": "Ανάλυση αρχείων {{processed}}/{{total}}",
+					"uploading": "Μεταφόρτωση συνημμένων {{processed}}/{{total}}",
+					"updating": "Ενημέρωση σημειώσεων {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Εισαγωγή αρχείων Markdown ή αρχείων ZIP",
+				"description": "Αφήστε τα αρχεία εδώ ή κάντε κλικ για επιλογή"
+			}
+		},
+		"export": {
+			"button": "Εξαγωγή σημειώσεων"
+		}
 	}
 }

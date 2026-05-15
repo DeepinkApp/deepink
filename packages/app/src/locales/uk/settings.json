@@ -246,5 +246,30 @@
 			"description": "Перетягніть файли сюди або натисніть, щоб вибрати їх"
 		},
 		"progress": "Триває імпорт нотаток. Етап: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Імпортувати нотатки",
+			"option": {
+				"zip": "Імпортувати нотатки з .zip архіву",
+				"directory": "Імпортувати папку з Markdown-файлами"
+			},
+			"progress": {
+				"info": "Імпорт нотаток… Крок {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Скасувати</cancel>",
+				"stage": {
+					"parsing": "Аналіз файлів {{processed}}/{{total}}",
+					"uploading": "Завантаження вкладень {{processed}}/{{total}}",
+					"updating": "Оновлення нотаток {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Перетягніть Markdown-файли або ZIP-архіви",
+				"description": "Перетягніть файли сюди або натисніть для вибору"
+			}
+		},
+		"export": {
+			"button": "Експортувати нотатки"
+		}
 	}
 }

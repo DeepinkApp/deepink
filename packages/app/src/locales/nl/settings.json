@@ -246,5 +246,30 @@
 			"description": "Sleep bestanden hierheen of klik om bestanden te selecteren"
 		},
 		"progress": "Notities importeren... Fase: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Notities importeren",
+			"option": {
+				"zip": "Notities importeren uit .zip-archief",
+				"directory": "Een map met Markdown-bestanden importeren"
+			},
+			"progress": {
+				"info": "Notities importeren… Stap {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Annuleren</cancel>",
+				"stage": {
+					"parsing": "Bestanden analyseren {{processed}}/{{total}}",
+					"uploading": "Bijlagen uploaden {{processed}}/{{total}}",
+					"updating": "Notities bijwerken {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importeer Markdown-bestanden of ZIP-archieven",
+				"description": "Sleep bestanden hierheen of klik om te browsen"
+			}
+		},
+		"export": {
+			"button": "Notities exporteren"
+		}
 	}
 }

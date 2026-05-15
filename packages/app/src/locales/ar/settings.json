@@ -246,5 +246,30 @@
 			"description": "اسحب الملفات هنا، أو انقر لتحديدها"
 		},
 		"progress": "جاري استيراد الملاحظات. المرحلة: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "استيراد الملاحظات",
+			"option": {
+				"zip": "استيراد الملاحظات من ملف .zip",
+				"directory": "استيراد مجلد يحتوي على ملفات Markdown"
+			},
+			"progress": {
+				"info": "جاري استيراد الملاحظات... الخطوة {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>إلغاء</cancel>",
+				"stage": {
+					"parsing": "تحليل الملفات {{processed}}/{{total}}",
+					"uploading": "رفع المرفقات {{processed}}/{{total}}",
+					"updating": "تحديث الملاحظات {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "استيراد ملفات Markdown أو ملفات ZIP",
+				"description": "اسحب الملفات هنا أو انقر للتصفح"
+			}
+		},
+		"export": {
+			"button": "تصدير الملاحظات"
+		}
 	}
 }

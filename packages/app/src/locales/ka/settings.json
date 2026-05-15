@@ -246,5 +246,30 @@
 			"description": "ჩააგდეთ ფაილები აქ ან დააწკაპუნეთ მათ ასარჩევად"
 		},
 		"progress": "შენიშვნების იმპორტი მიმდინარეობს. ეტაპი: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "ჩანაწერების იმპორტი",
+			"option": {
+				"zip": "ჩანაწერების იმპორტი .zip არქივიდან",
+				"directory": "Markdown ფაილების მქონე დირექტორიის იმპორტი"
+			},
+			"progress": {
+				"info": "ჩანაწერების იმპორტი... ნაბიჯი {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>გაუქმება</cancel>",
+				"stage": {
+					"parsing": "ფაილების ანალიზი {{processed}}/{{total}}",
+					"uploading": "დანართების ატვირთვა {{processed}}/{{total}}",
+					"updating": "ჩანაწერების განახლება {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Markdown ფაილების ან ZIP არქივების იმპორტი",
+				"description": "ჩააგდეთ ფაილები აქ ან დააწკაპუნეთ გადასაკითხად"
+			}
+		},
+		"export": {
+			"button": "ჩანაწერების ექსპორტი"
+		}
 	}
 }

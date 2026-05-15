@@ -246,5 +246,30 @@
 			"description": "Dosyaları buraya sürükleyip bırakın veya seçmek için tıklayın"
 		},
 		"progress": "Notlar içe aktarılıyor. Aşama: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Notları içe aktar",
+			"option": {
+				"zip": ".zip arşivinden notları içe aktar",
+				"directory": "Markdown dosyalarını içeren bir dizini içe aktar"
+			},
+			"progress": {
+				"info": "Notlar içe aktarılıyor… Adım {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>İptal</cancel>",
+				"stage": {
+					"parsing": "Dosyalar analiz ediliyor {{processed}}/{{total}}",
+					"uploading": "Ekler yükleniyor {{processed}}/{{total}}",
+					"updating": "Notlar güncelleniyor {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Markdown dosyalarını veya ZIP arşivlerini içe aktar",
+				"description": "Dosyaları buraya sürükleyin veya göz atmak için tıklayın"
+			}
+		},
+		"export": {
+			"button": "Notları dışa aktar"
+		}
 	}
 }

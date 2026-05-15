@@ -246,5 +246,30 @@
 			"description": "Træk og slip filer her, eller klik for at vælge filer"
 		},
 		"progress": "Importerer noter. Trin: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importer noter",
+			"option": {
+				"zip": "Importer noter fra .zip-arkiv",
+				"directory": "Importer en mappe med Markdown-filer"
+			},
+			"progress": {
+				"info": "Importerer noter… Trin {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Annuller</cancel>",
+				"stage": {
+					"parsing": "Analyserer filer {{processed}}/{{total}}",
+					"uploading": "Uploader vedhæftede filer {{processed}}/{{total}}",
+					"updating": "Opdaterer noter {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importer Markdown-filer eller ZIP-arkiver",
+				"description": "Træk filer herind eller klik for at gennemse"
+			}
+		},
+		"export": {
+			"button": "Eksporter noter"
+		}
 	}
 }
