@@ -30,6 +30,7 @@ const benchConfig = {
 describe('Note ops performance', async () => {
 	const dbFile = createFileControllerMock();
 	const managedDB = await openSQLite(dbFile);
+	afterAll(() => managedDB.close());
 	const db = managedDB.get();
 	const workspaceId = await createWorkspaceId(db);
 
