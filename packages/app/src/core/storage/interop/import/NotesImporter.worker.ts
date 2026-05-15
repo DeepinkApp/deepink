@@ -1,7 +1,8 @@
 import { Endpoint, expose } from 'comlink';
 import { ComlinkWorkerFS } from '@core/features/files/ComlinkFS';
 
-import { registerDeepObjectTransferHandler } from './deepSerialize';
+import { registerDeepObjectTransferHandler } from '../../../../utils/comlink/deepSerialize';
+
 import { NotesImporter, NotesImporterWorkerAPI } from '.';
 
 console.log('Worker is loaded');

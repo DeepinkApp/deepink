@@ -2,7 +2,11 @@ import { proxy, wrap } from 'comlink';
 import { IFilesStorage } from '@core/features/files';
 import { ComlinkHostFS } from '@core/features/files/ComlinkFS';
 
-import { deepObject, registerDeepObjectTransferHandler } from './deepSerialize';
+import {
+	deepObject,
+	registerDeepObjectTransferHandler,
+} from '../../../../utils/comlink/deepSerialize';
+
 import {
 	NotesImporterConfig,
 	NotesImporterDeps,
