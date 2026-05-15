@@ -241,7 +241,7 @@
 			"button": "Import notes",
 			"option": {
 				"zip": "Import notes from .zip archive",
-				"directory": "Import directory with Markdown files"
+				"directory": "Import a directory with Markdown files"
 			},
 			"progress": {
 				"info": "Importing notes… Step {{step}}/{{totalSteps}}",
