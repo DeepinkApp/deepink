@@ -410,7 +410,7 @@ export class NotesController implements INotesController {
 		const db = wrapSQLite(this.db);
 
 		await db.query(
-			qb.sql`UPDATE notes SET ${qb.values({ ...formatNoteMeta(meta), ...(updatedAt ? { updated_at: updatedAt } : {}) })}
+			qb.sql`UPDATE notes SET ${qb.values({ ...formatNoteMeta(meta), ...(updatedAt !== undefined ? { updated_at: updatedAt } : {}) })}
 				WHERE workspace_id=${this.workspace} AND id IN (${qb.values(ids)})`,
 		);
 	}
