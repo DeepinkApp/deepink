@@ -246,5 +246,30 @@
 			"description": "Prevucite datoteke ovde ili kliknite da ih izaberete"
 		},
 		"progress": "Uvoz beležnica je u toku. Faza: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Uvezi beleške",
+			"option": {
+				"zip": "Uvezi beleške iz .zip arhive",
+				"directory": "Uvezi fasciklu sa Markdown datotekama"
+			},
+			"progress": {
+				"info": "Uvoz beleški… Korak {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Otkaži</cancel>",
+				"stage": {
+					"parsing": "Analiza datoteka {{processed}}/{{total}}",
+					"uploading": "Otpremanje priloga {{processed}}/{{total}}",
+					"updating": "Ažuriranje beleški {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Uvezi Markdown datoteke ili ZIP arhive",
+				"description": "Prevucite datoteke ovde ili kliknite za pregled"
+			}
+		},
+		"export": {
+			"button": "Izvezi beleške"
+		}
 	}
 }

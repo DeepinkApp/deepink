@@ -246,5 +246,30 @@
 			"description": "Dra och släpp filer hit, eller klicka för att välja filer"
 		},
 		"progress": "Importerar anteckningar. Steg: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importera anteckningar",
+			"option": {
+				"zip": "Importera anteckningar från .zip-arkiv",
+				"directory": "Importera en mapp med Markdown-filer"
+			},
+			"progress": {
+				"info": "Importerar anteckningar… Steg {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Avbryt</cancel>",
+				"stage": {
+					"parsing": "Analyserar filer {{processed}}/{{total}}",
+					"uploading": "Laddar upp bilagor {{processed}}/{{total}}",
+					"updating": "Uppdaterar anteckningar {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importera Markdown-filer eller ZIP-arkiv",
+				"description": "Dra filer hit eller klicka för att bläddra"
+			}
+		},
+		"export": {
+			"button": "Exportera anteckningar"
+		}
 	}
 }

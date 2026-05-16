@@ -246,5 +246,30 @@
 			"description": "Arrastra y suelta archivos aquí, o haz clic para seleccionarlos"
 		},
 		"progress": "Importando notas. Etapa: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importar notas",
+			"option": {
+				"zip": "Importar notas desde un archivo .zip",
+				"directory": "Importar un directorio con archivos Markdown"
+			},
+			"progress": {
+				"info": "Importando notas… Paso {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Cancelar</cancel>",
+				"stage": {
+					"parsing": "Analizando archivos {{processed}}/{{total}}",
+					"uploading": "Subiendo archivos adjuntos {{processed}}/{{total}}",
+					"updating": "Actualizando notas {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importar archivos Markdown o archivos ZIP",
+				"description": "Arrastra los archivos aquí o haz clic para buscar"
+			}
+		},
+		"export": {
+			"button": "Exportar notas"
+		}
 	}
 }

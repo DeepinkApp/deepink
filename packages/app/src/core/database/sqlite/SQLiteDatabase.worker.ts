@@ -1,7 +1,7 @@
 import { Endpoint, expose, proxy, transfer } from 'comlink';
 
 import { SQLiteDatabase } from './SQLiteDatabase';
-import { SQLiteDBWorker } from '.';
+import { SQLiteDB, SQLiteDBWorker, SQLiteTransaction } from '.';
 
 let db: SQLiteDatabase | null = null;
 
@@ -23,6 +23,19 @@ expose(
 				);
 			return db.query(...args);
 		},
+		transaction: (async (callback?: (tx: SQLiteTransaction) => Promise<unknown>) => {
+			if (!db)
+				throw new Error(
+					'Database instance is not created yet. Call init() first',
+				);
+
+			if (callback) {
+				return await db.transaction((tx) => callback(proxy(tx)));
+			} else {
+				const transaction = await db.transaction();
+				return proxy(transaction);
+			}
+		}) as SQLiteDB['transaction'],
 		async export() {
 			if (!db)
 				throw new Error(

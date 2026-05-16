@@ -12,6 +12,16 @@ import { getAppWindows, projectRoot } from './utils';
 
 const windows = getAppWindows();
 
+function getPathForPackage(packageName: string, packagePath: string) {
+	// Resolve ONLY the root package name (always works, hits "exports['.']" not a subpath)
+	// Then walk UP from the resolved file to find the package root directory
+	// e.g. → /your/project/node_modules/decode-named-character-reference/index.js
+	const pkgEntryPoint = require.resolve(packageName);
+	const pkgDir = path.dirname(pkgEntryPoint);
+
+	return path.join(pkgDir, packagePath);
+}
+
 export default merge(commonConfig, {
 	target: 'web',
 	entry: {
@@ -54,6 +64,15 @@ export default merge(commonConfig, {
 		electron: 'global electron',
 	},
 	resolve: {
+		alias: {
+			// Overwrite DOM version via worker version
+			// See https://github.com/webpack/webpack/issues/17512#issuecomment-4440246470
+			'decode-named-character-reference': getPathForPackage(
+				'decode-named-character-reference',
+				'index.js',
+			),
+		},
+
 		fallback: {
 			// eslint-disable-next-line camelcase
 			worker_threads: false,

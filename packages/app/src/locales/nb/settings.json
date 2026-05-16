@@ -246,5 +246,30 @@
 			"description": "Dra og slipp filer hit, eller klikk for å velge filer"
 		},
 		"progress": "Importerer notater. Trinn: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Importer notater",
+			"option": {
+				"zip": "Importer notater fra .zip-arkiv",
+				"directory": "Importer en mappe med Markdown-filer"
+			},
+			"progress": {
+				"info": "Importerer notater… Trinn {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Avbryt</cancel>",
+				"stage": {
+					"parsing": "Analyserer filer {{processed}}/{{total}}",
+					"uploading": "Laster opp vedlegg {{processed}}/{{total}}",
+					"updating": "Oppdaterer notater {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Importer Markdown-filer eller ZIP-arkiv",
+				"description": "Slipp filer her eller klikk for å bla"
+			}
+		},
+		"export": {
+			"button": "Eksporter notater"
+		}
 	}
 }

@@ -41,7 +41,7 @@ import {
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
-import { useVaultControls } from '../../Vault';
+import { useVaultDB } from '../../Vault';
 import {
 	useAttachmentsController,
 	useFilesController,
@@ -58,9 +58,7 @@ export const WorkspaceSettings = () => {
 
 	const telemetry = useTelemetryTracker();
 
-	const {
-		vault: { db },
-	} = useVaultControls();
+	const db = useVaultDB();
 
 	const { abort: abortImport } = useImportNotesPreset();
 

@@ -246,5 +246,30 @@
 			"description": "Prevrnite datoteke sem ali kliknite za njihovo izbiro"
 		},
 		"progress": "Uvoz zapisa poteka. Stopnja: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Uvozi beležke",
+			"option": {
+				"zip": "Uvozi beležke iz .zip arhive",
+				"directory": "Uvozi mapo z Markdown datotekami"
+			},
+			"progress": {
+				"info": "Uvoz beležk… Korak {{step}}/{{totalSteps}}",
+				"cancel": "<cancel>Prekliči</cancel>",
+				"stage": {
+					"parsing": "Analiza datotek {{processed}}/{{total}}",
+					"uploading": "Vezi nalaganje {{processed}}/{{total}}",
+					"updating": "Posodabljanje beležk {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Uvozi Markdown datoteke ali ZIP arhive",
+				"description": "Prevrnite datoteke sem ali kliknite za brskanje"
+			}
+		},
+		"export": {
+			"button": "Izvozi beležke"
+		}
 	}
 }

@@ -246,5 +246,30 @@
 			"description": "Húzza ide a fájlokat, vagy kattintson a kiválasztáshoz"
 		},
 		"progress": "Jegyzetek importálása folyamatban. Állapot: {{stage}} {{processed}}/{{total}}"
+	},
+	"migration": {
+		"import": {
+			"button": "Jegyzetek importálása",
+			"option": {
+				"zip": "Jegyzetek importálása .zip archívából",
+				"directory": "Markdown fájlok mappájának importálása"
+			},
+			"progress": {
+				"info": "Jegyzetek importálása… {{step}}/{{totalSteps}} lépés",
+				"cancel": "<cancel>Mégse</cancel>",
+				"stage": {
+					"parsing": "Fájlok elemzése {{processed}}/{{total}}",
+					"uploading": "Mellékletek feltöltése {{processed}}/{{total}}",
+					"updating": "Jegyzetek frissítése {{processed}}/{{total}}"
+				}
+			},
+			"dropzone": {
+				"title": "Markdown fájlok vagy ZIP archívumok importálása",
+				"description": "Engedje ide a fájlokat, vagy kattintson a böngészéshez"
+			}
+		},
+		"export": {
+			"button": "Jegyzetek exportálása"
+		}
 	}
 }

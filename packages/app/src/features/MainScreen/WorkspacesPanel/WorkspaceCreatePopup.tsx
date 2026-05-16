@@ -14,7 +14,7 @@ import {
 import { PropertiesForm } from '@components/PropertiesForm';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
-import { useVaultControls } from '@features/App/Vault';
+import { useVaultDB } from '@features/App/Vault';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useModalApi } from '@features/WorkspaceModal/useWorkspaceModal';
 import { useStandaloneToast } from '@hooks/useStandaloneToast';
@@ -55,11 +55,9 @@ export const WorkspaceCreatePopup = () => {
 
 	const { vaultId } = useWorkspaceData();
 
-	const {
-		vault: { db },
-	} = useVaultControls();
+	const db = useVaultDB(true);
 
-	const workspacesManager = useMemo(() => new WorkspacesController(db), [db]);
+	const workspacesManager = useMemo(() => new WorkspacesController(db.get()), [db]);
 
 	const { update: updateWorkspaces } = useWorkspacesList();
 

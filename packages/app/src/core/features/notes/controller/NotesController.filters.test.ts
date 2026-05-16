@@ -11,8 +11,8 @@ test('filter by update time', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
-	const workspaceId = await createWorkspaceId(db);
-	const notes = new NotesController(db, workspaceId);
+	const workspaceId = await createWorkspaceId(db.get());
+	const notes = new NotesController(db.get(), workspaceId);
 
 	vi.setSystemTime('01/01/2001 12:00');
 	const note1 = await notes.add({ title: '2001', text: 'Dummy text' });

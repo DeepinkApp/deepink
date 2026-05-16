@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import Dropzone from 'react-dropzone';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
 	Button,
@@ -24,7 +24,7 @@ import { selectWorkspace } from '@state/redux/vaults/vaults';
 
 export const ImportAndExport = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.settings);
-	const { importFiles, progress: importProgress } = useImportNotesPreset();
+	const { importFiles, progress: importProgress, abort } = useImportNotesPreset();
 	const notesExport = useNotesExport();
 
 	const selectDirectory = useDirectoryPicker();
@@ -59,8 +59,8 @@ export const ImportAndExport = () => {
 	const workspaceData = useAppSelector(selectWorkspace(currentWorkspace));
 
 	const importOptions = [
-		{ type: 'zip' as const, text: t('importExport.importFromZip') },
-		{ type: 'directory' as const, text: t('importExport.importFromDirectory') },
+		{ type: 'zip' as const, text: t('migration.import.option.zip') },
+		{ type: 'directory' as const, text: t('migration.import.option.directory') },
 	];
 
 	return (
@@ -72,7 +72,7 @@ export const ImportAndExport = () => {
 						as={CalmButton}
 						isDisabled={importProgress !== null}
 					>
-						{t('importExport.importNotes')}
+						{t('migration.import.button')}
 					</MenuButton>
 					<MenuList>
 						{importOptions.map((option) => (
@@ -95,7 +95,7 @@ export const ImportAndExport = () => {
 						);
 					}}
 				>
-					{t('importExport.exportNotes')}
+					{t('migration.export.button')}
 				</Button>
 			</HStack>
 
@@ -135,25 +135,63 @@ export const ImportAndExport = () => {
 								})}
 					>
 						<input {...getInputProps()} />
-						<Text>{t('importExport.dropzone.title')}</Text>
+						<Text>{t('migration.import.dropzone.title')}</Text>
 						<Text color="typography.secondary">
-							{t('importExport.dropzone.description')}
+							{t('migration.import.dropzone.description')}
 						</Text>
 					</VStack>
 				)}
 			</Dropzone>
 
 			{importProgress && (
-				<HStack w="100%" align="center">
-					<Spinner size="sm" />
+				<VStack align="center" w="100%" padding="1rem">
+					<HStack align="start">
+						<Spinner size="sm" />
+						<Text>
+							<Trans
+								t={t}
+								i18nKey="migration.import.progress.info"
+								values={{
+									totalSteps: 3,
+									step: { parsing: 1, uploading: 2, updating: 3 }[
+										importProgress.stage
+									],
+								}}
+							/>
+						</Text>
+					</HStack>
+
 					<Text>
-						{t('importExport.progress', {
-							stage: importProgress.stage,
-							processed: importProgress.processed,
-							total: importProgress.total,
-						})}
+						{t(
+							{
+								parsing: 'migration.import.progress.stage.parsing',
+								uploading: 'migration.import.progress.stage.uploading',
+								updating: 'migration.import.progress.stage.updating',
+							}[importProgress.stage],
+							{
+								processed: importProgress.processed,
+								total: importProgress.total,
+							},
+						)}
 					</Text>
-				</HStack>
+
+					<Text>
+						<Trans
+							t={t}
+							i18nKey="migration.import.progress.cancel"
+							components={{
+								cancel: (
+									<Button
+										variant="link"
+										onClick={() =>
+											abort(new Error('User cancel the import'))
+										}
+									/>
+								),
+							}}
+						/>
+					</Text>
+				</VStack>
 			)}
 		</VStack>
 	);
