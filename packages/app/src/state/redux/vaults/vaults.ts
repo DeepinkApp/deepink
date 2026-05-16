@@ -473,7 +473,7 @@ export const vaultsSlice = createSlice({
 				previewTabId !== null && noteIds.has(previewTabId) ? previewTabId : null;
 		},
 
-		convertPreviewToRegular: (
+		makePreviewTabRegular: (
 			state,
 			{ payload: { vaultId, workspaceId } }: PayloadAction<WorkspaceScoped>,
 		) => {
