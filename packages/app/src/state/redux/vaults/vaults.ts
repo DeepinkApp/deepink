@@ -546,9 +546,16 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
+			const noteIds = new Set(notes.map(({ id }) => id));
+
+			const isActiveNoteExist = noteIds.has(activeNoteId);
+			if (!isActiveNoteExist) return;
+
 			workspace.openedNotes = notes;
 			workspace.activeNote = activeNoteId;
-			workspace.previewTabId = previewTabId;
+
+			workspace.previewTabId =
+				previewTabId !== null && noteIds.has(previewTabId) ? previewTabId : null;
 		},
 
 		convertPreviewToRegular: (
