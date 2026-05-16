@@ -66,6 +66,13 @@ const createNotifier = ({
 	};
 };
 
+const optionalDateValue = z.coerce
+	.date()
+	.transform((date) => date.getTime())
+	.or(z.number())
+	.optional()
+	.catch(undefined);
+
 const RawNoteMetaScheme = z
 	.object({
 		title: z.string().trim().min(1).optional().catch(undefined),
@@ -75,26 +82,10 @@ const RawNoteMetaScheme = z
 			.transform((tags) => tags.map((tag) => tag.trim()).filter(Boolean))
 			.optional()
 			.catch(undefined),
-		updated: z.coerce
-			.date()
-			.transform((date) => date.getTime())
-			.or(z.number())
-			.optional(),
-		updatedAt: z.coerce
-			.date()
-			.transform((date) => date.getTime())
-			.or(z.number())
-			.optional(),
-		created: z.coerce
-			.date()
-			.transform((date) => date.getTime())
-			.or(z.number())
-			.optional(),
-		createdAt: z.coerce
-			.date()
-			.transform((date) => date.getTime())
-			.or(z.number())
-			.optional(),
+		updated: optionalDateValue,
+		updatedAt: optionalDateValue,
+		created: optionalDateValue,
+		createdAt: optionalDateValue,
 	})
 	.transform(({ title, tags, updated, updatedAt, created, createdAt }) => {
 		return {
