@@ -759,6 +759,8 @@ describe('Import respects meta info', () => {
 
 	test('Update timestamps is preserved', async () => {
 		const deps = getAppContext();
+
+		const timeBeforeImport = Date.now();
 		await new NotesImporter(deps, {
 			ignorePaths: ['/_resources'],
 			noteExtensions: ['.md', '.mdx'],
@@ -797,6 +799,24 @@ describe('Import respects meta info', () => {
 						}) +
 						'---\nHello world!',
 				),
+				'/note-5.md': createTextBuffer(
+					'---\n' +
+						yamlStringify({
+							title: 'Note #5',
+							created: 'Some invalid data',
+						}) +
+						'---\nHello world!',
+				),
+				'/note-6.md': createTextBuffer(
+					'---\n' +
+						yamlStringify({
+							title: 'Note #6',
+							updatedAt: 'Some invalid data',
+							createdAt: 'Some invalid data',
+							created: '01.01.2008 12:00',
+						}) +
+						'---\nUpdate time fallback to any valid time',
+				),
 			}),
 		);
 
@@ -828,6 +848,21 @@ describe('Import respects meta info', () => {
 				updatedTimestamp: new Date('11.11.2007 11:22').getTime(),
 				content: {
 					title: 'Note #4',
+				},
+			},
+			{
+				content: {
+					title: 'Note #5',
+				},
+				updatedTimestamp: expect.toSatisfy((value) => {
+					expect(value).toBeGreaterThanOrEqual(timeBeforeImport);
+					return true;
+				}),
+			},
+			{
+				updatedTimestamp: new Date('01.01.2008 12:00').getTime(),
+				content: {
+					title: 'Note #6',
 				},
 			},
 		]);
