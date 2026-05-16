@@ -452,6 +452,7 @@ test('Batch notes updates', async () => {
 	]);
 
 	// Update with set current timestamps
+	const timeBeforeUpdate1 = Date.now();
 	await registry.updateBatch([
 		{ id: noteIds[0], text: '', title: '' },
 		{ id: noteIds[1], text: '', title: '' },
@@ -461,23 +462,23 @@ test('Batch notes updates', async () => {
 	const expectGreaterThanOrEqual = (expectedNumber: number) =>
 		expect.toSatisfy((value) => typeof value === 'number' && value >= expectedNumber);
 
-	const time1 = Date.now();
 	await expect(registry.getById(noteIds)).resolves.toMatchObject([
 		{
 			id: noteIds[0],
-			updatedTimestamp: expectGreaterThanOrEqual(time1),
+			updatedTimestamp: expectGreaterThanOrEqual(timeBeforeUpdate1),
 		},
 		{
 			id: noteIds[1],
-			updatedTimestamp: expectGreaterThanOrEqual(time1),
+			updatedTimestamp: expectGreaterThanOrEqual(timeBeforeUpdate1),
 		},
 		{
 			id: noteIds[2],
-			updatedTimestamp: expectGreaterThanOrEqual(time1),
+			updatedTimestamp: expectGreaterThanOrEqual(timeBeforeUpdate1),
 		},
 	]);
 
 	// Mixed update
+	const timeBeforeUpdate2 = Date.now();
 	await registry.updateBatch([
 		{ id: noteIds[0], updatedAt: 100, title: 'Updated to 100', text: '' },
 		{ id: noteIds[1], updatedAt: false, title: 'Timestamp is not changed', text: '' },
@@ -489,7 +490,6 @@ test('Batch notes updates', async () => {
 		},
 	]);
 
-	const time2 = Date.now();
 	await expect(registry.getById(noteIds)).resolves.toMatchObject([
 		{
 			id: noteIds[0],
@@ -498,14 +498,19 @@ test('Batch notes updates', async () => {
 		},
 		{
 			id: noteIds[1],
-			updatedTimestamp: expect.toSatisfy(
-				(value) => typeof value === 'number' && value >= time1 && value < time2,
-			),
+			updatedTimestamp: expect.toSatisfy((value) => {
+				expect(value).toBeGreaterThanOrEqual(timeBeforeUpdate1);
+				expect(value).toBeLessThanOrEqual(timeBeforeUpdate2);
+				return true;
+			}),
 			content: { title: 'Timestamp is not changed' },
 		},
 		{
 			id: noteIds[2],
-			updatedTimestamp: expectGreaterThanOrEqual(time2),
+			updatedTimestamp: expect.toSatisfy((value) => {
+				expect(value).toBeGreaterThanOrEqual(timeBeforeUpdate2);
+				return true;
+			}),
 			content: { title: 'Timestamp is set as current time' },
 		},
 	]);
