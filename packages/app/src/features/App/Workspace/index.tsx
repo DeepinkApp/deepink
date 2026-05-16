@@ -89,7 +89,11 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 						}: { focus?: boolean; preview?: boolean } = {},
 					) => {
 						dispatch(
-							workspaceActions.addOpenedNote({ note, focus, preview }),
+							workspaceActions.addOpenedNote({
+								note,
+								active: focus,
+								preview,
+							}),
 						);
 					},
 					noteUpdated: (note: INote) =>
