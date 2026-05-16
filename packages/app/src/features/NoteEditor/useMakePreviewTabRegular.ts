@@ -4,7 +4,7 @@ import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
 
-export const useMakePreviewTabRegularOnChange = (noteId: NoteId, deps: unknown[]) => {
+export const useMakePreviewTabRegular = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();
 	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 	const workspaceData = useWorkspaceData();
