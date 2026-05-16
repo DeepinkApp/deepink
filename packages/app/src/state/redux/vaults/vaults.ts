@@ -352,12 +352,12 @@ export const vaultsSlice = createSlice({
 		addOpenedNote: (
 			state,
 			{
-				payload: { vaultId, workspaceId, note, focus, preview },
+				payload: { vaultId, workspaceId, note, active, preview },
 			}: PayloadAction<
 				WorkspaceScoped<{
 					note: INote;
 					preview?: boolean;
-					focus?: boolean;
+					active?: boolean;
 				}>
 			>,
 		) => {
@@ -372,16 +372,18 @@ export const vaultsSlice = createSlice({
 			if (foundNoteInList) return;
 
 			if (preview) {
-				// Only one preview note can be open at a time — replace the previous one
-				workspace.openedNotes = workspace.openedNotes.filter(
-					({ id }) => id !== workspace.previewTabId,
-				);
+				if (workspace.previewTabId) {
+					// Only one preview note can be open at a time — close the previous one
+					workspace.openedNotes = workspace.openedNotes.filter(
+						({ id }) => id !== workspace.previewTabId,
+					);
+				}
 				workspace.previewTabId = note.id;
 			}
 
 			workspace.openedNotes.push(note);
 
-			if (focus) {
+			if (active) {
 				workspace.activeNote = note.id;
 			}
 
