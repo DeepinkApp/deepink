@@ -463,8 +463,8 @@ export const vaultsSlice = createSlice({
 
 			const noteIds = new Set(notes.map(({ id }) => id));
 
-			const isActiveNoteExist = noteIds.has(activeNoteId);
-			if (!isActiveNoteExist) return;
+			// Active note must exist in the list - otherwise the state would be inconsistent
+			if (!noteIds.has(activeNoteId)) return;
 
 			workspace.openedNotes = notes;
 			workspace.activeNote = activeNoteId;
