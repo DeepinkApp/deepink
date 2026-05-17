@@ -461,23 +461,27 @@ export const vaultsSlice = createSlice({
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
-			const noteIds = new Set(notes.map(({ id }) => id));
-
-			// Active note must exist in the list - otherwise the state would be inconsistent
-			if (!noteIds.has(activeNoteId)) return;
-
 			workspace.openedNotes = notes;
-			workspace.activeNote = activeNoteId;
+
+			// Use Set for O(1) lookups
+			const noteIdSet = new Set(notes.map(({ id }) => id));
+
+			// Fall back to first note if active note not in list
+			workspace.activeNote = noteIdSet.has(activeNoteId)
+				? activeNoteId
+				: notes[0].id;
 
 			workspace.previewTabId =
-				previewTabId !== null && noteIds.has(previewTabId) ? previewTabId : null;
+				previewTabId !== null && noteIdSet.has(previewTabId)
+					? previewTabId
+					: null;
 		},
 
 		makePreviewTabRegular: (
 			state,
-			{ payload: { vaultId, workspaceId } }: PayloadAction<WorkspaceScoped>,
+			{ payload: workspaceScope }: PayloadAction<WorkspaceScoped>,
 		) => {
-			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			const workspace = selectWorkspaceObject(state, workspaceScope);
 			if (!workspace) return;
 
 			workspace.previewTabId = null;
