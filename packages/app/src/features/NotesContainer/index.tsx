@@ -119,15 +119,13 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 								});
 							},
 							onPick(id, options?: { preview: boolean }) {
-								noteActions.click(id, { preview: true });
+								noteActions.click(id, {
+									preview: options?.preview,
+								});
+
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
 								});
-
-								// Convert preview tab to regular
-								if (options?.preview === false) {
-									noteActions.click(id, { preview: false });
-								}
 							},
 						}}
 					/>
