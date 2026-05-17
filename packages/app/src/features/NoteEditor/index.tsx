@@ -54,7 +54,7 @@ import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
 import { NoteSidebar } from './NoteSidebar';
 import { NoteVersions } from './NoteVersions';
-import { useTogglePreviewTabToRegularOnChange } from './useMakePreviewTabRegular';
+import { useTogglePreviewTabToRegularOnChange } from './useTogglePreviewTabToRegularOnChange';
 
 export enum NoteSidebarTabs {
 	HISTORY = 'HISTORY',
