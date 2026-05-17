@@ -125,8 +125,8 @@ describe('Active note management', () => {
 });
 
 describe('Close note tabs via queries', () => {
-	test('Close all notes after N', () => {
-		const { store, workspaceScope, selectors } = createTestStore();
+	const { store, workspaceScope, selectors } = createTestStore();
+	beforeEach(() => {
 		store.dispatch(
 			workspacesApi.setOpenedNotes({
 				...workspaceScope,
@@ -146,6 +146,9 @@ describe('Close note tabs via queries', () => {
 				noteId: '3',
 			}),
 		);
+	});
+
+	test('Close all notes after N', () => {
 		store.dispatch(
 			workspacesApi.closeNotes({
 				...workspaceScope,
@@ -163,26 +166,6 @@ describe('Close note tabs via queries', () => {
 	});
 
 	test('Close all notes before N', () => {
-		const { store, workspaceScope, selectors } = createTestStore();
-		store.dispatch(
-			workspacesApi.setOpenedNotes({
-				...workspaceScope,
-				notes: [
-					mockNoteObject('1'),
-					mockNoteObject('2'),
-					mockNoteObject('3'),
-					mockNoteObject('4'),
-					mockNoteObject('5'),
-				],
-			}),
-		);
-
-		store.dispatch(
-			workspacesApi.setActiveNote({
-				...workspaceScope,
-				noteId: '3',
-			}),
-		);
 		store.dispatch(
 			workspacesApi.closeNotes({
 				...workspaceScope,
@@ -200,26 +183,6 @@ describe('Close note tabs via queries', () => {
 	});
 
 	test('Close all notes before N and after N', () => {
-		const { store, workspaceScope, selectors } = createTestStore();
-		store.dispatch(
-			workspacesApi.setOpenedNotes({
-				...workspaceScope,
-				notes: [
-					mockNoteObject('1'),
-					mockNoteObject('2'),
-					mockNoteObject('3'),
-					mockNoteObject('4'),
-					mockNoteObject('5'),
-				],
-			}),
-		);
-
-		store.dispatch(
-			workspacesApi.setActiveNote({
-				...workspaceScope,
-				noteId: '3',
-			}),
-		);
 		store.dispatch(
 			workspacesApi.closeNotes({
 				...workspaceScope,
@@ -236,20 +199,6 @@ describe('Close note tabs via queries', () => {
 	});
 
 	test('Close all notes before N and after N but exclude specific ids', () => {
-		const { store, workspaceScope, selectors } = createTestStore();
-		store.dispatch(
-			workspacesApi.setOpenedNotes({
-				...workspaceScope,
-				notes: [
-					mockNoteObject('1'),
-					mockNoteObject('2'),
-					mockNoteObject('3'),
-					mockNoteObject('4'),
-					mockNoteObject('5'),
-				],
-			}),
-		);
-
 		store.dispatch(
 			workspacesApi.setActiveNote({
 				...workspaceScope,
@@ -274,26 +223,6 @@ describe('Close note tabs via queries', () => {
 	});
 
 	test('Close specific note ids', () => {
-		const { store, workspaceScope, selectors } = createTestStore();
-		store.dispatch(
-			workspacesApi.setOpenedNotes({
-				...workspaceScope,
-				notes: [
-					mockNoteObject('1'),
-					mockNoteObject('2'),
-					mockNoteObject('3'),
-					mockNoteObject('4'),
-					mockNoteObject('5'),
-				],
-			}),
-		);
-
-		store.dispatch(
-			workspacesApi.setActiveNote({
-				...workspaceScope,
-				noteId: '3',
-			}),
-		);
 		store.dispatch(
 			workspacesApi.closeNotes({
 				...workspaceScope,
@@ -307,10 +236,52 @@ describe('Close note tabs via queries', () => {
 			mockNoteObject('1'),
 			mockNoteObject('5'),
 		]);
-		expect(selectRecentlyClosedNotes(selectors.workspace())).toStrictEqual([
+		expect(selectRecentlyClosedNotes(selectors.workspace()).slice(-3)).toStrictEqual([
 			'2',
 			'3',
 			'4',
+		]);
+	});
+
+	test('Close all notes', () => {
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					all: true,
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual(null);
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([]);
+		expect(selectRecentlyClosedNotes(selectors.workspace()).slice(-5)).toStrictEqual([
+			'1',
+			'2',
+			'3',
+			'4',
+			'5',
+		]);
+	});
+
+	test('Close all notes except N', () => {
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					all: true,
+					exclude: ['3', '4'],
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('3');
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([
+			mockNoteObject('3'),
+			mockNoteObject('4'),
+		]);
+		expect(selectRecentlyClosedNotes(selectors.workspace()).slice(-3)).toStrictEqual([
+			'1',
+			'2',
+			'5',
 		]);
 	});
 });

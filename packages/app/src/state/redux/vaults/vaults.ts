@@ -403,6 +403,7 @@ export const vaultsSlice = createSlice({
 			}: PayloadAction<
 				WorkspaceScoped<{
 					query: {
+						all?: true;
 						noteIds?: NoteId[];
 						exclude?: NoteId[];
 						afterNoteId?: NoteId;
@@ -426,7 +427,8 @@ export const vaultsSlice = createSlice({
 
 			// Update opened notes
 			const filteredNotes = openedNotes.filter(({ id }) => {
-				const defaultResult = !targets.has(id) || excludes.has(id);
+				const defaultResult =
+					excludes.has(id) || (!targets.has(id) && !query.all);
 
 				if (query.afterNoteId) {
 					if (edgesReached.after) {
