@@ -562,7 +562,7 @@ export const vaultsSlice = createSlice({
 					: null;
 		},
 
-		makePreviewTabRegular: (
+		togglePreviewTabToRegular: (
 			state,
 			{ payload: workspaceScope }: PayloadAction<WorkspaceScoped>,
 		) => {

@@ -39,7 +39,9 @@ export const useNoteActions = () => {
 				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
 
 				if (!preview && previewTabId === id) {
-					dispatch(workspacesApi.makePreviewTabRegular({ ...workspaceData }));
+					dispatch(
+						workspacesApi.togglePreviewTabToRegular({ ...workspaceData }),
+					);
 				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {

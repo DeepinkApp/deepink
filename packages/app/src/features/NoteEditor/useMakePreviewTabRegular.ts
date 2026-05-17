@@ -4,7 +4,7 @@ import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
 
-export const useMakePreviewTabRegular = (noteId: NoteId, deps: unknown[]) => {
+export const useTogglePreviewTabToRegularOnChange = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();
 	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 	const workspaceData = useWorkspaceData();
@@ -19,7 +19,7 @@ export const useMakePreviewTabRegular = (noteId: NoteId, deps: unknown[]) => {
 		// Ignore if the current note is not preview
 		if (previewTabId !== noteId) return;
 
-		dispatch(workspacesApi.makePreviewTabRegular({ ...workspaceData }));
+		dispatch(workspacesApi.togglePreviewTabToRegular({ ...workspaceData }));
 
 		// Effect should only trigger on deps change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
