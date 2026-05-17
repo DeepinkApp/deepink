@@ -119,9 +119,13 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 								});
 							},
 							onPick(id, options?: { preview: boolean }) {
-								noteActions.click(id, {
-									preview: options?.preview,
-								});
+								if (options?.preview === false) {
+									noteActions.doubleClick(id);
+								} else {
+									noteActions.click(id, {
+										preview: true,
+									});
+								}
 
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
