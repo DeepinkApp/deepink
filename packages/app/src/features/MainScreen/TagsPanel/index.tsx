@@ -180,7 +180,7 @@ export const TagsPanel = () => {
 
 				<Divider />
 
-				<Box w="100%" overflow="auto">
+				<Box w="100%" overflow="auto" paddingInlineEnd=".5rem">
 					{tagsTree.length > 0 ? (
 						<TagsList
 							tags={tagsTree}
