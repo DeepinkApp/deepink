@@ -54,7 +54,7 @@ import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
 import { NoteSidebar } from './NoteSidebar';
 import { NoteVersions } from './NoteVersions';
-import { useMakePreviewTabRegular } from './useMakePreviewTabRegular';
+import { useTogglePreviewTabToRegularOnChange } from './useMakePreviewTabRegular';
 
 export enum NoteSidebarTabs {
 	HISTORY = 'HISTORY',
@@ -87,7 +87,7 @@ export const Note: FC<NoteEditorProps> = memo(
 		const [title, setTitle] = useState(note.content.title);
 		const [text, setText] = useState(note.content.text);
 
-		useMakePreviewTabRegular(note.id, [text, title]);
+		useTogglePreviewTabToRegularOnChange(note.id, [text, title]);
 
 		// Forced update for note data
 		const forceUpdateLocalStateRef = useRef(false);
