@@ -9,6 +9,7 @@ import { FlexSearchIndex } from '../../../database/flexsearch/FlexSearchIndex';
 
 import { INote, INoteContent, NoteId } from '..';
 import {
+	ControlledNoteMeta,
 	INotesController,
 	NoteContentUpdateInfo,
 	NoteMeta,
@@ -316,7 +317,10 @@ export class NotesController implements INotesController {
 		return this.getById(ids);
 	}
 
-	public async add(note: INoteContent, meta?: Partial<NoteMeta>): Promise<NoteId> {
+	public async add(
+		note: INoteContent,
+		{ updatedAt, ...meta }: ControlledNoteMeta = {},
+	): Promise<NoteId> {
 		const creationTime = Date.now();
 
 		// Insert data
@@ -333,7 +337,7 @@ export class NotesController implements INotesController {
 				note.title,
 				note.text,
 				creationTime,
-				creationTime,
+				updatedAt ?? creationTime,
 				...metaEntries.map(([_key, value]) => value),
 			])}) RETURNING id`,
 			z.object({ id: z.string() }).transform(({ id }) => id),
@@ -349,18 +353,33 @@ export class NotesController implements INotesController {
 	public async updateBatch(notes: NoteContentUpdateInfo[]) {
 		if (notes.length === 0) return;
 
+		const now = Date.now();
 		const db = wrapSQLite(this.db);
 		await db.query(
-			qb.sql`WITH updates(id, title, text) AS (
-				VALUES ${qb.set(notes.map(({ id, title, text }) => qb.values([id, title, text]).withParenthesis()))}
+			qb.sql`WITH updates(id, title, text, updated_at) AS (
+				VALUES ${qb.set(
+					notes.map(({ id, title, text, updatedAt }) =>
+						qb
+							.values([
+								id,
+								title,
+								text,
+								updatedAt === false ? null : (updatedAt ?? now),
+							])
+							.withParenthesis(),
+					),
+				)}
 			)
-			UPDATE notes
+			UPDATE notes AS n
 			SET
 				title = updates.title,
 				text = updates.text,
-				updated_at = ${Date.now()}
+				updated_at = CASE
+					WHEN updates.updated_at IS NULL THEN n.updated_at
+					ELSE updates.updated_at
+				END
 			FROM updates
-			WHERE notes.id = updates.id AND workspace_id=${this.workspace}`,
+			WHERE n.id = updates.id AND workspace_id=${this.workspace}`,
 		);
 	}
 
@@ -382,13 +401,16 @@ export class NotesController implements INotesController {
 		}
 	}
 
-	public async updateMeta(ids: NoteId[], meta: Partial<NoteMeta>): Promise<void> {
+	public async updateMeta(
+		ids: NoteId[],
+		{ updatedAt, ...meta }: ControlledNoteMeta = {},
+	): Promise<void> {
 		if (ids.length === 0) return;
 
 		const db = wrapSQLite(this.db);
 
 		await db.query(
-			qb.sql`UPDATE notes SET ${qb.values(formatNoteMeta(meta))}
+			qb.sql`UPDATE notes SET ${qb.values({ ...formatNoteMeta(meta), ...(updatedAt !== undefined ? { updated_at: updatedAt } : {}) })}
 				WHERE workspace_id=${this.workspace} AND id IN (${qb.values(ids)})`,
 		);
 	}
