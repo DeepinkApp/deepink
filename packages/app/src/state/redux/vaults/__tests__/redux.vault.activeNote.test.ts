@@ -1,6 +1,11 @@
 import { createTestStore, mockNoteObject } from '@tests/utils/redux';
 
-import { selectActiveNoteId, workspacesApi } from '../vaults';
+import {
+	selectActiveNoteId,
+	selectOpenedNotes,
+	selectRecentlyClosedNotes,
+	workspacesApi,
+} from '../vaults';
 
 describe('Active note consistency', () => {
 	const { store, workspaceScope, selectors } = createTestStore();
@@ -116,5 +121,196 @@ describe('Active note management', () => {
 			}),
 		);
 		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual(null);
+	});
+});
+
+describe('Close note tabs via queries', () => {
+	test('Close all notes after N', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
+		store.dispatch(
+			workspacesApi.setOpenedNotes({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+			}),
+		);
+
+		store.dispatch(
+			workspacesApi.setActiveNote({
+				...workspaceScope,
+				noteId: '3',
+			}),
+		);
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					afterNoteId: '3',
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('3');
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([
+			mockNoteObject('1'),
+			mockNoteObject('2'),
+			mockNoteObject('3'),
+		]);
+	});
+
+	test('Close all notes before N', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
+		store.dispatch(
+			workspacesApi.setOpenedNotes({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+			}),
+		);
+
+		store.dispatch(
+			workspacesApi.setActiveNote({
+				...workspaceScope,
+				noteId: '3',
+			}),
+		);
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					beforeNoteId: '3',
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('3');
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([
+			mockNoteObject('3'),
+			mockNoteObject('4'),
+			mockNoteObject('5'),
+		]);
+	});
+
+	test('Close all notes before N and after N', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
+		store.dispatch(
+			workspacesApi.setOpenedNotes({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+			}),
+		);
+
+		store.dispatch(
+			workspacesApi.setActiveNote({
+				...workspaceScope,
+				noteId: '3',
+			}),
+		);
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					beforeNoteId: '3',
+					afterNoteId: '3',
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('3');
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([
+			mockNoteObject('3'),
+		]);
+	});
+
+	test('Close all notes before N and after N but exclude specific ids', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
+		store.dispatch(
+			workspacesApi.setOpenedNotes({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+			}),
+		);
+
+		store.dispatch(
+			workspacesApi.setActiveNote({
+				...workspaceScope,
+				noteId: '3',
+			}),
+		);
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					beforeNoteId: '3',
+					afterNoteId: '3',
+					exclude: ['4'],
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('3');
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([
+			mockNoteObject('3'),
+			mockNoteObject('4'),
+		]);
+	});
+
+	test('Close specific note ids', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
+		store.dispatch(
+			workspacesApi.setOpenedNotes({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+			}),
+		);
+
+		store.dispatch(
+			workspacesApi.setActiveNote({
+				...workspaceScope,
+				noteId: '3',
+			}),
+		);
+		store.dispatch(
+			workspacesApi.closeNotes({
+				...workspaceScope,
+				query: {
+					noteIds: ['2', '3', '4'],
+				},
+			}),
+		);
+		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('1');
+		expect(selectOpenedNotes(selectors.workspace())).toStrictEqual([
+			mockNoteObject('1'),
+			mockNoteObject('5'),
+		]);
+		expect(selectRecentlyClosedNotes(selectors.workspace())).toStrictEqual([
+			'2',
+			'3',
+			'4',
+		]);
 	});
 });
