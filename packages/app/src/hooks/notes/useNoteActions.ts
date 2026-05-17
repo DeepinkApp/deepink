@@ -10,7 +10,11 @@ import {
 } from '@features/App/Workspace/WorkspaceProvider';
 import { useAppDispatch } from '@state/redux/hooks';
 import { RootState } from '@state/redux/store';
-import { useVaultSelector, useWorkspaceData } from '@state/redux/vaults/hooks';
+import {
+	useVaultSelector,
+	useWorkspaceData,
+	useWorkspaceSelector,
+} from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import {
 	selectIsNoteOpened,
@@ -33,16 +37,9 @@ export const useNoteActions = () => {
 		(id: NoteId, { preview = true }: { preview?: boolean } = {}) => {
 			const workspace = selectWorkspace(workspaceData)(store.getState());
 			const isNoteOpened = selectIsNoteOpened(id)(workspace);
-			const previewTabId = selectPreviewTabId(workspace);
 
 			if (isNoteOpened) {
 				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
-
-				if (!preview && previewTabId === id) {
-					dispatch(
-						workspacesApi.togglePreviewTabToRegular({ ...workspaceData }),
-					);
-				}
 			} else {
 				notesRegistry.getById([id]).then(([note]) => {
 					if (note) openNote(note, { preview });
@@ -50,6 +47,17 @@ export const useNoteActions = () => {
 			}
 		},
 		[dispatch, notesRegistry, openNote, store, workspaceData],
+	);
+
+	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
+	const doubleClick = useCallback(
+		(id: NoteId) => {
+			// Ignore if the note is not preview
+			if (previewTabId !== id) return;
+
+			dispatch(workspacesApi.togglePreviewTabToRegular({ ...workspaceData }));
+		},
+		[dispatch, previewTabId, workspaceData],
 	);
 
 	const eventBus = useEventBus();
@@ -72,5 +80,5 @@ export const useNoteActions = () => {
 		[eventBus, isSnapshotsEnabled, noteClosed, noteHistory, notesRegistry],
 	);
 
-	return { click, close };
+	return { click, close, doubleClick };
 };
