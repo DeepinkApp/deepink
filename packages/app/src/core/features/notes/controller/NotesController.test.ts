@@ -349,4 +349,169 @@ describe('Meta data control', () => {
 			},
 		]);
 	});
+
+	test('toggle note update time', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+
+		// Create note
+		const noteId = await registry.add(
+			{ title: 'Title', text: 'Text' },
+			{ updatedAt: 1000 },
+		);
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				content: { title: 'Title', text: 'Text' },
+				updatedTimestamp: 1000,
+			},
+		]);
+
+		// Toggle snapshotting preferences
+		await registry.updateMeta([noteId], { updatedAt: 5000 });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				content: { title: 'Title', text: 'Text' },
+				updatedTimestamp: 5000,
+			},
+		]);
+	});
+});
+
+const getWorkspaceContext = createWorkspaceContext();
+
+test('Batch notes updates', async () => {
+	const { db, workspaceId } = getWorkspaceContext();
+	const registry = new NotesController(db, workspaceId);
+
+	// Create notes
+	const noteIds = await Promise.all([
+		registry.add({ title: 'note#1', text: '' }, { updatedAt: 1000 }),
+		registry.add({ title: 'note#2', text: '' }, { updatedAt: 1000 }),
+		registry.add({ title: 'note#3', text: '' }, { updatedAt: 1000 }),
+	]);
+	await expect(registry.getById(noteIds)).resolves.toMatchObject([
+		{
+			id: noteIds[0],
+			updatedTimestamp: 1000,
+		},
+		{
+			id: noteIds[1],
+			updatedTimestamp: 1000,
+		},
+		{
+			id: noteIds[2],
+			updatedTimestamp: 1000,
+		},
+	]);
+	// await expect(registry.query({ sort: { by: 'updatedAt', order: 'asc' } })).resolves.toStrictEqual(noteIds);
+
+	// Update timestamps
+	await registry.updateBatch([
+		{ id: noteIds[2], updatedAt: 300, text: '', title: '' },
+		{ id: noteIds[1], updatedAt: 200, text: '', title: '' },
+		{ id: noteIds[0], updatedAt: 100, text: '', title: '' },
+	]);
+
+	await expect(registry.getById(noteIds)).resolves.toMatchObject([
+		{
+			id: noteIds[0],
+			updatedTimestamp: 100,
+		},
+		{
+			id: noteIds[1],
+			updatedTimestamp: 200,
+		},
+		{
+			id: noteIds[2],
+			updatedTimestamp: 300,
+		},
+	]);
+
+	// Update with no change a timestamps
+	await registry.updateBatch([
+		{ id: noteIds[2], updatedAt: false, text: '', title: '' },
+		{ id: noteIds[1], updatedAt: false, text: '', title: '' },
+		{ id: noteIds[0], updatedAt: false, text: '', title: '' },
+	]);
+
+	await expect(registry.getById(noteIds)).resolves.toMatchObject([
+		{
+			id: noteIds[0],
+			updatedTimestamp: 100,
+		},
+		{
+			id: noteIds[1],
+			updatedTimestamp: 200,
+		},
+		{
+			id: noteIds[2],
+			updatedTimestamp: 300,
+		},
+	]);
+
+	// Update with set current timestamps
+	const timeBeforeUpdate1 = Date.now();
+	await registry.updateBatch([
+		{ id: noteIds[0], text: '', title: '' },
+		{ id: noteIds[1], text: '', title: '' },
+		{ id: noteIds[2], text: '', title: '' },
+	]);
+
+	const expectGreaterThanOrEqual = (expectedNumber: number) =>
+		expect.toSatisfy((value) => typeof value === 'number' && value >= expectedNumber);
+
+	await expect(registry.getById(noteIds)).resolves.toMatchObject([
+		{
+			id: noteIds[0],
+			updatedTimestamp: expectGreaterThanOrEqual(timeBeforeUpdate1),
+		},
+		{
+			id: noteIds[1],
+			updatedTimestamp: expectGreaterThanOrEqual(timeBeforeUpdate1),
+		},
+		{
+			id: noteIds[2],
+			updatedTimestamp: expectGreaterThanOrEqual(timeBeforeUpdate1),
+		},
+	]);
+
+	// Mixed update
+	const timeBeforeUpdate2 = Date.now();
+	await registry.updateBatch([
+		{ id: noteIds[0], updatedAt: 100, title: 'Updated to 100', text: '' },
+		{ id: noteIds[1], updatedAt: false, title: 'Timestamp is not changed', text: '' },
+		{
+			id: noteIds[2],
+			updatedAt: undefined,
+			title: 'Timestamp is set as current time',
+			text: '',
+		},
+	]);
+
+	await expect(registry.getById(noteIds)).resolves.toMatchObject([
+		{
+			id: noteIds[0],
+			updatedTimestamp: 100,
+			content: { title: 'Updated to 100' },
+		},
+		{
+			id: noteIds[1],
+			updatedTimestamp: expect.toSatisfy((value) => {
+				expect(value).toBeGreaterThanOrEqual(timeBeforeUpdate1);
+				expect(value).toBeLessThanOrEqual(timeBeforeUpdate2);
+				return true;
+			}),
+			content: { title: 'Timestamp is not changed' },
+		},
+		{
+			id: noteIds[2],
+			updatedTimestamp: expect.toSatisfy((value) => {
+				expect(value).toBeGreaterThanOrEqual(timeBeforeUpdate2);
+				return true;
+			}),
+			content: { title: 'Timestamp is set as current time' },
+		},
+	]);
 });

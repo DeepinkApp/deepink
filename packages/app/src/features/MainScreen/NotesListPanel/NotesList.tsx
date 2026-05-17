@@ -158,7 +158,7 @@ export const NotesList: FC<NotesListProps> = () => {
 									/>
 								);
 
-							const date = note.createdTimestamp ?? note.updatedTimestamp;
+							const date = note.updatedTimestamp ?? note.createdTimestamp;
 
 							// TODO: get preview text from DB as prepared value
 							// TODO: show attachments
