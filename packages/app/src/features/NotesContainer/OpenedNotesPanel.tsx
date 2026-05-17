@@ -27,7 +27,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	onPick,
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
-	const openNoteContextMenu = useNoteContextMenu();
+	const openNoteContextMenu = useNoteContextMenu('tabs');
 
 	const existsTabs = useMemo(
 		() => tabs.filter((noteId) => notes.some((note) => note.id === noteId)),

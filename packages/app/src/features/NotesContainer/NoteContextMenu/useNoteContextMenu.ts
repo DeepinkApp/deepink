@@ -8,16 +8,20 @@ import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useCommand } from '@hooks/commands/useCommand';
 import { ContextMenuCallback } from '@hooks/useContextMenu';
 import { useShowNoteContextMenu } from '@hooks/useShowNoteContextMenu';
-import { useVaultSelector } from '@state/redux/vaults/hooks';
+import { useAppDispatch } from '@state/redux/hooks';
+import { useVaultSelector, useWorkspaceActions } from '@state/redux/vaults/hooks';
 import { selectDeletionConfig } from '@state/redux/vaults/selectors/vault';
 
 import { NoteActions } from '.';
 
-export const useNoteContextMenu = () => {
+export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 	const telemetry = useTelemetryTracker();
 	const { t } = useTranslation(LOCALE_NAMESPACE.menu, { keyPrefix: 'note' });
 
 	const deletionConfig = useVaultSelector(selectDeletionConfig);
+
+	const dispatch = useAppDispatch();
+	const workspaceActions = useWorkspaceActions();
 
 	const runCommand = useCommand();
 
@@ -55,13 +59,38 @@ export const useNoteContextMenu = () => {
 				[NoteActions.EXPORT]: (noteId: string) => {
 					runCommand(GLOBAL_COMMANDS.EXPORT_NOTE, { noteId });
 				},
+				[NoteActions.CLOSE]: (noteId: string) => {
+					dispatch(
+						workspaceActions.closeNotes({ query: { noteIds: [noteId] } }),
+					);
+				},
+				[NoteActions.CLOSE_ALL]: () => {
+					dispatch(workspaceActions.closeNotes({ query: { all: true } }));
+				},
+				[NoteActions.CLOSE_OTHER_NOTES]: (noteId: string) => {
+					dispatch(
+						workspaceActions.closeNotes({
+							query: { all: true, exclude: [noteId] },
+						}),
+					);
+				},
+				[NoteActions.CLOSE_TO_THE_LEFT]: (noteId: string) => {
+					dispatch(
+						workspaceActions.closeNotes({ query: { beforeNoteId: noteId } }),
+					);
+				},
+				[NoteActions.CLOSE_TO_THE_RIGHT]: (noteId: string) => {
+					dispatch(
+						workspaceActions.closeNotes({ query: { afterNoteId: noteId } }),
+					);
+				},
 			};
 
 			if (action in actionsMap) {
 				actionsMap[action](id);
 			}
 		},
-		[telemetry, runCommand],
+		[telemetry, runCommand, dispatch, workspaceActions],
 	);
 
 	const showMenu = useShowNoteContextMenu(noteContextMenuCallback);
@@ -69,6 +98,25 @@ export const useNoteContextMenu = () => {
 	return useCallback(
 		(note: INote, point: { x: number; y: number }) => {
 			showMenu(note.id, point, [
+				...(context === 'tabs'
+					? [
+							{ id: NoteActions.CLOSE, label: t('close') },
+							{
+								id: NoteActions.CLOSE_OTHER_NOTES,
+								label: t('closeOthers'),
+							},
+							{
+								id: NoteActions.CLOSE_TO_THE_LEFT,
+								label: t('closeToTheLeft'),
+							},
+							{
+								id: NoteActions.CLOSE_TO_THE_RIGHT,
+								label: t('closeToTheRight'),
+							},
+							{ id: NoteActions.CLOSE_ALL, label: t('closeAll') },
+						]
+					: []),
+
 				...(note.isDeleted
 					? [{ id: NoteActions.RESTORE_FROM_BIN, label: t('restoreFromBin') }]
 					: []),
@@ -95,6 +143,6 @@ export const useNoteContextMenu = () => {
 					: { id: NoteActions.DELETE_TO_BIN, label: t('deleteToBin') },
 			]);
 		},
-		[deletionConfig.permanentDeletion, showMenu, t],
+		[context, deletionConfig.permanentDeletion, showMenu, t],
 	);
 };
