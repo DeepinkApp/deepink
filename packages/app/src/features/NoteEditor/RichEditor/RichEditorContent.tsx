@@ -110,7 +110,8 @@ export const RichEditorContent = ({
 						w="100%"
 						maxH="100%"
 						outline="none"
-						paddingInline="0.5rem"
+						padding="1rem 1rem 5rem"
+						overflow="auto"
 						{...props}
 						as={ContentEditable}
 					/>
@@ -123,7 +124,7 @@ export const RichEditorContent = ({
 							left={0}
 							right={0}
 							bottom={0}
-							paddingInline="0.5rem"
+							padding="1rem 1rem 5rem"
 							pointerEvents="none"
 							color="typography.secondary"
 						>
