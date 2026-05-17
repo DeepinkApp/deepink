@@ -14,7 +14,7 @@ import { createContextGetterHook } from '@utils/react/createContextGetterHook';
 import { WorkspaceContainer } from './useWorkspace';
 
 export type NotesApi = {
-	openNote: (note: INote, options?: { focus?: boolean; preview?: boolean }) => void;
+	openNote: (note: INote, options?: { active?: boolean; preview?: boolean }) => void;
 	noteUpdated: (note: INote) => void;
 	noteClosed: (noteId: string) => void;
 };
