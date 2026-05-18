@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "마크다운 링크 복사",
 		"deletePermanently": "영구 삭제",
 		"restoreFromBin": "휴지통에서 복원",
-		"deleteToBin": "휴지통으로 이동"
+		"deleteToBin": "휴지통으로 이동",
+		"tab": {
+			"close": "닫기",
+			"closeOthers": "다른 탭 닫기",
+			"closeToTheLeft": "왼쪽 탭 닫기",
+			"closeToTheRight": "오른쪽 탭 닫기",
+			"closeAll": "모든 탭 닫기"
+		}
 	},
 	"tag": {
 		"addNestedTag": "하위 태그 생성...",

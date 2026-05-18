@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopiraj Markdown povezavo",
 		"deletePermanently": "Trajno izbriši",
 		"restoreFromBin": "Obnovi iz smetnjaka",
-		"deleteToBin": "Prevedi v smetnjak"
+		"deleteToBin": "Prevedi v smetnjak",
+		"tab": {
+			"close": "Zapri",
+			"closeOthers": "Zapri druge",
+			"closeToTheLeft": "Zapri tabe levo",
+			"closeToTheRight": "Zapri tabe desno",
+			"closeAll": "Zapri vse"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Ustvari hierarhijo oznak...",

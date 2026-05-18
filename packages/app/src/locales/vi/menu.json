@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Sao chép liên kết Markdown",
 		"deletePermanently": "Xóa vĩnh viễn",
 		"restoreFromBin": "Khôi phục từ thùng rác",
-		"deleteToBin": "Chuyển vào thùng rác"
+		"deleteToBin": "Chuyển vào thùng rác",
+		"tab": {
+			"close": "Đóng",
+			"closeOthers": "Đóng các tab khác",
+			"closeToTheLeft": "Đóng các tab bên trái",
+			"closeToTheRight": "Đóng các tab bên phải",
+			"closeAll": "Đóng tất cả"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Tạo phân cấp thẻ...",

@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Copier le lien Markdown",
 		"deletePermanently": "Supprimer définitivement",
 		"restoreFromBin": "Restaurer de la corbeille",
-		"deleteToBin": "Placer dans la corbeille"
+		"deleteToBin": "Placer dans la corbeille",
+		"tab": {
+			"close": "Fermer",
+			"closeOthers": "Fermer les autres",
+			"closeToTheLeft": "Fermer les onglets à gauche",
+			"closeToTheRight": "Fermer les onglets à droite",
+			"closeAll": "Tout fermer"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Créer une hiérarchie de tags...",

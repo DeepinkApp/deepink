@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Markdown link másolása",
 		"deletePermanently": "Végleges törlés",
 		"restoreFromBin": "Visszaállítás a kukából",
-		"deleteToBin": "Kukába helyezés"
+		"deleteToBin": "Kukába helyezés",
+		"tab": {
+			"close": "Bezárás",
+			"closeOthers": "Bezárás többi lap",
+			"closeToTheLeft": "Bezárás balra",
+			"closeToTheRight": "Bezárás jobbra",
+			"closeAll": "Összes bezárása"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Címke hierarchia létrehozása...",

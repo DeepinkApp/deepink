@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "คัดลอกลิงก์ Markdown",
 		"deletePermanently": "ลบถาวร",
 		"restoreFromBin": "กู้คืนจากถังขยะ",
-		"deleteToBin": "ย้ายไปถังขยะ"
+		"deleteToBin": "ย้ายไปถังขยะ",
+		"tab": {
+			"close": "ปิด",
+			"closeOthers": "ปิดแท็บอื่น",
+			"closeToTheLeft": "ปิดแท็บด้านซ้าย",
+			"closeToTheRight": "ปิดแท็บด้านขวา",
+			"closeAll": "ปิดทั้งหมด"
+		}
 	},
 	"tag": {
 		"addNestedTag": "สร้างลำดับแท็ก...",

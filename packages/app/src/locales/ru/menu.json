@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Скопировать ссылку Markdown",
 		"deletePermanently": "Удалить навсегда",
 		"restoreFromBin": "Восстановить из корзины",
-		"deleteToBin": "В корзину"
+		"deleteToBin": "В корзину",
+		"tab": {
+			"close": "Закрыть",
+			"closeOthers": "Закрыть остальные",
+			"closeToTheLeft": "Закрыть вкладки слева",
+			"closeToTheRight": "Закрыть вкладки справа",
+			"closeAll": "Закрыть все"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Создать вложенный тег…",

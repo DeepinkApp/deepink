@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Markdown bağlantısını kopyala",
 		"deletePermanently": "Kalıcı olarak sil",
 		"restoreFromBin": "Çöp kutusundan geri yükle",
-		"deleteToBin": "Çöp kutusuna taşı"
+		"deleteToBin": "Çöp kutusuna taşı",
+		"tab": {
+			"close": "Kapat",
+			"closeOthers": "Diğerlerini Kapat",
+			"closeToTheLeft": "Soldakileri Kapat",
+			"closeToTheRight": "Sağdakileri Kapat",
+			"closeAll": "Hepsini Kapat"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Etiket hiyerarşisi oluştur...",

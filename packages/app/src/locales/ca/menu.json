@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Copiar enllaç Markdown",
 		"deletePermanently": "Eliminar permanentment",
 		"restoreFromBin": "Restaurar de la paperera",
-		"deleteToBin": "Moure a la paperera"
+		"deleteToBin": "Moure a la paperera",
+		"tab": {
+			"close": "Tancar",
+			"closeOthers": "Tancar les altres",
+			"closeToTheLeft": "Tancar les pestanyes de l'esquerra",
+			"closeToTheRight": "Tancar les pestanyes de la dreta",
+			"closeAll": "Tancar-les totes"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Crear jerarquia de etiquetes...",

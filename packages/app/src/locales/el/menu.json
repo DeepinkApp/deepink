@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Αντιγραφή συνδέσμου Markdown",
 		"deletePermanently": "Μόνιμη διαγραφή",
 		"restoreFromBin": "Επαναφορά από το κάδο",
-		"deleteToBin": "Μεταφορά στον κάδο"
+		"deleteToBin": "Μεταφορά στον κάδο",
+		"tab": {
+			"close": "Κλείσιμο",
+			"closeOthers": "Κλείσιμο των άλλων",
+			"closeToTheLeft": "Κλείσιμο καρτελών αριστερά",
+			"closeToTheRight": "Κλείσιμο καρτελών δεξιά",
+			"closeAll": "Κλείσιμο όλων"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Δημιουργία ιεραρχίας ετικετών...",

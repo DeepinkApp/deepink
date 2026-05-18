@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopier Markdown-lenke",
 		"deletePermanently": "Slett permanent",
 		"restoreFromBin": "Gjenopprett fra papirkurv",
-		"deleteToBin": "Flytt til papirkurv"
+		"deleteToBin": "Flytt til papirkurv",
+		"tab": {
+			"close": "Lukk",
+			"closeOthers": "Lukk andre",
+			"closeToTheLeft": "Lukk faner til venstre",
+			"closeToTheRight": "Lukk faner til høyre",
+			"closeAll": "Lukk alle"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Opprett undertagg...",

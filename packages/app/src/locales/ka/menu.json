@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Markdown ბმულის კოპირება",
 		"deletePermanently": "სამუდამოდ წაშლა",
 		"restoreFromBin": "ნაგვისబుდისგან აღდგენა",
-		"deleteToBin": "ნაგვისబుდაში გადატანა"
+		"deleteToBin": "ნაგვისబుდაში გადატანა",
+		"tab": {
+			"close": "დახურვა",
+			"closeOthers": "სხვა ტაბების დახურვა",
+			"closeToTheLeft": "მარცხენა ტაბების დახურვა",
+			"closeToTheRight": "მარჯვენა ტაბების დახურვა",
+			"closeAll": "ყველას დახურვა"
+		}
 	},
 	"tag": {
 		"addNestedTag": "ტეგების იერარქიის შექმნა...",

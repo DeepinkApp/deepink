@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopiraj Markdown link",
 		"deletePermanently": "Trajno obriši",
 		"restoreFromBin": "Vrati iz kante",
-		"deleteToBin": "Premesti u kantu"
+		"deleteToBin": "Premesti u kantu",
+		"tab": {
+			"close": "Zatvori",
+			"closeOthers": "Zatvori ostale",
+			"closeToTheLeft": "Zatvori tabove levo",
+			"closeToTheRight": "Zatvori tabove desno",
+			"closeAll": "Zatvori sve"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Kreiraj hijerarhiju tagova...",

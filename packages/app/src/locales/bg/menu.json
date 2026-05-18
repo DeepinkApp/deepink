@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Копирай Markdown линк",
 		"deletePermanently": "Изтриване завинаги",
 		"restoreFromBin": "Възстановяване от кошчето",
-		"deleteToBin": "Премести в кошчето"
+		"deleteToBin": "Премести в кошчето",
+		"tab": {
+			"close": "Затвори",
+			"closeOthers": "Затвори останалите",
+			"closeToTheLeft": "Затвори табовете вляво",
+			"closeToTheRight": "Затвори табовете вдясно",
+			"closeAll": "Затвори всички"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Създаване на йерархия от тагове...",

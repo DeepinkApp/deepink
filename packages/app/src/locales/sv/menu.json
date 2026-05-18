@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopiera Markdown-länk",
 		"deletePermanently": "Ta bort permanent",
 		"restoreFromBin": "Återställ från papperskorgen",
-		"deleteToBin": "Flytta till papperskorgen"
+		"deleteToBin": "Flytta till papperskorgen",
+		"tab": {
+			"close": "Stäng",
+			"closeOthers": "Stäng andra",
+			"closeToTheLeft": "Stäng flikar till vänster",
+			"closeToTheRight": "Stäng flikar till höger",
+			"closeAll": "Stäng alla"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Skapa tagghierarki...",
