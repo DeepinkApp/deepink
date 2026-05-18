@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Copiar enlace Markdown",
 		"deletePermanently": "Eliminar permanentemente",
 		"restoreFromBin": "Restaurar de la papelera",
-		"deleteToBin": "Mover a la papelera"
+		"deleteToBin": "Mover a la papelera",
+		"tab": {
+			"close": "Cerrar",
+			"closeOthers": "Cerrar otras",
+			"closeToTheLeft": "Cerrar pestañas a la izquierda",
+			"closeToTheRight": "Cerrar pestañas a la derecha",
+			"closeAll": "Cerrar todas"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Crear jerarquía de etiquetas...",

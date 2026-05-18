@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "複製 Markdown 連結",
 		"deletePermanently": "永久刪除",
 		"restoreFromBin": "從回收桶還原",
-		"deleteToBin": "移至回收桶"
+		"deleteToBin": "移至回收桶",
+		"tab": {
+			"close": "關閉",
+			"closeOthers": "關閉其他",
+			"closeToTheLeft": "關閉左側分頁",
+			"closeToTheRight": "關閉右側分頁",
+			"closeAll": "全部關閉"
+		}
 	},
 	"tag": {
 		"addNestedTag": "新增標籤層級...",

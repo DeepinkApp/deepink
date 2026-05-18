@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "मार्कडाउन लिंक कॉपी करें",
 		"deletePermanently": "स्थायी रूप से हटाएं",
 		"restoreFromBin": "बिन से वापस लाएं",
-		"deleteToBin": "बिन में डालें"
+		"deleteToBin": "बिन में डालें",
+		"tab": {
+			"close": "बंद करें",
+			"closeOthers": "अन्य बंद करें",
+			"closeToTheLeft": "बाईं ओर के टैब बंद करें",
+			"closeToTheRight": "दाईं ओर के टैब बंद करें",
+			"closeAll": "सभी बंद करें"
+		}
 	},
 	"tag": {
 		"addNestedTag": "टैग पदानुक्रम बनाएं...",

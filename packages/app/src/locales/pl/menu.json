@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopiuj link Markdown",
 		"deletePermanently": "Usuń na stałe",
 		"restoreFromBin": "Przywróć z kosza",
-		"deleteToBin": "Przenieś do kosza"
+		"deleteToBin": "Przenieś do kosza",
+		"tab": {
+			"close": "Zamknij",
+			"closeOthers": "Zamknij pozostałe",
+			"closeToTheLeft": "Zamknij karty po lewej",
+			"closeToTheRight": "Zamknij karty po prawej",
+			"closeAll": "Zamknij wszystkie"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Dodaj tag w hierarchii...",

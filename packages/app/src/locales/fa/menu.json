@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "کپی لینک مارک‌داون",
 		"deletePermanently": "حذف دائمی",
 		"restoreFromBin": "بازیابی از سطل زباله",
-		"deleteToBin": "انتقال به سطل زباله"
+		"deleteToBin": "انتقال به سطل زباله",
+		"tab": {
+			"close": "بستن",
+			"closeOthers": "بستن سایر تب‌ها",
+			"closeToTheLeft": "بستن تب‌های سمت چپ",
+			"closeToTheRight": "بستن تب‌های سمت راست",
+			"closeAll": "بستن همه"
+		}
 	},
 	"tag": {
 		"addNestedTag": "ایجاد سلسله‌مراتب برچسب...",

@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Copiază link Markdown",
 		"deletePermanently": "Șterge definitiv",
 		"restoreFromBin": "Restabilește din coș",
-		"deleteToBin": "Mută în coș"
+		"deleteToBin": "Mută în coș",
+		"tab": {
+			"close": "Închide",
+			"closeOthers": "Închide celelalte",
+			"closeToTheLeft": "Închide tab-urile din stânga",
+			"closeToTheRight": "Închide tab-urile din dreapta",
+			"closeAll": "Închide tot"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Creează ierarhie de etichete...",

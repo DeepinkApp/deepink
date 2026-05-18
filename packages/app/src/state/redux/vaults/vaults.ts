@@ -424,6 +424,91 @@ export const vaultsSlice = createSlice({
 			}
 		},
 
+		closeNotes: (
+			state,
+			{
+				payload: { vaultId, workspaceId, query },
+			}: PayloadAction<
+				WorkspaceScoped<{
+					query: {
+						all?: true;
+						noteIds?: NoteId[];
+						exclude?: NoteId[];
+						afterNoteId?: NoteId;
+						beforeNoteId?: NoteId;
+					};
+				}>
+			>,
+		) => {
+			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
+			if (!workspace) return;
+
+			const targets = new Set(query.noteIds ?? []);
+			const excludes = new Set(query.exclude ?? []);
+
+			const { activeNote, openedNotes } = workspace;
+
+			const edgesReached = {
+				after: false,
+				before: false,
+			};
+
+			// Update opened notes
+			const filteredNotes = openedNotes.filter(({ id }) => {
+				const defaultResult =
+					excludes.has(id) || (!targets.has(id) && !query.all);
+
+				if (query.afterNoteId) {
+					if (edgesReached.after) {
+						return excludes.has(id);
+					} else if (id === query.afterNoteId) edgesReached.after = true;
+				}
+
+				if (query.beforeNoteId && !edgesReached.before) {
+					if (id === query.beforeNoteId) edgesReached.before = true;
+					else return excludes.has(id);
+				}
+
+				return defaultResult;
+			});
+			const filteredNoteIds = new Set(filteredNotes.map((note) => note.id));
+
+			workspace.openedNotes = filteredNotes;
+
+			// Update active note
+			const isActiveNoteMustBeUpdated =
+				activeNote !== null && filteredNotes.every(({ id }) => id !== activeNote);
+			if (isActiveNoteMustBeUpdated) {
+				if (filteredNotes.length === 0) workspace.activeNote = null;
+				else if (filteredNotes.length === 1)
+					workspace.activeNote = filteredNotes[0].id;
+				else {
+					const activeNoteIndex = openedNotes.findIndex(
+						(note) => note.id === activeNote,
+					);
+
+					// Candidates list sorted by priority
+					const candidates = [
+						...openedNotes.slice(0, activeNoteIndex).reverse(),
+						...openedNotes.slice(activeNoteIndex + 1),
+					];
+
+					const noteId = candidates.find((candidate) =>
+						filteredNoteIds.has(candidate.id),
+					);
+
+					workspace.activeNote = noteId?.id ?? null;
+				}
+			}
+
+			// Update recently closed
+			workspace.recentlyClosedNotes.push(
+				...openedNotes
+					.filter((note) => !filteredNoteIds.has(note.id))
+					.map((note) => note.id),
+			);
+		},
+
 		updateOpenedNote: (
 			state,
 			{

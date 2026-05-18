@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Копіювати посилання Markdown",
 		"deletePermanently": "Видалити назавжди",
 		"restoreFromBin": "Відновити з кошика",
-		"deleteToBin": "Перемістити в кошик"
+		"deleteToBin": "Перемістити в кошик",
+		"tab": {
+			"close": "Закрити",
+			"closeOthers": "Закрити інші",
+			"closeToTheLeft": "Закрити вкладки ліворуч",
+			"closeToTheRight": "Закрити вкладки праворуч",
+			"closeAll": "Закрити всі"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Створити ієрархію тегів...",

@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "העתק קישור Markdown",
 		"deletePermanently": "מחיקה לצמיתות",
 		"restoreFromBin": "שחזור מהסל",
-		"deleteToBin": "העברה לסל"
+		"deleteToBin": "העברה לסל",
+		"tab": {
+			"close": "סגור",
+			"closeOthers": "סגור אחרים",
+			"closeToTheLeft": "סגור לשמאל",
+			"closeToTheRight": "סגור לימין",
+			"closeAll": "סגור הכל"
+		}
 	},
 	"tag": {
 		"addNestedTag": "יצירת היררכיית תגיות...",

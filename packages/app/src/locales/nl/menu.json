@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Markdown-link kopiëren",
 		"deletePermanently": "Permanent verwijderen",
 		"restoreFromBin": "Herstellen uit prullenbak",
-		"deleteToBin": "Verplaatsen naar prullenbak"
+		"deleteToBin": "Verplaatsen naar prullenbak",
+		"tab": {
+			"close": "Sluiten",
+			"closeOthers": "Andere sluiten",
+			"closeToTheLeft": "Tabbladen links sluiten",
+			"closeToTheRight": "Tabbladen rechts sluiten",
+			"closeAll": "Alles sluiten"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Taghiërarchie maken...",
