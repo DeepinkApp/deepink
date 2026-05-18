@@ -530,6 +530,8 @@ export const Note: FC<NoteEditorProps> = memo(
 															await noteHistory.snapshot(
 																note.id,
 															);
+
+															// Version contains extra fields, but require only text and title
 															await notesRegistry.update(
 																note.id,
 																{
