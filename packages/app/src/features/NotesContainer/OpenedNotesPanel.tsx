@@ -121,7 +121,11 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 									getContextMenuCoords(evt.nativeEvent),
 								);
 							}}
-							onDoubleClick={() => onPick(note.id, { preview: false })}
+							onDoubleClick={
+								isPreviewTab
+									? () => onPick(note.id, { preview: false })
+									: undefined
+							}
 						>
 							<HStack gap=".5rem" w="100%" justifyContent="space-between">
 								<Text
