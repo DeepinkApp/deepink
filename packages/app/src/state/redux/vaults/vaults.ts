@@ -564,12 +564,17 @@ export const vaultsSlice = createSlice({
 
 		togglePreviewTabToRegular: (
 			state,
-			{ payload: workspaceScope }: PayloadAction<WorkspaceScoped>,
+			{
+				payload: { noteId, ...workspaceScope },
+			}: PayloadAction<WorkspaceScoped<{ noteId?: NoteId }>>,
 		) => {
 			const workspace = selectWorkspaceObject(state, workspaceScope);
 			if (!workspace) return;
 
-			workspace.previewTabId = null;
+			// Ensure we toggle the state of specific note, if id provided
+			if (noteId === undefined || noteId === workspace.previewTabId) {
+				workspace.previewTabId = null;
+			}
 		},
 
 		setSelectedTag: (
