@@ -823,7 +823,7 @@ describe('Import respects meta info', () => {
 		const { notesRegistry } = deps;
 		await expect(
 			notesRegistry
-				.query({ sort: { by: 'createdAt' } })
+				.query({ sort: [{ by: 'createdAt' }] })
 				.then((ids) => notesRegistry.getById(ids)),
 		).resolves.toMatchObject([
 			{

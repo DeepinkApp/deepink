@@ -70,8 +70,8 @@ test('sorts notes by pinned status', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
-	const workspaceId = await createWorkspaceId(db);
-	const registry = new NotesController(db, workspaceId);
+	const workspaceId = await createWorkspaceId(db.get());
+	const registry = new NotesController(db.get(), workspaceId);
 
 	const note1 = await registry.add({ title: '2001', text: 'Dummy text' });
 	const note2 = await registry.add({ title: '2002', text: 'Dummy text' });
@@ -101,8 +101,8 @@ test('sorts notes by pinned status and update time', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
-	const workspaceId = await createWorkspaceId(db);
-	const registry = new NotesController(db, workspaceId);
+	const workspaceId = await createWorkspaceId(db.get());
+	const registry = new NotesController(db.get(), workspaceId);
 
 	const note1 = await registry.add({ title: '2001', text: 'Dummy text' });
 
