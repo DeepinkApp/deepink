@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Copy Markdown link",
 		"deletePermanently": "Delete permanently",
 		"restoreFromBin": "Restore from bin",
-		"deleteToBin": "Move to bin"
+		"deleteToBin": "Move to bin",
+		"tab": {
+			"close": "Close",
+			"closeOthers": "Close Others",
+			"closeToTheLeft": "Close Tabs to the Left",
+			"closeToTheRight": "Close Tabs to the Right",
+			"closeAll": "Close All"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Create nested tag...",

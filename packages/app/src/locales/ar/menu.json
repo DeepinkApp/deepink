@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "نسخ رابط Markdown",
 		"deletePermanently": "حذف نهائي",
 		"restoreFromBin": "استعادة من المهملات",
-		"deleteToBin": "نقل إلى المهملات"
+		"deleteToBin": "نقل إلى المهملات",
+		"tab": {
+			"close": "إغلاق",
+			"closeOthers": "إغلاق التبويبات الأخرى",
+			"closeToTheLeft": "إغلاق التبويبات على اليسار",
+			"closeToTheRight": "إغلاق التبويبات على اليمين",
+			"closeAll": "إغلاق الكل"
+		}
 	},
 	"tag": {
 		"addNestedTag": "إنشاء تسلسل وسوم...",

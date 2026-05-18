@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopírovat Markdown odkaz",
 		"deletePermanently": "Trvale smazat",
 		"restoreFromBin": "Obnovit ze koše",
-		"deleteToBin": "Přesunout do koše"
+		"deleteToBin": "Přesunout do koše",
+		"tab": {
+			"close": "Zavřít",
+			"closeOthers": "Zavřít ostatní",
+			"closeToTheLeft": "Zavřít karty vlevo",
+			"closeToTheRight": "Zavřít karty vpravo",
+			"closeAll": "Zavřít vše"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Vytvořit hierarchii tagů...",

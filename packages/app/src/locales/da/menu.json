@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopiér Markdown-link",
 		"deletePermanently": "Slet permanent",
 		"restoreFromBin": "Gendan fra papirkurv",
-		"deleteToBin": "Flyt til papirkurv"
+		"deleteToBin": "Flyt til papirkurv",
+		"tab": {
+			"close": "Luk",
+			"closeOthers": "Luk andre",
+			"closeToTheLeft": "Luk faner til venstre",
+			"closeToTheRight": "Luk faner til højre",
+			"closeAll": "Luk alle"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Opret tag-hierarki...",

@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Copiar link Markdown",
 		"deletePermanently": "Excluir permanentemente",
 		"restoreFromBin": "Restaurar da lixeira",
-		"deleteToBin": "Mover para a lixeira"
+		"deleteToBin": "Mover para a lixeira",
+		"tab": {
+			"close": "Fechar",
+			"closeOthers": "Fechar outras",
+			"closeToTheLeft": "Fechar abas à esquerda",
+			"closeToTheRight": "Fechar abas à direita",
+			"closeAll": "Fechar todas"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Criar hierarquia de tags...",

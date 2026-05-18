@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Salin tautan Markdown",
 		"deletePermanently": "Hapus permanen",
 		"restoreFromBin": "Pulihkan dari tempat sampah",
-		"deleteToBin": "Pindahkan ke tempat sampah"
+		"deleteToBin": "Pindahkan ke tempat sampah",
+		"tab": {
+			"close": "Tutup",
+			"closeOthers": "Tutup Lainnya",
+			"closeToTheLeft": "Tutup Tab di Kiri",
+			"closeToTheRight": "Tutup Tab di Kanan",
+			"closeAll": "Tutup Semua"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Buat hierarki tag...",

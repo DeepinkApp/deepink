@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Markdown-Link kopieren",
 		"deletePermanently": "Endgültig löschen",
 		"restoreFromBin": "Aus Papierkorb wiederherstellen",
-		"deleteToBin": "In Papierkorb verschieben"
+		"deleteToBin": "In Papierkorb verschieben",
+		"tab": {
+			"close": "Schließen",
+			"closeOthers": "Andere schließen",
+			"closeToTheLeft": "Links schließende Tabs",
+			"closeToTheRight": "Rechts schließende Tabs",
+			"closeAll": "Alle schließen"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Tag-Hierarchie erstellen...",

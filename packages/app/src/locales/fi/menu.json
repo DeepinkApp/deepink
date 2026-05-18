@@ -23,7 +23,14 @@
 		"copyMarkdownLink": "Kopioi Markdown-linkki",
 		"deletePermanently": "Poista pysyvästi",
 		"restoreFromBin": "Palauta roskakorista",
-		"deleteToBin": "Siirrä roskakoriin"
+		"deleteToBin": "Siirrä roskakoriin",
+		"tab": {
+			"close": "Sulje",
+			"closeOthers": "Sulje muut",
+			"closeToTheLeft": "Sulje vasemmanpuoleiset välilehdet",
+			"closeToTheRight": "Sulje oikeanpuoleiset välilehdet",
+			"closeAll": "Sulje kaikki"
+		}
 	},
 	"tag": {
 		"addNestedTag": "Luo alatagi...",
