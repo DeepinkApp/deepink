@@ -126,6 +126,40 @@ describe('Active note management', () => {
 		);
 		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual(null);
 	});
+
+	test('Active note must be updated by close preview tab', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
+		store.dispatch(
+			workspacesApi.setOpenedNotesState({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+				activeNoteId: '3',
+				previewTabId: '3',
+			}),
+		);
+
+		store.dispatch(
+			workspacesApi.addOpenedNote({
+				...workspaceScope,
+				note: mockNoteObject('6'),
+				isPreview: true,
+				isActive: false,
+			}),
+		);
+		expect(
+			selectActiveNoteId(selectors.workspace()),
+			'Tab is force focused because previous active tab is closed',
+		).toStrictEqual('6');
+		expect(
+			selectOpenedNotes(selectors.workspace()).map((note) => note.id),
+		).toStrictEqual(['1', '2', '4', '5', '6']);
+	});
 });
 
 describe('Close note tabs via queries', () => {
