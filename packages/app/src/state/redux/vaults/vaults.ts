@@ -559,7 +559,7 @@ export const vaultsSlice = createSlice({
 			// Fall back to first note if active note not in list
 			workspace.activeNote = noteIdSet.has(activeNoteId)
 				? activeNoteId
-				: notes[0].id;
+				: (notes[0]?.id ?? null);
 
 			workspace.previewTabId =
 				previewTabId !== null && noteIdSet.has(previewTabId)
