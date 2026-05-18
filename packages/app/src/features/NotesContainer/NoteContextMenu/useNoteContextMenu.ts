@@ -99,22 +99,23 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 		(note: INote, point: { x: number; y: number }) => {
 			showMenu(note.id, point, [
 				...(context === 'tabs'
-					? [
-							{ id: NoteActions.CLOSE, label: t('close') },
+					? ([
+							{ id: NoteActions.CLOSE, label: t('tab.close') },
 							{
 								id: NoteActions.CLOSE_OTHER_NOTES,
-								label: t('closeOthers'),
+								label: t('tab.closeOthers'),
 							},
 							{
 								id: NoteActions.CLOSE_TO_THE_LEFT,
-								label: t('closeToTheLeft'),
+								label: t('tab.closeToTheLeft'),
 							},
 							{
 								id: NoteActions.CLOSE_TO_THE_RIGHT,
-								label: t('closeToTheRight'),
+								label: t('tab.closeToTheRight'),
 							},
-							{ id: NoteActions.CLOSE_ALL, label: t('closeAll') },
-						]
+							{ id: NoteActions.CLOSE_ALL, label: t('tab.closeAll') },
+							{ type: 'separator' },
+						] as const)
 					: []),
 
 				...(note.isDeleted
