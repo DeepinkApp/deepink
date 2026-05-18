@@ -18,6 +18,8 @@ import {
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
+export type NoteClickOptions = { preview?: boolean };
+
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();
 	const workspaceData = useWorkspaceData();
@@ -29,16 +31,37 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId) => {
+		(noteId: NoteId, { preview }: NoteClickOptions = {}) => {
+			// Just open a note and exit if not opened yet
 			const workspace = selectWorkspace(workspaceData)(store.getState());
-			const isNoteOpened = selectIsNoteOpened(id)(workspace);
-
-			if (isNoteOpened) {
-				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
-			} else {
-				notesRegistry.getById([id]).then(([note]) => {
-					if (note) openNote(note);
+			const isNoteOpened = selectIsNoteOpened(noteId)(workspace);
+			if (!isNoteOpened) {
+				// TODO: await the promise resolution for race condition scenario
+				// When user double click, the code calls twice
+				// Currently we will fetch DB twice
+				// Instead, write promise into some map, and wait that promise
+				// in next click if map has promise
+				// TODO: fix potentially possible race condition
+				// In case user will call that method for click + click + double click,
+				// we will call the action 3 times with `preview` true, true, false.
+				// In case promises will be resolved in another order, the note may become opened in preview mode
+				notesRegistry.getById([noteId]).then(([note]) => {
+					if (note) openNote(note, { preview });
 				});
+
+				return;
+			}
+
+			// Make note active
+			dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId }));
+
+			// Ensure tab is not temporary opened
+			// We should check `false` to toggle state only for explicit values
+			// `undefined` means flag is not passed
+			if (preview === false) {
+				dispatch(
+					workspacesApi.togglePreviewTabToRegular({ ...workspaceData, noteId }),
+				);
 			}
 		},
 		[dispatch, notesRegistry, openNote, store, workspaceData],

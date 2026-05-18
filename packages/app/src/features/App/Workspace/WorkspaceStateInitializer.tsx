@@ -73,18 +73,19 @@ export const WorkspaceStateInitializer = () => {
 					);
 
 					if (openedNoteList && openedNoteList.length > 0) {
-						dispatch(
-							workspaceActions.setOpenedNotes({ notes: openedNoteList }),
-						);
-
 						let activeNote = openedNoteList[0];
 						if (state.activeNoteId) {
 							activeNote =
 								openedNoteList.find((n) => n.id === state.activeNoteId) ||
 								openedNoteList[0];
 						}
+
 						dispatch(
-							workspaceActions.setActiveNote({ noteId: activeNote.id }),
+							workspaceActions.setOpenedNotesState({
+								notes: openedNoteList,
+								activeNoteId: activeNote.id,
+								previewTabId: state.previewTabId,
+							}),
 						);
 					}
 				}

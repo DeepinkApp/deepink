@@ -6,13 +6,16 @@ import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
+import { NoteClickOptions } from '@hooks/notes/useNoteActions';
+import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { selectPreviewTabId } from '@state/redux/vaults/selectors/notes';
 
 import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
 
 export type TopBarProps = {
 	tabs: NoteId[];
 	activeTab: NoteId | null;
-	onPick: (id: NoteId) => void;
+	onPick: (id: NoteId, options?: NoteClickOptions) => void;
 	onClose: (id: NoteId) => void;
 
 	notes: INote[];
@@ -44,6 +47,8 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 		activeTabRef.current?.scrollIntoView();
 	}, [tabIndex]);
 
+	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
+
 	return (
 		<Tabs
 			index={tabIndex}
@@ -71,6 +76,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					}
 
 					const title = getNoteTitle(note.content, 50);
+					const isPreviewTab = previewTabId === note.id;
 
 					return (
 						<Tab
@@ -78,7 +84,8 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 							ref={isActiveTab ? activeTabRef : undefined}
 							padding="0.4rem 0.7rem"
 							border="none"
-							fontWeight="600"
+							fontStyle={isPreviewTab ? 'italic' : undefined}
+							fontWeight={isPreviewTab ? undefined : '600'}
 							fontSize="14"
 							maxW="250px"
 							minW="150px"
@@ -114,6 +121,11 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 									getContextMenuCoords(evt.nativeEvent),
 								);
 							}}
+							onDoubleClick={
+								isPreviewTab
+									? () => onPick(note.id, { preview: false })
+									: undefined
+							}
 						>
 							<HStack gap=".5rem" w="100%" justifyContent="space-between">
 								<Text

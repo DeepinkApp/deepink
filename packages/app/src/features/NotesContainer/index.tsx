@@ -118,8 +118,9 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 									context: 'top bar',
 								});
 							},
-							onPick(id) {
-								noteActions.click(id);
+							onPick(id, options) {
+								noteActions.click(id, options);
+
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
 									context: 'top bar',
 								});

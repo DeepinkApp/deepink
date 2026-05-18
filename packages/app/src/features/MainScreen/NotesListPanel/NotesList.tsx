@@ -190,13 +190,17 @@ export const NotesList: FC<NotesListProps> = () => {
 										);
 									}}
 									onClick={() => {
-										noteActions.click(note.id);
+										noteActions.click(note.id, { preview: true });
 										telemetry.track(
 											TELEMETRY_EVENT_NAME.NOTE_OPENED,
 											{
 												context: 'notes list',
 											},
 										);
+									}}
+									onDoubleClick={() => {
+										// Convert preview tab to regular
+										noteActions.click(note.id, { preview: false });
 									}}
 								/>
 							);

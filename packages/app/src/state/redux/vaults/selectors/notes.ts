@@ -40,6 +40,15 @@ export const selectActiveNoteId = createWorkspaceSelector(
 	},
 );
 
+export const selectPreviewTabId = createWorkspaceSelector(
+	[selectWorkspaceRoot],
+	(workspace) => {
+		if (!workspace) return null;
+
+		return workspace.previewTabId;
+	},
+);
+
 export const selectSearch = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {

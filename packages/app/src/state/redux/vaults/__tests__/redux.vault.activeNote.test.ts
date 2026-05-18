@@ -11,22 +11,18 @@ describe('Active note consistency', () => {
 	const { store, workspaceScope, selectors } = createTestStore();
 
 	// Init state
-	beforeAll(() => {
+	beforeEach(() => {
 		store.dispatch(
-			workspacesApi.setOpenedNotes({
+			workspacesApi.setOpenedNotesState({
 				...workspaceScope,
 				notes: [mockNoteObject('1'), mockNoteObject('2'), mockNoteObject('3')],
+				activeNoteId: '1',
+				previewTabId: null,
 			}),
 		);
 	});
 
 	test('Any opened note can be set as an active note', () => {
-		store.dispatch(
-			workspacesApi.setActiveNote({
-				...workspaceScope,
-				noteId: '1',
-			}),
-		);
 		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('1');
 
 		store.dispatch(
@@ -39,12 +35,6 @@ describe('Active note consistency', () => {
 	});
 
 	test('Note id out of opened notes list must be ignored, active note must not be changed', () => {
-		store.dispatch(
-			workspacesApi.setActiveNote({
-				...workspaceScope,
-				noteId: '1',
-			}),
-		);
 		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('1');
 
 		// Invalid note cannot be selected
@@ -62,7 +52,7 @@ describe('Active note management', () => {
 	test('Active note must be changed when current note is closed', () => {
 		const { store, workspaceScope, selectors } = createTestStore();
 		store.dispatch(
-			workspacesApi.setOpenedNotes({
+			workspacesApi.setOpenedNotesState({
 				...workspaceScope,
 				notes: [
 					mockNoteObject('1'),
@@ -71,15 +61,11 @@ describe('Active note management', () => {
 					mockNoteObject('4'),
 					mockNoteObject('5'),
 				],
+				activeNoteId: '3',
+				previewTabId: null,
 			}),
 		);
 
-		store.dispatch(
-			workspacesApi.setActiveNote({
-				...workspaceScope,
-				noteId: '3',
-			}),
-		);
 		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual('3');
 
 		store.dispatch(
@@ -122,13 +108,11 @@ describe('Active note management', () => {
 		);
 		expect(selectActiveNoteId(selectors.workspace())).toStrictEqual(null);
 	});
-});
 
-describe('Close note tabs via queries', () => {
-	const { store, workspaceScope, selectors } = createTestStore();
-	beforeEach(() => {
+	test('Active note must be updated by close preview tab', () => {
+		const { store, workspaceScope, selectors } = createTestStore();
 		store.dispatch(
-			workspacesApi.setOpenedNotes({
+			workspacesApi.setOpenedNotesState({
 				...workspaceScope,
 				notes: [
 					mockNoteObject('1'),
@@ -137,13 +121,44 @@ describe('Close note tabs via queries', () => {
 					mockNoteObject('4'),
 					mockNoteObject('5'),
 				],
+				activeNoteId: '3',
+				previewTabId: '3',
 			}),
 		);
 
 		store.dispatch(
-			workspacesApi.setActiveNote({
+			workspacesApi.addOpenedNote({
 				...workspaceScope,
-				noteId: '3',
+				note: mockNoteObject('6'),
+				isPreview: true,
+				isActive: false,
+			}),
+		);
+		expect(
+			selectActiveNoteId(selectors.workspace()),
+			'Tab is force focused because previous active tab is closed',
+		).toStrictEqual('6');
+		expect(
+			selectOpenedNotes(selectors.workspace()).map((note) => note.id),
+		).toStrictEqual(['1', '2', '4', '5', '6']);
+	});
+});
+
+describe('Close note tabs via queries', () => {
+	const { store, workspaceScope, selectors } = createTestStore();
+	beforeEach(() => {
+		store.dispatch(
+			workspacesApi.setOpenedNotesState({
+				...workspaceScope,
+				notes: [
+					mockNoteObject('1'),
+					mockNoteObject('2'),
+					mockNoteObject('3'),
+					mockNoteObject('4'),
+					mockNoteObject('5'),
+				],
+				activeNoteId: '3',
+				previewTabId: null,
 			}),
 		);
 	});

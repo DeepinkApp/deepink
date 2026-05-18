@@ -75,6 +75,7 @@ export const createWorkspaceObject = ({
 	activeNote: null,
 	recentlyClosedNotes: [],
 	openedNotes: [],
+	previewTabId: null,
 
 	noteIds: [],
 
@@ -136,6 +137,7 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
+	previewTabId: NoteId | null;
 
 	noteIds: NoteId[];
 
@@ -350,8 +352,14 @@ export const vaultsSlice = createSlice({
 		addOpenedNote: (
 			state,
 			{
-				payload: { vaultId, workspaceId, note },
-			}: PayloadAction<WorkspaceScoped<{ note: INote }>>,
+				payload: { vaultId, workspaceId, note, isActive, isPreview },
+			}: PayloadAction<
+				WorkspaceScoped<{
+					note: INote;
+					isPreview?: boolean;
+					isActive?: boolean;
+				}>
+			>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
@@ -363,8 +371,28 @@ export const vaultsSlice = createSlice({
 			// Ignore already exists note
 			if (foundNoteInList) return;
 
+			// Update preview tab
+			if (isPreview) {
+				if (workspace.previewTabId) {
+					// Force update active tab, to avoid pointing on note that is not opened
+					if (workspace.previewTabId === workspace.activeNote) isActive = true;
+
+					// Only one preview note can be open at a time — close the previous one
+					workspace.openedNotes = workspace.openedNotes.filter(
+						({ id }) => id !== workspace.previewTabId,
+					);
+				}
+
+				workspace.previewTabId = note.id;
+			}
+
 			workspace.openedNotes.push(note);
 
+			if (isActive) {
+				workspace.activeNote = note.id;
+			}
+
+			// Remove from recently closed if it was there
 			const filteredClosedNotes = workspace.recentlyClosedNotes.filter(
 				(id) => id !== note.id,
 			);
@@ -394,6 +422,11 @@ export const vaultsSlice = createSlice({
 				filteredNotes.length !== openedNotes.length ? filteredNotes : openedNotes;
 
 			workspace.recentlyClosedNotes.push(noteId);
+
+			// Reset preview note
+			if (workspace.previewTabId === noteId) {
+				workspace.previewTabId = null;
+			}
 		},
 
 		closeNotes: (
@@ -503,16 +536,50 @@ export const vaultsSlice = createSlice({
 			];
 		},
 
-		setOpenedNotes: (
+		setOpenedNotesState: (
 			state,
 			{
-				payload: { vaultId, workspaceId, notes },
-			}: PayloadAction<WorkspaceScoped<{ notes: INote[] }>>,
+				payload: { vaultId, workspaceId, notes, activeNoteId, previewTabId },
+			}: PayloadAction<
+				WorkspaceScoped<{
+					notes: INote[];
+					activeNoteId: NoteId;
+					previewTabId: NoteId | null;
+				}>
+			>,
 		) => {
 			const workspace = selectWorkspaceObject(state, { vaultId, workspaceId });
 			if (!workspace) return;
 
 			workspace.openedNotes = notes;
+
+			// Use Set for O(1) lookups
+			const noteIdSet = new Set(notes.map(({ id }) => id));
+
+			// Fall back to first note if active note not in list
+			workspace.activeNote = noteIdSet.has(activeNoteId)
+				? activeNoteId
+				: (notes[0]?.id ?? null);
+
+			workspace.previewTabId =
+				previewTabId !== null && noteIdSet.has(previewTabId)
+					? previewTabId
+					: null;
+		},
+
+		togglePreviewTabToRegular: (
+			state,
+			{
+				payload: { noteId, ...workspaceScope },
+			}: PayloadAction<WorkspaceScoped<{ noteId?: NoteId }>>,
+		) => {
+			const workspace = selectWorkspaceObject(state, workspaceScope);
+			if (!workspace) return;
+
+			// Ensure we toggle the state of specific note, if id provided
+			if (noteId === undefined || noteId === workspace.previewTabId) {
+				workspace.previewTabId = null;
+			}
 		},
 
 		setSelectedTag: (

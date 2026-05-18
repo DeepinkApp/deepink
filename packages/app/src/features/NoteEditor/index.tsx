@@ -54,6 +54,7 @@ import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
 import { NoteSidebar } from './NoteSidebar';
 import { NoteVersions } from './NoteVersions';
+import { useTogglePreviewTabToRegularOnChange } from './useTogglePreviewTabToRegularOnChange';
 
 export enum NoteSidebarTabs {
 	HISTORY = 'HISTORY',
@@ -85,6 +86,9 @@ export const Note: FC<NoteEditorProps> = memo(
 
 		const [title, setTitle] = useState(note.content.title);
 		const [text, setText] = useState(note.content.text);
+
+		// TODO: Toggle the tab to regular only for user changes and ignore non-user changes (e.g. synchronization).
+		useTogglePreviewTabToRegularOnChange(note.id, [text, title]);
 
 		// Forced update for note data
 		const forceUpdateLocalStateRef = useRef(false);

@@ -40,7 +40,7 @@ export const useCreateNote = () => {
 
 		const [note] = await notesRegistry.getById([noteId]);
 		if (note) {
-			openNote(note);
+			openNote(note, { preview: false });
 		}
 	}, [
 		activeTag,
