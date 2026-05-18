@@ -7,8 +7,8 @@ import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
 /**
  * Hook always toggles a preview tab to a regular tab when deps change:
  *
- * If a tab becomes a preview tab after being a regular tab and deps change,
- * the hook will toggle it back again to a regular tab
+ * If a tab becomes a preview after being regular and deps change
+ * the hook will toggle it back to regular again.
  */
 export const useTogglePreviewTabToRegularOnChange = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();

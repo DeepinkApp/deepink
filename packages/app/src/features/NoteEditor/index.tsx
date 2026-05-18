@@ -87,6 +87,7 @@ export const Note: FC<NoteEditorProps> = memo(
 		const [title, setTitle] = useState(note.content.title);
 		const [text, setText] = useState(note.content.text);
 
+		// TODO: toggle tab to regular only for user changes, ignore programmatic ones (e.g. from synchronization)
 		useTogglePreviewTabToRegularOnChange(note.id, [text, title]);
 
 		// Forced update for note data
@@ -533,6 +534,7 @@ export const Note: FC<NoteEditorProps> = memo(
 																note.id,
 																version,
 															);
+
 															await noteHistory.snapshot(
 																note.id,
 															);
