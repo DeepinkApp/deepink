@@ -122,6 +122,18 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 						] as const)
 					: []),
 
+				...(context !== 'tabs'
+					? ([
+							{
+								id: NoteActions.PIN_NOTE,
+								label: note.isPinned
+									? t('noteList.unpinNote')
+									: t('noteList.pinNote'),
+							},
+							{ type: 'separator' },
+						] as const)
+					: []),
+
 				...(note.isDeleted
 					? [{ id: NoteActions.RESTORE_FROM_BIN, label: t('restoreFromBin') }]
 					: []),
@@ -134,16 +146,6 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 					id: NoteActions.EXPORT,
 					label: t('export'),
 				},
-
-				note.isPinned
-					? {
-							id: NoteActions.PIN_NOTE,
-							label: t('unpinNote'),
-						}
-					: {
-							id: NoteActions.PIN_NOTE,
-							label: t('pinNote'),
-						},
 
 				{
 					id: NoteActions.COPY_MARKDOWN_LINK,
