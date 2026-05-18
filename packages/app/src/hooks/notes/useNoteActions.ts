@@ -56,7 +56,9 @@ export const useNoteActions = () => {
 			dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId }));
 
 			// Ensure tab is not temporary opened
-			if (!preview) {
+			// We should check `false` to toggle state only for explicit values
+			// `undefined` means flag is not passed
+			if (preview === false) {
 				dispatch(
 					workspacesApi.togglePreviewTabToRegular({ ...workspaceData, noteId }),
 				);
