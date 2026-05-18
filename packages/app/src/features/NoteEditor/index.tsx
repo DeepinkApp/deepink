@@ -532,7 +532,10 @@ export const Note: FC<NoteEditorProps> = memo(
 															);
 															await notesRegistry.update(
 																note.id,
-																version,
+																{
+																	title: version.title,
+																	text: version.text,
+																},
 															);
 															await noteHistory.snapshot(
 																note.id,
