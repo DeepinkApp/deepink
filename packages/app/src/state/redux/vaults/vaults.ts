@@ -371,13 +371,18 @@ export const vaultsSlice = createSlice({
 			// Ignore already exists note
 			if (foundNoteInList) return;
 
+			// Update preview tab
 			if (isPreview) {
 				if (workspace.previewTabId) {
+					// Force update active tab, to avoid pointing on note that is not opened
+					if (workspace.previewTabId === workspace.activeNote) isActive = true;
+
 					// Only one preview note can be open at a time — close the previous one
 					workspace.openedNotes = workspace.openedNotes.filter(
 						({ id }) => id !== workspace.previewTabId,
 					);
 				}
+
 				workspace.previewTabId = note.id;
 			}
 
