@@ -81,17 +81,11 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 			<WorkspaceProvider
 				{...workspace}
 				notesApi={{
-					openNote: (
-						note: INote,
-						{
-							active = true,
-							preview = true,
-						}: { active?: boolean; preview?: boolean } = {},
-					) => {
+					openNote: (note, { preview = true } = {}) => {
 						dispatch(
 							workspaceActions.addOpenedNote({
 								note,
-								isActive: active,
+								isActive: true,
 								isPreview: preview,
 							}),
 						);

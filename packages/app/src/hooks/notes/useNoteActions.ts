@@ -10,18 +10,15 @@ import {
 } from '@features/App/Workspace/WorkspaceProvider';
 import { useAppDispatch } from '@state/redux/hooks';
 import { RootState } from '@state/redux/store';
-import {
-	useVaultSelector,
-	useWorkspaceData,
-	useWorkspaceSelector,
-} from '@state/redux/vaults/hooks';
+import { useVaultSelector, useWorkspaceData } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import {
 	selectIsNoteOpened,
-	selectPreviewTabId,
 	selectWorkspace,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
+
+export type NoteClickOptions = { preview?: boolean };
 
 export const useNoteActions = () => {
 	const dispatch = useAppDispatch();
@@ -34,30 +31,38 @@ export const useNoteActions = () => {
 	const notesRegistry = useNotesRegistry();
 
 	const click = useCallback(
-		(id: NoteId, { preview }: { preview?: boolean } = {}) => {
+		(noteId: NoteId, { preview }: NoteClickOptions = {}) => {
+			// Just open a note and exit if not opened yet
 			const workspace = selectWorkspace(workspaceData)(store.getState());
-			const isNoteOpened = selectIsNoteOpened(id)(workspace);
-
-			if (isNoteOpened) {
-				dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId: id }));
-			} else {
-				notesRegistry.getById([id]).then(([note]) => {
+			const isNoteOpened = selectIsNoteOpened(noteId)(workspace);
+			if (!isNoteOpened) {
+				// TODO: await the promise resolution for race condition scenario
+				// When user double click, the code calls twice
+				// Currently we will fetch DB twice
+				// Instead, write promise into some map, and wait that promise
+				// in next click if map has promise
+				// TODO: fix potentially possible race condition
+				// In case user will call that method for click + click + double click,
+				// we will call the action 3 times with `preview` true, true, false.
+				// In case promises will be resolved in another order, the note may become opened in preview mode
+				notesRegistry.getById([noteId]).then(([note]) => {
 					if (note) openNote(note, { preview });
 				});
+
+				return;
+			}
+
+			// Make note active
+			dispatch(workspacesApi.setActiveNote({ ...workspaceData, noteId }));
+
+			// Ensure tab is not temporary opened
+			if (!preview) {
+				dispatch(
+					workspacesApi.togglePreviewTabToRegular({ ...workspaceData, noteId }),
+				);
 			}
 		},
 		[dispatch, notesRegistry, openNote, store, workspaceData],
-	);
-
-	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
-	const doubleClick = useCallback(
-		(id: NoteId) => {
-			// Ignore if the note is not preview
-			if (previewTabId !== id) return;
-
-			dispatch(workspacesApi.togglePreviewTabToRegular({ ...workspaceData }));
-		},
-		[dispatch, previewTabId, workspaceData],
 	);
 
 	const eventBus = useEventBus();
@@ -80,5 +85,5 @@ export const useNoteActions = () => {
 		[eventBus, isSnapshotsEnabled, noteClosed, noteHistory, notesRegistry],
 	);
 
-	return { click, close, doubleClick };
+	return { click, close };
 };

@@ -200,7 +200,7 @@ export const NotesList: FC<NotesListProps> = () => {
 									}}
 									onDoubleClick={() => {
 										// Convert preview tab to regular
-										noteActions.doubleClick(note.id);
+										noteActions.click(note.id, { preview: false });
 									}}
 								/>
 							);
