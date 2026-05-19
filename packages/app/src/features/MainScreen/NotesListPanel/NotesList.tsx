@@ -22,7 +22,6 @@ import {
 import { ScrollToOptions, useVirtualizer } from '@tanstack/react-virtual';
 
 import { useNotesData } from './useNotesData';
-import { usePinNoteEffect } from './usePinNoteEffect';
 import { useScrollToActiveNote } from './useScrollToActiveNote';
 
 const MemoizedSkeleton = memo(Skeleton);
@@ -80,9 +79,6 @@ export const NotesList: FC<NotesListProps> = () => {
 		activeNoteId,
 		activeNoteRef,
 	});
-
-	const pinNoteRef = useRef<HTMLDivElement | null>(null);
-	const { flashingNoteId } = usePinNoteEffect({ noteIds, virtualizer, pinNoteRef });
 
 	// TODO: implement dragging and moving items
 	return (
@@ -154,7 +150,6 @@ export const NotesList: FC<NotesListProps> = () => {
 						{virtualNoteItems.map((virtualRow) => {
 							const id = noteIds[virtualRow.index];
 							const isActive = id === activeNoteId;
-							const isFlashing = flashingNoteId === id;
 
 							const note = notesData.get(id);
 							if (!note)
@@ -177,9 +172,6 @@ export const NotesList: FC<NotesListProps> = () => {
 									ref={(node) => {
 										if (isActive) {
 											activeNoteRef.current = node;
-										}
-										if (isFlashing) {
-											pinNoteRef.current = node;
 										}
 
 										virtualizer.measureElement(node);
@@ -209,7 +201,6 @@ export const NotesList: FC<NotesListProps> = () => {
 											},
 										);
 									}}
-									isFlashing={isFlashing}
 									isPinned={Boolean(note.isPinned)}
 									onDoubleClick={() => {
 										// Convert preview tab to regular
