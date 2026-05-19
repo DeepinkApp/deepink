@@ -361,7 +361,7 @@ export class NotesController implements INotesController {
 	}
 
 	public async update(id: string, updatedNote: INoteContent) {
-		await this.updateBatch([{ id, ...updatedNote }]);
+		await this.updateBatch([{ ...updatedNote, id }]);
 	}
 
 	public async updateBatch(notes: NoteContentUpdateInfo[]) {
