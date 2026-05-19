@@ -18,7 +18,7 @@ export const NotePreview = forwardRef<
 		text: string;
 		meta?: ReactNode;
 		isSelected?: boolean;
-		isPinned: boolean;
+		isPinned?: boolean;
 		textToHighlight?: string;
 	} & StackProps
 >(({ title, text, textToHighlight, meta, isSelected, isPinned, ...props }, ref) => {

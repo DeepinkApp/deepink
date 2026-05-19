@@ -198,7 +198,7 @@ export const NotesList: FC<NotesListProps> = () => {
 											},
 										);
 									}}
-									isPinned={Boolean(note.isPinned)}
+									isPinned={note.isPinned}
 									onDoubleClick={() => {
 										// Convert preview tab to regular
 										noteActions.click(note.id, { preview: false });
