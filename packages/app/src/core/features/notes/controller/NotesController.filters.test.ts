@@ -80,13 +80,12 @@ test('sorts notes by pinned status', async () => {
 	// Pin
 	vi.setSystemTime('01/01/2010 12:00');
 	await registry.updateMeta([note1], { isPinned: true });
-
 	vi.setSystemTime('01/01/2011 12:00');
 	await registry.updateMeta([note3], { isPinned: true });
 
 	await expect(
 		registry.query({ sort: [{ by: 'pinnedAt', order: 'desc' }] }),
-	).resolves.toEqual([note3, note1, note2]);
+	).resolves.toStrictEqual([note3, note1, note2]);
 
 	// Updating note content should not affect pin order
 	vi.setSystemTime('01/01/2015 12:00');
@@ -94,7 +93,7 @@ test('sorts notes by pinned status', async () => {
 
 	await expect(
 		registry.query({ sort: [{ by: 'pinnedAt', order: 'desc' }] }),
-	).resolves.toEqual([note3, note1, note2]);
+	).resolves.toStrictEqual([note3, note1, note2]);
 });
 
 test('sorts notes by pinned status and update time', async () => {
@@ -104,6 +103,7 @@ test('sorts notes by pinned status and update time', async () => {
 	const workspaceId = await createWorkspaceId(db.get());
 	const registry = new NotesController(db.get(), workspaceId);
 
+	vi.setSystemTime('01/01/2000 12:00');
 	const note1 = await registry.add({ title: '2001', text: 'Dummy text' });
 
 	vi.setSystemTime('01/01/2002 12:00');
@@ -124,9 +124,9 @@ test('sorts notes by pinned status and update time', async () => {
 				{ by: 'updatedAt', order: 'desc' },
 			],
 		}),
-	).resolves.toEqual([note1, note3, note2]);
+	).resolves.toStrictEqual([note1, note3, note2]);
 
-	// Update an unpinned note
+	// Update an unpinned note2
 	vi.setSystemTime('01/01/2015 12:00');
 	await registry.update(note2, { title: '2015', text: 'Dummy text' });
 
@@ -137,7 +137,7 @@ test('sorts notes by pinned status and update time', async () => {
 				{ by: 'updatedAt', order: 'desc' },
 			],
 		}),
-	).resolves.toEqual([note1, note2, note3]);
+	).resolves.toStrictEqual([note1, note2, note3]);
 });
 
 describe('data fetching', () => {
