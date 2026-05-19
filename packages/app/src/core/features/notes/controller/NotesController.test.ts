@@ -120,10 +120,11 @@ describe('CRUD operations', () => {
 
 		await registry.update(noteId, updatedContentWithOwnId);
 
-		// The note should contain the updated content
+		// The payload ID should not affect the note update
 		await expect(registry.getById([noteId])).resolves.toEqual(
 			expect.arrayContaining([
 				expect.objectContaining({
+					id: noteId,
 					content: {
 						text: 'Updated text',
 						title: 'Updated title',
