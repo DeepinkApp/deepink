@@ -20,66 +20,50 @@ export const NotePreview = forwardRef<
 		isSelected?: boolean;
 		isPinned: boolean;
 		textToHighlight?: string;
-		isFlashing?: boolean;
 	} & StackProps
->(
-	(
-		{
-			title,
-			text,
-			textToHighlight,
-			meta,
-			isSelected,
-			isPinned,
-			isFlashing,
-			...props
-		},
-		ref,
-	) => {
-		const styles = useMultiStyleConfig('NotePreview');
-		return (
-			<VStack
-				ref={ref}
-				aria-selected={isSelected}
-				data-flashing={isFlashing || undefined}
-				{...props}
-				sx={{
-					...styles.root,
-					...props.sx,
-				}}
-			>
-				<VStack sx={styles.body}>
-					<HStack sx={styles.header}>
-						<Text as="h3" sx={styles.title}>
-							<TextSample
-								text={title}
-								highlightText={textToHighlight}
-								lengthLimit={50}
-							/>
-						</Text>
+>(({ title, text, textToHighlight, meta, isSelected, isPinned, ...props }, ref) => {
+	const styles = useMultiStyleConfig('NotePreview');
+	return (
+		<VStack
+			ref={ref}
+			aria-selected={isSelected}
+			{...props}
+			sx={{
+				...styles.root,
+				...props.sx,
+			}}
+		>
+			<VStack sx={styles.body}>
+				<HStack sx={styles.header}>
+					<Text as="h3" sx={styles.title}>
+						<TextSample
+							text={title}
+							highlightText={textToHighlight}
+							lengthLimit={50}
+						/>
+					</Text>
 
-						{isPinned && (
-							<Box sx={styles.pinIcon}>
-								<FaThumbtack />
-							</Box>
-						)}
-					</HStack>
+					{isPinned && (
+						<Box sx={styles.pinIcon}>
+							<FaThumbtack />
+						</Box>
+					)}
+				</HStack>
 
-					{text.length > 0 ? (
-						<Text sx={styles.text}>
-							<TextSample
-								text={text}
-								highlightText={textToHighlight}
-								lengthLimit={150}
-							/>
-						</Text>
-					) : undefined}
-				</VStack>
-
-				{meta && <Box sx={styles.meta}>{meta}</Box>}
+				{text.length > 0 ? (
+					<Text sx={styles.text}>
+						<TextSample
+							text={text}
+							highlightText={textToHighlight}
+							lengthLimit={150}
+						/>
+					</Text>
+				) : undefined}
 			</VStack>
-		);
-	},
-);
+
+			{meta && <Box sx={styles.meta}>{meta}</Box>}
+		</VStack>
+	);
+});
 
 NotePreview.displayName = 'NotePreview';
