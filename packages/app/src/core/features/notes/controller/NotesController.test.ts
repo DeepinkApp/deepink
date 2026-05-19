@@ -100,6 +100,37 @@ describe('CRUD operations', () => {
 
 		await expect(registry.delete([])).resolves.not.toThrow();
 	});
+
+	test('update method ignores unexpected payload fields and correctly updates the note', async () => {
+		const dbFile = createFileControllerMock();
+		const managedDB = await openSQLite(dbFile);
+		onTestFinished(() => managedDB.close());
+
+		const workspaceId = await createWorkspaceId(managedDB.get());
+		const registry = new NotesController(managedDB.get(), workspaceId);
+
+		const noteId = await registry.add({ title: 'Title', text: 'Text' });
+
+		// The object contains its own ID field, but it should not overwrite the note ID
+		const updatedContentWithOwnId = {
+			id: crypto.randomUUID(),
+			text: 'Updated text',
+			title: 'Updated title',
+		};
+
+		await registry.update(noteId, updatedContentWithOwnId);
+
+		// The payload ID should not affect the note update
+		await expect(registry.getById([noteId])).resolves.toStrictEqual([
+			expect.objectContaining({
+				id: noteId,
+				content: {
+					text: 'Updated text',
+					title: 'Updated title',
+				},
+			}),
+		]);
+	});
 });
 
 test('Many instances reads the data consistently', async () => {
