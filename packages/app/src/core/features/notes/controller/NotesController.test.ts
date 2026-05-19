@@ -100,6 +100,38 @@ describe('CRUD operations', () => {
 
 		await expect(registry.delete([])).resolves.not.toThrow();
 	});
+
+	test('update method updates a note by note ID, not by ID in the payload', async () => {
+		const dbFile = createFileControllerMock();
+		const managedDB = await openSQLite(dbFile);
+		onTestFinished(() => managedDB.close());
+
+		const workspaceId = await createWorkspaceId(managedDB.get());
+		const registry = new NotesController(managedDB.get(), workspaceId);
+
+		const noteId = await registry.add({ title: 'Title', text: 'Text' });
+
+		// The object contains its own ID field, but it should not overwrite the note ID
+		const updatedContentWithOwnId = {
+			id: crypto.randomUUID(),
+			text: 'Updated text',
+			title: 'Updated title',
+		};
+
+		await registry.update(noteId, updatedContentWithOwnId);
+
+		// The note should contain the updated content
+		await expect(registry.getById([noteId])).resolves.toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({
+					content: {
+						text: 'Updated text',
+						title: 'Updated title',
+					},
+				}),
+			]),
+		);
+	});
 });
 
 test('Many instances reads the data consistently', async () => {
