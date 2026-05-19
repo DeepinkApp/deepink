@@ -101,7 +101,7 @@ describe('CRUD operations', () => {
 		await expect(registry.delete([])).resolves.not.toThrow();
 	});
 
-	test('update method updates a note by note ID, not by ID in the payload', async () => {
+	test('update method ignores unexpected payload fields and correctly updates the note', async () => {
 		const dbFile = createFileControllerMock();
 		const managedDB = await openSQLite(dbFile);
 		onTestFinished(() => managedDB.close());
@@ -121,17 +121,15 @@ describe('CRUD operations', () => {
 		await registry.update(noteId, updatedContentWithOwnId);
 
 		// The payload ID should not affect the note update
-		await expect(registry.getById([noteId])).resolves.toEqual(
-			expect.arrayContaining([
-				expect.objectContaining({
-					id: noteId,
-					content: {
-						text: 'Updated text',
-						title: 'Updated title',
-					},
-				}),
-			]),
-		);
+		await expect(registry.getById([noteId])).resolves.toStrictEqual([
+			expect.objectContaining({
+				id: noteId,
+				content: {
+					text: 'Updated text',
+					title: 'Updated title',
+				},
+			}),
+		]);
 	});
 });
 
