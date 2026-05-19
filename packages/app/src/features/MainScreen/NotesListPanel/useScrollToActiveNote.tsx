@@ -99,7 +99,13 @@ export const useScrollToActiveNote = ({
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, onNoteUpdated),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId, reason }) => {
+				// Ignore scroll resets for meta changes (pin, etc)
+				// because users may modify note metadata while browsing the list
+				// and losing the current scroll position would break their browsing context
+				if (reason === 'meta') return;
+				onNoteUpdated(noteId);
+			}),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
 	}, [activeNoteId, activeNoteRef, eventBus]);

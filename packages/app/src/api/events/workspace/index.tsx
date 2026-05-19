@@ -22,7 +22,10 @@ export type WorkspaceEventsPayloadMap = {
 	 *
 	 * For example note version has been applied or remote end force updated a note
 	 */
-	[WorkspaceEvents.NOTE_UPDATED]: NoteId;
+	[WorkspaceEvents.NOTE_UPDATED]: {
+		noteId: NoteId;
+		reason?: 'meta' | 'content';
+	};
 
 	/**
 	 * Fired when note has been edited by user and change is committed in DB
