@@ -12,13 +12,11 @@ import {
 	FaRotate,
 	FaShield,
 	FaSpellCheck,
-	FaThumbtack,
 	FaTrashCan,
 	FaTrashCanArrowUp,
 } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
-	Box,
 	Button,
 	HStack,
 	Menu,
@@ -134,24 +132,6 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 							{note.isArchived
 								? t('note.menu.removeFromArchive')
 								: t('note.menu.moveToArchive')}
-						</Text>
-					</HStack>
-				</MenuItem>
-				<MenuItem
-					onClick={() =>
-						runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, {
-							noteId: note.id,
-						})
-					}
-				>
-					<HStack>
-						<Box transform="rotate(45deg)">
-							<FaThumbtack />
-						</Box>
-						<Text>
-							{note.isPinned
-								? t('note.menu.unpinNote')
-								: t('note.menu.pinNote')}
 						</Text>
 					</HStack>
 				</MenuItem>
