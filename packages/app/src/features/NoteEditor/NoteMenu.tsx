@@ -6,7 +6,6 @@ import {
 	FaCopy,
 	FaEllipsis,
 	FaFileExport,
-	FaThumbtack,
 	FaTrashCan,
 	FaTrashCanArrowUp,
 } from 'react-icons/fa6';
