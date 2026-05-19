@@ -153,7 +153,7 @@ export const useNoteCommandHandlers = () => {
 			await notes.updateMeta([noteId], {
 				isArchived: newArchivedState,
 			});
-			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId, reason: 'meta' });
+			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId });
 
 			telemetry.track(TELEMETRY_EVENT_NAME.NOTE_ARCHIVE_TOGGLE, {
 				action: newArchivedState ? 'Added' : 'Removed',
@@ -174,7 +174,7 @@ export const useNoteCommandHandlers = () => {
 			await notes.updateMeta([noteId], {
 				isBookmarked: newBookmarkedState,
 			});
-			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId, reason: 'meta' });
+			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId });
 
 			telemetry.track(TELEMETRY_EVENT_NAME.NOTE_BOOKMARK_TOGGLE, {
 				action: newBookmarkedState ? 'Added' : 'Removed',
