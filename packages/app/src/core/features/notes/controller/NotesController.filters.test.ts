@@ -87,7 +87,7 @@ test('sorts notes by pinned time', async () => {
 		registry.query({ sort: [{ by: 'pinnedAt', order: 'desc' }] }),
 	).resolves.toStrictEqual([note3, note1, note2]);
 
-	// Updating note content should not affect pin order
+	// Updating note content in a pinned note should not affect the order
 	vi.setSystemTime('01/01/2015 12:00');
 	await registry.update(note1, { title: '2015', text: 'Dummy text' });
 
@@ -362,7 +362,6 @@ describe('data fetching', () => {
 
 	test('filters notes by pinned status', async () => {
 		const { db, workspaceId } = getWorkspaceContext();
-
 		const registry = new NotesController(db, workspaceId);
 
 		const notesId = await registry
