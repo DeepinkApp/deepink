@@ -408,6 +408,35 @@ describe('Meta data control', () => {
 			},
 		]);
 	});
+
+	test('toggle note pinned status', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+
+		const noteId = await registry.add({ title: 'Title', text: 'Text' });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				isPinned: false,
+			},
+		]);
+
+		await registry.updateMeta([noteId], { isPinned: true });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				isPinned: true,
+			},
+		]);
+
+		await registry.updateMeta([noteId], { isPinned: false });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				isPinned: false,
+			},
+		]);
+	});
 });
 
 const getWorkspaceContext = createWorkspaceContext();

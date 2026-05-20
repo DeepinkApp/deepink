@@ -66,7 +66,7 @@ test('filter by update time', async () => {
 	]);
 });
 
-test('sorts notes by pinned status', async () => {
+test('sorts notes by pinned time', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
@@ -96,7 +96,7 @@ test('sorts notes by pinned status', async () => {
 	).resolves.toStrictEqual([note3, note1, note2]);
 });
 
-test('sorts notes by pinned status and update time', async () => {
+test('sorts notes by pinned time and update time', async () => {
 	const db = await openSQLite(createFileControllerMock());
 	onTestFinished(db.close);
 
@@ -366,15 +366,15 @@ describe('data fetching', () => {
 		const registry = new NotesController(db, workspaceId);
 
 		const notesId = await registry
-			.get({ limit: 40 })
+			.get({ limit: 60 })
 			.then((notes) => notes.map((note) => note.id));
 
 		await registry.updateMeta(notesId, { isPinned: true });
 		await expect(registry.get({ meta: { isPinned: true } })).resolves.toHaveLength(
-			40,
+			60,
 		);
 		await expect(registry.get({ meta: { isPinned: false } })).resolves.toHaveLength(
-			notesSample.length - 40,
+			notesSample.length - 60,
 		);
 	});
 
