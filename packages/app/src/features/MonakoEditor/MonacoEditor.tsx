@@ -4,6 +4,7 @@ import React, {
 	Ref,
 	useCallback,
 	useEffect,
+	useLayoutEffect,
 	useRef,
 	useState,
 } from 'react';
@@ -268,14 +269,14 @@ export const MonacoEditor = ({
 	}, [isReadOnly]);
 
 	// Update value
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const editor = editorRef.current;
 		if (!editor) return;
 
 		if (editor.getValue() !== value) {
 			editor.setValue(value);
 		}
-	});
+	}, [value]);
 
 	// Update config
 	useEffect(() => {
