@@ -26,6 +26,11 @@ export const notePreviewRecipe = defineSlotRecipe({
 			fontWeight: 'bold',
 			fontSize: '18px',
 		},
+		pinIcon: {
+			color: 'typography.secondary',
+			transform: 'rotate(45deg)',
+			fontSize: '12px',
+		},
 		text: {
 			fontSize: '14px',
 			maxWidth: '100%',
@@ -34,11 +39,6 @@ export const notePreviewRecipe = defineSlotRecipe({
 			fontSize: '12px',
 			fontWeight: '500',
 			width: '100%',
-		},
-		pinIcon: {
-			color: 'typography.secondary',
-			transform: 'rotate(45deg)',
-			fontSize: '12px',
 		},
 	},
 	variants: {

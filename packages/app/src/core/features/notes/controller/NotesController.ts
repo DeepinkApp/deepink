@@ -175,11 +175,11 @@ function getFetchQuery(
 
 	// Sort
 	if (sort) {
-		sort.forEach((rule) => {
-			orderQuery.push(
-				qb.line(sortFieldMap[rule.by], rule.order === 'desc' ? 'DESC' : 'ASC'),
-			);
-		});
+		orderQuery.push(
+			...sort.map(({ by, order }) =>
+				qb.line(sortFieldMap[by], order === 'desc' ? 'DESC' : 'ASC'),
+			),
+		);
 	}
 
 	return qb.line(

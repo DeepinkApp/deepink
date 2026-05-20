@@ -51,11 +51,7 @@ export const NotePreviewContent = memo(
 						/>
 					</Text>
 
-					{isPinned && (
-						<Box sx={styles.pinIcon}>
-							<FaThumbtack />
-						</Box>
-					)}
+					{isPinned && <Box as={FaThumbtack} sx={styles.pinIcon} />}
 				</HStack>
 
 				{text.length > 0 ? (
