@@ -1,9 +1,8 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { isEqual } from 'lodash';
 import { Box } from '@chakra-ui/react';
 import { INote, INoteContent, NoteId } from '@core/features/notes';
 import { NoteMeta } from '@core/features/notes/controller';
-import { useAsRef } from '@hooks/useAsRef';
 
 import { useEditorLinks } from '../MonakoEditor/features/useEditorLinks';
 import { Note } from '../NoteEditor';
@@ -19,42 +18,6 @@ export type NotesProps = {
 export const Notes: FC<NotesProps> = ({ notes, tabs, activeTab, updateNote }) => {
 	useEditorLinks();
 
-	const notesRef = useAsRef(notes);
-	const updateHooks = useMemo(
-		() =>
-			Object.fromEntries(
-				tabs
-					.filter((id) => notesRef.current.some((note) => note.id === id))
-					.map((id) => {
-						return [
-							id,
-							{
-								updateContent: (content: INoteContent) => {
-									const note = notesRef.current.find(
-										(note) => note.id === id,
-									)!;
-
-									// Skip updates with not changed data
-									if (isEqual(note.content, content)) {
-										return;
-									}
-
-									updateNote({ ...note, content });
-								},
-								updateMeta: (meta: Partial<NoteMeta>) => {
-									const note = notesRef.current.find(
-										(note) => note.id === id,
-									)!;
-
-									updateNote({ ...note, ...meta });
-								},
-							},
-						];
-					}),
-			),
-		[notesRef, tabs, updateNote],
-	);
-
 	return (
 		<Box
 			sx={{
@@ -69,7 +32,6 @@ export const Notes: FC<NotesProps> = ({ notes, tabs, activeTab, updateNote }) =>
 				.map((id) => {
 					const note = notes.find((note) => note.id === id)!;
 					const isActive = activeTab === note.id;
-					const { updateContent, updateMeta } = updateHooks[note.id];
 
 					return (
 						<Box
@@ -81,8 +43,17 @@ export const Notes: FC<NotesProps> = ({ notes, tabs, activeTab, updateNote }) =>
 							<Note
 								key={note.id}
 								note={note}
-								updateNote={updateContent}
-								updateMeta={updateMeta}
+								updateNote={(content: INoteContent) => {
+									// Skip updates with not changed data
+									if (isEqual(note.content, content)) {
+										return;
+									}
+
+									updateNote({ ...note, content });
+								}}
+								updateMeta={(meta: Partial<NoteMeta>) => {
+									updateNote({ ...note, ...meta });
+								}}
 								isActive={isActive}
 							/>
 						</Box>
