@@ -45,8 +45,9 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 	useEffect(() => {
 		const onNoteUpdated = (noteId: NoteId, reason?: 'meta' | 'content') => {
 			if (notesData.has(noteId)) {
-				// Meta changes (e.g. pin/unpin) reorder the notes list, but note data is updated with debounce
-				// which can cause stale UI. To avoid inconsistency, we immediately refresh the updated note
+				// Meta changes (e.g. pin/unpin) reorder the notes list, but note data is updated with debounce,
+				// which can cause stale UI (e.g. after unpinning the note may still show the pin icon)
+				// To avoid inconsistency immediately refresh the updated note
 				if (reason === 'meta') {
 					notesRegistry.getById([noteId]).then((note) => {
 						if (note.length === 0) return;
