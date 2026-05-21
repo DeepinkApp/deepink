@@ -11,6 +11,7 @@ import { InMemoryFS } from '@core/features/files/InMemoryFS';
 import { patchWindow } from '@electron/requests/electronPatches/renderer';
 import { ElectronFilesController, storageApi } from '@electron/requests/storage/renderer';
 import { telemetry } from '@electron/requests/telemetry/renderer';
+import { hasElectronApi } from '@electron/utils/renderer';
 import { App } from '@features/App/index';
 import { FilesStorageContext } from '@features/files';
 import { TelemetryContext } from '@features/telemetry';
@@ -60,7 +61,21 @@ const filesController =
 
 const reactRoot = createRoot(rootNode);
 reactRoot.render(
-	<TelemetryContext value={telemetry}>
+	<TelemetryContext
+		value={
+			hasElectronApi()
+				? telemetry
+				: {
+						async getState() {
+							return { uid: '', queue: [] };
+						},
+						async track() {},
+						async handleQueue() {
+							return { total: 0, processed: 0 };
+						},
+					}
+		}
+	>
 		<Provider store={store}>
 			<GlobalEventBusContext value={globalEventBus}>
 				<FilesStorageContext value={filesController}>
