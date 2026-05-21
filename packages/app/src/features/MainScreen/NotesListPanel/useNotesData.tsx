@@ -49,11 +49,10 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 				// which can cause stale UI (e.g. after unpinning the note may still show the pin icon)
 				// To avoid inconsistency immediately refresh the updated note
 				if (reason === 'meta') {
-					notesRegistry.getById([noteId]).then((note) => {
-						if (note.length === 0) return;
-						notesData.add(
-							note.map((note) => [note.id, note] as [string, INote]),
-						);
+					notesRegistry.getById([noteId]).then((loadedNote) => {
+						const note = loadedNote[0];
+						if (!note) return;
+						notesData.add([[note.id, note]]);
 					});
 				}
 				loadNotesData();
