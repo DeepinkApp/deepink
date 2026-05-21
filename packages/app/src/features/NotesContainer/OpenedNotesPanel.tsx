@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, memo, useEffect, useMemo, useRef } from 'react';
+import React, { FC, memo, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaXmark } from 'react-icons/fa6';
 import { isEqual } from 'lodash';
@@ -23,92 +23,52 @@ export type TopBarProps = {
 	notes: INote[];
 };
 
-// TODO: improve tab style
-const NoteTab = memo(
-	forwardRef<
-		HTMLButtonElement,
-		{
-			note: INote;
-			onPick: (id: NoteId, options?: NoteClickOptions) => void;
-			onClose: (id: string) => void;
-			isPreviewTab?: boolean;
-		}
-	>(({ note, onPick, onClose, isPreviewTab }, ref) => {
+/**
+ * Tab content wrapped into memo to avoid re-rendering the whole content
+ */
+const NoteTabContent = memo(
+	({
+		note,
+		title,
+		onClose,
+	}: {
+		note: INote;
+		title: string;
+		onClose: (id: string) => void;
+	}) => {
 		const { t } = useTranslation(LOCALE_NAMESPACE.features);
 
-		const title = getNoteTitle(note.content, 50);
-		const openNoteContextMenu = useNoteContextMenu('tabs');
-
 		return (
-			<Tab
-				ref={ref}
-				padding="0.4rem 0.7rem"
-				border="none"
-				fontStyle={isPreviewTab ? 'italic' : undefined}
-				fontWeight={isPreviewTab ? undefined : '600'}
-				fontSize="14"
-				maxW="250px"
-				minW="150px"
-				whiteSpace="nowrap"
-				flex="1 1 auto"
-				marginBottom={0}
-				title={title}
-				textDecorationLine={note.isDeleted ? 'line-through' : undefined}
-				onMouseDown={(evt) => {
-					// Prevent focus capturing by click
-					evt.preventDefault();
-
-					const isLeftButton = evt.button === 0;
-					if (isLeftButton) return;
-
-					evt.preventDefault();
-					evt.stopPropagation();
-				}}
-				onMouseUp={(evt) => {
-					const isMiddleButton = evt.button === 1;
-					if (!isMiddleButton) return;
-
-					onClose(note.id);
-				}}
-				onContextMenu={(evt) => {
-					// Prevent text selection on macOS
-					evt.preventDefault();
-
-					openNoteContextMenu(note, getContextMenuCoords(evt.nativeEvent));
-				}}
-				onDoubleClick={
-					isPreviewTab ? () => onPick(note.id, { preview: false }) : undefined
-				}
-			>
-				<HStack gap=".5rem" w="100%" justifyContent="space-between">
-					<Text
-						maxW="180px"
-						whiteSpace="nowrap"
-						overflow="hidden"
-						textOverflow="ellipsis"
-					>
-						{title}
-					</Text>
-					<Box
-						title={t('tabBar.closeTab')}
-						sx={{
-							'&:not(:hover)': {
-								opacity: '0.7',
-							},
-						}}
-						onClick={(evt) => {
-							evt.stopPropagation();
-							onClose(note.id);
-						}}
-					>
-						<FaXmark />
-					</Box>
-				</HStack>
-			</Tab>
+			<HStack gap=".5rem" w="100%" justifyContent="space-between">
+				<Text
+					maxW="180px"
+					whiteSpace="nowrap"
+					overflow="hidden"
+					textOverflow="ellipsis"
+				>
+					{title}
+				</Text>
+				<Box
+					title={t('tabBar.closeTab')}
+					sx={{
+						'&:not(:hover)': {
+							opacity: '0.7',
+						},
+					}}
+					onClick={(evt) => {
+						evt.stopPropagation();
+						onClose(note.id);
+					}}
+				>
+					<FaXmark />
+				</Box>
+			</HStack>
 		);
-	}),
+	},
 	isEqual,
 );
+
+NoteTabContent.displayName = 'NoteTabContent';
 
 export const OpenedNotesPanel: FC<TopBarProps> = ({
 	notes,
@@ -117,6 +77,8 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	onClose,
 	onPick,
 }) => {
+	const openNoteContextMenu = useNoteContextMenu('tabs');
+
 	const existsTabs = useMemo(
 		() => tabs.filter((noteId) => notes.some((note) => note.id === noteId)),
 		[tabs, notes],
@@ -165,14 +127,64 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 						throw new Error('Note not found');
 					}
 
+					const isPreviewTab = previewTabId === note.id;
+					const title = getNoteTitle(note.content, 50);
+
 					return (
-						<NoteTab
+						<Tab
 							key={note.id}
 							ref={isActiveTab ? activeTabRef : undefined}
-							{...immutableCallbacks}
-							note={note}
-							isPreviewTab={previewTabId === note.id}
-						/>
+							padding="0.4rem 0.7rem"
+							border="none"
+							fontStyle={isPreviewTab ? 'italic' : undefined}
+							fontWeight={isPreviewTab ? undefined : '600'}
+							fontSize="14"
+							maxW="250px"
+							minW="150px"
+							whiteSpace="nowrap"
+							flex="1 1 auto"
+							marginBottom={0}
+							title={title}
+							textDecorationLine={
+								note.isDeleted ? 'line-through' : undefined
+							}
+							onMouseDown={(evt) => {
+								// Prevent focus capturing by click
+								evt.preventDefault();
+
+								const isLeftButton = evt.button === 0;
+								if (isLeftButton) return;
+
+								evt.preventDefault();
+								evt.stopPropagation();
+							}}
+							onMouseUp={(evt) => {
+								const isMiddleButton = evt.button === 1;
+								if (!isMiddleButton) return;
+
+								onClose(note.id);
+							}}
+							onContextMenu={(evt) => {
+								// Prevent text selection on macOS
+								evt.preventDefault();
+
+								openNoteContextMenu(
+									note,
+									getContextMenuCoords(evt.nativeEvent),
+								);
+							}}
+							onDoubleClick={
+								isPreviewTab
+									? () => onPick(note.id, { preview: false })
+									: undefined
+							}
+						>
+							<NoteTabContent
+								{...immutableCallbacks}
+								note={note}
+								title={title}
+							/>
+						</Tab>
 					);
 				})}
 			</TabList>
