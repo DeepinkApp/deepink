@@ -44,7 +44,7 @@ export const useNoteCommandHandlers = () => {
 		await noteActions.close(noteId);
 
 		await notes.updateMeta([noteId], { isDeleted: true });
-		eventBus.emit(WorkspaceEvents.NOTE_UPDATED, noteId);
+		eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId });
 
 		telemetry.track(TELEMETRY_EVENT_NAME.NOTE_DELETED, {
 			permanently: 'false',
@@ -81,7 +81,7 @@ export const useNoteCommandHandlers = () => {
 			if (!note || !note.isDeleted) return;
 
 			await notes.updateMeta([noteId], { isDeleted: false });
-			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, noteId);
+			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId });
 
 			telemetry.track(TELEMETRY_EVENT_NAME.NOTE_RESTORED_FROM_BIN);
 		},
@@ -153,7 +153,7 @@ export const useNoteCommandHandlers = () => {
 			await notes.updateMeta([noteId], {
 				isArchived: newArchivedState,
 			});
-			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, noteId);
+			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId });
 
 			telemetry.track(TELEMETRY_EVENT_NAME.NOTE_ARCHIVE_TOGGLE, {
 				action: newArchivedState ? 'Added' : 'Removed',
@@ -174,11 +174,29 @@ export const useNoteCommandHandlers = () => {
 			await notes.updateMeta([noteId], {
 				isBookmarked: newBookmarkedState,
 			});
-			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, noteId);
+			eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId });
 
 			telemetry.track(TELEMETRY_EVENT_NAME.NOTE_BOOKMARK_TOGGLE, {
 				action: newBookmarkedState ? 'Added' : 'Removed',
 			});
 		},
 	);
+
+	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, async ({ noteId }) => {
+		const [note] = await notes.getById([noteId]);
+		if (!note) {
+			console.warn(`Not found note with id ${noteId}`);
+			return;
+		}
+
+		const newPinnedState = !note.isPinned;
+		await notes.updateMeta([noteId], {
+			isPinned: newPinnedState,
+		});
+		eventBus.emit(WorkspaceEvents.NOTE_UPDATED, { noteId, reason: 'meta' });
+
+		telemetry.track(TELEMETRY_EVENT_NAME.NOTE_PIN_TOGGLE, {
+			action: newPinnedState ? 'Pinned' : 'Unpinned',
+		});
+	});
 };

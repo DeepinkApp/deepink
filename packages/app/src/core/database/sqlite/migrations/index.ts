@@ -33,4 +33,8 @@ export async function convertSQLToMigrationObject(
 export const getMigrationsList = async (): Promise<SQLiteMigration[]> =>
 	Promise.all([
 		convertSQLToMigrationObject('1_init_db', import('./sql/1_init_db.sql')),
+		convertSQLToMigrationObject(
+			'2_add_pinned_to_notes',
+			import('./sql/2_add_pinned_to_notes.sql'),
+		),
 	]);

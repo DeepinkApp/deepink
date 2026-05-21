@@ -1,0 +1,2 @@
+ALTER TABLE notes
+ADD COLUMN pinned_at INTEGER;

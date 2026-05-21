@@ -293,8 +293,22 @@ export const Note: FC<NoteEditorProps> = memo(
 						>
 							<Box as={FaBoxArchive} transform="scale(1.1)" />
 						</Button>
-						<Button variant="ghost" size="xs">
-							<Box as={FaThumbtack} transform="scale(1.1)" />
+						<Button
+							variant="ghost"
+							size="xs"
+							title={
+								note.isPinned
+									? t('note.actions.unpinNote')
+									: t('note.actions.pinNote')
+							}
+							onClick={() => {
+								runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, {
+									noteId: note.id,
+								});
+							}}
+							isActive={note.isPinned}
+						>
+							<Box as={FaThumbtack} transform="scale(1.1) rotate(45deg)" />
 						</Button>
 					</HStack>
 
@@ -549,7 +563,7 @@ export const Note: FC<NoteEditorProps> = memo(
 															);
 															eventBus.emit(
 																WorkspaceEvents.NOTE_UPDATED,
-																note.id,
+																{ noteId: note.id },
 															);
 															forceUpdateLocalStateRef.current = true;
 														}}

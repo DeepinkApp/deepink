@@ -46,7 +46,7 @@ export class NotesTextIndexer {
 			// Take notes chunk
 			const notes = await this.notes
 				.get({
-					sort: { by: 'updatedAt', order: 'asc' },
+					sort: [{ by: 'updatedAt', order: 'asc' }],
 					updatedAt: { from: startDate ?? undefined },
 					limit: chunkSize,
 					page,

@@ -27,7 +27,7 @@ test('filter by update time', async () => {
 	await expect(
 		notes.get({
 			updatedAt: { from: new Date('01/01/2002 12:00') },
-			sort: { by: 'createdAt', order: 'asc' },
+			sort: [{ by: 'createdAt', order: 'asc' }],
 		}),
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2002' }) }),
@@ -37,7 +37,7 @@ test('filter by update time', async () => {
 	await expect(
 		notes.get({
 			updatedAt: { to: new Date('01/01/2002 12:00') },
-			sort: { by: 'createdAt', order: 'asc' },
+			sort: [{ by: 'createdAt', order: 'asc' }],
 		}),
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2001' }) }),
@@ -64,6 +64,80 @@ test('filter by update time', async () => {
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2005' }) }),
 	]);
+});
+
+test('sorts notes by pinned time', async () => {
+	const db = await openSQLite(createFileControllerMock());
+	onTestFinished(db.close);
+
+	const workspaceId = await createWorkspaceId(db.get());
+	const registry = new NotesController(db.get(), workspaceId);
+
+	const note1 = await registry.add({ title: '2001', text: 'Dummy text' });
+	const note2 = await registry.add({ title: '2002', text: 'Dummy text' });
+	const note3 = await registry.add({ title: '2003', text: 'Dummy text' });
+
+	// Pin
+	vi.setSystemTime('01/01/2010 12:00');
+	await registry.updateMeta([note1], { isPinned: true });
+	vi.setSystemTime('01/01/2011 12:00');
+	await registry.updateMeta([note3], { isPinned: true });
+
+	await expect(
+		registry.query({ sort: [{ by: 'pinnedAt', order: 'desc' }] }),
+	).resolves.toStrictEqual([note3, note1, note2]);
+
+	// Updating note content in a pinned note should not affect the order
+	vi.setSystemTime('01/01/2015 12:00');
+	await registry.update(note1, { title: '2015', text: 'Dummy text' });
+
+	await expect(
+		registry.query({ sort: [{ by: 'pinnedAt', order: 'desc' }] }),
+	).resolves.toStrictEqual([note3, note1, note2]);
+});
+
+test('sorts notes by pinned time and update time', async () => {
+	const db = await openSQLite(createFileControllerMock());
+	onTestFinished(db.close);
+
+	const workspaceId = await createWorkspaceId(db.get());
+	const registry = new NotesController(db.get(), workspaceId);
+
+	vi.setSystemTime('01/01/2000 12:00');
+	const note1 = await registry.add({ title: '2001', text: 'Dummy text' });
+
+	vi.setSystemTime('01/01/2002 12:00');
+	const note2 = await registry.add({ title: '2002', text: 'Dummy text' });
+
+	vi.setSystemTime('01/01/2004 12:00');
+	const note3 = await registry.add({ title: '2004', text: 'Dummy text' });
+
+	// Pin note1
+	vi.setSystemTime('01/01/2010 12:00');
+	await registry.updateMeta([note1], { isPinned: true });
+
+	// Pinned notes come first, unpinned notes are sorted by update time
+	await expect(
+		registry.query({
+			sort: [
+				{ by: 'pinnedAt', order: 'desc' },
+				{ by: 'updatedAt', order: 'desc' },
+			],
+		}),
+	).resolves.toStrictEqual([note1, note3, note2]);
+
+	// Update an unpinned note2
+	vi.setSystemTime('01/01/2015 12:00');
+	await registry.update(note2, { title: '2015', text: 'Dummy text' });
+
+	await expect(
+		registry.query({
+			sort: [
+				{ by: 'pinnedAt', order: 'desc' },
+				{ by: 'updatedAt', order: 'desc' },
+			],
+		}),
+	).resolves.toStrictEqual([note1, note2, note3]);
 });
 
 describe('data fetching', () => {
@@ -284,6 +358,23 @@ describe('data fetching', () => {
 		await expect(
 			registry.get({ meta: { isBookmarked: false } }),
 		).resolves.toHaveLength(notesSample.length - 40);
+	});
+
+	test('filters notes by pinned status', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+
+		const notesId = await registry
+			.get({ limit: 60 })
+			.then((notes) => notes.map((note) => note.id));
+
+		await registry.updateMeta(notesId, { isPinned: true });
+		await expect(registry.get({ meta: { isPinned: true } })).resolves.toHaveLength(
+			60,
+		);
+		await expect(registry.get({ meta: { isPinned: false } })).resolves.toHaveLength(
+			notesSample.length - 60,
+		);
 	});
 
 	test('method getLength consider filters', async () => {

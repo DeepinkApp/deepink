@@ -48,6 +48,10 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 					runCommand(GLOBAL_COMMANDS.RESTORE_NOTE_FROM_BIN, { noteId });
 				},
 
+				[NoteActions.PIN_NOTE]: (noteId: string) => {
+					runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, { noteId });
+				},
+
 				[NoteActions.DUPLICATE]: (noteId: string) => {
 					runCommand(GLOBAL_COMMANDS.DUPLICATE_NOTE, { noteId });
 				},
@@ -118,6 +122,18 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 						] as const)
 					: []),
 
+				...(context !== 'tabs'
+					? ([
+							{
+								id: NoteActions.PIN_NOTE,
+								label: note.isPinned
+									? t('noteList.unpinNote')
+									: t('noteList.pinNote'),
+							},
+							{ type: 'separator' },
+						] as const)
+					: []),
+
 				...(note.isDeleted
 					? [{ id: NoteActions.RESTORE_FROM_BIN, label: t('restoreFromBin') }]
 					: []),
@@ -130,6 +146,7 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 					id: NoteActions.EXPORT,
 					label: t('export'),
 				},
+
 				{
 					id: NoteActions.COPY_MARKDOWN_LINK,
 					label: t('copyMarkdownLink'),

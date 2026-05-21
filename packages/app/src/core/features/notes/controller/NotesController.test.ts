@@ -194,14 +194,14 @@ test('Get notes by pages', async () => {
 	const page1 = await registry.get({
 		limit: 100,
 		page: 1,
-		sort: { by: 'createdAt', order: 'asc' },
+		sort: [{ by: 'createdAt', order: 'asc' }],
 	});
 	expect(page1[0].content).toMatchObject(notesSample[0]);
 
 	const page2 = await registry.get({
 		limit: 100,
 		page: 2,
-		sort: { by: 'createdAt', order: 'asc' },
+		sort: [{ by: 'createdAt', order: 'asc' }],
 	});
 	expect(page2[0].content).toMatchObject(notesSample[100]);
 });
@@ -405,6 +405,35 @@ describe('Meta data control', () => {
 				id: noteId,
 				content: { title: 'Title', text: 'Text' },
 				updatedTimestamp: 5000,
+			},
+		]);
+	});
+
+	test('toggle note pinned status', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+
+		const noteId = await registry.add({ title: 'Title', text: 'Text' });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				isPinned: false,
+			},
+		]);
+
+		await registry.updateMeta([noteId], { isPinned: true });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				isPinned: true,
+			},
+		]);
+
+		await registry.updateMeta([noteId], { isPinned: false });
+		await expect(registry.getById([noteId])).resolves.toMatchObject([
+			{
+				id: noteId,
+				isPinned: false,
 			},
 		]);
 	});

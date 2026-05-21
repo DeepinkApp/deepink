@@ -1,5 +1,13 @@
 import React, { forwardRef, ReactNode } from 'react';
-import { Box, StackProps, Text, useMultiStyleConfig, VStack } from '@chakra-ui/react';
+import { FaThumbtack } from 'react-icons/fa6';
+import {
+	Box,
+	HStack,
+	StackProps,
+	Text,
+	useMultiStyleConfig,
+	VStack,
+} from '@chakra-ui/react';
 
 import { TextSample } from './TextSample';
 
@@ -10,11 +18,11 @@ export const NotePreview = forwardRef<
 		text: string;
 		meta?: ReactNode;
 		isSelected?: boolean;
+		isPinned?: boolean;
 		textToHighlight?: string;
 	} & StackProps
->(({ title, text, textToHighlight, meta, isSelected, ...props }, ref) => {
+>(({ title, text, textToHighlight, meta, isSelected, isPinned, ...props }, ref) => {
 	const styles = useMultiStyleConfig('NotePreview');
-
 	return (
 		<VStack
 			ref={ref}
@@ -26,13 +34,17 @@ export const NotePreview = forwardRef<
 			}}
 		>
 			<VStack sx={styles.body}>
-				<Text as="h3" sx={styles.title}>
-					<TextSample
-						text={title}
-						highlightText={textToHighlight}
-						lengthLimit={50}
-					/>
-				</Text>
+				<HStack sx={styles.header}>
+					<Text as="h3" sx={styles.title}>
+						<TextSample
+							text={title}
+							highlightText={textToHighlight}
+							lengthLimit={50}
+						/>
+					</Text>
+
+					{isPinned && <Box as={FaThumbtack} sx={styles.pinIcon} />}
+				</HStack>
 
 				{text.length > 0 ? (
 					<Text sx={styles.text}>

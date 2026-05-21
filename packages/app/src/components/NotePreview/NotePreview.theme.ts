@@ -3,9 +3,11 @@ import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
 export const NotePreviewTheme = createMultiStyleConfigHelpers([
 	'root',
 	'body',
+	'header',
 	'title',
 	'text',
 	'meta',
+	'pinIcon',
 ]).defineMultiStyleConfig({
 	baseStyle: {
 		root: {
@@ -20,11 +22,20 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 		body: {
 			gap: '0.2rem',
 			alignItems: 'start',
-			maxWidth: '100%',
+			width: '100%',
+		},
+		header: {
+			width: '100%',
+			justifyContent: 'space-between',
 		},
 		title: {
 			fontWeight: 'bold',
 			fontSize: '18px',
+		},
+		pinIcon: {
+			color: 'typography.secondary',
+			transform: 'rotate(45deg)',
+			fontSize: '12px',
 		},
 		text: {
 			fontSize: '14px',
