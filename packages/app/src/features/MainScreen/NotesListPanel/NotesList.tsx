@@ -91,6 +91,7 @@ export const NotesList: FC<NotesListProps> = () => {
 				align: 'center',
 				userSelect: 'none',
 				paddingInlineEnd: '.3rem',
+				overflowAnchor: 'none',
 			}}
 		>
 			{noteIds.length === 0 ? (
