@@ -7,6 +7,8 @@ export enum WorkspaceEvents {
 	NOTE_HISTORY_UPDATED = 'noteHistoryUpdated',
 }
 
+export type NoteUpdatedReason = 'meta' | 'content';
+
 /**
  * Events payload map
  */
@@ -24,7 +26,7 @@ export type WorkspaceEventsPayloadMap = {
 	 */
 	[WorkspaceEvents.NOTE_UPDATED]: {
 		noteId: NoteId;
-		reason?: 'meta' | 'content';
+		reason?: NoteUpdatedReason;
 	};
 
 	/**
