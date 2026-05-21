@@ -43,19 +43,29 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 	// Re-fetch note data by changes
 	const eventBus = useEventBus();
 	useEffect(() => {
-		const onNoteUpdated = (noteId: NoteId) => {
+		const onNoteUpdated = (noteId: NoteId, reason?: 'meta' | 'content') => {
 			if (notesData.has(noteId)) {
+				// Meta changes (e.g. pin/unpin) reorder the notes list, but note data is updated with debounce
+				// which can cause stale UI. To avoid inconsistency, we immediately refresh the updated note
+				if (reason === 'meta') {
+					notesRegistry.getById([noteId]).then((note) => {
+						if (note.length === 0) return;
+						notesData.add(
+							note.map((note) => [note.id, note] as [string, INote]),
+						);
+					});
+				}
 				loadNotesData();
 			}
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId }) =>
-				onNoteUpdated(noteId),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId, reason }) =>
+				onNoteUpdated(noteId, reason),
 			),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
-	}, [eventBus, loadNotesData, notesData]);
+	}, [eventBus, loadNotesData, notesData, notesRegistry]);
 
 	return notesData;
 };
