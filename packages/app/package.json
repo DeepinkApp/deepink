@@ -27,6 +27,7 @@
 		"test": "vitest",
 		"clean": "rm -Rf dist out",
 		"dev": "webpack -w -c webpack.config.ts",
+		"serve": "webpack serve -c webpack.config.ts",
 		"start": "electron-forge start -- --no-sandbox",
 		"build": "rm -Rf dist && cross-env NODE_OPTIONS=--max-old-space-size=4096 NODE_ENV=production webpack -c webpack.config.ts",
 		"make": "electron-forge make",
@@ -44,6 +45,7 @@
 		"@electron-forge/maker-wix": "^7.11.1",
 		"@electron-forge/maker-zip": "^7.11.1",
 		"@electron-forge/plugin-auto-unpack-natives": "^7.11.1",
+		"@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
 		"@reforged/maker-appimage": "^5.1.1",
 		"@svgr/webpack": "^8.1.0",
 		"@swc/core": "^1.15.11",
@@ -78,6 +80,7 @@
 		"mini-css-extract-plugin": "^2.10.0",
 		"node-loader": "^2.1.0",
 		"p-limit": "^7.2.0",
+		"react-refresh": "^0.18.0",
 		"sharp": "^0.34.5",
 		"sharp-ico": "^0.1.5",
 		"swc-loader": "^0.2.7",
@@ -93,6 +96,7 @@
 		"vite-tsconfig-paths": "^6.1.1",
 		"webpack": "^5.106.2",
 		"webpack-cli": "^6.0.1",
+		"webpack-dev-server": "^5.2.4",
 		"webpack-merge": "^6.0.1"
 	},
 	"dependencies": {

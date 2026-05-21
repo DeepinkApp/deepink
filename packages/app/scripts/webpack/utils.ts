@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, statSync } from 'fs';
 import path from 'path';
+import { argv } from 'process';
 import { PathData } from 'webpack';
 
 export const projectRoot = path.resolve('.');
@@ -7,6 +8,8 @@ export const projectRoot = path.resolve('.');
 export const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 export const isProduction = mode === 'production';
+
+export const isWebpackServeMode = argv.includes('serve');
 
 export const isPreloadChunk = (chunk: Exclude<PathData['chunk'], void>) =>
 	Boolean(chunk.name && chunk.name.endsWith('-preload'));

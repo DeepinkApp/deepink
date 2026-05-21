@@ -3,6 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import { Configuration, WebpackPluginInstance } from 'webpack';
+import { Configuration as DevServerConfig } from 'webpack-dev-server';
 import { merge } from 'webpack-merge';
 
 import { productName } from '../../package.json';
@@ -24,6 +25,12 @@ function getPathForPackage(packageName: string, packagePath: string) {
 
 export default merge(commonConfig, {
 	target: 'web',
+	devServer: {
+		client: {
+			overlay: false,
+		},
+		hot: 'only',
+	} satisfies DevServerConfig,
 	entry: {
 		...Object.fromEntries(
 			windows.map(({ name, renderer }) => [
