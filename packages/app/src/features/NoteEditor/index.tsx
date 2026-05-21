@@ -41,6 +41,7 @@ import { useTelemetryTracker } from '@features/telemetry';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useCommand } from '@hooks/commands/useCommand';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
+import { useImmutableCallback } from '@hooks/useImmutableCallback';
 import { useAppDispatch } from '@state/redux/hooks';
 import {
 	useVaultSelector,
@@ -61,6 +62,245 @@ export enum NoteSidebarTabs {
 	BACK_LINKS = 'BACK_LINKS',
 }
 
+const NoteControlsPanel = ({ note }: { note: INote }) => {
+	const { t } = useTranslation(LOCALE_NAMESPACE.features);
+	const telemetry = useTelemetryTracker();
+	const dispatch = useAppDispatch();
+	const workspaceData = useWorkspaceData();
+
+	const runCommand = useCommand();
+
+	const tagsRegistry = useTagsRegistry();
+
+	const tags = useWorkspaceSelector(selectTags);
+
+	const [notAttachedTags, setNotAttachedTags] = useState<IResolvedTag[]>([]);
+	const [attachedTags, setAttachedTags] = useState<IResolvedTag[]>([]);
+	const updateTags = useCallback(async () => {
+		const attachedTags = await tagsRegistry.getAttachedTags(note.id);
+		setAttachedTags(attachedTags);
+
+		const filteredAttachedTags = tags.filter(
+			({ id }) => !attachedTags.some((attachedTag) => attachedTag.id === id),
+		);
+		setNotAttachedTags(filteredAttachedTags);
+	}, [note.id, tags, tagsRegistry]);
+	useEffect(() => {
+		updateTags();
+	}, [note.id, tagsRegistry, updateTags]);
+
+	// Snapshot note once
+	const noteSnapshotPromiseRef = useRef<null | Promise<void>>(null);
+	const noteHistory = useNotesHistory();
+	const { enabled: isSnapshotsEnabled } = useVaultSelector(selectSnapshotSettings);
+	useEffect(() => {
+		if (!isSnapshotsEnabled || note.isSnapshotsDisabled) return;
+
+		noteSnapshotPromiseRef.current = new Promise<void>(async (res) => {
+			for (let attempt = 0; attempt < 3; attempt++) {
+				try {
+					await noteHistory.snapshot(note.id);
+					res();
+					return;
+				} catch (err) {
+					// Retry after delay
+					console.error(err);
+					await new Promise((res) => setTimeout(res, 200));
+				}
+			}
+		}).then(() => {
+			noteSnapshotPromiseRef.current = null;
+		});
+
+		// We need to run this effect once, at first render only
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	// TODO: throttle calls and run in IDLE
+	const noteId = note.id;
+
+	const [attachTagName, setAttachTagName] = useState<IResolvedTag | null>(null);
+	const [tagSearch, setTagSearch] = useState(
+		attachTagName ? attachTagName.resolvedName : '',
+	);
+
+	return (
+		<HStack alignItems="center" w="100%" flexWrap="wrap">
+			<HStack gap=".3rem">
+				<Button
+					variant="ghost"
+					title={
+						note.isBookmarked
+							? t('note.actions.removeFromFavorites')
+							: t('note.actions.addToFavorites')
+					}
+					size="xs"
+					onClick={() =>
+						runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_BOOKMARK, {
+							noteId: note.id,
+						})
+					}
+					isActive={note.isBookmarked}
+				>
+					<Box
+						as={note.isBookmarked ? FaStar : FaRegStar}
+						transform="scale(1.2)"
+					/>
+				</Button>
+				<Button
+					variant="ghost"
+					title={
+						note.isArchived
+							? t('note.actions.removeFromArchive')
+							: t('note.actions.moveToArchive')
+					}
+					size="xs"
+					onClick={() =>
+						runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_ARCHIVE, {
+							noteId: note.id,
+						})
+					}
+					isActive={note.isArchived}
+				>
+					<Box as={FaBoxArchive} transform="scale(1.1)" />
+				</Button>
+				<Button variant="ghost" size="xs">
+					<Box as={FaThumbtack} transform="scale(1.1)" />
+				</Button>
+			</HStack>
+
+			<Divider orientation="vertical" h="1em" />
+
+			{attachedTags.map((tag) => (
+				<Tag
+					as={HStack}
+					key={tag.id}
+					height="fit-content"
+					gap=".4rem"
+					onClick={() => {
+						dispatch(
+							workspacesApi.setSelectedTag({
+								...workspaceData,
+								tag: tag.id,
+							}),
+						);
+					}}
+					sx={{ cursor: 'pointer' }}
+				>
+					<HStack gap=".2rem">
+						<FaHashtag />
+						<Text>{tag.resolvedName}</Text>
+					</HStack>
+
+					<Box
+						sx={{
+							'&:not(:hover)': {
+								opacity: '.6',
+							},
+						}}
+					>
+						<FaXmark
+							onClick={async (evt) => {
+								evt.stopPropagation();
+								console.warn('Remove attached tag', tag.resolvedName);
+
+								const updatedTags = attachedTags
+									.filter(({ id }) => id !== tag.id)
+									.map(({ id }) => id);
+								await tagsRegistry.setAttachedTags(noteId, updatedTags);
+								await updateTags();
+
+								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_TAG_DETACHED, {
+									count: Math.max(0, attachedTags.length - 1),
+								});
+							}}
+						/>
+					</Box>
+				</Tag>
+			))}
+
+			<SuggestedTagsList
+				tags={notAttachedTags}
+				selectedTag={attachTagName ?? undefined}
+				inputValue={tagSearch}
+				onInputChange={setTagSearch}
+				sx={{
+					display: 'inline',
+					w: 'auto',
+					maxW: '150px',
+				}}
+				inputProps={{
+					placeholder: t('note.tags.addPlaceholder'),
+					// size: 'sm',
+					size: 'xs',
+					variant: 'flushed',
+				}}
+				hasTagName={(tagName) =>
+					tags.some(({ resolvedName }) => resolvedName === tagName)
+				}
+				onPick={async (tag) => {
+					setAttachTagName(tag);
+					await tagsRegistry.setAttachedTags(noteId, [
+						...attachedTags.map(({ id }) => id),
+						tag.id,
+					]);
+					telemetry.track(TELEMETRY_EVENT_NAME.NOTE_TAG_ATTACHED, {
+						tagsCount: attachedTags.length + 1,
+						context: 'tags suggest list',
+					});
+
+					setTagSearch('');
+
+					await updateTags();
+				}}
+				onCreateTag={async (tagName) => {
+					setAttachTagName(null);
+
+					let shortenedTagName = tagName;
+					let parentTagId: string | null = null;
+					const tagSegments = tagName.split('/');
+					for (
+						let lastSegmentIndex = tagSegments.length - 1;
+						lastSegmentIndex > 0;
+						lastSegmentIndex--
+					) {
+						const resolvedParentTag = tagSegments
+							.slice(0, lastSegmentIndex)
+							.join('/');
+						const foundTag = tags.find(
+							({ resolvedName }) => resolvedName === resolvedParentTag,
+						);
+						if (foundTag) {
+							parentTagId = foundTag.id;
+							shortenedTagName = tagSegments
+								.slice(lastSegmentIndex)
+								.join('/');
+							break;
+						}
+					}
+
+					const tagId = await tagsRegistry.add(shortenedTagName, parentTagId);
+					telemetry.track(TELEMETRY_EVENT_NAME.TAG_CREATED, {
+						scope: 'note editor',
+						hasParent: parentTagId === null ? 'no' : 'yes',
+					});
+
+					await tagsRegistry.setAttachedTags(noteId, [
+						...attachedTags.map(({ id }) => id),
+						tagId,
+					]);
+					telemetry.track(TELEMETRY_EVENT_NAME.NOTE_TAG_ATTACHED, {
+						tagsCount: attachedTags.length + 1,
+						context: 'create tag option',
+					});
+
+					await updateTags();
+				}}
+			/>
+		</HStack>
+	);
+};
+
 export type NoteEditorProps = {
 	note: INote;
 	updateNote: (note: INoteContent) => void;
@@ -72,17 +312,13 @@ export type NoteEditorProps = {
  * TODO: rename directory of component
  * TODO: create note context to interact with note from deep components
  */
-export const Note: FC<NoteEditorProps> = memo(
+export const Note2: FC<NoteEditorProps> = memo(
 	({ note, updateNote, updateMeta, isActive }) => {
 		const { t } = useTranslation(LOCALE_NAMESPACE.features);
 		const telemetry = useTelemetryTracker();
-		const dispatch = useAppDispatch();
-		const workspaceData = useWorkspaceData();
 
 		const eventBus = useEventBus();
 		const notesRegistry = useNotesRegistry();
-
-		const runCommand = useCommand();
 
 		const [title, setTitle] = useState(note.content.title);
 		const [text, setText] = useState(note.content.text);
@@ -99,25 +335,6 @@ export const Note: FC<NoteEditorProps> = memo(
 			setTitle(note.content.title);
 			setText(note.content.text);
 		}, [note]);
-
-		const tagsRegistry = useTagsRegistry();
-
-		const tags = useWorkspaceSelector(selectTags);
-
-		const [notAttachedTags, setNotAttachedTags] = useState<IResolvedTag[]>([]);
-		const [attachedTags, setAttachedTags] = useState<IResolvedTag[]>([]);
-		const updateTags = useCallback(async () => {
-			const attachedTags = await tagsRegistry.getAttachedTags(note.id);
-			setAttachedTags(attachedTags);
-
-			const filteredAttachedTags = tags.filter(
-				({ id }) => !attachedTags.some((attachedTag) => attachedTag.id === id),
-			);
-			setNotAttachedTags(filteredAttachedTags);
-		}, [note.id, tags, tagsRegistry]);
-		useEffect(() => {
-			updateTags();
-		}, [note.id, tagsRegistry, updateTags]);
 
 		const updateNoteRef = useRef(updateNote);
 		updateNoteRef.current = updateNote;
@@ -203,11 +420,6 @@ export const Note: FC<NoteEditorProps> = memo(
 			updateAttachments(text);
 		}, [text, updateAttachments]);
 
-		const [attachTagName, setAttachTagName] = useState<IResolvedTag | null>(null);
-		const [tagSearch, setTagSearch] = useState(
-			attachTagName ? attachTagName.resolvedName : '',
-		);
-
 		const [sidePanel, setSidePanel] = useState<NoteSidebarTabs | null>(null);
 		useEffect(() => {
 			if (sidePanel) {
@@ -254,195 +466,7 @@ export const Note: FC<NoteEditorProps> = memo(
 					</HStack>
 				</HStack>
 
-				<HStack alignItems="center" w="100%" flexWrap="wrap">
-					<HStack gap=".3rem">
-						<Button
-							variant="ghost"
-							title={
-								note.isBookmarked
-									? t('note.actions.removeFromFavorites')
-									: t('note.actions.addToFavorites')
-							}
-							size="xs"
-							onClick={() =>
-								runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_BOOKMARK, {
-									noteId: note.id,
-								})
-							}
-							isActive={note.isBookmarked}
-						>
-							<Box
-								as={note.isBookmarked ? FaStar : FaRegStar}
-								transform="scale(1.2)"
-							/>
-						</Button>
-						<Button
-							variant="ghost"
-							title={
-								note.isArchived
-									? t('note.actions.removeFromArchive')
-									: t('note.actions.moveToArchive')
-							}
-							size="xs"
-							onClick={() =>
-								runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_ARCHIVE, {
-									noteId: note.id,
-								})
-							}
-							isActive={note.isArchived}
-						>
-							<Box as={FaBoxArchive} transform="scale(1.1)" />
-						</Button>
-						<Button variant="ghost" size="xs">
-							<Box as={FaThumbtack} transform="scale(1.1)" />
-						</Button>
-					</HStack>
-
-					<Divider orientation="vertical" h="1em" />
-
-					{attachedTags.map((tag) => (
-						<Tag
-							as={HStack}
-							key={tag.id}
-							height="fit-content"
-							gap=".4rem"
-							onClick={() => {
-								dispatch(
-									workspacesApi.setSelectedTag({
-										...workspaceData,
-										tag: tag.id,
-									}),
-								);
-							}}
-							sx={{ cursor: 'pointer' }}
-						>
-							<HStack gap=".2rem">
-								<FaHashtag />
-								<Text>{tag.resolvedName}</Text>
-							</HStack>
-
-							<Box
-								sx={{
-									'&:not(:hover)': {
-										opacity: '.6',
-									},
-								}}
-							>
-								<FaXmark
-									onClick={async (evt) => {
-										evt.stopPropagation();
-										console.warn(
-											'Remove attached tag',
-											tag.resolvedName,
-										);
-
-										const updatedTags = attachedTags
-											.filter(({ id }) => id !== tag.id)
-											.map(({ id }) => id);
-										await tagsRegistry.setAttachedTags(
-											noteId,
-											updatedTags,
-										);
-										await updateTags();
-
-										telemetry.track(
-											TELEMETRY_EVENT_NAME.NOTE_TAG_DETACHED,
-											{
-												count: Math.max(
-													0,
-													attachedTags.length - 1,
-												),
-											},
-										);
-									}}
-								/>
-							</Box>
-						</Tag>
-					))}
-
-					<SuggestedTagsList
-						tags={notAttachedTags}
-						selectedTag={attachTagName ?? undefined}
-						inputValue={tagSearch}
-						onInputChange={setTagSearch}
-						sx={{
-							display: 'inline',
-							w: 'auto',
-							maxW: '150px',
-						}}
-						inputProps={{
-							placeholder: t('note.tags.addPlaceholder'),
-							// size: 'sm',
-							size: 'xs',
-							variant: 'flushed',
-						}}
-						hasTagName={(tagName) =>
-							tags.some(({ resolvedName }) => resolvedName === tagName)
-						}
-						onPick={async (tag) => {
-							setAttachTagName(tag);
-							await tagsRegistry.setAttachedTags(noteId, [
-								...attachedTags.map(({ id }) => id),
-								tag.id,
-							]);
-							telemetry.track(TELEMETRY_EVENT_NAME.NOTE_TAG_ATTACHED, {
-								tagsCount: attachedTags.length + 1,
-								context: 'tags suggest list',
-							});
-
-							setTagSearch('');
-
-							await updateTags();
-						}}
-						onCreateTag={async (tagName) => {
-							setAttachTagName(null);
-
-							let shortenedTagName = tagName;
-							let parentTagId: string | null = null;
-							const tagSegments = tagName.split('/');
-							for (
-								let lastSegmentIndex = tagSegments.length - 1;
-								lastSegmentIndex > 0;
-								lastSegmentIndex--
-							) {
-								const resolvedParentTag = tagSegments
-									.slice(0, lastSegmentIndex)
-									.join('/');
-								const foundTag = tags.find(
-									({ resolvedName }) =>
-										resolvedName === resolvedParentTag,
-								);
-								if (foundTag) {
-									parentTagId = foundTag.id;
-									shortenedTagName = tagSegments
-										.slice(lastSegmentIndex)
-										.join('/');
-									break;
-								}
-							}
-
-							const tagId = await tagsRegistry.add(
-								shortenedTagName,
-								parentTagId,
-							);
-							telemetry.track(TELEMETRY_EVENT_NAME.TAG_CREATED, {
-								scope: 'note editor',
-								hasParent: parentTagId === null ? 'no' : 'yes',
-							});
-
-							await tagsRegistry.setAttachedTags(noteId, [
-								...attachedTags.map(({ id }) => id),
-								tagId,
-							]);
-							telemetry.track(TELEMETRY_EVENT_NAME.NOTE_TAG_ATTACHED, {
-								tagsCount: attachedTags.length + 1,
-								context: 'create tag option',
-							});
-
-							await updateTags();
-						}}
-					/>
-				</HStack>
+				<NoteControlsPanel note={note} />
 
 				{versionPreview && (
 					<HStack alignItems="center" w="100%" flexWrap="wrap">
@@ -609,4 +633,14 @@ export const Note: FC<NoteEditorProps> = memo(
 	},
 );
 
+Note2.displayName = 'Note2';
+
+export const Note: FC<NoteEditorProps> = ({ updateMeta, updateNote, ...props }) => {
+	const immutableCallbacks = {
+		updateMeta: useImmutableCallback(updateMeta, [updateMeta]),
+		updateNote: useImmutableCallback(updateNote, [updateNote]),
+	};
+
+	return <Note2 {...immutableCallbacks} {...props} />;
+};
 Note.displayName = 'Note';
