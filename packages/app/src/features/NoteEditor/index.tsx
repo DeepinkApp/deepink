@@ -62,7 +62,7 @@ export enum NoteSidebarTabs {
 	BACK_LINKS = 'BACK_LINKS',
 }
 
-const NoteControlsPanel = ({ note }: { note: INote }) => {
+const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const telemetry = useTelemetryTracker();
 	const dispatch = useAppDispatch();
@@ -299,7 +299,7 @@ const NoteControlsPanel = ({ note }: { note: INote }) => {
 			/>
 		</HStack>
 	);
-};
+});
 
 export type NoteEditorProps = {
 	note: INote;
@@ -320,8 +320,18 @@ export const Note2: FC<NoteEditorProps> = memo(
 		const eventBus = useEventBus();
 		const notesRegistry = useNotesRegistry();
 
+		const [versionPreview, setVersionPreview] = useState<NoteVersion | null>(null);
+		const isReadOnly = note.isDeleted || Boolean(versionPreview);
+
 		const [title, setTitle] = useState(note.content.title);
 		const [text, setText] = useState(note.content.text);
+		const setTextInWriteMode = useCallback(
+			(noteText: string) => {
+				if (isReadOnly) return;
+				setText(noteText);
+			},
+			[isReadOnly],
+		);
 
 		// TODO: Toggle the tab to regular only for user changes and ignore non-user changes (e.g. synchronization).
 		useTogglePreviewTabToRegularOnChange(note.id, [text, title]);
@@ -439,10 +449,6 @@ export const Note2: FC<NoteEditorProps> = memo(
 			{ enabled: isActive },
 		);
 
-		const [versionPreview, setVersionPreview] = useState<NoteVersion | null>(null);
-
-		const isReadOnly = note.isDeleted || Boolean(versionPreview);
-
 		return (
 			<VStack w="100%" align="start">
 				<HStack w="100%" align="start">
@@ -506,10 +512,7 @@ export const Note2: FC<NoteEditorProps> = memo(
 					>
 						<NoteEditor
 							text={versionPreview ? versionPreview.text : text}
-							setText={(noteText) => {
-								if (isReadOnly) return;
-								setText(noteText);
-							}}
+							setText={setTextInWriteMode}
 							isReadOnly={isReadOnly}
 							isActive={isActive}
 						/>
