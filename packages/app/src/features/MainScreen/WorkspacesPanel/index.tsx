@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaPlus } from 'react-icons/fa6';
+import { isEqual } from 'lodash';
 import { createSelector } from 'reselect';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Divider, HStack, Select, StackProps, Text, VStack } from '@chakra-ui/react';
@@ -33,7 +34,7 @@ export const WorkspacesPanel = (props: StackProps) => {
 			),
 		[vaultId],
 	);
-	const workspaces = useAppSelector(selectWorkspacesWithMemo);
+	const workspaces = useAppSelector(selectWorkspacesWithMemo, isEqual);
 
 	const modal = useWorkspaceModal();
 
