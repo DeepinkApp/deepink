@@ -30,12 +30,16 @@ export const selectBinRetentionPolicy = createVaultSelector(
 	}),
 );
 
-export const selectWorkspacesSummary = createVaultSelector([selectVault], (vault) =>
-	Object.values(vault.workspaces)
-		.values()
-		.filter((i) => i !== undefined)
-		.map(({ id, name }) => ({ id, name }))
-		.toArray(),
+export const selectWorkspacesSummary = createVaultSelector(
+	[(state: VaultData | null) => state],
+	(vault) =>
+		vault
+			? Object.values(vault.workspaces)
+					.values()
+					.filter((i) => i !== undefined)
+					.map(({ id, name, touched }) => ({ id, name, touched }))
+					.toArray()
+			: [],
 );
 
 export const selectIntegrityServiceConfig = createVaultSelector(
