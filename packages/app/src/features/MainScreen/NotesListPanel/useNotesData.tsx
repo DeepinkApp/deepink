@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { NoteUpdatedReason, WorkspaceEvents } from '@api/events/workspace';
+import { NoteUpdateReason, WorkspaceEvents } from '@api/events/workspace';
 import { INote, NoteId } from '@core/features/notes';
 import { useEventBus, useNotesRegistry } from '@features/App/Workspace/WorkspaceProvider';
 import { useDeepEqualValue } from '@hooks/useDeepEqualValue';
@@ -43,7 +43,7 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 	// Re-fetch note data by changes
 	const eventBus = useEventBus();
 	useEffect(() => {
-		const onNoteUpdated = (noteId: NoteId, reason?: NoteUpdatedReason) => {
+		const onNoteUpdated = (noteId: NoteId, reason?: NoteUpdateReason) => {
 			if (notesData.has(noteId)) {
 				// Meta changes (e.g. pin/unpin) reorder the notes list, but note data is updated with debounce,
 				// which can cause stale UI (e.g. after unpinning the note may still show the pin icon)
