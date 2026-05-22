@@ -50,7 +50,13 @@ describe('Tags sorting', () => {
 					'Watermelon',
 					'Banana',
 				]
-					.map((text) => ({ id: text, name: text }) as TagNode)
+					.map(
+						(text) =>
+							({
+								id: text,
+								name: text,
+							}) as TagNode,
+					)
 					.sort(sortTagsLexicographically),
 			).toEqual(
 				[

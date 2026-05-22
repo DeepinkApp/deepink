@@ -1,7 +1,7 @@
 import React, { Fragment, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Divider, HStack, Text } from '@chakra-ui/react';
+import { Box, HStack, Separator, Text } from '@chakra-ui/react';
 import { Features } from '@components/Features/Features';
 import { FeaturesPanel } from '@components/Features/Group';
 import { SHORTCUT_I18N_KEYS, SHORTCUTS_MAP } from '@hooks/shortcuts';
@@ -44,7 +44,7 @@ export const HotKeysSettings = () => {
 				{Object.entries(SHORTCUTS_MAP).map(([shortcuts, command], index) => {
 					return (
 						<Fragment key={command}>
-							{index > 0 && <Divider />}
+							{index > 0 && <Separator />}
 							<HStack w="100%">
 								<Text>{t(SHORTCUT_I18N_KEYS[command])}</Text>
 								<Box marginInlineStart="auto">

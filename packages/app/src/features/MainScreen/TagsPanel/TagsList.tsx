@@ -73,7 +73,7 @@ export const TagsList: FC<ITagsListProps> = ({
 								boxSize="1rem"
 								minWidth={0}
 								tabIndex={-1}
-								sx={{
+								css={{
 									borderRadius: '4px',
 								}}
 								onClick={(evt) => {

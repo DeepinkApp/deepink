@@ -5,9 +5,8 @@ import {
 	BoxProps,
 	Input,
 	InputProps,
-	ListItem,
+	List,
 	Text,
-	UnorderedList,
 	useControllableState,
 } from '@chakra-ui/react';
 import { IResolvedTag } from '@core/features/tags';
@@ -72,7 +71,11 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 						resolvedName.toLowerCase().includes(inputValue.toLowerCase()),
 				)
 				.map(
-					({ id, resolvedName }) => ({ id, content: resolvedName }) as ListItem,
+					({ id, resolvedName }) =>
+						({
+							id,
+							content: resolvedName,
+						}) as ListItem,
 				);
 
 			// Add button to create new tag
@@ -145,7 +148,8 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 						/>
 					</Box>
 					{isOpen && (
-						<UnorderedList
+						<List.Root
+							as="ul"
 							{...getMenuProps()}
 							position="absolute"
 							overflow="auto"
@@ -163,11 +167,11 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 						>
 							{getListItems(inputValue).map((item, index) => {
 								return (
-									<ListItem
+									<List.Item
 										// @ts-expect-error ensure key
 										key={item.id}
 										listStyleType="none"
-										sx={{
+										css={{
 											padding: '.3rem',
 											paddingInline: '1rem',
 											fontSize: '1rem',
@@ -187,10 +191,10 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 										>
 											{item.content}
 										</Text>
-									</ListItem>
+									</List.Item>
 								);
 							})}
-						</UnorderedList>
+						</List.Root>
 					)}
 				</Box>
 			)}

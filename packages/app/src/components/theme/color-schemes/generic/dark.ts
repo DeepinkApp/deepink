@@ -1,156 +1,104 @@
-import { getScrollBarStyles } from '../../base';
+import { defineConfig } from '@chakra-ui/react';
+
 import { buildColorScheme } from '../../color';
 
 export default function (accentColor: string) {
 	const colors = buildColorScheme(accentColor);
+	const accent = colors.accentVariants;
 
-	return {
-		styles: {
-			global: {
-				...getScrollBarStyles(),
-			},
-		},
-		shadows: {
-			outline: `0 0 0 3px ${colors.accentVariants['400']}`,
-			input: `0 0 0 3px ${colors.accentVariants['400']}`,
-		},
-		colors: {
-			accent: colors.accentVariants,
-			typography: {
-				base: '#e2e2e2',
-				secondary: '#c7c7c7',
-				accent: colors.accentVariants['500'],
-				inverted: '#000',
-				invertedAccent: colors.getContrastForeground(
-					colors.accentVariants['500'],
-				),
-			},
-			selection: {
-				foreground: colors.getContrastForeground(colors.accentVariants['200']),
-				background: colors.accentVariants['200'],
-			},
-			highlight: {
-				foreground: colors.getContrastForeground(colors.accentVariants['300']),
-				background: colors.accentVariants['300'],
-			},
-			surface: {
-				background: '#2c272c',
-				invertedBackground: '#fff',
-				panel: '#393139',
-				border: '#3a353a',
-			},
-			dim: {
-				50: '#6c65659c',
-				100: '#6c6565b9',
-				200: '#6c6565c6',
-				400: '#6c65658a',
-				500: '#d5d5d530',
-			},
-			link: {
-				base: colors.accentVariants['400'],
-				hover: colors.accentVariants['500'],
-			},
-			overlay: {
-				500: '#ffffff75',
-			},
-			message: {
-				error: '#b30606',
-				success: '#3ea863',
-			},
-		},
-		semanticTokens: {
-			colors: {
-				control: {
-					base: {
-						background: 'dim.50',
-						foreground: 'typography.base',
-
-						active: {
-							background: 'dim.100',
-						},
-
-						disabled: {
-							background: 'dim.200',
-						},
+	return defineConfig({
+		theme: {
+			tokens: {
+				colors: {
+					accent: Object.fromEntries(
+						Object.entries(accent).map(([k, v]) => [k, { value: v }]),
+					),
+					'typography.base': { value: '#e2e2e2' },
+					'typography.secondary': { value: '#c7c7c7' },
+					'typography.accent': { value: accent['500'] },
+					'typography.inverted': { value: '#000' },
+					'typography.invertedAccent': {
+						value: colors.getContrastForeground(accent['500']),
 					},
-
-					action: {
-						foreground: 'typography.invertedAccent',
-						background: 'accent.500',
-
-						active: {
-							background: 'accent.600',
-						},
+					'selection.foreground': {
+						value: colors.getContrastForeground(accent['200']),
 					},
-
-					input: {
-						background: 'dim.100',
-						border: 'transparent',
-
-						active: {
-							border: 'dim.400',
-						},
+					'selection.background': { value: accent['200'] },
+					'highlight.foreground': {
+						value: colors.getContrastForeground(accent['300']),
 					},
-					ghost: {
-						foreground: 'typography.base',
-						background: 'transparent',
-
-						hover: {
-							foreground: 'typography.base',
-							background: 'dim.200',
-						},
-
-						active: {
-							foreground: 'typography.base',
-							background: 'dim.200',
-						},
-					},
-					option: {
-						foreground: 'typography.base',
-						background: 'transparent',
-
-						hover: {
-							foreground: 'typography.base',
-							background: 'dim.400',
-						},
-
-						active: {
-							foreground: 'typography.base',
-							background: 'dim.400',
-						},
-					},
+					'highlight.background': { value: accent['300'] },
+					'surface.background': { value: '#2c272c' },
+					'surface.invertedBackground': { value: '#fff' },
+					'surface.panel': { value: '#393139' },
+					'surface.border': { value: '#3a353a' },
+					'dim.50': { value: '#6c65659c' },
+					'dim.100': { value: '#6c6565b9' },
+					'dim.200': { value: '#6c6565c6' },
+					'dim.400': { value: '#6c65658a' },
+					'dim.500': { value: '#d5d5d530' },
+					'link.base': { value: accent['400'] },
+					'link.hover': { value: accent['500'] },
+					'overlay.500': { value: '#ffffff75' },
+					'message.error': { value: '#b30606' },
+					'message.success': { value: '#3ea863' },
 				},
-				container: {
-					head: {
-						foreground: 'typography.base',
-						background: 'surface.panel',
-					},
-
-					message: {
-						foreground: 'typography.base',
-						background: 'dim.100',
-					},
-				},
-				code: {
-					token: {
-						comment: '#ffe0c6',
-						punctuation: '#ffb496',
-						property: '#ff7b00',
-						selector: '#ffbf8d',
-						operator: '#ffbfa5',
-						attr: '#ff6628',
-						variable: '#e90',
-						function: '#ff976c',
-					},
+				shadows: {
+					outline: { value: `0 0 0 3px ${accent['400']}` },
+					input: { value: `0 0 0 3px ${accent['400']}` },
 				},
 			},
-			scheme: {
-				alert: {
-					text: '#fff',
-					base: '#C53030',
-					hover: '#9B2C2C',
+			semanticTokens: {
+				colors: {
+					'control.base.background': { value: '{colors.dim.50}' },
+					'control.base.foreground': { value: '{colors.typography.base}' },
+					'control.base.active.background': { value: '{colors.dim.100}' },
+					'control.base.disabled.background': { value: '{colors.dim.200}' },
+					'control.action.foreground': {
+						value: '{colors.typography.invertedAccent}',
+					},
+					'control.action.background': { value: '{colors.accent.500}' },
+					'control.action.active.background': { value: '{colors.accent.600}' },
+					'control.input.background': { value: '{colors.dim.100}' },
+					'control.input.border': { value: 'transparent' },
+					'control.input.active.border': { value: '{colors.dim.400}' },
+					'control.ghost.foreground': { value: '{colors.typography.base}' },
+					'control.ghost.background': { value: 'transparent' },
+					'control.ghost.hover.foreground': {
+						value: '{colors.typography.base}',
+					},
+					'control.ghost.hover.background': { value: '{colors.dim.200}' },
+					'control.ghost.active.foreground': {
+						value: '{colors.typography.base}',
+					},
+					'control.ghost.active.background': { value: '{colors.dim.200}' },
+					'control.option.foreground': { value: '{colors.typography.base}' },
+					'control.option.background': { value: 'transparent' },
+					'control.option.hover.foreground': {
+						value: '{colors.typography.base}',
+					},
+					'control.option.hover.background': { value: '{colors.dim.400}' },
+					'control.option.active.foreground': {
+						value: '{colors.typography.base}',
+					},
+					'control.option.active.background': { value: '{colors.dim.400}' },
+					'container.head.foreground': { value: '{colors.typography.base}' },
+					'container.head.background': { value: '{colors.surface.panel}' },
+					'container.message.foreground': { value: '{colors.typography.base}' },
+					'container.message.background': { value: '{colors.dim.100}' },
+					'code.token.comment': { value: '#ffe0c6' },
+					'code.token.punctuation': { value: '#ffb496' },
+					'code.token.property': { value: '#ff7b00' },
+					'code.token.selector': { value: '#ffbf8d' },
+					'code.token.operator': { value: '#ffbfa5' },
+					'code.token.attr': { value: '#ff6628' },
+					'code.token.variable': { value: '#e90' },
+					'code.token.function': { value: '#ff976c' },
+					'scheme.alert.text': { value: '#fff' },
+					'scheme.alert.base': { value: '#C53030' },
+					'scheme.alert.hover': { value: '#9B2C2C' },
 				},
 			},
 		},
-	};
+	});
 }

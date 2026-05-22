@@ -1,15 +1,7 @@
 import * as React from 'react';
-import { AutoFocusInside } from 'react-focus-lock';
+import FocusLock, { AutoFocusInside } from 'react-focus-lock';
 import { FaXmark } from 'react-icons/fa6';
-import {
-	Button,
-	Card,
-	CardBody,
-	CardHeader,
-	FocusLock,
-	HStack,
-	Text,
-} from '@chakra-ui/react';
+import { Button, Card, HStack, Text } from '@chakra-ui/react';
 import {
 	OptionObject,
 	PropertiesForm,
@@ -31,8 +23,13 @@ export const ObjectPropertiesEditor = <T extends OptionObject[]>({
 }: ObjectPropertiesEditor<T>) => {
 	return (
 		<FocusLock>
-			<Card sx={{ backgroundColor: 'surface.background' }} boxShadow="outline">
-				<CardHeader
+			<Card.Root
+				css={{
+					backgroundColor: 'surface.background',
+				}}
+				boxShadow="outline"
+			>
+				<Card.Header
 					display="flex"
 					padding="1rem"
 					justifyContent="space-between"
@@ -47,13 +44,13 @@ export const ObjectPropertiesEditor = <T extends OptionObject[]>({
 							</Button>
 						</HStack>
 					)}
-				</CardHeader>
-				<CardBody padding="1rem">
+				</Card.Header>
+				<Card.Body padding="1rem">
 					<AutoFocusInside>
 						<PropertiesForm {...rest} onCancel={onClose} />
 					</AutoFocusInside>
-				</CardBody>
-			</Card>
+				</Card.Body>
+			</Card.Root>
 		</FocusLock>
 	);
 };

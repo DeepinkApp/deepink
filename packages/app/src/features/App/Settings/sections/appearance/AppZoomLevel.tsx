@@ -3,15 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import z from 'zod';
-import {
-	Button,
-	HStack,
-	Input,
-	InputGroup,
-	InputRightElement,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Button, HStack, Input, InputGroup, Text, VStack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getDefaultZoomFactor, getZoomFactor, setZoomFactor } from '@utils/os/zoom';
 
@@ -65,54 +57,59 @@ export const AppZoomLevel = () => {
 	});
 
 	return (
-		<VStack
-			as="form"
-			noValidate
-			onSubmit={form.handleSubmit(async ({ zoom }) => {
-				setZoomFactor(zoom);
-			})}
-			align="start"
-		>
-			<HStack align="start">
-				<InputGroup size="sm" width="auto">
-					<Input
-						width="6rem"
-						textAlign="right"
-						type="number"
-						step={10}
-						min={zoomLimits.min}
-						max={zoomLimits.max}
-						{...form.register('zoom')}
-					/>
-					<InputRightElement pointerEvents="none">
-						<Text variant="secondary">%</Text>
-					</InputRightElement>
-				</InputGroup>
-				<Button size="sm" type="submit">
-					{t('appearance.zoomLevel.apply')}
-				</Button>
-				<Button
-					size="sm"
-					variant="ghost"
-					onClick={() => {
-						const defaultZoom = getDefaultZoomFactor();
+		<VStack align="start" asChild>
+			<form
+				noValidate
+				onSubmit={form.handleSubmit(async ({ zoom }) => {
+					setZoomFactor(zoom);
+				})}
+			>
+				<HStack align="start">
+					<InputGroup
+						width="auto"
+						endElement={
+							<Text color="typography.secondary" pointerEvents="none">
+								%
+							</Text>
+						}
+					>
+						<Input
+							size="sm"
+							width="6rem"
+							textAlign="right"
+							type="number"
+							step={10}
+							min={zoomLimits.min}
+							max={zoomLimits.max}
+							{...form.register('zoom')}
+						/>
+					</InputGroup>
+					<Button size="sm" type="submit">
+						{t('appearance.zoomLevel.apply')}
+					</Button>
+					<Button
+						size="sm"
+						variant="ghost"
+						onClick={() => {
+							const defaultZoom = getDefaultZoomFactor();
 
-						setZoomFactor(defaultZoom);
-						form.reset({
-							zoom: String(zoomFactorToPercents(defaultZoom)),
-						});
-					}}
-				>
-					{t('appearance.zoomLevel.reset')}
-				</Button>
-			</HStack>
-			{Object.entries(form.formState.errors).map(([id, error]) => {
-				return (
-					<Text key={id} variant="error" size="sm">
-						{error.message}
-					</Text>
-				);
-			})}
+							setZoomFactor(defaultZoom);
+							form.reset({
+								zoom: String(zoomFactorToPercents(defaultZoom)),
+							});
+						}}
+					>
+						{t('appearance.zoomLevel.reset')}
+					</Button>
+				</HStack>
+				{Object.entries(form.formState.errors).map(([id, error]) => {
+					return (
+						<Text key={id} color="message.error" fontSize="sm">
+							{error.message}
+						</Text>
+					);
+				})}
+			</form>
 		</VStack>
 	);
 };

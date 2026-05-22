@@ -67,7 +67,7 @@ export const Workspace: FC<WorkspaceProps> = ({ vault }) => {
 	return (
 		<Box
 			data-workspace={workspaceName}
-			sx={{
+			css={{
 				display: isVisibleWorkspace ? 'flex' : 'none',
 				flexDirection: 'column',
 				flexGrow: '100',

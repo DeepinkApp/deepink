@@ -1,7 +1,15 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, Divider, HStack, Input, Select, Text, VStack } from '@chakra-ui/react';
+import {
+	Button,
+	HStack,
+	Input,
+	NativeSelect,
+	Separator,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
 import { useTelemetryTracker } from '@features/telemetry';
@@ -58,39 +66,41 @@ export const WorkspaceErrorScreen = ({
 				>
 					<Text>{t('workspace.error.chooseAnother')}</Text>
 
-					<Select
-						size="md"
-						marginTop="auto"
-						borderRadius="6px"
-						value={currentWorkspace.id}
-						onChange={(evt) => {
-							onWorkspaceErrorReset(currentWorkspace.id);
+					<NativeSelect.Root size="md">
+						<NativeSelect.Field
+							marginTop="auto"
+							borderRadius="6px"
+							value={currentWorkspace.id}
+							onChange={(evt) => {
+								onWorkspaceErrorReset(currentWorkspace.id);
 
-							const workspaceId = evt.target.value;
-							dispatch(
-								workspacesApi.setActiveWorkspace({
-									vaultId,
-									workspaceId,
-								}),
-							);
+								const workspaceId = evt.target.value;
+								dispatch(
+									workspacesApi.setActiveWorkspace({
+										vaultId,
+										workspaceId,
+									}),
+								);
 
-							telemetry.track(TELEMETRY_EVENT_NAME.WORKSPACE_SELECTED, {
-								totalWorkspacesCount: workspaces.length,
-							});
-						}}
-					>
-						{workspaces.map((workspace) => (
-							<option key={workspace.id} value={workspace.id}>
-								{workspace.name}
-							</option>
-						))}
-					</Select>
+								telemetry.track(TELEMETRY_EVENT_NAME.WORKSPACE_SELECTED, {
+									totalWorkspacesCount: workspaces.length,
+								});
+							}}
+						>
+							{workspaces.map((workspace) => (
+								<option key={workspace.id} value={workspace.id}>
+									{workspace.name}
+								</option>
+							))}
+						</NativeSelect.Field>
+						<NativeSelect.Indicator />
+					</NativeSelect.Root>
 				</VStack>
 
 				<HStack w="100%">
-					<Divider />
+					<Separator />
 					<Text paddingInline=".5rem">{t('workspace.error.dividerText')}</Text>
-					<Divider />
+					<Separator />
 				</HStack>
 
 				<VStack
@@ -145,11 +155,11 @@ export const WorkspaceErrorScreen = ({
 						<VStack w="100%">
 							<Input
 								placeholder={t('workspace.creator.field.name.label')}
-								isDisabled={isPending}
+								disabled={isPending}
 								value={newWorkspaceName}
 								onChange={(e) => setNewWorkspaceName(e.target.value)}
 							/>
-							<Button w="100%" isDisabled={isPending} type="submit">
+							<Button w="100%" disabled={isPending} type="submit">
 								{t('workspace.error.createWorkspace')}
 							</Button>
 						</VStack>
@@ -157,9 +167,9 @@ export const WorkspaceErrorScreen = ({
 				</VStack>
 
 				<HStack w="100%">
-					<Divider />
+					<Separator />
 					<Text paddingInline=".5rem">{t('workspace.error.dividerText')}</Text>
-					<Divider />
+					<Separator />
 				</HStack>
 
 				<VStack

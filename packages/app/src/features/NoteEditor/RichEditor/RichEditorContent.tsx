@@ -1,6 +1,6 @@
 import React, { Ref, useEffect, useMemo } from 'react';
 import { $createRangeSelection, $getRoot, $getSelection, $setSelection } from 'lexical';
-import { Box, BoxProps, useMultiStyleConfig } from '@chakra-ui/react';
+import { Box, BoxProps, useSlotRecipe } from '@chakra-ui/react';
 import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
@@ -57,7 +57,8 @@ export const RichEditorContent = ({
 	apiRef,
 	...props
 }: RichEditorContentProps) => {
-	const styles = useMultiStyleConfig('RichEditor');
+	const recipe = useSlotRecipe({ key: 'richEditor' });
+	const styles = recipe();
 	const editorConfig = useAppSelector(selectEditorConfig);
 	const fontFamily = useAppSelector(selectEditorFontFamily);
 
@@ -94,16 +95,17 @@ export const RichEditorContent = ({
 			width="100%"
 			height="100%"
 			overflow="auto"
-			sx={{
+			css={{
 				...styles.root,
+
 				// TODO: move a styles to a top level container
 				fontSize: editorConfig.fontSize,
+
 				fontFamily: fontFamily,
+				lineHeight: editorConfig.lineHeight,
 			}}
-			css={{ lineHeight: editorConfig.lineHeight }}
 		>
 			<ContextMenuPlugin renderer={GenericContextMenu} />
-
 			<RichTextPlugin
 				contentEditable={
 					<Box
@@ -113,8 +115,10 @@ export const RichEditorContent = ({
 						padding="1rem 1rem 5rem"
 						overflow="auto"
 						{...props}
-						as={ContentEditable}
-					/>
+						asChild
+					>
+						<ContentEditable />
+					</Box>
 				}
 				placeholder={
 					placeholder ? (
@@ -137,26 +141,20 @@ export const RichEditorContent = ({
 			<MarkdownSerializePlugin value={value} onChanged={onChanged} />
 			<MarkdownShortcutPlugin />
 			<FormattingPlugin />
-
 			<ImagesPlugin />
 			<CodeHighlightPlugin />
 			<LinkPlugin />
 			<LinkClickHandlerPlugin />
-
 			<FilesPlugin />
 			<DropFilesPlugin />
 			<EditorPanelPlugin />
-
 			<HistoryPlugin />
 			<TabIndentationPlugin />
-
 			<ListPlugin />
 			<CheckListPlugin />
 			<TablePlugin />
 			<HorizontalRulePlugin />
-
 			<HighlightingPlugin search={search} />
-
 			<ReadOnlyPlugin readonly={isReadOnly ?? false} />
 		</Box>
 	);

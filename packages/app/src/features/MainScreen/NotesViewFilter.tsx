@@ -45,14 +45,14 @@ export const NotesViewFilter: FC<NotesOverviewProps> = () => {
 	const notesViewMode = useWorkspaceSelector(selectNotesView);
 	return (
 		<HStack w="100%" justifyContent="center">
-			<ButtonGroup spacing=".3rem" size="sm" variant="ghost">
+			<ButtonGroup gap=".3rem" size="sm" variant="ghost">
 				{filterOptions.map(({ id, labelKey, ...option }) => (
 					<IconButton
 						key={id}
 						icon={<option.icon />}
 						title={t(labelKey)}
 						data-no-animation
-						isActive={id === notesViewMode}
+						data-active={id === notesViewMode ? '' : undefined}
 						onClick={() => {
 							dispatch(
 								workspacesApi.setView({

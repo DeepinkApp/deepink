@@ -1,11 +1,8 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
-export const NotificationsTheme = createMultiStyleConfigHelpers([
-	'root',
-	'head',
-	'body',
-]).defineMultiStyleConfig({
-	baseStyle: {
+export const NotificationsTheme = defineSlotRecipe({
+	slots: ['root', 'head', 'body'],
+	base: {
 		root: {
 			position: 'absolute',
 			bottom: '2rem',

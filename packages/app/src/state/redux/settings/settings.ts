@@ -10,7 +10,7 @@ export type EditorMode = 'plaintext' | 'richtext' | 'split-screen';
 export const settingsScheme = z.object({
 	language: z.string(),
 	checkForUpdates: z.boolean(),
-	theme: z.object({
+	system: z.object({
 		name: z.union([
 			z.literal('auto'),
 			z.literal('light'),
@@ -45,7 +45,7 @@ export type GlobalSettings = z.output<typeof settingsScheme>;
 export const defaultSettings = {
 	language: getPreferredLanguage(navigator.languages),
 	checkForUpdates: true,
-	theme: {
+	system: {
 		name: 'zen',
 		accentColor: 'auto',
 	},
@@ -91,14 +91,14 @@ export const settingsSlice = createSlice({
 
 		setTheme: (
 			state,
-			{ payload }: PayloadAction<Partial<GlobalSettings['theme']>>,
+			{ payload }: PayloadAction<Partial<GlobalSettings['system']>>,
 		) => {
-			const theme = { ...state.theme, ...payload };
-			if (!theme.accentColor || !(theme.accentColor in accentColorsMap)) {
-				theme.accentColor = 'auto';
+			const system = { ...state.system, ...payload };
+			if (!system.accentColor || !(system.accentColor in accentColorsMap)) {
+				system.accentColor = 'auto';
 			}
 
-			return { ...state, theme } as GlobalSettings;
+			return { ...state, system } as GlobalSettings;
 		},
 
 		setVaultLockConfig: (
@@ -131,5 +131,5 @@ export const selectEditorMode = createAppSelector(
 
 export const selectTheme = createAppSelector(
 	selectSettings,
-	(settings) => settings.theme,
+	(settings) => settings.system,
 );

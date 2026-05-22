@@ -21,7 +21,16 @@ import { Panel, PanelResizeHandle } from 'react-resizable-panels';
 import { debounce } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { WorkspaceEvents } from '@api/events/workspace';
-import { Box, Button, Divider, HStack, Input, Tag, Text, VStack } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	HStack,
+	Input,
+	Separator,
+	Tag,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { SuggestedTagsList } from '@components/SuggestedTagsList';
 import { SyncedPanelGroup } from '@components/SyncedPanelGroup';
 import { findLinksInText, getResourceIdInUrl } from '@core/features/links';
@@ -140,7 +149,7 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 							noteId: note.id,
 						})
 					}
-					isActive={note.isBookmarked}
+					data-active
 				>
 					<Box
 						as={note.isBookmarked ? FaStar : FaRegStar}
@@ -160,7 +169,7 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 							noteId: note.id,
 						})
 					}
-					isActive={note.isArchived}
+					data-active
 				>
 					<Box as={FaBoxArchive} transform="scale(1.1)" />
 				</Button>
@@ -168,11 +177,9 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 					<Box as={FaThumbtack} transform="scale(1.1)" />
 				</Button>
 			</HStack>
-
-			<Divider orientation="vertical" h="1em" />
-
+			<Separator orientation="vertical" h="1em" />
 			{attachedTags.map((tag) => (
-				<Tag
+				<Tag.Root
 					as={HStack}
 					key={tag.id}
 					height="fit-content"
@@ -185,7 +192,9 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 							}),
 						);
 					}}
-					sx={{ cursor: 'pointer' }}
+					css={{
+						cursor: 'pointer',
+					}}
 				>
 					<HStack gap=".2rem">
 						<FaHashtag />
@@ -193,8 +202,8 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 					</HStack>
 
 					<Box
-						sx={{
-							'&:not(:hover)': {
+						css={{
+							'& &:not(:hover)': {
 								opacity: '.6',
 							},
 						}}
@@ -216,15 +225,14 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 							}}
 						/>
 					</Box>
-				</Tag>
+				</Tag.Root>
 			))}
-
 			<SuggestedTagsList
 				tags={notAttachedTags}
 				selectedTag={attachTagName ?? undefined}
 				inputValue={tagSearch}
 				onInputChange={setTagSearch}
-				sx={{
+				css={{
 					display: 'inline',
 					w: 'auto',
 					maxW: '150px',
@@ -462,18 +470,17 @@ export const Note2: FC<NoteEditorProps> = memo(
 							onChange={
 								versionPreview
 									? undefined
-									: (evt) => setTitle(evt.target.value)
+									: (evt: React.ChangeEvent<HTMLInputElement>) =>
+											setTitle(evt.target.value)
 							}
-							isDisabled={isReadOnly}
+							disabled={isReadOnly}
 						/>
 
 						{/* TODO: add options that may be toggled */}
 						<NoteMenu note={note} />
 					</HStack>
 				</HStack>
-
 				<NoteControlsPanel note={note} />
-
 				{versionPreview && (
 					<HStack alignItems="center" w="100%" flexWrap="wrap">
 						<HStack gap=".3rem">
@@ -498,14 +505,12 @@ export const Note2: FC<NoteEditorProps> = memo(
 						</HStack>
 					</HStack>
 				)}
-
 				<SyncedPanelGroup
 					direction="vertical"
 					autoSaveId="MainScreen.noteContent"
 				>
 					<Box
-						as={Panel}
-						defaultSize={80}
+						{...({ as: Panel, defaultSize: 80 } as any)}
 						minH="min(200px, 100%)"
 						display="flex"
 						flexDirection="column"
@@ -520,8 +525,14 @@ export const Note2: FC<NoteEditorProps> = memo(
 
 					{!sidePanel ? null : (
 						<>
-							<Box as={PanelResizeHandle} color="surface.border" />
-							<Box as={Panel} defaultSize={30} minH="200px">
+							<Box
+								{...({ as: PanelResizeHandle } as any)}
+								color="surface.border"
+							/>
+							<Box
+								{...({ as: Panel, defaultSize: 30 } as any)}
+								minH="200px"
+							>
 								<NoteSidebar
 									onClose={() => setSidePanel(null)}
 									activeTab={sidePanel as string}

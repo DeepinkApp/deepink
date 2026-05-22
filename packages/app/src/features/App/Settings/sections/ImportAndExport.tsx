@@ -2,17 +2,7 @@ import React, { useCallback } from 'react';
 import Dropzone from 'react-dropzone';
 import { Trans, useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import {
-	Button,
-	HStack,
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
-	Spinner,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Button, HStack, Menu, Portal, Spinner, Text, VStack } from '@chakra-ui/react';
 import { CalmButton } from '@components/CalmButton';
 import { useDirectoryPicker } from '@hooks/files/useDirectoryPicker';
 import { useFilesPicker } from '@hooks/files/useFilesPicker';
@@ -66,29 +56,32 @@ export const ImportAndExport = () => {
 	return (
 		<VStack width="100%" align="start">
 			<HStack>
-				<Menu size="sm">
-					<MenuButton
-						size="sm"
-						as={CalmButton}
-						isDisabled={importProgress !== null}
-					>
-						{t('migration.import.button')}
-					</MenuButton>
-					<MenuList>
-						{importOptions.map((option) => (
-							<MenuItem
-								key={option.type}
-								onClick={() => onClickImport(option.type)}
-							>
-								<Text>{option.text}</Text>
-							</MenuItem>
-						))}
-					</MenuList>
-				</Menu>
+				<Menu.Root size="sm">
+					<Menu.Trigger asChild>
+						<CalmButton size="sm" disabled={importProgress !== null}>
+							{t('migration.import.button')}
+						</CalmButton>
+					</Menu.Trigger>
+					<Portal>
+						<Menu.Positioner>
+							<Menu.Content>
+								{importOptions.map((option) => (
+									<Menu.Item
+										key={option.type}
+										onSelect={() => onClickImport(option.type)}
+										value="item-0"
+									>
+										<Text>{option.text}</Text>
+									</Menu.Item>
+								))}
+							</Menu.Content>
+						</Menu.Positioner>
+					</Portal>
+				</Menu.Root>
 
 				<Button
 					size="sm"
-					isDisabled={notesExport.progress !== null}
+					disabled={notesExport.progress !== null}
 					onClick={async () => {
 						await notesExport.exportNotes(
 							buildFileName(workspaceData?.name, 'backup'),
@@ -98,7 +91,6 @@ export const ImportAndExport = () => {
 					{t('migration.export.button')}
 				</Button>
 			</HStack>
-
 			<Dropzone
 				onDrop={async (files) => {
 					if (files.length === 0) return;
@@ -142,7 +134,6 @@ export const ImportAndExport = () => {
 					</VStack>
 				)}
 			</Dropzone>
-
 			{importProgress && (
 				<VStack align="center" w="100%" padding="1rem">
 					<HStack align="start">
@@ -182,7 +173,7 @@ export const ImportAndExport = () => {
 							components={{
 								cancel: (
 									<Button
-										variant="link"
+										variant="plain"
 										onClick={() =>
 											abort(new Error('User cancel the import'))
 										}

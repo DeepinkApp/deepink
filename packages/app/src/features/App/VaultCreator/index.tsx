@@ -16,21 +16,15 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
 	Box,
 	Button,
+	Dialog,
 	HStack,
 	Input,
 	InputGroup,
 	InputProps,
-	InputRightElement,
 	Link,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
-	ModalOverlay,
+	NativeSelect,
+	Portal,
 	Progress,
-	Select,
 	Switch,
 	Text,
 	useDisclosure,
@@ -52,7 +46,12 @@ import { calcEntropy } from './calculatePasswordEntropy';
 
 export const PasswordInput = forwardRef<
 	HTMLInputElement,
-	Omit<InputProps, 'value'> & { value: string; setValue: (value: string) => void }
+	Omit<InputProps, 'value'> & {
+		value: string;
+		setValue: (value: string) => void;
+		invalid?: boolean;
+		disabled?: boolean;
+	}
 >(({ value, setValue, ...props }, ref) => {
 	const { t: tEncryption } = useTranslation(LOCALE_NAMESPACE.encryption);
 
@@ -90,7 +89,17 @@ export const PasswordInput = forwardRef<
 
 	return (
 		<VStack w="100%" alignItems="start">
-			<InputGroup size="md">
+			<InputGroup
+				endElement={
+					passwordScore ? (
+						passwordScore.strength === 'good' ? (
+							<FaThumbsUp />
+						) : (
+							<FaThumbsDown />
+						)
+					) : undefined
+				}
+			>
 				<Input
 					ref={ref}
 					type="password"
@@ -98,17 +107,7 @@ export const PasswordInput = forwardRef<
 					onChange={(evt) => setPassword(evt.target.value)}
 					{...props}
 				/>
-				{passwordScore && (
-					<InputRightElement>
-						{passwordScore.strength === 'good' ? (
-							<FaThumbsUp />
-						) : (
-							<FaThumbsDown />
-						)}
-					</InputRightElement>
-				)}
 			</InputGroup>
-
 			{passwordScore && (
 				<VStack width="100%" align="start" paddingTop=".3rem">
 					<Text color="typography.secondary" fontSize="1rem">
@@ -122,13 +121,17 @@ export const PasswordInput = forwardRef<
 									entropy: passwordScore.entropy,
 								})}
 					</Text>
-					<Progress
+					<Progress.Root
 						width="100%"
 						value={passwordScore.entropy}
 						max={80}
 						size="xs"
-						variant={passwordScore.strength === 'good' ? 'success' : 'alert'}
-					/>
+						colorPalette={passwordScore.strength === 'good' ? 'green' : 'red'}
+					>
+						<Progress.Track>
+							<Progress.Range />
+						</Progress.Track>
+					</Progress.Root>
 				</VStack>
 			)}
 		</VStack>
@@ -154,26 +157,31 @@ export const DetailsContainer = ({
 			backgroundColor="surface.panel"
 		>
 			<Box
-				as="label"
 				display="inline-flex"
 				gap=".5rem"
 				textDecor="none"
 				width="100%"
 				color="typography.accent"
 				alignItems="center"
+				asChild
 			>
-				{icon}
-				{title && <span>{title}</span>}
-
-				<Switch
-					marginLeft="auto"
-					isChecked={isOpened}
-					onChange={(evt) => {
-						setIsOpened(evt.target.checked);
-					}}
-				/>
+				<label>
+					{icon}
+					{title && <span>{title}</span>}
+					<Switch.Root
+						marginLeft="auto"
+						checked={isOpened}
+						onCheckedChange={(event) => {
+							setIsOpened(event.checked);
+						}}
+					>
+						<Switch.HiddenInput />
+						<Switch.Control>
+							<Switch.Thumb />
+						</Switch.Control>
+					</Switch.Root>
+				</label>
 			</Box>
-
 			<Box display={isOpened ? undefined : 'none'} width="100%" paddingBlock="1rem">
 				{children}
 			</Box>
@@ -301,7 +309,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 			controls={
 				<>
 					<Button
-						variant="accent"
+						variant={'accent' as any}
 						w="100%"
 						onClick={() => onPressCreate(true)}
 						disabled={isPending}
@@ -321,44 +329,58 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						</Button>
 					)}
 
-					<Modal
-						isOpen={noPasswordDialogState.isOpen}
-						onClose={noPasswordDialogState.onClose}
-						isCentered
+					<Dialog.Root
+						open={noPasswordDialogState.open}
+						placement="center"
+						onOpenChange={(e) => {
+							if (!e.open) {
+								noPasswordDialogState.onClose();
+							}
+						}}
 					>
-						<ModalOverlay />
-						<ModalContent>
-							<ModalCloseButton />
-							<ModalHeader>
-								{t('creator.noEncryptionDialog.title')}
-							</ModalHeader>
-							<ModalBody>
-								<Text color="typography.secondary">
-									{t('creator.noEncryptionDialog.description')}
-								</Text>
-							</ModalBody>
-							<ModalFooter>
-								<HStack
-									w="100%"
-									justifyContent="end"
-									as={AutoFocusInside}
-								>
-									<Button
-										variant="accent"
-										onClick={() => {
-											onPressCreate(false);
-											noPasswordDialogState.onClose();
-										}}
-									>
-										{t('creator.noEncryptionDialog.actions.confirm')}
-									</Button>
-									<Button onClick={noPasswordDialogState.onClose}>
-										{t('creator.noEncryptionDialog.actions.cancel')}
-									</Button>
-								</HStack>
-							</ModalFooter>
-						</ModalContent>
-					</Modal>
+						<Portal>
+							<Dialog.Backdrop />
+							<Dialog.Positioner>
+								<Dialog.Content>
+									<Dialog.CloseTrigger />
+									<Dialog.Header>
+										{t('creator.noEncryptionDialog.title')}
+									</Dialog.Header>
+									<Dialog.Body>
+										<Text color="typography.secondary">
+											{t('creator.noEncryptionDialog.description')}
+										</Text>
+									</Dialog.Body>
+									<Dialog.Footer>
+										<HStack w="100%" justifyContent="end" asChild>
+											<AutoFocusInside>
+												<Button
+													variant={'accent' as any}
+													onClick={() => {
+														onPressCreate(false);
+														noPasswordDialogState.onClose();
+													}}
+												>
+													{t(
+														'creator.noEncryptionDialog.actions.confirm',
+													)}
+												</Button>
+												<Button
+													onClick={
+														noPasswordDialogState.onClose
+													}
+												>
+													{t(
+														'creator.noEncryptionDialog.actions.cancel',
+													)}
+												</Button>
+											</AutoFocusInside>
+										</HStack>
+									</Dialog.Footer>
+								</Dialog.Content>
+							</Dialog.Positioner>
+						</Portal>
+					</Dialog.Root>
 				</>
 			}
 		>
@@ -369,49 +391,54 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 				fontSize="18px"
 				color="typography.additional"
 			>
-				<VStack as="label" w="100%" alignItems="start">
-					<Text>{t('creator.field.name.label')}</Text>
+				<VStack w="100%" alignItems="start" asChild>
+					<label>
+						<Text>{t('creator.field.name.label')}</Text>
+						<InputGroup
+							endElement={
+								<IconButton
+									variant="ghost"
+									size="sm"
+									icon={<FaDice transform="scale(1.5)" />}
+									title={t('creator.field.name.random')}
+									onClick={(evt) => {
+										evt.preventDefault();
 
-					<InputGroup size="md">
-						<Input
-							ref={vaultNameInputRef}
-							placeholder={t('creator.field.name.placeholder')}
-							value={vaultName}
-							onChange={(evt) => setVaultName(evt.target.value)}
-							focusBorderColor={vaultNameError ? 'red.500' : undefined}
-							disabled={isPending}
-						/>
-						<InputRightElement>
-							<IconButton
-								variant="ghost"
-								size="sm"
-								icon={<FaDice transform="scale(1.5)" />}
-								title={t('creator.field.name.random')}
-								onClick={(evt) => {
-									evt.preventDefault();
+										const suggestedName = shuffleArray(
+											Object.values(
+												t('creator.field.name.suggests', {
+													returnObjects: true,
+												}),
+											) as string[],
+										).find((name) => name !== vaultName);
 
-									const suggestedName = shuffleArray(
-										Object.values(
-											t('creator.field.name.suggests', {
-												returnObjects: true,
-											}),
-										) as string[],
-									).find((name) => name !== vaultName);
-
-									if (suggestedName) setVaultName(suggestedName);
-									vaultNameInputRef.current?.focus();
+										if (suggestedName) setVaultName(suggestedName);
+										vaultNameInputRef.current?.focus();
+									}}
+								/>
+							}
+						>
+							<Input
+								ref={vaultNameInputRef}
+								placeholder={t('creator.field.name.placeholder')}
+								value={vaultName}
+								onChange={(evt) => setVaultName(evt.target.value)}
+								css={{
+									'--focus-color': vaultNameError
+										? 'red.500'
+										: undefined,
 								}}
+								disabled={isPending}
 							/>
-						</InputRightElement>
-					</InputGroup>
-
-					{vaultNameError && <Text color="red.500">{vaultNameError}</Text>}
+						</InputGroup>
+						{vaultNameError && <Text color="red.500">{vaultNameError}</Text>}
+					</label>
 				</VStack>
 
 				<VStack w="100%" alignItems="start">
 					<HStack>
 						<Text>{t('creator.field.password.label')}</Text>
-						<Text variant="secondary">
+						<Text color="typography.secondary">
 							{t('creator.field.password.recommended')}
 						</Text>
 					</HStack>
@@ -425,8 +452,8 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 						placeholder={t('creator.field.password.placeholder')}
 						value={password}
 						setValue={setPassword}
-						isInvalid={passwordError !== null}
-						isDisabled={isPending}
+						invalid={passwordError !== null}
+						disabled={isPending}
 					/>
 
 					{passwordError && <Text color="red.500">{passwordError}</Text>}
@@ -453,20 +480,23 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 							<Text fontSize="18px" alignSelf="start">
 								{t('creator.field.algorithm.label')}
 							</Text>
-							<Select
-								size="md"
-								value={algorithm}
-								onChange={(evt) =>
-									setAlgorithm(evt.target.value as ENCRYPTION_ALGORITHM)
-								}
-								disabled={isPending}
-							>
-								{ENCRYPTION_ALGORITHM_OPTIONS.map((algorithm) => (
-									<option key={algorithm} value={algorithm}>
-										{algorithm}
-									</option>
-								))}
-							</Select>
+							<NativeSelect.Root size="md" disabled={isPending}>
+								<NativeSelect.Field
+									value={algorithm}
+									onChange={(evt) =>
+										setAlgorithm(
+											evt.target.value as ENCRYPTION_ALGORITHM,
+										)
+									}
+								>
+									{ENCRYPTION_ALGORITHM_OPTIONS.map((algorithm) => (
+										<option key={algorithm} value={algorithm}>
+											{algorithm}
+										</option>
+									))}
+								</NativeSelect.Field>
+								<NativeSelect.Indicator />
+							</NativeSelect.Root>
 						</VStack>
 
 						<VStack w="100%" gap="0.5rem" align="start">

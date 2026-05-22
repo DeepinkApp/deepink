@@ -1,6 +1,6 @@
 import React, { forwardRef, memo, useMemo } from 'react';
 import { isEqual } from 'lodash';
-import { Box, StackProps, Text, useMultiStyleConfig, VStack } from '@chakra-ui/react';
+import { Box, StackProps, Text, useSlotRecipe, VStack } from '@chakra-ui/react';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
 
 import { TextSample } from './TextSample';
@@ -21,13 +21,14 @@ export const NotePreviewContent = memo(
 		meta?: NotePreviewMeta;
 		textToHighlight?: string;
 	}) => {
-		const styles = useMultiStyleConfig('NotePreview');
+		const recipe = useSlotRecipe({ key: 'notePreview' });
+		const styles = recipe();
 		const localizedDate = useLocalizedDate();
 
 		return (
 			<>
-				<VStack sx={styles.body}>
-					<Text as="h3" sx={styles.title}>
+				<VStack css={styles.body}>
+					<Text as="h3" css={styles.title}>
 						<TextSample
 							text={title}
 							highlightText={textToHighlight}
@@ -36,7 +37,7 @@ export const NotePreviewContent = memo(
 					</Text>
 
 					{text.length > 0 ? (
-						<Text sx={styles.text}>
+						<Text css={styles.text}>
 							<TextSample
 								text={text}
 								highlightText={textToHighlight}
@@ -47,7 +48,7 @@ export const NotePreviewContent = memo(
 				</VStack>
 
 				{meta && meta.updatedAt !== undefined && (
-					<Box sx={styles.meta}>
+					<Box css={styles.meta}>
 						<Text>{localizedDate(new Date(meta.updatedAt))}</Text>
 					</Box>
 				)}
@@ -69,18 +70,18 @@ export const NotePreview = forwardRef<
 		textToHighlight?: string;
 	} & StackProps
 >(({ title, text, textToHighlight, meta, isSelected, ...props }, ref) => {
-	const styles = useMultiStyleConfig('NotePreview');
+	const recipe = useSlotRecipe({ key: 'notePreview' });
+	const styles = recipe();
 
 	const style = useMemo(
 		() => ({
 			...styles.root,
-			...props.sx,
 		}),
-		[props.sx, styles.root],
+		[styles.root],
 	);
 
 	return (
-		<VStack ref={ref} aria-selected={isSelected} {...props} sx={style}>
+		<VStack ref={ref} aria-selected={isSelected} {...props} css={style}>
 			<NotePreviewContent {...{ title, text, textToHighlight, meta }} />
 		</VStack>
 	);

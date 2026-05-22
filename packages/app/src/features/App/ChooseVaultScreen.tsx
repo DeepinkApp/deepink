@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaUser } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, Divider, HStack, Text } from '@chakra-ui/react';
+import { Button, HStack, Text } from '@chakra-ui/react';
 import { NestedList } from '@components/NestedList';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { VaultSummary } from '@core/storage/VaultsList';
@@ -28,7 +28,7 @@ export const ChooseVaultScreen: FC<{
 				title={t('chooseVault.title')}
 				controls={
 					<Button
-						variant="accent"
+						variant={'accent' as any}
 						size="lg"
 						w="100%"
 						onClick={() => onCreateVault()}
@@ -38,38 +38,40 @@ export const ChooseVaultScreen: FC<{
 				}
 			>
 				<NestedList
-					divider={<Divider margin="0px !important" />}
-					sx={{
-						w: '100%',
-						borderRadius: '4px',
-						maxHeight: '230px',
-						overflow: 'auto',
-						border: '1px solid',
-					}}
+					w="100%"
+					borderRadius="4px"
+					maxHeight="230px"
+					overflow="auto"
+					border="1px solid"
 					items={(vaults ?? []).map((vault) => ({
 						id: vault.id,
 						content: (
 							<HStack
-								as="button"
-								key={vault.id}
-								sx={{
+								css={{
 									padding: '.8rem 1rem',
 									w: '100%',
 									cursor: 'pointer',
 									gap: '.8rem',
 								}}
-								onClick={() => {
-									dispatch(workspacesApi.setActiveVault(vault.id));
-
-									if (!vault.isEncrypted) {
-										onOpenVault(vault);
-									}
-
-									telemetry.track(TELEMETRY_EVENT_NAME.VAULT_SELECTED);
-								}}
+								asChild
 							>
-								<FaUser />
-								<Text>{vault.name}</Text>
+								<button
+									key={vault.id}
+									onClick={() => {
+										dispatch(workspacesApi.setActiveVault(vault.id));
+
+										if (!vault.isEncrypted) {
+											onOpenVault(vault);
+										}
+
+										telemetry.track(
+											TELEMETRY_EVENT_NAME.VAULT_SELECTED,
+										);
+									}}
+								>
+									<FaUser />
+									<Text>{vault.name}</Text>
+								</button>
 							</HStack>
 						),
 					}))}

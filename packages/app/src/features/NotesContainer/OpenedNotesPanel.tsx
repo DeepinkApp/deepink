@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FaXmark } from 'react-icons/fa6';
 import { isEqual } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
+import { Box, HStack, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
@@ -50,8 +50,8 @@ const NoteTabContent = memo(
 				</Text>
 				<Box
 					title={t('tabBar.closeTab')}
-					sx={{
-						'&:not(:hover)': {
+					css={{
+						'& &:not(:hover)': {
 							opacity: '0.7',
 						},
 					}}
@@ -102,10 +102,10 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	};
 
 	return (
-		<Tabs
-			index={tabIndex}
-			onChange={(index) => {
-				onPick(existsTabs[index]);
+		<Tabs.Root
+			value={activeTab ?? ''}
+			onValueChange={(details) => {
+				onPick(details.value);
 			}}
 			w="100%"
 			maxH="100px"
@@ -117,9 +117,9 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 			borderBottom="1px solid"
 			borderColor="surface.border"
 		>
-			<TabList display="flex" flexWrap="wrap" overflow="hidden">
-				{existsTabs.map((noteId, index) => {
-					const isActiveTab = index === tabIndex;
+			<Tabs.List display="flex" flexWrap="wrap" overflow="hidden">
+				{existsTabs.map((noteId) => {
+					const isActiveTab = noteId === activeTab;
 
 					// TODO: handle case when object not found
 					const note = notes.find((note) => note.id === noteId);
@@ -131,8 +131,9 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					const title = getNoteTitle(note.content, 50);
 
 					return (
-						<Tab
+						<Tabs.Trigger
 							key={note.id}
+							value={note.id}
 							ref={isActiveTab ? activeTabRef : undefined}
 							padding="0.4rem 0.7rem"
 							border="none"
@@ -148,7 +149,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 							textDecorationLine={
 								note.isDeleted ? 'line-through' : undefined
 							}
-							onMouseDown={(evt) => {
+							onMouseDown={(evt: React.MouseEvent) => {
 								// Prevent focus capturing by click
 								evt.preventDefault();
 
@@ -158,13 +159,13 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 								evt.preventDefault();
 								evt.stopPropagation();
 							}}
-							onMouseUp={(evt) => {
+							onMouseUp={(evt: React.MouseEvent) => {
 								const isMiddleButton = evt.button === 1;
 								if (!isMiddleButton) return;
 
 								onClose(note.id);
 							}}
-							onContextMenu={(evt) => {
+							onContextMenu={(evt: React.MouseEvent) => {
 								// Prevent text selection on macOS
 								evt.preventDefault();
 
@@ -184,10 +185,10 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 								note={note}
 								title={title}
 							/>
-						</Tab>
+						</Tabs.Trigger>
 					);
 				})}
-			</TabList>
-		</Tabs>
+			</Tabs.List>
+		</Tabs.Root>
 	);
 };

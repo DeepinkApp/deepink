@@ -1,7 +1,7 @@
 import React, { createContext, FC, PropsWithChildren, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { useToast } from '@chakra-ui/react';
+import { toaster } from '@components/ui/toaster';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { useTelemetryTracker } from '@features/telemetry';
 import { createContextGetterHook } from '@utils/react/createContextGetterHook';
@@ -17,26 +17,23 @@ export const VaultErrorProvider: FC<PropsWithChildren<{ controls: VaultControls 
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.vault);
 	const telemetry = useTelemetryTracker();
-	const toast = useToast();
 
 	const handleError = useCallback(
 		(error: Error) => {
 			console.error(error);
 			controls.close();
 
-			toast({
-				status: 'error',
-				isClosable: true,
+			toaster.create({
+				type: 'error',
 				title: t('errors.failedToOpen'),
 				description: t('errors.corrupted', {
 					name: controls.vault.vault.name,
 				}),
-				containerStyle: { maxW: '400px' },
 			});
 
 			telemetry.track(TELEMETRY_EVENT_NAME.VAULT_OPEN_FAILED);
 		},
-		[controls, t, telemetry, toast],
+		[controls, t, telemetry],
 	);
 
 	return (

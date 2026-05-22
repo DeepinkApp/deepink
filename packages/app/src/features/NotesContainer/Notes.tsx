@@ -20,7 +20,7 @@ export const Notes: FC<NotesProps> = ({ notes, tabs, activeTab, updateNote }) =>
 
 	return (
 		<Box
-			sx={{
+			css={{
 				display: 'flex',
 				flexDirection: 'column',
 				flexGrow: '100',

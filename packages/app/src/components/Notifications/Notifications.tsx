@@ -1,24 +1,17 @@
 import React, { forwardRef } from 'react';
 import { FaXmark } from 'react-icons/fa6';
-import {
-	Alert,
-	AlertIcon,
-	Button,
-	HStack,
-	Text,
-	useMultiStyleConfig,
-	VStack,
-} from '@chakra-ui/react';
+import { Alert, Button, HStack, Text, useSlotRecipe, VStack } from '@chakra-ui/react';
 
 export const Notifications = forwardRef<
 	HTMLDivElement,
 	{ isVisible?: boolean; onClose?: () => void; title?: string; items: string[] }
 >(({ isVisible, onClose, title, items }, ref) => {
-	const styles = useMultiStyleConfig('Notifications');
+	const recipe = useSlotRecipe({ key: 'notifications' });
+	const styles = recipe();
 
 	return (
-		<VStack display={isVisible ? undefined : 'none'} sx={styles.root} ref={ref}>
-			<HStack sx={styles.head}>
+		<VStack display={isVisible ? undefined : 'none'} css={styles.root} ref={ref}>
+			<HStack css={styles.head}>
 				<Text>{title}</Text>
 				<VStack marginStart="auto">
 					<Button variant="ghost" size="sm" onClick={onClose} paddingInline={0}>
@@ -26,13 +19,12 @@ export const Notifications = forwardRef<
 					</Button>
 				</VStack>
 			</HStack>
-
-			<VStack sx={styles.body}>
+			<VStack css={styles.body}>
 				{items.map((message, idx) => (
-					<Alert key={idx} status="info" padding=".8rem" w="100%">
-						<AlertIcon />
+					<Alert.Root key={idx} status="info" padding=".8rem" w="100%">
+						<Alert.Indicator />
 						<Text>{message}</Text>
-					</Alert>
+					</Alert.Root>
 				))}
 			</VStack>
 		</VStack>

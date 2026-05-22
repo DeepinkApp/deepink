@@ -1,34 +1,34 @@
 import React, { useReducer } from 'react';
 import { FaRotateLeft } from 'react-icons/fa6';
-import {
-	HStack,
-	Slider,
-	SliderFilledTrack,
-	SliderMark,
-	SliderProps,
-	SliderThumb,
-	SliderTrack,
-	Tooltip,
-} from '@chakra-ui/react';
+import { HStack, Slider } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
+import { Tooltip } from '@components/ui/tooltip';
 
-export type SimpleSliderProps = Omit<SliderProps, 'defaultValue'> &
-	Required<Pick<SliderProps, 'value' | 'min' | 'max'>> & {
-		transformValue?: (value: number) => string;
-		resetValue?: number;
-	};
+export type SimpleSliderProps = {
+	value: number;
+	min: number;
+	max: number;
+	step?: number;
+	onChange?: (value: number) => void;
+	onValueChangeEnd?: (value: number) => void;
+	transformValue?: (value: number) => string;
+	resetValue?: number;
+};
 
 type SliderState = { hover: boolean; dragging: boolean };
 
 /**
  * Simple to use slider control
- * Under the hood is a https://v2.chakra-ui.com/docs/components/slider with sensible defaults
  */
-
 export const SimpleSlider = ({
 	transformValue,
 	resetValue,
-	...props
+	value,
+	min,
+	max,
+	step,
+	onChange,
+	onValueChangeEnd,
 }: SimpleSliderProps) => {
 	const [state, updateState] = useReducer<SliderState, [Partial<SliderState>]>(
 		(state, changes) => {
@@ -40,52 +40,70 @@ export const SimpleSlider = ({
 		},
 	);
 
-	const { value, min, max } = props;
 	return (
 		<HStack width="100%" align="start">
-			<Slider
-				{...props}
+			<Slider.Root
+				value={[value]}
+				min={min}
+				max={max}
+				step={step}
 				onMouseEnter={() => updateState({ hover: true })}
 				onMouseLeave={() => updateState({ hover: false })}
-				onChangeStart={() => {
-					updateState({ dragging: true });
+				onValueChange={(details) => {
+					const v = details.value[0];
+					if (v !== undefined) onChange?.(v);
 				}}
-				onChangeEnd={() => {
+				onValueChangeEnd={(details) => {
 					updateState({ dragging: false });
+					const v = details.value[0];
+					if (v !== undefined) onValueChangeEnd?.(v);
 				}}
 			>
-				<SliderMark value={min} mt="1" fontSize="sm" color="typography.secondary">
-					{transformValue ? transformValue(min) : min}
-				</SliderMark>
-				<SliderMark
-					value={max}
-					mt="1"
-					fontSize="sm"
-					color="typography.secondary"
-					transform="translateX(-100%)"
-				>
-					{transformValue ? transformValue(max) : max}
-				</SliderMark>
-				<SliderTrack>
-					<SliderFilledTrack />
-				</SliderTrack>
-				<Tooltip
-					hasArrow
-					placement="top"
-					label={transformValue ? transformValue(value) : value}
-					isOpen={state.dragging || state.hover}
-				>
-					<SliderThumb />
-				</Tooltip>
-			</Slider>
+				<Slider.Control>
+					<Slider.Track>
+						<Slider.Range />
+					</Slider.Track>
+					<Tooltip
+						showArrow
+						content={transformValue ? transformValue(value) : value}
+						open={state.dragging || state.hover}
+						positioning={{
+							placement: 'top',
+						}}
+					>
+						<Slider.Thumb index={0}>
+							<Slider.HiddenInput />
+						</Slider.Thumb>
+					</Tooltip>
+				</Slider.Control>
+				<Slider.MarkerGroup>
+					<Slider.Marker
+						value={min}
+						mt="1"
+						fontSize="sm"
+						color="typography.secondary"
+					>
+						{transformValue ? transformValue(min) : min}
+					</Slider.Marker>
+					<Slider.Marker
+						value={max}
+						mt="1"
+						fontSize="sm"
+						color="typography.secondary"
+						transform="translateX(-100%)"
+					>
+						{transformValue ? transformValue(max) : max}
+					</Slider.Marker>
+				</Slider.MarkerGroup>
+			</Slider.Root>
 			{resetValue !== undefined && (
 				<IconButton
 					size="sm"
 					icon={<FaRotateLeft />}
 					title="Reset to default value"
-					isDisabled={value === resetValue}
+					disabled={value === resetValue}
 					onClick={() => {
-						if (props.onChange) props.onChange(resetValue);
+						onChange?.(resetValue);
 					}}
 				/>
 			)}

@@ -14,14 +14,14 @@ export const FeaturesOption: FC<FeaturesOptionProps> = ({
 	return (
 		<Box
 			w="100%"
-			sx={{
+			css={{
 				display: 'grid',
 				gridTemplateColumns: '40% minmax(auto, 60%)',
 				gridRowGap: '50rem',
 			}}
 		>
 			<Text
-				sx={{
+				css={{
 					display: 'flex',
 					justifyContent: 'end',
 					lineHeight: '120%',
@@ -34,7 +34,11 @@ export const FeaturesOption: FC<FeaturesOptionProps> = ({
 			<VStack alignItems="baseline" justifyContent="center">
 				{children}
 				{description && (
-					<Text variant="secondary" fontSize=".8rem" whiteSpace="pre-line">
+					<Text
+						color="typography.secondary"
+						fontSize=".8rem"
+						whiteSpace="pre-line"
+					>
 						{description}
 					</Text>
 				)}

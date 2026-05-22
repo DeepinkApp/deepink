@@ -34,13 +34,13 @@ export const ActivityBar = () => {
 
 	return (
 		<VStack
-			sx={{
+			css={{
 				alignItems: 'start',
 				minHeight: '100%',
 				padding: '.5rem',
 				overflow: 'hidden',
 
-				'& button': {
+				'& & button': {
 					padding: 0,
 					'& svg': {
 						boxSize: '50%',
@@ -53,7 +53,7 @@ export const ActivityBar = () => {
 					icon={<FaFeather />}
 					tooltipPlacement="right"
 					title={t('activityBar.newNote')}
-					variant="accent"
+					variant={'accent' as any}
 					onClick={debouncedCreateNote}
 				/>
 
@@ -91,7 +91,6 @@ export const ActivityBar = () => {
 					data-no-animation
 				/>
 			</ButtonGroup>
-
 			<ButtonGroup
 				marginTop="auto"
 				orientation="vertical"

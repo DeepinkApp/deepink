@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import { HStack, StackProps, useMultiStyleConfig, VStack } from '@chakra-ui/react';
+import { HStack, StackProps, useSlotRecipe, VStack } from '@chakra-ui/react';
 
 export type ListItem = {
 	id: string;
@@ -20,25 +20,19 @@ export const NestedList: FC<INestedListProps> = ({
 	onPick,
 	...props
 }) => {
-	const styles = useMultiStyleConfig('NestedList');
+	const recipe = useSlotRecipe({ key: 'nestedList' });
+	const styles = recipe();
 
 	return (
-		<VStack
-			as="ul"
-			{...props}
-			sx={{
-				...styles.root,
-				...props.sx,
-			}}
-		>
+		<VStack as="ul" {...props} css={styles.root}>
 			{items.map((item) => {
 				const itemId = item.id;
 				const isGroupCollapsed = Boolean(item.collapsed);
 
 				return (
-					<VStack key={itemId} as="li" sx={styles.item}>
+					<VStack key={itemId} as="li" css={styles.item}>
 						<HStack
-							sx={styles.content}
+							css={styles.content}
 							aria-selected={activeItem === itemId}
 							onClick={(evt) => {
 								if (onPick) {
@@ -51,7 +45,7 @@ export const NestedList: FC<INestedListProps> = ({
 						</HStack>
 
 						{item.childrens && !isGroupCollapsed && (
-							<VStack sx={styles.group}>
+							<VStack css={styles.group}>
 								<NestedList
 									items={item.childrens}
 									activeItem={activeItem}

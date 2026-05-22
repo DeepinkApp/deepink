@@ -1,13 +1,6 @@
 import React, { ReactNode, useRef, useState } from 'react';
 import Downshift from 'downshift';
-import {
-	Box,
-	BoxProps,
-	Input,
-	InputProps,
-	ListItem,
-	UnorderedList,
-} from '@chakra-ui/react';
+import { Box, BoxProps, Input, InputProps, List } from '@chakra-ui/react';
 import { Popper } from '@components/Popper';
 
 import { VirtualList } from './VirtualList';
@@ -36,7 +29,7 @@ export const SimpleComboBox = <T extends unknown>({
 	renderItem: (item: T) => ReactNode;
 } & BoxProps) => {
 	const listRootRef = useRef<HTMLDivElement>(null);
-	const [inputRef, setInputRef] = useState<HTMLDivElement>();
+	const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null);
 
 	return (
 		<Downshift
@@ -86,10 +79,9 @@ export const SimpleComboBox = <T extends unknown>({
 								})}
 								{...{ placeholder, ...inputProps }}
 								w="100%"
-								ref={setInputRef}
+								ref={(node) => setInputRef(node)}
 							/>
 						</Box>
-
 						{isOpen && items.length > 0 && renderItem && (
 							<Popper
 								referenceRef={inputRef ?? undefined}
@@ -121,7 +113,8 @@ export const SimpleComboBox = <T extends unknown>({
 												backgroundColor="surface.background"
 												borderRadius="6px"
 											>
-												<UnorderedList
+												<List.Root
+													as="ul"
 													{...getMenuProps()}
 													minHeight={virtualizer.getTotalSize()}
 													paddingBlock=".3rem"
@@ -141,7 +134,7 @@ export const SimpleComboBox = <T extends unknown>({
 																	];
 
 																return (
-																	<ListItem
+																	<List.Item
 																		{...getItemProps({
 																			key: virtualRow.index,
 																			index: virtualRow.index,
@@ -168,11 +161,11 @@ export const SimpleComboBox = <T extends unknown>({
 																		}
 																	>
 																		{renderItem(item)}
-																	</ListItem>
+																	</List.Item>
 																);
 															},
 														)}
-												</UnorderedList>
+												</List.Root>
 											</Box>
 										);
 									}}

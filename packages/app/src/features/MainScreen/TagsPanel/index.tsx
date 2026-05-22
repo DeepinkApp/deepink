@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaPlus } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Divider, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, HStack, Separator, Text, VStack } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
 import { TagEditor, TagEditorData } from '@components/TagEditor';
 import { IResolvedTag } from '@core/features/tags';
@@ -178,7 +178,7 @@ export const TagsPanel = () => {
 					/>
 				</HStack>
 
-				<Divider />
+				<Separator />
 
 				<Box w="100%" overflow="auto" paddingInlineEnd=".5rem">
 					{tagsTree.length > 0 ? (

@@ -39,7 +39,7 @@ export const useVaultSyncButton = () => {
 				text: isPending ? t('statusBar.sync.saving') : undefined,
 				icon: (
 					<Box
-						sx={{
+						css={{
 							animation: isPending
 								? `${styles.blink} 900ms linear infinite`
 								: undefined,

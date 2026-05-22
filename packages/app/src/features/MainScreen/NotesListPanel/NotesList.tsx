@@ -78,7 +78,7 @@ export const NotesList: FC<NotesListProps> = () => {
 	return (
 		<VStack
 			ref={parentRef}
-			sx={{
+			css={{
 				w: '100%',
 				h: '100%',
 				overflow: 'auto',
@@ -113,17 +113,18 @@ export const NotesList: FC<NotesListProps> = () => {
 										);
 									}}
 									size="sm"
-									variant="link"
-									leftIcon={<FaPenToSquare />}
-									iconSpacing=".2rem"
-								></Button>
+									variant="plain"
+									gap=".2rem"
+								>
+									<FaPenToSquare />
+								</Button>
 							),
 						}}
 					/>
 				</Text>
 			) : (
 				<Box
-					sx={{
+					css={{
 						display: 'block',
 						position: 'relative',
 						width: '100%',
@@ -132,7 +133,7 @@ export const NotesList: FC<NotesListProps> = () => {
 					}}
 				>
 					<VStack
-						sx={{
+						css={{
 							width: '100%',
 							top: 0,
 							left: 0,
@@ -152,8 +153,10 @@ export const NotesList: FC<NotesListProps> = () => {
 										ref={isActive ? activeNoteRef : undefined}
 										data-index={virtualRow.index}
 										data-loading
-										startColor="primary.100"
-										endColor="dim.400"
+										css={{
+											'--start-color': 'colors.primary.100',
+											'--end-color': 'colors.dim.400',
+										}}
 										height="70px"
 										w="100%"
 									/>

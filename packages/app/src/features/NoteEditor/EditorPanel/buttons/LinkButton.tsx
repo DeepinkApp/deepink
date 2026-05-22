@@ -3,16 +3,7 @@ import { AutoFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { FaLink } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import {
-	Box,
-	Button,
-	ButtonProps,
-	ModalBody,
-	ModalCloseButton,
-	ModalHeader,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Box, Button, ButtonProps, Dialog, Text, VStack } from '@chakra-ui/react';
 import { PropertiesForm } from '@components/PropertiesForm';
 import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 
@@ -36,48 +27,50 @@ export const LinkButton: FC<
 					show({
 						content: ({ onClose }) => (
 							<>
-								<ModalCloseButton />
-								<ModalHeader>
+								<Dialog.CloseTrigger />
+								<Dialog.Header>
 									<Text>{t('editorPanel.link.dialogTitle')}</Text>
-								</ModalHeader>
-								<ModalBody paddingBottom="1rem">
+								</Dialog.Header>
+								<Dialog.Body paddingBottom="1rem">
 									<VStack w="100%" gap="2rem" align="start">
 										<Text color="typography.secondary">
 											{t('editorPanel.link.dialogDescription')}
 										</Text>
 
-										<Box as={AutoFocusInside} w="100%">
-											<PropertiesForm
-												options={[
-													{
-														id: 'url',
-														value: '',
-														label: t(
-															'editorPanel.link.field.url.label',
-														),
-														placeholder: t(
-															'editorPanel.link.field.url.placeholder',
-														),
-													},
-												]}
-												onUpdate={({ url }) => {
-													onClose();
+										<Box w="100%" asChild>
+											<AutoFocusInside>
+												<PropertiesForm
+													options={[
+														{
+															id: 'url',
+															value: '',
+															label: t(
+																'editorPanel.link.field.url.label',
+															),
+															placeholder: t(
+																'editorPanel.link.field.url.placeholder',
+															),
+														},
+													]}
+													onUpdate={({ url }) => {
+														onClose();
 
-													if (url) {
-														onPick({ url });
-													}
-												}}
-												submitButtonText={t(
-													'editorPanel.link.actions.add',
-												)}
-												cancelButtonText={t(
-													'editorPanel.link.actions.cancel',
-												)}
-												onCancel={onClose}
-											/>
+														if (url) {
+															onPick({ url });
+														}
+													}}
+													submitButtonText={t(
+														'editorPanel.link.actions.add',
+													)}
+													cancelButtonText={t(
+														'editorPanel.link.actions.cancel',
+													)}
+													onCancel={onClose}
+												/>
+											</AutoFocusInside>
 										</Box>
 									</VStack>
-								</ModalBody>
+								</Dialog.Body>
 							</>
 						),
 					});

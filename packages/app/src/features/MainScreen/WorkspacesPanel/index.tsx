@@ -4,7 +4,14 @@ import { FaPlus } from 'react-icons/fa6';
 import { isEqual } from 'lodash';
 import { createSelector } from 'reselect';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Divider, HStack, Select, StackProps, Text, VStack } from '@chakra-ui/react';
+import {
+	HStack,
+	NativeSelect,
+	Separator,
+	StackProps,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { useTelemetryTracker } from '@features/telemetry';
@@ -64,34 +71,34 @@ export const WorkspacesPanel = (props: StackProps) => {
 					title={t('panel.workspaces.actions.add')}
 				/>
 			</HStack>
-
-			<Divider />
-
+			<Separator />
 			<HStack w="100%" marginTop="auto">
-				<Select
-					size="sm"
-					borderRadius="6px"
-					value={workspaceId}
-					onChange={(evt) => {
-						const workspaceId = evt.target.value;
-						dispatch(
-							workspacesApi.setActiveWorkspace({
-								vaultId,
-								workspaceId,
-							}),
-						);
+				<NativeSelect.Root size="sm">
+					<NativeSelect.Field
+						borderRadius="6px"
+						value={workspaceId}
+						onChange={(evt: React.ChangeEvent<HTMLSelectElement>) => {
+							const workspaceId = evt.target.value;
+							dispatch(
+								workspacesApi.setActiveWorkspace({
+									vaultId,
+									workspaceId,
+								}),
+							);
 
-						telemetry.track(TELEMETRY_EVENT_NAME.WORKSPACE_SELECTED, {
-							totalWorkspacesCount: workspaces.length,
-						});
-					}}
-				>
-					{workspaces.map((workspace) => (
-						<option key={workspace.id} value={workspace.id}>
-							{workspace.content}
-						</option>
-					))}
-				</Select>
+							telemetry.track(TELEMETRY_EVENT_NAME.WORKSPACE_SELECTED, {
+								totalWorkspacesCount: workspaces.length,
+							});
+						}}
+					>
+						{workspaces.map((workspace) => (
+							<option key={workspace.id} value={workspace.id}>
+								{workspace.content}
+							</option>
+						))}
+					</NativeSelect.Field>
+					<NativeSelect.Indicator />
+				</NativeSelect.Root>
 			</HStack>
 		</VStack>
 	);

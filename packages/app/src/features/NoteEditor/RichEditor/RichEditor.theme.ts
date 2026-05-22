@@ -1,11 +1,10 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
 import { theme } from './theme/RichEditor';
 
-export const RichEditorTheme = createMultiStyleConfigHelpers([
-	'root',
-]).defineMultiStyleConfig({
-	baseStyle: {
+export const RichEditorTheme = defineSlotRecipe({
+	slots: ['root'],
+	base: {
 		root: {
 			'& pre': {
 				whiteSpace: 'break-spaces',
@@ -41,6 +40,6 @@ export const RichEditorTheme = createMultiStyleConfigHelpers([
 					maxWidth: '100%',
 				},
 			},
-		},
+		} as any,
 	},
 });

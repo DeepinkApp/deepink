@@ -1,19 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import {
-	Button,
-	FormControl,
-	FormErrorMessage,
-	HStack,
-	Input,
-	ModalBody,
-	ModalCloseButton,
-	ModalFooter,
-	ModalHeader,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Button, Dialog, Field, HStack, Input, Text, VStack } from '@chakra-ui/react';
 import { IResolvedTag } from '@core/features/tags';
 
 import { SuggestedTagsList } from '../SuggestedTagsList';
@@ -137,14 +125,13 @@ export const TagEditor: FC<ITagEditorProps> = ({
 				}
 			}}
 		>
-			<ModalCloseButton />
-			<ModalHeader>
+			<Dialog.CloseTrigger />
+			<Dialog.Header>
 				{isEditingMode
 					? t('tag.editor.mode.edit.title')
 					: t('tag.editor.mode.add.title')}
-			</ModalHeader>
-
-			<ModalBody>
+			</Dialog.Header>
+			<Dialog.Body>
 				<VStack align="start" gap="1rem">
 					<VStack w="100%" align="start" gap="0.5rem">
 						<Text>{t('tag.editor.field.parent.label')}</Text>
@@ -159,7 +146,7 @@ export const TagEditor: FC<ITagEditorProps> = ({
 						/>
 					</VStack>
 
-					<FormControl isInvalid={tagNameError !== null}>
+					<Field.Root invalid={tagNameError !== null}>
 						<VStack w="100%" align="start" gap="0.5rem">
 							<Text>{t('tag.editor.field.name.label')}</Text>
 							<Input
@@ -173,23 +160,22 @@ export const TagEditor: FC<ITagEditorProps> = ({
 							/>
 
 							{tagNameError && (
-								<FormErrorMessage>{tagNameError}</FormErrorMessage>
+								<Field.ErrorText>{tagNameError}</Field.ErrorText>
 							)}
 						</VStack>
-					</FormControl>
+					</Field.Root>
 				</VStack>
-			</ModalBody>
-
-			<ModalFooter>
+			</Dialog.Body>
+			<Dialog.Footer>
 				<HStack w="100%" justifyContent="end">
-					<Button type="submit" variant="accent" isDisabled={isPending}>
+					<Button type="submit" variant={'accent' as any} disabled={isPending}>
 						{isEditingMode
 							? t('tag.editor.mode.edit.action')
 							: t('tag.editor.mode.add.action')}
 					</Button>
 					<Button onClick={onCancel}>{tCommon('actions.cancel')}</Button>
 				</HStack>
-			</ModalFooter>
+			</Dialog.Footer>
 		</form>
 	);
 };

@@ -16,7 +16,9 @@ export const About = () => {
 		<Box w="100vw" h="100vh" overflow="auto">
 			<VStack gap="2rem" maxWidth="600px" margin="auto" padding="2rem">
 				<VStack gap="1rem" maxWidth="600px" margin="auto">
-					<Box as={Logo} boxSize="200px" />
+					<Box boxSize="200px" asChild>
+						<Logo />
+					</Box>
 
 					<VStack gap=".5rem">
 						<Text fontSize="2rem">{displayName}</Text>

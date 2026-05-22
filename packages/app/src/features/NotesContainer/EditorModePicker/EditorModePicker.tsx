@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFeather } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Divider, Text, VStack } from '@chakra-ui/react';
+import { Separator, Text, VStack } from '@chakra-ui/react';
 import { NestedList } from '@components/NestedList';
 import { Popper } from '@components/Popper';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
@@ -89,7 +89,7 @@ export const EditorModePicker = () => {
 				<Text padding=".5rem" fontWeight="bold">
 					{t('editor.mode.title', { ns: LOCALE_NAMESPACE.settings })}
 				</Text>
-				<Divider />
+				<Separator />
 				<NestedList
 					items={(
 						['plaintext', 'richtext', 'split-screen'] as EditorMode[]

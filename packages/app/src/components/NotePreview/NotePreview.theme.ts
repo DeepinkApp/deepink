@@ -1,13 +1,8 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
-export const NotePreviewTheme = createMultiStyleConfigHelpers([
-	'root',
-	'body',
-	'title',
-	'text',
-	'meta',
-]).defineMultiStyleConfig({
-	baseStyle: {
+export const NotePreviewTheme = defineSlotRecipe({
+	slots: ['root', 'body', 'title', 'text', 'meta'],
+	base: {
 		root: {
 			cursor: 'pointer',
 			padding: '0.5rem',
@@ -37,26 +32,28 @@ export const NotePreviewTheme = createMultiStyleConfigHelpers([
 		},
 	},
 	variants: {
-		default: {
-			root: {
-				borderRadius: '4px',
+		variant: {
+			default: {
+				root: {
+					borderRadius: '4px',
 
-				backgroundColor: 'control.option.background',
-				color: 'control.option.foreground',
+					backgroundColor: 'control.option.background',
+					color: 'control.option.foreground',
 
-				'&:hover': {
-					backgroundColor: 'control.option.hover.background',
-					color: 'control.option.hover.foreground',
-				},
+					'&:hover': {
+						backgroundColor: 'control.option.hover.background',
+						color: 'control.option.hover.foreground',
+					},
 
-				_selected: {
-					backgroundColor: 'control.option.active.background',
-					color: 'control.option.active.foreground',
+					_selected: {
+						backgroundColor: 'control.option.active.background',
+						color: 'control.option.active.foreground',
+					},
 				},
 			},
 		},
 	},
-	defaultProps: {
+	defaultVariants: {
 		variant: 'default',
 	},
 });

@@ -1,12 +1,8 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
-export const NestedListTheme = createMultiStyleConfigHelpers([
-	'root',
-	'item',
-	'content',
-	'group',
-]).defineMultiStyleConfig({
-	baseStyle: {
+export const NestedListTheme = defineSlotRecipe({
+	slots: ['root', 'item', 'content', 'group'],
+	base: {
 		root: {
 			margin: '0',
 			paddingLeft: '0',
@@ -35,24 +31,26 @@ export const NestedListTheme = createMultiStyleConfigHelpers([
 		},
 	},
 	variants: {
-		default: {
-			content: {
-				color: 'control.ghost.foreground',
-				backgroundColor: 'transparent',
+		variant: {
+			default: {
+				content: {
+					color: 'control.ghost.foreground',
+					backgroundColor: 'transparent',
 
-				'&:hover': {
-					color: 'control.ghost.hover.foreground',
-					backgroundColor: 'control.ghost.hover.background',
-				},
+					'&:hover': {
+						color: 'control.ghost.hover.foreground',
+						backgroundColor: 'control.ghost.hover.background',
+					},
 
-				_selected: {
-					color: 'control.ghost.active.foreground',
-					background: 'control.ghost.active.background',
+					_selected: {
+						color: 'control.ghost.active.foreground',
+						background: 'control.ghost.active.background',
+					},
 				},
 			},
 		},
 	},
-	defaultProps: {
+	defaultVariants: {
 		variant: 'default',
 	},
 });

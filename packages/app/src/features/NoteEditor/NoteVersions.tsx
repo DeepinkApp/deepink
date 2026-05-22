@@ -102,7 +102,7 @@ export const NoteVersions = ({
 								action: (
 									<>
 										<Button
-											variant="accent"
+											variant={'accent' as any}
 											onClick={() => {
 												onDeleteAll();
 												onClose();
@@ -124,21 +124,29 @@ export const NoteVersions = ({
 					</TextWithIcon>
 				</Button>
 
-				<HStack as="label">
-					<Switch
-						size="sm"
-						isChecked={recordControl.isDisabled}
-						onChange={(event) => recordControl.onChange(event.target.checked)}
-					/>{' '}
-					<Text>
-						{
-							// eslint-disable-next-line @cspell/spellchecker
-							t('note.versions.dontRecord')
-						}
-					</Text>
+				<HStack asChild>
+					<label>
+						<Switch.Root
+							size="sm"
+							checked={recordControl.isDisabled}
+							onCheckedChange={(event) =>
+								recordControl.onChange(event.checked)
+							}
+						>
+							<Switch.HiddenInput />
+							<Switch.Control>
+								<Switch.Thumb />
+							</Switch.Control>
+						</Switch.Root>{' '}
+						<Text>
+							{
+								// eslint-disable-next-line @cspell/spellchecker
+								t('note.versions.dontRecord')
+							}
+						</Text>
+					</label>
 				</HStack>
 			</HStack>
-
 			<Box w="100%" overflow="auto" display="flex" flex={1} flexFlow="column">
 				{versions && versions.length === 0 && (
 					<BoxWithCenteredContent>
@@ -173,7 +181,7 @@ export const NoteVersions = ({
 								</HStack>
 								<HStack marginLeft="auto">
 									<Button
-										isDisabled={Boolean(isReadOnly)}
+										disabled={Boolean(isReadOnly)}
 										size="sm"
 										title={
 											isReadOnly
@@ -238,7 +246,7 @@ export const NoteVersions = ({
 												action: (
 													<>
 														<Button
-															variant="accent"
+															variant={'accent' as any}
 															onClick={() => {
 																applyVersion();
 																onClose();
@@ -249,7 +257,7 @@ export const NoteVersions = ({
 															)}
 														</Button>
 														<Button
-															variant="accent"
+															variant={'accent' as any}
 															onClick={() => {
 																onShowVersion(version);
 																onClose();
@@ -355,7 +363,7 @@ export const NoteVersions = ({
 												action: (
 													<>
 														<Button
-															variant="accent"
+															variant={'accent' as any}
 															onClick={() => {
 																deleteVersion();
 																onClose();
@@ -366,7 +374,7 @@ export const NoteVersions = ({
 															)}
 														</Button>
 														<Button
-															variant="accent"
+															variant={'accent' as any}
 															onClick={() => {
 																onShowVersion(version);
 																onClose();

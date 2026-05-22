@@ -92,92 +92,96 @@ export const PropertiesForm = <T extends OptionObject[]>({
 	}, [getValues, isPending, optionsValues, reset, setValue]);
 
 	return (
-		<VStack
-			as="form"
-			gap="1.5rem"
-			w="100%"
-			minW="350px"
-			{...props}
-			onSubmit={handleSubmit((values: FormOutput<T>) => {
-				onUpdate(values as Record<T[number]['value'], string>);
-			})}
-		>
-			<VStack align="start" w="100%" gap="1rem">
-				{options.map(({ id, label, placeholder, error, suggests }) => {
-					const fieldErrors = errors as Record<
-						string,
-						{ message?: string } | undefined
-					>;
-					const errorMessage = error || fieldErrors[id]?.message;
-
-					return (
-						<VStack key={id} as="label" align="start" w="100%" gap="0.3rem">
-							<Text paddingBottom=".2rem">{label}</Text>
-							<Input
-								{...register(
-									// Cast id to Path<FormValues<T>> — safe because options are always derived from the same schema shape
-									id as Path<FormValues<T>>,
-								)}
-								placeholder={placeholder}
-								isDisabled={isPending}
-							/>
-							{suggests && suggests.length > 0 && (
-								<Box>
-									<Trans
-										t={t}
-										i18nKey="form.suggestTemplate"
-										components={{
-											suggests: (
-												<>
-													{suggests.map((suggest, i) => (
-														<React.Fragment key={i}>
-															{i > 0 && ', '}
-															<Link
-																textDecoration="underline dashed"
-																textUnderlineOffset="15%"
-																onClick={(evt) => {
-																	evt.preventDefault();
-																	setValue(
-																		id as Path<
-																			FormValues<T>
-																		>,
-																		suggest as any,
-																	);
-																	setFocus(
-																		id as Path<
-																			FormValues<T>
-																		>,
-																	);
-																}}
-															>
-																{suggest}
-															</Link>
-														</React.Fragment>
-													))}
-												</>
-											),
-										}}
-									/>
-								</Box>
-							)}
-							{errorMessage && (
-								<Text color="message.error">{errorMessage}</Text>
-							)}
-						</VStack>
-					);
+		<VStack gap="1.5rem" w="100%" minW="350px" {...props} asChild>
+			<form
+				onSubmit={handleSubmit((values: FormOutput<T>) => {
+					onUpdate(values as Record<T[number]['value'], string>);
 				})}
-			</VStack>
+			>
+				<VStack align="start" w="100%" gap="1rem">
+					{options.map(({ id, label, placeholder, error, suggests }) => {
+						const fieldErrors = errors as Record<
+							string,
+							{ message?: string } | undefined
+						>;
+						const errorMessage = error || fieldErrors[id]?.message;
 
-			<HStack w="100%" justifyContent="end">
-				<Button variant="accent" type="submit" isDisabled={isPending}>
-					{submitButtonText}
-				</Button>
-				{onCancel && (
-					<Button onClick={onCancel} isDisabled={isPending}>
-						{cancelButtonText}
+						return (
+							<VStack key={id} align="start" w="100%" gap="0.3rem" asChild>
+								<label>
+									<Text paddingBottom=".2rem">{label}</Text>
+									<Input
+										{...register(
+											// Cast id to Path<FormValues<T>> — safe because options are always derived from the same schema shape
+											id as Path<FormValues<T>>,
+										)}
+										placeholder={placeholder}
+										disabled={isPending}
+									/>
+									{suggests && suggests.length > 0 && (
+										<Box>
+											<Trans
+												t={t}
+												i18nKey="form.suggestTemplate"
+												components={{
+													suggests: (
+														<>
+															{suggests.map(
+																(suggest, i) => (
+																	<React.Fragment
+																		key={i}
+																	>
+																		{i > 0 && ', '}
+																		<Link
+																			textDecoration="underline dashed"
+																			textUnderlineOffset="15%"
+																			onClick={(
+																				evt,
+																			) => {
+																				evt.preventDefault();
+																				setValue(
+																					id as Path<
+																						FormValues<T>
+																					>,
+																					suggest as any,
+																				);
+																				setFocus(
+																					id as Path<
+																						FormValues<T>
+																					>,
+																				);
+																			}}
+																		>
+																			{suggest}
+																		</Link>
+																	</React.Fragment>
+																),
+															)}
+														</>
+													),
+												}}
+											/>
+										</Box>
+									)}
+									{errorMessage && (
+										<Text color="message.error">{errorMessage}</Text>
+									)}
+								</label>
+							</VStack>
+						);
+					})}
+				</VStack>
+				<HStack w="100%" justifyContent="end">
+					<Button variant={'accent' as any} type="submit" disabled={isPending}>
+						{submitButtonText}
 					</Button>
-				)}
-			</HStack>
+					{onCancel && (
+						<Button onClick={onCancel} disabled={isPending}>
+							{cancelButtonText}
+						</Button>
+					)}
+				</HStack>
+			</form>
 		</VStack>
 	);
 };

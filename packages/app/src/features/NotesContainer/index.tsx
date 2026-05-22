@@ -155,7 +155,7 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 						gap="1rem"
 						textAlign="center"
 					>
-						<Text variant="secondary">
+						<Text color="typography.secondary">
 							{t('notesContainer.empty.placeholder')}
 						</Text>
 					</VStack>

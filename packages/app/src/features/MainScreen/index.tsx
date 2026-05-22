@@ -62,11 +62,10 @@ export const MainScreen: FC = () => {
 	return (
 		<VStack gap={0} w="100%" h="100%">
 			<WorkspaceCommands />
-
 			<HStack
 				align="start"
 				gap={0}
-				sx={{
+				css={{
 					flexGrow: '100',
 					width: '100%',
 					height: '100vh',
@@ -77,7 +76,7 @@ export const MainScreen: FC = () => {
 			>
 				<Box
 					className="invisible-scroll"
-					sx={{
+					css={{
 						flexShrink: 0,
 						height: '100%',
 						overflow: 'auto',
@@ -91,11 +90,9 @@ export const MainScreen: FC = () => {
 
 				<SyncedPanelGroup direction="horizontal" autoSaveId="MainScreen.content">
 					<VStack
-						as={Panel}
-						defaultSize={20}
-						sx={{
+						{...({ defaultSize: 20 } as any)}
+						css={{
 							alignItems: 'start',
-
 							minWidth: 'min-content',
 							maxWidth: '350px',
 							padding: '.5rem',
@@ -104,22 +101,23 @@ export const MainScreen: FC = () => {
 							flexDirection: 'column',
 							gap: '1rem',
 						}}
+						asChild
 					>
-						<NotesViewFilter />
-
-						<TagsPanel />
-
-						<WorkspacesPanel marginTop="auto" />
+						<Panel>
+							<NotesViewFilter />
+							<TagsPanel />
+							<WorkspacesPanel marginTop="auto" />
+						</Panel>
 					</VStack>
 
-					<Box as={PanelResizeHandle} color="surface.border" />
+					<Box color="surface.border" asChild>
+						<PanelResizeHandle />
+					</Box>
 
 					<VStack
-						as={Panel}
-						defaultSize={20}
-						sx={{
+						{...({ defaultSize: 20 } as any)}
+						css={{
 							alignItems: 'start',
-
 							minWidth: '200px',
 							maxWidth: '350px',
 							padding: '.5rem',
@@ -128,20 +126,25 @@ export const MainScreen: FC = () => {
 							flexDirection: 'column',
 							gap: '1rem',
 						}}
+						asChild
 					>
-						<NotesListPanel />
+						<Panel>
+							<NotesListPanel />
+						</Panel>
 					</VStack>
 
-					<Box as={PanelResizeHandle} color="surface.border" />
+					<Box color="surface.border" asChild>
+						<PanelResizeHandle />
+					</Box>
 
-					<Box as={Panel} minSize={50}>
-						<NotesContainer />
+					<Box {...({ minSize: 50 } as any)} asChild>
+						<Panel>
+							<NotesContainer />
+						</Panel>
 					</Box>
 				</SyncedPanelGroup>
 			</HStack>
-
 			<StatusBar />
-
 			<NotificationsPopup />
 		</VStack>
 	);
