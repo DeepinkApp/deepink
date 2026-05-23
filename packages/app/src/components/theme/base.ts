@@ -21,6 +21,7 @@ import {
 	SystemStyleObject,
 } from '@chakra-ui/react';
 import {
+	alertAnatomy,
 	dialogAnatomy,
 	menuAnatomy,
 	nativeSelectAnatomy,
@@ -402,19 +403,18 @@ export default defineConfig({
 				slots: tooltipAnatomy.keys(),
 				base: {
 					content: {
-						borderRadius: '4px',
+						borderRadius: 'sm',
 						color: 'typography.inverted',
-						backgroundColor: 'surface.invertedBackground',
-					},
-					arrowTip: {
-						backgroundColor: 'surface.invertedBackground !important',
-						borderColor: 'surface.invertedBackground !important',
+						// Yeah, that is the official way to set background
+						// See the docs: https://chakra-ui.com/docs/components/tooltip#custom-background
+						'--tooltip-bg': 'surface.invertedBackground',
 					},
 				},
 			}),
 			menu: defineSlotRecipe({
 				slots: menuAnatomy.keys(),
 				base: {
+					// TODO: fix background shadow on content
 					content: {
 						borderColor: 'surface.border',
 						backgroundColor: 'surface.background',
@@ -432,15 +432,17 @@ export default defineConfig({
 				},
 			}),
 			alert: defineSlotRecipe({
-				slots: ['icon', 'container'],
-				base: {
-					icon: {
-						color: 'currentColor',
-					},
-					container: {
-						'&[data-status="info"]': {
-							backgroundColor: 'container.message.background',
-							color: 'container.message.foreground',
+				slots: alertAnatomy.keys(),
+				variants: {
+					variant: {
+						subtle: {
+							indicator: {
+								color: 'currentColor',
+							},
+							root: {
+								backgroundColor: 'container.message.background',
+								color: 'container.message.foreground',
+							},
 						},
 					},
 				},
