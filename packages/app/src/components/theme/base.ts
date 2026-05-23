@@ -27,6 +27,7 @@ import {
 	sliderAnatomy,
 	tabsAnatomy,
 	tagAnatomy,
+	tooltipAnatomy,
 } from '@chakra-ui/react/anatomy';
 import { NestedListRecipe } from '@components/NestedList/NestedList.theme';
 import { notePreviewRecipe } from '@components/NotePreview/NotePreview.theme';
@@ -113,16 +114,16 @@ export default defineConfig({
 				'--resize-handle-active-color': 'var(--chakra-colors-accent-300)',
 			},
 
-			...(getScrollBarStyles() as SystemStyleObject),
-
 			'select:focus-visible, button:focus-visible, input:focus-visible': {
 				boxShadow: 'outline',
 			},
 		} as SystemStyleObject,
+		...getScrollBarStyles(),
 	},
 
 	theme: {
 		recipes: {
+			// TODO: review & fix
 			progress: defineRecipe({
 				variants: {
 					success: {
@@ -314,15 +315,6 @@ export default defineConfig({
 					variant: 'subtle',
 				},
 			}),
-			tooltip: defineRecipe({
-				base: {
-					borderRadius: '4px',
-					color: 'typography.inverted',
-					backgroundColor: 'surface.invertedBackground',
-					'--popper-arrow-bg':
-						'var(--chakra-colors-surface-invertedBackground)',
-				},
-			}),
 			spinner: defineRecipe({
 				variants: {
 					variant: {
@@ -342,6 +334,20 @@ export default defineConfig({
 			}),
 		},
 		slotRecipes: {
+			tooltip: defineSlotRecipe({
+				slots: tooltipAnatomy.keys(),
+				base: {
+					content: {
+						borderRadius: '4px',
+						color: 'typography.inverted',
+						backgroundColor: 'surface.invertedBackground',
+					},
+					arrowTip: {
+						backgroundColor: 'surface.invertedBackground !important',
+						borderColor: 'surface.invertedBackground !important',
+					},
+				},
+			}),
 			nativeSelect: defineSlotRecipe({
 				slots: nativeSelectAnatomy.keys(),
 				base: {
