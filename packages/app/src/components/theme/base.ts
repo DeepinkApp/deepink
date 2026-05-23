@@ -25,6 +25,7 @@ import {
 	menuAnatomy,
 	nativeSelectAnatomy,
 	sliderAnatomy,
+	switchAnatomy,
 	tabsAnatomy,
 	tagAnatomy,
 	tooltipAnatomy,
@@ -336,26 +337,12 @@ export default defineConfig({
 			}),
 		},
 		slotRecipes: {
-			tooltip: defineSlotRecipe({
-				slots: tooltipAnatomy.keys(),
-				base: {
-					content: {
-						borderRadius: '4px',
-						color: 'typography.inverted',
-						backgroundColor: 'surface.invertedBackground',
-					},
-					arrowTip: {
-						backgroundColor: 'surface.invertedBackground !important',
-						borderColor: 'surface.invertedBackground !important',
-					},
-				},
-			}),
 			nativeSelect: defineSlotRecipe({
 				slots: nativeSelectAnatomy.keys(),
 				base: {
 					field: {
 						color: 'typography.base',
-						borderRadius: '6px',
+						borderRadius: 'md',
 						'&::placeholder': {
 							color: 'inherit',
 							opacity: '.8',
@@ -370,11 +357,11 @@ export default defineConfig({
 					variant: {
 						subtle: {
 							field: {
+								color: 'control.foreground',
 								backgroundColor: {
 									base: 'control.background',
 									_hover: 'control.active.background',
 								},
-								color: 'control.foreground',
 							},
 						},
 					},
@@ -384,26 +371,44 @@ export default defineConfig({
 				},
 			}),
 			switch: defineSlotRecipe({
-				slots: ['container', 'thumb', 'track', 'label'],
-				base: {
-					container: {
-						display: 'inline-flex',
-						maxWidth: '100%',
-						lineHeight: '1',
-					},
-					label: {
-						overflow: 'hidden',
-						whiteSpace: 'nowrap',
-						textOverflow: 'ellipsis',
-					},
-					track: {
-						backgroundColor: 'dim.500',
-						_checked: {
-							backgroundColor: 'control.action.background',
+				slots: switchAnatomy.keys(),
+				variants: {
+					variant: {
+						solid: {
+							root: {
+								display: 'inline-flex',
+								maxWidth: '100%',
+								lineHeight: '1',
+							},
+							label: {
+								overflow: 'hidden',
+								whiteSpace: 'nowrap',
+								textOverflow: 'ellipsis',
+							},
+							control: {
+								backgroundColor: 'dim.500',
+								_checked: {
+									backgroundColor: 'control.action.background',
+								},
+							},
+							thumb: {
+								backgroundColor: 'control.action.foreground',
+							},
 						},
 					},
-					thumb: {
-						backgroundColor: 'control.action.foreground',
+				},
+			}),
+			tooltip: defineSlotRecipe({
+				slots: tooltipAnatomy.keys(),
+				base: {
+					content: {
+						borderRadius: '4px',
+						color: 'typography.inverted',
+						backgroundColor: 'surface.invertedBackground',
+					},
+					arrowTip: {
+						backgroundColor: 'surface.invertedBackground !important',
+						borderColor: 'surface.invertedBackground !important',
 					},
 				},
 			}),
@@ -424,50 +429,6 @@ export default defineConfig({
 							backgroundColor: 'control.ghost.hover.background !important',
 						},
 					},
-				},
-			}),
-			list: defineSlotRecipe({
-				slots: ['container', 'item'],
-				base: {
-					list: {
-						borderColor: 'surface.border',
-						backgroundColor: 'surface.background',
-					},
-					item: {
-						color: 'control.ghost.foreground',
-						backgroundColor: 'transparent',
-
-						'&[aria-selected=true]': {
-							color: 'control.ghost.hover.foreground',
-							backgroundColor: 'control.ghost.hover.background',
-						},
-					},
-				},
-			}),
-			tag: defineSlotRecipe({
-				slots: tagAnatomy.keys(),
-				variants: {
-					variant: {
-						base: {
-							root: {
-								backgroundColor: 'control.background',
-								color: 'control.foreground',
-
-								'&:hover': {
-									backgroundColor: 'control.active.background',
-								},
-							},
-						},
-						static: {
-							root: {
-								backgroundColor: 'control.background',
-								color: 'control.foreground',
-							},
-						},
-					},
-				},
-				defaultVariants: {
-					variant: 'base',
 				},
 			}),
 			alert: defineSlotRecipe({
@@ -526,6 +487,51 @@ export default defineConfig({
 							backgroundColor: 'control.ghost.hover.background',
 						},
 					},
+				},
+			}),
+
+			list: defineSlotRecipe({
+				slots: ['container', 'item'],
+				base: {
+					list: {
+						borderColor: 'surface.border',
+						backgroundColor: 'surface.background',
+					},
+					item: {
+						color: 'control.ghost.foreground',
+						backgroundColor: 'transparent',
+
+						'&[aria-selected=true]': {
+							color: 'control.ghost.hover.foreground',
+							backgroundColor: 'control.ghost.hover.background',
+						},
+					},
+				},
+			}),
+			tag: defineSlotRecipe({
+				slots: tagAnatomy.keys(),
+				variants: {
+					variant: {
+						base: {
+							root: {
+								backgroundColor: 'control.background',
+								color: 'control.foreground',
+
+								'&:hover': {
+									backgroundColor: 'control.active.background',
+								},
+							},
+						},
+						static: {
+							root: {
+								backgroundColor: 'control.background',
+								color: 'control.foreground',
+							},
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'base',
 				},
 			}),
 			// TODO: fix all
