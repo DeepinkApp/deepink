@@ -149,13 +149,8 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 				</>
 			) : (
 				<Box margin="auto" maxWidth="500px">
-					<VStack
-						fontSize="1.1rem"
-						color="typography.secondary"
-						gap="1rem"
-						textAlign="center"
-					>
-						<Text color="typography.secondary">
+					<VStack fontSize="1.1rem" gap="1rem" textAlign="center">
+						<Text variant="secondary">
 							{t('notesContainer.empty.placeholder')}
 						</Text>
 					</VStack>

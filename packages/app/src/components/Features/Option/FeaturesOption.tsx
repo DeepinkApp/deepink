@@ -34,11 +34,7 @@ export const FeaturesOption: FC<FeaturesOptionProps> = ({
 			<VStack alignItems="baseline" justifyContent="center">
 				{children}
 				{description && (
-					<Text
-						color="typography.secondary"
-						fontSize=".8rem"
-						whiteSpace="pre-line"
-					>
+					<Text variant="secondary" fontSize=".8rem" whiteSpace="pre-line">
 						{description}
 					</Text>
 				)}

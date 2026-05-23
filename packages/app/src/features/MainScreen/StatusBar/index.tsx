@@ -32,7 +32,6 @@ export const StatusBar: FC<StatusBarProps> = (props) => {
 							fontWeight="normal"
 							title={item.title}
 							onClick={item.onClick}
-							color="typography.secondary"
 						>
 							<HStack>
 								{item.icon}
@@ -55,7 +54,6 @@ export const StatusBar: FC<StatusBarProps> = (props) => {
 							fontWeight="normal"
 							title={item.title}
 							onClick={item.onClick}
-							color="typography.secondary"
 						>
 							<HStack>
 								{item.icon}

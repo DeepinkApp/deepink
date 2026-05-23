@@ -64,7 +64,7 @@ export const WorkspaceCreatePopup = () => {
 			</Dialog.Header>
 			<Dialog.Body paddingBottom="1rem">
 				<VStack w="100%" gap="2rem" align="start">
-					<Text color="typography.secondary">{tFeatures('description')}</Text>
+					<Text variant="secondary">{tFeatures('description')}</Text>
 
 					<Box w="100%" asChild>
 						<AutoFocusInside>

@@ -68,7 +68,7 @@ export const AppZoomLevel = () => {
 					<InputGroup
 						width="auto"
 						endElement={
-							<Text color="typography.secondary" pointerEvents="none">
+							<Text variant="secondary" pointerEvents="none">
 								%
 							</Text>
 						}

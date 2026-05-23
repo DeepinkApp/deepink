@@ -254,11 +254,7 @@ export const VaultSettings = () => {
 					<InputGroup
 						width="auto"
 						endElement={
-							<Text
-								color="typography.secondary"
-								pointerEvents="none"
-								width="3rem"
-							>
+							<Text variant="secondary" pointerEvents="none" width="3rem">
 								{t('vault.trashBin.purgeDelay.unit')}
 							</Text>
 						}

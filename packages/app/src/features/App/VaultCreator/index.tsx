@@ -110,7 +110,7 @@ export const PasswordInput = forwardRef<
 			</InputGroup>
 			{passwordScore && (
 				<VStack width="100%" align="start" paddingTop=".3rem">
-					<Text color="typography.secondary" fontSize="1rem">
+					<Text variant="secondary" fontSize="1rem">
 						{passwordScore.strength === 'good'
 							? tEncryption('password.score.good', {
 									length: password.length,
@@ -347,7 +347,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 										{t('creator.noEncryptionDialog.title')}
 									</Dialog.Header>
 									<Dialog.Body>
-										<Text color="typography.secondary">
+										<Text variant="secondary">
 											{t('creator.noEncryptionDialog.description')}
 										</Text>
 									</Dialog.Body>
@@ -438,12 +438,12 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 				<VStack w="100%" alignItems="start">
 					<HStack>
 						<Text>{t('creator.field.password.label')}</Text>
-						<Text color="typography.secondary">
+						<Text variant="secondary">
 							{t('creator.field.password.recommended')}
 						</Text>
 					</HStack>
 
-					<Text color="typography.secondary" fontSize="1rem">
+					<Text variant="secondary" fontSize="1rem">
 						{t('creator.field.password.description')}
 					</Text>
 
@@ -464,7 +464,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 					title={t('creator.section.advancedConfig.label')}
 				>
 					<VStack w="100%" gap="2rem">
-						<Text color="typography.secondary" fontSize="1rem">
+						<Text variant="secondary" fontSize="1rem">
 							<Trans
 								t={t}
 								i18nKey="creator.section.advancedConfig.description"
@@ -501,7 +501,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 
 						<VStack w="100%" gap="0.5rem" align="start">
 							<Text fontSize="18px">{t('creator.section.kdf.label')}</Text>
-							<Text color="typography.secondary" fontSize="1rem">
+							<Text variant="secondary" fontSize="1rem">
 								{t('creator.section.kdf.description')}
 							</Text>
 
@@ -518,7 +518,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 									<Text fontSize="18px" alignSelf="start">
 										{t('creator.section.kdf.memory.label')}
 									</Text>
-									<Text color="typography.secondary" fontSize="1rem">
+									<Text variant="secondary" fontSize="1rem">
 										{t('creator.section.kdf.memory.description')}
 									</Text>
 
@@ -538,7 +538,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 									<Text fontSize="18px" alignSelf="start">
 										{t('creator.section.kdf.ops.label')}
 									</Text>
-									<Text color="typography.secondary" fontSize="1rem">
+									<Text variant="secondary" fontSize="1rem">
 										{t('creator.section.kdf.ops.description')}
 									</Text>
 

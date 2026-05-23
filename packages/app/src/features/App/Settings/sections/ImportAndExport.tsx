@@ -128,7 +128,7 @@ export const ImportAndExport = () => {
 					>
 						<input {...getInputProps()} />
 						<Text>{t('migration.import.dropzone.title')}</Text>
-						<Text color="typography.secondary">
+						<Text variant="secondary">
 							{t('migration.import.dropzone.description')}
 						</Text>
 					</VStack>

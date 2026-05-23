@@ -88,7 +88,7 @@ export const GeneralSettings = () => {
 					<Text fontSize="1.5rem" lineHeight="1">
 						{t('general.title')}
 					</Text>
-					<Text color="typography.secondary">{t('general.subtitle')}</Text>
+					<Text variant="secondary">{t('general.subtitle')}</Text>
 				</VStack>
 
 				<Separator />
@@ -124,11 +124,11 @@ export const GeneralSettings = () => {
 						{appUpdatesState.state === 'result' && (
 							<>
 								{appUpdatesState.newVersion === null ? (
-									<Text color="typography.secondary">
+									<Text variant="secondary">
 										{t('general.version.upToDate')}
 									</Text>
 								) : (
-									<Text color="typography.secondary">
+									<Text variant="secondary">
 										<Trans
 											i18nKey="general.version.newVersionAvailable"
 											ns={LOCALE_NAMESPACE.settings}

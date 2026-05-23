@@ -495,7 +495,7 @@ export const Note2: FC<NoteEditorProps> = memo(
 								<FaArrowLeft />
 							</Button>
 
-							<Text color="typography.secondary">
+							<Text variant="secondary">
 								{t('note.versionPreview.versionAt', {
 									date: new Date(
 										versionPreview.createdAt,

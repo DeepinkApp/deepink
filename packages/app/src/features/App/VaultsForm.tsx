@@ -11,7 +11,7 @@ export const VaultsForm = ({ title, controls, children }: VaultsFormProps) => {
 		<VStack alignItems="start" gap="1.5rem">
 			<VStack alignItems="start" w="100%" gap="1rem">
 				{title && (
-					<Text as="h3" color="typography.secondary" fontSize="20px">
+					<Text as="h3" variant="secondary" fontSize="20px">
 						{title}
 					</Text>
 				)}

@@ -33,7 +33,7 @@ export const ImageButton: FC<
 								</Dialog.Header>
 								<Dialog.Body paddingBottom="1rem">
 									<VStack w="100%" gap="2rem" align="start">
-										<Text color="typography.secondary">
+										<Text variant="secondary">
 											{t('editorPanel.image.dialogDescription')}
 										</Text>
 

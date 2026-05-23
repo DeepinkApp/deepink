@@ -173,7 +173,7 @@ export const NoteVersions = ({
 									<Text>
 										{new Date(version.createdAt).toLocaleString()}
 									</Text>
-									<Text color="typography.secondary">
+									<Text variant="secondary">
 										{t('note.version.chars', {
 											count: version.text.length,
 										})}
@@ -230,7 +230,7 @@ export const NoteVersions = ({
 																	secondary: (
 																		<Text
 																			as="span"
-																			color="typography.secondary"
+																			variant="secondary"
 																		/>
 																	),
 																}}
@@ -347,7 +347,7 @@ export const NoteVersions = ({
 																	secondary: (
 																		<Text
 																			as="span"
-																			color="typography.secondary"
+																			variant="secondary"
 																		/>
 																	),
 																}}

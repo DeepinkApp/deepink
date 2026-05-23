@@ -118,11 +118,7 @@ export const NotesListPanel = () => {
 
 				{activeTag && (
 					<HStack align="start" gap="0.5rem" maxW="100%">
-						<Text
-							color="typography.secondary"
-							flexShrink={0}
-							alignSelf="center"
-						>
+						<Text variant="secondary" flexShrink={0} alignSelf="center">
 							{t('notesList.filterBy')}
 						</Text>
 						<HStack maxW="100%" align="start" overflow="hidden">

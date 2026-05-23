@@ -53,7 +53,7 @@ export const WorkspacesPanel = (props: StackProps) => {
 					fontSize=".9rem"
 					fontWeight="600"
 					gap=".4rem"
-					color="typography.secondary"
+					variant="secondary"
 				>
 					{t('panel.workspaces.label')}
 				</Text>

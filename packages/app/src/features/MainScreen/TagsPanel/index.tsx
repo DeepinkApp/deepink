@@ -155,12 +155,7 @@ export const TagsPanel = () => {
 		<>
 			<VStack align="normal" w="100%" minHeight="150px" gap=".5rem">
 				<HStack w="100%">
-					<Text
-						as="h2"
-						fontSize=".9rem"
-						fontWeight="600"
-						color="typography.secondary"
-					>
+					<Text as="h2" fontSize=".9rem" fontWeight="600" variant="secondary">
 						{t('panel.tags.label')}
 					</Text>
 
@@ -241,7 +236,7 @@ export const TagsPanel = () => {
 							}}
 						/>
 					) : (
-						<Text color="typography.secondary" fontSize="sm">
+						<Text variant="secondary" fontSize="sm">
 							{t('panel.tags.empty')}
 						</Text>
 					)}

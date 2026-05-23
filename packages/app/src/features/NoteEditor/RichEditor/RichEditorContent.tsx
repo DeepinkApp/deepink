@@ -130,6 +130,7 @@ export const RichEditorContent = ({
 							bottom={0}
 							padding="1rem 1rem 5rem"
 							pointerEvents="none"
+							// TODO: use styles from theme
 							color="typography.secondary"
 						>
 							{placeholder}
