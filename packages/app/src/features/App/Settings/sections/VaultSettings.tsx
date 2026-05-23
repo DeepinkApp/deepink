@@ -51,8 +51,8 @@ export const VaultSettings = () => {
 			</FeaturesGroup>
 			<FeaturesGroup title={t('vault.filesAndData.groupTitle')}>
 				<FeaturesOption title={t('vault.filesAndData.imagesCompression.title')}>
-					<NativeSelect.Root size="sm">
-						<NativeSelect.Field width="auto" defaultValue="ask">
+					<NativeSelect.Root size="sm" width="auto">
+						<NativeSelect.Field defaultValue="ask">
 							<option value="compress">
 								{t('vault.filesAndData.imagesCompression.compress')}
 							</option>
@@ -87,7 +87,7 @@ export const VaultSettings = () => {
 			</FeaturesGroup>
 			<FeaturesGroup title={t('vault.encryption.groupTitle')}>
 				<FeaturesOption title={t('vault.encryption.algorithm.title')}>
-					<NativeSelect.Root size="sm">
+					<NativeSelect.Root size="sm" width="auto">
 						<NativeSelect.Field defaultValue="aes">
 							{[
 								{
@@ -125,7 +125,7 @@ export const VaultSettings = () => {
 					</SimpleSwitch>
 				</FeaturesOption>
 				<FeaturesOption title={t('vault.synchronization.method.title')}>
-					<NativeSelect.Root size="sm">
+					<NativeSelect.Root size="sm" width="auto">
 						<NativeSelect.Field defaultValue="fs">
 							{[
 								{

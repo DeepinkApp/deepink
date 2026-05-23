@@ -113,7 +113,7 @@ export const NotesList: FC<NotesListProps> = () => {
 										);
 									}}
 									size="sm"
-									variant="plain"
+									variant="link"
 									gap=".2rem"
 								>
 									<FaPenToSquare />

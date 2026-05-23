@@ -138,6 +138,7 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 			<HStack gap=".3rem">
 				<Button
 					variant="ghost"
+					data-active={note.isBookmarked ? true : undefined}
 					title={
 						note.isBookmarked
 							? t('note.actions.removeFromFavorites')
@@ -149,7 +150,6 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 							noteId: note.id,
 						})
 					}
-					data-active
 				>
 					<Box
 						as={note.isBookmarked ? FaStar : FaRegStar}
@@ -158,6 +158,7 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 				</Button>
 				<Button
 					variant="ghost"
+					data-active={note.isArchived ? true : undefined}
 					title={
 						note.isArchived
 							? t('note.actions.removeFromArchive')
@@ -169,7 +170,6 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 							noteId: note.id,
 						})
 					}
-					data-active
 				>
 					<Box as={FaBoxArchive} transform="scale(1.1)" />
 				</Button>

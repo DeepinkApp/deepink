@@ -41,9 +41,8 @@ export const LanguagePicker = () => {
 	const language = useAppSelector(selectAppLanguage);
 
 	return (
-		<NativeSelect.Root size="sm">
+		<NativeSelect.Root size="sm" width="auto">
 			<NativeSelect.Field
-				width="auto"
 				value={language}
 				onChange={(evt) => {
 					dispatch(settingsApi.setLanguage(evt.target.value));
@@ -201,9 +200,8 @@ export const GeneralSettings = () => {
 					title={t('general.vaultLock.lockAfterIdle.title')}
 					description={t('general.vaultLock.lockAfterIdle.description')}
 				>
-					<NativeSelect.Root size="sm">
+					<NativeSelect.Root size="sm" width="auto">
 						<NativeSelect.Field
-							width="auto"
 							value={vaultLockConfig.lockAfterIdle ?? 'never'}
 							onChange={(evt) => {
 								const result = z.coerce

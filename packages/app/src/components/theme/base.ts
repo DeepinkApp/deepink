@@ -20,10 +20,18 @@ import {
 	defineSlotRecipe,
 	SystemStyleObject,
 } from '@chakra-ui/react';
-import { NestedListTheme } from '@components/NestedList/NestedList.theme';
-import { NotePreviewTheme } from '@components/NotePreview/NotePreview.theme';
-import { NotificationsTheme } from '@components/Notifications/Notifications.theme';
-import { RichEditorTheme } from '@features/NoteEditor/RichEditor/RichEditor.theme';
+import {
+	dialogAnatomy,
+	menuAnatomy,
+	nativeSelectAnatomy,
+	sliderAnatomy,
+	tabsAnatomy,
+	tagAnatomy,
+} from '@chakra-ui/react/anatomy';
+import { NestedListRecipe } from '@components/NestedList/NestedList.theme';
+import { notePreviewRecipe } from '@components/NotePreview/NotePreview.theme';
+import { NotificationsRecipe } from '@components/Notifications/Notifications.theme';
+import { RichEditorRecipe } from '@features/NoteEditor/RichEditor/RichEditor.theme';
 
 import './resizable-panels.css';
 
@@ -74,8 +82,12 @@ export const getScrollBarStyles = ({
 	};
 };
 
+// TODO: remove all `.base` keys
 export default defineConfig({
 	globalCss: {
+		// "*": {
+		// 	focusRingColor: "red.500 !important",
+		// },
 		body: {
 			background: 'surface.background',
 			margin: 0,
@@ -111,7 +123,7 @@ export default defineConfig({
 
 	theme: {
 		recipes: {
-			Progress: defineRecipe({
+			progress: defineRecipe({
 				variants: {
 					success: {
 						'& [data-part="filled-track"]': {
@@ -125,7 +137,7 @@ export default defineConfig({
 					},
 				},
 			}),
-			Text: defineRecipe({
+			text: defineRecipe({
 				base: {
 					color: 'typography.base',
 				},
@@ -144,7 +156,7 @@ export default defineConfig({
 					},
 				},
 			}),
-			Link: defineRecipe({
+			link: defineRecipe({
 				base: {
 					color: 'link.base',
 					'&:hover, &:active': {
@@ -152,7 +164,7 @@ export default defineConfig({
 					},
 				},
 			}),
-			Button: defineRecipe({
+			button: defineRecipe({
 				base: {
 					'&:not([data-no-animation])': {
 						transition: 'transform .20ms ease',
@@ -162,6 +174,11 @@ export default defineConfig({
 					},
 				},
 				variants: {
+					size: {
+						xs: {
+							h: '28px',
+						},
+					},
 					variant: {
 						accent: {
 							color: 'control.action.foreground',
@@ -186,46 +203,109 @@ export default defineConfig({
 							},
 						},
 						subtle: {
-							color: 'control.base.foreground',
-							backgroundColor: 'control.base.background',
-
-							'&[disabled], &:hover, &[disabled]:hover': {
-								backgroundColor: 'control.base.disabled.background',
-							},
-							'&[data-active], &:not([disabled]):hover': {
-								backgroundColor: 'control.base.active.background',
+							color: 'control.foreground',
+							backgroundColor: {
+								base: 'control.background',
+								_hover: 'control.active.background',
+								_disabled: 'control.disabled.background',
 							},
 						},
 						ghost: {
-							color: 'control.ghost.foreground',
-							backgroundColor: 'control.ghost.background',
-
-							'&:not([data-active]):is(:hover,:active)': {
-								color: 'control.ghost.hover.foreground',
-								backgroundColor: 'control.ghost.hover.background',
+							color: {
+								base: 'control.ghost.foreground',
+								_hover: 'control.ghost.hover.foreground',
+								_focusVisible: 'control.ghost.hover.foreground',
+								_active: 'control.ghost.active.foreground',
+								_expanded: 'unset',
 							},
-
-							'&[data-active]': {
-								color: 'control.ghost.active.foreground',
-								background: 'control.ghost.active.background',
+							backgroundColor: {
+								base: 'control.ghost.background',
+								_hover: 'control.ghost.hover.background',
+								_focusVisible: 'control.ghost.hover.background',
+								_active: 'control.ghost.active.background',
+								_expanded: 'unset',
 							},
 						},
 						link: {
-							color: 'link.base',
+							color: {
+								base: 'link',
+								_hover: 'link.hover',
+								_active: 'link.hover',
+							},
 							backgroundColor: 'unset',
 
-							textDecoration: 'underline',
-							textUnderlineOffset: '.2em',
+							height: 'auto',
 							padding: 0,
+							verticalAlign: 'unset',
 							fontWeight: 'normal',
 							fontSize: 'inherit',
 							alignItems: 'baseline',
+							transform: 'none',
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'subtle',
+				},
+			}),
 
-							'&:hover, &:active, &[data-active]': {
-								color: 'link.base',
+			input: defineRecipe({
+				base: {
+					color: 'typography.base',
+					borderRadius: '6px',
+					'&::placeholder': {
+						color: 'typography.secondary',
+						opacity: '.8',
+					},
+
+					_focusVisible: {
+						focusRingColor: 'control.input.focusRing',
+						focusRingWidth: '3px',
+					},
+
+					// Make chars in password input larger
+					'&[type=password]:not(:placeholder-shown)': {
+						fontFamily: 'Verdana',
+						fontWeight: 'bold',
+						letterSpacing: '0.05em',
+					},
+				},
+				variants: {
+					size: {
+						lg: {
+							borderWidth: '2px',
+						},
+					},
+					variant: {
+						subtle: {
+							borderWidth: '1px',
+							borderColor: {
+								base: 'control.input.border',
+								_hover: 'control.input.active.border',
+								_focus: 'control.input.border',
+								_active: 'control.input.border',
 							},
-							'&:not(:disabled):active': {
-								transform: 'none',
+
+							backgroundColor: {
+								base: 'control.input.background',
+								_focus: 'transparent',
+							},
+						},
+						flushed: {
+							background: 'transparent',
+							boxShadow: 'none',
+							padding: '.3rem',
+
+							borderWidth: '0 0 1px',
+							borderColor: 'transparent',
+							borderRadius: 0,
+
+							'&:hover, &:focus, &:focus-visible': {
+								background: 'transparent',
+								borderColor: 'control.input.active.border',
+							},
+							'&:focus-visible': {
+								boxShadow: 'none',
 							},
 						},
 					},
@@ -234,7 +314,7 @@ export default defineConfig({
 					variant: 'subtle',
 				},
 			}),
-			Tooltip: defineRecipe({
+			tooltip: defineRecipe({
 				base: {
 					borderRadius: '4px',
 					color: 'typography.inverted',
@@ -243,7 +323,7 @@ export default defineConfig({
 						'var(--chakra-colors-surface-invertedBackground)',
 				},
 			}),
-			Spinner: defineRecipe({
+			spinner: defineRecipe({
 				variants: {
 					variant: {
 						accent: {
@@ -255,89 +335,15 @@ export default defineConfig({
 					variant: 'accent',
 				},
 			}),
-			Divider: defineRecipe({
+			separator: defineRecipe({
 				base: {
 					borderColor: 'surface.border',
 				},
 			}),
 		},
 		slotRecipes: {
-			Input: defineSlotRecipe({
-				slots: ['field', 'addon', 'element'],
-				base: {
-					field: {
-						color: 'typography.base',
-						borderRadius: '6px',
-						'&::placeholder': {
-							color: 'typography.secondary',
-							opacity: '.8',
-						},
-
-						'&:focus-visible, &[data-focus-visible]': {
-							shadow: 'input',
-						},
-
-						// Make chars in password input larger
-						'&[type=password]:not(:placeholder-shown)': {
-							fontFamily: 'Verdana',
-							fontWeight: 'bold',
-							letterSpacing: '0.05em',
-						},
-					},
-				},
-				variants: {
-					size: {
-						lg: {
-							field: {
-								borderWidth: '2px',
-							},
-						},
-					},
-					variant: {
-						subtle: {
-							field: {
-								borderColor: 'control.input.border',
-								borderWidth: '1px',
-
-								'&:hover': {
-									borderColor: 'control.input.active.border',
-								},
-								'&:focus': {
-									borderColor: 'control.input.border',
-									backgroundColor: 'transparent',
-								},
-								'&:not(:focus)': {
-									backgroundColor: 'control.input.background',
-								},
-							},
-						},
-						flushed: {
-							field: {
-								background: 'transparent',
-								boxShadow: 'none',
-								padding: '.3rem',
-
-								borderWidth: '0 0 1px',
-								borderColor: 'transparent',
-								borderRadius: 0,
-
-								'&:hover, &:focus, &:focus-visible': {
-									background: 'transparent',
-									borderColor: 'control.input.active.border',
-								},
-								'&:focus-visible': {
-									boxShadow: 'none',
-								},
-							},
-						},
-					},
-				},
-				defaultVariants: {
-					variant: 'subtle',
-				},
-			}),
-			Select: defineSlotRecipe({
-				slots: ['field', 'icon'],
+			nativeSelect: defineSlotRecipe({
+				slots: nativeSelectAnatomy.keys(),
 				base: {
 					field: {
 						color: 'typography.base',
@@ -356,12 +362,11 @@ export default defineConfig({
 					variant: {
 						subtle: {
 							field: {
-								backgroundColor: 'control.base.background',
-								color: 'control.base.foreground',
-
-								'&:hover': {
-									backgroundColor: 'control.base.active.background',
+								backgroundColor: {
+									base: 'control.background',
+									_hover: 'control.active.background',
 								},
+								color: 'control.foreground',
 							},
 						},
 					},
@@ -370,7 +375,7 @@ export default defineConfig({
 					variant: 'subtle',
 				},
 			}),
-			Switch: defineSlotRecipe({
+			switch: defineSlotRecipe({
 				slots: ['container', 'thumb', 'track', 'label'],
 				base: {
 					container: {
@@ -394,10 +399,10 @@ export default defineConfig({
 					},
 				},
 			}),
-			Menu: defineSlotRecipe({
-				slots: ['button', 'list', 'item'],
+			menu: defineSlotRecipe({
+				slots: menuAnatomy.keys(),
 				base: {
-					list: {
+					content: {
 						borderColor: 'surface.border',
 						backgroundColor: 'surface.background',
 					},
@@ -406,14 +411,14 @@ export default defineConfig({
 						backgroundColor: 'transparent',
 
 						transitionDuration: '0s',
-						'&:hover, &:focus': {
+						_highlighted: {
 							color: 'control.ghost.hover.foreground',
-							backgroundColor: 'control.ghost.hover.background',
+							backgroundColor: 'control.ghost.hover.background !important',
 						},
 					},
 				},
 			}),
-			List: defineSlotRecipe({
+			list: defineSlotRecipe({
 				slots: ['container', 'item'],
 				base: {
 					list: {
@@ -431,24 +436,24 @@ export default defineConfig({
 					},
 				},
 			}),
-			Tag: defineSlotRecipe({
-				slots: ['container'],
+			tag: defineSlotRecipe({
+				slots: tagAnatomy.keys(),
 				variants: {
 					variant: {
 						base: {
-							container: {
-								backgroundColor: 'control.base.background',
-								color: 'control.base.foreground',
+							root: {
+								backgroundColor: 'control.background',
+								color: 'control.foreground',
 
 								'&:hover': {
-									backgroundColor: 'control.base.active.background',
+									backgroundColor: 'control.active.background',
 								},
 							},
 						},
 						static: {
-							container: {
-								backgroundColor: 'control.base.background',
-								color: 'control.base.foreground',
+							root: {
+								backgroundColor: 'control.background',
+								color: 'control.foreground',
 							},
 						},
 					},
@@ -457,7 +462,7 @@ export default defineConfig({
 					variant: 'base',
 				},
 			}),
-			Alert: defineSlotRecipe({
+			alert: defineSlotRecipe({
 				slots: ['icon', 'container'],
 				base: {
 					icon: {
@@ -471,12 +476,12 @@ export default defineConfig({
 					},
 				},
 			}),
-			Tabs: defineSlotRecipe({
-				slots: ['tab'],
+			tabs: defineSlotRecipe({
+				slots: tabsAnatomy.keys(),
 				variants: {
 					variant: {
 						subtle: {
-							tab: {
+							trigger: {
 								color: 'control.ghost.foreground',
 								backgroundColor: 'transparent',
 
@@ -497,17 +502,17 @@ export default defineConfig({
 					variant: 'subtle',
 				},
 			}),
-			Modal: defineSlotRecipe({
-				slots: ['overlay', 'dialog', 'closeButton'],
+			dialog: defineSlotRecipe({
+				slots: dialogAnatomy.keys(),
 				base: {
-					overlay: {
+					backdrop: {
 						backgroundColor: 'overlay.500',
 					},
-					dialog: {
+					content: {
 						color: 'typography.base',
 						backgroundColor: 'surface.background',
 					},
-					closeButton: {
+					closeTrigger: {
 						_hover: {
 							color: 'control.ghost.hover.foreground',
 							backgroundColor: 'control.ghost.hover.background',
@@ -515,10 +520,11 @@ export default defineConfig({
 					},
 				},
 			}),
-			Slider: defineSlotRecipe({
-				slots: ['container', 'track', 'filledTrack', 'thumb', 'mark'],
+			// TODO: fix all
+			slider: defineSlotRecipe({
+				slots: sliderAnatomy.keys(),
 				base: {
-					container: {
+					root: {
 						height: '2rem',
 					},
 					track: {
@@ -529,7 +535,7 @@ export default defineConfig({
 						boxSize: '.8rem',
 						top: '20% !important',
 					},
-					mark: {
+					marker: {
 						width: 'max-content',
 						top: '35%',
 					},
@@ -579,10 +585,10 @@ export default defineConfig({
 					size: 'md',
 				},
 			}),
-			Notifications: NotificationsTheme,
-			NotePreview: NotePreviewTheme,
-			NestedList: NestedListTheme,
-			RichEditor: RichEditorTheme,
+			notifications: NotificationsRecipe,
+			notePreview: notePreviewRecipe,
+			nestedList: NestedListRecipe,
+			richEditor: RichEditorRecipe,
 		},
 	},
 });

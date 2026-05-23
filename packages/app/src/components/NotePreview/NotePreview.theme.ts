@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@chakra-ui/react';
 
-export const NotePreviewTheme = defineSlotRecipe({
+export const notePreviewRecipe = defineSlotRecipe({
 	slots: ['root', 'body', 'title', 'text', 'meta'],
 	base: {
 		root: {
@@ -14,7 +14,7 @@ export const NotePreviewTheme = defineSlotRecipe({
 		},
 		body: {
 			gap: '0.2rem',
-			alignItems: 'start',
+			alignItems: 'normal',
 			maxWidth: '100%',
 		},
 		title: {

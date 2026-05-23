@@ -36,10 +36,9 @@ export const EditorConfig = () => {
 		<>
 			<FeaturesGroup title={t('editor.groupTitle')}>
 				<FeaturesOption title={t('editor.mode.title')}>
-					<NativeSelect.Root size="sm">
+					<NativeSelect.Root size="sm" width="auto">
 						<NativeSelect.Field
 							value={editorMode}
-							width="auto"
 							onChange={(e) => {
 								dispatch(
 									settingsApi.setEditorMode(

@@ -2,7 +2,7 @@ import { defineSlotRecipe } from '@chakra-ui/react';
 
 import { theme } from './theme/RichEditor';
 
-export const RichEditorTheme = defineSlotRecipe({
+export const RichEditorRecipe = defineSlotRecipe({
 	slots: ['root'],
 	base: {
 		root: {

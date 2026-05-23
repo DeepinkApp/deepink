@@ -52,14 +52,14 @@ export const TagsList: FC<ITagsListProps> = ({
 					<HStack
 						w="100%"
 						align="start"
-						gap="0.5rem"
+						gap="0.3rem"
 						padding="0.4rem"
 						alignItems="center"
 						onContextMenu={(evt) => {
 							onTagMenu(id, getContextMenuCoords(evt.nativeEvent));
 						}}
 					>
-						<FaHashtag size={14} />
+						<FaHashtag size="1rem" />
 
 						<Text overflow="hidden" textOverflow="ellipsis">
 							{name}
@@ -75,6 +75,9 @@ export const TagsList: FC<ITagsListProps> = ({
 								tabIndex={-1}
 								css={{
 									borderRadius: '4px',
+									'& > svg': {
+										boxSize: '14px',
+									},
 								}}
 								onClick={(evt) => {
 									evt.stopPropagation();
@@ -84,11 +87,7 @@ export const TagsList: FC<ITagsListProps> = ({
 									});
 								}}
 							>
-								{isOpenedGroup ? (
-									<FaChevronUp size={14} />
-								) : (
-									<FaChevronDown size={14} />
-								)}
+								{isOpenedGroup ? <FaChevronUp /> : <FaChevronDown />}
 							</Button>
 						) : undefined}
 					</HStack>

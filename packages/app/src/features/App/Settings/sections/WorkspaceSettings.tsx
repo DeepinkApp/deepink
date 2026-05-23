@@ -237,9 +237,8 @@ export const WorkspaceSettings = () => {
 					)}
 				</FeaturesOption>
 				<FeaturesOption title={t('workspace.tagsForNewNote.title')}>
-					<NativeSelect.Root size="sm">
+					<NativeSelect.Root size="sm" width="auto">
 						<NativeSelect.Field
-							width="auto"
 							value={newNoteConfig.tags}
 							onChange={(evt) => {
 								const { value } = evt.target;

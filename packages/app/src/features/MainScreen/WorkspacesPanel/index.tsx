@@ -46,7 +46,7 @@ export const WorkspacesPanel = (props: StackProps) => {
 	const modal = useWorkspaceModal();
 
 	return (
-		<VStack w="100%" {...props}>
+		<VStack align="normal" w="100%" gap=".5rem" {...props}>
 			<HStack w="100%">
 				<Text
 					as="h2"
@@ -71,9 +71,11 @@ export const WorkspacesPanel = (props: StackProps) => {
 					title={t('panel.workspaces.actions.add')}
 				/>
 			</HStack>
+
 			<Separator />
+
 			<HStack w="100%" marginTop="auto">
-				<NativeSelect.Root size="sm">
+				<NativeSelect.Root size="xs">
 					<NativeSelect.Field
 						borderRadius="6px"
 						value={workspaceId}

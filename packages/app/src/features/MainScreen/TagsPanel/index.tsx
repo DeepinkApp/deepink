@@ -153,7 +153,7 @@ export const TagsPanel = () => {
 
 	return (
 		<>
-			<VStack w="100%" align="start" minHeight="150px" gap=".4rem">
+			<VStack align="normal" w="100%" minHeight="150px" gap=".5rem">
 				<HStack w="100%">
 					<Text
 						as="h2"

@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@chakra-ui/react';
 
-export const NestedListTheme = defineSlotRecipe({
+export const NestedListRecipe = defineSlotRecipe({
 	slots: ['root', 'item', 'content', 'group'],
 	base: {
 		root: {

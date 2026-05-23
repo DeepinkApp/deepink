@@ -45,6 +45,7 @@ export default defineConfig({
 					success: { value: '#3ea863' },
 				},
 			},
+			// TODO: delete shadows after refactoring
 			shadows: {
 				input: { value: '0 0 0 3px #ffd5b2' },
 				outline: { value: '0 0 0 3px #ffd5b2' },
@@ -72,6 +73,7 @@ export default defineConfig({
 						active: { background: { value: '{colors.accent.300}' } },
 					},
 					input: {
+						focusRing: { value: '{colors.accent.200}' },
 						background: { value: '{colors.dim.200}' },
 						border: { value: 'transparent' },
 						active: { border: { value: '{colors.dim.500}' } },

@@ -116,6 +116,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 			flexShrink={0}
 			borderBottom="1px solid"
 			borderColor="surface.border"
+			size="sm"
 		>
 			<Tabs.List display="flex" flexWrap="wrap" overflow="hidden">
 				{existsTabs.map((noteId) => {

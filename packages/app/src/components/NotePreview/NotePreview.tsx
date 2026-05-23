@@ -1,6 +1,6 @@
 import React, { forwardRef, memo, useMemo } from 'react';
 import { isEqual } from 'lodash';
-import { Box, StackProps, Text, useSlotRecipe, VStack } from '@chakra-ui/react';
+import { Box, Stack, StackProps, Text, useSlotRecipe, VStack } from '@chakra-ui/react';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
 
 import { TextSample } from './TextSample';
@@ -27,7 +27,7 @@ export const NotePreviewContent = memo(
 
 		return (
 			<>
-				<VStack css={styles.body}>
+				<Stack css={styles.body}>
 					<Text as="h3" css={styles.title}>
 						<TextSample
 							text={title}
@@ -45,7 +45,7 @@ export const NotePreviewContent = memo(
 							/>
 						</Text>
 					) : undefined}
-				</VStack>
+				</Stack>
 
 				{meta && meta.updatedAt !== undefined && (
 					<Box css={styles.meta}>

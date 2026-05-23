@@ -43,6 +43,7 @@ export const SimpleSlider = ({
 	return (
 		<HStack width="100%" align="start">
 			<Slider.Root
+				width="100%"
 				value={[value]}
 				min={min}
 				max={max}

@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@chakra-ui/react';
 
-export const NotificationsTheme = defineSlotRecipe({
+export const NotificationsRecipe = defineSlotRecipe({
 	slots: ['root', 'head', 'body'],
 	base: {
 		root: {

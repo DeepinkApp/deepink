@@ -17,14 +17,13 @@ export const ThemePicker = () => {
 	const theme = useAppSelector(selectTheme);
 
 	return (
-		<NativeSelect.Root size="sm">
+		<NativeSelect.Root size="sm" width="auto">
 			<NativeSelect.Field
 				value={theme.name}
-				width="auto"
 				onChange={(e) => {
 					dispatch(
 						settingsApi.setTheme({
-							name: e.target.value as any,
+							name: e.target.value,
 						}),
 					);
 				}}

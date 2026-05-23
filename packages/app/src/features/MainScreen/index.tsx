@@ -91,6 +91,7 @@ export const MainScreen: FC = () => {
 				<SyncedPanelGroup direction="horizontal" autoSaveId="MainScreen.content">
 					<VStack
 						{...({ defaultSize: 20 } as any)}
+						gap="1rem"
 						css={{
 							alignItems: 'start',
 							minWidth: 'min-content',
@@ -99,7 +100,6 @@ export const MainScreen: FC = () => {
 							overflow: 'hidden',
 							display: 'flex',
 							flexDirection: 'column',
-							gap: '1rem',
 						}}
 						asChild
 					>

@@ -96,35 +96,7 @@ export const TagEditor: FC<ITagEditorProps> = ({
 
 	const [isPending, setIsPending] = useState(false);
 	return (
-		<form
-			onSubmit={async (event) => {
-				event.preventDefault();
-				if (isPending) return;
-
-				setIsPending(true);
-				try {
-					const name = tagName.trim();
-
-					const result = await onSave({
-						name,
-						parent: parentTagId,
-						...(isEditingMode && editedTag.id ? { id: editedTag.id } : {}),
-					});
-
-					if (!result.ok) {
-						setTagNameError(result.error);
-						return;
-					}
-					onCancel();
-				} catch (error) {
-					console.error(error);
-
-					setTagNameError(t('tag.editor.messages.unknownSubmitError'));
-				} finally {
-					setIsPending(false);
-				}
-			}}
-		>
+		<>
 			<Dialog.CloseTrigger />
 			<Dialog.Header>
 				{isEditingMode
@@ -132,39 +104,71 @@ export const TagEditor: FC<ITagEditorProps> = ({
 					: t('tag.editor.mode.add.title')}
 			</Dialog.Header>
 			<Dialog.Body>
-				<VStack align="start" gap="1rem">
-					<VStack w="100%" align="start" gap="0.5rem">
-						<Text>{t('tag.editor.field.parent.label')}</Text>
-						<SuggestedTagsList
-							placeholder={t('tag.editor.field.parent.placeholder')}
-							tags={tags}
-							selectedTag={selectedParentTag ?? undefined}
-							onPick={(tag) => {
-								setParentTagId(tag.id);
-								setIsTagsListVisible(false);
-							}}
-						/>
-					</VStack>
+				<form
+					onSubmit={async (event) => {
+						event.preventDefault();
+						if (isPending) return;
 
-					<Field.Root invalid={tagNameError !== null}>
+						setIsPending(true);
+						try {
+							const name = tagName.trim();
+
+							const result = await onSave({
+								name,
+								parent: parentTagId,
+								...(isEditingMode && editedTag.id
+									? { id: editedTag.id }
+									: {}),
+							});
+
+							if (!result.ok) {
+								setTagNameError(result.error);
+								return;
+							}
+							onCancel();
+						} catch (error) {
+							console.error(error);
+
+							setTagNameError(t('tag.editor.messages.unknownSubmitError'));
+						} finally {
+							setIsPending(false);
+						}
+					}}
+				>
+					<VStack align="start" gap="1rem">
 						<VStack w="100%" align="start" gap="0.5rem">
-							<Text>{t('tag.editor.field.name.label')}</Text>
-							<Input
-								ref={tagNameRef}
-								placeholder={t('tag.editor.field.name.placeholder')}
-								value={tagName}
-								onChange={(evt) => {
-									setTagName(evt.target.value);
+							<Text>{t('tag.editor.field.parent.label')}</Text>
+							<SuggestedTagsList
+								placeholder={t('tag.editor.field.parent.placeholder')}
+								tags={tags}
+								selectedTag={selectedParentTag ?? undefined}
+								onPick={(tag) => {
+									setParentTagId(tag.id);
+									setIsTagsListVisible(false);
 								}}
-								autoFocus={true}
 							/>
-
-							{tagNameError && (
-								<Field.ErrorText>{tagNameError}</Field.ErrorText>
-							)}
 						</VStack>
-					</Field.Root>
-				</VStack>
+
+						<Field.Root invalid={tagNameError !== null}>
+							<VStack w="100%" align="start" gap="0.5rem">
+								<Text>{t('tag.editor.field.name.label')}</Text>
+								<Input
+									ref={tagNameRef}
+									placeholder={t('tag.editor.field.name.placeholder')}
+									value={tagName}
+									onChange={(evt) => {
+										setTagName(evt.target.value);
+									}}
+									autoFocus={true}
+								/>
+
+								{tagNameError && (
+									<Field.ErrorText>{tagNameError}</Field.ErrorText>
+								)}
+							</VStack>
+						</Field.Root>
+					</VStack>
+				</form>
 			</Dialog.Body>
 			<Dialog.Footer>
 				<HStack w="100%" justifyContent="end">
@@ -176,6 +180,6 @@ export const TagEditor: FC<ITagEditorProps> = ({
 					<Button onClick={onCancel}>{tCommon('actions.cancel')}</Button>
 				</HStack>
 			</Dialog.Footer>
-		</form>
+		</>
 	);
 };
