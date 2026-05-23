@@ -464,7 +464,7 @@ export const Note2: FC<NoteEditorProps> = memo(
 						<Input
 							placeholder={t('note.title.placeholder')}
 							variant="flushed"
-							size="sm"
+							size="md"
 							fontSize="22px"
 							value={versionPreview ? versionPreview.title : title}
 							onChange={

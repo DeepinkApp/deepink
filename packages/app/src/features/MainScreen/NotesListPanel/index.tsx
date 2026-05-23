@@ -101,7 +101,6 @@ export const NotesListPanel = () => {
 						<Input
 							size="sm"
 							ref={searchInputRef}
-							borderRadius="6px"
 							placeholder={t('notesList.search.placeholder')}
 							value={searchInput}
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

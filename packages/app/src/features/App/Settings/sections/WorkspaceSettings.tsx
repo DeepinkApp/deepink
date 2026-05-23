@@ -267,8 +267,7 @@ export const WorkspaceSettings = () => {
 				<FeaturesOption description={t('workspace.dangerousZone.delete.label')}>
 					<Button
 						size="sm"
-						variant={'accent' as any}
-						colorPalette="alert"
+						variant="alert"
 						onClick={onDelete}
 						disabled={!isOtherWorkspacesExists}
 					>
