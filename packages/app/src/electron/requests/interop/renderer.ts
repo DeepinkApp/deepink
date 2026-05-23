@@ -6,8 +6,12 @@ import { interopChannel } from '.';
 
 const api = interopChannel.client(ipcRendererFetcher);
 
-export const { getFontsList, getAppLanguage } = api;
+export const { getAppLanguage } = api;
 
 export const setAppLanguage = async (language: string) => {
 	if (hasElectronApi()) return api.setAppLanguage(language);
+};
+
+export const getFontsList = async () => {
+	return hasElectronApi() ? api.getFontsList() : [];
 };
