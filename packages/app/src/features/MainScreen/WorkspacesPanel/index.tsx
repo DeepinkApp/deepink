@@ -75,7 +75,7 @@ export const WorkspacesPanel = (props: StackProps) => {
 			<Separator />
 
 			<HStack w="100%" marginTop="auto">
-				<NativeSelect.Root size="xs">
+				<NativeSelect.Root size="sm">
 					<NativeSelect.Field
 						borderRadius="6px"
 						value={workspaceId}
