@@ -166,43 +166,14 @@ export default defineConfig({
 				},
 			}),
 			button: defineRecipe({
-				base: {
-					'&:not([data-no-animation])': {
-						transition: 'transform .20ms ease',
-						'&:not(:disabled):active': {
-							transform: 'scale(.95)',
-						},
-					},
-				},
 				variants: {
 					size: {
+						// TODO: review button sizes
 						xs: {
 							h: '28px',
 						},
 					},
 					variant: {
-						accent: {
-							color: 'control.action.foreground',
-							backgroundColor: 'control.action.background',
-
-							'&:hover': {
-								backgroundColor: 'control.action.active.background',
-							},
-							'&:disabled, &:hover[disabled]': {
-								backgroundColor: 'control.action.background',
-							},
-						},
-						alert: {
-							color: 'white',
-							backgroundColor: '{colors.scheme.alert.base}',
-
-							'&:hover': {
-								backgroundColor: '{colors.scheme.alert.hover}',
-							},
-							'&:disabled, &:hover[disabled]': {
-								backgroundColor: '{colors.scheme.alert.base}',
-							},
-						},
 						subtle: {
 							color: 'control.foreground',
 							backgroundColor: {
@@ -210,6 +181,21 @@ export default defineConfig({
 								_hover: 'control.active.background',
 								_disabled: 'control.disabled.background',
 							},
+
+							borderRadius: 'lg',
+						},
+						accent: {
+							color: 'control.action.foreground',
+							backgroundColor: 'control.action.background',
+
+							_hover: {
+								backgroundColor: 'control.action.active.background',
+							},
+							_disabled: {
+								backgroundColor: 'control.action.background',
+							},
+
+							borderRadius: 'lg',
 						},
 						ghost: {
 							color: {
@@ -217,15 +203,18 @@ export default defineConfig({
 								_hover: 'control.ghost.hover.foreground',
 								_focusVisible: 'control.ghost.hover.foreground',
 								_active: 'control.ghost.active.foreground',
-								_expanded: 'unset',
+								_expanded: 'control.ghost.active.foreground',
+								_open: 'control.ghost.active.foreground',
 							},
 							backgroundColor: {
 								base: 'control.ghost.background',
 								_hover: 'control.ghost.hover.background',
-								_focusVisible: 'control.ghost.hover.background',
 								_active: 'control.ghost.active.background',
-								_expanded: 'unset',
+								_expanded: 'control.ghost.active.background',
+								_open: 'control.ghost.active.background',
 							},
+
+							borderRadius: 'lg',
 						},
 						link: {
 							color: {
@@ -241,7 +230,21 @@ export default defineConfig({
 							fontWeight: 'normal',
 							fontSize: 'inherit',
 							alignItems: 'baseline',
-							transform: 'none',
+
+							_active: {
+								textDecoration: 'underline',
+							},
+						},
+						alert: {
+							color: 'white',
+							backgroundColor: '{colors.scheme.alert}',
+
+							_hover: {
+								backgroundColor: '{colors.scheme.alert.hover}',
+							},
+							_disabled: {
+								backgroundColor: '{colors.scheme.alert}',
+							},
 						},
 					},
 				},
@@ -253,7 +256,7 @@ export default defineConfig({
 			input: defineRecipe({
 				base: {
 					color: 'typography.base',
-					borderRadius: '6px',
+					borderRadius: 'lg',
 					'&::placeholder': {
 						color: 'typography.secondary',
 						opacity: '.8',
@@ -294,7 +297,6 @@ export default defineConfig({
 						},
 						flushed: {
 							background: 'transparent',
-							boxShadow: 'none',
 							padding: '.3rem',
 
 							borderWidth: '0 0 1px',
