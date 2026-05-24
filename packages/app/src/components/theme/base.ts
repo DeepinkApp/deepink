@@ -154,10 +154,14 @@ export default defineConfig({
 				},
 			}),
 			link: defineRecipe({
-				base: {
-					color: 'link.base',
-					'&:hover, &:active': {
-						color: 'link.hover',
+				variants: {
+					variant: {
+						plain: {
+							color: 'link',
+							'&:hover, &:active': {
+								color: 'link.hover',
+							},
+						},
 					},
 				},
 			}),
@@ -399,7 +403,10 @@ export default defineConfig({
 								},
 							},
 							thumb: {
-								backgroundColor: 'control.action.foreground',
+								backgroundColor: {
+									base: 'control.action.foreground',
+									_checked: 'control.action.foreground',
+								},
 							},
 						},
 					},
