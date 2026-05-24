@@ -5,16 +5,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { isEqual } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import z from 'zod';
-import {
-	Box,
-	Button,
-	HStack,
-	Input,
-	Link,
-	StackProps,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Box, Button, HStack, Input, StackProps, Text, VStack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 export type OptionObject = {
@@ -107,9 +98,9 @@ export const PropertiesForm = <T extends OptionObject[]>({
 						const errorMessage = error || fieldErrors[id]?.message;
 
 						return (
-							<VStack key={id} align="start" w="100%" gap="0.3rem" asChild>
+							<VStack key={id} align="start" w="100%" gap="0" asChild>
 								<label>
-									<Text paddingBottom=".2rem">{label}</Text>
+									<Text marginBottom="0.5rem">{label}</Text>
 									<Input
 										{...register(
 											// Cast id to Path<FormValues<T>> — safe because options are always derived from the same schema shape
@@ -119,7 +110,7 @@ export const PropertiesForm = <T extends OptionObject[]>({
 										disabled={isPending}
 									/>
 									{suggests && suggests.length > 0 && (
-										<Box>
+										<Box marginTop="0.6rem">
 											<Trans
 												t={t}
 												i18nKey="form.suggestTemplate"
@@ -132,9 +123,8 @@ export const PropertiesForm = <T extends OptionObject[]>({
 																		key={i}
 																	>
 																		{i > 0 && ', '}
-																		<Link
-																			textDecoration="underline dashed"
-																			textUnderlineOffset="15%"
+																		<Button
+																			variant="link"
 																			onClick={(
 																				evt,
 																			) => {
@@ -153,7 +143,7 @@ export const PropertiesForm = <T extends OptionObject[]>({
 																			}}
 																		>
 																			{suggest}
-																		</Link>
+																		</Button>
 																	</React.Fragment>
 																),
 															)}
