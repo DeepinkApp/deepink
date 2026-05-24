@@ -126,6 +126,13 @@ export default defineConfig({
 	},
 
 	theme: {
+		semanticTokens: {
+			colors: {
+				fg: {
+					muted: { value: '{colors.typography.secondary}' },
+				},
+			},
+		},
 		recipes: {
 			text: defineRecipe({
 				base: {
