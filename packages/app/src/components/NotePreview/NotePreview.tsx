@@ -1,6 +1,6 @@
 import React, { forwardRef, memo, useMemo } from 'react';
 import { isEqual } from 'lodash';
-import { Box, Stack, StackProps, Text, useSlotRecipe, VStack } from '@chakra-ui/react';
+import { Box, Stack, StackProps, Text, useSlotRecipe } from '@chakra-ui/react';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
 
 import { TextSample } from './TextSample';
@@ -81,9 +81,9 @@ export const NotePreview = forwardRef<
 	);
 
 	return (
-		<VStack ref={ref} aria-selected={isSelected} {...props} css={style}>
+		<Stack ref={ref} aria-selected={isSelected} {...props} css={style}>
 			<NotePreviewContent {...{ title, text, textToHighlight, meta }} />
-		</VStack>
+		</Stack>
 	);
 });
 
