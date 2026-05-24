@@ -5,7 +5,11 @@ import { NativeSelect, Separator } from '@chakra-ui/react';
 import { FeaturesGroup } from '@components/Features/Group';
 import { FeaturesOption } from '@components/Features/Option/FeaturesOption';
 import { useAppDispatch, useAppSelector } from '@state/redux/hooks';
-import { selectTheme, settingsApi } from '@state/redux/settings/settings';
+import {
+	appThemeNameScheme,
+	selectTheme,
+	settingsApi,
+} from '@state/redux/settings/settings';
 import { getDevicePixelRatio } from '@utils/os/zoom';
 
 import { AppZoomLevel } from './AppZoomLevel';
@@ -21,9 +25,12 @@ export const ThemePicker = () => {
 			<NativeSelect.Field
 				value={theme.name}
 				onChange={(e) => {
+					const result = appThemeNameScheme.safeParse(e.target.value);
+					if (!result.success) return;
+
 					dispatch(
 						settingsApi.setTheme({
-							name: e.target.value,
+							name: result.data,
 						}),
 					);
 				}}

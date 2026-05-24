@@ -7,16 +7,18 @@ import { createAppSelector } from '../utils';
 
 export type EditorMode = 'plaintext' | 'richtext' | 'split-screen';
 
+export const appThemeNameScheme = z.union([
+	z.literal('auto'),
+	z.literal('light'),
+	z.literal('dark'),
+	z.literal('zen'),
+]);
+
 export const settingsScheme = z.object({
 	language: z.string(),
 	checkForUpdates: z.boolean(),
 	system: z.object({
-		name: z.union([
-			z.literal('auto'),
-			z.literal('light'),
-			z.literal('dark'),
-			z.literal('zen'),
-		]),
+		name: appThemeNameScheme,
 		accentColor: z.string().optional(),
 	}),
 
