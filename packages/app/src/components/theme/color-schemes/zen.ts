@@ -29,6 +29,7 @@ export default defineConfig({
 					invertedBackground: { value: '#000' },
 					panel: { value: '#f8f2e9' },
 					border: { value: '#e0d6c7' },
+					muted: { value: '#d6ab7d25' },
 				},
 				dim: {
 					50: { value: '#d6ab7d10' },

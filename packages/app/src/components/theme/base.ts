@@ -131,6 +131,10 @@ export default defineConfig({
 				fg: {
 					muted: { value: '{colors.typography.secondary}' },
 				},
+				bg: {
+					muted: { value: '{colors.surface.muted}' },
+				},
+				border: { value: '{colors.surface.border}' },
 			},
 		},
 		recipes: {
@@ -281,6 +285,14 @@ export default defineConfig({
 						fontFamily: 'Verdana',
 						fontWeight: 'bold',
 						letterSpacing: '0.05em',
+					},
+
+					// Disable HTML5 number input’s spin box
+					'&::-webkit-inner-spin-button': {
+						// @ts-expect-error with "display:none" mouse scroll does not work - see https://stackoverflow.com/a/4298216
+						'-webkit-appearance': 'none',
+						// Apparently some margin are still there even though it's hidden
+						margin: 0,
 					},
 				},
 				variants: {

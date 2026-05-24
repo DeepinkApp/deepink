@@ -4,14 +4,7 @@ import humanizeDuration from 'humanize-duration';
 import ms from 'ms';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import z from 'zod';
-import {
-	Button,
-	Input,
-	InputGroup,
-	NativeSelect,
-	Separator,
-	Text,
-} from '@chakra-ui/react';
+import { Button, Input, InputGroup, NativeSelect, Separator } from '@chakra-ui/react';
 import { Features } from '@components/Features/Features';
 import { FeaturesGroup } from '@components/Features/Group';
 import { FeaturesOption } from '@components/Features/Option/FeaturesOption';
@@ -253,19 +246,17 @@ export const VaultSettings = () => {
 				>
 					<InputGroup
 						width="auto"
-						endElement={
-							<Text variant="secondary" pointerEvents="none" width="3rem">
-								{t('vault.trashBin.purgeDelay.unit')}
-							</Text>
-						}
+						endElement={t('vault.trashBin.purgeDelay.unit')}
+						as="label"
 					>
 						<RelaxedInput
 							width="8rem"
+							// See the source code: https://github.com/chakra-ui/chakra-ui/blob/155fa1388825debedcf2017b2a51b85d179fc701/packages/react/src/components/input-group/input-group.tsx#L96
+							pe="4rem"
 							textAlign="right"
 							type="number"
 							min={1}
 							max={1000}
-							css={{ paddingInlineEnd: '3rem' }}
 							value={deletionConfig.bin.cleanInterval}
 							onValueChange={(value) => {
 								const result = z.coerce.number().min(1).safeParse(value);
