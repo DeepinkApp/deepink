@@ -61,6 +61,10 @@ export default defineConfig({
 				typography: {
 					accent: { value: '{colors.accent.500}' },
 				},
+				skeleton: {
+					start: { value: 'colors.accent.100' },
+					end: { value: 'colors.dim.400' },
+				},
 				control: {
 					base: {
 						background: { value: '{colors.dim.200}' },

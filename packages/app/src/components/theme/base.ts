@@ -341,6 +341,11 @@ export default defineConfig({
 					variant: 'subtle',
 				},
 			}),
+			separator: defineRecipe({
+				base: {
+					borderColor: 'surface.border',
+				},
+			}),
 			spinner: defineRecipe({
 				variants: {
 					variant: {
@@ -353,9 +358,17 @@ export default defineConfig({
 					variant: 'accent',
 				},
 			}),
-			separator: defineRecipe({
-				base: {
-					borderColor: 'surface.border',
+			skeleton: defineRecipe({
+				variants: {
+					variant: {
+						shine: {
+							'--start-color': 'colors.skeleton.start',
+							'--end-color': 'colors.skeleton.end',
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'shine',
 				},
 			}),
 		},

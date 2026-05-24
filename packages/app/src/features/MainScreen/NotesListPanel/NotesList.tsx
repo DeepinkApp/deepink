@@ -153,10 +153,6 @@ export const NotesList: FC<NotesListProps> = () => {
 										ref={isActive ? activeNoteRef : undefined}
 										data-index={virtualRow.index}
 										data-loading
-										css={{
-											'--start-color': 'colors.primary.100',
-											'--end-color': 'colors.dim.400',
-										}}
 										height="70px"
 										w="100%"
 									/>
