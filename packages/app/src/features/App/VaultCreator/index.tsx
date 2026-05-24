@@ -127,7 +127,7 @@ export const PasswordInput = forwardRef<
 						value={passwordScore.entropy}
 						max={80}
 						size="xs"
-						colorPalette={passwordScore.strength === 'good' ? 'green' : 'red'}
+						status={passwordScore.strength === 'good' ? 'success' : 'error'}
 					>
 						<Progress.Track>
 							<Progress.Range />
@@ -400,12 +400,17 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 					<label>
 						<Text>{t('creator.field.name.label')}</Text>
 						<InputGroup
+							endElementProps={{ paddingInline: 1 }}
 							endElement={
 								<IconButton
 									variant="ghost"
 									size="sm"
 									icon={<FaDice transform="scale(1.5)" />}
 									title={t('creator.field.name.random')}
+									onPointerDown={(evt) => {
+										evt.preventDefault();
+										evt.stopPropagation();
+									}}
 									onClick={(evt) => {
 										evt.preventDefault();
 
@@ -436,7 +441,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 								disabled={isPending}
 							/>
 						</InputGroup>
-						{vaultNameError && <Text color="red.500">{vaultNameError}</Text>}
+						{vaultNameError && <Text variant="error">{vaultNameError}</Text>}
 					</label>
 				</VStack>
 

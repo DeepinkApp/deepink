@@ -26,6 +26,7 @@ import {
 	listAnatomy,
 	menuAnatomy,
 	nativeSelectAnatomy,
+	progressAnatomy,
 	sliderAnatomy,
 	switchAnatomy,
 	tabsAnatomy,
@@ -126,21 +127,6 @@ export default defineConfig({
 
 	theme: {
 		recipes: {
-			// TODO: review & fix
-			progress: defineRecipe({
-				variants: {
-					success: {
-						'& [data-part="filled-track"]': {
-							bgColor: 'message.success',
-						},
-					},
-					alert: {
-						'& [data-part="filled-track"]': {
-							bgColor: 'message.error',
-						},
-					},
-				},
-			}),
 			text: defineRecipe({
 				base: {
 					color: 'typography.base',
@@ -171,6 +157,9 @@ export default defineConfig({
 			button: defineRecipe({
 				variants: {
 					size: {
+						md: {
+							fontSize: '1rem',
+						},
 						// TODO: review button sizes
 						xs: {
 							h: '28px',
@@ -285,6 +274,9 @@ export default defineConfig({
 				},
 				variants: {
 					size: {
+						md: {
+							fontSize: '1rem',
+						},
 						lg: {
 							borderWidth: '2px',
 						},
@@ -537,6 +529,9 @@ export default defineConfig({
 					markerGroup: {
 						mt: '.6rem',
 					},
+					root: {
+						minHeight: '40px',
+					},
 				},
 				variants: {
 					size: {
@@ -569,6 +564,42 @@ export default defineConfig({
 				defaultVariants: {
 					variant: 'solid',
 					size: 'md',
+				},
+			}),
+			progress: defineSlotRecipe({
+				slots: progressAnatomy.keys(),
+				variants: {
+					variant: {
+						subtle: {
+							track: {
+								backgroundColor: 'control.background',
+							},
+							range: {
+								backgroundColor: 'control.foreground',
+							},
+						},
+					},
+					status: {
+						success: {
+							track: {
+								backgroundColor: 'control.background',
+							},
+							range: {
+								backgroundColor: 'message.success',
+							},
+						},
+						error: {
+							track: {
+								backgroundColor: 'control.background',
+							},
+							range: {
+								backgroundColor: 'message.error',
+							},
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'subtle',
 				},
 			}),
 			alert: defineSlotRecipe({
