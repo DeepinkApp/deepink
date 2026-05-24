@@ -475,6 +475,7 @@ export default defineConfig({
 					content: {
 						color: 'typography.base',
 						backgroundColor: 'surface.background',
+						fontSize: 'md',
 					},
 					closeTrigger: {
 						_hover: {
