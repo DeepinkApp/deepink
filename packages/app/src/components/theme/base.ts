@@ -466,7 +466,6 @@ export default defineConfig({
 				},
 			}),
 
-			// TODO: fix close button
 			dialog: defineSlotRecipe({
 				slots: dialogAnatomy.keys(),
 				base: {

@@ -9,7 +9,7 @@ import {
 	FaVault,
 } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Dialog, Portal, Tabs, Text } from '@chakra-ui/react';
+import { Box, CloseButton, Dialog, Portal, Tabs, Text } from '@chakra-ui/react';
 import { TextWithIcon } from '@components/TextWithIcon';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
@@ -97,9 +97,11 @@ export const SettingsWindow = () => {
 				<Dialog.Positioner>
 					<Dialog.Content maxWidth="800px" minHeight="500px">
 						<Dialog.Header paddingInline="1rem">
-							{t('window.title')}
+							<Dialog.Title>{t('window.title')}</Dialog.Title>
 						</Dialog.Header>
-						<Dialog.CloseTrigger />
+						<Dialog.CloseTrigger asChild>
+							<CloseButton size="sm" />
+						</Dialog.CloseTrigger>
 						<Dialog.Body paddingInline="1rem" paddingBlockEnd="2rem">
 							<Tabs.Root
 								orientation="vertical"

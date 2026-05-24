@@ -3,7 +3,15 @@ import { AutoFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { FaLink } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Button, ButtonProps, Dialog, Text, VStack } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	ButtonProps,
+	CloseButton,
+	Dialog,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { PropertiesForm } from '@components/PropertiesForm';
 import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 
@@ -27,10 +35,14 @@ export const LinkButton: FC<
 					show({
 						content: ({ onClose }) => (
 							<>
-								<Dialog.CloseTrigger />
 								<Dialog.Header>
-									<Text>{t('editorPanel.link.dialogTitle')}</Text>
+									<Dialog.Title>
+										{t('editorPanel.link.dialogTitle')}
+									</Dialog.Title>
 								</Dialog.Header>
+								<Dialog.CloseTrigger asChild>
+									<CloseButton size="sm" />
+								</Dialog.CloseTrigger>
 								<Dialog.Body paddingBottom="1rem">
 									<VStack w="100%" gap="2rem" align="start">
 										<Text variant="secondary">

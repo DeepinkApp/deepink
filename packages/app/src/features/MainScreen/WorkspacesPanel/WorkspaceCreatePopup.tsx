@@ -3,7 +3,7 @@ import { AutoFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { z } from 'zod';
-import { Box, Dialog, Text, VStack } from '@chakra-ui/react';
+import { Box, CloseButton, Dialog, Text, VStack } from '@chakra-ui/react';
 import { PropertiesForm } from '@components/PropertiesForm';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
@@ -58,10 +58,12 @@ export const WorkspaceCreatePopup = () => {
 
 	return (
 		<>
-			<Dialog.CloseTrigger />
 			<Dialog.Header>
-				<Text>{tFeatures('title')}</Text>
+				<Dialog.Title>{tFeatures('title')}</Dialog.Title>
 			</Dialog.Header>
+			<Dialog.CloseTrigger asChild>
+				<CloseButton size="sm" />
+			</Dialog.CloseTrigger>
 			<Dialog.Body paddingBottom="1rem">
 				<VStack w="100%" gap="2rem" align="start">
 					<Text variant="secondary">{tFeatures('description')}</Text>

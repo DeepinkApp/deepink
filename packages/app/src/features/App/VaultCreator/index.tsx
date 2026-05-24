@@ -16,6 +16,7 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
 	Box,
 	Button,
+	CloseButton,
 	Dialog,
 	HStack,
 	Input,
@@ -342,10 +343,14 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 							<Dialog.Backdrop />
 							<Dialog.Positioner>
 								<Dialog.Content>
-									<Dialog.CloseTrigger />
 									<Dialog.Header>
-										{t('creator.noEncryptionDialog.title')}
+										<Dialog.Title>
+											{t('creator.noEncryptionDialog.title')}
+										</Dialog.Title>
 									</Dialog.Header>
+									<Dialog.CloseTrigger asChild>
+										<CloseButton size="sm" />
+									</Dialog.CloseTrigger>
 									<Dialog.Body>
 										<Text variant="secondary">
 											{t('creator.noEncryptionDialog.description')}

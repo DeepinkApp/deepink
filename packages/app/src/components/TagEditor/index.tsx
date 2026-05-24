@@ -1,7 +1,16 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, Dialog, Field, HStack, Input, Text, VStack } from '@chakra-ui/react';
+import {
+	Button,
+	CloseButton,
+	Dialog,
+	Field,
+	HStack,
+	Input,
+	Text,
+	VStack,
+} from '@chakra-ui/react';
 import { IResolvedTag } from '@core/features/tags';
 
 import { SuggestedTagsList } from '../SuggestedTagsList';
@@ -97,12 +106,16 @@ export const TagEditor: FC<ITagEditorProps> = ({
 	const [isPending, setIsPending] = useState(false);
 	return (
 		<>
-			<Dialog.CloseTrigger />
 			<Dialog.Header>
-				{isEditingMode
-					? t('tag.editor.mode.edit.title')
-					: t('tag.editor.mode.add.title')}
+				<Dialog.Title>
+					{isEditingMode
+						? t('tag.editor.mode.edit.title')
+						: t('tag.editor.mode.add.title')}
+				</Dialog.Title>
 			</Dialog.Header>
+			<Dialog.CloseTrigger asChild>
+				<CloseButton size="sm" />
+			</Dialog.CloseTrigger>
 			<Dialog.Body>
 				<form
 					onSubmit={async (event) => {
