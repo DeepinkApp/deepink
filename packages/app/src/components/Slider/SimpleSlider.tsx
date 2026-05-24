@@ -41,7 +41,7 @@ export const SimpleSlider = ({
 	);
 
 	return (
-		<HStack width="100%" align="start">
+		<HStack width="100%" align="start" gap="1rem">
 			<Slider.Root
 				width="100%"
 				value={[value]}
@@ -80,18 +80,20 @@ export const SimpleSlider = ({
 				<Slider.MarkerGroup>
 					<Slider.Marker
 						value={min}
-						mt="1"
 						fontSize="sm"
 						color="typography.secondary"
+						translate="unset !important"
+						insetInlineStart="unset !important"
 					>
 						{transformValue ? transformValue(min) : min}
 					</Slider.Marker>
 					<Slider.Marker
 						value={max}
-						mt="1"
 						fontSize="sm"
 						color="typography.secondary"
-						transform="translateX(-100%)"
+						translate="unset !important"
+						insetInlineStart="unset !important"
+						right={0}
 					>
 						{transformValue ? transformValue(max) : max}
 					</Slider.Marker>

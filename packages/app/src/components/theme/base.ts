@@ -23,6 +23,7 @@ import {
 import {
 	alertAnatomy,
 	dialogAnatomy,
+	listAnatomy,
 	menuAnatomy,
 	nativeSelectAnatomy,
 	sliderAnatomy,
@@ -182,6 +183,12 @@ export default defineConfig({
 								base: 'control.background',
 								_hover: 'control.active.background',
 								_disabled: 'control.disabled.background',
+							},
+							_open: {
+								backgroundColor: {
+									base: 'control.active.background',
+									_disabled: 'control.disabled.background',
+								},
 							},
 
 							borderRadius: 'lg',
@@ -407,7 +414,8 @@ export default defineConfig({
 						color: 'typography.inverted',
 						// Yeah, that is the official way to set background
 						// See the docs: https://chakra-ui.com/docs/components/tooltip#custom-background
-						'--tooltip-bg': 'surface.invertedBackground',
+						'--tooltip-bg':
+							'var(--chakra-colors-surface-inverted-background)',
 					},
 				},
 			}),
@@ -431,22 +439,6 @@ export default defineConfig({
 					},
 				},
 			}),
-			alert: defineSlotRecipe({
-				slots: alertAnatomy.keys(),
-				variants: {
-					variant: {
-						subtle: {
-							indicator: {
-								color: 'currentColor',
-							},
-							root: {
-								backgroundColor: 'container.message.background',
-								color: 'container.message.foreground',
-							},
-						},
-					},
-				},
-			}),
 			tabs: defineSlotRecipe({
 				slots: tabsAnatomy.keys(),
 				variants: {
@@ -456,7 +448,7 @@ export default defineConfig({
 								color: 'control.ghost.foreground',
 								backgroundColor: 'transparent',
 
-								'&:hover': {
+								_hover: {
 									color: 'control.ghost.hover.foreground',
 									backgroundColor: 'control.ghost.hover.background',
 								},
@@ -473,6 +465,8 @@ export default defineConfig({
 					variant: 'subtle',
 				},
 			}),
+
+			// TODO: fix close button
 			dialog: defineSlotRecipe({
 				slots: dialogAnatomy.keys(),
 				base: {
@@ -492,10 +486,11 @@ export default defineConfig({
 				},
 			}),
 
+			// TODO: debug performance of suggest list
 			list: defineSlotRecipe({
-				slots: ['container', 'item'],
+				slots: listAnatomy.keys(),
 				base: {
-					list: {
+					root: {
 						borderColor: 'surface.border',
 						backgroundColor: 'surface.background',
 					},
@@ -503,7 +498,7 @@ export default defineConfig({
 						color: 'control.ghost.foreground',
 						backgroundColor: 'transparent',
 
-						'&[aria-selected=true]': {
+						_selected: {
 							color: 'control.ghost.hover.foreground',
 							backgroundColor: 'control.ghost.hover.background',
 						},
@@ -519,7 +514,7 @@ export default defineConfig({
 								backgroundColor: 'control.background',
 								color: 'control.foreground',
 
-								'&:hover': {
+								_hover: {
 									backgroundColor: 'control.active.background',
 								},
 							},
@@ -536,46 +531,21 @@ export default defineConfig({
 					variant: 'base',
 				},
 			}),
-			// TODO: fix all
 			slider: defineSlotRecipe({
 				slots: sliderAnatomy.keys(),
 				base: {
-					root: {
-						height: '2rem',
-					},
-					track: {
-						height: '.5rem',
-						top: '20% !important',
-					},
-					thumb: {
-						boxSize: '.8rem',
-						top: '20% !important',
-					},
-					marker: {
-						width: 'max-content',
-						top: '35%',
+					markerGroup: {
+						mt: '.6rem',
 					},
 				},
 				variants: {
 					size: {
 						sm: {
-							container: {
-								height: '2rem',
-							},
-							track: {
-								height: '.3rem',
-							},
 							thumb: {
 								boxSize: '.5rem',
 							},
 						},
 						md: {
-							container: {
-								height: '2.5rem',
-							},
-							track: {
-								height: '.5rem',
-							},
 							thumb: {
 								boxSize: '.8rem',
 							},
@@ -584,10 +554,10 @@ export default defineConfig({
 					variant: {
 						solid: {
 							track: {
-								backgroundColor: 'control.base.background',
-								borderRadius: '6px',
+								backgroundColor: 'control.background',
+								borderRadius: 'lg',
 							},
-							filledTrack: {
+							range: {
 								backgroundColor: 'control.action.background',
 							},
 							thumb: {
@@ -599,6 +569,22 @@ export default defineConfig({
 				defaultVariants: {
 					variant: 'solid',
 					size: 'md',
+				},
+			}),
+			alert: defineSlotRecipe({
+				slots: alertAnatomy.keys(),
+				variants: {
+					variant: {
+						subtle: {
+							indicator: {
+								color: 'currentColor',
+							},
+							root: {
+								backgroundColor: 'container.message.background',
+								color: 'container.message.foreground',
+							},
+						},
+					},
 				},
 			}),
 			notifications: NotificationsRecipe,
