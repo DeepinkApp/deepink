@@ -461,6 +461,12 @@ export default defineConfig({
 				},
 				variants: {
 					size: {
+						sm: {
+							item: {
+								fontSize: 'sm',
+								padding: 2,
+							},
+						},
 						md: {
 							item: {
 								fontSize: 'md',

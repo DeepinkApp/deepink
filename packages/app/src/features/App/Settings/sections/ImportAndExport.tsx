@@ -68,8 +68,8 @@ export const ImportAndExport = () => {
 								{importOptions.map((option) => (
 									<Menu.Item
 										key={option.type}
+										value={option.type}
 										onSelect={() => onClickImport(option.type)}
-										value="item-0"
 									>
 										<Text>{option.text}</Text>
 									</Menu.Item>
