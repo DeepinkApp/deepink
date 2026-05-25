@@ -173,7 +173,7 @@ export default defineConfig({
 				variants: {
 					size: {
 						md: {
-							fontSize: '1rem',
+							fontSize: 'md',
 						},
 						// TODO: review button sizes
 						xs: {
@@ -298,7 +298,7 @@ export default defineConfig({
 				variants: {
 					size: {
 						md: {
-							fontSize: '1rem',
+							fontSize: 'md',
 						},
 						lg: {
 							borderWidth: '2px',
@@ -453,7 +453,6 @@ export default defineConfig({
 			menu: defineSlotRecipe({
 				slots: menuAnatomy.keys(),
 				base: {
-					// TODO: fix background shadow on content
 					content: {
 						borderColor: 'surface.border',
 						backgroundColor: 'surface.background',
@@ -466,6 +465,15 @@ export default defineConfig({
 						_highlighted: {
 							color: 'control.ghost.hover.foreground',
 							backgroundColor: 'control.ghost.hover.background !important',
+						},
+					},
+				},
+				variants: {
+					size: {
+						md: {
+							item: {
+								fontSize: 'md',
+							},
 						},
 					},
 				},
