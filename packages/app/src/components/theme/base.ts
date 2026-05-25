@@ -87,7 +87,6 @@ export const getScrollBarStyles = ({
 	};
 };
 
-// TODO: remove all `.base` keys
 export default defineConfig({
 	globalCss: {
 		// "*": {
@@ -96,7 +95,7 @@ export default defineConfig({
 		body: {
 			background: 'surface.background',
 			margin: 0,
-			color: 'typography.base',
+			color: 'typography',
 			fontFamily: `-apple-system,
 			blinkmacsystemfont,
 			'Segoe UI',
@@ -140,7 +139,7 @@ export default defineConfig({
 		recipes: {
 			text: defineRecipe({
 				base: {
-					color: 'typography.base',
+					color: 'typography',
 				},
 				variants: {
 					variant: {
@@ -268,7 +267,7 @@ export default defineConfig({
 
 			input: defineRecipe({
 				base: {
-					color: 'typography.base',
+					color: 'typography',
 					borderRadius: 'lg',
 					'&::placeholder': {
 						color: 'typography.secondary',
@@ -377,7 +376,7 @@ export default defineConfig({
 				slots: nativeSelectAnatomy.keys(),
 				base: {
 					field: {
-						color: 'typography.base',
+						color: 'typography',
 						borderRadius: 'md',
 						'&::placeholder': {
 							color: 'inherit',
@@ -512,7 +511,7 @@ export default defineConfig({
 						backgroundColor: 'overlay.500',
 					},
 					content: {
-						color: 'typography.base',
+						color: 'typography',
 						backgroundColor: 'surface.background',
 						fontSize: 'md',
 					},
