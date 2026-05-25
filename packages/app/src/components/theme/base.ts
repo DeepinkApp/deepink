@@ -40,15 +40,7 @@ import { RichEditorRecipe } from '@features/NoteEditor/RichEditor/RichEditor.the
 
 import './resizable-panels.css';
 
-export const getScrollBarStyles = ({
-	trackColor = '#f1f1f1',
-	scrollColor = '#c5c5c5',
-	scrollHoverColor = '#939393',
-}: {
-	trackColor?: string;
-	scrollColor?: string;
-	scrollHoverColor?: string;
-} = {}): Record<string, any> => {
+export const getScrollBarStyles = (): Record<string, any> => {
 	const styles: Record<string, any> = {
 		'.invisible-scroll::-webkit-scrollbar': {
 			display: 'none',
@@ -69,20 +61,20 @@ export const getScrollBarStyles = ({
 		},
 
 		'::-webkit-scrollbar-track': {
-			background: trackColor,
+			background: 'scroll.track',
 			borderRadius: '0px',
 			border: '1px solid transparent',
 		},
 
 		'::-webkit-scrollbar-thumb': {
-			background: scrollColor,
+			background: 'scroll.thumb',
 			borderRadius: '0px',
 			border: '0px solid transparent',
 			backgroundClip: 'padding-box',
 		},
 
 		'::-webkit-scrollbar-thumb:hover': {
-			background: scrollHoverColor,
+			background: 'scroll.thumb.hover',
 		},
 	};
 };

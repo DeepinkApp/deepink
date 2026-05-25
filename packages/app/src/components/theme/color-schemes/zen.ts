@@ -58,6 +58,13 @@ export default defineConfig({
 					base: { value: '{colors.accent.500}' },
 					hover: { value: '{colors.accent.700}' },
 				},
+				scroll: {
+					track: { value: '{colors.dim.500}' },
+					thumb: {
+						base: { value: '{colors.accent.100}' },
+						hover: { value: '{colors.accent.700}' },
+					},
+				},
 				typography: {
 					accent: { value: '{colors.accent.500}' },
 				},
