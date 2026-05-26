@@ -93,7 +93,7 @@ export default defineConfig({
 						background: { value: '{colors.sand.300}' },
 						foreground: { value: '{colors.typography.base}' },
 						active: { background: { value: '{colors.sand.400}' } },
-						disabled: { background: { value: '{colors.sand.100}' } },
+						disabled: { background: { value: '{colors.sand.300}' } },
 					},
 					action: {
 						foreground: { value: '#ffffff' },
