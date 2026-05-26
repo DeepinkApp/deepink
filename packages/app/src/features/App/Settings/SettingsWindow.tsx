@@ -122,7 +122,7 @@ export const SettingsWindow = () => {
 												key={tab.id}
 												value={tab.id}
 												justifyContent="start"
-												borderRadius="4px"
+												borderRadius="lg"
 												padding=".3rem .5rem"
 												maxWidth="100%"
 											>

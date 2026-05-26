@@ -478,20 +478,28 @@ export default defineConfig({
 			tabs: defineSlotRecipe({
 				slots: tabsAnatomy.keys(),
 				variants: {
+					size: {
+						md: {
+							trigger: {
+								fontSize: 'md',
+							},
+						},
+					},
 					variant: {
 						subtle: {
 							trigger: {
-								color: 'control.ghost.foreground',
-								backgroundColor: 'transparent',
-
-								_hover: {
-									color: 'control.ghost.hover.foreground',
-									backgroundColor: 'control.ghost.hover.background',
+								color: {
+									base: 'control.ghost.foreground',
+									_hover: 'control.ghost.hover.foreground',
+									_selected:
+										'control.ghost.active.foreground !important',
 								},
 
-								_selected: {
-									color: 'control.ghost.active.foreground',
-									background: 'control.ghost.active.background',
+								backgroundColor: {
+									base: 'transparent',
+									_hover: 'control.ghost.hover.background',
+									_selected:
+										'control.ghost.active.background !important',
 								},
 							},
 						},
