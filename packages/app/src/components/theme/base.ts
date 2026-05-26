@@ -104,14 +104,6 @@ export default defineConfig({
 				color: 'selection.foreground',
 				backgroundColor: 'selection.background',
 			},
-
-			'[data-resize-handle]': {
-				'--resize-handle-active-color': 'var(--chakra-colors-accent-300)',
-			},
-
-			'select:focus-visible, button:focus-visible, input:focus-visible': {
-				boxShadow: 'outline',
-			},
 		} as SystemStyleObject,
 		...getScrollBarStyles(),
 	},

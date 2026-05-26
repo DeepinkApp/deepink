@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { Panel, PanelResizeHandle } from 'react-resizable-panels';
+import { Panel } from 'react-resizable-panels';
 import { Box, HStack, VStack } from '@chakra-ui/react';
-import { SyncedPanelGroup } from '@components/SyncedPanelGroup';
+import { StyledPanelResizeHandle, SyncedPanelGroup } from '@components/SyncedPanelGroup';
 import { useTagsRegistry } from '@features/App/Workspace/WorkspaceProvider';
 import { NotesListPanel } from '@features/MainScreen/NotesListPanel';
 import { WorkspacesPanel } from '@features/MainScreen/WorkspacesPanel';
@@ -90,7 +90,6 @@ export const MainScreen: FC = () => {
 
 				<SyncedPanelGroup direction="horizontal" autoSaveId="MainScreen.content">
 					<VStack
-						{...({ defaultSize: 20 } as any)}
 						gap="1rem"
 						css={{
 							alignItems: 'start',
@@ -103,19 +102,16 @@ export const MainScreen: FC = () => {
 						}}
 						asChild
 					>
-						<Panel>
+						<Panel defaultSize={20}>
 							<NotesViewFilter />
 							<TagsPanel />
 							<WorkspacesPanel marginTop="auto" />
 						</Panel>
 					</VStack>
 
-					<Box color="surface.border" asChild>
-						<PanelResizeHandle />
-					</Box>
+					<StyledPanelResizeHandle />
 
 					<VStack
-						{...({ defaultSize: 20 } as any)}
 						css={{
 							alignItems: 'start',
 							minWidth: '200px',
@@ -128,20 +124,16 @@ export const MainScreen: FC = () => {
 						}}
 						asChild
 					>
-						<Panel>
+						<Panel defaultSize={20}>
 							<NotesListPanel />
 						</Panel>
 					</VStack>
 
-					<Box color="surface.border" asChild>
-						<PanelResizeHandle />
-					</Box>
+					<StyledPanelResizeHandle />
 
-					<Box {...({ minSize: 50 } as any)} asChild>
-						<Panel>
-							<NotesContainer />
-						</Panel>
-					</Box>
+					<Panel minSize={50}>
+						<NotesContainer />
+					</Panel>
 				</SyncedPanelGroup>
 			</HStack>
 			<StatusBar />

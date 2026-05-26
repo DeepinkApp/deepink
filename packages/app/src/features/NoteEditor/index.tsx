@@ -1,3 +1,4 @@
+/* eslint-disable i18next/no-literal-string */
 import React, {
 	FC,
 	memo,
@@ -17,7 +18,7 @@ import {
 	FaThumbtack,
 	FaXmark,
 } from 'react-icons/fa6';
-import { Panel, PanelResizeHandle } from 'react-resizable-panels';
+import { Panel } from 'react-resizable-panels';
 import { debounce } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { WorkspaceEvents } from '@api/events/workspace';
@@ -32,7 +33,7 @@ import {
 	VStack,
 } from '@chakra-ui/react';
 import { SuggestedTagsList } from '@components/SuggestedTagsList';
-import { SyncedPanelGroup } from '@components/SyncedPanelGroup';
+import { StyledPanelResizeHandle, SyncedPanelGroup } from '@components/SyncedPanelGroup';
 import { findLinksInText, getResourceIdInUrl } from '@core/features/links';
 import { INote, INoteContent } from '@core/features/notes';
 import { NoteMeta } from '@core/features/notes/controller';
@@ -525,119 +526,115 @@ export const Note2: FC<NoteEditorProps> = memo(
 
 					{!sidePanel ? null : (
 						<>
-							<Box
-								{...({ as: PanelResizeHandle } as any)}
-								color="surface.border"
-							/>
-							<Box
-								{...({ as: Panel, defaultSize: 30 } as any)}
-								minH="200px"
-							>
-								<NoteSidebar
-									onClose={() => setSidePanel(null)}
-									activeTab={sidePanel as string}
-									onActiveTabChanged={(id) =>
-										setSidePanel(id as NoteSidebarTabs)
-									}
-									tabs={[
-										{
-											id: NoteSidebarTabs.HISTORY,
-											title: t('note.sidebar.tabs.history'),
-											content() {
-												return (
-													<NoteVersions
-														isReadOnly={isReadOnly}
-														noteId={note.id}
-														recordControl={{
-															isDisabled: Boolean(
-																note.isSnapshotsDisabled,
-															),
-															onChange(isDisabled) {
-																updateMeta({
-																	isSnapshotsDisabled:
-																		isDisabled,
-																});
-															},
-														}}
-														onShowVersion={(version) =>
-															setVersionPreview(version)
-														}
-														onVersionApply={async (
-															version,
-														) => {
-															await noteHistory.snapshot(
-																note.id,
-															);
-
-															// Version contains extra fields, but require only text and title
-															await notesRegistry.update(
-																note.id,
-																{
-																	title: version.title,
-																	text: version.text,
+							<StyledPanelResizeHandle />
+							<Box minH="200px" asChild>
+								<Panel defaultSize={30}>
+									<NoteSidebar
+										onClose={() => setSidePanel(null)}
+										activeTab={sidePanel as string}
+										onActiveTabChanged={(id) =>
+											setSidePanel(id as NoteSidebarTabs)
+										}
+										tabs={[
+											{
+												id: NoteSidebarTabs.HISTORY,
+												title: t('note.sidebar.tabs.history'),
+												content() {
+													return (
+														<NoteVersions
+															isReadOnly={isReadOnly}
+															noteId={note.id}
+															recordControl={{
+																isDisabled: Boolean(
+																	note.isSnapshotsDisabled,
+																),
+																onChange(isDisabled) {
+																	updateMeta({
+																		isSnapshotsDisabled:
+																			isDisabled,
+																	});
 																},
-															);
-															await noteHistory.snapshot(
-																note.id,
-															);
+															}}
+															onShowVersion={(version) =>
+																setVersionPreview(version)
+															}
+															onVersionApply={async (
+																version,
+															) => {
+																await noteHistory.snapshot(
+																	note.id,
+																);
 
-															eventBus.emit(
-																WorkspaceEvents.NOTE_HISTORY_UPDATED,
-																note.id,
-															);
-															eventBus.emit(
-																WorkspaceEvents.NOTE_UPDATED,
-																note.id,
-															);
-															forceUpdateLocalStateRef.current = true;
-														}}
-														onSnapshot={async () => {
-															await noteHistory.snapshot(
-																note.id,
-																{
-																	force: true,
-																},
-															);
-															eventBus.emit(
-																WorkspaceEvents.NOTE_HISTORY_UPDATED,
-																note.id,
-															);
-														}}
-														onDeleteAll={async () => {
-															await noteHistory.purge([
-																note.id,
-															]);
-															eventBus.emit(
-																WorkspaceEvents.NOTE_HISTORY_UPDATED,
-																note.id,
-															);
-														}}
-													/>
-												);
+																// Version contains extra fields, but require only text and title
+																await notesRegistry.update(
+																	note.id,
+																	{
+																		title: version.title,
+																		text: version.text,
+																	},
+																);
+																await noteHistory.snapshot(
+																	note.id,
+																);
+
+																eventBus.emit(
+																	WorkspaceEvents.NOTE_HISTORY_UPDATED,
+																	note.id,
+																);
+																eventBus.emit(
+																	WorkspaceEvents.NOTE_UPDATED,
+																	note.id,
+																);
+																forceUpdateLocalStateRef.current = true;
+															}}
+															onSnapshot={async () => {
+																await noteHistory.snapshot(
+																	note.id,
+																	{
+																		force: true,
+																	},
+																);
+																eventBus.emit(
+																	WorkspaceEvents.NOTE_HISTORY_UPDATED,
+																	note.id,
+																);
+															}}
+															onDeleteAll={async () => {
+																await noteHistory.purge([
+																	note.id,
+																]);
+																eventBus.emit(
+																	WorkspaceEvents.NOTE_HISTORY_UPDATED,
+																	note.id,
+																);
+															}}
+														/>
+													);
+												},
 											},
-										},
-										{
-											id: NoteSidebarTabs.BACK_LINKS,
-											title: t('note.sidebar.tabs.backLinks'),
-											content() {
-												// eslint-disable-next-line i18next/no-literal-string
-												return <div>TODO: Note back links</div>;
+											{
+												id: NoteSidebarTabs.BACK_LINKS,
+												title: t('note.sidebar.tabs.backLinks'),
+												content() {
+													return (
+														<div>TODO: Note back links</div>
+													);
+												},
 											},
-										},
-										{
-											id: 'files',
-											title: t('note.sidebar.tabs.files'),
-											content() {
-												return (
-													// eslint-disable-next-line i18next/no-literal-string
-													<div>
-														TODO: Files attached to note
-													</div>
-												);
+											{
+												id: 'files',
+												title: t('note.sidebar.tabs.files'),
+												content() {
+													return (
+														<div>
+															TODO: Files attached to note
+														</div>
+													);
+												},
 											},
-										},
-									]}
-								/>
+										]}
+									/>
+								</Panel>
 							</Box>
 						</>
 					)}
