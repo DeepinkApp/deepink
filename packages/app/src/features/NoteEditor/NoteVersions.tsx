@@ -182,7 +182,7 @@ export const NoteVersions = ({
 								<HStack marginLeft="auto">
 									<Button
 										disabled={Boolean(isReadOnly)}
-										size="sm"
+										size="xs"
 										title={
 											isReadOnly
 												? t('note.version.apply.readonlyTitle')
@@ -279,7 +279,7 @@ export const NoteVersions = ({
 									</Button>
 
 									<Button
-										size="sm"
+										size="xs"
 										title={t('note.version.open.title')}
 										onClick={() => {
 											onShowVersion(version);
@@ -298,7 +298,7 @@ export const NoteVersions = ({
 										<FaGlasses />
 									</Button>
 									<Button
-										size="sm"
+										size="xs"
 										title={t('note.version.delete.title')}
 										onClick={(evt) => {
 											const deleteVersion = async () => {
