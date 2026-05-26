@@ -126,6 +126,7 @@ export default defineConfig({
 					muted: { value: '{colors.surface.muted}' },
 				},
 				border: { value: '{colors.surface.border}' },
+				color: { palette: { focus: { ring: { value: '{colors.focusRing}' } } } },
 			},
 		},
 		recipes: {
@@ -298,16 +299,20 @@ export default defineConfig({
 					variant: {
 						subtle: {
 							borderWidth: '1px',
-							borderColor: {
-								base: 'control.input.border',
-								_hover: 'control.input.active.border',
-								_focus: 'control.input.border',
-								_active: 'control.input.border',
+
+							borderColor: 'control.input.border',
+							backgroundColor: 'control.input.background',
+
+							_hover: {
+								'&:not(:focus-visible)': {
+									borderColor: 'control.input.active.border',
+									backgroundColor: 'control.input.background',
+								},
 							},
 
-							backgroundColor: {
-								base: 'control.input.background',
-								_focus: 'transparent',
+							_focus: {
+								backgroundColor: 'transparent',
+								borderColor: 'control.input.border',
 							},
 						},
 						flushed: {
