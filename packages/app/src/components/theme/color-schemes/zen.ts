@@ -82,6 +82,7 @@ export default defineConfig({
 				},
 				typography: {
 					accent: { value: '{colors.accent.600}' },
+					muted: { value: '{colors.accent.900}' },
 				},
 				skeleton: {
 					start: { value: '{colors.accent.100}' },

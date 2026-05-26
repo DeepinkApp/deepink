@@ -213,6 +213,19 @@ export default defineConfig({
 
 							borderRadius: 'lg',
 						},
+						statusbar: {
+							color: 'typography.muted',
+							backgroundColor: {
+								base: 'control.ghost.background',
+								_hover: 'control.ghost.hover.background',
+								_active: 'control.ghost.active.background',
+								_expanded: 'control.ghost.active.background',
+								_open: 'control.ghost.active.background',
+							},
+
+							borderRadius: '0',
+							fontWeight: 'normal',
+						},
 						link: {
 							color: {
 								base: 'link',
