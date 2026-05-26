@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useRef } from 'react';
 import Downshift from 'downshift';
 import {
 	Box,
@@ -10,6 +10,8 @@ import {
 	useControllableState,
 } from '@chakra-ui/react';
 import { IResolvedTag } from '@core/features/tags';
+
+import { VirtualList } from '../VirtualList';
 
 export type ListItem = {
 	id: string;
@@ -54,6 +56,8 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 		value: inputValue,
 		onChange: onInputChange,
 	});
+
+	const listRootRef = useRef<HTMLDivElement>(null);
 
 	const fixedTagName = input
 		.trim()
@@ -100,6 +104,8 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 		[fixedTagName, hasTagName, onCreateTag, tags],
 	);
 
+	const listItems = getListItems(input);
+
 	return (
 		<Downshift
 			onStateChange={({ inputValue }) => {
@@ -126,14 +132,15 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 				}
 			}}
 			itemToString={(item) => (item ? item.content : '')}
+			itemCount={listItems.length}
 		>
 			{({
 				getInputProps,
 				getItemProps,
 				getMenuProps,
 				isOpen,
-				inputValue,
 				getRootProps,
+				highlightedIndex,
 			}) => (
 				<Box w="100%" position="relative" {...props}>
 					<Box
@@ -147,54 +154,83 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 							w="100%"
 						/>
 					</Box>
-					{isOpen && (
-						<List.Root
-							as="ul"
-							{...getMenuProps()}
-							position="absolute"
-							overflow="auto"
-							maxHeight="300px"
-							maxW="300px"
-							overflowX="hidden"
-							margin={0}
-							marginTop=".3rem"
-							zIndex={999}
-							border="1px solid"
-							borderColor="surface.border"
-							backgroundColor="surface.background"
-							borderRadius="6px"
-							paddingBlock=".3rem"
+					{isOpen && listItems.length > 0 && (
+						<VirtualList
+							count={listItems.length}
+							activeIndex={highlightedIndex ?? undefined}
+							getScrollElement={() => listRootRef.current}
+							estimateSize={() => 35}
+							overscan={6}
+							useFlushSync={false}
 						>
-							{getListItems(inputValue).map((item, index) => {
-								return (
-									<List.Item
-										// @ts-expect-error ensure key
-										key={item.id}
-										listStyleType="none"
-										css={{
-											padding: '.3rem',
-											paddingInline: '1rem',
-											fontSize: '1rem',
-										}}
-										{...getItemProps({
-											key: item.id,
-											index,
-											item,
-										})}
+							{(virtualizer) => (
+								<Box
+									ref={listRootRef}
+									position="absolute"
+									overflow="auto"
+									maxHeight="300px"
+									maxW="300px"
+									w="100%"
+									overflowX="hidden"
+									margin={0}
+									marginTop=".3rem"
+									zIndex={999}
+									border="1px solid"
+									borderColor="surface.border"
+									backgroundColor="surface.background"
+									borderRadius="6px"
+								>
+									<List.Root
+										as="ul"
+										{...getMenuProps()}
+										minHeight={virtualizer.getTotalSize()}
+										paddingBlock=".3rem"
+										margin={0}
+										flexShrink={0}
 									>
-										<Text
-											maxW="100%"
-											whiteSpace="nowrap"
-											wordBreak="break-word"
-											textOverflow="ellipsis"
-											overflow="hidden"
-										>
-											{item.content}
-										</Text>
-									</List.Item>
-								);
-							})}
-						</List.Root>
+										{virtualizer
+											.getVirtualItems()
+											.map((virtualRow, virtualItemPosition) => {
+												const item = listItems[virtualRow.index];
+												return (
+													<List.Item
+														ref={virtualizer.measureElement}
+														// @ts-expect-error ensure key
+														key={item.id}
+														data-index={virtualRow.index}
+														listStyleType="none"
+														css={{
+															padding: '.3rem',
+															paddingInline: '1rem',
+															fontSize: '1rem',
+														}}
+														marginTop={
+															virtualItemPosition === 0
+																? virtualRow.start
+																: undefined
+														}
+														{...getItemProps({
+															key: item.id,
+															index: virtualRow.index,
+															item,
+														})}
+													>
+														<Text
+															maxW="100%"
+															whiteSpace="nowrap"
+															wordBreak="break-word"
+															textOverflow="ellipsis"
+															overflow="hidden"
+														>
+															{item.content}
+														</Text>
+													</List.Item>
+												);
+											})}
+									</List.Root>
+								</Box>
+							)}
+						</VirtualList>
 					)}
 				</Box>
 			)}
