@@ -149,7 +149,11 @@ export const SettingsWindow = () => {
 										);
 									})}
 
-									<Text fontWeight="bold" marginTop="2rem">
+									<Text
+										fontWeight="bold"
+										marginTop="2rem"
+										marginBottom=".5rem"
+									>
 										{t('tabs.vaultSettingsGroup')}
 									</Text>
 									{vaultTabs.map((tab) => {
