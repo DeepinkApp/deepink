@@ -85,8 +85,8 @@ export default defineConfig({
 					muted: { value: '{colors.accent.900}' },
 				},
 				skeleton: {
-					start: { value: '{colors.accent.100}' },
-					end: { value: '{colors.accent.200}' },
+					start: { value: '{colors.sand.200}' },
+					end: { value: '{colors.sand.400}' },
 				},
 				control: {
 					base: {
