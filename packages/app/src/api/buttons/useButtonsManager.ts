@@ -19,9 +19,11 @@ export const useButtonsManager = (): ButtonsManagerObject => {
 	const managerRef = useRef<ButtonsManager>(null as unknown as ButtonsManager);
 	if (!managerRef.current) {
 		managerRef.current = new ButtonsManager((buttons) => {
-			setState({
-				start: buttons.start.map((button) => button.button),
-				end: buttons.end.map((button) => button.button),
+			requestAnimationFrame(() => {
+				setState({
+					start: buttons.start.map((button) => button.button),
+					end: buttons.end.map((button) => button.button),
+				});
 			});
 		});
 	}
