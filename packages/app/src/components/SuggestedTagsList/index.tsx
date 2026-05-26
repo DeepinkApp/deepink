@@ -1,5 +1,6 @@
-import React, { FC, useCallback, useRef } from 'react';
+import React, { FC, useCallback, useMemo, useRef } from 'react';
 import Downshift from 'downshift';
+import Fuse from 'fuse.js';
 import {
 	Box,
 	BoxProps,
@@ -66,45 +67,73 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 		.filter(Boolean)
 		.join('/');
 
-	const getListItems = useCallback(
-		(inputValue: string | null) => {
-			const filteredTags: ListItem[] = [...tags]
-				.filter(
-					({ resolvedName }) =>
-						!inputValue ||
-						resolvedName.toLowerCase().includes(inputValue.toLowerCase()),
-				)
-				.map(
-					({ id, resolvedName }) =>
-						({
-							id,
-							content: resolvedName,
-						}) as ListItem,
-				);
+	const fuse = useMemo(() => {
+		return new Fuse(tags, {
+			keys: ['resolvedName'],
+			threshold: 0.3,
+			ignoreLocation: true,
+			minMatchCharLength: 1,
+		});
+	}, [tags]);
 
-			// Add button to create new tag
-			if (
-				onCreateTag &&
-				fixedTagName &&
-				!filteredTags.some((tag) => tag.content === fixedTagName)
-			) {
-				if (!hasTagName || !hasTagName(fixedTagName)) {
-					return [
-						{
-							id: 'createNew',
-							content: `Create tag "${fixedTagName}"`,
-						} as ListItem,
-						...filteredTags,
-					];
+	const listItems = useMemo<ListItem[]>(() => {
+		const normalizedInput = input.trim();
+
+		const filteredTags: ListItem[] = !normalizedInput
+			? tags.map(({ id, resolvedName }) => ({
+					id,
+					content: resolvedName,
+				}))
+			: fuse.search(normalizedInput).map(({ item }) => ({
+					id: item.id,
+					content: item.resolvedName,
+				}));
+
+		if (
+			onCreateTag &&
+			fixedTagName &&
+			!filteredTags.some((tag) => tag.content === fixedTagName)
+		) {
+			if (!hasTagName || !hasTagName(fixedTagName)) {
+				return [
+					{
+						id: 'createNew',
+						content: `Create tag "${fixedTagName}"`,
+					},
+					...filteredTags,
+				];
+			}
+		}
+
+		return filteredTags;
+	}, [fuse, fixedTagName, hasTagName, input, onCreateTag, tags]);
+
+	const handleChange = useCallback(
+		(selection: null | ListItem) => {
+			if (!selection) return;
+
+			const { id } = selection;
+
+			if (id === 'createNew') {
+				setInput('');
+
+				if (onCreateTag && fixedTagName) {
+					onCreateTag(fixedTagName);
 				}
+
+				return;
 			}
 
-			return filteredTags;
-		},
-		[fixedTagName, hasTagName, onCreateTag, tags],
-	);
+			if (!onPick) return;
 
-	const listItems = getListItems(input);
+			const tag = tags.find((tag) => tag.id === id);
+
+			if (tag) {
+				onPick(tag);
+			}
+		},
+		[fixedTagName, onCreateTag, onPick, setInput, tags],
+	);
 
 	return (
 		<Downshift
@@ -114,23 +143,7 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 				}
 			}}
 			inputValue={input}
-			onChange={(selection: null | ListItem) => {
-				if (!selection) return;
-
-				const { id } = selection;
-
-				if (id === 'createNew') {
-					setInput('');
-					if (onCreateTag && fixedTagName) {
-						onCreateTag(fixedTagName);
-					}
-				} else if (onPick) {
-					const tag = tags.find((tag) => tag.id === id);
-					if (tag) {
-						onPick(tag);
-					}
-				}
-			}}
+			onChange={handleChange}
 			itemToString={(item) => (item ? item.content : '')}
 			itemCount={listItems.length}
 		>
@@ -154,6 +167,7 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 							w="100%"
 						/>
 					</Box>
+
 					{isOpen && listItems.length > 0 && (
 						<VirtualList
 							count={listItems.length}
@@ -169,7 +183,7 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 									position="absolute"
 									overflow="auto"
 									maxHeight="300px"
-									maxW="300px"
+									maxW="600px"
 									w="100%"
 									overflowX="hidden"
 									margin={0}
@@ -192,6 +206,7 @@ export const SuggestedTagsList: FC<ISuggestedTagsListProps> = ({
 											.getVirtualItems()
 											.map((virtualRow, virtualItemPosition) => {
 												const item = listItems[virtualRow.index];
+
 												return (
 													<List.Item
 														ref={virtualizer.measureElement}
