@@ -41,7 +41,7 @@ export const NoteSidebar = ({
 		<VStack align="start" w="100%" h="100%" flex={1} gap="1rem">
 			<HStack
 				w="100%"
-				alignItems="start"
+				alignItems="center"
 				borderBottom="1px solid"
 				bgColor="surface.panel"
 				borderColor="surface.border"
@@ -99,7 +99,7 @@ export const NoteSidebar = ({
 					</Tabs.List>
 				</Tabs.Root>
 
-				<HStack marginLeft="auto" paddingTop=".3rem" paddingInlineEnd=".3rem">
+				<HStack marginLeft="auto" paddingInlineEnd=".3rem">
 					<Button
 						variant="ghost"
 						size="xs"
