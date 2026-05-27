@@ -44,12 +44,7 @@ export default defineConfig({
 					panel: { value: '#f7f4ef' },
 					border: { value: '#d5cdc0' },
 					muted: { value: '#f7f4ef' },
-					raised: { value: '#fbfaf7' },
-					stripe: { value: '#f7f4ef' },
 					section: { value: '#f7f4ef' },
-					sunken: { value: '#f1eae0' },
-					overlay: { value: '#fbfaf7' },
-					tooltip: { value: '#191919' },
 				},
 				dim: {
 					50: { value: '#fbfaf7' },
