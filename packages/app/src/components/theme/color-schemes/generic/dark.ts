@@ -15,6 +15,7 @@ export default function (accentColor: string) {
 					),
 					typography: {
 						base: { value: '#e2e2e2' },
+						muted: { value: '#fde7fd' },
 						secondary: { value: '#c7c7c7' },
 						accent: { value: accent['500'] },
 						inverted: { value: '#000' },
@@ -39,6 +40,7 @@ export default function (accentColor: string) {
 						invertedBackground: { value: '#fff' },
 						panel: { value: '#393139' },
 						border: { value: '#3a353a' },
+						muted: { value: '{colors.dim.200}' },
 					},
 					dim: {
 						50: { value: '#6c65659c' },
@@ -58,6 +60,7 @@ export default function (accentColor: string) {
 						error: { value: '#b30606' },
 						success: { value: '#3ea863' },
 					},
+					focusRing: { value: accent['400'] },
 				},
 				shadows: {
 					outline: { value: `0 0 0 3px ${accent['400']}` },
@@ -81,6 +84,7 @@ export default function (accentColor: string) {
 							active: { background: { value: '{colors.accent.600}' } },
 						},
 						input: {
+							focusRing: { value: accent['400'] },
 							background: { value: '{colors.dim.100}' },
 							border: { value: 'transparent' },
 							active: { border: { value: '{colors.dim.400}' } },
@@ -109,6 +113,17 @@ export default function (accentColor: string) {
 								background: { value: '{colors.dim.400}' },
 							},
 						},
+					},
+					scroll: {
+						track: { value: '{colors.dim.200}' },
+						thumb: {
+							base: { value: '{colors.dim.400}' },
+							hover: { value: '{colors.dim.500}' },
+						},
+					},
+					skeleton: {
+						start: { value: '{colors.dim.200}' },
+						end: { value: '{colors.dim.400}' },
 					},
 					container: {
 						head: {

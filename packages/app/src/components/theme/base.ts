@@ -81,13 +81,10 @@ export const getScrollBarStyles = (): Record<string, any> => {
 
 export default defineConfig({
 	globalCss: {
-		// "*": {
-		// 	focusRingColor: "red.500 !important",
-		// },
 		body: {
-			background: 'surface.background',
 			margin: 0,
-			color: 'typography',
+			backgroundColor: 'var(--chakra-colors-surface-background)',
+			color: 'var(--chakra-colors-typography-base)',
 			fontFamily: `-apple-system,
 			blinkmacsystemfont,
 			'Segoe UI',
@@ -118,7 +115,12 @@ export default defineConfig({
 					muted: { value: '{colors.surface.muted}' },
 				},
 				border: { value: '{colors.surface.border}' },
-				color: { palette: { focus: { ring: { value: '{colors.focusRing}' } } } },
+				color: {
+					palette: {
+						fg: { value: '{colors.typography.base}' },
+						focus: { ring: { value: '{colors.focusRing}' } },
+					},
+				},
 			},
 		},
 		recipes: {
