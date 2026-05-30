@@ -103,7 +103,7 @@ export const NoteEditor = ({
 						value={text}
 						onChanged={setText}
 						isReadOnly={isReadOnly}
-						search={search || undefined}
+						search={(isActive ? search : undefined) || undefined}
 						apiRef={richEditorApi}
 					/>
 				)}
