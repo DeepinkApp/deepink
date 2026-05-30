@@ -1,49 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { createEvent } from 'effector';
-import { LexicalEditor } from 'lexical';
 import { WorkspaceProvider } from '@features/App/Workspace/WorkspaceProvider';
 import {
 	editorPanelContext,
 	InsertingPayload,
 	TextFormat,
 } from '@features/NoteEditor/EditorPanel';
-import { ImageNode } from '@features/NoteEditor/RichEditor/plugins/Image/ImageNode';
-import { FormattingNode } from '@features/NoteEditor/RichEditor/plugins/Markdown/nodes/FormattingNode';
-import { RawNode } from '@features/NoteEditor/RichEditor/plugins/Markdown/nodes/RawNode';
-import { RichEditorContent } from '@features/NoteEditor/RichEditor/RichEditorContent';
-import { CodeHighlightNode, CodeNode } from '@lexical/code';
-import { AutoLinkNode, LinkNode } from '@lexical/link';
-import { ListItemNode, ListNode } from '@lexical/list';
-import { MarkNode } from '@lexical/mark';
-import { OverflowNode } from '@lexical/overflow';
-import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { HorizontalRuleNode } from '@lexical/react/LexicalHorizontalRuleNode';
-import { HeadingNode, QuoteNode } from '@lexical/rich-text';
-import { TableCellNode, TableNode, TableRowNode } from '@lexical/table';
+import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
 import { act, render } from '@testing-library/react';
 import { createTestStore } from '@tests/utils/redux';
-
-const RICH_EDITOR_NODES = [
-	RawNode,
-	FormattingNode,
-	ImageNode,
-	LinkNode,
-	AutoLinkNode,
-	ListNode,
-	ListItemNode,
-	TableNode,
-	TableCellNode,
-	TableRowNode,
-	HorizontalRuleNode,
-	HeadingNode,
-	QuoteNode,
-	CodeNode,
-	CodeHighlightNode,
-	MarkNode,
-	OverflowNode,
-];
 
 type RichEditorProps = {
 	value: string;
@@ -53,8 +19,6 @@ type RichEditorProps = {
 };
 
 type RenderRichEditorResult = {
-	editor: LexicalEditor;
-
 	/**
 	 * Simulates an editor panel action like inserting image
 	 */
@@ -71,16 +35,6 @@ type RenderRichEditorResult = {
 	rerender: (props: RichEditorProps) => void;
 };
 
-function EditorCapturePlugin({ onReady }: { onReady: (editor: LexicalEditor) => void }) {
-	const [editor] = useLexicalComposerContext();
-
-	useEffect(() => {
-		onReady(editor);
-	}, [editor, onReady]);
-
-	return null;
-}
-
 export async function renderRichEditor(
 	props: RichEditorProps,
 ): Promise<RenderRichEditorResult> {
@@ -88,8 +42,6 @@ export async function renderRichEditor(
 
 	const onFormatting = createEvent<TextFormat>();
 	const onInserting = createEvent<InsertingPayload>();
-
-	let editor: LexicalEditor | null = null;
 
 	const getJSX = (props: RichEditorProps) => (
 		<Provider store={store}>
@@ -104,23 +56,12 @@ export async function renderRichEditor(
 				notesIndex={{} as any}
 			>
 				<editorPanelContext.Provider value={{ onInserting, onFormatting }}>
-					<LexicalComposer
-						initialConfig={{
-							namespace: 'RichEditor',
-							nodes: [...RICH_EDITOR_NODES],
-							onError: console.error,
-						}}
-					>
-						<RichEditorContent
-							value={props.value}
-							onChanged={props.onChanged}
-							placeholder={props.placeholder}
-							isReadOnly={props.isReadOnly}
-						/>
-
-						{/* Use this plugin to get the editor instance for testing */}
-						<EditorCapturePlugin onReady={(e) => (editor = e)} />
-					</LexicalComposer>
+					<RichEditor
+						value={props.value}
+						onChanged={props.onChanged}
+						placeholder={props.placeholder}
+						isReadOnly={props.isReadOnly}
+					/>
 				</editorPanelContext.Provider>
 			</WorkspaceProvider>
 		</Provider>
@@ -134,10 +75,7 @@ export async function renderRichEditor(
 		renderResult = result.rerender;
 	});
 
-	if (!editor) throw new Error('Rich Editor not founded');
-
 	return {
-		editor,
 		insert: (payload: InsertingPayload) => onInserting(payload),
 		format: (format: TextFormat) => onFormatting(format),
 
