@@ -76,7 +76,17 @@ export const NoteEditor = ({
 				}}
 			>
 				{(editorMode === 'plaintext' || editorMode === 'split-screen') && (
-					<Box flexGrow="100" width="100%" height="100%" minW="0">
+					<Box
+						flexGrow="100"
+						width="100%"
+						height="100%"
+						minW="0"
+						css={{
+							'& > *': {
+								height: '100%',
+							},
+						}}
+					>
 						<MonacoEditor
 							value={text}
 							setValue={setText}
