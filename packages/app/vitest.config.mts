@@ -47,7 +47,7 @@ export default defineConfig({
 				test: {
 					name: 'node',
 					environment: 'node',
-					exclude: ['**/*.component.test.tsx'],
+					exclude: ['**/*.component.test.ts'],
 				},
 			},
 			{
@@ -55,7 +55,7 @@ export default defineConfig({
 				test: {
 					name: 'dom',
 					environment: 'jsdom',
-					include: ['**/*.component.test.tsx'],
+					include: ['**/*.component.test.ts'],
 				},
 			},
 		],

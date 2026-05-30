@@ -5,40 +5,6 @@ import { act, screen } from '@testing-library/react';
 import { renderRichEditor } from './utils/renderRichEditor';
 import { setCursorPosition, setTextSelection } from './utils/utils';
 
-beforeEach(() => {
-	// jsdom does not perform real image loading, so Image.onload is never triggered
-	// This can block components that rely on image load (like Image Node) to render or update DOM, so we mock it
-	class MockImage {
-		onload = () => {};
-
-		set src(_: string) {
-			queueMicrotask(() => this.onload());
-		}
-	}
-	global.Image = MockImage as any;
-
-	// jsdom does not implement layout APIs - getClientRects() returns an object without item(),
-	// which causes HighlightingPlugin to crash. Mock it to return a valid empty DOMRectList
-	Element.prototype.getClientRects = () =>
-		({
-			item: () => null,
-			length: 0,
-			[Symbol.iterator]: () => {},
-		}) as unknown as DOMRectList;
-
-	Range.prototype.getBoundingClientRect = vi.fn(() => ({
-		width: 0,
-		height: 0,
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0,
-		x: 0,
-		y: 0,
-		toJSON: () => {},
-	}));
-});
-
 const basicMarkdown = readFileSync(
 	path.resolve(path.dirname(__filename), './resources/basicMarkdown.txt'),
 ).toString('utf8');
