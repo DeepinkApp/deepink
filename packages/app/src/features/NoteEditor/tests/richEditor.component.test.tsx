@@ -3,7 +3,7 @@ import path from 'path';
 import { act, screen } from '@testing-library/react';
 
 import { renderRichEditor } from './utils/renderRichEditor';
-import { selectText } from './utils/selectText';
+import { setCursorPosition, setTextSelection } from './utils/utils';
 
 beforeEach(() => {
 	// jsdom does not perform real image loading, so Image.onload is never triggered
@@ -25,6 +25,18 @@ beforeEach(() => {
 			length: 0,
 			[Symbol.iterator]: () => {},
 		}) as unknown as DOMRectList;
+
+	Range.prototype.getBoundingClientRect = vi.fn(() => ({
+		width: 0,
+		height: 0,
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		x: 0,
+		y: 0,
+		toJSON: () => {},
+	}));
 });
 
 const basicMarkdown = readFileSync(
@@ -62,7 +74,7 @@ test('Editor is not editable in readonly mode', async () => {
 	expect(screen.getByRole('textbox')).toHaveAttribute('contenteditable', 'false');
 });
 
-test(`Correct for image md`, async () => {
+test(`Renders image from markdown syntax`, async () => {
 	await renderRichEditor({
 		value: `# Image ![My cat](http://example.com/cat.png) - my favorite image`,
 	});
@@ -74,6 +86,65 @@ test(`Correct for image md`, async () => {
 	expect(img).toHaveAttribute('alt', 'My cat');
 });
 
+test(`Inserts image between text nodes`, async () => {
+	const { insert } = await renderRichEditor({
+		value: `My favorite image\n\n I love cat`,
+	});
+
+	// Place cursor after the first text node
+	const textElement = await screen.findByText('My favorite image');
+	const textNode = textElement.firstChild;
+	expect(textNode).toBeInstanceOf(Text);
+	setCursorPosition(textNode as Text);
+
+	await act(async () => {
+		insert({
+			type: 'image',
+			data: { url: 'http://example.com/cat.png', altText: 'My cat' },
+		});
+	});
+
+	const firstText = await screen.findByText('My favorite image');
+	const secondText = await screen.findByText('I love cat');
+	const img = await screen.findByRole('img');
+
+	expect(img).toBeInTheDocument();
+	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
+	expect(img).toHaveAttribute('alt', 'My cat');
+
+	// Image between two texts
+	expect(img).toAppearAfter(firstText);
+	expect(img).toAppearBefore(secondText);
+});
+
+test('Inserts image after block node', async () => {
+	const { insert } = await renderRichEditor({
+		value: '```js\nconst a = 1;\n```',
+	});
+
+	// Place cursor position inside code node
+	const codeText = await screen.findByText('const a = 1;');
+	const textNode = codeText.firstChild;
+	expect(textNode).toBeInstanceOf(Text);
+
+	setCursorPosition(textNode as Text);
+
+	await act(async () => {
+		insert({
+			type: 'image',
+			data: { url: 'http://example.com/cat.png', altText: 'My cat' },
+		});
+	});
+
+	const img = await screen.findByRole('img');
+	const codeNode = await screen.findByRole('code');
+	expect(img).toBeInTheDocument();
+
+	// Image is inserted as next sibling of the code block
+	expect(img).toAppearAfter(codeNode);
+	expect(codeNode.nextElementSibling).toContainElement(img);
+});
+
 test('Updates heading level correctly', async () => {
 	const content = 'Hello, my dear friends!';
 	const { insert: insertHeading } = await renderRichEditor({ value: content });
@@ -81,7 +152,7 @@ test('Updates heading level correctly', async () => {
 	const textElement = await screen.findByText('Hello, my dear friends!');
 	const textNode = textElement.firstChild;
 	expect(textNode).toBeInstanceOf(Text);
-	selectText(textNode as Text, 0, content.length);
+	setTextSelection(textNode as Text, 0, content.length);
 
 	// Plain text becomes heading
 	act(() => insertHeading({ type: 'heading', data: { level: 1 } }));
@@ -111,7 +182,7 @@ test('Applies and removes text formatting', async () => {
 	const text = await screen.findByText('Hello, my dear friends!');
 	const textElement = text.firstChild;
 	expect(textElement).toBeInstanceOf(Text);
-	selectText(textElement as Text, 0, content.length);
+	setTextSelection(textElement as Text, 0, content.length);
 
 	// Apply and remove bold
 	const textbox = screen.getByRole('textbox');
@@ -139,7 +210,7 @@ test('Formats selected text', async () => {
 	const textElement = await screen.findByText('Hello, my dear friends!');
 	const textNode = textElement.firstChild;
 	expect(textNode).toBeInstanceOf(Text);
-	selectText(textNode as Text, 0, content.length);
+	setTextSelection(textNode as Text, 0, content.length);
 
 	await act(async () => format('italic'));
 	await act(async () => format('bold'));
