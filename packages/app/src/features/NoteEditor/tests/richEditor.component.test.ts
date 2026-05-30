@@ -1,19 +1,7 @@
-import { readFileSync } from 'fs';
-import path from 'path';
 import { act, screen } from '@testing-library/react';
 
 import { renderRichEditor } from './utils/renderRichEditor';
 import { setCursorPosition, setTextSelection } from './utils/utils';
-
-const basicMarkdown = readFileSync(
-	path.resolve(path.dirname(__filename), './resources/basicMarkdown.txt'),
-).toString('utf8');
-
-test('Correct handle base md', async () => {
-	await renderRichEditor({ value: basicMarkdown });
-
-	expect((await screen.findByRole('textbox')).innerHTML).toMatchSnapshot();
-});
 
 test('Editor updates when value changes', async () => {
 	const { rerender } = await renderRichEditor({

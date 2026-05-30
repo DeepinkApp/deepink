@@ -143,3 +143,4 @@ behaviour
 uuidv
 fuzzysort
 dbus
+contenteditable
