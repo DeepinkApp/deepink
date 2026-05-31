@@ -1,7 +1,40 @@
-import { act, screen } from '@testing-library/react';
+import { act, screen, within } from '@testing-library/react';
 
 import { renderRichEditor } from './utils/renderRichEditor';
 import { setCursorPosition, setTextSelection } from './utils/utils';
+
+test('renders simple markdown correctly', async () => {
+	await renderRichEditor({
+		value: `# Title
+Paragraph
+> Quote
+
+- List item
+- Next item
+
+\`\`\`js
+console.log('Hello');
+\`\`\`
+
+[link](http://example.com)`,
+	});
+
+	expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('Title');
+	expect((await screen.findByText('Paragraph')).closest('p')).toBeInTheDocument();
+	expect(await screen.findByRole('blockquote')).toHaveTextContent('Quote');
+
+	// List render correctly
+	const ul = screen.getByRole('list');
+	expect(ul).toBeInTheDocument();
+
+	const items = within(ul).getAllByRole('listitem');
+	expect(items).toHaveLength(2);
+	expect(items[0]).toHaveTextContent('List item');
+	expect(items[1]).toHaveTextContent('Next item');
+
+	expect(await screen.findByRole('code')).toBeInTheDocument();
+	expect(await screen.findByRole('link')).toHaveAttribute('href', 'http://example.com');
+});
 
 test('Editor updates when value changes', async () => {
 	const { rerender } = await renderRichEditor({
@@ -177,4 +210,30 @@ test('Combines multiple text formatting', async () => {
 	expect(updatedText.closest('b')).not.toBeInTheDocument();
 	expect(updatedText.closest('em')).toBeInTheDocument();
 	expect(updatedText.closest('del')).toBeInTheDocument();
+});
+
+test('Checked list render correctly', async () => {
+	await renderRichEditor({
+		value: `- [x] First item
+  - [ ] Nested item
+- [ ] Second item`,
+	});
+
+	const editor = await screen.findByRole('textbox');
+
+	const ul = within(editor).getAllByRole('list')[0];
+	expect(ul).toBeInTheDocument();
+
+	const checkboxes = within(ul).getAllByRole('checkbox');
+	const firstItem = checkboxes[0];
+	expect(firstItem).toHaveTextContent('First item');
+	expect(firstItem).toBeChecked();
+
+	const secondItem = checkboxes[1];
+	expect(secondItem).toHaveTextContent('Nested item');
+	expect(secondItem).not.toBeChecked();
+
+	const thirdItem = checkboxes[2];
+	expect(thirdItem).toHaveTextContent('Second item');
+	expect(thirdItem).not.toBeChecked();
 });
