@@ -3,9 +3,9 @@
 exports[`Export all notes and attached files > Files list 1`] = `
 [
   "/[REDACTED-UUID].md",
-  "/[REDACTED-UUID].md",
-  "/[REDACTED-UUID].md",
   "/_resources/[REDACTED-UUID]-test.txt",
+  "/[REDACTED-UUID].md",
+  "/[REDACTED-UUID].md",
   "/[REDACTED-UUID].md",
   "/[REDACTED-UUID].md",
 ]
@@ -37,24 +37,24 @@ tags: []
 Note with [invalid attachment](res://[REDACTED-UUID]) and mention for [invalid note](note://[REDACTED-UUID])
 ",
   "---
-title: Note 2
+title: Note 3
 created: 100002
 updated: 200002
 tags: []
 
 ---
 
-Mention for [Note 1](./[REDACTED-UUID].md)
+Note with [attachment](./_resources/[REDACTED-UUID]-test.txt)
 ",
   "---
-title: Note 3
+title: Note 2
 created: 100003
 updated: 200003
 tags: []
 
 ---
 
-Note with [attachment](./_resources/[REDACTED-UUID]-test.txt)
+Mention for [Note 1](./[REDACTED-UUID].md)
 ",
   "---
 title: Note 4
@@ -107,10 +107,10 @@ exports[`Export all notes and attached files > onProcessed hook calls 1`] = `
 exports[`Export all notes and attached files with custom file names > Files list 1`] = `
 [
   "/notes/bar/[REDACTED-UUID]-Note 1.md",
-  "/notes/[REDACTED-UUID]-Note 5.md",
-  "/notes/[REDACTED-UUID]-Note 2.md",
   "/files/[REDACTED-UUID]-test.txt",
+  "/notes/[REDACTED-UUID]-Note 5.md",
   "/notes/[REDACTED-UUID]-Note 3.md",
+  "/notes/[REDACTED-UUID]-Note 2.md",
   "/notes/[REDACTED-UUID]-Note 4.md",
 ]
 `;
@@ -141,24 +141,24 @@ tags: []
 Note with [invalid attachment](res://[REDACTED-UUID]) and mention for [invalid note](note://[REDACTED-UUID])
 ",
   "---
-title: Note 2
+title: Note 3
 created: 100002
 updated: 200002
 tags: []
 
 ---
 
-Mention for [Note 1](<./bar/[REDACTED-UUID]-Note 1.md>)
+Note with [attachment](../files/[REDACTED-UUID]-test.txt)
 ",
   "---
-title: Note 3
+title: Note 2
 created: 100003
 updated: 200003
 tags: []
 
 ---
 
-Note with [attachment](../files/[REDACTED-UUID]-test.txt)
+Mention for [Note 1](<./bar/[REDACTED-UUID]-Note 1.md>)
 ",
   "---
 title: Note 4
