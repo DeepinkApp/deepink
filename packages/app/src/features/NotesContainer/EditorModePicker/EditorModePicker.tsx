@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFeather } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Separator, Text, VStack } from '@chakra-ui/react';
-import { NestedList } from '@components/NestedList';
-import { Popper } from '@components/Popper';
+import { Menu, Portal } from '@chakra-ui/react';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useAppDispatch, useAppSelector } from '@state/redux/hooks';
@@ -74,39 +72,55 @@ export const EditorModePicker = () => {
 
 	const onClose = () => setIsVisible(false);
 
-	if (!isVisible) return null;
-
 	return (
-		<Popper
-			referenceRef={referenceRef ?? undefined}
-			onClose={onClose}
-			backgroundColor="surface.background"
-			border="1px solid"
-			borderColor="surface.border"
-			minW="150px"
+		<Menu.Root
+			open={isVisible}
+			onOpenChange={(details) => {
+				if (!details.open) onClose();
+			}}
+			positioning={{
+				offset: { mainAxis: 5 },
+				getAnchorRect() {
+					return referenceRef!.getBoundingClientRect();
+				},
+			}}
 		>
-			<VStack gap={0} align="start">
-				<Text padding=".5rem" fontWeight="bold">
-					{t('editor.mode.title', { ns: LOCALE_NAMESPACE.settings })}
-				</Text>
-				<Separator />
-				<NestedList
-					items={(
-						['plaintext', 'richtext', 'split-screen'] as EditorMode[]
-					).map((id) => ({
-						id,
-						content: <Text p=".5rem">{t(`note.editor.modes.${id}`)}</Text>,
-					}))}
-					onPick={(id) => {
-						dispatch(settingsApi.setEditorMode(id as EditorMode));
-						onClose();
+			<Portal>
+				<Menu.Positioner>
+					<Menu.Content>
+						<Menu.RadioItemGroup
+							value={editorMode}
+							onValueChange={(e) => {
+								const id = e.value as EditorMode;
 
-						telemetry.track(TELEMETRY_EVENT_NAME.EDITOR_MODE_CHANGED, {
-							editorMode: id,
-						});
-					}}
-				/>
-			</VStack>
-		</Popper>
+								dispatch(settingsApi.setEditorMode(id));
+
+								telemetry.track(
+									TELEMETRY_EVENT_NAME.EDITOR_MODE_CHANGED,
+									{
+										editorMode: id,
+									},
+								);
+							}}
+						>
+							<Menu.ItemGroupLabel>
+								{t('editor.mode.title', {
+									ns: LOCALE_NAMESPACE.settings,
+								})}
+							</Menu.ItemGroupLabel>
+
+							{(
+								['plaintext', 'richtext', 'split-screen'] as EditorMode[]
+							).map((id) => (
+								<Menu.RadioItem key={id} value={id}>
+									{t(`note.editor.modes.${id}`)}
+									<Menu.ItemIndicator />
+								</Menu.RadioItem>
+							))}
+						</Menu.RadioItemGroup>
+					</Menu.Content>
+				</Menu.Positioner>
+			</Portal>
+		</Menu.Root>
 	);
 };
