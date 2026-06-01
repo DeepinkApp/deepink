@@ -116,9 +116,7 @@ const customClickBehavior: FeatureImplementation = {
 				}
 			},
 			onClick: (e: MouseEvent) => {
-				if (e.shiftKey) {
-					item.selectUpTo(e.ctrlKey || e.metaKey);
-				} else if (e.ctrlKey || e.metaKey) {
+				if (e.ctrlKey || e.metaKey) {
 					item.toggleSelect();
 				} else {
 					tree.setSelectedItems([item.getItemMeta().itemId]);
