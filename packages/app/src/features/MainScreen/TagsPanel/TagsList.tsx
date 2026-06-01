@@ -3,7 +3,6 @@ import React, {
 	FC,
 	forwardRef,
 	memo,
-	useCallback,
 	useImperativeHandle,
 	useMemo,
 	useRef,
@@ -151,21 +150,11 @@ const VirtualTagsList = forwardRef<
 
 	useImperativeHandle(ref, () => virtualizer);
 
-	const nodeRef = useCallback(
-		(node: HTMLElement | null) => {
-			virtualizer.measureElement(node);
-			// item.getProps().ref(node);
-		},
-		[virtualizer],
-	);
-
-	// TODO: inline that and remove helper
 	const getExpanded = useHandlerFactory<ItemInstance<TagNode>>((item) => {
 		if (item.isExpanded()) item.collapse();
 		else item.expand();
 	});
 
-	// TODO: set offset on container instead of items
 	return (
 		<Box ref={parentRef} css={styles.root}>
 			<Box
@@ -192,7 +181,7 @@ const VirtualTagsList = forwardRef<
 
 						return (
 							<TagItem
-								ref={nodeRef}
+								ref={virtualizer.measureElement}
 								data-index={virtualItem.index}
 								key={item.getId()}
 								level={item.getItemMeta().level}
