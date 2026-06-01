@@ -3,12 +3,19 @@ import { act, screen, within } from '@testing-library/react';
 import { renderRichEditor } from './utils/renderRichEditor';
 import { setCursorPosition, setTextSelection } from './utils/utils';
 
-test('renders simple markdown correctly', async () => {
+const selectByText = (content: string) => {
+	const text = screen.getByText(content);
+	expect(text.firstChild).toBeInstanceOf(Text);
+
+	setTextSelection(text.firstChild as Text, 0, content.length);
+};
+
+test('Renders simple markdown correctly', async () => {
 	await renderRichEditor({
 		value: `# Title
 Paragraph
 > Quote
-
+---
 - List item
 - Next item
 
@@ -19,21 +26,25 @@ console.log('Hello');
 [link](http://example.com)`,
 	});
 
-	expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('Title');
-	expect((await screen.findByText('Paragraph')).closest('p')).toBeInTheDocument();
-	expect(await screen.findByRole('blockquote')).toHaveTextContent('Quote');
+	screen.debug();
+
+	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Title');
+	expect(screen.getByText('Paragraph').closest('p')).toBeInTheDocument();
+	expect(screen.getByRole('blockquote')).toHaveTextContent('Quote');
+
+	// horizontal rule
+	expect(screen.getByRole('separator')).toBeInTheDocument();
 
 	// List render correctly
-	const ul = screen.getByRole('list');
-	expect(ul).toBeInTheDocument();
+	expect(screen.getByRole('list')).toBeInTheDocument();
 
-	const items = within(ul).getAllByRole('listitem');
+	const items = within(screen.getByRole('list')).getAllByRole('listitem');
 	expect(items).toHaveLength(2);
 	expect(items[0]).toHaveTextContent('List item');
 	expect(items[1]).toHaveTextContent('Next item');
 
-	expect(await screen.findByRole('code')).toBeInTheDocument();
-	expect(await screen.findByRole('link')).toHaveAttribute('href', 'http://example.com');
+	expect(screen.getByRole('code')).toBeInTheDocument();
+	expect(screen.getByRole('link')).toHaveAttribute('href', 'http://example.com');
 });
 
 test('Editor updates when value changes', async () => {
@@ -41,14 +52,12 @@ test('Editor updates when value changes', async () => {
 		value: `# Big text`,
 	});
 
-	expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(
-		'Big text',
-	);
+	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Big text');
 
 	// Run component rerender with new value
 	await rerender({ value: `### Not so big text` });
 
-	expect(await screen.findByRole('heading', { level: 3 })).toHaveTextContent(
+	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
 		'Not so big text',
 	);
 
@@ -78,11 +87,7 @@ test(`Inserts image between text nodes`, async () => {
 		value: `My favorite image\n\n I love cat`,
 	});
 
-	// Place cursor after the first text node
-	const text = await screen.findByText('My favorite image');
-	const textElement = text.firstChild;
-	expect(textElement).toBeInstanceOf(Text);
-	setTextSelection(textElement as Text, 0, 'My favorite image'.length);
+	selectByText('My favorite image');
 
 	await act(async () => {
 		insert({
@@ -91,9 +96,9 @@ test(`Inserts image between text nodes`, async () => {
 		});
 	});
 
-	const firstText = await screen.findByText('My favorite image');
-	const secondText = await screen.findByText('I love cat');
-	const img = await screen.findByRole('img');
+	const firstText = screen.getByText('My favorite image');
+	const secondText = screen.getByText('I love cat');
+	const img = screen.getByRole('img');
 
 	expect(img).toBeInTheDocument();
 	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
@@ -110,10 +115,9 @@ test('Inserts image after block node', async () => {
 	});
 
 	// Place cursor position inside code node
-	const codeText = await screen.findByText('const a = 1;');
-	const textNode = codeText.firstChild;
+	const code = screen.getByText('const a = 1;');
+	const textNode = code.firstChild;
 	expect(textNode).toBeInstanceOf(Text);
-
 	setCursorPosition(textNode as Text);
 
 	await act(async () => {
@@ -123,8 +127,8 @@ test('Inserts image after block node', async () => {
 		});
 	});
 
-	const img = await screen.findByRole('img');
-	const codeNode = await screen.findByRole('code');
+	const img = screen.getByRole('img');
+	const codeNode = screen.getByRole('code');
 	expect(img).toBeInTheDocument();
 
 	// Image is inserted as next sibling of the code block
@@ -136,23 +140,19 @@ test('Updates heading level correctly', async () => {
 	const content = 'Hello, my dear friends!';
 	const { insert: insertHeading } = await renderRichEditor({ value: content });
 
-	const text = await screen.findByText(content);
-	const textElement = text.firstChild;
-	expect(textElement).toBeInstanceOf(Text);
-	setTextSelection(textElement as Text, 0, content.length);
+	selectByText(content);
 
 	// Plain text becomes heading
-	act(() => insertHeading({ type: 'heading', data: { level: 1 } }));
-	expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(content);
+	await act(async () => insertHeading({ type: 'heading', data: { level: 1 } }));
+	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(content);
 
 	// Heading level is updated when different level applied
-	act(() => insertHeading({ type: 'heading', data: { level: 3 } }));
-	expect(await screen.findByRole('heading', { level: 3 })).toHaveTextContent(content);
+	await act(async () => insertHeading({ type: 'heading', data: { level: 3 } }));
+	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(content);
 	expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
 
 	// Heading reverts to paragraph when same level applied again
 	await act(async () => insertHeading({ type: 'heading', data: { level: 1 } }));
-
 	expect(screen.queryByRole('heading', { level: 3 })).not.toBeInTheDocument();
 	expect(screen.getByText(content)).toBeInTheDocument();
 });
@@ -161,10 +161,7 @@ test('Toggles text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const { format } = await renderRichEditor({ value: content });
 
-	const text = await screen.findByText(content);
-	const textElement = text.firstChild;
-	expect(textElement).toBeInstanceOf(Text);
-	setTextSelection(textElement as Text, 0, content.length);
+	selectByText(content);
 
 	// Apply bold
 	await act(async () => format('bold'));
@@ -189,11 +186,7 @@ test('Combines multiple text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const { format } = await renderRichEditor({ value: content });
 
-	const text = await screen.findByText(content);
-	const textElement = text.firstChild;
-	expect(textElement).toBeInstanceOf(Text);
-	setTextSelection(textElement as Text, 0, content.length);
-
+	selectByText(content);
 	await act(async () => format('italic'));
 	await act(async () => format('bold'));
 	await act(async () => format('strikethrough'));
@@ -212,28 +205,52 @@ test('Combines multiple text formatting', async () => {
 	expect(updatedText.closest('del')).toBeInTheDocument();
 });
 
-test('Checked list render correctly', async () => {
+test('Renders a checklist with checked and unchecked items', async () => {
 	await renderRichEditor({
 		value: `- [x] First item
   - [ ] Nested item
 - [ ] Second item`,
 	});
 
-	const editor = await screen.findByRole('textbox');
+	const ul = within(screen.getByRole('textbox')).getAllByRole('list')[0];
 
-	const ul = within(editor).getAllByRole('list')[0];
-	expect(ul).toBeInTheDocument();
+	const checkboxList = within(ul).getAllByRole('checkbox');
+	expect(checkboxList).toHaveLength(3);
+	expect(checkboxList[0]).toHaveTextContent('First item');
+	expect(checkboxList[0]).toBeChecked();
 
-	const checkboxes = within(ul).getAllByRole('checkbox');
-	const firstItem = checkboxes[0];
-	expect(firstItem).toHaveTextContent('First item');
-	expect(firstItem).toBeChecked();
+	expect(checkboxList[1]).toHaveTextContent('Nested item');
+	expect(checkboxList[1]).not.toBeChecked();
 
-	const secondItem = checkboxes[1];
-	expect(secondItem).toHaveTextContent('Nested item');
-	expect(secondItem).not.toBeChecked();
+	expect(checkboxList[2]).toHaveTextContent('Second item');
+	expect(checkboxList[2]).not.toBeChecked();
+});
 
-	const thirdItem = checkboxes[2];
-	expect(thirdItem).toHaveTextContent('Second item');
-	expect(thirdItem).not.toBeChecked();
+test('Converts an unordered list to an ordered list', async () => {
+	const { insert } = await renderRichEditor({
+		value: `- First item
+  - Nested item
+- Second item`,
+	});
+
+	// Select text
+	selectByText('First item');
+
+	// Update unordered list to ordered
+	await act(async () => {
+		insert({ type: 'list', data: { type: 'ordered' } });
+	});
+
+	const rootList = within(screen.getByRole('textbox')).getAllByRole('list')[0];
+	expect(rootList.tagName).toBe('OL');
+
+	const orderedListItems = within(rootList).getAllByRole('listitem');
+	expect(orderedListItems).toHaveLength(3);
+
+	expect(orderedListItems[0]).toHaveTextContent('First item');
+
+	// Second item is nested inside first item
+	expect(within(orderedListItems[0]).getByText('Nested item')).toBeInTheDocument();
+
+	expect(orderedListItems[2]).toHaveTextContent('Second item');
 });
