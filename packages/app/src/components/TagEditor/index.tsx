@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
@@ -45,6 +45,8 @@ export const TagEditor: FC<ITagEditorProps> = ({
 	onSave,
 	onCancel,
 }) => {
+	const formId = useId();
+
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const { t: tCommon } = useTranslation(LOCALE_NAMESPACE.common);
 
@@ -118,6 +120,7 @@ export const TagEditor: FC<ITagEditorProps> = ({
 			</Dialog.CloseTrigger>
 			<Dialog.Body>
 				<form
+					id={formId}
 					onSubmit={async (event) => {
 						event.preventDefault();
 						if (isPending) return;
@@ -185,7 +188,12 @@ export const TagEditor: FC<ITagEditorProps> = ({
 			</Dialog.Body>
 			<Dialog.Footer>
 				<HStack w="100%" justifyContent="end">
-					<Button type="submit" variant={'accent' as any} disabled={isPending}>
+					<Button
+						type="submit"
+						variant={'accent' as any}
+						disabled={isPending}
+						form={formId}
+					>
 						{isEditingMode
 							? t('tag.editor.mode.edit.action')
 							: t('tag.editor.mode.add.action')}
