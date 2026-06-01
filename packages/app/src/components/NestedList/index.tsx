@@ -1,6 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import { HStack, StackProps, useSlotRecipe, VStack } from '@chakra-ui/react';
 
+import { NestedListRecipe } from './NestedList.theme';
+
 export type ListItem = {
 	id: string;
 	content: ReactNode;
@@ -20,7 +22,7 @@ export const NestedList: FC<INestedListProps> = ({
 	onPick,
 	...props
 }) => {
-	const recipe = useSlotRecipe({ key: 'nestedList' });
+	const recipe = useSlotRecipe({ key: 'nestedList', recipe: NestedListRecipe });
 	const styles = recipe();
 
 	return (
