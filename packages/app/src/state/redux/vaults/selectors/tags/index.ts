@@ -1,8 +1,5 @@
 import { createWorkspaceSelector, selectWorkspaceRoot } from '../../utils';
 
-import { sortTagsLexicographically } from './sort';
-import { TagNode } from './types';
-
 export const selectActiveTag = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
@@ -21,12 +18,23 @@ export const selectTags = createWorkspaceSelector([selectWorkspaceRoot], (worksp
 	return workspace.tags.list;
 });
 
-export const selectTagsTree = createWorkspaceSelector(
+export const selectWorkspaceTags = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
-		if (!workspace) return [];
+		return workspace ? workspace.tags.list : [];
+	},
+);
 
-		const flatTags = workspace.tags.list;
+export type TagNode = {
+	id: string;
+	name: string;
+	children: string[] | null;
+};
+
+export const selectTagsFlatTree = createWorkspaceSelector(
+	[selectWorkspaceTags],
+	(flatTags) => {
+		const rootNodes: string[] = [];
 
 		const tagsMap: Record<string, TagNode> = {};
 		const tagToParentMap: Record<string, string> = {};
@@ -36,10 +44,13 @@ export const selectTagsTree = createWorkspaceSelector(
 			tagsMap[id] = {
 				id,
 				name,
+				children: null,
 			};
 
 			if (parent !== null) {
 				tagToParentMap[id] = parent;
+			} else {
+				rootNodes.push(id);
 			}
 		});
 
@@ -47,31 +58,38 @@ export const selectTagsTree = createWorkspaceSelector(
 		for (const tagId in tagToParentMap) {
 			const parentId = tagToParentMap[tagId];
 
-			const tag = tagsMap[tagId];
 			const parentTag = tagsMap[parentId];
 
 			// Create array
-			if (!parentTag.childrens) {
-				parentTag.childrens = [];
+			if (!parentTag.children) {
+				parentTag.children = [];
 			}
 
 			// Attach tag to another tag
-			parentTag.childrens.push(tag);
+			parentTag.children.push(tagId);
 		}
 
 		// Sort tags
 		for (const tag of Object.values(tagsMap)) {
-			if (tag.childrens && tag.childrens.length > 0) {
-				tag.childrens.sort(sortTagsLexicographically);
+			if (tag.children && tag.children.length > 0) {
+				tag.children.sort((id1, id2) => {
+					const a = tagsMap[id1];
+					const b = tagsMap[id2];
+
+					const nameOrder = a.name.localeCompare(b.name);
+					if (nameOrder !== 0) return nameOrder;
+
+					return a.id.localeCompare(b.id);
+				});
 			}
 		}
 
-		// Delete nested tags from tags map
-		Object.keys(tagToParentMap).forEach((nestedTagId) => {
-			delete tagsMap[nestedTagId];
-		});
+		tagsMap.root = {
+			id: 'ROOT',
+			name: 'ROOT',
+			children: rootNodes,
+		};
 
-		// Collect tags array from a map
-		return Object.values(tagsMap).sort(sortTagsLexicographically);
+		return tagsMap;
 	},
 );

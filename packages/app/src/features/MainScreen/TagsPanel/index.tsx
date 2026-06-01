@@ -19,7 +19,7 @@ import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hook
 import {
 	selectActiveTag,
 	selectTags,
-	selectTagsTree,
+	selectTagsFlatTree,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
@@ -35,7 +35,7 @@ export const TagsPanel = () => {
 
 	const activeTag = useWorkspaceSelector(selectActiveTag);
 	const tags = useWorkspaceSelector(selectTags);
-	const tagsTree = useWorkspaceSelector(selectTagsTree);
+	const tagsTree = useWorkspaceSelector(selectTagsFlatTree);
 
 	const tagsRegistry = useTagsRegistry();
 
@@ -175,8 +175,8 @@ export const TagsPanel = () => {
 
 				<Separator />
 
-				<Box w="100%" overflow="auto" paddingInlineEnd=".5rem">
-					{tagsTree.length > 0 ? (
+				<Box w="100%" height="stretch" overflow="hidden">
+					{(tagsTree.root.children?.length ?? 0) > 0 ? (
 						<TagsList
 							tags={tagsTree}
 							activeTag={activeTag ? activeTag.id : undefined}
