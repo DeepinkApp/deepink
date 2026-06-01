@@ -36,6 +36,7 @@ import {
 import { NestedListRecipe } from '@components/NestedList/NestedList.theme';
 import { notePreviewRecipe } from '@components/NotePreview/NotePreview.theme';
 import { NotificationsRecipe } from '@components/Notifications/Notifications.theme';
+import { TagsTreeRecipe } from '@features/MainScreen/TagsPanel/TagsTree.theme';
 import { RichEditorRecipe } from '@features/NoteEditor/RichEditor/RichEditor.theme';
 
 import './resizable-panels.css';
@@ -682,6 +683,7 @@ export default defineConfig({
 					},
 				},
 			}),
+			tagsTree: TagsTreeRecipe,
 			notifications: NotificationsRecipe,
 			notePreview: notePreviewRecipe,
 			nestedList: NestedListRecipe,

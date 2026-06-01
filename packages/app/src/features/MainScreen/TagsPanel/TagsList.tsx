@@ -9,8 +9,9 @@ import React, {
 	useRef,
 } from 'react';
 import { FaChevronDown, FaChevronUp, FaHashtag } from 'react-icons/fa6';
-import { Box, Button, HStack, StackProps, Text } from '@chakra-ui/react';
+import { Box, HStack, StackProps, Text, useSlotRecipe } from '@chakra-ui/react';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
+import { useMergeRefs } from '@floating-ui/react';
 import {
 	FeatureImplementation,
 	hotkeysCoreFeature,
@@ -24,6 +25,7 @@ import { TagNode } from '@state/redux/vaults/vaults';
 import { useVirtualizer, Virtualizer } from '@tanstack/react-virtual';
 import { createContextGetterHook } from '@utils/react/createContextGetterHook';
 
+import { TagsTreeRecipe } from './TagsTree.theme';
 import { useHandlerFactory } from './useHandlerFactory';
 import { TagContextMenuCallbacks, useTagContextMenu } from './useTagContextMenu';
 
@@ -53,52 +55,43 @@ const TagItem = memo(
 	>(({ item, name, level, isSelected, isExpanded, toggleExpanded, ...props }, ref) => {
 		const { showTagMenu } = useTagsListContext();
 
+		const recipe = useSlotRecipe({ key: 'tagsTree', recipe: TagsTreeRecipe });
+		const styles = recipe();
+
+		const composedRef = useMergeRefs([ref, item.getProps().ref]);
+
 		/* This node instance can do many things. See the API reference. */
 		return (
-			<HStack
-				ref={ref}
-				w="100%"
-				align="start"
-				gap="0.3rem"
-				padding="0.4rem"
-				alignItems="center"
+			<Box
+				css={styles.item}
 				style={{ paddingLeft: `${level * 20}px` }}
-				userSelect="none"
-				backgroundColor={isSelected ? 'yellow' : undefined}
-				{...item.getProps()}
-				{...props}
 				onContextMenu={(evt) => {
 					evt.preventDefault();
-					// node.edit();
 					showTagMenu(item.getId(), getContextMenuCoords(evt.nativeEvent));
 				}}
+				{...item.getProps()}
+				{...props}
+				ref={composedRef}
 			>
-				<FaHashtag size="1rem" />
+				<HStack css={styles.content}>
+					<FaHashtag size="1rem" />
 
-				<Text overflow="hidden" textOverflow="ellipsis">
-					{name}
-				</Text>
+					<Text overflow="hidden" textOverflow="ellipsis">
+						{name}
+					</Text>
+				</HStack>
 
 				{toggleExpanded && (
-					<Button
-						marginLeft="auto"
-						padding="2px"
-						variant="ghost"
-						boxSize="1rem"
-						minWidth={0}
+					<Box
+						as="button"
 						tabIndex={-1}
-						css={{
-							borderRadius: '4px',
-							'& > svg': {
-								boxSize: '14px',
-							},
-						}}
+						css={styles.expandButton}
 						onClick={toggleExpanded}
 					>
 						{isExpanded ? <FaChevronUp /> : <FaChevronDown />}
-					</Button>
+					</Box>
 				)}
-			</HStack>
+			</Box>
 		);
 	}),
 );
@@ -142,6 +135,9 @@ const VirtualTagsList = forwardRef<
 	Virtualizer<HTMLDivElement, Element>,
 	{ tree: TreeInstance<TagNode> }
 >(({ tree }, ref) => {
+	const recipe = useSlotRecipe({ key: 'tagsTree', recipe: TagsTreeRecipe });
+	const styles = recipe();
+
 	const parentRef = useRef<HTMLDivElement | null>(null);
 
 	// eslint-disable-next-line react-hooks/incompatible-library
@@ -171,13 +167,7 @@ const VirtualTagsList = forwardRef<
 
 	// TODO: set offset on container instead of items
 	return (
-		<Box
-			ref={parentRef}
-			width="100%"
-			height="100%"
-			overflow="auto"
-			paddingInlineEnd=".5rem"
-		>
+		<Box ref={parentRef} css={styles.root}>
 			<Box
 				{...tree.getContainerProps()}
 				style={{
@@ -189,11 +179,12 @@ const VirtualTagsList = forwardRef<
 				}}
 			>
 				<Box
+					css={styles.container}
 					style={{
 						width: '100%',
+						marginTop: `${virtualizer.getVirtualItems()[0]?.start ?? 0}px`,
 						top: 0,
 						left: 0,
-						marginTop: `${virtualizer.getVirtualItems()[0]?.start ?? 0}px`,
 					}}
 				>
 					{virtualizer.getVirtualItems().map((virtualItem) => {
