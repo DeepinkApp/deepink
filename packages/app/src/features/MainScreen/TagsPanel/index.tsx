@@ -23,7 +23,7 @@ import {
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
-import { TagsList } from './TagsList';
+import { TagsTree } from './TagsTree';
 
 export const TagsPanel = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.workspace);
@@ -177,7 +177,7 @@ export const TagsPanel = () => {
 
 				<Box w="100%" height="stretch" overflow="hidden">
 					{(tagsTree.root.children?.length ?? 0) > 0 ? (
-						<TagsList
+						<TagsTree
 							tags={tagsTree}
 							activeTag={activeTag ? activeTag.id : undefined}
 							onTagClick={(tagId) =>
