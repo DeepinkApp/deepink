@@ -1,7 +1,48 @@
 /* eslint-disable @cspell/spellchecker */
 
-import { sortTagsLexicographically } from './sort';
-import { TagNode } from './types';
+import { TagNode } from '../../vaults';
+
+import { orderBy } from './sort';
+
+const sortTagsLexicographically = orderBy((t: TagNode) => [t.name, t.id]);
+
+describe('orderBy', () => {
+	test('must order lexicographically by ascending', () => {
+		expect(
+			[
+				{ id: 'foo', name: 'foo' },
+				{ id: 'bar', name: 'bar' },
+				{ id: 'baz', name: 'baz' },
+			]
+				.sort(orderBy((t) => [t.name, t.id]))
+				.map((i) => i.id),
+		).toEqual(['bar', 'baz', 'foo']);
+	});
+
+	test('secondary key must be used when first keys is equal', () => {
+		expect(
+			[
+				{ id: 'foo', name: 'foo' },
+				{ id: 'bar', name: 'foo' },
+				{ id: 'baz', name: 'foo' },
+			]
+				.sort(orderBy((t) => [t.name, t.id]))
+				.map((i) => i.id),
+		).toEqual(['bar', 'baz', 'foo']);
+	});
+
+	test('numeric keys must be considered', () => {
+		expect(
+			[
+				{ id: 'foo', name: 'foo', order: 1 },
+				{ id: 'bar', name: 'foo', order: 2 },
+				{ id: 'baz', name: 'foo', order: 3 },
+			]
+				.sort(orderBy((t) => [t.name, t.order]))
+				.map((i) => i.id),
+		).toEqual(['foo', 'bar', 'baz']);
+	});
+});
 
 describe('Tags sorting', () => {
 	describe('Lexicographical sorting', () => {

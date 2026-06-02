@@ -1,5 +1,7 @@
 import { createWorkspaceSelector, selectWorkspaceRoot } from '../../utils';
 
+import { orderBy } from './sort';
+
 export const selectActiveTag = createWorkspaceSelector(
 	[selectWorkspaceRoot],
 	(workspace) => {
@@ -69,26 +71,19 @@ export const selectTagsFlatTree = createWorkspaceSelector(
 			parentTag.children.push(tagId);
 		}
 
-		// Sort tags
-		for (const tag of Object.values(tagsMap)) {
-			if (tag.children && tag.children.length > 0) {
-				tag.children.sort((id1, id2) => {
-					const a = tagsMap[id1];
-					const b = tagsMap[id2];
-
-					const nameOrder = a.name.localeCompare(b.name);
-					if (nameOrder !== 0) return nameOrder;
-
-					return a.id.localeCompare(b.id);
-				});
-			}
-		}
-
+		// Fill the root
 		tagsMap.root = {
 			id: 'ROOT',
 			name: 'ROOT',
 			children: rootNodes,
 		};
+
+		// Sort tags
+		for (const tag of Object.values(tagsMap)) {
+			if (tag.children && tag.children.length > 0) {
+				tag.children.sort(orderBy((id: string) => [tagsMap[id]]));
+			}
+		}
 
 		return tagsMap;
 	},
