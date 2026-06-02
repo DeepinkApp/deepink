@@ -1,4 +1,4 @@
-import React, { createContext, FC, useMemo, useRef } from 'react';
+import React, { createContext, FC, useEffect, useMemo, useRef } from 'react';
 import {
 	FeatureImplementation,
 	hotkeysCoreFeature,
@@ -6,6 +6,7 @@ import {
 	syncDataLoaderFeature,
 } from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
+import { orderBy } from '@state/redux/vaults/selectors/tags/sort';
 import { TagNode } from '@state/redux/vaults/vaults';
 import { Virtualizer } from '@tanstack/react-virtual';
 import { createContextGetterHook } from '@utils/react/createContextGetterHook';
@@ -101,7 +102,13 @@ export const TagsTree: FC<ITagsListProps> = ({
 		},
 		dataLoader: {
 			getItem: (itemId) => tags[itemId],
-			getChildren: (itemId) => tags[itemId].children ?? [],
+			getChildren: (itemId) =>
+				(tags[itemId].children ?? []).sort(
+					orderBy((tagId) => {
+						const { id, name } = tags[tagId];
+						return [name, id];
+					}),
+				),
 		},
 		canReorder: true,
 		indent: 20,
@@ -112,6 +119,11 @@ export const TagsTree: FC<ITagsListProps> = ({
 			customClickBehavior,
 		],
 	});
+
+	// Rebuild tree by changes
+	useEffect(() => {
+		tree.rebuildTree();
+	}, [tags, tree]);
 
 	return (
 		<TagsListContext value={context}>
