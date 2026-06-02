@@ -1,5 +1,6 @@
 import React, { createContext, FC, useEffect, useMemo, useRef } from 'react';
 import {
+	buildProxiedInstance,
 	FeatureImplementation,
 	hotkeysCoreFeature,
 	selectionFeature,
@@ -100,6 +101,7 @@ export const TagsTree: FC<ITagsListProps> = ({
 		scrollToItem: (item) => {
 			virtualizer.current?.scrollToIndex(item.getItemMeta().index);
 		},
+		instanceBuilder: buildProxiedInstance,
 		dataLoader: {
 			getItem: (itemId) => tags[itemId],
 			getChildren: (itemId) =>
