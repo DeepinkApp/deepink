@@ -198,37 +198,6 @@ test('Combines multiple text formatting', async () => {
 	expect(updatedText.closest('del')).toBeInTheDocument();
 });
 
-test.only('Convert text to unordered list', async () => {
-	const value = `Cat\n
-\nRabbit
-\nCarrot`;
-	await renderRichEditor({
-		value: value,
-	});
-
-	screen.debug();
-
-	// selectContent('Cat', 'Carrot');
-
-	// await act(async () => {
-	// 	insert({ type: 'list', data: { type: 'unordered' } });
-	// });
-
-	// const rootList = within(screen.getByRole('textbox')).getAllByRole('list')[0];
-
-	// screen.debug();
-
-	// const orderedListItems = within(rootList).getAllByRole('listitem');
-	// expect(orderedListItems).toHaveLength(3);
-
-	// expect(orderedListItems[0]).toHaveTextContent('First item');
-
-	// // Second item is nested inside first item
-	// expect(within(orderedListItems[0]).getByText('Nested item')).toBeInTheDocument();
-
-	// expect(orderedListItems[2]).toHaveTextContent('Second item');
-});
-
 test('Renders a checklist with checked and unchecked items', async () => {
 	await renderRichEditor({
 		value: `- [x] First item
