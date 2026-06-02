@@ -1,14 +1,7 @@
 import { act, screen, within } from '@testing-library/react';
 
 import { renderRichEditor } from './utils/renderRichEditor';
-import { setCursorPosition, setTextSelection } from './utils/utils';
-
-const selectByText = (content: string) => {
-	const text = screen.getByText(content);
-	expect(text.firstChild).toBeInstanceOf(Text);
-
-	setTextSelection(text.firstChild as Text, 0, content.length);
-};
+import { selectContent, setCursorPosition } from './utils/utils';
 
 test('Renders simple markdown correctly', async () => {
 	await renderRichEditor({
@@ -87,7 +80,7 @@ test(`Inserts image between text nodes`, async () => {
 		value: `My favorite image\n\n I love cat`,
 	});
 
-	selectByText('My favorite image');
+	selectContent('My favorite image');
 
 	await act(async () => {
 		insert({
@@ -140,7 +133,7 @@ test('Updates heading level correctly', async () => {
 	const content = 'Hello, my dear friends!';
 	const { insert: insertHeading } = await renderRichEditor({ value: content });
 
-	selectByText(content);
+	selectContent(content);
 
 	// Plain text becomes heading
 	await act(async () => insertHeading({ type: 'heading', data: { level: 1 } }));
@@ -161,7 +154,7 @@ test('Toggles text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const { format } = await renderRichEditor({ value: content });
 
-	selectByText(content);
+	selectContent(content);
 
 	// Apply bold
 	await act(async () => format('bold'));
@@ -186,7 +179,7 @@ test('Combines multiple text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const { format } = await renderRichEditor({ value: content });
 
-	selectByText(content);
+	selectContent(content);
 	await act(async () => format('italic'));
 	await act(async () => format('bold'));
 	await act(async () => format('strikethrough'));
@@ -203,6 +196,37 @@ test('Combines multiple text formatting', async () => {
 	expect(updatedText.closest('b')).not.toBeInTheDocument();
 	expect(updatedText.closest('em')).toBeInTheDocument();
 	expect(updatedText.closest('del')).toBeInTheDocument();
+});
+
+test.only('Convert text to unordered list', async () => {
+	const value = `Cat\n
+\nRabbit
+\nCarrot`;
+	await renderRichEditor({
+		value: value,
+	});
+
+	screen.debug();
+
+	// selectContent('Cat', 'Carrot');
+
+	// await act(async () => {
+	// 	insert({ type: 'list', data: { type: 'unordered' } });
+	// });
+
+	// const rootList = within(screen.getByRole('textbox')).getAllByRole('list')[0];
+
+	// screen.debug();
+
+	// const orderedListItems = within(rootList).getAllByRole('listitem');
+	// expect(orderedListItems).toHaveLength(3);
+
+	// expect(orderedListItems[0]).toHaveTextContent('First item');
+
+	// // Second item is nested inside first item
+	// expect(within(orderedListItems[0]).getByText('Nested item')).toBeInTheDocument();
+
+	// expect(orderedListItems[2]).toHaveTextContent('Second item');
 });
 
 test('Renders a checklist with checked and unchecked items', async () => {
@@ -234,7 +258,7 @@ test('Converts an unordered list to an ordered list', async () => {
 	});
 
 	// Select text
-	selectByText('First item');
+	selectContent('First item');
 
 	// Update unordered list to ordered
 	await act(async () => {

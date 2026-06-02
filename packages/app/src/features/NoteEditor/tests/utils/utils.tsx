@@ -1,13 +1,23 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 /**
  * Selects text within a Text node and dispatches a selectionchange event
  */
-export const setTextSelection = (node: Text, start: number, end: number) => {
-	const range = document.createRange();
+export const selectContent = (startText: string, endText?: string) => {
+	const startNode = screen.getByText(startText).firstChild;
+	expect(startNode).toBeInstanceOf(Text);
 
-	range.setStart(node, start);
-	range.setEnd(node, end);
+	const range = document.createRange();
+	range.setStart(startNode as Text, 0);
+
+	if (endText) {
+		const endNode = screen.getByText(endText).firstChild;
+		expect(endNode).toBeInstanceOf(Text);
+
+		range.setEnd(endNode as Text, endText.length);
+	} else {
+		range.setEnd(startNode as Text, startText.length);
+	}
 
 	window.getSelection()?.removeAllRanges();
 	window.getSelection()?.addRange(range);
