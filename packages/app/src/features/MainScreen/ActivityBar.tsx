@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaFeather, FaInbox, FaRegClock, FaRegFolder } from 'react-icons/fa6';
 import { GrSettingsOption } from 'react-icons/gr';
@@ -15,7 +15,7 @@ import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useCommand } from '@hooks/commands/useCommand';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 
-export const ActivityBar = () => {
+export const ActivityBar = memo(() => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const telemetry = useTelemetryTracker();
 
@@ -53,7 +53,7 @@ export const ActivityBar = () => {
 					icon={<FaFeather />}
 					tooltipPlacement="right"
 					title={t('activityBar.newNote')}
-					variant={'accent' as any}
+					variant="accent"
 					onClick={debouncedCreateNote}
 				/>
 
@@ -61,34 +61,29 @@ export const ActivityBar = () => {
 					icon={<FaRegFolder />}
 					tooltipPlacement="right"
 					title={t('activityBar.files')}
-					data-no-animation
 				/>
 
 				<IconButton
 					icon={<FaRegClock />}
 					tooltipPlacement="right"
 					title={t('activityBar.reminders')}
-					data-no-animation
 				/>
 				<IconButton
 					icon={<IoExtensionPuzzleOutline style={{ scale: 1.3 }} />}
 					tooltipPlacement="right"
 					title={t('activityBar.extensions')}
-					data-no-animation
 				/>
 
 				<IconButton
 					icon={<FaInbox />}
 					tooltipPlacement="right"
 					title={t('activityBar.inbox')}
-					data-no-animation
 				/>
 
 				<IconButton
 					icon={<IoCloudUploadOutline />}
 					tooltipPlacement="right"
 					title={t('activityBar.publishNotes')}
-					data-no-animation
 				/>
 			</ButtonGroup>
 			<ButtonGroup
@@ -103,7 +98,6 @@ export const ActivityBar = () => {
 						icon={<MdLockOutline style={{ scale: 1.3 }} />}
 						title={t('activityBar.lockVault')}
 						tooltipPlacement="right"
-						data-no-animation
 						onClick={() => vaultControls.close()}
 					/>
 				)}
@@ -111,7 +105,6 @@ export const ActivityBar = () => {
 					icon={<GrSettingsOption style={{ scale: 1.2 }} />}
 					title={t('activityBar.globalSettings')}
 					tooltipPlacement="right"
-					data-no-animation
 					onClick={() => {
 						command(GLOBAL_COMMANDS.OPEN_GLOBAL_SETTINGS);
 
@@ -123,4 +116,6 @@ export const ActivityBar = () => {
 			</ButtonGroup>
 		</VStack>
 	);
-};
+});
+
+ActivityBar.displayName = 'ActivityBar';
