@@ -4,7 +4,7 @@ import { useVaultControls } from '@features/App/Vault';
 import { useWorkspaceContext } from '@features/App/Workspace';
 import { ActionCreatorWithPayload, Selector } from '@reduxjs/toolkit';
 
-import { useAppSelector } from '../hooks';
+import { useAppSelector, useAppStore } from '../hooks';
 import { RootState } from '../store';
 import {
 	selectVaultById,
@@ -34,6 +34,32 @@ export const useWorkspaceSelector = <T>(
 ): T => {
 	const selectWorkspace = useWorkspaceRootSelector();
 	return useAppSelector((state) => selector(selectWorkspace(state)), isEqual);
+};
+
+export const useNonReactiveSelector = () => {
+	const { vaultId, workspaceId } = useWorkspaceData();
+
+	const store = useAppStore();
+
+	const workspace = useCallback(
+		<T>(selector: Selector<WorkspaceData | null, T>): T => {
+			const workspaceState = selectWorkspace({ vaultId, workspaceId })(
+				store.getState(),
+			);
+			return selector(workspaceState);
+		},
+		[store, vaultId, workspaceId],
+	);
+
+	const vault = useCallback(
+		<T>(selector: Selector<VaultData | null, T>): T => {
+			const workspaceState = selectVaultById({ vaultId })(store.getState());
+			return selector(workspaceState);
+		},
+		[store, vaultId],
+	);
+
+	return { vault, workspace };
 };
 
 export const useVaultSelector = <T>(selector: Selector<VaultData | null, T>): T => {
