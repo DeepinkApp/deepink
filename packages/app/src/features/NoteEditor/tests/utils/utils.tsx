@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 /**
- * Selects text within a Text node and dispatches a selectionchange event
+ * Selects text from the beginning of `startText` to the end of `endText` and dispatches a `selectionchange` event
  */
 export const selectContent = (startText: string, endText?: string) => {
 	const startNode = screen.getByText(startText).firstChild;
@@ -10,6 +10,8 @@ export const selectContent = (startText: string, endText?: string) => {
 	const range = document.createRange();
 	range.setStart(startNode as Text, 0);
 
+	// If no end text is provided, select the entire start text
+	// otherwise select range from start to end
 	if (endText) {
 		const endNode = screen.getByText(endText).firstChild;
 		expect(endNode).toBeInstanceOf(Text);
@@ -26,7 +28,7 @@ export const selectContent = (startText: string, endText?: string) => {
 };
 
 /**
- * Places the cursor at the start of a text node and dispatches a selectionchange event.
+ * Places the cursor at the start of a text node and dispatches a `selectionchange` event
  */
 export const setCursorPosition = (node: Text) => {
 	const range = document.createRange();
@@ -34,9 +36,8 @@ export const setCursorPosition = (node: Text) => {
 	range.setStart(node, 0);
 	range.setEnd(node, 0);
 
-	const selection = window.getSelection();
-	selection?.removeAllRanges();
-	selection?.addRange(range);
+	window.getSelection()?.removeAllRanges();
+	window.getSelection()?.addRange(range);
 
 	fireEvent(document, new Event('selectionchange'));
 };
