@@ -1,4 +1,4 @@
-import { act, screen, within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 
 import { renderRichEditor } from './utils/renderRichEditor';
 import { selectContent, setCursorPosition } from './utils/utils';
@@ -18,8 +18,6 @@ console.log('Hello');
 
 [link](http://example.com)`,
 	});
-
-	screen.debug();
 
 	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Title');
 	expect(screen.getByText('Paragraph').closest('p')).toBeInTheDocument();
@@ -41,14 +39,12 @@ console.log('Hello');
 });
 
 test('Editor updates when value changes', async () => {
-	const { rerender } = await renderRichEditor({
-		value: `# Big text`,
-	});
+	const editor = await renderRichEditor({ value: `# Big text` });
 
 	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Big text');
 
 	// Run component rerender with new value
-	await rerender({ value: `### Not so big text` });
+	await editor.rerender({ value: `### Not so big text` });
 
 	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(
 		'Not so big text',
@@ -59,7 +55,11 @@ test('Editor updates when value changes', async () => {
 });
 
 test('Editor is not editable in readonly mode', async () => {
-	await renderRichEditor({ value: '# Hello', isReadOnly: true });
+	await renderRichEditor({
+		value: '# Hello',
+		isReadOnly: true,
+	});
+
 	expect(screen.getByRole('textbox')).toHaveAttribute('contenteditable', 'false');
 });
 
@@ -76,17 +76,15 @@ test(`Renders image from markdown syntax`, async () => {
 });
 
 test(`Inserts image between text nodes`, async () => {
-	const { insert } = await renderRichEditor({
+	const editor = await renderRichEditor({
 		value: `My favorite image\n\n I love cat`,
 	});
 
 	selectContent('My favorite image');
 
-	await act(async () => {
-		insert({
-			type: 'image',
-			data: { url: 'http://example.com/cat.png', altText: 'My cat' },
-		});
+	await editor.insert({
+		type: 'image',
+		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
 	});
 
 	const firstText = screen.getByText('My favorite image');
@@ -103,7 +101,7 @@ test(`Inserts image between text nodes`, async () => {
 });
 
 test('Inserts image after block node', async () => {
-	const { insert } = await renderRichEditor({
+	const editor = await renderRichEditor({
 		value: '```js\nconst a = 1;\n```',
 	});
 
@@ -113,11 +111,9 @@ test('Inserts image after block node', async () => {
 	expect(textNode).toBeInstanceOf(Text);
 	setCursorPosition(textNode as Text);
 
-	await act(async () => {
-		insert({
-			type: 'image',
-			data: { url: 'http://example.com/cat.png', altText: 'My cat' },
-		});
+	await editor.insert({
+		type: 'image',
+		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
 	});
 
 	const img = screen.getByRole('img');
@@ -131,58 +127,58 @@ test('Inserts image after block node', async () => {
 
 test('Updates heading level correctly', async () => {
 	const content = 'Hello, my dear friends!';
-	const { insert: insertHeading } = await renderRichEditor({ value: content });
+	const editor = await renderRichEditor({ value: content });
 
 	selectContent(content);
 
 	// Plain text becomes heading
-	await act(async () => insertHeading({ type: 'heading', data: { level: 1 } }));
+	await editor.insert({ type: 'heading', data: { level: 1 } });
 	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(content);
 
 	// Heading level is updated when different level applied
-	await act(async () => insertHeading({ type: 'heading', data: { level: 3 } }));
+	await editor.insert({ type: 'heading', data: { level: 3 } });
 	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(content);
 	expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
 
 	// Heading reverts to paragraph when same level applied again
-	await act(async () => insertHeading({ type: 'heading', data: { level: 1 } }));
+	await editor.insert({ type: 'heading', data: { level: 1 } });
 	expect(screen.queryByRole('heading', { level: 3 })).not.toBeInTheDocument();
 	expect(screen.getByText(content)).toBeInTheDocument();
 });
 
 test('Toggles text formatting', async () => {
 	const content = 'Hello, my dear friends!';
-	const { format } = await renderRichEditor({ value: content });
+	const editor = await renderRichEditor({ value: content });
 
 	selectContent(content);
 
 	// Apply bold
-	await act(async () => format('bold'));
+	await editor.format('bold');
 	expect(screen.getByText(content).closest('b')).toBeInTheDocument();
 
 	// Remove bold
-	await act(async () => format('bold'));
+	await editor.format('bold');
 	expect(screen.getByText(content).closest('b')).not.toBeInTheDocument();
 	expect(screen.getByRole('textbox')).toHaveTextContent(content);
 
 	// Apply italic
-	await act(async () => format('italic'));
+	await editor.format('italic');
 	expect(screen.getByText(content).closest('em')).toBeInTheDocument();
 
 	// Remove italic
-	await act(async () => format('italic'));
+	await editor.format('italic');
 	expect(screen.getByText(content).closest('em')).not.toBeInTheDocument();
 	expect(screen.getByRole('textbox')).toHaveTextContent(content);
 });
 
 test('Combines multiple text formatting', async () => {
 	const content = 'Hello, my dear friends!';
-	const { format } = await renderRichEditor({ value: content });
+	const editor = await renderRichEditor({ value: content });
 
 	selectContent(content);
-	await act(async () => format('italic'));
-	await act(async () => format('bold'));
-	await act(async () => format('strikethrough'));
+	await editor.format('italic');
+	await editor.format('bold');
+	await editor.format('strikethrough');
 
 	const formattedText = screen.getByText(content);
 	expect(formattedText.closest('b')).toBeInTheDocument();
@@ -190,7 +186,7 @@ test('Combines multiple text formatting', async () => {
 	expect(formattedText.closest('del')).toBeInTheDocument();
 
 	// Removes bold without breaking others formatting
-	await act(async () => format('bold'));
+	await editor.format('bold');
 
 	const updatedText = screen.getByText(content);
 	expect(updatedText.closest('b')).not.toBeInTheDocument();
@@ -220,7 +216,7 @@ test('Renders a checklist with checked and unchecked items', async () => {
 });
 
 test('Converts an unordered list to an ordered list', async () => {
-	const { insert } = await renderRichEditor({
+	const editor = await renderRichEditor({
 		value: `- First item
   - Nested item
 - Second item`,
@@ -230,9 +226,7 @@ test('Converts an unordered list to an ordered list', async () => {
 	selectContent('First item');
 
 	// Update unordered list to ordered
-	await act(async () => {
-		insert({ type: 'list', data: { type: 'ordered' } });
-	});
+	await editor.insert({ type: 'list', data: { type: 'ordered' } });
 
 	const rootList = within(screen.getByRole('textbox')).getAllByRole('list')[0];
 	expect(rootList.tagName).toBe('OL');
