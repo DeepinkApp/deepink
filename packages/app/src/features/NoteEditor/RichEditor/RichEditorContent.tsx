@@ -76,7 +76,14 @@ export const RichEditorContent = ({
 					$setSelection(selection);
 				});
 
-				editor.focus();
+				const rootNode = editor.getRootElement();
+				if (!rootNode) return;
+
+				const { scrollLeft, scrollTop } = rootNode;
+				editor.focus(() => {
+					rootNode.scrollLeft = scrollLeft;
+					rootNode.scrollTop = scrollTop;
+				});
 			},
 		} satisfies RichEditorAPI;
 	}, [editor]);
