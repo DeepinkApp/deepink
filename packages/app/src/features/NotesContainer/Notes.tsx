@@ -3,6 +3,8 @@ import { isEqual } from 'lodash';
 import { Box } from '@chakra-ui/react';
 import { INote, INoteContent, NoteId } from '@core/features/notes';
 import { NoteMeta } from '@core/features/notes/controller';
+import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { selectTouchedNoteIds } from '@state/redux/vaults/selectors/notes';
 
 import { useEditorLinks } from '../MonakoEditor/features/useEditorLinks';
 import { Note } from '../NoteEditor';
@@ -18,6 +20,8 @@ export type NotesProps = {
 export const Notes: FC<NotesProps> = ({ notes, tabs, activeTab, updateNote }) => {
 	useEditorLinks();
 
+	const touchedNoteIds = useWorkspaceSelector(selectTouchedNoteIds);
+
 	return (
 		<Box
 			css={{
@@ -32,6 +36,9 @@ export const Notes: FC<NotesProps> = ({ notes, tabs, activeTab, updateNote }) =>
 				.map((id) => {
 					const note = notes.find((note) => note.id === id)!;
 					const isActive = activeTab === note.id;
+
+					// Do not render notes that has not been seen by user
+					if (!touchedNoteIds[note.id]) return null;
 
 					return (
 						<Box

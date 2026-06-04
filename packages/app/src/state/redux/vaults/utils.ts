@@ -28,3 +28,22 @@ export const findNearNote = (notes: INote[], noteId: NoteId) => {
 	const nextIndex = currentNoteIndex + 1;
 	return notes[prevIndex] ?? notes[nextIndex] ?? null;
 };
+
+/**
+ * Ensure touched notes contains only opened notes
+ */
+export const syncTouchedNotes = (workspace: WorkspaceData) => {
+	const openedNoteIds = new Set(workspace.openedNotes.map((n) => n.id));
+
+	// Leave only ids of opened notes
+	workspace.touchedNoteIds = Object.fromEntries(
+		Object.entries(workspace.touchedNoteIds).filter(([noteId]) =>
+			openedNoteIds.has(noteId),
+		),
+	);
+
+	// Ensure active note is touched
+	if (workspace.activeNote) {
+		workspace.touchedNoteIds[workspace.activeNote] = true;
+	}
+};

@@ -25,6 +25,14 @@ export const selectOpenedNotes = createWorkspaceSelector(
 	},
 );
 
+export const selectTouchedNoteIds = createWorkspaceSelector(
+	[selectWorkspaceRoot],
+	(workspace) => {
+		if (!workspace) return {};
+		return workspace.touchedNoteIds;
+	},
+);
+
 export const selectIsNoteOpened = (noteId: string) =>
 	createWorkspaceSelector([selectWorkspaceRoot], (workspace) => {
 		if (!workspace) return false;
