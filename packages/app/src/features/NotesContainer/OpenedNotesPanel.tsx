@@ -28,11 +28,11 @@ export type TopBarProps = {
  */
 const NoteTabContent = memo(
 	({
-		note,
+		noteId,
 		title,
 		onClose,
 	}: {
-		note: INote;
+		noteId: NoteId;
 		title: string;
 		onClose: (id: string) => void;
 	}) => {
@@ -51,13 +51,13 @@ const NoteTabContent = memo(
 				<Box
 					title={t('tabBar.closeTab')}
 					css={{
-						'& &:not(:hover)': {
+						'&:not(:hover)': {
 							opacity: '0.7',
 						},
 					}}
 					onClick={(evt) => {
 						evt.stopPropagation();
-						onClose(note.id);
+						onClose(noteId);
 					}}
 				>
 					<FaXmark />
@@ -183,7 +183,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 						>
 							<NoteTabContent
 								{...immutableCallbacks}
-								note={note}
+								noteId={note.id}
 								title={title}
 							/>
 						</Tabs.Trigger>
