@@ -31,7 +31,7 @@ export const ChooseVaultScreen: FC<{
 				title={t('chooseVault.title')}
 				controls={
 					<Button
-						variant={'accent' as any}
+						variant="accent"
 						size="lg"
 						w="100%"
 						onClick={() => onCreateVault()}

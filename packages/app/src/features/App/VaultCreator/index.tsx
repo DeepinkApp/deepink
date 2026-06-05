@@ -310,7 +310,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 			controls={
 				<>
 					<Button
-						variant={'accent' as any}
+						variant="accent"
 						w="100%"
 						onClick={() => onPressCreate(true)}
 						disabled={isPending}
@@ -360,7 +360,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 										<HStack w="100%" justifyContent="end" asChild>
 											<AutoFocusInside>
 												<Button
-													variant={'accent' as any}
+													variant="accent"
 													onClick={() => {
 														onPressCreate(false);
 														noPasswordDialogState.onClose();

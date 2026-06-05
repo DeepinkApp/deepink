@@ -122,7 +122,7 @@ export const NotesListPanel = () => {
 						</Text>
 						<HStack maxW="100%" align="start" overflow="hidden">
 							<Tag.Root
-								variant={'static' as any}
+								variant="static"
 								gap=".5rem"
 								title={activeTag.resolvedName}
 								asChild

@@ -50,11 +50,7 @@ export const WelcomeScreen = ({ onConfirm }: { onConfirm: () => void }) => {
 					</Text>
 
 					<HStack w="100%" flexWrap="wrap" justify="center">
-						<Button
-							variant={'accent' as any}
-							minWidth="200px"
-							onClick={onConfirm}
-						>
+						<Button variant="accent" minWidth="200px" onClick={onConfirm}>
 							{t('welcome.continue')}
 						</Button>
 					</HStack>

@@ -190,7 +190,7 @@ export const TagEditor: FC<ITagEditorProps> = ({
 				<HStack w="100%" justifyContent="end">
 					<Button
 						type="submit"
-						variant={'accent' as any}
+						variant="accent"
 						disabled={isPending}
 						form={formId}
 					>

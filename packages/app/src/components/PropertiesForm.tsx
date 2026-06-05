@@ -162,7 +162,7 @@ export const PropertiesForm = <T extends OptionObject[]>({
 					})}
 				</VStack>
 				<HStack w="100%" justifyContent="end">
-					<Button variant={'accent' as any} type="submit" disabled={isPending}>
+					<Button variant="accent" type="submit" disabled={isPending}>
 						{submitButtonText}
 					</Button>
 					{onCancel && (

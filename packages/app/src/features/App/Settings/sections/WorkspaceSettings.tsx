@@ -178,7 +178,7 @@ export const WorkspaceSettings = () => {
 								flex="100"
 								size="sm"
 							/>
-							<Button variant={'accent' as any} type="submit" size="sm">
+							<Button variant="accent" type="submit" size="sm">
 								{t('workspace.name.update')}
 							</Button>
 						</form>

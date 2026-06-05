@@ -81,7 +81,7 @@ export const VaultLoginForm: FC<VaultLoginFormProps> = ({
 			controls={
 				<>
 					<Button
-						variant={'accent' as any}
+						variant="accent"
 						w="100%"
 						onClick={onPressLogin}
 						disabled={isPending}
