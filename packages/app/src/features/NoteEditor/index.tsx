@@ -60,6 +60,7 @@ import {
 } from '@state/redux/vaults/hooks';
 import { selectSnapshotSettings } from '@state/redux/vaults/selectors/vault';
 import { selectTags, workspacesApi } from '@state/redux/vaults/vaults';
+import { wait } from '@utils/time';
 
 import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
@@ -106,19 +107,17 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 	useEffect(() => {
 		if (!isSnapshotsEnabled || note.isSnapshotsDisabled) return;
 
-		noteSnapshotPromiseRef.current = new Promise<void>(async (res) => {
+		noteSnapshotPromiseRef.current = (async () => {
 			for (let attempt = 0; attempt < 3; attempt++) {
 				try {
 					await noteHistory.snapshot(note.id);
-					res();
-					return;
 				} catch (err) {
 					// Retry after delay
 					console.error(err);
-					await new Promise((res) => setTimeout(res, 200));
+					await wait(200);
 				}
 			}
-		}).then(() => {
+		})().then(() => {
 			noteSnapshotPromiseRef.current = null;
 		});
 
