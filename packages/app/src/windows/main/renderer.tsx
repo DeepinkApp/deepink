@@ -5,6 +5,7 @@ import { createEvent } from 'effector';
 import { LocalesProvider } from 'src/LocalesProvider';
 import { EventBus } from '@api/events/EventBus';
 import { GlobalEventsPayloadMap } from '@api/events/global';
+import { Toaster } from '@components/ui/toaster';
 import { IFilesStorage } from '@core/features/files';
 import { IndexedDBFS } from '@core/features/files/IndexedDBFS';
 import { InMemoryFS } from '@core/features/files/InMemoryFS';
@@ -83,6 +84,7 @@ reactRoot.render(
 						<ThemeProvider>
 							<LocalesProvider>
 								<App />
+								<Toaster />
 							</LocalesProvider>
 						</ThemeProvider>
 					</CommandEventProvider>

@@ -1,8 +1,9 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import ms from 'ms';
 import { getAbout } from 'src/about';
 import { LOCALE_NAMESPACE } from 'src/i18n';
+import { Button, HStack, Text, VStack } from '@chakra-ui/react';
 import { toaster } from '@components/ui/toaster';
 import { AppUpdatesChecker, AppVersionInfo } from '@electron/updates/AppUpdatesChecker';
 import { getDevFlag } from '@utils/dev';
@@ -42,8 +43,6 @@ export const useGetAppUpdates = () => {
 
 			const appReleases = new AppUpdatesChecker({ host: 'https://deepink.app' });
 
-			console.log('TODO: use ignoreUpdate', ignoreUpdate);
-
 			return appReleases
 				.getUpdate({
 					version: getDevFlag('version') ?? getAbout().version,
@@ -57,16 +56,34 @@ export const useGetAppUpdates = () => {
 					toaster.create({
 						id: toastId,
 						title: t('updates.newVersion.title'),
-						description: t('updates.newVersion.body'),
-						duration: undefined,
-						action: {
-							label: t('updates.newVersion.download'),
-							onClick: () => {
-								window.open(updateUrl);
-								localStorage.removeItem(ignoreFlagKey);
-								toaster.dismiss(toastId);
-							},
-						},
+						description: (
+							<VStack gap="1rem">
+								<Text>{t('updates.newVersion.body')}</Text>
+								<HStack width="100%" justify="end">
+									<Button
+										size="sm"
+										variant="accent"
+										onClick={() => {
+											window.open(updateUrl);
+											localStorage.removeItem(ignoreFlagKey);
+											toaster.dismiss(toastId);
+										}}
+									>
+										{t('updates.newVersion.download')}
+									</Button>
+									<Button
+										size="sm"
+										onClick={() => {
+											ignoreUpdate();
+											toaster.dismiss(toastId);
+										}}
+									>
+										{t('updates.newVersion.ignore')}
+									</Button>
+								</HStack>
+							</VStack>
+						),
+						duration: Infinity,
 					});
 
 					return {

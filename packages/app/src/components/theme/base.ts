@@ -31,6 +31,7 @@ import {
 	switchAnatomy,
 	tabsAnatomy,
 	tagAnatomy,
+	toastAnatomy,
 	tooltipAnatomy,
 } from '@chakra-ui/react/anatomy';
 import { ListBoxRecipe } from '@components/ListBox/ListBox.theme';
@@ -679,6 +680,26 @@ export default defineConfig({
 								backgroundColor: 'container.message.background',
 								color: 'container.message.foreground',
 							},
+						},
+					},
+				},
+			}),
+			toast: defineSlotRecipe({
+				slots: toastAnatomy.keys(),
+				base: {
+					root: {
+						backgroundColor: 'container.message.background',
+						color: 'container.message.foreground',
+						borderRadius: 'lg',
+						shadow: 'xs',
+					},
+
+					actionTrigger: {
+						color: 'control.foreground',
+						backgroundColor: {
+							base: 'control.background',
+							_hover: 'control.active.background',
+							_disabled: 'control.disabled.background',
 						},
 					},
 				},

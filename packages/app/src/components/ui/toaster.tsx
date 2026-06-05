@@ -11,8 +11,9 @@ import {
 } from '@chakra-ui/react';
 
 export const toaster = createToaster({
-	placement: 'bottom-end',
+	placement: 'top-end',
 	pauseOnPageIdle: true,
+	offsets: { top: '1rem', left: '1rem', right: '1rem', bottom: '2.2rem' },
 });
 
 export const Toaster = () => {
@@ -31,12 +32,12 @@ export const Toaster = () => {
 							{toast.description && (
 								<Toast.Description>{toast.description}</Toast.Description>
 							)}
+							{toast.action && (
+								<Toast.ActionTrigger alignSelf="end" marginTop="1rem">
+									{toast.action.label}
+								</Toast.ActionTrigger>
+							)}
 						</Stack>
-						{toast.action && (
-							<Toast.ActionTrigger>
-								{toast.action.label}
-							</Toast.ActionTrigger>
-						)}
 						{toast.closable && <Toast.CloseTrigger />}
 					</Toast.Root>
 				)}
