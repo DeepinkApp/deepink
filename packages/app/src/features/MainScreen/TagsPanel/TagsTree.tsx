@@ -61,7 +61,7 @@ const customClickBehavior: FeatureImplementation = {
 export type ITagsListProps = {
 	tags: Record<string, TagNode>;
 	activeTag?: string;
-	onTagClick?: (id: string) => void;
+	onTagClick?: (id: string | null) => void;
 	contextMenu: TagContextMenuCallbacks;
 };
 
@@ -85,6 +85,8 @@ export const TagsTree: FC<ITagsListProps> = ({
 		initialState: { expandedItems: Object.keys(tags) },
 		state: { selectedItems: activeTag ? [activeTag] : [] },
 		setSelectedItems: (updater) => {
+			if (!onTagClick) return;
+
 			const items = typeof updater === 'function' ? updater([]) : updater;
 
 			if (items.length > 1) {
@@ -93,7 +95,7 @@ export const TagsTree: FC<ITagsListProps> = ({
 				);
 			}
 
-			onTagClick?.(items[0]);
+			onTagClick(items.length > 0 ? items[0] : null);
 		},
 		rootItemId: 'root',
 		getItemName: (item) => item.getItemData().name,
