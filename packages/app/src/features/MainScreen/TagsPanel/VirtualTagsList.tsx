@@ -17,6 +17,7 @@ export const VirtualTagsList = forwardRef<
 
 	const parentRef = useRef<HTMLDivElement | null>(null);
 
+	// FIXME: https://github.com/TanStack/virtual/issues/1119
 	// eslint-disable-next-line react-hooks/incompatible-library
 	const virtualizer = useVirtualizer({
 		count: tree.getItems().length,
