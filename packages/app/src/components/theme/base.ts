@@ -33,7 +33,7 @@ import {
 	tagAnatomy,
 	tooltipAnatomy,
 } from '@chakra-ui/react/anatomy';
-import { NestedListRecipe } from '@components/NestedList/NestedList.theme';
+import { ListBoxRecipe } from '@components/ListBox/ListBox.theme';
 import { notePreviewRecipe } from '@components/NotePreview/NotePreview.theme';
 import { NotificationsRecipe } from '@components/Notifications/Notifications.theme';
 import { TagsTreeRecipe } from '@features/MainScreen/TagsPanel/TagsTree.theme';
@@ -683,10 +683,10 @@ export default defineConfig({
 					},
 				},
 			}),
+			listBox: ListBoxRecipe,
 			tagsTree: TagsTreeRecipe,
 			notifications: NotificationsRecipe,
 			notePreview: notePreviewRecipe,
-			nestedList: NestedListRecipe,
 			richEditor: RichEditorRecipe,
 		},
 	},

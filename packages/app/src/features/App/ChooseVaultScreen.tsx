@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaUser } from 'react-icons/fa6';
+import { FaLock, FaShapes } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, HStack, Text } from '@chakra-ui/react';
-import { NestedList } from '@components/NestedList';
+import { Button } from '@chakra-ui/react';
+import { ListBox } from '@components/ListBox/ListBox';
+import { TextWithIcon } from '@components/TextWithIcon';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { VaultSummary } from '@core/storage/VaultsList';
-import { telemetry } from '@electron/requests/telemetry/renderer';
+import { useTelemetryTracker } from '@features/telemetry';
 import { useAppDispatch } from '@state/redux/hooks';
 import { workspacesApi } from '@state/redux/vaults/vaults';
 
@@ -21,6 +22,8 @@ export const ChooseVaultScreen: FC<{
 }> = ({ vaults, onOpenVault, onCreateVault }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.vault);
 	const dispatch = useAppDispatch();
+
+	const telemetry = useTelemetryTracker();
 
 	return (
 		<CenterBox>
@@ -37,45 +40,40 @@ export const ChooseVaultScreen: FC<{
 					</Button>
 				}
 			>
-				<NestedList
-					w="100%"
-					borderRadius="4px"
-					maxHeight="230px"
-					overflow="auto"
-					border="1px solid"
-					items={(vaults ?? []).map((vault) => ({
-						id: vault.id,
-						content: (
-							<HStack
-								css={{
-									padding: '.8rem 1rem',
-									w: '100%',
-									cursor: 'pointer',
-									gap: '.8rem',
-								}}
-								asChild
+				<ListBox.Root
+					autoFocus
+					selectionMode="none"
+					onAction={(vaultId) => {
+						const vault = vaults.find((vault) => vault.id === vaultId);
+						if (!vault) return;
+
+						dispatch(workspacesApi.setActiveVault(vault.id));
+
+						if (!vault.isEncrypted) {
+							onOpenVault(vault);
+						}
+
+						telemetry.track(TELEMETRY_EVENT_NAME.VAULT_SELECTED);
+					}}
+					containerProps={{
+						maxHeight: '230px',
+						overflow: 'auto',
+					}}
+				>
+					{(vaults ?? []).map((vault) => (
+						<ListBox.Item
+							key={vault.id}
+							id={vault.id}
+							textValue={vault.name.toLowerCase()}
+						>
+							<TextWithIcon
+								icon={vault.isEncrypted ? <FaLock /> : <FaShapes />}
 							>
-								<button
-									key={vault.id}
-									onClick={() => {
-										dispatch(workspacesApi.setActiveVault(vault.id));
-
-										if (!vault.isEncrypted) {
-											onOpenVault(vault);
-										}
-
-										telemetry.track(
-											TELEMETRY_EVENT_NAME.VAULT_SELECTED,
-										);
-									}}
-								>
-									<FaUser />
-									<Text>{vault.name}</Text>
-								</button>
-							</HStack>
-						),
-					}))}
-				/>
+								{vault.name}
+							</TextWithIcon>
+						</ListBox.Item>
+					))}
+				</ListBox.Root>
 			</VaultsForm>
 		</CenterBox>
 	);
