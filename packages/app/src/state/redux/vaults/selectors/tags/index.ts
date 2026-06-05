@@ -36,7 +36,7 @@ export type TagNode = {
 export const selectTagsFlatTree = createWorkspaceSelector(
 	[selectWorkspaceTags],
 	(flatTags) => {
-		const rootNodes: string[] = [];
+		const rootNodes = new Set<string>();
 
 		const tagsMap: Record<string, TagNode> = {};
 		const tagToParentMap: Record<string, string> = {};
@@ -52,7 +52,7 @@ export const selectTagsFlatTree = createWorkspaceSelector(
 			if (parent !== null) {
 				tagToParentMap[id] = parent;
 			} else {
-				rootNodes.push(id);
+				rootNodes.add(id);
 			}
 		});
 
@@ -61,6 +61,11 @@ export const selectTagsFlatTree = createWorkspaceSelector(
 			const parentId = tagToParentMap[tagId];
 
 			const parentTag = tagsMap[parentId];
+			if (!parentTag) {
+				// Fallback for orphan tags to keep selector stable
+				rootNodes.add(tagId);
+				continue;
+			}
 
 			// Create array
 			if (!parentTag.children) {
@@ -75,7 +80,7 @@ export const selectTagsFlatTree = createWorkspaceSelector(
 		tagsMap.root = {
 			id: 'ROOT',
 			name: 'ROOT',
-			children: rootNodes,
+			children: Array.from(rootNodes),
 		};
 
 		// Sort tags
