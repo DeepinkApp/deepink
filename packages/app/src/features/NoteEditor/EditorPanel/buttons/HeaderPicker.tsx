@@ -76,6 +76,7 @@ export const HeaderPicker = ({
 										{([1, 2, 3, 4, 5, 6] as const).map((level) => (
 											<Menu.Item
 												key={level}
+												value={String(level)}
 												paddingInlineEnd="1rem"
 												onMouseDown={(evt) => {
 													evt.preventDefault();
@@ -84,7 +85,6 @@ export const HeaderPicker = ({
 												onSelect={() => {
 													onPress(level);
 												}}
-												value="item-0"
 											>
 												<HStack>
 													<FaHeading />

@@ -56,7 +56,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="item-0"
+											value="copyReference"
 										>
 											<HStack>
 												<FaCopy />
@@ -65,7 +65,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 												</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="item-1">
+										<Menu.Item value="remindMe">
 											<HStack>
 												<FaBell />
 												<Text>{t('note.menu.remindMe')}</Text>
@@ -80,26 +80,26 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="item-2"
+											value="history"
 										>
 											<HStack>
 												<FaClock />
 												<Text>{t('note.menu.history')}</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="item-3">
+										<Menu.Item value="backLinks">
 											<HStack>
 												<FaLink />
 												<Text>{t('note.menu.backLinks')}</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="item-4">
+										<Menu.Item value="readonlyMode">
 											<HStack>
 												<FaEye />
 												<Text>{t('note.menu.readonlyMode')}</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="item-5">
+										<Menu.Item value="spellcheck">
 											<HStack>
 												<FaSpellCheck />
 												<Text>{t('note.menu.spellcheck')}</Text>
@@ -111,14 +111,14 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													noteId: note.id,
 												})
 											}
-											value="item-6"
+											value="export"
 										>
 											<HStack>
 												<FaFileExport />
 												<Text>{t('note.menu.export')}</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="item-7">
+										<Menu.Item value="passwordProtection">
 											<HStack>
 												<FaShield />
 												<Text>
@@ -126,7 +126,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 												</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="item-8">
+										<Menu.Item value="disableSync">
 											<HStack>
 												<FaRotate />
 												<Text>{t('note.menu.disableSync')}</Text>
@@ -141,7 +141,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="item-9"
+											value="moveToArchive"
 										>
 											<HStack>
 												<FaBoxArchive />
@@ -174,7 +174,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												);
 											}}
-											value="item-10"
+											value="delete"
 										>
 											<HStack>
 												<FaTrashCan />
@@ -196,7 +196,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 														},
 													)
 												}
-												value="item-11"
+												value="restoreFromBin"
 											>
 												<HStack>
 													<FaTrashCanArrowUp />
