@@ -95,7 +95,12 @@ export const VaultLoginForm: FC<VaultLoginFormProps> = ({
 			}
 		>
 			<VStack w="100%" alignItems="start" asChild>
-				<form onSubmit={onPressLogin}>
+				<form
+					onSubmit={(evt) => {
+						evt.preventDefault();
+						onPressLogin();
+					}}
+				>
 					<Input
 						ref={firstInputRef}
 						size="lg"
