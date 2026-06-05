@@ -92,7 +92,12 @@ export const NotesListPanel = () => {
 						startElement={<FaMagnifyingGlass />}
 						endElement={
 							searchInput.length > 0 ? (
-								<Box onClick={clearSearch} cursor="pointer">
+								<Box
+									as="button"
+									tabIndex={-1}
+									onClick={clearSearch}
+									cursor="pointer"
+								>
 									<FaXmark />
 								</Box>
 							) : undefined
