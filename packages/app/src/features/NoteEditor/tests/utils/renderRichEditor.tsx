@@ -36,9 +36,7 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 		</Provider>
 	);
 
-	// Use `act` to wait for all editor updates to complete before making assertions;
-	// otherwise, some asynchronous updates may not have been applied to the DOM yet.
-	const result = await act(async () => render(renderEditor(props)));
+	const result = render(renderEditor(props));
 
 	return {
 		...result,
@@ -51,14 +49,14 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 		 * Simulates an editor panel action like inserting image
 		 */
 		insert: async (payload: InsertingPayload) => {
-			await act(async () => onInserting(payload));
+			onInserting(payload);
 		},
 
 		/**
 		 * Simulates an editor panel formatting action like bold, italic and etc
 		 */
 		format: async (format: TextFormat) => {
-			await act(async () => onFormatting(format));
+			onFormatting(format);
 		},
 	};
 };

@@ -18,7 +18,7 @@ Element.prototype.getClientRects = () =>
 	({
 		item: () => null,
 		length: 0,
-		[Symbol.iterator]: () => {},
+		[Symbol.iterator]: function* () {},
 	}) as unknown as DOMRectList;
 
 // Mock this function because the Rich Editor uses it to calculate cursor and selection positions.
