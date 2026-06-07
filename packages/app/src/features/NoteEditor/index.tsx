@@ -510,17 +510,19 @@ export const Note2: FC<NoteEditorProps> = memo(
 					autoSaveId="MainScreen.noteContent"
 				>
 					<Box
-						{...({ as: Panel, defaultSize: 80 } as any)}
 						minH="min(200px, 100%)"
 						display="flex"
 						flexDirection="column"
+						asChild
 					>
-						<NoteEditor
-							text={versionPreview ? versionPreview.text : text}
-							setText={setTextInWriteMode}
-							isReadOnly={isReadOnly}
-							isActive={isActive}
-						/>
+						<Panel defaultSize={80}>
+							<NoteEditor
+								text={versionPreview ? versionPreview.text : text}
+								setText={setTextInWriteMode}
+								isReadOnly={isReadOnly}
+								isActive={isActive}
+							/>
+						</Panel>
 					</Box>
 
 					{!sidePanel ? null : (
