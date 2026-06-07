@@ -102,7 +102,7 @@ test(`Inserts image between text nodes`, async () => {
 	expect(img).toAppearBefore(secondText);
 });
 
-test.only('Inserts image after block node', async () => {
+test('Inserts image after block node', async () => {
 	const editor = await renderRichEditor({
 		value: '```js\nconst a = 1;\n```',
 	});

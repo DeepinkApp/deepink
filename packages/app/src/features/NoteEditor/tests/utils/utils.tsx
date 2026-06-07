@@ -27,11 +27,9 @@ export const selectContent = (startText: string, endText?: string) => {
 	const range = document.createRange();
 	range.setStart(startNode, 0);
 
-	// If `endText` is provided, select the range from `startText` to `endText`;
-	// otherwise, select the entire `startText`.
 	if (endText) {
 		const endNode = getFirstTextNode(screen.getByText(endText));
-		if (!endNode) throw new Error(`Text node not found for "${endNode}"`);
+		if (!endNode) throw new Error(`Text node not found for "${endText}"`);
 
 		range.setEnd(endNode, endText.length);
 	} else {
@@ -46,7 +44,7 @@ export const selectContent = (startText: string, endText?: string) => {
 
 /**
  * Simulates placing the cursor at the start of a node.
- * Finds the first text node inside node, places the cursor there, and dispatches a `selectionchange` event.
+ * Finds the first text node inside node, places the cursor there
  */
 export const setCursorPosition = (node: Node) => {
 	const textNode = getFirstTextNode(node);

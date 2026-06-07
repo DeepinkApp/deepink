@@ -49,14 +49,16 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 		 * Simulates an editor panel action like inserting image
 		 */
 		insert: async (payload: InsertingPayload) => {
-			onInserting(payload);
+			// The Rich Editor can update the DOM asynchronously,
+			// the act must be awaited to ensure all pending updates are finished before making assertions
+			await act(async () => onInserting(payload));
 		},
 
 		/**
 		 * Simulates an editor panel formatting action like bold, italic and etc
 		 */
 		format: async (format: TextFormat) => {
-			onFormatting(format);
+			await act(async () => onFormatting(format));
 		},
 	};
 };
