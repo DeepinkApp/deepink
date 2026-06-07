@@ -203,7 +203,7 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 
 					<Box
 						css={{
-							'& &:not(:hover)': {
+							'&:not(:hover)': {
 								opacity: '.6',
 							},
 						}}

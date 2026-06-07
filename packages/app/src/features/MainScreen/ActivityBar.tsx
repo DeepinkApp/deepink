@@ -39,13 +39,6 @@ export const ActivityBar = memo(() => {
 				minHeight: '100%',
 				padding: '.5rem',
 				overflow: 'hidden',
-
-				'& & button': {
-					padding: 0,
-					'& svg': {
-						boxSize: '50%',
-					},
-				},
 			}}
 		>
 			<ButtonGroup orientation="vertical" size="sm" variant="ghost">

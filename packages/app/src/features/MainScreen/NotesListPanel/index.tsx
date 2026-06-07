@@ -144,7 +144,7 @@ export const NotesListPanel = () => {
 									</Text>
 									<Box
 										css={{
-											'& &:not(:hover)': {
+											'&:not(:hover)': {
 												opacity: '0.7',
 											},
 										}}

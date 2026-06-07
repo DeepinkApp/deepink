@@ -10,9 +10,6 @@ export const ListBoxRecipe = defineSlotRecipe({
 
 			fontFamily: 'Arial, Helvetica, sans-serif',
 			userSelect: 'none',
-			'& &': {
-				paddingStart: '.5rem',
-			},
 			w: '100%',
 			gap: '0',
 		},
