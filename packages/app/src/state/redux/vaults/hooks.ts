@@ -16,7 +16,7 @@ import {
 
 export const useWorkspaceData = () => {
 	const { vaultId, workspaceId } = useWorkspaceContext();
-	return useMemo(() => ({ vaultId, workspaceId }), [vaultId, workspaceId]);
+	return { vaultId, workspaceId };
 };
 
 // Select vault and workspace from context
