@@ -3,7 +3,7 @@ import { fireEvent, screen } from '@testing-library/react';
 const getFirstTextNode = (node: Node): Text | null => {
 	if (node.nodeType === Node.TEXT_NODE) return node as Text;
 
-	for (const child of node.childNodes) {
+	for (const child of Array.from(node.childNodes)) {
 		if (child.nodeType === Node.TEXT_NODE) {
 			return child as Text;
 		}
