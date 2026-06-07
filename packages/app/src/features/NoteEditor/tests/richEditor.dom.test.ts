@@ -82,14 +82,16 @@ test(`Inserts image between text nodes`, async () => {
 
 	selectContent('My favorite image');
 
+	// Simulate inserting an image via the editor panel action
 	await editor.insert({
 		type: 'image',
 		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
 	});
 
+	// Image nodes inserting asynchronously, so use findByRole to wait for the img to appear
+	const img = await screen.findByRole('img');
 	const firstText = screen.getByText('My favorite image');
 	const secondText = screen.getByText('I love cat');
-	const img = screen.getByRole('img');
 
 	expect(img).toBeInTheDocument();
 	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
@@ -105,20 +107,21 @@ test('Inserts image after block node', async () => {
 		value: '```js\nconst a = 1;\n```',
 	});
 
-	// Place cursor position inside code node
+	// Place cursor position inside the code node
 	const code = screen.getByText('const a = 1;');
-	const textNode = code.firstChild;
-	expect(textNode).toBeInstanceOf(Text);
-	setCursorPosition(textNode as Text);
+	expect(code?.firstChild).toBeInstanceOf(Text);
+	setCursorPosition(code?.firstChild as Text);
 
 	await editor.insert({
 		type: 'image',
 		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
 	});
 
-	const img = screen.getByRole('img');
+	// Wait before image to appear
+	const img = await screen.findByRole('img');
 	const codeNode = screen.getByRole('code');
 	expect(img).toBeInTheDocument();
+	expect(codeNode).toBeInTheDocument();
 
 	// Image is inserted as next sibling of the code block
 	expect(img).toAppearAfter(codeNode);
