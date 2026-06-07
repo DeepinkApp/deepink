@@ -3,7 +3,6 @@ import Dropzone from 'react-dropzone';
 import { Trans, useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Button, HStack, Menu, Portal, Spinner, Text, VStack } from '@chakra-ui/react';
-import { CalmButton } from '@components/CalmButton';
 import { useDirectoryPicker } from '@hooks/files/useDirectoryPicker';
 import { useFilesPicker } from '@hooks/files/useFilesPicker';
 import { ImportTypes, useImportNotesPreset } from '@hooks/notes/useImportNotesPreset';
@@ -58,9 +57,9 @@ export const ImportAndExport = () => {
 			<HStack>
 				<Menu.Root size="sm">
 					<Menu.Trigger asChild>
-						<CalmButton size="sm" disabled={importProgress !== null}>
+						<Button size="sm" disabled={importProgress !== null}>
 							{t('migration.import.button')}
-						</CalmButton>
+						</Button>
 					</Menu.Trigger>
 					<Portal>
 						<Menu.Positioner>
