@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import { Box, useSlotRecipe } from '@chakra-ui/react';
 import { ItemInstance, TreeInstance } from '@headless-tree/core';
 import { TagNode } from '@state/redux/vaults/vaults';
@@ -6,7 +6,7 @@ import { useVirtualizer, Virtualizer } from '@tanstack/react-virtual';
 
 import { TagItem } from './TagItem';
 import { TagsTreeRecipe } from './TagsTree.theme';
-import { useHandlerFactory } from './useHandlerFactory';
+import { useMemoizedCallback } from './useMemoizedCallback';
 
 export const VirtualTagsList = forwardRef<
 	Virtualizer<HTMLDivElement, Element>,
@@ -29,10 +29,12 @@ export const VirtualTagsList = forwardRef<
 
 	useImperativeHandle(ref, () => virtualizer);
 
-	const getExpanded = useHandlerFactory<ItemInstance<TagNode>>((item) => {
-		if (item.isExpanded()) item.collapse();
-		else item.expand();
-	});
+	const getExpanded = useMemoizedCallback(
+		useCallback((item: ItemInstance<TagNode>) => {
+			if (item.isExpanded()) item.collapse();
+			else item.expand();
+		}, []),
+	);
 
 	return (
 		<Box ref={parentRef} css={styles.root}>
