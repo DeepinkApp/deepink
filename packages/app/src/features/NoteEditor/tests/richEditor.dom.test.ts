@@ -140,12 +140,14 @@ test('Updates heading level correctly', async () => {
 
 	// Heading level is updated when different level applied
 	await editor.insert({ type: 'heading', data: { level: 3 } });
+
 	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(content);
 	expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
 
 	// Heading reverts to paragraph when same level applied again
-	await editor.insert({ type: 'heading', data: { level: 1 } });
-	expect(screen.queryByRole('heading', { level: 3 })).not.toBeInTheDocument();
+	await editor.insert({ type: 'heading', data: { level: 3 } });
+
+	expect(screen.queryByRole('heading')).not.toBeInTheDocument();
 	expect(screen.getByText(content)).toBeInTheDocument();
 });
 
@@ -204,9 +206,7 @@ test('Renders a checklist with checked and unchecked items', async () => {
 - [ ] Second item`,
 	});
 
-	const ul = within(screen.getByRole('textbox')).getAllByRole('list')[0];
-
-	const checkboxList = within(ul).getAllByRole('checkbox');
+	const checkboxList = within(screen.getByRole('textbox')).getAllByRole('checkbox');
 	expect(checkboxList).toHaveLength(3);
 	expect(checkboxList[0]).toHaveTextContent('First item');
 	expect(checkboxList[0]).toBeChecked();
@@ -231,16 +231,16 @@ test('Converts an unordered list to an ordered list', async () => {
 	// Update unordered list to ordered
 	await editor.insert({ type: 'list', data: { type: 'ordered' } });
 
-	const rootList = within(screen.getByRole('textbox')).getAllByRole('list')[0];
-	expect(rootList.tagName).toBe('OL');
+	const list = within(screen.getByRole('textbox')).getAllByRole('list')[0];
+	expect(list.tagName).toBe('OL');
 
-	const orderedListItems = within(rootList).getAllByRole('listitem');
-	expect(orderedListItems).toHaveLength(3);
+	const orderedList = within(screen.getByRole('textbox')).getAllByRole('listitem');
+	expect(orderedList).toHaveLength(3);
 
-	expect(orderedListItems[0]).toHaveTextContent('First item');
+	expect(orderedList[0]).toHaveTextContent('First item');
 
 	// Second item is nested inside first item
-	expect(within(orderedListItems[0]).getByText('Nested item')).toBeInTheDocument();
+	expect(within(orderedList[0]).getByText('Nested item')).toBeInTheDocument();
 
-	expect(orderedListItems[2]).toHaveTextContent('Second item');
+	expect(orderedList[2]).toHaveTextContent('Second item');
 });
