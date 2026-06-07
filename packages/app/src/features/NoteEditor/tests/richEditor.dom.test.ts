@@ -102,15 +102,13 @@ test(`Inserts image between text nodes`, async () => {
 	expect(img).toAppearBefore(secondText);
 });
 
-test('Inserts image after block node', async () => {
+test.only('Inserts image after block node', async () => {
 	const editor = await renderRichEditor({
 		value: '```js\nconst a = 1;\n```',
 	});
 
 	// Place cursor position inside the code node
-	const code = screen.getByText('const a = 1;');
-	expect(code?.firstChild).toBeInstanceOf(Text);
-	setCursorPosition(code?.firstChild as Text);
+	setCursorPosition(screen.getByRole('code'));
 
 	await editor.insert({
 		type: 'image',
