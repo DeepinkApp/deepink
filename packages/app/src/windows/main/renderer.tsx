@@ -52,13 +52,19 @@ const globalEventBus = {
 	},
 } satisfies EventBus<GlobalEventsPayloadMap>;
 
-const filesController =
-	(
-		{
-			idb: new IndexedDBFS('deepink'),
-			ram: new InMemoryFS(),
-		} as Record<string, IFilesStorage>
-	)[localStorage.storageType] ?? new ElectronFilesController(storageApi, `/`);
+let filesController: IFilesStorage;
+switch (localStorage.storageType) {
+	case 'idb':
+		filesController = new IndexedDBFS('deepink');
+		break;
+	case 'ram':
+		filesController = new InMemoryFS();
+		break;
+
+	default:
+		filesController = new ElectronFilesController(storageApi, `/`);
+		break;
+}
 
 const reactRoot = createRoot(rootNode);
 reactRoot.render(
