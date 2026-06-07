@@ -7,7 +7,6 @@ import {
 	syncDataLoaderFeature,
 } from '@headless-tree/core';
 import { useTree } from '@headless-tree/react';
-import { orderBy } from '@state/redux/vaults/selectors/tags/sort';
 import { TagNode } from '@state/redux/vaults/vaults';
 import { Virtualizer } from '@tanstack/react-virtual';
 import { createContextGetterHook } from '@utils/react/createContextGetterHook';
@@ -106,13 +105,7 @@ export const TagsTree: FC<ITagsListProps> = ({
 		instanceBuilder: buildProxiedInstance,
 		dataLoader: {
 			getItem: (itemId) => tags[itemId],
-			getChildren: (itemId) =>
-				(tags[itemId].children ?? []).sort(
-					orderBy((tagId) => {
-						const { id, name } = tags[tagId];
-						return [name, id];
-					}),
-				),
+			getChildren: (itemId) => tags[itemId].children ?? [],
 		},
 		canReorder: true,
 		indent: 20,

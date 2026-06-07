@@ -86,7 +86,12 @@ export const selectTagsFlatTree = createWorkspaceSelector(
 		// Sort tags
 		for (const tag of Object.values(tagsMap)) {
 			if (tag.children && tag.children.length > 0) {
-				tag.children.sort(orderBy((id: string) => [tagsMap[id]]));
+				tag.children.sort(
+					orderBy((tagId) => {
+						const { id, name } = tagsMap[tagId];
+						return [name, id];
+					}),
+				);
 			}
 		}
 
