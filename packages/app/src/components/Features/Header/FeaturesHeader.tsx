@@ -13,7 +13,7 @@ export const FeaturesHeader: FC<FeaturesHeaderProps> = ({ children, ...rest }) =
 				fontSize: '18px',
 				fontWeight: 'bold',
 
-				'& &:not(:first-child)': {
+				'&:not(:first-child)': {
 					marginTop: '2rem',
 				},
 			}}
