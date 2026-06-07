@@ -1,11 +1,10 @@
 import { createEvent } from 'effector';
 import { ContextMenu } from '@electron/requests/contextMenu';
-import { openContextMenu } from '@electron/requests/contextMenu/renderer';
 
-export type VoidCallback = () => void;
+import { VoidCallback } from './ElectronContextMenu';
 
-// TODO: implement handle `onClick` events for menu items
-export class ElectronContextMenu<T extends string> {
+// TODO: use chakra-ui menu in browser
+export class DOMContextMenu<T extends string> {
 	private readonly menu: ContextMenu;
 	private readonly onClosed;
 	private readonly onClicked;
@@ -16,17 +15,13 @@ export class ElectronContextMenu<T extends string> {
 	}
 
 	public open({ x, y }: { x: number; y: number }) {
-		openContextMenu({
+		console.log('TODO: implement context menu rendering', {
 			menu: this.menu,
 			x,
 			y,
-		}).then((action) => {
-			if (action === null) {
-				this.onClosed();
-			}
-
-			this.onClicked(action as T);
 		});
+
+		this.onClosed();
 	}
 
 	public onClose(callback: VoidCallback) {

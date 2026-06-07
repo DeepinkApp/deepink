@@ -2,10 +2,8 @@ import { useCallback } from 'react';
 import { ContextMenu } from '@electron/requests/contextMenu';
 import { hasElectronApi } from '@electron/utils/renderer';
 import { NoteActions } from '@features/NotesContainer/NoteContextMenu';
-import {
-	DOMContextMenu,
-	ElectronContextMenu,
-} from '@features/NotesContainer/NoteContextMenu/ElectronContextMenu';
+import { DOMContextMenu } from '@features/NotesContainer/NoteContextMenu/DOMContextMenu';
+import { ElectronContextMenu } from '@features/NotesContainer/NoteContextMenu/ElectronContextMenu';
 
 import { ContextMenuCallback } from './useContextMenu';
 
