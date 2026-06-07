@@ -30,12 +30,7 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 				notesIndex={{} as any}
 			>
 				<editorPanelContext.Provider value={{ onInserting, onFormatting }}>
-					<RichEditor
-						value={props.value}
-						onChanged={props.onChanged}
-						placeholder={props.placeholder}
-						isReadOnly={props.isReadOnly}
-					/>
+					<RichEditor {...props} />
 				</editorPanelContext.Provider>
 			</WorkspaceProvider>
 		</Provider>
@@ -56,18 +51,14 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 		 * Simulates an editor panel action like inserting image
 		 */
 		insert: async (payload: InsertingPayload) => {
-			await act(async () => {
-				onInserting(payload);
-			});
+			await act(async () => onInserting(payload));
 		},
 
 		/**
 		 * Simulates an editor panel formatting action like bold, italic and etc
 		 */
 		format: async (format: TextFormat) => {
-			await act(async () => {
-				onFormatting(format);
-			});
+			await act(async () => onFormatting(format));
 		},
 	};
 };
