@@ -8,22 +8,16 @@ import {
 	TextFormat,
 } from '@features/NoteEditor/EditorPanel';
 import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
+import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEditorContent';
 import { render } from '@testing-library/react';
 import { createTestStore } from '@tests/utils/redux';
 
-type RichEditorProps = {
-	value: string;
-	onChanged?: (value: string) => void;
-	placeholder?: string;
-	isReadOnly?: boolean;
-};
-
-export async function renderRichEditor(props: RichEditorProps) {
+export const renderRichEditor = async (props: RichEditorContentProps) => {
 	const { store } = createTestStore();
 	const onFormatting = createEvent<TextFormat>();
 	const onInserting = createEvent<InsertingPayload>();
 
-	const renderEditor = (props: RichEditorProps) => (
+	const renderEditor = (props: RichEditorContentProps) => (
 		<Provider store={store}>
 			<WorkspaceProvider
 				notesApi={{} as any}
@@ -47,13 +41,14 @@ export async function renderRichEditor(props: RichEditorProps) {
 		</Provider>
 	);
 
-	// Use `act` to wait for all editor updates to complete before making assertions
+	// Use `act` to wait for all editor updates to complete before making assertions;
+	// otherwise, some asynchronous updates may not have been applied to the DOM yet.
 	const result = await act(async () => render(renderEditor(props)));
 
 	return {
 		...result,
 
-		rerender: async (next: RichEditorProps) => {
+		rerender: async (next: RichEditorContentProps) => {
 			await act(async () => result.rerender(renderEditor(next)));
 		},
 
@@ -75,4 +70,4 @@ export async function renderRichEditor(props: RichEditorProps) {
 			});
 		},
 	};
-}
+};

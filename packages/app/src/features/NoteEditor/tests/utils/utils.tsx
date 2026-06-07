@@ -1,7 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 /**
- * Selects text from the beginning of `startText` to the end of `endText` and dispatches a `selectionchange` event
+ * Simulates a text selection in the editor.
+ * Selects everything from the beginning of `startText` to the end of `endText`;
+ * If `endText` is omitted, selects the entire `startText`.
  */
 export const selectContent = (startText: string, endText?: string) => {
 	const startNode = screen.getByText(startText).firstChild;
@@ -10,8 +12,8 @@ export const selectContent = (startText: string, endText?: string) => {
 	const range = document.createRange();
 	range.setStart(startNode as Text, 0);
 
-	// If no end text is provided, select the entire start text
-	// otherwise select range from start to end
+	// If `endText` is provided, select the range from `startText` to `endText`;
+	// otherwise, select the entire `startText`.
 	if (endText) {
 		const endNode = screen.getByText(endText).firstChild;
 		expect(endNode).toBeInstanceOf(Text);
@@ -28,7 +30,7 @@ export const selectContent = (startText: string, endText?: string) => {
 };
 
 /**
- * Places the cursor at the start of a text node and dispatches a `selectionchange` event
+ * Simulates moving the cursor to the start of a text node and dispatches a `selectionchange` event
  */
 export const setCursorPosition = (node: Text) => {
 	const range = document.createRange();
