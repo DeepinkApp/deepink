@@ -16,7 +16,10 @@ import {
 
 export const useWorkspaceData = () => {
 	const { vaultId, workspaceId } = useWorkspaceContext();
-	return { vaultId, workspaceId };
+
+	// We return stable object each render
+	// The point is we memoize the object
+	return useMemo(() => ({ vaultId, workspaceId }), [vaultId, workspaceId]);
 };
 
 // Select vault and workspace from context
