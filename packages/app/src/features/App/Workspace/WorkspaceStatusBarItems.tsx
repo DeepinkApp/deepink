@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaUserLarge } from 'react-icons/fa6';
+import { FaShapes } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useStatusBarManager } from '@features/MainScreen/StatusBar/StatusBarProvider';
-import { useFirstRender } from '@hooks/useFirstRender';
 import { workspacesApi } from '@state/redux/vaults/vaults';
 
 import { useVaultControls } from '../Vault';
@@ -17,7 +16,7 @@ export const WorkspaceStatusBarItems = () => {
 
 	// Vault controls on status bar
 	const vaultControls = useVaultControls();
-	useFirstRender(() => {
+	useEffect(() => {
 		statusBarButtons.controls.register(
 			'changeVault',
 			{
@@ -27,14 +26,14 @@ export const WorkspaceStatusBarItems = () => {
 					dispatch(workspacesApi.setActiveVault(null));
 					vaultControls.close();
 				},
-				icon: <FaUserLarge />,
+				icon: <FaShapes style={{ scale: 0.9 }} />,
 			},
 			{
 				placement: 'start',
 				priority: 1,
 			},
 		);
-	});
+	}, [dispatch, statusBarButtons.controls, t, vaultControls]);
 
 	useActiveNoteHistoryButton();
 
