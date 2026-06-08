@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaShapes } from 'react-icons/fa6';
+import { FaTent } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useStatusBarManager } from '@features/MainScreen/StatusBar/StatusBarProvider';
@@ -26,7 +26,7 @@ export const WorkspaceStatusBarItems = () => {
 					dispatch(workspacesApi.setActiveVault(null));
 					vaultControls.close();
 				},
-				icon: <FaShapes style={{ scale: 0.9 }} />,
+				icon: <FaTent />,
 			},
 			{
 				placement: 'start',
