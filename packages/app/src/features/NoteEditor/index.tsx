@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import React, {
 	FC,
 	memo,
@@ -70,7 +69,6 @@ import { useTogglePreviewTabToRegularOnChange } from './useTogglePreviewTabToReg
 
 export enum NoteSidebarTabs {
 	HISTORY = 'HISTORY',
-	BACK_LINKS = 'BACK_LINKS',
 }
 
 const NoteControlsPanel = memo(({ note }: { note: INote }) => {
@@ -610,26 +608,6 @@ export const Note2: FC<NoteEditorProps> = memo(
 																);
 															}}
 														/>
-													);
-												},
-											},
-											{
-												id: NoteSidebarTabs.BACK_LINKS,
-												title: t('note.sidebar.tabs.backLinks'),
-												content() {
-													return (
-														<div>TODO: Note back links</div>
-													);
-												},
-											},
-											{
-												id: 'files',
-												title: t('note.sidebar.tabs.files'),
-												content() {
-													return (
-														<div>
-															TODO: Files attached to note
-														</div>
 													);
 												},
 											},
