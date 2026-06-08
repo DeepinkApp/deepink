@@ -91,7 +91,14 @@ export const GeneralSettings = () => {
 					<Text variant="secondary">{t('general.subtitle')}</Text>
 				</VStack>
 
-				<Separator />
+				<Separator alignSelf="stretch" />
+
+				<FeaturesOption
+					title={t('general.language.title')}
+					description={t('general.language.description')}
+				>
+					<LanguagePicker />
+				</FeaturesOption>
 
 				<FeaturesOption title={t('general.version.title')}>
 					<VStack gap=".3rem" align="start" width="100%">
@@ -161,23 +168,6 @@ export const GeneralSettings = () => {
 					</SimpleSwitch>
 				</FeaturesOption>
 			</FeaturesPanel>
-			<FeaturesGroup>
-				<FeaturesOption
-					title={t('general.language.title')}
-					description={t('general.language.description')}
-				>
-					<LanguagePicker />
-				</FeaturesOption>
-
-				<FeaturesOption
-					title={t('general.notifications.title')}
-					description={t('general.notifications.description')}
-				>
-					<SimpleSwitch size="sm" defaultChecked>
-						{t('general.notifications.useSystem')}
-					</SimpleSwitch>
-				</FeaturesOption>
-			</FeaturesGroup>
 			<FeaturesGroup title={t('general.vaultLock.groupTitle')}>
 				<FeaturesOption
 					description={t('general.vaultLock.lockOnSystemLock.description')}
