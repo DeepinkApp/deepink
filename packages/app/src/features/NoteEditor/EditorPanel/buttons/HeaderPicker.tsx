@@ -2,17 +2,19 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaHeading } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, HStack, Menu, Portal, Text } from '@chakra-ui/react';
+import { Button, ButtonProps, HStack, Menu, Portal, Text } from '@chakra-ui/react';
 
 import { HeaderLevel } from '..';
 
 export const HeaderPicker = ({
 	onPick,
 	defaultLevel,
+	buttonProps,
 	...props
 }: Omit<React.ComponentProps<typeof Menu.Root>, 'children'> & {
 	onPick: (level: HeaderLevel) => void;
 	defaultLevel?: HeaderLevel;
+	buttonProps?: ButtonProps;
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const [level, setLevel] = useState<HeaderLevel>(defaultLevel ?? 1);
@@ -41,6 +43,8 @@ export const HeaderPicker = ({
 								size="sm"
 								variant="ghost"
 								title={t('editorPanel.header.insertTitle', { level })}
+								minW="auto"
+								{...buttonProps}
 								onMouseUp={(evt) => {
 									const isAltButton = [1, 2].includes(evt.button);
 									if (isAltButton) {
@@ -64,7 +68,6 @@ export const HeaderPicker = ({
 									evt.stopPropagation();
 									onPress(level);
 								}}
-								minW="auto"
 							>
 								<FaHeading />
 							</Button>

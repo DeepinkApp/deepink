@@ -21,7 +21,7 @@ export const LinkButton: FC<
 	ButtonProps & {
 		onPick: (payload: InsertingPayloadMap['link']) => void;
 	}
-> = ({ onPick }) => {
+> = ({ onPick, ...props }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const { show } = useWorkspaceModal();
 
@@ -31,6 +31,7 @@ export const LinkButton: FC<
 				size="sm"
 				variant="ghost"
 				title={t('editorPanel.link.buttonTitle')}
+				{...props}
 				onClick={() => {
 					show({
 						content: ({ onClose }) => (

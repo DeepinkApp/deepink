@@ -21,7 +21,7 @@ export const ImageButton: FC<
 	ButtonProps & {
 		onPick: (payload: InsertingPayloadMap['image']) => void;
 	}
-> = ({ onPick }) => {
+> = ({ onPick, ...props }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const { show } = useWorkspaceModal();
 
@@ -31,6 +31,7 @@ export const ImageButton: FC<
 				size="sm"
 				variant="ghost"
 				title={t('editorPanel.image.buttonTitle')}
+				{...props}
 				onClick={() => {
 					show({
 						content: ({ onClose }) => (
