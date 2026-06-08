@@ -1,6 +1,7 @@
 import React, { act } from 'react';
 import { Provider } from 'react-redux';
 import { createEvent } from 'effector';
+import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
 import { WorkspaceProvider } from '@features/App/Workspace/WorkspaceProvider';
 import {
 	editorPanelContext,
@@ -19,20 +20,22 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 
 	const renderEditor = (props: RichEditorContentProps) => (
 		<Provider store={store}>
-			<WorkspaceProvider
-				notesApi={{} as any}
-				filesRegistry={{} as any}
-				filesController={{} as any}
-				attachmentsController={{} as any}
-				tagsRegistry={{} as any}
-				notesRegistry={{} as any}
-				notesHistory={{} as any}
-				notesIndex={{} as any}
-			>
-				<editorPanelContext.Provider value={{ onInserting, onFormatting }}>
-					<RichEditor {...props} />
-				</editorPanelContext.Provider>
-			</WorkspaceProvider>
+			<ChakraProvider value={defaultSystem}>
+				<WorkspaceProvider
+					notesApi={{} as any}
+					filesRegistry={{} as any}
+					filesController={{} as any}
+					attachmentsController={{} as any}
+					tagsRegistry={{} as any}
+					notesRegistry={{} as any}
+					notesHistory={{} as any}
+					notesIndex={{} as any}
+				>
+					<editorPanelContext.Provider value={{ onInserting, onFormatting }}>
+						<RichEditor {...props} />
+					</editorPanelContext.Provider>
+				</WorkspaceProvider>
+			</ChakraProvider>
 		</Provider>
 	);
 
