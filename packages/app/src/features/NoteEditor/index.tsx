@@ -578,7 +578,7 @@ export const Note2: FC<NoteEditorProps> = memo(
 																);
 																eventBus.emit(
 																	WorkspaceEvents.NOTE_UPDATED,
-																	note.id,
+																	{ noteId: note.id },
 																);
 																forceUpdateLocalStateRef.current = true;
 															}}
