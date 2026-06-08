@@ -21,7 +21,7 @@ export const WelcomeScreen = ({ onConfirm }: { onConfirm: () => void }) => {
 					<Text as="h3" fontSize="2rem" w="100%" textAlign="center">
 						{t('welcome.title')}
 					</Text>
-					<Text color="typography.secondary">{t('welcome.description')}</Text>
+					<Text variant="secondary">{t('welcome.description')}</Text>
 				</VStack>
 
 				<Features width="100%">

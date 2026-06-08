@@ -1,10 +1,11 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Divider, Link, Select, Switch, Text, VStack } from '@chakra-ui/react';
+import { Link, NativeSelect, Separator, Text, VStack } from '@chakra-ui/react';
 import { FeaturesGroup } from '@components/Features/Group';
 import { FeaturesOption } from '@components/Features/Option/FeaturesOption';
 import { RelaxedInput } from '@components/RelaxedInput';
+import { SimpleSwitch } from '@components/SimpleSwitch';
 import { RelaxedSlider } from '@components/Slider/RelaxedSlider';
 import { editorModes } from '@features/NotesContainer/EditorModePicker/EditorModePicker';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
@@ -35,22 +36,25 @@ export const EditorConfig = () => {
 		<>
 			<FeaturesGroup title={t('editor.groupTitle')}>
 				<FeaturesOption title={t('editor.mode.title')}>
-					<Select
-						value={editorMode}
-						size="sm"
-						width="auto"
-						onChange={(e) => {
-							dispatch(
-								settingsApi.setEditorMode(e.target.value as EditorMode),
-							);
-						}}
-					>
-						{Object.entries(editorModes).map(([id, title]) => (
-							<option key={id} value={id}>
-								{title}
-							</option>
-						))}
-					</Select>
+					<NativeSelect.Root size="sm" width="auto">
+						<NativeSelect.Field
+							value={editorMode}
+							onChange={(e) => {
+								dispatch(
+									settingsApi.setEditorMode(
+										e.target.value as EditorMode,
+									),
+								);
+							}}
+						>
+							{Object.entries(editorModes).map(([id, title]) => (
+								<option key={id} value={id}>
+									{title}
+								</option>
+							))}
+						</NativeSelect.Field>
+						<NativeSelect.Indicator />
+					</NativeSelect.Root>
 				</FeaturesOption>
 
 				<FeaturesOption
@@ -96,7 +100,7 @@ export const EditorConfig = () => {
 					/>
 				</FeaturesOption>
 
-				<Divider />
+				<Separator />
 
 				<FeaturesOption
 					title={t('editor.dateFormat.title')}
@@ -137,38 +141,37 @@ export const EditorConfig = () => {
 					)}
 				</FeaturesOption>
 			</FeaturesGroup>
-
 			<FeaturesGroup title={t('editor.plainText.groupTitle')}>
 				<FeaturesOption>
-					<Switch
+					<SimpleSwitch
 						size="sm"
-						isChecked={editorConfig.lineNumbers}
-						onChange={(evt) => {
+						checked={editorConfig.lineNumbers}
+						onCheckedChange={(details) => {
 							dispatch(
 								settingsApi.setEditorConfig({
-									lineNumbers: evt.target.checked,
+									lineNumbers: details.checked,
 								}),
 							);
 						}}
 					>
 						{t('editor.plainText.lineNumbers')}
-					</Switch>
+					</SimpleSwitch>
 				</FeaturesOption>
 
 				<FeaturesOption>
-					<Switch
+					<SimpleSwitch
 						size="sm"
-						isChecked={editorConfig.miniMap}
-						onChange={(evt) => {
+						checked={editorConfig.miniMap}
+						onCheckedChange={(details) => {
 							dispatch(
 								settingsApi.setEditorConfig({
-									miniMap: evt.target.checked,
+									miniMap: details.checked,
 								}),
 							);
 						}}
 					>
 						{t('editor.plainText.miniMap')}
-					</Switch>
+					</SimpleSwitch>
 				</FeaturesOption>
 			</FeaturesGroup>
 		</>

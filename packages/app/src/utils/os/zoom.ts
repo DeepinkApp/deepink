@@ -1,6 +1,10 @@
-import { webFrame } from 'electron';
+import electron from 'electron';
+
+const webFrame = (electron?.webFrame ?? null) as Electron.WebFrame | null;
 
 export function getDevicePixelRatio() {
+	if (!webFrame) return 1;
+
 	const zoomFactor = webFrame.getZoomFactor();
 
 	// Temporary reset current zoom factor to get real DPR
@@ -17,6 +21,8 @@ export function getDefaultZoomFactor() {
 }
 
 export function setZoomFactor(zoom: number) {
+	if (!webFrame) return;
+
 	// Reset current zoom factor to prevent cascade zoom
 	webFrame.setZoomFactor(1);
 	webFrame.setZoomFactor(zoom);
@@ -25,6 +31,7 @@ export function setZoomFactor(zoom: number) {
 }
 
 export function getZoomFactor() {
+	if (!webFrame) return 1;
 	return webFrame.getZoomFactor();
 }
 

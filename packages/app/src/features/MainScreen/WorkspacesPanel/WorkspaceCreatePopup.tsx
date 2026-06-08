@@ -3,14 +3,7 @@ import { AutoFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { z } from 'zod';
-import {
-	Box,
-	ModalBody,
-	ModalCloseButton,
-	ModalHeader,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Box, CloseButton, Dialog, Text, VStack } from '@chakra-ui/react';
 import { PropertiesForm } from '@components/PropertiesForm';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
@@ -65,76 +58,80 @@ export const WorkspaceCreatePopup = () => {
 
 	return (
 		<>
-			<ModalCloseButton />
-			<ModalHeader>
-				<Text>{tFeatures('title')}</Text>
-			</ModalHeader>
-			<ModalBody paddingBottom="1rem">
+			<Dialog.Header>
+				<Dialog.Title>{tFeatures('title')}</Dialog.Title>
+			</Dialog.Header>
+			<Dialog.CloseTrigger asChild>
+				<CloseButton size="sm" />
+			</Dialog.CloseTrigger>
+			<Dialog.Body paddingBottom="1rem">
 				<VStack w="100%" gap="2rem" align="start">
-					<Text color="typography.secondary">{tFeatures('description')}</Text>
+					<Text variant="secondary">{tFeatures('description')}</Text>
 
-					<Box as={AutoFocusInside} w="100%">
-						<PropertiesForm
-							options={[
-								{
-									id: 'name',
-									value: '',
-									label: tFeatures('field.name.label'),
-									placeholder: tFeatures('field.name.placeholder'),
-									suggests: shuffleArray(
-										Object.values(
-											tFeatures('field.name.suggests', {
-												returnObjects: true,
-											}),
-										) as string[],
-									).slice(0, 3),
-								},
-							]}
-							validatorScheme={localizedWorkspacePropsValidator}
-							onUpdate={({ name }) => {
-								if (isPending) return;
-								setIsPending(true);
+					<Box w="100%" asChild>
+						<AutoFocusInside>
+							<PropertiesForm
+								options={[
+									{
+										id: 'name',
+										value: '',
+										label: tFeatures('field.name.label'),
+										placeholder: tFeatures('field.name.placeholder'),
+										suggests: shuffleArray(
+											Object.values(
+												tFeatures('field.name.suggests', {
+													returnObjects: true,
+												}),
+											) as string[],
+										).slice(0, 3),
+									},
+								]}
+								validatorScheme={localizedWorkspacePropsValidator}
+								onUpdate={({ name }) => {
+									if (isPending) return;
+									setIsPending(true);
 
-								workspacesManager
-									.create({ name })
-									.then(async (workspaceId) => {
-										// Synchronize immediately after creation to prevent workspace loss
-										// if the user closes the app before the automatic sync
-										await db.sync();
+									workspacesManager
+										.create({ name })
+										.then(async (workspaceId) => {
+											// Synchronize immediately after creation to prevent workspace loss
+											// if the user closes the app before the automatic sync
+											await db.sync();
 
-										await updateWorkspaces();
+											await updateWorkspaces();
 
-										dispatch(
-											workspacesApi.setActiveWorkspace({
-												workspaceId,
-												vaultId,
-											}),
-										);
+											dispatch(
+												workspacesApi.setActiveWorkspace({
+													workspaceId,
+													vaultId,
+												}),
+											);
 
-										telemetry.track(
-											TELEMETRY_EVENT_NAME.WORKSPACE_ADDED,
-										);
+											telemetry.track(
+												TELEMETRY_EVENT_NAME.WORKSPACE_ADDED,
+											);
 
-										onClose();
-									})
-									.catch((error) => {
-										console.error(error);
-										toast.show({
-											description: tFeatures('error.unknown'),
+											onClose();
+										})
+										.catch((error) => {
+											console.error(error);
+											toast.show({
+												description: tFeatures('error.unknown'),
+											});
+										})
+										.finally(() => {
+											setIsPending(false);
 										});
-									})
-									.finally(() => {
-										setIsPending(false);
-									});
-							}}
-							submitButtonText={tFeatures('action.add')}
-							cancelButtonText={tFeatures('action.cancel')}
-							onCancel={onClose}
-							isPending={isPending}
-						/>
+								}}
+								submitButtonText={tFeatures('action.add')}
+								cancelButtonText={tFeatures('action.cancel')}
+								onCancel={onClose}
+								isPending={isPending}
+							/>
+						</AutoFocusInside>
 					</Box>
 				</VStack>
-			</ModalBody>
+			</Dialog.Body>
 		</>
 	);
 };

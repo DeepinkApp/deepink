@@ -1,8 +1,8 @@
-import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaXmark } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Button, HStack, Tab, TabList, Tabs, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, HStack, Tabs, Text, VStack } from '@chakra-ui/react';
 
 // TODO: let user change size
 // TODO: add icons to tabs
@@ -37,34 +37,30 @@ export const NoteSidebar = ({
 		);
 	}, [activeTab, tabs]);
 
-	const tabIndex = useMemo(
-		() => tabs.findIndex((tab) => activeTab === tab.id),
-		[activeTab, tabs],
-	);
-
 	return (
 		<VStack align="start" w="100%" h="100%" flex={1} gap="1rem">
 			<HStack
 				w="100%"
-				alignItems="start"
+				alignItems="center"
 				borderBottom="1px solid"
 				bgColor="surface.panel"
 				borderColor="surface.border"
 			>
-				<Tabs
-					index={tabIndex}
-					onChange={(index) => {
-						onActiveTabChanged(tabs[index].id);
+				<Tabs.Root
+					value={activeTab}
+					onValueChange={(details) => {
+						onActiveTabChanged(details.value);
 					}}
 					maxH="100px"
 					overflow="auto"
 					flexShrink={1}
 				>
-					<TabList display="flex" flexWrap="nowrap" overflow="auto">
+					<Tabs.List display="flex" flexWrap="nowrap" overflow="auto">
 						{tabs.map((tab) => {
 							return (
-								<Tab
+								<Tabs.Trigger
 									key={tab.id}
+									value={tab.id}
 									padding="0.4rem 0.7rem"
 									border="none"
 									fontWeight="600"
@@ -97,13 +93,13 @@ export const NoteSidebar = ({
 											{tab.title}
 										</Text>
 									</HStack>
-								</Tab>
+								</Tabs.Trigger>
 							);
 						})}
-					</TabList>
-				</Tabs>
+					</Tabs.List>
+				</Tabs.Root>
 
-				<HStack marginLeft="auto" paddingTop=".3rem" paddingInlineEnd=".3rem">
+				<HStack marginLeft="auto" paddingInlineEnd=".3rem">
 					<Button
 						variant="ghost"
 						size="xs"
@@ -114,7 +110,6 @@ export const NoteSidebar = ({
 					</Button>
 				</HStack>
 			</HStack>
-
 			{tabs.map((tab) => {
 				const isActive = tab.id === activeTab;
 				const isOpened = isActive || openedTabs.includes(tab.id);

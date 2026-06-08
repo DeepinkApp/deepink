@@ -1,163 +1,161 @@
-import { getScrollBarStyles } from '../base';
+import { defineConfig } from '@chakra-ui/react';
 
-export default {
-	styles: {
-		global: {
-			...getScrollBarStyles({
-				trackColor: '#e7e0d9',
-				scrollColor: '#bbac9d',
-				scrollHoverColor: '#a99a8c',
-			}),
-		},
-	},
-	shadows: {
-		input: '0 0 0 3px #ffd5b2',
-		outline: '0 0 0 3px #ffd5b2',
-	},
-	colors: {
-		accent: {
-			100: '#ddccbd',
-			200: '#ffd5b2',
-			300: '#f9caa2',
-			500: '#94481c',
-			700: '#ae7f5f',
-		},
-		typography: {
-			base: '#000',
-			secondary: '#4e3a0c',
-			inverted: '#fff',
-		},
-		selection: {
-			foreground: '#000',
-			background: '#ffca9b',
-		},
-		highlight: {
-			foreground: '#000',
-			background: '#ffba7d',
-		},
-		surface: {
-			background: '#fffaf3',
-			invertedBackground: '#000',
-			panel: '#f8f2e9',
-			border: '#e0d6c7',
-		},
-		dim: {
-			50: '#d6ab7d10',
-			100: '#d6ab7d17',
-			200: '#d6ab7d25',
-			400: '#d6ab7d3c',
-			500: '#d6ab7d3c',
-		},
-		overlay: {
-			500: '#00000075',
-		},
-		message: {
-			error: '#b30606',
-			success: '#3ea863',
-		},
-	},
-	semanticTokens: {
-		colors: {
-			link: {
-				base: 'accent.500',
-				hover: 'accent.700',
-			},
-
-			typography: {
-				accent: 'accent.500',
-			},
-
-			control: {
-				base: {
-					background: 'dim.200',
-					foreground: 'typography.base',
-
-					active: {
-						background: 'dim.400',
-					},
-
-					disabled: {
-						background: 'dim.100',
-					},
+export default defineConfig({
+	theme: {
+		tokens: {
+			colors: {
+				accent: {
+					50: { value: '#fdf7f5' },
+					100: { value: '#fbece8' },
+					200: { value: '#f7d8d2' },
+					300: { value: '#efbba9' },
+					400: { value: '#e07d63' },
+					500: { value: '#cc583b' },
+					600: { value: '#b54d32' },
+					700: { value: '#943e28' },
+					800: { value: '#6b2c1d' },
+					900: { value: '#3b1810' },
 				},
-
-				action: {
-					foreground: 'accent.500',
-					background: 'accent.200',
-
-					active: {
-						background: 'accent.300',
-					},
+				sand: {
+					50: { value: '#fbfaf7' },
+					100: { value: '#f7f4ef' },
+					200: { value: '#f1eae0' },
+					300: { value: '#eae0d0' },
+					400: { value: '#e9ddcf' },
+					500: { value: '#9c9384' },
 				},
-
-				input: {
-					background: 'dim.200',
-					border: 'transparent',
-
-					active: {
-						border: 'dim.500',
-					},
+				typography: {
+					base: { value: '#191919' },
+					secondary: { value: '#6b665c' },
+					inverted: { value: '#fbfaf7' },
 				},
-				ghost: {
-					foreground: 'typography.base',
-					background: 'transparent',
-
-					hover: {
-						foreground: 'typography.base',
-						background: 'dim.400',
-					},
-
-					active: {
-						foreground: 'typography.base',
-						background: 'dim.400',
-					},
+				focusRing: { value: '{colors.accent.400}' },
+				selection: {
+					foreground: { value: '#191919' },
+					background: { value: '{colors.sand.200}' },
 				},
-
-				option: {
-					foreground: 'typography.base',
-					background: 'transparent',
-
-					hover: {
-						foreground: 'typography.base',
-						background: 'dim.400',
-					},
-
-					active: {
-						foreground: 'typography.base',
-						background: 'dim.400',
-					},
+				highlight: {
+					foreground: { value: '#191919' },
+					background: { value: '{colors.sand.300}' },
 				},
-			},
-			container: {
-				head: {
-					foreground: 'typography.base',
-					background: 'surface.panel',
+				surface: {
+					background: { value: '#fbfaf7' },
+					invertedBackground: { value: '#191919' },
+					panel: { value: '#f7f4ef' },
+					border: { value: '#d5cdc0' },
+					muted: { value: '#f7f4ef' },
+					section: { value: '#f7f4ef' },
 				},
-
+				dim: {
+					50: { value: '#fbfaf7' },
+					100: { value: '#f7f4ef' },
+					200: { value: '#f1eae0' },
+					400: { value: '#e7dcce' },
+					500: { value: '#d5cdc0' },
+				},
+				overlay: {
+					500: { value: '#19191980' },
+				},
 				message: {
-					foreground: 'typography.base',
-					background: 'dim.100',
-				},
-			},
-			code: {
-				token: {
-					comment: '#a5674e',
-					punctuation: '#9c5f1c',
-					property: '#ac4e04',
-					selector: '#ac4e04',
-					operator: '#e14e12',
-					attr: '#bf3903',
-					variable: '#d46f0f',
-					function: '#d46f0f',
+					error: { value: '#ba3c2a' },
+					success: { value: '#2a7042' },
 				},
 			},
 		},
-		scheme: {
-			alert: {
-				text: '#fff',
-				base: '#C53030',
-				hover: '#9B2C2C',
+		semanticTokens: {
+			colors: {
+				link: {
+					base: { value: '{colors.accent.600}' },
+					hover: { value: '{colors.accent.700}' },
+				},
+				scroll: {
+					track: { value: '{colors.dim.200}' },
+					thumb: {
+						base: { value: '{colors.sand.400}' },
+						hover: { value: '{colors.sand.500}' },
+					},
+				},
+				typography: {
+					accent: { value: '{colors.accent.600}' },
+					muted: { value: '{colors.accent.900}' },
+				},
+				skeleton: {
+					start: { value: '{colors.sand.200}' },
+					end: { value: '{colors.sand.400}' },
+				},
+				control: {
+					base: {
+						background: { value: '{colors.sand.300}' },
+						foreground: { value: '{colors.typography.base}' },
+						active: { background: { value: '{colors.sand.400}' } },
+						disabled: { background: { value: '{colors.sand.300}' } },
+					},
+					action: {
+						foreground: { value: '#ffffff' },
+						background: { value: '{colors.accent.500}' },
+						active: { background: { value: '{colors.accent.600}' } },
+					},
+					input: {
+						focusRing: { value: '{colors.accent.400}' },
+						background: { value: '{colors.sand.100}' },
+						border: { value: '{colors.sand.300}' },
+						active: { border: { value: '{colors.accent.400}' } },
+					},
+					ghost: {
+						foreground: { value: '{colors.typography.base}' },
+						background: { value: 'transparent' },
+						hover: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: '{colors.sand.200}' },
+						},
+						active: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: '{colors.sand.300}' },
+						},
+					},
+					option: {
+						foreground: { value: '{colors.typography.base}' },
+						background: { value: 'transparent' },
+						hover: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: '{colors.sand.200}' },
+						},
+						active: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: '{colors.sand.300}' },
+						},
+					},
+				},
+				container: {
+					head: {
+						foreground: { value: '{colors.typography.base}' },
+						background: { value: '{colors.surface.panel}' },
+					},
+					message: {
+						foreground: { value: '{colors.typography.base}' },
+						background: { value: '{colors.sand.100}' },
+					},
+				},
+				code: {
+					token: {
+						comment: { value: '#8c8578' },
+						punctuation: { value: '#8f6445' },
+						property: { value: '#a3573c' },
+						selector: { value: '#a34832' },
+						operator: { value: '#b54d32' },
+						attr: { value: '#8f382a' },
+						variable: { value: '#9e5944' },
+						function: { value: '#ab5c46' },
+					},
+				},
+				scheme: {
+					alert: {
+						text: { value: '#ffffff' },
+						base: { value: '{colors.message.error}' },
+						hover: { value: '#942b1e' },
+					},
+				},
 			},
 		},
 	},
-};
+});

@@ -4,9 +4,11 @@ import {
 	ImperativePanelGroupHandle,
 	PanelGroup,
 	PanelGroupProps,
+	PanelResizeHandle,
 } from 'react-resizable-panels';
 import { isEqual } from 'lodash';
 import { GlobalEvents } from '@api/events/global';
+import { Box } from '@chakra-ui/react';
 import { useEventBus } from '@hooks/events/useEventBus';
 
 disableGlobalCursorStyles();
@@ -62,5 +64,13 @@ export const SyncedPanelGroup = (props: PanelGroupProps) => {
 				}
 			}}
 		/>
+	);
+};
+
+export const StyledPanelResizeHandle = () => {
+	return (
+		<Box asChild color="surface.border">
+			<PanelResizeHandle />
+		</Box>
 	);
 };

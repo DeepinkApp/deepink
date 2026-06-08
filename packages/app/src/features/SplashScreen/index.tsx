@@ -14,7 +14,7 @@ export const SplashScreen = () => {
 		>
 			<VStack
 				gap="2rem"
-				sx={{
+				css={{
 					height: '100%',
 					width: '100%',
 					margin: 'auto',

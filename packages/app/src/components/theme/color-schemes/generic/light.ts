@@ -1,156 +1,161 @@
-import { getScrollBarStyles } from '../../base';
+import { defineConfig } from '@chakra-ui/react';
+
 import { buildColorScheme } from '../../color';
 
 export default function (accentColor: string) {
 	const colors = buildColorScheme(accentColor);
+	const accent = colors.accentVariants;
 
-	return {
-		styles: {
-			global: {
-				...getScrollBarStyles(),
-			},
-		},
-		shadows: {
-			outline: `0 0 0 3px ${colors.accentVariants['500']}`,
-			input: `0 0 0 3px ${colors.accentVariants['500']}`,
-		},
-		colors: {
-			accent: colors.accentVariants,
-			typography: {
-				base: '#000',
-				secondary: '#5f5f5f',
-				accent: colors.accentVariants['500'],
-				inverted: '#fff',
-				invertedAccent: colors.getContrastForeground(
-					colors.accentVariants['500'],
-				),
-			},
-			selection: {
-				foreground: colors.getContrastForeground(colors.accentVariants['200']),
-				background: colors.accentVariants['200'],
-			},
-			highlight: {
-				foreground: colors.getContrastForeground(colors.accentVariants['200']),
-				background: colors.accentVariants['200'],
-			},
-			surface: {
-				background: '#ffffff',
-				invertedBackground: '#000',
-				panel: '#f9f9f996',
-				border: '#e2e8f0',
-			},
-			dim: {
-				50: '#00000005',
-				100: '#0000000a',
-				200: '#00000010',
-				400: '#00000017',
-				500: '#00000030',
-			},
-			link: {
-				base: colors.accentVariants['500'],
-				hover: colors.accentVariants['600'],
-			},
-			overlay: {
-				500: '#00000075',
-			},
-			message: {
-				error: '#b30606',
-				success: '#3ea863',
-			},
-		},
-		semanticTokens: {
-			colors: {
-				control: {
-					base: {
-						background: 'dim.200',
-						foreground: 'typography.base',
-
-						active: {
-							background: 'dim.400',
-						},
-
-						disabled: {
-							background: 'dim.200',
+	return defineConfig({
+		theme: {
+			tokens: {
+				colors: {
+					accent: Object.fromEntries(
+						Object.entries(accent).map(([k, v]) => [k, { value: v }]),
+					),
+					typography: {
+						base: { value: '#000' },
+						muted: { value: '#51424c' },
+						secondary: { value: '#5f5f5f' },
+						accent: { value: accent['500'] },
+						inverted: { value: '#fff' },
+						invertedAccent: {
+							value: colors.getContrastForeground(accent['500']),
 						},
 					},
-
-					action: {
-						foreground: 'typography.invertedAccent',
-						background: 'accent.500',
-
-						active: {
-							background: 'accent.600',
+					selection: {
+						foreground: {
+							value: colors.getContrastForeground(accent['200']),
 						},
+						background: { value: accent['200'] },
 					},
-
-					input: {
-						background: 'dim.100',
-						border: 'transparent',
-
-						active: {
-							border: 'dim.400',
+					highlight: {
+						foreground: {
+							value: colors.getContrastForeground(accent['200']),
 						},
+						background: { value: accent['200'] },
 					},
-					ghost: {
-						foreground: 'typography.base',
-						background: 'transparent',
-
-						hover: {
-							foreground: 'typography.base',
-							background: 'dim.200',
-						},
-
-						active: {
-							foreground: 'typography.base',
-							background: 'dim.200',
-						},
+					surface: {
+						background: { value: '#ffffff' },
+						invertedBackground: { value: '#000' },
+						panel: { value: '#f9f9f996' },
+						border: { value: '#e2e8f0' },
+						muted: { value: '{colors.dim.200}' },
 					},
-					option: {
-						foreground: 'typography.base',
-						background: 'transparent',
-
-						hover: {
-							foreground: 'typography.base',
-							background: 'dim.200',
-						},
-
-						active: {
-							foreground: 'typography.base',
-							background: 'dim.200',
-						},
+					dim: {
+						50: { value: '#00000005' },
+						100: { value: '#0000000a' },
+						200: { value: '#00000010' },
+						400: { value: '#00000017' },
+						500: { value: '#00000030' },
 					},
-				},
-				container: {
-					head: {
-						foreground: 'typography.base',
-						background: 'surface.panel',
+					link: {
+						base: { value: accent['500'] },
+						hover: { value: accent['600'] },
 					},
-
+					overlay: {
+						500: { value: '#00000075' },
+					},
 					message: {
-						foreground: 'typography.base',
-						background: 'dim.100',
+						error: { value: '#b30606' },
+						success: { value: '#3ea863' },
 					},
+					focusRing: { value: accent['500'] },
 				},
-				code: {
-					token: {
-						comment: '#a5674e',
-						punctuation: '#9c5f1c',
-						property: '#ac4e04',
-						selector: '#ac4e04',
-						operator: '#e14e12',
-						attr: '#df4c11',
-						variable: '#e90',
-						function: '#ff8300',
-					},
+				shadows: {
+					outline: { value: `0 0 0 3px ${accent['500']}` },
+					input: { value: `0 0 0 3px ${accent['500']}` },
 				},
 			},
-			scheme: {
-				alert: {
-					text: '#fff',
-					base: '#C53030',
-					hover: '#9B2C2C',
+			semanticTokens: {
+				colors: {
+					control: {
+						base: {
+							background: { value: '{colors.dim.200}' },
+							foreground: { value: '{colors.typography.base}' },
+							active: { background: { value: '{colors.dim.400}' } },
+							disabled: { background: { value: '{colors.dim.200}' } },
+						},
+						action: {
+							foreground: {
+								value: '{colors.typography.invertedAccent}',
+							},
+							background: { value: '{colors.accent.500}' },
+							active: { background: { value: '{colors.accent.600}' } },
+						},
+						input: {
+							focusRing: { value: accent['500'] },
+							background: { value: '{colors.dim.100}' },
+							border: { value: 'transparent' },
+							active: { border: { value: '{colors.dim.400}' } },
+						},
+						ghost: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: 'transparent' },
+							hover: {
+								foreground: { value: '{colors.typography.base}' },
+								background: { value: '{colors.dim.200}' },
+							},
+							active: {
+								foreground: { value: '{colors.typography.base}' },
+								background: { value: '{colors.dim.200}' },
+							},
+						},
+						option: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: 'transparent' },
+							hover: {
+								foreground: { value: '{colors.typography.base}' },
+								background: { value: '{colors.dim.200}' },
+							},
+							active: {
+								foreground: { value: '{colors.typography.base}' },
+								background: { value: '{colors.dim.200}' },
+							},
+						},
+					},
+					scroll: {
+						track: { value: '{colors.dim.200}' },
+						thumb: {
+							base: { value: '{colors.dim.400}' },
+							hover: { value: '{colors.dim.500}' },
+						},
+					},
+					skeleton: {
+						start: { value: '{colors.dim.200}' },
+						end: { value: '{colors.dim.400}' },
+					},
+					container: {
+						head: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: '{colors.surface.panel}' },
+						},
+						message: {
+							foreground: { value: '{colors.typography.base}' },
+							background: { value: '{colors.dim.100}' },
+						},
+					},
+					code: {
+						token: {
+							comment: { value: '#a5674e' },
+							punctuation: { value: '#9c5f1c' },
+							property: { value: '#ac4e04' },
+							selector: { value: '#ac4e04' },
+							operator: { value: '#e14e12' },
+							attr: { value: '#df4c11' },
+							variable: { value: '#e90' },
+							function: { value: '#ff8300' },
+						},
+					},
+					scheme: {
+						alert: {
+							text: { value: '#fff' },
+							base: { value: '#C53030' },
+							hover: { value: '#9B2C2C' },
+						},
+					},
 				},
 			},
 		},
-	};
+	});
 }

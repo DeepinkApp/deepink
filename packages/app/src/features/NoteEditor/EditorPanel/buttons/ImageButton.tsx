@@ -7,9 +7,8 @@ import {
 	Box,
 	Button,
 	ButtonProps,
-	ModalBody,
-	ModalCloseButton,
-	ModalHeader,
+	CloseButton,
+	Dialog,
 	Text,
 	VStack,
 } from '@chakra-ui/react';
@@ -36,58 +35,64 @@ export const ImageButton: FC<
 					show({
 						content: ({ onClose }) => (
 							<>
-								<ModalCloseButton />
-								<ModalHeader>
-									<Text>{t('editorPanel.image.dialogTitle')}</Text>
-								</ModalHeader>
-								<ModalBody paddingBottom="1rem">
+								<Dialog.Header>
+									<Dialog.Title>
+										{t('editorPanel.image.dialogTitle')}
+									</Dialog.Title>
+								</Dialog.Header>
+								<Dialog.CloseTrigger asChild>
+									<CloseButton size="sm" />
+								</Dialog.CloseTrigger>
+								<Dialog.Body paddingBottom="1rem">
 									<VStack w="100%" gap="2rem" align="start">
-										<Text color="typography.secondary">
+										<Text variant="secondary">
 											{t('editorPanel.image.dialogDescription')}
 										</Text>
 
-										<Box as={AutoFocusInside} w="100%">
-											<PropertiesForm
-												options={[
-													{
-														id: 'url',
-														value: '',
-														label: t(
-															'editorPanel.image.field.url.label',
-														),
-														placeholder: t(
-															'editorPanel.image.field.url.placeholder',
-														),
-													},
-													{
-														id: 'altText',
-														value: '',
-														label: t(
-															'editorPanel.image.field.altText.label',
-														),
-														placeholder: t(
-															'editorPanel.image.field.altText.placeholder',
-														),
-													},
-												]}
-												onUpdate={({ url, altText }) => {
-													onClose();
+										<Box w="100%" asChild>
+											<AutoFocusInside>
+												<PropertiesForm
+													options={[
+														{
+															id: 'url',
+															value: '',
+															label: t(
+																'editorPanel.image.field.url.label',
+															),
+															placeholder: t(
+																'editorPanel.image.field.url.placeholder',
+															),
+														},
+														{
+															id: 'altText',
+															value: '',
+															label: t(
+																'editorPanel.image.field.altText.label',
+															),
+															placeholder: t(
+																'editorPanel.image.field.altText.placeholder',
+															),
+														},
+													]}
+													onUpdate={({ url, altText }) => {
+														onClose();
 
-													if (url) {
-														onPick({ url, altText });
-													}
-												}}
-												submitButtonText={t(
-													'editorPanel.image.actions.add',
-												)}
-												cancelButtonText={t(
-													'editorPanel.image.actions.cancel',
-												)}
-												onCancel={onClose}
-											/>
+														if (url) {
+															onPick({ url, altText });
+														}
+													}}
+													submitButtonText={t(
+														'editorPanel.image.actions.add',
+													)}
+													cancelButtonText={t(
+														'editorPanel.image.actions.cancel',
+													)}
+													onCancel={onClose}
+												/>
+											</AutoFocusInside>
 										</Box>
 									</VStack>
-								</ModalBody>
+								</Dialog.Body>
 							</>
 						),
 					});

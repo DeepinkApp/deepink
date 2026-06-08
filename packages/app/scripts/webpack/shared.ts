@@ -3,14 +3,22 @@ import path from 'path';
 import { SwcMinifyWebpackPlugin } from 'swc-minify-webpack-plugin';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 import { Configuration } from 'webpack';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-import { isPreloadChunk, isProduction, mode, projectRoot } from './utils';
+import {
+	isPreloadChunk,
+	isProduction,
+	isWebpackServeMode,
+	mode,
+	projectRoot,
+} from './utils';
 
 const outputPath = path.join(projectRoot, 'dist');
 
 console.log('Webpack run', {
 	isProduction,
 	outputPath,
+	isWebpackServeMode,
 });
 
 export default {
@@ -81,7 +89,7 @@ export default {
 	},
 	output: {
 		path: outputPath,
-		publicPath: './',
+		publicPath: isWebpackServeMode ? '/' : './',
 
 		// Better chunk naming for caching
 		chunkFilename: isProduction ? '[name].[contenthash].js' : '[name].js',
@@ -113,6 +121,8 @@ export default {
 								runtime: 'automatic',
 								pragma: 'React.createElement',
 								pragmaFrag: 'React.Fragment',
+								development: !isProduction && isWebpackServeMode,
+								refresh: !isProduction && isWebpackServeMode,
 							},
 						},
 						target: 'es2022',
@@ -142,6 +152,7 @@ export default {
 	},
 
 	plugins: [
+		...(isWebpackServeMode ? [new ReactRefreshWebpackPlugin()] : []),
 		// run full TS type check in parallel; async: false -> build waits for typecheck and fails on errors
 		new ForkTsCheckerWebpackPlugin({
 			// Allow async in dev for faster builds

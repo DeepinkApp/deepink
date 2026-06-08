@@ -5,8 +5,8 @@ import React, {
 	useMemo,
 	useState,
 } from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import baseTheme from '@components/theme/base';
+import { ChakraProvider, createSystem, defaultConfig } from '@chakra-ui/react';
+import baseConfig from '@components/theme/base';
 import darkTheme from '@components/theme/color-schemes/generic/dark';
 import lightTheme from '@components/theme/color-schemes/generic/light';
 import zenTheme from '@components/theme/color-schemes/zen';
@@ -54,7 +54,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 	const theme = useMemo(() => {
 		switch (name) {
 			case 'zen': {
-				return extendTheme(baseTheme, zenTheme);
+				return createSystem(defaultConfig, baseConfig, zenTheme);
 			}
 		}
 
@@ -64,8 +64,9 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 				? accentColorsMap[accentColor]
 				: accentColorsMap.blue;
 
-		return extendTheme(
-			baseTheme,
+		return createSystem(
+			defaultConfig,
+			baseConfig,
 			colorMode === 'dark'
 				? darkTheme(accentColorCode)
 				: lightTheme(accentColorCode),
@@ -79,5 +80,5 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 		(globalThis as any)[Symbol.for('updateMonacoTheme')] = updateMonacoTheme;
 	}, [theme]);
 
-	return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
+	return <ChakraProvider value={theme}>{children}</ChakraProvider>;
 };

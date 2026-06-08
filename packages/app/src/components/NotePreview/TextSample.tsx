@@ -34,8 +34,12 @@ export const TextSample = ({
 				const content = text.slice(segment.start, segment.end);
 
 				return segment.highlight ? (
-					<Text key={index} as="mark" variant="highlight">
-						{content}
+					<Text
+						backgroundColor="highlight.background"
+						color="highlight.foreground"
+						asChild
+					>
+						<mark key={index}>{content}</mark>
 					</Text>
 				) : (
 					content

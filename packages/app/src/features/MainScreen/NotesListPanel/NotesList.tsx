@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, memo, useRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
@@ -20,10 +20,11 @@ import {
 } from '@state/redux/vaults/vaults';
 import { ScrollToOptions, useVirtualizer } from '@tanstack/react-virtual';
 
-import { useLocalizedDate } from '../../../hooks/useLocalizedDate';
-
 import { useNotesData } from './useNotesData';
 import { useScrollToActiveNote } from './useScrollToActiveNote';
+
+const MemoizedSkeleton = memo(Skeleton);
+MemoizedSkeleton.displayName = 'MemoizedSkeleton';
 
 export const scrollAlignment: ScrollToOptions['align'] = 'start';
 
@@ -31,7 +32,6 @@ export type NotesListProps = {};
 
 export const NotesList: FC<NotesListProps> = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
-	const localizedDate = useLocalizedDate();
 	const telemetry = useTelemetryTracker();
 
 	const createNote = useCreateNote();
@@ -78,7 +78,7 @@ export const NotesList: FC<NotesListProps> = () => {
 	return (
 		<VStack
 			ref={parentRef}
-			sx={{
+			css={{
 				w: '100%',
 				h: '100%',
 				overflow: 'auto',
@@ -114,16 +114,17 @@ export const NotesList: FC<NotesListProps> = () => {
 									}}
 									size="sm"
 									variant="link"
-									leftIcon={<FaPenToSquare />}
-									iconSpacing=".2rem"
-								></Button>
+									gap=".2rem"
+								>
+									<FaPenToSquare />
+								</Button>
 							),
 						}}
 					/>
 				</Text>
 			) : (
 				<Box
-					sx={{
+					css={{
 						display: 'block',
 						position: 'relative',
 						width: '100%',
@@ -132,7 +133,7 @@ export const NotesList: FC<NotesListProps> = () => {
 					}}
 				>
 					<VStack
-						sx={{
+						css={{
 							width: '100%',
 							top: 0,
 							left: 0,
@@ -147,19 +148,15 @@ export const NotesList: FC<NotesListProps> = () => {
 							const note = notesData.get(id);
 							if (!note)
 								return (
-									<Skeleton
+									<MemoizedSkeleton
 										key={id}
 										ref={isActive ? activeNoteRef : undefined}
 										data-index={virtualRow.index}
 										data-loading
-										startColor="primary.100"
-										endColor="dim.400"
 										height="70px"
 										w="100%"
 									/>
 								);
-
-							const date = note.updatedTimestamp ?? note.createdTimestamp;
 
 							// TODO: get preview text from DB as prepared value
 							// TODO: show attachments
@@ -178,11 +175,11 @@ export const NotesList: FC<NotesListProps> = () => {
 									textToHighlight={search}
 									title={getNoteTitle(note.content)}
 									text={note.content.text}
-									meta={
-										date && (
-											<Text>{localizedDate(new Date(date))}</Text>
-										)
-									}
+									meta={{
+										updatedAt:
+											note.updatedTimestamp ??
+											note.createdTimestamp,
+									}}
 									onContextMenu={(evt) => {
 										openNoteContextMenu(
 											note,

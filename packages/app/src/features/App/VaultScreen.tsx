@@ -8,7 +8,7 @@ import { VaultsApi } from './Vaults/hooks/useVaultContainers';
 export const VaultScreen: FC<{ vaultContainers: VaultsApi }> = ({ vaultContainers }) => {
 	return (
 		<Box
-			sx={{
+			css={{
 				display: 'flex',
 				width: '100%',
 				height: '100vh',

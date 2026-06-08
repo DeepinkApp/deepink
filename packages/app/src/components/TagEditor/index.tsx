@@ -1,16 +1,13 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useId, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
 	Button,
-	FormControl,
-	FormErrorMessage,
+	CloseButton,
+	Dialog,
+	Field,
 	HStack,
 	Input,
-	ModalBody,
-	ModalCloseButton,
-	ModalFooter,
-	ModalHeader,
 	Text,
 	VStack,
 } from '@chakra-ui/react';
@@ -48,6 +45,8 @@ export const TagEditor: FC<ITagEditorProps> = ({
 	onSave,
 	onCancel,
 }) => {
+	const formId = useId();
+
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const { t: tCommon } = useTranslation(LOCALE_NAMESPACE.common);
 
@@ -108,88 +107,100 @@ export const TagEditor: FC<ITagEditorProps> = ({
 
 	const [isPending, setIsPending] = useState(false);
 	return (
-		<form
-			onSubmit={async (event) => {
-				event.preventDefault();
-				if (isPending) return;
+		<>
+			<Dialog.Header>
+				<Dialog.Title>
+					{isEditingMode
+						? t('tag.editor.mode.edit.title')
+						: t('tag.editor.mode.add.title')}
+				</Dialog.Title>
+			</Dialog.Header>
+			<Dialog.CloseTrigger asChild>
+				<CloseButton size="sm" />
+			</Dialog.CloseTrigger>
+			<Dialog.Body>
+				<form
+					id={formId}
+					onSubmit={async (event) => {
+						event.preventDefault();
+						if (isPending) return;
 
-				setIsPending(true);
-				try {
-					const name = tagName.trim();
+						setIsPending(true);
+						try {
+							const name = tagName.trim();
 
-					const result = await onSave({
-						name,
-						parent: parentTagId,
-						...(isEditingMode && editedTag.id ? { id: editedTag.id } : {}),
-					});
+							const result = await onSave({
+								name,
+								parent: parentTagId,
+								...(isEditingMode && editedTag.id
+									? { id: editedTag.id }
+									: {}),
+							});
 
-					if (!result.ok) {
-						setTagNameError(result.error);
-						return;
-					}
-					onCancel();
-				} catch (error) {
-					console.error(error);
+							if (!result.ok) {
+								setTagNameError(result.error);
+								return;
+							}
+							onCancel();
+						} catch (error) {
+							console.error(error);
 
-					setTagNameError(t('tag.editor.messages.unknownSubmitError'));
-				} finally {
-					setIsPending(false);
-				}
-			}}
-		>
-			<ModalCloseButton />
-			<ModalHeader>
-				{isEditingMode
-					? t('tag.editor.mode.edit.title')
-					: t('tag.editor.mode.add.title')}
-			</ModalHeader>
-
-			<ModalBody>
-				<VStack align="start" gap="1rem">
-					<VStack w="100%" align="start" gap="0.5rem">
-						<Text>{t('tag.editor.field.parent.label')}</Text>
-						<SuggestedTagsList
-							placeholder={t('tag.editor.field.parent.placeholder')}
-							tags={tags}
-							selectedTag={selectedParentTag ?? undefined}
-							onPick={(tag) => {
-								setParentTagId(tag.id);
-								setIsTagsListVisible(false);
-							}}
-						/>
-					</VStack>
-
-					<FormControl isInvalid={tagNameError !== null}>
+							setTagNameError(t('tag.editor.messages.unknownSubmitError'));
+						} finally {
+							setIsPending(false);
+						}
+					}}
+				>
+					<VStack align="start" gap="1rem">
 						<VStack w="100%" align="start" gap="0.5rem">
-							<Text>{t('tag.editor.field.name.label')}</Text>
-							<Input
-								ref={tagNameRef}
-								placeholder={t('tag.editor.field.name.placeholder')}
-								value={tagName}
-								onChange={(evt) => {
-									setTagName(evt.target.value);
+							<Text>{t('tag.editor.field.parent.label')}</Text>
+							<SuggestedTagsList
+								placeholder={t('tag.editor.field.parent.placeholder')}
+								tags={tags}
+								selectedTag={selectedParentTag ?? undefined}
+								onPick={(tag) => {
+									setParentTagId(tag.id);
+									setIsTagsListVisible(false);
 								}}
-								autoFocus={true}
 							/>
-
-							{tagNameError && (
-								<FormErrorMessage>{tagNameError}</FormErrorMessage>
-							)}
 						</VStack>
-					</FormControl>
-				</VStack>
-			</ModalBody>
 
-			<ModalFooter>
+						<Field.Root invalid={tagNameError !== null}>
+							<VStack w="100%" align="start" gap="0.5rem">
+								<Text>{t('tag.editor.field.name.label')}</Text>
+								<Input
+									ref={tagNameRef}
+									placeholder={t('tag.editor.field.name.placeholder')}
+									value={tagName}
+									onChange={(evt) => {
+										setTagName(evt.target.value);
+									}}
+									autoFocus={true}
+								/>
+
+								{tagNameError && (
+									<Field.ErrorText>{tagNameError}</Field.ErrorText>
+								)}
+							</VStack>
+						</Field.Root>
+					</VStack>
+				</form>
+			</Dialog.Body>
+			<Dialog.Footer>
 				<HStack w="100%" justifyContent="end">
-					<Button type="submit" variant="accent" isDisabled={isPending}>
+					<Button
+						type="submit"
+						variant="accent"
+						disabled={isPending}
+						form={formId}
+					>
 						{isEditingMode
 							? t('tag.editor.mode.edit.action')
 							: t('tag.editor.mode.add.action')}
 					</Button>
 					<Button onClick={onCancel}>{tCommon('actions.cancel')}</Button>
 				</HStack>
-			</ModalFooter>
-		</form>
+			</Dialog.Footer>
+		</>
 	);
 };

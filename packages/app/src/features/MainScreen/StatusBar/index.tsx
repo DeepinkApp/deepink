@@ -27,12 +27,9 @@ export const StatusBar: FC<StatusBarProps> = (props) => {
 							key={idx}
 							ref={item.ref}
 							size="xs"
-							variant="ghost"
-							borderRadius="0"
-							fontWeight="normal"
+							variant="statusbar"
 							title={item.title}
 							onClick={item.onClick}
-							color="typography.secondary"
 						>
 							<HStack>
 								{item.icon}
@@ -50,12 +47,9 @@ export const StatusBar: FC<StatusBarProps> = (props) => {
 							key={idx}
 							ref={item.ref}
 							size="xs"
-							variant="ghost"
-							borderRadius="0"
-							fontWeight="normal"
+							variant="statusbar"
 							title={item.title}
 							onClick={item.onClick}
-							color="typography.secondary"
 						>
 							<HStack>
 								{item.icon}

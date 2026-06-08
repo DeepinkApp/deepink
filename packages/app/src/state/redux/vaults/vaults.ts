@@ -5,7 +5,7 @@ import { IResolvedTag } from '@core/features/tags';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createAppSelector } from '../utils';
-import { findNearNote } from './utils';
+import { findNearNote, syncTouchedNotes } from './utils';
 
 type VaultMutator<T extends {}> = (vault: VaultData, payload: T) => void;
 
@@ -75,6 +75,7 @@ export const createWorkspaceObject = ({
 	activeNote: null,
 	recentlyClosedNotes: [],
 	openedNotes: [],
+	touchedNoteIds: {},
 	previewTabId: null,
 
 	noteIds: [],
@@ -137,6 +138,10 @@ export type WorkspaceData = {
 	activeNote: NoteId | null;
 	recentlyClosedNotes: NoteId[];
 	openedNotes: INote[];
+	/**
+	 * Note ids that have been seen by user
+	 */
+	touchedNoteIds: Record<NoteId, boolean>;
 	previewTabId: NoteId | null;
 
 	noteIds: NoteId[];
@@ -335,6 +340,8 @@ export const vaultsSlice = createSlice({
 			if (!isOpenedNote) return;
 
 			workspace.activeNote = noteId;
+
+			syncTouchedNotes(workspace);
 		},
 
 		setNoteIds: (
@@ -399,6 +406,8 @@ export const vaultsSlice = createSlice({
 			if (workspace.recentlyClosedNotes.length !== filteredClosedNotes.length) {
 				workspace.recentlyClosedNotes = filteredClosedNotes;
 			}
+
+			syncTouchedNotes(workspace);
 		},
 
 		removeOpenedNote: (
@@ -420,6 +429,7 @@ export const vaultsSlice = createSlice({
 					: (findNearNote(openedNotes, activeNote)?.id ?? null);
 			workspace.openedNotes =
 				filteredNotes.length !== openedNotes.length ? filteredNotes : openedNotes;
+			syncTouchedNotes(workspace);
 
 			workspace.recentlyClosedNotes.push(noteId);
 
@@ -506,12 +516,14 @@ export const vaultsSlice = createSlice({
 				}
 			}
 
-			// Update recently closed
-			workspace.recentlyClosedNotes.push(
-				...openedNotes
-					.filter((note) => !filteredNoteIds.has(note.id))
-					.map((note) => note.id),
-			);
+			// Update recently closed list
+			const closedNoteIds = openedNotes
+				.filter((note) => !filteredNoteIds.has(note.id))
+				.map((note) => note.id);
+
+			workspace.recentlyClosedNotes.push(...closedNoteIds);
+
+			syncTouchedNotes(workspace);
 		},
 
 		updateOpenedNote: (
@@ -560,6 +572,9 @@ export const vaultsSlice = createSlice({
 			workspace.activeNote = noteIdSet.has(activeNoteId)
 				? activeNoteId
 				: (notes[0]?.id ?? null);
+
+			// Update touched tabs
+			syncTouchedNotes(workspace);
 
 			workspace.previewTabId =
 				previewTabId !== null && noteIdSet.has(previewTabId)

@@ -1,13 +1,6 @@
 import React, { ReactNode, useCallback } from 'react';
 import { AutoFocusInside } from 'react-focus-lock';
-import {
-	Box,
-	HStack,
-	ModalBody,
-	ModalCloseButton,
-	ModalHeader,
-	VStack,
-} from '@chakra-ui/react';
+import { Box, CloseButton, Dialog, HStack, VStack } from '@chakra-ui/react';
 import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 
 export const useConfirmDialog = () => {
@@ -26,25 +19,23 @@ export const useConfirmDialog = () => {
 					const { title, content, action } = getContent({ onClose });
 					return (
 						<>
-							<ModalCloseButton />
-							<ModalHeader>
-								<Box>{title}</Box>
-							</ModalHeader>
-							<ModalBody paddingBottom="1rem">
+							<Dialog.Header>
+								<Dialog.Title>{title}</Dialog.Title>
+							</Dialog.Header>
+							<Dialog.CloseTrigger asChild>
+								<CloseButton size="sm" />
+							</Dialog.CloseTrigger>
+							<Dialog.Body paddingBottom="1rem">
 								<VStack w="100%" gap="1rem" align="start">
 									<Box>{content}</Box>
 
 									{action && (
-										<HStack
-											justifyContent="end"
-											as={AutoFocusInside}
-											w="100%"
-										>
-											{action}
+										<HStack justifyContent="end" w="100%" asChild>
+											<AutoFocusInside>{action}</AutoFocusInside>
 										</HStack>
 									)}
 								</VStack>
-							</ModalBody>
+							</Dialog.Body>
 						</>
 					);
 				},

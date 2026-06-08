@@ -7,9 +7,8 @@ import {
 	Box,
 	Button,
 	ButtonProps,
-	ModalBody,
-	ModalCloseButton,
-	ModalHeader,
+	CloseButton,
+	Dialog,
 	Text,
 	VStack,
 } from '@chakra-ui/react';
@@ -36,48 +35,54 @@ export const LinkButton: FC<
 					show({
 						content: ({ onClose }) => (
 							<>
-								<ModalCloseButton />
-								<ModalHeader>
-									<Text>{t('editorPanel.link.dialogTitle')}</Text>
-								</ModalHeader>
-								<ModalBody paddingBottom="1rem">
+								<Dialog.Header>
+									<Dialog.Title>
+										{t('editorPanel.link.dialogTitle')}
+									</Dialog.Title>
+								</Dialog.Header>
+								<Dialog.CloseTrigger asChild>
+									<CloseButton size="sm" />
+								</Dialog.CloseTrigger>
+								<Dialog.Body paddingBottom="1rem">
 									<VStack w="100%" gap="2rem" align="start">
-										<Text color="typography.secondary">
+										<Text variant="secondary">
 											{t('editorPanel.link.dialogDescription')}
 										</Text>
 
-										<Box as={AutoFocusInside} w="100%">
-											<PropertiesForm
-												options={[
-													{
-														id: 'url',
-														value: '',
-														label: t(
-															'editorPanel.link.field.url.label',
-														),
-														placeholder: t(
-															'editorPanel.link.field.url.placeholder',
-														),
-													},
-												]}
-												onUpdate={({ url }) => {
-													onClose();
+										<Box w="100%" asChild>
+											<AutoFocusInside>
+												<PropertiesForm
+													options={[
+														{
+															id: 'url',
+															value: '',
+															label: t(
+																'editorPanel.link.field.url.label',
+															),
+															placeholder: t(
+																'editorPanel.link.field.url.placeholder',
+															),
+														},
+													]}
+													onUpdate={({ url }) => {
+														onClose();
 
-													if (url) {
-														onPick({ url });
-													}
-												}}
-												submitButtonText={t(
-													'editorPanel.link.actions.add',
-												)}
-												cancelButtonText={t(
-													'editorPanel.link.actions.cancel',
-												)}
-												onCancel={onClose}
-											/>
+														if (url) {
+															onPick({ url });
+														}
+													}}
+													submitButtonText={t(
+														'editorPanel.link.actions.add',
+													)}
+													cancelButtonText={t(
+														'editorPanel.link.actions.cancel',
+													)}
+													onCancel={onClose}
+												/>
+											</AutoFocusInside>
 										</Box>
 									</VStack>
-								</ModalBody>
+								</Dialog.Body>
 							</>
 						),
 					});

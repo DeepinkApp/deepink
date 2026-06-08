@@ -1,34 +1,37 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, memo, ReactNode } from 'react';
 import {
 	IconButton as BaseIconButton,
 	IconButtonProps as BaseIconButtonProps,
-	Tooltip,
-	TooltipProps,
 } from '@chakra-ui/react';
+import { Tooltip, type TooltipProps } from '@components/ui/tooltip';
 
-export type IconButtonProps = Omit<BaseIconButtonProps, 'icon' | 'aria-label'> & {
-	icon: Exclude<BaseIconButtonProps['icon'], void>;
+export type IconButtonProps = Omit<BaseIconButtonProps, 'aria-label'> & {
+	icon: ReactNode;
 	title: string;
-	tooltipPlacement?: TooltipProps['placement'];
+	tooltipPlacement?: string;
 	tooltipProps?: Omit<TooltipProps, 'children'>;
 };
 
-export const IconButton = forwardRef<HTMLDivElement, IconButtonProps>(
-	({ icon, title, tooltipPlacement, tooltipProps, ...buttonProps }, ref) => {
-		return (
-			<Tooltip
-				label={title}
-				hasArrow
-				placement={tooltipPlacement}
-				{...tooltipProps}
-			>
-				<BaseIconButton
-					ref={ref}
-					icon={icon}
-					aria-label={title}
-					{...buttonProps}
-				/>
-			</Tooltip>
-		);
-	},
+export const IconButton = memo(
+	forwardRef<HTMLButtonElement, IconButtonProps>(
+		({ icon, title, tooltipPlacement, tooltipProps, ...buttonProps }, ref) => {
+			return (
+				<Tooltip
+					showArrow
+					{...(tooltipProps ?? {})}
+					content={title}
+					positioning={{
+						placement: tooltipPlacement as any,
+						...(tooltipProps?.positioning ?? {}),
+					}}
+				>
+					<BaseIconButton ref={ref} aria-label={title} {...buttonProps}>
+						{icon}
+					</BaseIconButton>
+				</Tooltip>
+			);
+		},
+	),
 );
+
+IconButton.displayName = 'IconButton';

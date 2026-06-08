@@ -8,7 +8,7 @@ import React, {
 	useState,
 } from 'react';
 import { createEvent, EventCallable } from 'effector';
-import { ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { Dialog } from '@chakra-ui/react';
 import { WorkspaceModal } from '@features/WorkspaceModal';
 import { createContextGetterHook } from '@utils/react/createContextGetterHook';
 
@@ -72,10 +72,18 @@ export const WorkspaceModalProvider: FC<WorkspaceModalProviderProps> = ({
 		<modalContext.Provider value={context}>
 			{children}
 			{modal && (
-				<WorkspaceModal isOpen={isVisible} isCentered onClose={onClose}>
-					<ModalOverlay />
+				<WorkspaceModal
+					open={isVisible}
+					placement="center"
+					onOpenChange={(e) => {
+						if (!e.open) onClose();
+					}}
+				>
+					<Dialog.Backdrop />
 					<modalApiContext.Provider value={api}>
-						<ModalContent>{modal.content(api)}</ModalContent>
+						<Dialog.Positioner>
+							<Dialog.Content>{modal.content(api)}</Dialog.Content>
+						</Dialog.Positioner>
 					</modalApiContext.Provider>
 				</WorkspaceModal>
 			)}

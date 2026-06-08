@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Divider, HStack } from '@chakra-ui/react';
+import { Box, HStack, Separator } from '@chakra-ui/react';
 import { useFilesRegistry } from '@features/App/Workspace/WorkspaceProvider';
 import { useAppSelector } from '@state/redux/hooks';
 import { selectEditorMode } from '@state/redux/settings/settings';
@@ -67,9 +67,8 @@ export const NoteEditor = ({
 					<EditorPanel />
 				</HStack>
 			)}
-
 			<HStack
-				sx={{
+				css={{
 					display: 'flex',
 					width: '100%',
 					height: '100%',
@@ -78,26 +77,33 @@ export const NoteEditor = ({
 			>
 				{(editorMode === 'plaintext' || editorMode === 'split-screen') && (
 					<Box
-						as={MonacoEditor}
-						value={text}
-						setValue={setText}
 						flexGrow="100"
-						uploadFile={uploadFile}
 						width="100%"
 						height="100%"
 						minW="0"
-						isReadOnly={isReadOnly}
-						apiRef={monacoRef}
-					/>
+						css={{
+							'& > *': {
+								height: '100%',
+							},
+						}}
+					>
+						<MonacoEditor
+							value={text}
+							setValue={setText}
+							uploadFile={uploadFile}
+							isReadOnly={isReadOnly}
+							apiRef={monacoRef}
+						/>
+					</Box>
 				)}
-				{editorMode === 'split-screen' && <Divider orientation="vertical" />}
+				{editorMode === 'split-screen' && <Separator orientation="vertical" />}
 				{(editorMode === 'richtext' || editorMode === 'split-screen') && (
 					<RichEditor
 						placeholder={t('note.editor.placeholder')}
 						value={text}
 						onChanged={setText}
 						isReadOnly={isReadOnly}
-						search={search || undefined}
+						search={(isActive ? search : undefined) || undefined}
 						apiRef={richEditorApi}
 					/>
 				)}

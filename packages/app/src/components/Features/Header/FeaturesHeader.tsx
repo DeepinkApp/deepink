@@ -8,14 +8,14 @@ export const FeaturesHeader: FC<FeaturesHeaderProps> = ({ children, ...rest }) =
 		<Text
 			as="h2"
 			{...rest}
-			sx={{
+			css={{
 				marginLeft: '40%',
 				fontSize: '18px',
 				fontWeight: 'bold',
+
 				'&:not(:first-child)': {
 					marginTop: '2rem',
 				},
-				...rest.sx,
 			}}
 		>
 			{children}

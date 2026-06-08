@@ -124,21 +124,29 @@ export const NoteVersions = ({
 					</TextWithIcon>
 				</Button>
 
-				<HStack as="label">
-					<Switch
-						size="sm"
-						isChecked={recordControl.isDisabled}
-						onChange={(event) => recordControl.onChange(event.target.checked)}
-					/>{' '}
-					<Text>
-						{
-							// eslint-disable-next-line @cspell/spellchecker
-							t('note.versions.dontRecord')
-						}
-					</Text>
+				<HStack asChild>
+					<label>
+						<Switch.Root
+							size="sm"
+							checked={recordControl.isDisabled}
+							onCheckedChange={(event) =>
+								recordControl.onChange(event.checked)
+							}
+						>
+							<Switch.HiddenInput />
+							<Switch.Control>
+								<Switch.Thumb />
+							</Switch.Control>
+						</Switch.Root>{' '}
+						<Text>
+							{
+								// eslint-disable-next-line @cspell/spellchecker
+								t('note.versions.dontRecord')
+							}
+						</Text>
+					</label>
 				</HStack>
 			</HStack>
-
 			<Box w="100%" overflow="auto" display="flex" flex={1} flexFlow="column">
 				{versions && versions.length === 0 && (
 					<BoxWithCenteredContent>
@@ -165,7 +173,7 @@ export const NoteVersions = ({
 									<Text>
 										{new Date(version.createdAt).toLocaleString()}
 									</Text>
-									<Text color="typography.secondary">
+									<Text variant="secondary">
 										{t('note.version.chars', {
 											count: version.text.length,
 										})}
@@ -173,8 +181,8 @@ export const NoteVersions = ({
 								</HStack>
 								<HStack marginLeft="auto">
 									<Button
-										isDisabled={Boolean(isReadOnly)}
-										size="sm"
+										disabled={Boolean(isReadOnly)}
+										size="xs"
 										title={
 											isReadOnly
 												? t('note.version.apply.readonlyTitle')
@@ -222,7 +230,7 @@ export const NoteVersions = ({
 																	secondary: (
 																		<Text
 																			as="span"
-																			color="typography.secondary"
+																			variant="secondary"
 																		/>
 																	),
 																}}
@@ -271,7 +279,7 @@ export const NoteVersions = ({
 									</Button>
 
 									<Button
-										size="sm"
+										size="xs"
 										title={t('note.version.open.title')}
 										onClick={() => {
 											onShowVersion(version);
@@ -290,7 +298,7 @@ export const NoteVersions = ({
 										<FaGlasses />
 									</Button>
 									<Button
-										size="sm"
+										size="xs"
 										title={t('note.version.delete.title')}
 										onClick={(evt) => {
 											const deleteVersion = async () => {
@@ -339,7 +347,7 @@ export const NoteVersions = ({
 																	secondary: (
 																		<Text
 																			as="span"
-																			color="typography.secondary"
+																			variant="secondary"
 																		/>
 																	),
 																}}

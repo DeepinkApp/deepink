@@ -5,10 +5,14 @@ import { createEvent } from 'effector';
 import { LocalesProvider } from 'src/LocalesProvider';
 import { EventBus } from '@api/events/EventBus';
 import { GlobalEventsPayloadMap } from '@api/events/global';
+import { Toaster } from '@components/ui/toaster';
+import { IFilesStorage } from '@core/features/files';
+import { IndexedDBFS } from '@core/features/files/IndexedDBFS';
 import { InMemoryFS } from '@core/features/files/InMemoryFS';
 import { patchWindow } from '@electron/requests/electronPatches/renderer';
 import { ElectronFilesController, storageApi } from '@electron/requests/storage/renderer';
 import { telemetry } from '@electron/requests/telemetry/renderer';
+import { hasElectronApi } from '@electron/utils/renderer';
 import { App } from '@features/App/index';
 import { FilesStorageContext } from '@features/files';
 import { TelemetryContext } from '@features/telemetry';
@@ -48,14 +52,37 @@ const globalEventBus = {
 	},
 } satisfies EventBus<GlobalEventsPayloadMap>;
 
-const filesController =
-	localStorage.noStorage === 'true'
-		? new InMemoryFS()
-		: new ElectronFilesController(storageApi, `/`);
+let filesController: IFilesStorage;
+switch (localStorage.storageType) {
+	case 'idb':
+		filesController = new IndexedDBFS('deepink');
+		break;
+	case 'ram':
+		filesController = new InMemoryFS();
+		break;
+
+	default:
+		filesController = new ElectronFilesController(storageApi, `/`);
+		break;
+}
 
 const reactRoot = createRoot(rootNode);
 reactRoot.render(
-	<TelemetryContext value={telemetry}>
+	<TelemetryContext
+		value={
+			hasElectronApi()
+				? telemetry
+				: {
+						async getState() {
+							return { uid: '', queue: [] };
+						},
+						async track() {},
+						async handleQueue() {
+							return { total: 0, processed: 0 };
+						},
+					}
+		}
+	>
 		<Provider store={store}>
 			<GlobalEventBusContext value={globalEventBus}>
 				<FilesStorageContext value={filesController}>
@@ -63,6 +90,7 @@ reactRoot.render(
 						<ThemeProvider>
 							<LocalesProvider>
 								<App />
+								<Toaster />
 							</LocalesProvider>
 						</ThemeProvider>
 					</CommandEventProvider>

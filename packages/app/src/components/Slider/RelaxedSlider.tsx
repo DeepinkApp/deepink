@@ -5,7 +5,6 @@ import { SimpleSlider, SimpleSliderProps } from './SimpleSlider';
 
 /**
  * Slider with debounced value
- * @returns
  */
 export const RelaxedSlider = ({
 	value,
@@ -13,7 +12,7 @@ export const RelaxedSlider = ({
 	wait,
 	...props
 }: SimpleSliderProps & { wait?: number }) => {
-	const [state, setState] = useRelaxedValue({
+	const [state, setState] = useRelaxedValue<number>({
 		value,
 		onChange(value) {
 			onChange?.(value);

@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebounce } from 'use-debounce';
-import { useToast } from '@chakra-ui/react';
+import { toaster } from '@components/ui/toaster';
 import { ConfigStorage } from '@core/storage/ConfigStorage';
 import {
 	VaultOpenError,
@@ -40,10 +40,9 @@ export const App: FC = () => {
 	);
 
 	// When the active vault changes, close any open error toast
-	const toast = useToast();
 	useEffect(() => {
-		toast.closeAll();
-	}, [currentVaultId, toast]);
+		toaster.dismiss();
+	}, [currentVaultId]);
 
 	const [screenName, setScreenName] = useState<'create' | 'choose' | 'loading'>(
 		'choose',
@@ -74,11 +73,10 @@ export const App: FC = () => {
 					};
 				}
 
-				toast({
-					status: 'error',
+				toaster.create({
+					type: 'error',
 					title: t('errors.failedToOpen'),
 					description: t('errors.corrupted', { name: vault.name }),
-					containerStyle: { maxW: '400px' },
 				});
 
 				throw err;
@@ -86,7 +84,7 @@ export const App: FC = () => {
 				setScreenName('choose');
 			}
 		},
-		[vaultContainers, t, toast],
+		[vaultContainers, t],
 	);
 
 	// Restore and auto-open recent vault

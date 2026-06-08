@@ -1,12 +1,14 @@
-import React, { FC, useEffect, useMemo, useRef } from 'react';
+import React, { FC, memo, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaXmark } from 'react-icons/fa6';
+import { isEqual } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, HStack, Tab, TabList, Tabs, Text } from '@chakra-ui/react';
+import { Box, HStack, Tabs, Text } from '@chakra-ui/react';
 import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { NoteClickOptions } from '@hooks/notes/useNoteActions';
+import { useImmutableCallback } from '@hooks/useImmutableCallback';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectPreviewTabId } from '@state/redux/vaults/selectors/notes';
 
@@ -21,7 +23,53 @@ export type TopBarProps = {
 	notes: INote[];
 };
 
-// TODO: improve tabs style
+/**
+ * Tab content wrapped into memo to avoid re-rendering the whole content
+ */
+const NoteTabContent = memo(
+	({
+		noteId,
+		title,
+		onClose,
+	}: {
+		noteId: NoteId;
+		title: string;
+		onClose: (id: string) => void;
+	}) => {
+		const { t } = useTranslation(LOCALE_NAMESPACE.features);
+
+		return (
+			<HStack gap=".5rem" w="100%" justifyContent="space-between">
+				<Text
+					maxW="180px"
+					whiteSpace="nowrap"
+					overflow="hidden"
+					textOverflow="ellipsis"
+				>
+					{title}
+				</Text>
+				<Box
+					title={t('tabBar.closeTab')}
+					css={{
+						'&:not(:hover)': {
+							opacity: '0.7',
+						},
+					}}
+					onClick={(evt) => {
+						evt.stopPropagation();
+						onClose(noteId);
+					}}
+				>
+					<FaXmark />
+				</Box>
+			</HStack>
+		);
+	},
+	isEqual,
+);
+
+NoteTabContent.displayName = 'NoteTabContent';
+
 export const OpenedNotesPanel: FC<TopBarProps> = ({
 	notes,
 	tabs,
@@ -29,7 +77,6 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 	onClose,
 	onPick,
 }) => {
-	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const openNoteContextMenu = useNoteContextMenu('tabs');
 
 	const existsTabs = useMemo(
@@ -49,11 +96,16 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 
 	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 
+	const immutableCallbacks = {
+		onPick: useImmutableCallback(onPick, [onPick]),
+		onClose: useImmutableCallback(onClose, [onClose]),
+	};
+
 	return (
-		<Tabs
-			index={tabIndex}
-			onChange={(index) => {
-				onPick(existsTabs[index]);
+		<Tabs.Root
+			value={activeTab ?? ''}
+			onValueChange={(details) => {
+				onPick(details.value);
 			}}
 			w="100%"
 			maxH="100px"
@@ -64,10 +116,11 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 			flexShrink={0}
 			borderBottom="1px solid"
 			borderColor="surface.border"
+			size="sm"
 		>
-			<TabList display="flex" flexWrap="wrap" overflow="hidden">
-				{existsTabs.map((noteId, index) => {
-					const isActiveTab = index === tabIndex;
+			<Tabs.List display="flex" flexWrap="wrap" overflow="hidden">
+				{existsTabs.map((noteId) => {
+					const isActiveTab = noteId === activeTab;
 
 					// TODO: handle case when object not found
 					const note = notes.find((note) => note.id === noteId);
@@ -75,12 +128,13 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 						throw new Error('Note not found');
 					}
 
-					const title = getNoteTitle(note.content, 50);
 					const isPreviewTab = previewTabId === note.id;
+					const title = getNoteTitle(note.content, 50);
 
 					return (
-						<Tab
+						<Tabs.Trigger
 							key={note.id}
+							value={note.id}
 							ref={isActiveTab ? activeTabRef : undefined}
 							padding="0.4rem 0.7rem"
 							border="none"
@@ -96,7 +150,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 							textDecorationLine={
 								note.isDeleted ? 'line-through' : undefined
 							}
-							onMouseDown={(evt) => {
+							onMouseDown={(evt: React.MouseEvent) => {
 								// Prevent focus capturing by click
 								evt.preventDefault();
 
@@ -106,13 +160,13 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 								evt.preventDefault();
 								evt.stopPropagation();
 							}}
-							onMouseUp={(evt) => {
+							onMouseUp={(evt: React.MouseEvent) => {
 								const isMiddleButton = evt.button === 1;
 								if (!isMiddleButton) return;
 
 								onClose(note.id);
 							}}
-							onContextMenu={(evt) => {
+							onContextMenu={(evt: React.MouseEvent) => {
 								// Prevent text selection on macOS
 								evt.preventDefault();
 
@@ -127,34 +181,15 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 									: undefined
 							}
 						>
-							<HStack gap=".5rem" w="100%" justifyContent="space-between">
-								<Text
-									maxW="180px"
-									whiteSpace="nowrap"
-									overflow="hidden"
-									textOverflow="ellipsis"
-								>
-									{title}
-								</Text>
-								<Box
-									title={t('tabBar.closeTab')}
-									sx={{
-										'&:not(:hover)': {
-											opacity: '0.7',
-										},
-									}}
-									onClick={(evt) => {
-										evt.stopPropagation();
-										onClose(noteId);
-									}}
-								>
-									<FaXmark />
-								</Box>
-							</HStack>
-						</Tab>
+							<NoteTabContent
+								{...immutableCallbacks}
+								noteId={note.id}
+								title={title}
+							/>
+						</Tabs.Trigger>
 					);
 				})}
-			</TabList>
-		</Tabs>
+			</Tabs.List>
+		</Tabs.Root>
 	);
 };

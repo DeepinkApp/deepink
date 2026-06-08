@@ -29,7 +29,7 @@ export const selectEditorDateFormat = createAppSelector(
 
 export const selectTheme = createAppSelector(
 	selectSettings,
-	(settings) => settings.theme,
+	(settings) => settings.system,
 );
 
 export const selectVaultLockConfig = createAppSelector(

@@ -4,11 +4,11 @@ import { Trans, useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import {
 	Button,
-	Divider,
 	HStack,
 	Input,
 	Link,
-	Select,
+	NativeSelect,
+	Separator,
 	Text,
 	VStack,
 } from '@chakra-ui/react';
@@ -160,27 +160,28 @@ export const WorkspaceSettings = () => {
 		<Features>
 			<FeaturesGroup>
 				<FeaturesOption title={t('workspace.name.title')}>
-					<HStack
-						as="form"
-						onSubmit={workspaceNameForm.handleSubmit(async ({ name }) => {
-							if (!workspaceData) return;
+					<HStack asChild>
+						<form
+							onSubmit={workspaceNameForm.handleSubmit(async ({ name }) => {
+								if (!workspaceData) return;
 
-							await workspacesManager.update(workspaceData.id, {
-								name,
-							});
+								await workspacesManager.update(workspaceData.id, {
+									name,
+								});
 
-							await workspaces.update();
-						})}
-					>
-						<Input
-							{...workspaceNameForm.register('name')}
-							placeholder="e.g., Personal"
-							flex="100"
-							size="sm"
-						/>
-						<Button variant="accent" type="submit" size="sm">
-							{t('workspace.name.update')}
-						</Button>
+								await workspaces.update();
+							})}
+						>
+							<Input
+								{...workspaceNameForm.register('name')}
+								placeholder="e.g., Personal"
+								flex="100"
+								size="sm"
+							/>
+							<Button variant="accent" type="submit" size="sm">
+								{t('workspace.name.update')}
+							</Button>
+						</form>
 					</HStack>
 					{workspaceNameForm.formState.errors.name && (
 						<Text color="message.error">
@@ -189,7 +190,7 @@ export const WorkspaceSettings = () => {
 					)}
 				</FeaturesOption>
 
-				<Divider />
+				<Separator />
 
 				<FeaturesOption
 					title={t('workspace.newNoteTitle.title')}
@@ -236,38 +237,39 @@ export const WorkspaceSettings = () => {
 					)}
 				</FeaturesOption>
 				<FeaturesOption title={t('workspace.tagsForNewNote.title')}>
-					<Select
-						size="sm"
-						width="auto"
-						value={newNoteConfig.tags}
-						onChange={(evt) => {
-							const { value } = evt.target;
-							if (value === 'none' || value === 'selected') {
-								dispatch(
-									workspacesApi.setWorkspaceNoteTemplateConfig({
-										...currentWorkspace,
-										tags: value,
-									}),
-								);
-							}
-						}}
-					>
-						<option value="none">{t('workspace.tagsForNewNote.none')}</option>
-						<option value="selected">
-							{t('workspace.tagsForNewNote.selected')}
-						</option>
-					</Select>
+					<NativeSelect.Root size="sm" width="auto">
+						<NativeSelect.Field
+							value={newNoteConfig.tags}
+							onChange={(evt) => {
+								const { value } = evt.target;
+								if (value === 'none' || value === 'selected') {
+									dispatch(
+										workspacesApi.setWorkspaceNoteTemplateConfig({
+											...currentWorkspace,
+											tags: value,
+										}),
+									);
+								}
+							}}
+						>
+							<option value="none">
+								{t('workspace.tagsForNewNote.none')}
+							</option>
+							<option value="selected">
+								{t('workspace.tagsForNewNote.selected')}
+							</option>
+						</NativeSelect.Field>
+						<NativeSelect.Indicator />
+					</NativeSelect.Root>
 				</FeaturesOption>
 			</FeaturesGroup>
-
 			<FeaturesGroup title={t('workspace.dangerousZone.groupTitle')}>
 				<FeaturesOption description={t('workspace.dangerousZone.delete.label')}>
 					<Button
 						size="sm"
-						variant="accent"
-						colorScheme="alert"
+						variant="alert"
 						onClick={onDelete}
-						isDisabled={!isOtherWorkspacesExists}
+						disabled={!isOtherWorkspacesExists}
 					>
 						{t('workspace.dangerousZone.delete.action')}
 					</Button>

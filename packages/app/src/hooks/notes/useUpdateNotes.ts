@@ -4,36 +4,29 @@ import {
 	useWorkspaceContainer,
 } from '@features/App/Workspace/WorkspaceProvider';
 import { useAppDispatch } from '@state/redux/hooks';
-import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { useNonReactiveSelector, useWorkspaceActions } from '@state/redux/vaults/hooks';
 import { selectNotesView } from '@state/redux/vaults/selectors/view';
-import {
-	NOTES_VIEW,
-	selectActiveTag,
-	selectSearch,
-	workspacesApi,
-} from '@state/redux/vaults/vaults';
+import { NOTES_VIEW, selectActiveTag, selectSearch } from '@state/redux/vaults/vaults';
 
 export const useUpdateNotes = () => {
 	const dispatch = useAppDispatch();
-	const workspaceData = useWorkspaceData();
-
-	const notesView = useWorkspaceSelector(selectNotesView);
+	const workspacesApi = useWorkspaceActions();
+	const select = useNonReactiveSelector();
 
 	const {
 		notesIndex: { controller: notesIndexController },
 	} = useWorkspaceContainer();
 
 	const notesRegistry = useNotesRegistry();
-	const activeTag = useWorkspaceSelector(selectActiveTag);
-
-	const search = useWorkspaceSelector(selectSearch);
 
 	const requestContextRef = useRef(0);
 	return useCallback(async () => {
 		const contextId = ++requestContextRef.current;
 		const isRequestCanceled = () => contextId !== requestContextRef.current;
 
-		const searchText = search.trim();
+		const notesView = select.workspace(selectNotesView);
+		const activeTag = select.workspace(selectActiveTag);
+		const searchText = select.workspace(selectSearch).trim();
 		if (searchText) {
 			console.debug('Notes text indexing...');
 			const start = performance.now();
@@ -66,14 +59,6 @@ export const useUpdateNotes = () => {
 
 		if (isRequestCanceled()) return;
 
-		dispatch(workspacesApi.setNoteIds({ ...workspaceData, noteIds }));
-	}, [
-		activeTag,
-		dispatch,
-		notesIndexController,
-		notesRegistry,
-		notesView,
-		search,
-		workspaceData,
-	]);
+		dispatch(workspacesApi.setNoteIds({ noteIds }));
+	}, [dispatch, notesIndexController, notesRegistry, select, workspacesApi]);
 };

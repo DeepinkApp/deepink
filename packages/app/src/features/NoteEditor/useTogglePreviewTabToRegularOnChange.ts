@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { NoteId } from '@core/features/notes';
-import { useAppDispatch } from '@state/redux/hooks';
-import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hooks';
+import { useAppDispatch, useAppStore } from '@state/redux/hooks';
+import { useWorkspaceData, useWorkspaceRootSelector } from '@state/redux/vaults/hooks';
 import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
 
+// TODO: consider move the hook deeply
 /**
  * Hook always toggles a preview tab to a regular tab when deps change:
  *
@@ -12,8 +13,9 @@ import { selectPreviewTabId, workspacesApi } from '@state/redux/vaults/vaults';
  */
 export const useTogglePreviewTabToRegularOnChange = (noteId: NoteId, deps: unknown[]) => {
 	const dispatch = useAppDispatch();
-	const previewTabId = useWorkspaceSelector(selectPreviewTabId);
 	const workspaceData = useWorkspaceData();
+	const store = useAppStore();
+	const selectWorkspace = useWorkspaceRootSelector();
 
 	const isFirstRenderRef = useRef(true);
 	useEffect(() => {
@@ -23,11 +25,12 @@ export const useTogglePreviewTabToRegularOnChange = (noteId: NoteId, deps: unkno
 		}
 
 		// Ignore if the current note is not preview
+		const previewTabId = selectPreviewTabId(selectWorkspace(store.getState()));
 		if (previewTabId !== noteId) return;
 
 		dispatch(workspacesApi.togglePreviewTabToRegular({ ...workspaceData }));
 
 		// Effect should only trigger on deps change
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, deps);
+	}, [store, ...deps]);
 };

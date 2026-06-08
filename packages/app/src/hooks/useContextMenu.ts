@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ContextMenu } from '@electron/requests/contextMenu';
+import { hasElectronApi } from '@electron/utils/renderer';
+import { DOMContextMenu } from '@features/NotesContainer/NoteContextMenu/DOMContextMenu';
 import { ElectronContextMenu } from '@features/NotesContainer/NoteContextMenu/ElectronContextMenu';
 
 export type ContextMenuCallback<T extends string> = (event: {
@@ -17,12 +19,18 @@ export const useContextMenu = <T extends string>(
 ) => {
 	const [contextMenu, setContextMenu] = useState(() => {
 		// TODO: provide constructor in react context
-		return new ElectronContextMenu<T>(menu);
+		return hasElectronApi()
+			? new ElectronContextMenu<T>(menu)
+			: new DOMContextMenu<T>(menu);
 	});
 
 	// Update menu
 	useEffect(() => {
-		setContextMenu(new ElectronContextMenu(menu));
+		setContextMenu(
+			hasElectronApi()
+				? new ElectronContextMenu<T>(menu)
+				: new DOMContextMenu<T>(menu),
+		);
 	}, [menu]);
 
 	const contextMenuTargetRef = useRef<string | null>(null);

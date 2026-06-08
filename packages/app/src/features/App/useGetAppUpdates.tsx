@@ -3,49 +3,27 @@ import { useTranslation } from 'react-i18next';
 import ms from 'ms';
 import { getAbout } from 'src/about';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, useToast, UseToastOptions } from '@chakra-ui/react';
-import { AppToast } from '@components/AppToast';
+import { Button, HStack, Text, VStack } from '@chakra-ui/react';
+import { toaster } from '@components/ui/toaster';
 import { AppUpdatesChecker, AppVersionInfo } from '@electron/updates/AppUpdatesChecker';
 import { getDevFlag } from '@utils/dev';
+
+const toastId = 'newVersion';
 
 export const useGetAppUpdates = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 	const ignoreFlagKey = 'ignoreUpdate';
 
-	const toast = useToast();
-	const showToast = useCallback(
-		(options?: UseToastOptions) => {
-			const toastId = 'newVersion';
-
-			toast.close(toastId);
-			requestAnimationFrame(() => {
-				toast({
-					...options,
-					id: toastId,
-				});
-			});
-		},
-		[toast],
-	);
-
 	const ignoreUpdate = useCallback(() => {
 		localStorage.setItem(ignoreFlagKey, String(new Date()));
 
-		showToast({
-			position: 'top-right',
-			containerStyle: {
-				maxW: '350px',
-			},
-			render() {
-				return (
-					<AppToast
-						title={t('updates.appUpdate.title')}
-						body={t('updates.appUpdate.reminderLater')}
-					/>
-				);
-			},
+		toaster.dismiss(toastId);
+		toaster.create({
+			id: toastId,
+			title: t('updates.appUpdate.title'),
+			description: t('updates.appUpdate.reminderLater'),
 		});
-	}, [showToast, t]);
+	}, [t]);
 
 	return useCallback(
 		async (forceCheck = false) => {
@@ -74,46 +52,38 @@ export const useGetAppUpdates = () => {
 
 					const updateUrl = 'https://deepink.app/download';
 
-					showToast({
-						duration: null,
-						position: 'top-right',
-						containerStyle: {
-							maxW: '350px',
-						},
-						render(props) {
-							return (
-								<AppToast
-									title={t('updates.newVersion.title')}
-									body={t('updates.newVersion.body')}
-									actions={
-										<>
-											<Button
-												size="sm"
-												variant="accent"
-												onClick={() => {
-													window.open(updateUrl);
-													localStorage.removeItem(
-														ignoreFlagKey,
-													);
-													props.onClose();
-												}}
-											>
-												{t('updates.newVersion.download')}
-											</Button>
-											<Button
-												size="sm"
-												onClick={() => {
-													props.onClose();
-													ignoreUpdate();
-												}}
-											>
-												{t('updates.newVersion.ignore')}
-											</Button>
-										</>
-									}
-								/>
-							);
-						},
+					toaster.dismiss(toastId);
+					toaster.create({
+						id: toastId,
+						title: t('updates.newVersion.title'),
+						description: (
+							<VStack gap="1rem">
+								<Text>{t('updates.newVersion.body')}</Text>
+								<HStack width="100%" justify="end">
+									<Button
+										size="sm"
+										variant="accent"
+										onClick={() => {
+											window.open(updateUrl);
+											localStorage.removeItem(ignoreFlagKey);
+											toaster.dismiss(toastId);
+										}}
+									>
+										{t('updates.newVersion.download')}
+									</Button>
+									<Button
+										size="sm"
+										onClick={() => {
+											ignoreUpdate();
+											toaster.dismiss(toastId);
+										}}
+									>
+										{t('updates.newVersion.ignore')}
+									</Button>
+								</HStack>
+							</VStack>
+						),
+						duration: Infinity,
 					});
 
 					return {
@@ -122,6 +92,6 @@ export const useGetAppUpdates = () => {
 					} satisfies AppVersionInfo;
 				});
 		},
-		[ignoreUpdate, showToast, t],
+		[ignoreUpdate, t],
 	);
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalProps } from '@chakra-ui/react';
+import { Dialog, Portal } from '@chakra-ui/react';
 import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
 
 /**
@@ -8,12 +8,12 @@ import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
  * Window automatically will be hidden if workspace will be inactive,
  * and become visible back when workspace will be active again.
  */
-export const WorkspaceModal = (props: ModalProps) => {
+export const WorkspaceModal = (props: Dialog.RootProps) => {
 	const isActiveWorkspace = useIsActiveWorkspace();
 
 	return (
-		<Modal {...props} isOpen={isActiveWorkspace && props.isOpen}>
-			{props.children}
-		</Modal>
+		<Dialog.Root {...props} open={isActiveWorkspace && (props.open ?? false)}>
+			<Portal>{props.children}</Portal>
+		</Dialog.Root>
 	);
 };

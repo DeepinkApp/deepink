@@ -5,12 +5,10 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebouncedCallback } from 'use-debounce';
 import {
 	Box,
-	Divider,
 	HStack,
 	Input,
 	InputGroup,
-	InputLeftElement,
-	InputRightElement,
+	Separator,
 	Tag,
 	Text,
 	VStack,
@@ -81,7 +79,7 @@ export const NotesListPanel = () => {
 	return (
 		<VStack
 			align="start"
-			sx={{
+			css={{
 				width: '100%',
 				height: '100%',
 				flexDirection: 'column',
@@ -90,81 +88,84 @@ export const NotesListPanel = () => {
 		>
 			<VStack align="start" w="100%" gap="0.5rem">
 				<HStack w="100%">
-					<InputGroup size="sm">
-						<InputLeftElement pointerEvents="none">
-							<FaMagnifyingGlass />
-						</InputLeftElement>
+					<InputGroup
+						startElement={<FaMagnifyingGlass />}
+						endElement={
+							searchInput.length > 0 ? (
+								<Box
+									as="button"
+									tabIndex={-1}
+									onClick={clearSearch}
+									cursor="pointer"
+								>
+									<FaXmark />
+								</Box>
+							) : undefined
+						}
+					>
 						<Input
+							size="sm"
 							ref={searchInputRef}
-							borderRadius="6px"
 							placeholder={t('notesList.search.placeholder')}
 							value={searchInput}
-							onChange={(e) => setSearchInput(e.target.value)}
+							onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+								setSearchInput(e.target.value)
+							}
 							onKeyUp={(e) => {
 								if (e.key === 'Escape') clearSearch();
 							}}
 							// Load index by focus on search
 							onFocus={() => notesIndex.load()}
 						/>
-						{searchInput.length > 0 ? (
-							<InputRightElement onClick={clearSearch}>
-								<FaXmark />
-							</InputRightElement>
-						) : undefined}
 					</InputGroup>
 				</HStack>
 
 				{activeTag && (
 					<HStack align="start" gap="0.5rem" maxW="100%">
-						<Text
-							color="typography.secondary"
-							flexShrink={0}
-							alignSelf="center"
-						>
+						<Text variant="secondary" flexShrink={0} alignSelf="center">
 							{t('notesList.filterBy')}
 						</Text>
 						<HStack maxW="100%" align="start" overflow="hidden">
-							<Tag
+							<Tag.Root
 								variant="static"
-								as={HStack}
 								gap=".5rem"
-								align="start"
 								title={activeTag.resolvedName}
+								asChild
 							>
-								<Text
-									maxW="100%"
-									whiteSpace="nowrap"
-									overflow="hidden"
-									textOverflow="ellipsis"
-									dir="rtl"
-								>
-									{activeTag.resolvedName}
-								</Text>
-								<Box
-									sx={{
-										'&:not(:hover)': {
-											opacity: '0.7',
-										},
-									}}
-									onClick={() => {
-										dispatch(
-											workspacesApi.setSelectedTag({
-												...workspaceData,
-												tag: null,
-											}),
-										);
-									}}
-								>
-									<FaXmark />
-								</Box>
-							</Tag>
+								<HStack>
+									<Text
+										maxW="100%"
+										whiteSpace="nowrap"
+										overflow="hidden"
+										textOverflow="ellipsis"
+										dir="rtl"
+									>
+										{activeTag.resolvedName}
+									</Text>
+									<Box
+										css={{
+											'&:not(:hover)': {
+												opacity: '0.7',
+											},
+										}}
+										onClick={() => {
+											dispatch(
+												workspacesApi.setSelectedTag({
+													...workspaceData,
+													tag: null,
+												}),
+											);
+										}}
+									>
+										<FaXmark />
+									</Box>
+								</HStack>
+							</Tag.Root>
 						</HStack>
 					</HStack>
 				)}
 			</VStack>
-
-			<Divider />
-
+			<Separator />
 			<NotesList />
 		</VStack>
 	);

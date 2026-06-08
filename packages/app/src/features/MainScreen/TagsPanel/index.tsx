@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FaPlus } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Box, Divider, HStack, Text, VStack } from '@chakra-ui/react';
+import { Box, HStack, Separator, Text, VStack } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
 import { TagEditor, TagEditorData } from '@components/TagEditor';
 import { IResolvedTag } from '@core/features/tags';
@@ -19,11 +19,11 @@ import { useWorkspaceData, useWorkspaceSelector } from '@state/redux/vaults/hook
 import {
 	selectActiveTag,
 	selectTags,
-	selectTagsTree,
+	selectTagsFlatTree,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
-import { TagsList } from './TagsList';
+import { TagsTree } from './TagsTree';
 
 export const TagsPanel = () => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.workspace);
@@ -35,7 +35,7 @@ export const TagsPanel = () => {
 
 	const activeTag = useWorkspaceSelector(selectActiveTag);
 	const tags = useWorkspaceSelector(selectTags);
-	const tagsTree = useWorkspaceSelector(selectTagsTree);
+	const tagsTree = useWorkspaceSelector(selectTagsFlatTree);
 
 	const tagsRegistry = useTagsRegistry();
 
@@ -153,14 +153,9 @@ export const TagsPanel = () => {
 
 	return (
 		<>
-			<VStack w="100%" align="start" minHeight="150px" gap=".4rem">
+			<VStack align="normal" w="100%" minHeight="150px" gap=".5rem">
 				<HStack w="100%">
-					<Text
-						as="h2"
-						fontSize=".9rem"
-						fontWeight="600"
-						color="typography.secondary"
-					>
+					<Text as="h2" fontSize=".9rem" fontWeight="600" variant="secondary">
 						{t('panel.tags.label')}
 					</Text>
 
@@ -178,11 +173,11 @@ export const TagsPanel = () => {
 					/>
 				</HStack>
 
-				<Divider />
+				<Separator />
 
-				<Box w="100%" overflow="auto" paddingInlineEnd=".5rem">
-					{tagsTree.length > 0 ? (
-						<TagsList
+				<Box w="100%" height="stretch" overflow="hidden">
+					{(tagsTree.root.children?.length ?? 0) > 0 ? (
+						<TagsTree
 							tags={tagsTree}
 							activeTag={activeTag ? activeTag.id : undefined}
 							onTagClick={(tagId) =>
@@ -241,7 +236,7 @@ export const TagsPanel = () => {
 							}}
 						/>
 					) : (
-						<Text color="typography.secondary" fontSize="sm">
+						<Text variant="secondary" fontSize="sm">
 							{t('panel.tags.empty')}
 						</Text>
 					)}

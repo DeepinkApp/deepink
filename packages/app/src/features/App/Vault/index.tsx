@@ -24,12 +24,13 @@ import { useShortcutsBinding } from '@hooks/shortcuts/useShortcutsBinding';
 import { useImmutableCallback } from '@hooks/useImmutableCallback';
 import { useIsDeveloper } from '@hooks/useIsDeveloper';
 import { useAppDispatch, useAppSelector } from '@state/redux/hooks';
+import { useVaultSelector } from '@state/redux/vaults/hooks';
+import { selectWorkspacesSummary } from '@state/redux/vaults/selectors/vault';
 import { selectIsActiveWorkspaceLoaded } from '@state/redux/vaults/selectors/workspaceLoadingStatus';
 import {
 	createWorkspaceObject,
 	defaultVaultConfig,
 	selectActiveWorkspaceInfo,
-	selectWorkspacesInfo,
 	VaultConfigScheme,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
@@ -72,10 +73,7 @@ export const Vault: FC<VaultProps> = ({ vault: currentVault, controls }) => {
 
 	const vaultId = currentVault.vault.id;
 
-	const workspaces = useAppSelector(
-		useMemo(() => selectWorkspacesInfo({ vaultId }), [vaultId]),
-		isEqual,
-	);
+	const workspaces = useVaultSelector(selectWorkspacesSummary);
 
 	const handleVaultError = useVaultError();
 
@@ -185,13 +183,17 @@ export const Vault: FC<VaultProps> = ({ vault: currentVault, controls }) => {
 	useCommandCallback(GLOBAL_COMMANDS.SYNC_DATABASE, () => db.sync());
 
 	const [workspaceErrors, setWorkspaceErrors] = useState<Record<string, Error>>({});
-	const activeWorkspace = useAppSelector(selectActiveWorkspaceInfo({ vaultId }));
+	const activeWorkspace = useAppSelector(
+		selectActiveWorkspaceInfo({ vaultId }),
+		isEqual,
+	);
 	const activeWorkspaceError = activeWorkspace
 		? workspaceErrors[activeWorkspace.id]
 		: null;
 
 	const isActiveWorkspaceLoaded = useAppSelector(
 		selectIsActiveWorkspaceLoaded({ vaultId }),
+		isEqual,
 	);
 	const [isLoadingComplete] = useDebounce(
 		isActiveWorkspaceLoaded || activeWorkspaceError,

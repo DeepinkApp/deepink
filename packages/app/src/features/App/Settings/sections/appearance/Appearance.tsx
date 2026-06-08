@@ -1,11 +1,15 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Divider, Select } from '@chakra-ui/react';
+import { NativeSelect, Separator } from '@chakra-ui/react';
 import { FeaturesGroup } from '@components/Features/Group';
 import { FeaturesOption } from '@components/Features/Option/FeaturesOption';
 import { useAppDispatch, useAppSelector } from '@state/redux/hooks';
-import { selectTheme, settingsApi } from '@state/redux/settings/settings';
+import {
+	appThemeNameScheme,
+	selectTheme,
+	settingsApi,
+} from '@state/redux/settings/settings';
 import { getDevicePixelRatio } from '@utils/os/zoom';
 
 import { AppZoomLevel } from './AppZoomLevel';
@@ -17,23 +21,27 @@ export const ThemePicker = () => {
 	const theme = useAppSelector(selectTheme);
 
 	return (
-		<Select
-			value={theme.name}
-			size="sm"
-			width="auto"
-			onChange={(e) => {
-				dispatch(
-					settingsApi.setTheme({
-						name: e.target.value as any,
-					}),
-				);
-			}}
-		>
-			<option value="auto">{t('appearance.theme.auto')}</option>
-			<option value="dark">{t('appearance.theme.dark')}</option>
-			<option value="light">{t('appearance.theme.light')}</option>
-			<option value="zen">{t('appearance.theme.zen')}</option>
-		</Select>
+		<NativeSelect.Root size="sm" width="auto">
+			<NativeSelect.Field
+				value={theme.name}
+				onChange={(e) => {
+					const result = appThemeNameScheme.safeParse(e.target.value);
+					if (!result.success) return;
+
+					dispatch(
+						settingsApi.setTheme({
+							name: result.data,
+						}),
+					);
+				}}
+			>
+				<option value="auto">{t('appearance.theme.auto')}</option>
+				<option value="dark">{t('appearance.theme.dark')}</option>
+				<option value="light">{t('appearance.theme.light')}</option>
+				<option value="zen">{t('appearance.theme.zen')}</option>
+			</NativeSelect.Field>
+			<NativeSelect.Indicator />
+		</NativeSelect.Root>
 	);
 };
 
@@ -67,7 +75,6 @@ export const Appearance = () => {
 			<FeaturesOption title={t('appearance.theme.title')}>
 				<ThemePicker />
 			</FeaturesOption>
-
 			<FeaturesOption
 				title={t('appearance.accentColor.title')}
 				description={
@@ -78,9 +85,7 @@ export const Appearance = () => {
 			>
 				<AccentColorPicker />
 			</FeaturesOption>
-
-			<Divider />
-
+			<Separator />
 			<FeaturesOption
 				title={t('appearance.zoomLevel.title')}
 				description={t('appearance.zoomLevel.description', {

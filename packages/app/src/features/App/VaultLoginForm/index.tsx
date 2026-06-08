@@ -1,7 +1,8 @@
 import React, { FC, useCallback, useEffect, useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, Input, useToast, VStack } from '@chakra-ui/react';
+import { Button, Input, VStack } from '@chakra-ui/react';
+import { toaster } from '@components/ui/toaster';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { VaultSummary } from '@core/storage/VaultsList';
 import { useTelemetryTracker } from '@features/telemetry';
@@ -24,13 +25,12 @@ export const VaultLoginForm: FC<VaultLoginFormProps> = ({
 	const { t } = useTranslation(LOCALE_NAMESPACE.vault);
 	const telemetry = useTelemetryTracker();
 
-	const toast = useToast();
 	const toastId = 'vault-login' + useId();
 	useEffect(
 		() => () => {
-			toast.close(toastId);
+			toaster.dismiss(toastId);
 		},
-		[toast, toastId],
+		[toastId],
 	);
 
 	const [secret, setSecret] = useState('');
@@ -52,11 +52,11 @@ export const VaultLoginForm: FC<VaultLoginFormProps> = ({
 		if (response.status === 'error') {
 			setErrorMessage(response.message ?? t('login.errors.cannotOpen'));
 
-			toast.close(toastId);
+			toaster.dismiss(toastId);
 			requestAnimationFrame(() => {
-				toast({
+				toaster.create({
 					id: toastId,
-					status: 'error',
+					type: 'error',
 					title: t('login.errors.cannotOpen'),
 					description: response.message,
 				});
@@ -66,7 +66,7 @@ export const VaultLoginForm: FC<VaultLoginFormProps> = ({
 		telemetry.track(TELEMETRY_EVENT_NAME.VAULT_OPEN, {
 			status: response.status === 'error' ? 'error' : 'ok',
 		});
-	}, [onLogin, vault, secret, t, telemetry, toast, toastId]);
+	}, [onLogin, vault, secret, t, telemetry, toastId]);
 
 	const firstInputRef = useFocusableRef<HTMLInputElement>();
 	useEffect(() => {
@@ -94,17 +94,26 @@ export const VaultLoginForm: FC<VaultLoginFormProps> = ({
 				</>
 			}
 		>
-			<VStack as="form" w="100%" alignItems="start" onSubmit={onPressLogin}>
-				<Input
-					ref={firstInputRef}
-					size="lg"
-					type="password"
-					placeholder={t('login.field.password.placeholder')}
-					value={secret}
-					onChange={(evt) => setSecret(evt.target.value)}
-					focusBorderColor={errorMessage ? 'red.500' : undefined}
-					disabled={isPending}
-				/>
+			<VStack w="100%" alignItems="start" asChild>
+				<form
+					onSubmit={(evt) => {
+						evt.preventDefault();
+						onPressLogin();
+					}}
+				>
+					<Input
+						ref={firstInputRef}
+						size="lg"
+						type="password"
+						placeholder={t('login.field.password.placeholder')}
+						value={secret}
+						onChange={(evt) => setSecret(evt.target.value)}
+						css={{
+							'--focus-color': errorMessage ? 'red.500' : undefined,
+						}}
+						disabled={isPending}
+					/>
+				</form>
 			</VStack>
 		</VaultsForm>
 	);

@@ -6,9 +6,9 @@ export const FeaturesPanel = ({ children, ...props }: StackProps) => {
 	return (
 		<VStack
 			align="start"
-			backgroundColor="dim.50"
+			backgroundColor="surface.panel"
 			padding="1rem"
-			borderRadius="6px"
+			borderRadius="xl"
 			width="100%"
 			gap="1rem"
 			{...props}

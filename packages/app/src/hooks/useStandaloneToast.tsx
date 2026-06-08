@@ -1,24 +1,22 @@
 import { useCallback, useMemo } from 'react';
-import { useToast, UseToastOptions } from '@chakra-ui/react';
+import { toaster } from '@components/ui/toaster';
 
 export const useStandaloneToast = (toastId: string) => {
-	const toast = useToast();
-
 	const close = useCallback(() => {
-		toast.close(toastId);
-	}, [toast, toastId]);
+		toaster.dismiss(toastId);
+	}, [toastId]);
 
 	const show = useCallback(
-		(options?: UseToastOptions) => {
-			toast.close(toastId);
+		(options?: Parameters<typeof toaster.create>[0]) => {
+			toaster.dismiss(toastId);
 			requestAnimationFrame(() => {
-				toast({
+				toaster.create({
 					...options,
 					id: toastId,
 				});
 			});
 		},
-		[toast, toastId],
+		[toastId],
 	);
 
 	return useMemo(() => ({ close, show }), [close, show]);

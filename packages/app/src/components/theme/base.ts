@@ -1,29 +1,49 @@
+/*
+ ============================================================
+ CHAKRA UI v3 - DEFINE RECIPES
+ ============================================================
+
+ Component styling in v3 uses defineRecipe (single-part)
+ and defineSlotRecipe (multi-part) instead of the old
+ defineStyleConfig and createMultiStyleConfigHelpers.
+
+ Documentation:
+ - Recipes: https://chakra-ui.com/docs/theming/recipes
+ - Slot Recipes: https://chakra-ui.com/docs/theming/slot-recipes
+
+ ============================================================
+*/
 /* eslint-disable @cspell/spellchecker */
-import { progressAnatomy } from '@chakra-ui/anatomy';
 import {
-	createMultiStyleConfigHelpers,
-	defineStyleConfig,
-	extendTheme,
-	StyleFunctionProps,
+	defineConfig,
+	defineRecipe,
+	defineSlotRecipe,
 	SystemStyleObject,
 } from '@chakra-ui/react';
-import { NestedListTheme } from '@components/NestedList/NestedList.theme';
-import { NotePreviewTheme } from '@components/NotePreview/NotePreview.theme';
-import { NotificationsTheme } from '@components/Notifications/Notifications.theme';
-import { RichEditorTheme } from '@features/NoteEditor/RichEditor/RichEditor.theme';
+import {
+	alertAnatomy,
+	dialogAnatomy,
+	listAnatomy,
+	menuAnatomy,
+	nativeSelectAnatomy,
+	progressAnatomy,
+	sliderAnatomy,
+	switchAnatomy,
+	tabsAnatomy,
+	tagAnatomy,
+	toastAnatomy,
+	tooltipAnatomy,
+} from '@chakra-ui/react/anatomy';
+import { ListBoxRecipe } from '@components/ListBox/ListBox.theme';
+import { notePreviewRecipe } from '@components/NotePreview/NotePreview.theme';
+import { NotificationsRecipe } from '@components/Notifications/Notifications.theme';
+import { TagsTreeRecipe } from '@features/MainScreen/TagsPanel/TagsTree.theme';
+import { RichEditorRecipe } from '@features/NoteEditor/RichEditor/RichEditor.theme';
 
 import './resizable-panels.css';
 
-export const getScrollBarStyles = ({
-	trackColor = '#f1f1f1',
-	scrollColor = '#c5c5c5',
-	scrollHoverColor = '#939393',
-}: {
-	trackColor?: string;
-	scrollColor?: string;
-	scrollHoverColor?: string;
-} = {}) => {
-	const styles: SystemStyleObject = {
+export const getScrollBarStyles = (): Record<string, any> => {
+	const styles: Record<string, any> = {
 		'.invisible-scroll::-webkit-scrollbar': {
 			display: 'none',
 		},
@@ -43,27 +63,30 @@ export const getScrollBarStyles = ({
 		},
 
 		'::-webkit-scrollbar-track': {
-			background: trackColor,
+			background: 'scroll.track',
 			borderRadius: '0px',
 			border: '1px solid transparent',
 		},
 
 		'::-webkit-scrollbar-thumb': {
-			background: scrollColor,
+			background: 'scroll.thumb',
 			borderRadius: '0px',
 			border: '0px solid transparent',
 			backgroundClip: 'padding-box',
 		},
 
 		'::-webkit-scrollbar-thumb:hover': {
-			background: scrollHoverColor,
+			background: 'scroll.thumb.hover',
 		},
-	} satisfies SystemStyleObject;
+	};
 };
 
-export default extendTheme({
-	styles: {
-		global: {
+export default defineConfig({
+	globalCss: {
+		body: {
+			margin: 0,
+			backgroundColor: 'var(--chakra-colors-surface-background)',
+			color: 'var(--chakra-colors-typography-base)',
 			fontFamily: `-apple-system,
 			blinkmacsystemfont,
 			'Segoe UI',
@@ -73,172 +96,189 @@ export default extendTheme({
 			sans-serif,
 			'Apple Color Emoji',
 			'Segoe UI Emoji'`,
+		},
 
-			body: {
-				background: 'surface.background',
-				margin: 0,
-				color: 'typography.base',
-			},
-
+		':root': {
 			'::selection': {
 				color: 'selection.foreground',
 				backgroundColor: 'selection.background',
 			},
+		} as SystemStyleObject,
+		...getScrollBarStyles(),
+	},
 
-			'[data-resize-handle]': {
-				'--resize-handle-active-color': 'var(--chakra-colors-accent-300)',
-			},
-
-			...getScrollBarStyles(),
-
-			'select:focus-visible, button:focus-visible, input:focus-visible, ': {
-				boxShadow: 'outline',
+	theme: {
+		semanticTokens: {
+			colors: {
+				fg: {
+					muted: { value: '{colors.typography.secondary}' },
+				},
+				bg: {
+					muted: { value: '{colors.surface.muted}' },
+				},
+				border: { value: '{colors.surface.border}' },
+				color: {
+					palette: {
+						fg: { value: '{colors.typography.base}' },
+						focus: { ring: { value: '{colors.focusRing}' } },
+					},
+				},
 			},
 		},
-	},
-	components: {
-		Progress: createMultiStyleConfigHelpers(
-			progressAnatomy.keys,
-		).defineMultiStyleConfig({
-			variants: {
-				success: {
-					filledTrack: {
-						bgColor: 'message.success',
-					},
+		recipes: {
+			text: defineRecipe({
+				base: {
+					color: 'typography',
 				},
-				alert: {
-					filledTrack: {
-						bgColor: 'message.error',
-					},
-				},
-			},
-		}),
-		Text: defineStyleConfig({
-			baseStyle: {
-				color: 'typography.base',
-			},
-			variants: {
-				secondary: {
-					color: 'typography.secondary',
-				},
-				highlight: {
-					backgroundColor: 'highlight.background',
-					color: 'highlight.foreground',
-				},
-				error: {
-					color: 'message.error',
-				},
-			},
-		}),
-		Link: defineStyleConfig({
-			baseStyle: {
-				color: 'link.base',
-				'&:hover, &:active': {
-					color: 'link.hover',
-				},
-			},
-		}),
-		Button: defineStyleConfig({
-			baseStyle: {
-				'&:not([data-no-animation])': {
-					transition: 'transform .20ms ease',
-					'&:not(:disabled):active': {
-						transform: 'scale(.95)',
-					},
-				},
-			},
-			variants: {
-				accent(props: StyleFunctionProps) {
-					const scheme = props.theme.semanticTokens.scheme[props.colorScheme];
-					const colors: {
-						text: string;
-						base: string;
-						hover: string;
-					} = scheme || {
-						text: 'control.action.foreground',
-						base: 'control.action.background',
-						hover: 'control.action.active.background',
-					};
-
-					return {
-						color: colors.text,
-						backgroundColor: colors.base,
-
-						'&:hover': {
-							backgroundColor: colors.hover,
+				variants: {
+					variant: {
+						secondary: {
+							color: 'typography.secondary',
 						},
-						'&:disabled, &:hover[disabled]': {
-							backgroundColor: colors.base,
+						highlight: {
+							backgroundColor: 'highlight.background',
+							color: 'highlight.foreground',
 						},
-					};
-				},
-
-				subtle: {
-					color: 'control.base.foreground',
-					backgroundColor: 'control.base.background',
-
-					'&[disabled], &:hover, &[disabled]:hover': {
-						backgroundColor: 'control.base.disabled.background',
-					},
-					'&[data-active], &:not([disabled]):hover': {
-						backgroundColor: 'control.base.active.background',
+						error: {
+							color: 'message.error',
+						},
 					},
 				},
-
-				ghost: {
-					color: 'control.ghost.foreground',
-					backgroundColor: 'control.ghost.background',
-
-					'&:not([data-active]):is(:hover,:active)': {
-						color: 'control.ghost.hover.foreground',
-						backgroundColor: 'control.ghost.hover.background',
-					},
-
-					'&[data-active]': {
-						color: 'control.ghost.active.foreground',
-						background: 'control.ghost.active.background',
+			}),
+			link: defineRecipe({
+				variants: {
+					variant: {
+						plain: {
+							color: 'link',
+							'&:hover, &:active': {
+								color: 'link.hover',
+							},
+						},
 					},
 				},
-
-				link: {
-					color: 'link.base',
-					backgroundColor: 'unset',
-
-					textDecoration: 'underline',
-					textUnderlineOffset: '.2em',
-					padding: 0,
-					fontWeight: 'normal',
-					fontSize: 'inherit',
-					alignItems: 'baseline',
-
-					'&:hover, &:active, &[data-active]': {
-						color: 'link.base',
+			}),
+			button: defineRecipe({
+				variants: {
+					size: {
+						md: {
+							fontSize: 'md',
+						},
+						// TODO: review button sizes
+						xs: {
+							h: '28px',
+						},
 					},
-					'&:not(:disabled):active': {
-						transform: 'none',
+					variant: {
+						subtle: {
+							color: 'control.foreground',
+							backgroundColor: {
+								base: 'control.background',
+								_hover: 'control.active.background',
+								_disabled: 'control.disabled.background',
+							},
+							_open: {
+								backgroundColor: {
+									base: 'control.active.background',
+									_disabled: 'control.disabled.background',
+								},
+							},
+
+							borderRadius: 'lg',
+						},
+						accent: {
+							color: 'control.action.foreground',
+							backgroundColor: 'control.action.background',
+
+							_hover: {
+								backgroundColor: 'control.action.active.background',
+							},
+							_disabled: {
+								backgroundColor: 'control.action.background',
+							},
+
+							borderRadius: 'lg',
+						},
+						ghost: {
+							color: {
+								base: 'control.ghost.foreground',
+								_hover: 'control.ghost.hover.foreground',
+								_focusVisible: 'control.ghost.hover.foreground',
+								_active: 'control.ghost.active.foreground',
+								_expanded: 'control.ghost.active.foreground',
+								_open: 'control.ghost.active.foreground',
+							},
+							backgroundColor: {
+								base: 'control.ghost.background',
+								_hover: 'control.ghost.hover.background',
+								_active: 'control.ghost.active.background',
+								_expanded: 'control.ghost.active.background',
+								_open: 'control.ghost.active.background',
+							},
+
+							borderRadius: 'lg',
+						},
+						statusbar: {
+							color: 'typography.muted',
+							backgroundColor: {
+								base: 'control.ghost.background',
+								_hover: 'control.ghost.hover.background',
+								_active: 'control.ghost.active.background',
+								_expanded: 'control.ghost.active.background',
+								_open: 'control.ghost.active.background',
+							},
+
+							borderRadius: '0',
+							fontWeight: 'normal',
+						},
+						link: {
+							color: {
+								base: 'link',
+								_hover: 'link.hover',
+								_active: 'link.hover',
+							},
+							backgroundColor: 'unset',
+
+							height: 'auto',
+							padding: 0,
+							verticalAlign: 'unset',
+							fontWeight: 'normal',
+							fontSize: 'inherit',
+							alignItems: 'baseline',
+
+							_active: {
+								textDecoration: 'underline',
+							},
+						},
+						alert: {
+							color: 'white',
+							backgroundColor: '{colors.scheme.alert}',
+
+							_hover: {
+								backgroundColor: '{colors.scheme.alert.hover}',
+							},
+							_disabled: {
+								backgroundColor: '{colors.scheme.alert}',
+							},
+						},
 					},
 				},
-			},
-			defaultProps: {
-				variant: 'subtle',
-			},
-		}),
-		Input: createMultiStyleConfigHelpers([
-			'field',
-			'addon',
-			'element',
-		]).defineMultiStyleConfig({
-			baseStyle: {
-				field: {
-					color: 'typography.base',
-					borderRadius: '6px',
+				defaultVariants: {
+					variant: 'subtle',
+				},
+			}),
+
+			input: defineRecipe({
+				base: {
+					color: 'typography',
+					borderRadius: 'lg',
 					'&::placeholder': {
 						color: 'typography.secondary',
 						opacity: '.8',
 					},
 
-					'&:focus-visible, &[data-focus-visible]': {
-						shadow: 'input',
+					_focusVisible: {
+						focusRingColor: 'control.input.focusRing',
+						focusRingWidth: '3px',
 					},
 
 					// Make chars in password input larger
@@ -247,142 +287,178 @@ export default extendTheme({
 						fontWeight: 'bold',
 						letterSpacing: '0.05em',
 					},
-				},
-			},
-			sizes: {
-				lg: {
-					field: {
-						borderWidth: '2px',
+
+					// Disable HTML5 number input’s spin box
+					'&::-webkit-inner-spin-button': {
+						// @ts-expect-error with "display:none" mouse scroll does not work - see https://stackoverflow.com/a/4298216
+						'-webkit-appearance': 'none',
+						// Apparently some margin are still there even though it's hidden
+						margin: 0,
 					},
 				},
-			},
-			variants: {
-				subtle: {
-					field: {
-						borderColor: 'control.input.border',
-						borderWidth: '1px',
-
-						'&:hover': {
-							borderColor: 'control.input.active.border',
+				variants: {
+					size: {
+						md: {
+							fontSize: 'md',
 						},
-						'&:focus': {
+						lg: {
+							borderWidth: '2px',
+						},
+					},
+					variant: {
+						subtle: {
+							borderWidth: '1px',
+
 							borderColor: 'control.input.border',
-							backgroundColor: 'transparent',
-						},
-						'&:not(:focus)': {
 							backgroundColor: 'control.input.background',
+
+							_hover: {
+								'&:not(:focus-visible)': {
+									borderColor: 'control.input.active.border',
+									backgroundColor: 'control.input.background',
+								},
+							},
+
+							_focus: {
+								backgroundColor: 'transparent',
+								borderColor: 'control.input.border',
+							},
 						},
-					},
-				},
-				flushed: {
-					field: {
-						background: 'transparent',
-						boxShadow: 'none',
-						padding: '.3rem',
-
-						borderWidth: '0 0 1px',
-						borderColor: 'transparent',
-						borderRadius: 0,
-
-						'&:hover, &:focus, &:focus-visible': {
+						flushed: {
 							background: 'transparent',
-							borderColor: 'control.input.active.border',
-						},
-						'&:focus-visible': {
-							boxShadow: 'none',
-						},
-					},
-				},
-			},
-			defaultProps: {
-				variant: 'subtle',
-			},
-		}),
-		Select: createMultiStyleConfigHelpers(['field', 'icon']).defineMultiStyleConfig({
-			baseStyle: {
-				field: {
-					color: 'typography.base',
-					borderRadius: '6px',
-					'&::placeholder': {
-						color: 'inherit',
-						opacity: '.8',
-					},
+							padding: '.3rem',
 
-					'& option': {
-						backgroundColor: 'surface.background',
-					},
-				},
-			},
-			variants: {
-				subtle: {
-					field: {
-						backgroundColor: 'control.base.background',
-						color: 'control.base.foreground',
+							borderWidth: '0 0 1px',
+							borderColor: 'transparent',
+							borderRadius: 0,
 
-						'&:hover': {
-							backgroundColor: 'control.base.active.background',
+							'&:hover, &:focus, &:focus-visible': {
+								background: 'transparent',
+								borderColor: 'control.input.active.border',
+							},
+							'&:focus-visible': {
+								boxShadow: 'none',
+							},
 						},
 					},
 				},
-			},
-			defaultProps: {
-				variant: 'subtle',
-			},
-		}),
-		Switch: createMultiStyleConfigHelpers([
-			'container',
-			'thumb',
-			'track',
-			'label',
-		]).defineMultiStyleConfig({
-			baseStyle: {
-				container: {
-					display: 'inline-flex',
-					maxWidth: '100%',
-					lineHeight: '1',
+				defaultVariants: {
+					variant: 'subtle',
 				},
-				label: {
-					overflow: 'hidden',
-					whiteSpace: 'nowrap',
-					textOverflow: 'ellipsis',
-				},
-				track: {
-					backgroundColor: 'dim.500',
-					_checked: {
-						backgroundColor: 'control.action.background',
-					},
-				},
-				thumb: {
-					backgroundColor: 'control.action.foreground',
-				},
-			},
-		}),
-		Menu: createMultiStyleConfigHelpers([
-			'button',
-			'list',
-			'item',
-		]).defineMultiStyleConfig({
-			baseStyle: {
-				list: {
+			}),
+			separator: defineRecipe({
+				base: {
 					borderColor: 'surface.border',
-					backgroundColor: 'surface.background',
 				},
-				item: {
-					color: 'control.ghost.foreground',
-					backgroundColor: 'transparent',
-
-					transitionDuration: '0s',
-					'&:hover, &:focus': {
-						color: 'control.ghost.hover.foreground',
-						backgroundColor: 'control.ghost.hover.background',
+			}),
+			spinner: defineRecipe({
+				variants: {
+					variant: {
+						accent: {
+							color: 'control.action.background',
+						},
 					},
 				},
-			},
-		}),
-		List: createMultiStyleConfigHelpers(['container', 'item']).defineMultiStyleConfig(
-			{
-				baseStyle: {
-					list: {
+				defaultVariants: {
+					variant: 'accent',
+				},
+			}),
+			skeleton: defineRecipe({
+				variants: {
+					variant: {
+						shine: {
+							'--start-color': 'colors.skeleton.start',
+							'--end-color': 'colors.skeleton.end',
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'shine',
+				},
+			}),
+		},
+		slotRecipes: {
+			nativeSelect: defineSlotRecipe({
+				slots: nativeSelectAnatomy.keys(),
+				base: {
+					field: {
+						color: 'typography',
+						borderRadius: 'md',
+						'&::placeholder': {
+							color: 'inherit',
+							opacity: '.8',
+						},
+
+						'& option': {
+							backgroundColor: 'surface.background',
+						},
+					},
+				},
+				variants: {
+					variant: {
+						subtle: {
+							field: {
+								color: 'control.foreground',
+								backgroundColor: {
+									base: 'control.background',
+									_hover: 'control.active.background',
+								},
+							},
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'subtle',
+				},
+			}),
+			switch: defineSlotRecipe({
+				slots: switchAnatomy.keys(),
+				variants: {
+					variant: {
+						solid: {
+							root: {
+								display: 'inline-flex',
+								maxWidth: '100%',
+								lineHeight: '1',
+							},
+							label: {
+								overflow: 'hidden',
+								whiteSpace: 'nowrap',
+								textOverflow: 'ellipsis',
+							},
+							control: {
+								backgroundColor: 'dim.500',
+								_checked: {
+									backgroundColor: 'control.action.background',
+								},
+							},
+							thumb: {
+								backgroundColor: {
+									base: 'control.action.foreground',
+									_checked: 'control.action.foreground',
+								},
+							},
+						},
+					},
+				},
+			}),
+			tooltip: defineSlotRecipe({
+				slots: tooltipAnatomy.keys(),
+				base: {
+					content: {
+						borderRadius: 'sm',
+						color: 'typography.inverted',
+						// Yeah, that is the official way to set background
+						// See the docs: https://chakra-ui.com/docs/components/tooltip#custom-background
+						'--tooltip-bg':
+							'var(--chakra-colors-surface-inverted-background)',
+					},
+				},
+			}),
+			menu: defineSlotRecipe({
+				slots: menuAnatomy.keys(),
+				base: {
+					content: {
 						borderColor: 'surface.border',
 						backgroundColor: 'surface.background',
 					},
@@ -390,190 +466,249 @@ export default extendTheme({
 						color: 'control.ghost.foreground',
 						backgroundColor: 'transparent',
 
-						'&[aria-selected=true]': {
+						transitionDuration: '0s',
+						_highlighted: {
+							color: 'control.ghost.hover.foreground',
+							backgroundColor: 'control.ghost.hover.background !important',
+						},
+					},
+				},
+				variants: {
+					size: {
+						sm: {
+							item: {
+								fontSize: 'sm',
+								padding: 2,
+							},
+						},
+						md: {
+							item: {
+								fontSize: 'md',
+							},
+						},
+					},
+				},
+			}),
+			tabs: defineSlotRecipe({
+				slots: tabsAnatomy.keys(),
+				variants: {
+					size: {
+						md: {
+							trigger: {
+								fontSize: 'md',
+							},
+						},
+					},
+					variant: {
+						subtle: {
+							trigger: {
+								color: {
+									base: 'control.ghost.foreground',
+									_hover: 'control.ghost.hover.foreground',
+									_selected:
+										'control.ghost.active.foreground !important',
+								},
+
+								backgroundColor: {
+									base: 'transparent',
+									_hover: 'control.ghost.hover.background',
+									_selected:
+										'control.ghost.active.background !important',
+								},
+							},
+						},
+					},
+				},
+				defaultVariants: {
+					variant: 'subtle',
+				},
+			}),
+
+			dialog: defineSlotRecipe({
+				slots: dialogAnatomy.keys(),
+				base: {
+					backdrop: {
+						backgroundColor: 'overlay.500',
+					},
+					content: {
+						color: 'typography',
+						backgroundColor: 'surface.background',
+						fontSize: 'md',
+					},
+					closeTrigger: {
+						_hover: {
 							color: 'control.ghost.hover.foreground',
 							backgroundColor: 'control.ghost.hover.background',
 						},
 					},
 				},
-			},
-		),
-		Tooltip: defineStyleConfig({
-			baseStyle: {
-				borderRadius: '4px',
-				color: 'typography.inverted',
-				backgroundColor: 'surface.invertedBackground',
-				'--popper-arrow-bg': 'var(--chakra-colors-surface-invertedBackground)',
-			},
-		}),
-		Tag: createMultiStyleConfigHelpers(['container']).defineMultiStyleConfig({
-			variants: {
-				base: {
-					container: {
-						backgroundColor: 'control.base.background',
-						color: 'control.base.foreground',
+			}),
 
-						'&:hover': {
-							backgroundColor: 'control.base.active.background',
-						},
+			// TODO: debug performance of suggest list
+			list: defineSlotRecipe({
+				slots: listAnatomy.keys(),
+				base: {
+					root: {
+						borderColor: 'surface.border',
+						backgroundColor: 'surface.background',
 					},
-				},
-				static: {
-					container: {
-						backgroundColor: 'control.base.background',
-						color: 'control.base.foreground',
-					},
-				},
-			},
-			defaultProps: {
-				variant: 'base',
-			},
-		}),
-		Alert: createMultiStyleConfigHelpers([
-			'icon',
-			'container',
-		]).defineMultiStyleConfig({
-			baseStyle: {
-				icon: {
-					color: 'currentColor',
-				},
-				container: {
-					'&[data-status="info"]': {
-						backgroundColor: 'container.message.background',
-						color: 'container.message.foreground',
-					},
-				},
-			},
-		}),
-		Tabs: createMultiStyleConfigHelpers(['tab']).defineMultiStyleConfig({
-			variants: {
-				subtle: {
-					tab: {
+					item: {
 						color: 'control.ghost.foreground',
 						backgroundColor: 'transparent',
 
-						'&:hover': {
+						_selected: {
 							color: 'control.ghost.hover.foreground',
 							backgroundColor: 'control.ghost.hover.background',
 						},
+					},
+				},
+			}),
+			tag: defineSlotRecipe({
+				slots: tagAnatomy.keys(),
+				variants: {
+					variant: {
+						base: {
+							root: {
+								backgroundColor: 'control.background',
+								color: 'control.foreground',
 
-						_selected: {
-							color: 'control.ghost.active.foreground',
-							background: 'control.ghost.active.background',
+								_hover: {
+									backgroundColor: 'control.active.background',
+								},
+							},
+						},
+						static: {
+							root: {
+								backgroundColor: 'control.background',
+								color: 'control.foreground',
+							},
 						},
 					},
 				},
-			},
-			defaultProps: {
-				variant: 'subtle',
-			},
-		}),
-		Spinner: defineStyleConfig({
-			variants: {
-				accent: {
-					color: 'control.action.background',
+				defaultVariants: {
+					variant: 'base',
 				},
-			},
-			defaultProps: {
-				variant: 'accent',
-			},
-		}),
-		Divider: defineStyleConfig({
-			baseStyle: {
-				borderColor: 'surface.border',
-			},
-		}),
-		Modal: createMultiStyleConfigHelpers([
-			'overlay',
-			'dialog',
-			'closeButton',
-		]).defineMultiStyleConfig({
-			baseStyle: {
-				overlay: {
-					backgroundColor: 'overlay.500',
-				},
-				dialog: {
-					color: 'typography.base',
-					backgroundColor: 'surface.background',
-				},
-				closeButton: {
-					_hover: {
-						color: 'control.ghost.hover.foreground',
-						backgroundColor: 'control.ghost.hover.background',
+			}),
+			slider: defineSlotRecipe({
+				slots: sliderAnatomy.keys(),
+				base: {
+					markerGroup: {
+						mt: '.6rem',
+					},
+					root: {
+						minHeight: '40px',
 					},
 				},
-			},
-		}),
-		Slider: createMultiStyleConfigHelpers([
-			'container',
-			'track',
-			'filledTrack',
-			'thumb',
-			'mark',
-		]).defineMultiStyleConfig({
-			baseStyle: {
-				container: {
-					height: '2rem',
-				},
-				track: {
-					height: '.5rem',
-					top: '20% !important',
-				},
-				thumb: {
-					boxSize: '.8rem',
-					top: '20% !important',
-				},
-				mark: {
-					width: 'max-content',
-					top: '35%',
-				},
-			},
-			sizes: {
-				sm: {
-					container: {
-						height: '2rem',
+				variants: {
+					size: {
+						sm: {
+							thumb: {
+								boxSize: '.5rem',
+							},
+						},
+						md: {
+							thumb: {
+								boxSize: '.8rem',
+							},
+						},
 					},
-					track: {
-						height: '.3rem',
-					},
-					thumb: {
-						boxSize: '.5rem',
+					variant: {
+						solid: {
+							track: {
+								backgroundColor: 'control.background',
+								borderRadius: 'lg',
+							},
+							range: {
+								backgroundColor: 'control.action.background',
+							},
+							thumb: {
+								backgroundColor: 'control.action.foreground',
+							},
+						},
 					},
 				},
-				md: {
-					container: {
-						height: '2.5rem',
+				defaultVariants: {
+					variant: 'solid',
+					size: 'md',
+				},
+			}),
+			progress: defineSlotRecipe({
+				slots: progressAnatomy.keys(),
+				variants: {
+					variant: {
+						subtle: {
+							track: {
+								backgroundColor: 'control.background',
+							},
+							range: {
+								backgroundColor: 'control.foreground',
+							},
+						},
 					},
-					track: {
-						height: '.5rem',
-					},
-					thumb: {
-						boxSize: '.8rem',
+					status: {
+						success: {
+							track: {
+								backgroundColor: 'control.background',
+							},
+							range: {
+								backgroundColor: 'message.success',
+							},
+						},
+						error: {
+							track: {
+								backgroundColor: 'control.background',
+							},
+							range: {
+								backgroundColor: 'message.error',
+							},
+						},
 					},
 				},
-			},
-			variants: {
-				solid: {
-					track: {
-						backgroundColor: 'control.base.background',
-						borderRadius: '6px',
-					},
-					filledTrack: {
-						backgroundColor: 'control.action.background',
-					},
-					thumb: {
-						backgroundColor: 'control.action.foreground',
+				defaultVariants: {
+					variant: 'subtle',
+				},
+			}),
+			alert: defineSlotRecipe({
+				slots: alertAnatomy.keys(),
+				variants: {
+					variant: {
+						subtle: {
+							indicator: {
+								color: 'currentColor',
+							},
+							root: {
+								backgroundColor: 'container.message.background',
+								color: 'container.message.foreground',
+							},
+						},
 					},
 				},
-			},
-			defaultProps: {
-				variant: 'solid',
-				size: 'md',
-			},
-		}),
-		Notifications: NotificationsTheme,
-		NotePreview: NotePreviewTheme,
-		NestedList: NestedListTheme,
-		RichEditor: RichEditorTheme,
+			}),
+			toast: defineSlotRecipe({
+				slots: toastAnatomy.keys(),
+				base: {
+					root: {
+						backgroundColor: 'container.message.background',
+						color: 'container.message.foreground',
+						borderRadius: 'lg',
+						shadow: 'xs',
+					},
+
+					actionTrigger: {
+						color: 'control.foreground',
+						backgroundColor: {
+							base: 'control.background',
+							_hover: 'control.active.background',
+							_disabled: 'control.disabled.background',
+						},
+					},
+				},
+			}),
+			listBox: ListBoxRecipe,
+			tagsTree: TagsTreeRecipe,
+			notifications: NotificationsRecipe,
+			notePreview: notePreviewRecipe,
+			richEditor: RichEditorRecipe,
+		},
 	},
 });

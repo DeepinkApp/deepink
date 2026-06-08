@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import { ContextMenu } from '@electron/requests/contextMenu';
+import { hasElectronApi } from '@electron/utils/renderer';
 import { NoteActions } from '@features/NotesContainer/NoteContextMenu';
+import { DOMContextMenu } from '@features/NotesContainer/NoteContextMenu/DOMContextMenu';
 import { ElectronContextMenu } from '@features/NotesContainer/NoteContextMenu/ElectronContextMenu';
 
 import { ContextMenuCallback } from './useContextMenu';
@@ -8,7 +10,9 @@ import { ContextMenuCallback } from './useContextMenu';
 export const useShowNoteContextMenu = (callback: ContextMenuCallback<NoteActions>) => {
 	return useCallback(
 		(id: string, point: { x: number; y: number }, menu: ContextMenu) => {
-			const contextMenu = new ElectronContextMenu<NoteActions>(menu);
+			const contextMenu = hasElectronApi()
+				? new ElectronContextMenu<NoteActions>(menu)
+				: new DOMContextMenu<NoteActions>(menu);
 
 			contextMenu.open(point);
 

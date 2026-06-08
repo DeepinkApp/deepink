@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { Panel, PanelResizeHandle } from 'react-resizable-panels';
+import { Panel } from 'react-resizable-panels';
 import { Box, HStack, VStack } from '@chakra-ui/react';
-import { SyncedPanelGroup } from '@components/SyncedPanelGroup';
+import { StyledPanelResizeHandle, SyncedPanelGroup } from '@components/SyncedPanelGroup';
 import { useTagsRegistry } from '@features/App/Workspace/WorkspaceProvider';
 import { NotesListPanel } from '@features/MainScreen/NotesListPanel';
 import { WorkspacesPanel } from '@features/MainScreen/WorkspacesPanel';
@@ -62,11 +62,10 @@ export const MainScreen: FC = () => {
 	return (
 		<VStack gap={0} w="100%" h="100%">
 			<WorkspaceCommands />
-
 			<HStack
 				align="start"
 				gap={0}
-				sx={{
+				css={{
 					flexGrow: '100',
 					width: '100%',
 					height: '100vh',
@@ -77,7 +76,7 @@ export const MainScreen: FC = () => {
 			>
 				<Box
 					className="invisible-scroll"
-					sx={{
+					css={{
 						flexShrink: 0,
 						height: '100%',
 						overflow: 'auto',
@@ -91,35 +90,30 @@ export const MainScreen: FC = () => {
 
 				<SyncedPanelGroup direction="horizontal" autoSaveId="MainScreen.content">
 					<VStack
-						as={Panel}
-						defaultSize={20}
-						sx={{
+						gap="1rem"
+						css={{
 							alignItems: 'start',
-
 							minWidth: 'min-content',
 							maxWidth: '350px',
 							padding: '.5rem',
 							overflow: 'hidden',
 							display: 'flex',
 							flexDirection: 'column',
-							gap: '1rem',
 						}}
+						asChild
 					>
-						<NotesViewFilter />
-
-						<TagsPanel />
-
-						<WorkspacesPanel marginTop="auto" />
+						<Panel defaultSize={20}>
+							<NotesViewFilter />
+							<TagsPanel />
+							<WorkspacesPanel marginTop="auto" />
+						</Panel>
 					</VStack>
 
-					<Box as={PanelResizeHandle} color="surface.border" />
+					<StyledPanelResizeHandle />
 
 					<VStack
-						as={Panel}
-						defaultSize={20}
-						sx={{
+						css={{
 							alignItems: 'start',
-
 							minWidth: '200px',
 							maxWidth: '350px',
 							padding: '.5rem',
@@ -128,20 +122,21 @@ export const MainScreen: FC = () => {
 							flexDirection: 'column',
 							gap: '1rem',
 						}}
+						asChild
 					>
-						<NotesListPanel />
+						<Panel defaultSize={20}>
+							<NotesListPanel />
+						</Panel>
 					</VStack>
 
-					<Box as={PanelResizeHandle} color="surface.border" />
+					<StyledPanelResizeHandle />
 
-					<Box as={Panel} minSize={50}>
+					<Panel minSize={50}>
 						<NotesContainer />
-					</Box>
+					</Panel>
 				</SyncedPanelGroup>
 			</HStack>
-
 			<StatusBar />
-
 			<NotificationsPopup />
 		</VStack>
 	);

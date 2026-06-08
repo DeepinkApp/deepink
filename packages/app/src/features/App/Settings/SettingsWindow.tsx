@@ -9,21 +9,7 @@ import {
 	FaVault,
 } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import {
-	Box,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalHeader,
-	ModalOverlay,
-	Tab,
-	TabList,
-	TabPanel,
-	TabPanels,
-	Tabs,
-	Text,
-} from '@chakra-ui/react';
+import { Box, CloseButton, Dialog, Portal, Tabs, Text } from '@chakra-ui/react';
 import { TextWithIcon } from '@components/TextWithIcon';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
@@ -96,130 +82,160 @@ export const SettingsWindow = () => {
 	});
 
 	return (
-		<Modal
-			isOpen={isOpen}
-			onClose={() => setIsOpen(false)}
-			size="4xl"
-			closeOnEsc={false}
+		<Dialog.Root
+			open={isOpen}
+			size="xl"
+			closeOnEscape={false}
+			onOpenChange={(e) => {
+				if (!e.open) {
+					setIsOpen(false);
+				}
+			}}
 		>
-			<ModalOverlay />
-			<ModalContent maxWidth="800px" minHeight="500px">
-				<ModalHeader paddingInline="1rem">{t('window.title')}</ModalHeader>
-				<ModalCloseButton />
-				<ModalBody paddingInline="1rem" paddingBlockEnd="2rem">
-					<Tabs
-						orientation="vertical"
-						gap="1rem"
-						isLazy
-						lazyBehavior="keepMounted"
-					>
-						<TabList
-							display="flex"
-							flexWrap="wrap"
-							width="200px"
-							gap="1px"
-							flexShrink={0}
-						>
-							{tabs.map((tab) => {
-								return (
-									<Tab
-										key={tab.id}
-										justifyContent="start"
-										borderRadius="4px"
-										padding=".3rem .5rem"
-										maxWidth="100%"
-									>
-										<TextWithIcon
-											icon={
-												tab.icon && (
-													<Box as={tab.icon} flexShrink={0} />
-												)
-											}
-											overflow="hidden"
-											textProps={{
-												css: {
-													whiteSpace: 'nowrap',
-													textOverflow: 'ellipsis',
-													overflow: 'hidden',
-												},
-											}}
-										>
-											{t(tab.titleKey)}
-										</TextWithIcon>
-									</Tab>
-								);
-							})}
-
-							<Text fontWeight="bold" marginTop="2rem">
-								{t('tabs.vaultSettingsGroup')}
-							</Text>
-							{vaultTabs.map((tab) => {
-								return (
-									<Tab
-										key={tab.id}
-										justifyContent="start"
-										borderRadius="4px"
-										padding=".3rem .5rem"
-										maxWidth="100%"
-									>
-										<TextWithIcon
-											icon={
-												tab.icon && (
-													<Box as={tab.icon} flexShrink={0} />
-												)
-											}
-											overflow="hidden"
-											textProps={{
-												css: {
-													whiteSpace: 'nowrap',
-													textOverflow: 'ellipsis',
-													overflow: 'hidden',
-												},
-											}}
-										>
-											{t(tab.titleKey)}
-										</TextWithIcon>
-									</Tab>
-								);
-							})}
-						</TabList>
-
-						<TabPanels maxWidth="600px" minWidth="400px" width="100%">
-							{tabs.map((tab) => {
-								return (
-									<TabPanel key={tab.id} padding={0}>
-										{tab.id !== 'general' && (
-											<Text
-												fontSize="1.5rem"
-												lineHeight="1"
-												marginBottom="1rem"
+			<Portal>
+				<Dialog.Backdrop />
+				<Dialog.Positioner>
+					<Dialog.Content maxWidth="800px" minHeight="500px">
+						<Dialog.Header paddingInline="1rem">
+							<Dialog.Title>{t('window.title')}</Dialog.Title>
+						</Dialog.Header>
+						<Dialog.CloseTrigger asChild>
+							<CloseButton size="sm" />
+						</Dialog.CloseTrigger>
+						<Dialog.Body paddingInline="1rem" paddingBlockEnd="2rem">
+							<Tabs.Root
+								orientation="vertical"
+								gap="1rem"
+								lazyMount
+								defaultValue="general"
+							>
+								<Tabs.List
+									display="flex"
+									flexWrap="wrap"
+									width="200px"
+									gap="1px"
+									flexShrink={0}
+								>
+									{tabs.map((tab) => {
+										return (
+											<Tabs.Trigger
+												key={tab.id}
+												value={tab.id}
+												justifyContent="start"
+												borderRadius="lg"
+												padding=".3rem .5rem"
+												maxWidth="100%"
 											>
-												{t(tab.titleKey)}
-											</Text>
-										)}
-										<tab.component />
-									</TabPanel>
-								);
-							})}
+												<TextWithIcon
+													icon={
+														tab.icon && (
+															<Box flexShrink={0} asChild>
+																<tab.icon />
+															</Box>
+														)
+													}
+													overflow="hidden"
+													textProps={{
+														css: {
+															whiteSpace: 'nowrap',
+															textOverflow: 'ellipsis',
+															overflow: 'hidden',
+														},
+													}}
+												>
+													{t(tab.titleKey)}
+												</TextWithIcon>
+											</Tabs.Trigger>
+										);
+									})}
 
-							{vaultTabs.map((tab) => {
-								return (
-									<TabPanel key={tab.id} padding={0}>
-										<Text
-											fontSize="1.5rem"
-											lineHeight="1"
-											marginBottom="1rem"
-										>
-											{t(tab.titleKey)}
-										</Text>
-										<tab.component />
-									</TabPanel>
-								);
-							})}
-						</TabPanels>
-					</Tabs>
-				</ModalBody>
-			</ModalContent>
-		</Modal>
+									<Text
+										fontWeight="bold"
+										marginTop="2rem"
+										marginBottom=".5rem"
+									>
+										{t('tabs.vaultSettingsGroup')}
+									</Text>
+									{vaultTabs.map((tab) => {
+										return (
+											<Tabs.Trigger
+												key={tab.id}
+												value={tab.id}
+												justifyContent="start"
+												borderRadius="4px"
+												padding=".3rem .5rem"
+												maxWidth="100%"
+											>
+												<TextWithIcon
+													icon={
+														tab.icon && (
+															<Box flexShrink={0} asChild>
+																<tab.icon />
+															</Box>
+														)
+													}
+													overflow="hidden"
+													textProps={{
+														css: {
+															whiteSpace: 'nowrap',
+															textOverflow: 'ellipsis',
+															overflow: 'hidden',
+														},
+													}}
+												>
+													{t(tab.titleKey)}
+												</TextWithIcon>
+											</Tabs.Trigger>
+										);
+									})}
+								</Tabs.List>
+
+								<Box maxWidth="600px" minWidth="400px" width="100%">
+									{tabs.map((tab) => {
+										return (
+											<Tabs.Content
+												key={tab.id}
+												value={tab.id}
+												padding={0}
+											>
+												{tab.id !== 'general' && (
+													<Text
+														fontSize="1.5rem"
+														lineHeight="1"
+														marginBottom="1rem"
+													>
+														{t(tab.titleKey)}
+													</Text>
+												)}
+												<tab.component />
+											</Tabs.Content>
+										);
+									})}
+
+									{vaultTabs.map((tab) => {
+										return (
+											<Tabs.Content
+												key={tab.id}
+												value={tab.id}
+												padding={0}
+											>
+												<Text
+													fontSize="1.5rem"
+													lineHeight="1"
+													marginBottom="1rem"
+												>
+													{t(tab.titleKey)}
+												</Text>
+												<tab.component />
+											</Tabs.Content>
+										);
+									})}
+								</Box>
+							</Tabs.Root>
+						</Dialog.Body>
+					</Dialog.Content>
+				</Dialog.Positioner>
+			</Portal>
+		</Dialog.Root>
 	);
 };
