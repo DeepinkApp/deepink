@@ -19,7 +19,7 @@ export const useLocalizedDate = () => {
 					year: 'numeric',
 				}).format(date);
 
-			return dayjs().locale(language).format(format);
+			return dayjs(date).locale(language).format(format);
 		},
 		[language],
 	);
