@@ -92,9 +92,7 @@
 			"addToFavorites": "Add to favorites",
 			"removeFromFavorites": "Remove from favorites",
 			"moveToArchive": "Move to archive",
-			"removeFromArchive": "Remove from archive",
-			"pinNote": "Pin note",
-			"unpinNote": "Unpin note"
+			"removeFromArchive": "Remove from archive"
 		},
 		"tags": {
 			"addPlaceholder": "Type to add tag…"
@@ -118,7 +116,9 @@
 			"removeFromArchive": "Remove from archive",
 			"deleteToBin": "Delete to bin",
 			"deletePermanently": "Delete permanently",
-			"restoreFromBin": "Restore from bin"
+			"restoreFromBin": "Restore from bin",
+			"pin": "Pin note",
+			"unpin": "Unpin note"
 		},
 		"version": {
 			"chars": "{{count}} characters",
