@@ -1,4 +1,3 @@
-/* eslint-disable i18next/no-literal-string */
 import React, {
 	FC,
 	memo,
@@ -15,7 +14,6 @@ import {
 	FaHashtag,
 	FaRegStar,
 	FaStar,
-	FaThumbtack,
 	FaXmark,
 } from 'react-icons/fa6';
 import { Panel } from 'react-resizable-panels';
@@ -70,7 +68,6 @@ import { useTogglePreviewTabToRegularOnChange } from './useTogglePreviewTabToReg
 
 export enum NoteSidebarTabs {
 	HISTORY = 'HISTORY',
-	BACK_LINKS = 'BACK_LINKS',
 }
 
 const NoteControlsPanel = memo(({ note }: { note: INote }) => {
@@ -172,9 +169,6 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 					}
 				>
 					<Box as={FaBoxArchive} transform="scale(1.1)" />
-				</Button>
-				<Button variant="ghost" size="xs">
-					<Box as={FaThumbtack} transform="scale(1.1)" />
 				</Button>
 			</HStack>
 			<Separator orientation="vertical" h="1em" />
@@ -610,26 +604,6 @@ export const Note2: FC<NoteEditorProps> = memo(
 																);
 															}}
 														/>
-													);
-												},
-											},
-											{
-												id: NoteSidebarTabs.BACK_LINKS,
-												title: t('note.sidebar.tabs.backLinks'),
-												content() {
-													return (
-														<div>TODO: Note back links</div>
-													);
-												},
-											},
-											{
-												id: 'files',
-												title: t('note.sidebar.tabs.files'),
-												content() {
-													return (
-														<div>
-															TODO: Files attached to note
-														</div>
 													);
 												},
 											},

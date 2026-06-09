@@ -36,7 +36,6 @@ import {
 } from '@chakra-ui/react/anatomy';
 import { ListBoxRecipe } from '@components/ListBox/ListBox.theme';
 import { notePreviewRecipe } from '@components/NotePreview/NotePreview.theme';
-import { NotificationsRecipe } from '@components/Notifications/Notifications.theme';
 import { TagsTreeRecipe } from '@features/MainScreen/TagsPanel/TagsTree.theme';
 import { RichEditorRecipe } from '@features/NoteEditor/RichEditor/RichEditor.theme';
 
@@ -706,7 +705,6 @@ export default defineConfig({
 			}),
 			listBox: ListBoxRecipe,
 			tagsTree: TagsTreeRecipe,
-			notifications: NotificationsRecipe,
 			notePreview: notePreviewRecipe,
 			richEditor: RichEditorRecipe,
 		},

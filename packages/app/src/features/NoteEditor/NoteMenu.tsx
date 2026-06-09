@@ -1,17 +1,11 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-	FaBell,
 	FaBoxArchive,
 	FaClock,
 	FaCopy,
 	FaEllipsis,
-	FaEye,
 	FaFileExport,
-	FaLink,
-	FaRotate,
-	FaShield,
-	FaSpellCheck,
 	FaTrashCan,
 	FaTrashCanArrowUp,
 } from 'react-icons/fa6';
@@ -48,6 +42,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 								<Menu.Positioner>
 									<Menu.Content>
 										<Menu.Item
+											value="copyReference"
 											onSelect={() =>
 												runCommand(
 													GLOBAL_COMMANDS.COPY_NOTE_MARKDOWN_LINK,
@@ -56,7 +51,6 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="copyReference"
 										>
 											<HStack>
 												<FaCopy />
@@ -65,13 +59,8 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 												</Text>
 											</HStack>
 										</Menu.Item>
-										<Menu.Item value="remindMe">
-											<HStack>
-												<FaBell />
-												<Text>{t('note.menu.remindMe')}</Text>
-											</HStack>
-										</Menu.Item>
 										<Menu.Item
+											value="history"
 											onSelect={() =>
 												runCommand(
 													GLOBAL_COMMANDS.TOGGLE_NOTE_HISTORY_PANEL,
@@ -80,29 +69,10 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="history"
 										>
 											<HStack>
 												<FaClock />
 												<Text>{t('note.menu.history')}</Text>
-											</HStack>
-										</Menu.Item>
-										<Menu.Item value="backLinks">
-											<HStack>
-												<FaLink />
-												<Text>{t('note.menu.backLinks')}</Text>
-											</HStack>
-										</Menu.Item>
-										<Menu.Item value="readonlyMode">
-											<HStack>
-												<FaEye />
-												<Text>{t('note.menu.readonlyMode')}</Text>
-											</HStack>
-										</Menu.Item>
-										<Menu.Item value="spellcheck">
-											<HStack>
-												<FaSpellCheck />
-												<Text>{t('note.menu.spellcheck')}</Text>
 											</HStack>
 										</Menu.Item>
 										<Menu.Item
@@ -116,20 +86,6 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 											<HStack>
 												<FaFileExport />
 												<Text>{t('note.menu.export')}</Text>
-											</HStack>
-										</Menu.Item>
-										<Menu.Item value="passwordProtection">
-											<HStack>
-												<FaShield />
-												<Text>
-													{t('note.menu.passwordProtection')}
-												</Text>
-											</HStack>
-										</Menu.Item>
-										<Menu.Item value="disableSync">
-											<HStack>
-												<FaRotate />
-												<Text>{t('note.menu.disableSync')}</Text>
 											</HStack>
 										</Menu.Item>
 										<Menu.Item

@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FaFeather, FaInbox, FaRegClock, FaRegFolder } from 'react-icons/fa6';
+import { FaFeather } from 'react-icons/fa6';
 import { GrSettingsOption } from 'react-icons/gr';
-import { IoCloudUploadOutline, IoExtensionPuzzleOutline } from 'react-icons/io5';
 import { MdLockOutline } from 'react-icons/md';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebouncedCallback } from 'use-debounce';
@@ -48,35 +47,6 @@ export const ActivityBar = memo(() => {
 					title={t('activityBar.newNote')}
 					variant="accent"
 					onClick={debouncedCreateNote}
-				/>
-
-				<IconButton
-					icon={<FaRegFolder />}
-					tooltipPlacement="right"
-					title={t('activityBar.files')}
-				/>
-
-				<IconButton
-					icon={<FaRegClock />}
-					tooltipPlacement="right"
-					title={t('activityBar.reminders')}
-				/>
-				<IconButton
-					icon={<IoExtensionPuzzleOutline style={{ scale: 1.3 }} />}
-					tooltipPlacement="right"
-					title={t('activityBar.extensions')}
-				/>
-
-				<IconButton
-					icon={<FaInbox />}
-					tooltipPlacement="right"
-					title={t('activityBar.inbox')}
-				/>
-
-				<IconButton
-					icon={<IoCloudUploadOutline />}
-					tooltipPlacement="right"
-					title={t('activityBar.publishNotes')}
 				/>
 			</ButtonGroup>
 			<ButtonGroup

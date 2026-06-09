@@ -40,6 +40,7 @@ export const useVaultSyncButton = () => {
 				icon: (
 					<Box
 						css={{
+							scale: 0.9,
 							animation: isPending
 								? `${styles.blink} 900ms linear infinite`
 								: undefined,

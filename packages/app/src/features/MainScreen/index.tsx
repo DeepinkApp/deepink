@@ -8,7 +8,6 @@ import { WorkspacesPanel } from '@features/MainScreen/WorkspacesPanel';
 import { NotesContainer } from '@features/NotesContainer';
 import { useUpdateNotes } from '@hooks/notes/useUpdateNotes';
 
-import { NotificationsPopup } from '../NotificationsPopup';
 import { ActivityBar } from './ActivityBar';
 import { NotesViewFilter } from './NotesViewFilter';
 import { StatusBar } from './StatusBar';
@@ -137,7 +136,6 @@ export const MainScreen: FC = () => {
 				</SyncedPanelGroup>
 			</HStack>
 			<StatusBar />
-			<NotificationsPopup />
 		</VStack>
 	);
 };

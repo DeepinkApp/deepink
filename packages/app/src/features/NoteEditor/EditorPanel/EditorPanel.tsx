@@ -44,6 +44,7 @@ export const EditorPanel = memo(() => {
 			}}
 		>
 			<HeaderPicker
+				buttonProps={{ size: 'xs' }}
 				onPick={(level) => {
 					onInserting({ type: 'heading', data: { level } });
 				}}
@@ -51,7 +52,7 @@ export const EditorPanel = memo(() => {
 
 			<HStack gap="0">
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.bold')}
 					onClick={() => {
@@ -61,7 +62,7 @@ export const EditorPanel = memo(() => {
 					<FaBold />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.italic')}
 					onClick={() => {
@@ -71,7 +72,7 @@ export const EditorPanel = memo(() => {
 					<FaItalic />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.strikethrough')}
 					onClick={() => {
@@ -84,7 +85,7 @@ export const EditorPanel = memo(() => {
 
 			<HStack gap="0">
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.unorderedList')}
 					onClick={() => {
@@ -94,7 +95,7 @@ export const EditorPanel = memo(() => {
 					<FaListUl />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.checkboxList')}
 					onClick={() => {
@@ -104,7 +105,7 @@ export const EditorPanel = memo(() => {
 					<FaListCheck />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.orderedList')}
 					onClick={() => {
@@ -117,6 +118,7 @@ export const EditorPanel = memo(() => {
 
 			<HStack gap="0">
 				<LinkButton
+					size="xs"
 					onPick={(payload) =>
 						onInserting({
 							type: 'link',
@@ -125,6 +127,7 @@ export const EditorPanel = memo(() => {
 					}
 				/>
 				<ImageButton
+					size="xs"
 					onPick={(payload) =>
 						onInserting({
 							type: 'image',
@@ -133,7 +136,7 @@ export const EditorPanel = memo(() => {
 					}
 				/>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.codeBlock')}
 					onClick={() => {
@@ -143,7 +146,7 @@ export const EditorPanel = memo(() => {
 					<FaCode />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.quoteBlock')}
 					onClick={() => {
@@ -153,7 +156,7 @@ export const EditorPanel = memo(() => {
 					<FaQuoteLeft />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.insertDate')}
 					onClick={() => {
@@ -166,7 +169,7 @@ export const EditorPanel = memo(() => {
 					<FaCalendarDay />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.insertPageBreak')}
 					onClick={() => {
@@ -176,7 +179,7 @@ export const EditorPanel = memo(() => {
 					<FaMinus />
 				</Button>
 				<Button
-					size="sm"
+					size="xs"
 					variant="ghost"
 					title={t('editorPanel.insertFile')}
 					onClick={() => {
