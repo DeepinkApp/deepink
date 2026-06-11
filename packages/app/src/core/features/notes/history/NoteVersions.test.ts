@@ -47,6 +47,66 @@ describe('Note version control', () => {
 		]);
 	});
 
+	test('the snapshots of different notes must not affect each other', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+		const history = new NoteVersions(db, workspaceId);
+
+		// Create note
+		const noteId1 = await registry.add({ title: 'Title', text: 'Text' });
+
+		// Make snapshot
+		await expect(history.getList(noteId1)).resolves.toHaveLength(0);
+		await history.snapshot(noteId1);
+		await expect(history.getList(noteId1)).resolves.toHaveLength(1);
+
+		// Create another note and snapshot it
+		const noteId2 = await registry.add({
+			title: 'Another note',
+			text: 'Another note',
+		});
+		await history.snapshot(noteId2);
+		await expect(history.getList(noteId2)).resolves.toHaveLength(1);
+
+		// Note 1 have no changes and new snapshots must not be added
+		await history.snapshot(noteId1);
+		await expect(history.getList(noteId1)).resolves.toHaveLength(1);
+	});
+
+	test('snapshot must be created when note content is updated', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+		const history = new NoteVersions(db, workspaceId);
+
+		// Create note
+		const noteId = await registry.add({ title: '', text: 'v1' });
+
+		// Make snapshot
+		await expect(history.getList(noteId)).resolves.toHaveLength(0);
+		await history.snapshot(noteId);
+		await expect(history.getList(noteId)).resolves.toHaveLength(1);
+
+		// No changes - no snapshots
+		await history.snapshot(noteId);
+		await expect(history.getList(noteId)).resolves.toHaveLength(1);
+		await history.snapshot(noteId);
+		await expect(history.getList(noteId)).resolves.toHaveLength(1);
+
+		// Update must create snapshot
+		await registry.update(noteId, { title: '', text: 'v2' });
+		await history.snapshot(noteId);
+		await expect(history.getList(noteId)).resolves.toHaveLength(2);
+
+		// Update to content equal to version 1 must create snapshot
+		await registry.update(noteId, { title: '', text: 'v1' });
+		await history.snapshot(noteId);
+		await expect(history.getList(noteId)).resolves.toHaveLength(3);
+
+		// No changes - no snapshots
+		await history.snapshot(noteId);
+		await expect(history.getList(noteId)).resolves.toHaveLength(3);
+	});
+
 	test('snapshot must always be created when parameter `force` is set', async () => {
 		const { db, workspaceId } = getWorkspaceContext();
 		const registry = new NotesController(db, workspaceId);

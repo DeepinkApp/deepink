@@ -91,18 +91,18 @@ export class NoteVersions {
 			qb.sql`
 				INSERT INTO note_versions (note_id, created_at, title, text)
 				SELECT
-					id as note_id,
+					n.id as note_id,
 					${Date.now()} as created_at,
 					n.title,
 					n.text
 				FROM notes n
-				LEFT JOIN (
-					SELECT v.title, v.text, v.note_id
+				LEFT JOIN note_versions last ON last.rowid = (
+					SELECT rowid
 					FROM note_versions v
-					-- Order by monotonic "rowid" in case of timestamp collisions
-					ORDER BY v.created_at DESC, rowid DESC
+					WHERE v.note_id = n.id
+					ORDER BY v.created_at DESC, v.rowid DESC
 					LIMIT 1
-				) last ON last.note_id = n.id
+				)
 				WHERE
 					n.id IN (${qb.values(noteIds)}) AND workspace_id = ${this.workspace}
 					AND (last.note_id IS NULL OR last.title != n.title OR last.text != n.text)
