@@ -63,7 +63,7 @@ import { wait } from '@utils/time';
 import { NoteEditor } from './NoteEditor';
 import { NoteMenu } from './NoteMenu';
 import { NoteSidebar } from './NoteSidebar';
-import { NoteVersions } from './NoteVersions';
+import { NoteVersions } from './NoteVersions/NoteVersions';
 import { useTogglePreviewTabToRegularOnChange } from './useTogglePreviewTabToRegularOnChange';
 
 export enum NoteSidebarTabs {

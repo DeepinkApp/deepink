@@ -1,18 +1,9 @@
-import React, { forwardRef, memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { FaCheck, FaEraser, FaFloppyDisk, FaGlasses, FaTrashCan } from 'react-icons/fa6';
+import { FaEraser, FaFloppyDisk } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { WorkspaceEvents } from '@api/events/workspace';
-import {
-	Box,
-	Button,
-	HStack,
-	Stack,
-	StackProps,
-	Switch,
-	Text,
-	VStack,
-} from '@chakra-ui/react';
+import { Box, Button, HStack, Stack, Switch, Text, VStack } from '@chakra-ui/react';
 import { BoxWithCenteredContent } from '@components/BoxWithCenteredContent';
 import { TextWithIcon } from '@components/TextWithIcon';
 import { NoteVersion } from '@core/features/notes/history/NoteVersions';
@@ -23,79 +14,14 @@ import { useTelemetryTracker } from '@features/telemetry';
 import { useConfirmDialog } from '@hooks/useConfirmDialog';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
+import { NoteVersionItem } from './NoteVersionItem';
+
 const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
 const timestampToDays = (ms: number) => Math.floor(ms / ONE_DAY_IN_MS);
 const getTimestampAgeInDays = (ms: number) => timestampToDays(Date.now() - ms);
 
 export const formatNoteVersionPreview = (version: NoteVersion) =>
 	`${new Date(version.createdAt).toLocaleString()} (${version.text.length} chars)`;
-
-export const NoteVersionItem = memo(
-	forwardRef<
-		HTMLDivElement,
-		StackProps & {
-			version: NoteVersion;
-			isReadOnly?: boolean;
-			onDelete: () => void;
-			onApply: () => void;
-			onPreview: () => void;
-		}
-	>(({ version, isReadOnly, onPreview, onApply, onDelete, ...props }, ref) => {
-		const { t } = useTranslation(LOCALE_NAMESPACE.features);
-
-		return (
-			<HStack
-				ref={ref}
-				w="100%"
-				align="start"
-				padding="0.3rem"
-				alignItems="center"
-				_hover={{ backgroundColor: 'dim.50' }}
-				{...props}
-			>
-				<HStack>
-					<Text>{new Date(version.createdAt).toLocaleString()}</Text>
-					<Text variant="secondary">
-						{t('note.version.chars', {
-							count: version.text.length,
-						})}
-					</Text>
-				</HStack>
-				<HStack marginLeft="auto">
-					<Button
-						disabled={Boolean(isReadOnly)}
-						size="xs"
-						title={
-							isReadOnly
-								? t('note.version.apply.readonlyTitle')
-								: t('note.version.apply.title')
-						}
-						onClick={onApply}
-					>
-						<FaCheck />
-					</Button>
-
-					<Button
-						size="xs"
-						title={t('note.version.open.title')}
-						onClick={onPreview}
-					>
-						<FaGlasses />
-					</Button>
-					<Button
-						size="xs"
-						title={t('note.version.delete.title')}
-						onClick={onDelete}
-					>
-						<FaTrashCan />
-					</Button>
-				</HStack>
-			</HStack>
-		);
-	}),
-);
-
-NoteVersionItem.displayName = 'NoteVersionItem';
 
 // TODO: implement lazy loading
 export const NoteVersions = ({
