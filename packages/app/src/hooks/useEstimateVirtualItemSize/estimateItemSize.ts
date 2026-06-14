@@ -11,18 +11,14 @@ export const estimateItemSize = <T extends unknown>(
 	{ defaultSize }: ItemSizeEstimatorOptions,
 ) => {
 	const sizes = new Map<number, number>();
+	let maxSize = defaultSize;
+
 	const getItemSize = (index: number) => {
-		// Try to return actual size from cache
+		// Return actual size from cache if recorded
 		const indexSize = sizes.get(index);
 		if (indexSize !== undefined) return indexSize;
 
-		// Try to guess probable size if have enough stats
-		const cachedSizes = sizes.values().take(1).toArray();
-		if (cachedSizes.length > 0) {
-			return cachedSizes[0];
-		}
-
-		return defaultSize;
+		return maxSize;
 	};
 
 	return (index: number) => {
@@ -31,7 +27,13 @@ export const estimateItemSize = <T extends unknown>(
 		if (root && root instanceof HTMLElement) {
 			const item = root.querySelector(`[data-index="${index}"]`);
 			if (item) {
-				sizes.set(index, item.clientHeight);
+				const itemSize = item.clientHeight;
+				if (itemSize !== sizes.get(index)) {
+					sizes.set(index, item.clientHeight);
+
+					// Update max size
+					if (itemSize > maxSize) maxSize = itemSize;
+				}
 			}
 		}
 
