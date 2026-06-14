@@ -1,12 +1,14 @@
 import { RefObject } from 'react';
 
+export type ItemSizeEstimatorOptions = { defaultSize: number };
+
 // TODO: add option `strategy` to control if return avg size or most recently measured, etc
 /**
  * Util for virtual list to create instance for node size estimation
  */
 export const estimateItemSize = <T extends unknown>(
 	elementRef: RefObject<T>,
-	{ defaultSize }: { defaultSize: number },
+	{ defaultSize }: ItemSizeEstimatorOptions,
 ) => {
 	const sizes = new Map<number, number>();
 	const getItemSize = (index: number) => {

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { WorkspaceEvents } from '@api/events/workspace';
@@ -9,9 +9,9 @@ import { useEventBus, useNotesHistory } from '@features/App/Workspace/WorkspaceP
 import { useMemoizedCallback } from '@features/MainScreen/TagsPanel/useMemoizedCallback';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useConfirmDialog } from '@hooks/useConfirmDialog';
+import { useEstimateVirtualItemSize } from '@hooks/useEstimateVirtualItemSize';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
-import { estimateItemSize } from './estimateItemSize';
 import { NoteVersionItem } from './NoteVersionItem';
 
 const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -184,10 +184,7 @@ export const NoteVersionsList = ({
 	const virtualizer = useVirtualizer({
 		count: versions?.length ?? 0,
 		getScrollElement: () => listRootRef.current,
-		estimateSize: useMemo(
-			() => estimateItemSize(listRootRef, { defaultSize: 20 }),
-			[],
-		),
+		estimateSize: useEstimateVirtualItemSize(listRootRef, { defaultSize: 20 }),
 		overscan: 6,
 		useFlushSync: false,
 		useCachedMeasurements: true,

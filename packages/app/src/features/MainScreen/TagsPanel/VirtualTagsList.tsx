@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useImperativeHandle, useRef } from 'react';
 import { Box, useSlotRecipe } from '@chakra-ui/react';
 import { ItemInstance, TreeInstance } from '@headless-tree/core';
+import { useEstimateVirtualItemSize } from '@hooks/useEstimateVirtualItemSize';
 import { TagNode } from '@state/redux/vaults/vaults';
 import { useVirtualizer, Virtualizer } from '@tanstack/react-virtual';
 
@@ -22,7 +23,7 @@ export const VirtualTagsList = forwardRef<
 	const virtualizer = useVirtualizer({
 		count: tree.getItems().length,
 		getScrollElement: () => parentRef.current,
-		estimateSize: () => 38,
+		estimateSize: useEstimateVirtualItemSize(parentRef, { defaultSize: 38 }),
 		useFlushSync: false,
 		overscan: 10,
 	});
