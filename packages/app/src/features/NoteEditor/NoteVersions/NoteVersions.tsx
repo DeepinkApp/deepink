@@ -50,11 +50,11 @@ export const NoteVersions = ({
 	// Refresh note versions by event
 	const eventBus = useEventBus();
 	useEffect(() => {
-		return eventBus.listen(WorkspaceEvents.NOTE_HISTORY_UPDATED, (noteId) => {
-			if (noteId !== noteId) return;
+		return eventBus.listen(WorkspaceEvents.NOTE_HISTORY_UPDATED, (updatedNoteId) => {
+			if (updatedNoteId !== noteId) return;
 			updateVersionsList();
 		});
-	}, [eventBus, updateVersionsList]);
+	}, [eventBus, noteId, updateVersionsList]);
 
 	const confirm = useConfirmDialog();
 
