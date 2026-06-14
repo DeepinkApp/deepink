@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FaEraser, FaFloppyDisk } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { WorkspaceEvents } from '@api/events/workspace';
-import { Box, Button, HStack, Switch, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, HStack, Spinner, Switch, Text, VStack } from '@chakra-ui/react';
 import { BoxWithCenteredContent } from '@components/BoxWithCenteredContent';
 import { TextWithIcon } from '@components/TextWithIcon';
 import { NoteVersion } from '@core/features/notes/history/NoteVersions';
@@ -147,7 +147,7 @@ export const NoteVersions = ({
 				)}
 				{versions === null && (
 					<BoxWithCenteredContent>
-						<Text fontSize="1.3rem">{t('note.versions.loading')}</Text>
+						<Spinner />
 					</BoxWithCenteredContent>
 				)}
 				{versions !== null && versions.length > 0 && (

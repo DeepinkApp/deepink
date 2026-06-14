@@ -142,7 +142,6 @@
 			},
 			"dontRecord": "Don't record history for this note",
 			"empty": "This note has no recorded versions",
-			"loading": "Loading...",
 			"confirmDeleteAll": {
 				"title": "Delete all note versions",
 				"description": "This action will permanently delete all note versions.",
