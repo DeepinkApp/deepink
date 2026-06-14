@@ -185,7 +185,10 @@ export const NoteVersionsList = ({
 		count: versions?.length ?? 0,
 		getItemKey: (index) => versions[index].id,
 		getScrollElement: () => listRootRef.current,
-		estimateSize: useEstimateVirtualItemSize(listRootRef, { defaultSize: 20 }),
+		estimateSize: useEstimateVirtualItemSize(listRootRef, {
+			defaultSize: 20,
+			getItemKey: (index) => versions[index].id,
+		}),
 		overscan: 6,
 		useFlushSync: false,
 		useCachedMeasurements: true,

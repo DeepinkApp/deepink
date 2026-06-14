@@ -1,6 +1,9 @@
 import { RefObject } from 'react';
 
-export type ItemSizeEstimatorOptions = { defaultSize: number };
+export type ItemSizeEstimatorOptions = {
+	defaultSize: number;
+	getItemKey?: (index: number) => string;
+};
 
 // TODO: add option `strategy` to control if return avg size or most recently measured, etc
 /**
@@ -8,14 +11,14 @@ export type ItemSizeEstimatorOptions = { defaultSize: number };
  */
 export const estimateItemSize = <T extends unknown>(
 	elementRef: RefObject<T>,
-	{ defaultSize }: ItemSizeEstimatorOptions,
+	{ defaultSize, getItemKey = String }: ItemSizeEstimatorOptions,
 ) => {
-	const sizes = new Map<number, number>();
+	const sizes = new Map<string, number>();
 	let maxSize = defaultSize;
 
 	const getItemSize = (index: number) => {
 		// Return actual size from cache if recorded
-		const indexSize = sizes.get(index);
+		const indexSize = sizes.get(getItemKey(index));
 		if (indexSize !== undefined) return indexSize;
 
 		return maxSize;
@@ -28,8 +31,8 @@ export const estimateItemSize = <T extends unknown>(
 			const item = root.querySelector(`[data-index="${index}"]`);
 			if (item) {
 				const itemSize = item.clientHeight;
-				if (itemSize !== sizes.get(index)) {
-					sizes.set(index, item.clientHeight);
+				if (itemSize !== sizes.get(getItemKey(index))) {
+					sizes.set(getItemKey(index), item.clientHeight);
 
 					// Update max size
 					if (itemSize > maxSize) maxSize = itemSize;

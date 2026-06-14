@@ -54,7 +54,12 @@ export const NotesList: FC<NotesListProps> = () => {
 		enabled: isActiveWorkspace,
 		count: noteIds.length,
 		getScrollElement: () => parentRef.current,
-		estimateSize: useEstimateVirtualItemSize(parentRef, { defaultSize: 180 }),
+		estimateSize: useEstimateVirtualItemSize(parentRef, {
+			defaultSize: 180,
+			getItemKey(index) {
+				return noteIds[index];
+			},
+		}),
 		overscan: 5,
 		useFlushSync: false,
 	});
