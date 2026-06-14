@@ -11,6 +11,7 @@ import { useNoteContextMenu } from '@features/NotesContainer/NoteContextMenu/use
 import { useTelemetryTracker } from '@features/telemetry';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';
+import { useEstimateVirtualItemSize } from '@hooks/useEstimateVirtualItemSize';
 import { useIsActiveWorkspace } from '@hooks/useIsActiveWorkspace';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import {
@@ -53,7 +54,12 @@ export const NotesList: FC<NotesListProps> = () => {
 		enabled: isActiveWorkspace,
 		count: noteIds.length,
 		getScrollElement: () => parentRef.current,
-		estimateSize: () => 180,
+		estimateSize: useEstimateVirtualItemSize(parentRef, {
+			defaultSize: 180,
+			getItemKey(index) {
+				return noteIds[index];
+			},
+		}),
 		overscan: 5,
 		useFlushSync: false,
 	});
