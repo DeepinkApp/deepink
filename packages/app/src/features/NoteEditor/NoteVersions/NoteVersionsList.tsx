@@ -183,6 +183,7 @@ export const NoteVersionsList = ({
 	// eslint-disable-next-line react-hooks/incompatible-library
 	const virtualizer = useVirtualizer({
 		count: versions?.length ?? 0,
+		getItemKey: (index) => versions[index].id,
 		getScrollElement: () => listRootRef.current,
 		estimateSize: useEstimateVirtualItemSize(listRootRef, { defaultSize: 20 }),
 		overscan: 6,
@@ -215,7 +216,7 @@ export const NoteVersionsList = ({
 					return (
 						<NoteVersionItem
 							ref={virtualizer.measureElement}
-							key={virtualRow.index}
+							key={version.id}
 							data-index={virtualRow.index}
 							version={version}
 							onApply={onApply(version)}
