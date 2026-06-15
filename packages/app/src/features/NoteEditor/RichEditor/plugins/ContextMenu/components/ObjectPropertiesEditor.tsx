@@ -31,6 +31,7 @@ export const ObjectPropertiesEditor = <T extends OptionObject[]>({
 			>
 				<Card.Header
 					display="flex"
+					flexDirection="row"
 					padding="1rem"
 					justifyContent="space-between"
 					alignItems="baseline"
