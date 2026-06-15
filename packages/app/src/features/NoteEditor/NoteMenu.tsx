@@ -51,7 +51,7 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="pin"
+											value="togglePin"
 										>
 											<HStack>
 												<Box
@@ -75,7 +75,6 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 													},
 												)
 											}
-											value="pin"
 										>
 											<HStack>
 												<Box
