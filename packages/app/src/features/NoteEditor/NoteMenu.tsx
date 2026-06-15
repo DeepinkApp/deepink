@@ -69,29 +69,6 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 											value="copyReference"
 											onSelect={() =>
 												runCommand(
-													GLOBAL_COMMANDS.TOGGLE_NOTE_PIN,
-													{
-														noteId: note.id,
-													},
-												)
-											}
-										>
-											<HStack>
-												<Box
-													as={FaThumbtack}
-													transform="rotate(45deg)"
-												/>
-												<Text>
-													{note.isPinned
-														? t('note.menu.unpin')
-														: t('note.menu.pin')}
-												</Text>
-											</HStack>
-										</Menu.Item>
-										<Menu.Item
-											value="copyReference"
-											onSelect={() =>
-												runCommand(
 													GLOBAL_COMMANDS.COPY_NOTE_MARKDOWN_LINK,
 													{
 														noteId: note.id,
