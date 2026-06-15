@@ -45,6 +45,8 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 	useEffect(() => {
 		const onNoteUpdated = (noteId: NoteId) => {
 			if (notesData.has(noteId)) {
+				// When a note is updated should refresh immediately, otherwise the note date may be outdated
+				// For example, after a pin status update the moved note may still have stale pin state
 				notesRegistry.getById([noteId]).then((loadedNote) => {
 					const note = loadedNote[0];
 					if (!note) return;
@@ -56,9 +58,7 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, (noteId) =>
-				onNoteUpdated(noteId),
-			),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, onNoteUpdated),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
 	}, [eventBus, loadNotesData, notesData, notesRegistry]);
