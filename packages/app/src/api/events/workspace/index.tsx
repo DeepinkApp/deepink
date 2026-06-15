@@ -28,7 +28,7 @@ export type WorkspaceEventsPayloadMap = {
 	/**
 	 * Fired when specific note metadata has been updated and change is committed in DB
 	 *
-	 * For example pin state or other note properties that do not affect its content
+	 * Metadata includes all note properties except the title and content
 	 */
 	[WorkspaceEvents.NOTE_META_UPDATED]: NoteId;
 

@@ -45,8 +45,9 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 	useEffect(() => {
 		const onNoteUpdated = (noteId: NoteId) => {
 			if (notesData.has(noteId)) {
-				// When a note is updated should refresh immediately, otherwise the note date may be outdated
-				// For example, after a pin status update the moved note may still have stale pin state
+				// Update the note immediately, otherwise it may temporarily display stale data
+				// e.g. after unpinning, the note moves but still shows the pinned icon
+				// until the cache is updated and it is re-rendered with the correct state
 				notesRegistry.getById([noteId]).then((loadedNote) => {
 					const note = loadedNote[0];
 					if (!note) return;
