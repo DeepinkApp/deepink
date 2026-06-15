@@ -1,7 +1,7 @@
 import { defineSlotRecipe } from '@chakra-ui/react';
 
 export const notePreviewRecipe = defineSlotRecipe({
-	slots: ['root', 'body', 'title', 'text', 'meta', 'pinIcon', 'header'],
+	slots: ['root', 'body', 'title', 'text', 'meta', 'header', 'icon'],
 	base: {
 		root: {
 			cursor: 'pointer',
@@ -26,9 +26,8 @@ export const notePreviewRecipe = defineSlotRecipe({
 			fontWeight: 'bold',
 			fontSize: '18px',
 		},
-		pinIcon: {
+		icon: {
 			color: 'typography.secondary',
-			transform: 'rotate(45deg)',
 			fontSize: '12px',
 		},
 		text: {
