@@ -29,13 +29,11 @@ export const useScrollToActiveNote = ({
 	noteIds,
 	activeNoteId,
 	activeNoteRef,
-	shouldSkipScroll,
 }: {
 	virtualizer: Virtualizer<any, any>;
 	noteIds: NoteId[];
 	activeNoteId: NoteId | null;
 	activeNoteRef: React.RefObject<HTMLDivElement | null>;
-	shouldSkipScroll?: any;
 }) => {
 	// Reset the scroll once filters changed
 	useOnFiltersChange(() => {
@@ -89,6 +87,7 @@ export const useScrollToActiveNote = ({
 
 	// Focus active note by changes in case it was in viewport
 	const wasActiveNoteInViewport = useRef(false);
+	const skipScrollRef = useRef<boolean>(false);
 	const eventBus = useEventBus();
 	useEffect(() => {
 		if (activeNoteId === null) return;
@@ -101,13 +100,19 @@ export const useScrollToActiveNote = ({
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, async (noteId) => {
-				if (await shouldSkipScroll?.(noteId)) return;
+			eventBus.listen(WorkspaceEvents.NOTE_META_UPDATED, (noteId) => {
+				if (noteId === activeNoteId) skipScrollRef.current = true;
+			}),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, (noteId) => {
+				if (skipScrollRef.current) {
+					skipScrollRef.current = false;
+					return;
+				}
 				onNoteUpdated(noteId);
 			}),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
-	}, [activeNoteId, activeNoteRef, eventBus, shouldSkipScroll]);
+	}, [activeNoteId, activeNoteRef, eventBus]);
 
 	useEffect(() => {
 		if (activeNoteId === null) return;

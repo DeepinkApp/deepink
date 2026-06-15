@@ -193,6 +193,8 @@ export const useNoteCommandHandlers = () => {
 		await notes.updateMeta([noteId], {
 			isPinned: newPinnedState,
 		});
+
+		eventBus.emit(WorkspaceEvents.NOTE_META_UPDATED, noteId);
 		eventBus.emit(WorkspaceEvents.NOTE_UPDATED, noteId);
 
 		telemetry.track(TELEMETRY_EVENT_NAME.NOTE_PIN_TOGGLE, {
