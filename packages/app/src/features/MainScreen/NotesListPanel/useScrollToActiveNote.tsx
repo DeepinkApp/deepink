@@ -29,11 +29,13 @@ export const useScrollToActiveNote = ({
 	noteIds,
 	activeNoteId,
 	activeNoteRef,
+	shouldSkipScroll,
 }: {
 	virtualizer: Virtualizer<any, any>;
 	noteIds: NoteId[];
 	activeNoteId: NoteId | null;
 	activeNoteRef: React.RefObject<HTMLDivElement | null>;
+	shouldSkipScroll?: any;
 }) => {
 	// Reset the scroll once filters changed
 	useOnFiltersChange(() => {
@@ -99,17 +101,13 @@ export const useScrollToActiveNote = ({
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId, reason }) => {
-				// Ignore meta changes (pin, bookmarks, etc) and do not change the scroll position,
-				// because users may update note metadata while browsing the notes
-				// and losing the scroll position would break their browsing context
-				if (reason === 'meta') return;
-
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, async (noteId) => {
+				if (await shouldSkipScroll?.(noteId)) return;
 				onNoteUpdated(noteId);
 			}),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
-	}, [activeNoteId, activeNoteRef, eventBus]);
+	}, [activeNoteId, activeNoteRef, eventBus, shouldSkipScroll]);
 
 	useEffect(() => {
 		if (activeNoteId === null) return;

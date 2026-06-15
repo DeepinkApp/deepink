@@ -4,9 +4,11 @@ import { FaPenToSquare } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Box, Button, Skeleton, Text, VStack } from '@chakra-ui/react';
 import { NotePreview } from '@components/NotePreview/NotePreview';
+import { INote, NoteId } from '@core/features/notes';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
+import { useNotesRegistry } from '@features/App/Workspace/WorkspaceProvider';
 import { useNoteContextMenu } from '@features/NotesContainer/NoteContextMenu/useNoteContextMenu';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
@@ -49,7 +51,6 @@ export const NotesList: FC<NotesListProps> = () => {
 	const parentRef = useRef<HTMLDivElement>(null);
 	const isActiveWorkspace = useIsActiveWorkspace();
 
-	// eslint-disable-next-line react-hooks/incompatible-library
 	const virtualizer = useVirtualizer({
 		enabled: isActiveWorkspace,
 		count: noteIds.length,
@@ -72,12 +73,26 @@ export const NotesList: FC<NotesListProps> = () => {
 
 	// TODO: add command to scroll a list to note id. Call this command by click note tab
 	// Scroll to active note
+	const prevActiveNoteRef = useRef<INote | null>(null);
+	const notesRegistry = useNotesRegistry();
+
+	const shouldSkipScroll = async (noteId: NoteId): Promise<boolean> => {
+		if (noteId !== activeNoteId) return false;
+
+		const [note] = await notesRegistry.getById([noteId]);
+		if (!note) return false;
+
+		prevActiveNoteRef.current = note;
+		return note.isPinned !== prevActiveNoteRef.current?.isPinned;
+	};
+
 	const activeNoteRef = useRef<HTMLDivElement | null>(null);
 	useScrollToActiveNote({
 		virtualizer,
 		noteIds,
 		activeNoteId,
 		activeNoteRef,
+		shouldSkipScroll,
 	});
 
 	// TODO: implement dragging and moving items

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { NoteUpdateReason, WorkspaceEvents } from '@api/events/workspace';
+import { WorkspaceEvents } from '@api/events/workspace';
 import { INote, NoteId } from '@core/features/notes';
 import { useEventBus, useNotesRegistry } from '@features/App/Workspace/WorkspaceProvider';
 import { useDeepEqualValue } from '@hooks/useDeepEqualValue';
@@ -43,25 +43,21 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 	// Re-fetch note data by changes
 	const eventBus = useEventBus();
 	useEffect(() => {
-		const onNoteUpdated = (noteId: NoteId, reason?: NoteUpdateReason) => {
+		const onNoteUpdated = (noteId: NoteId) => {
 			if (notesData.has(noteId)) {
-				// Meta changes (e.g. pin/unpin) reorder the notes list, but note data is updated with debounce,
-				// which can cause stale UI (e.g. after unpinning the note may still show the pin icon)
-				// To avoid inconsistency immediately refresh the updated note
-				if (reason === 'meta') {
-					notesRegistry.getById([noteId]).then((loadedNote) => {
-						const note = loadedNote[0];
-						if (!note) return;
-						notesData.add([[note.id, note]]);
-					});
-				}
+				notesRegistry.getById([noteId]).then((loadedNote) => {
+					const note = loadedNote[0];
+					if (!note) return;
+					notesData.add([[note.id, note]]);
+				});
+
 				loadNotesData();
 			}
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId, reason }) =>
-				onNoteUpdated(noteId, reason),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, (noteId) =>
+				onNoteUpdated(noteId),
 			),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
