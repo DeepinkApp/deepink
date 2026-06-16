@@ -7,3 +7,5 @@ Prepare environment
 Workflow
 - Pull the actual state via `make repo-pull`
 - Release updates via `make repo-update repo-push`
+
+Or you can run `make repo-build` to run all these steps automatically.

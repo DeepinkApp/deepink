@@ -46,6 +46,7 @@ export const ContextMenuPlugin = ({
 				const rootElement = editor.getElementByKey(lexicalNode.getKey());
 				if (!rootElement) return;
 
+				evt.preventDefault();
 				setMenuContext({
 					node: lexicalNode,
 					element: rootElement,
