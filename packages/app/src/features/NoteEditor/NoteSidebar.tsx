@@ -39,13 +39,7 @@ export const NoteSidebar = ({
 
 	return (
 		<VStack align="start" w="100%" h="100%" flex={1} gap="1rem">
-			<HStack
-				w="100%"
-				alignItems="center"
-				borderBottom="1px solid"
-				bgColor="surface.panel"
-				borderColor="surface.border"
-			>
+			<HStack w="100%" alignItems="center" bgColor="surface.panel" padding=".3rem">
 				<Tabs.Root
 					value={activeTab}
 					onValueChange={(details) => {
@@ -54,6 +48,7 @@ export const NoteSidebar = ({
 					maxH="100px"
 					overflow="auto"
 					flexShrink={1}
+					size="sm"
 				>
 					<Tabs.List display="flex" flexWrap="nowrap" overflow="auto">
 						{tabs.map((tab) => {
