@@ -101,6 +101,10 @@ export default defineConfig({
 					label: 'Introduction',
 					autogenerate: { directory: 'introduction' },
 				},
+				{
+					label: 'Reference',
+					autogenerate: { directory: 'reference' },
+				},
 			],
 
 			components: {
