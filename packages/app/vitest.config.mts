@@ -33,7 +33,7 @@ export default defineConfig({
 			VITEST_WEB_WORKER_CLONE: 'none',
 		},
 		globals: true,
-		setupFiles: ['@vitest/web-worker'],
+		setupFiles: ['@vitest/web-worker', 'scripts/vitest.setup.ts'],
 		exclude: defaultExclude.concat(['tmp/**', 'dist/**', 'out/**']),
 
 		// DB initialization takes some time at first time,
@@ -55,7 +55,6 @@ export default defineConfig({
 				test: {
 					name: 'dom',
 					environment: 'jsdom',
-					setupFiles: ['scripts/vitest.setup.ts'],
 					include: ['**/*.dom.test.ts'],
 				},
 			},
