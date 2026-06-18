@@ -80,7 +80,9 @@ test(`Inserts image between text nodes`, async () => {
 		value: `My favorite image\n\n I love cat`,
 	});
 
-	selectContent('My favorite image');
+	const container = screen.getByRole('textbox');
+	expect(editor).not.toBeUndefined();
+	selectContent(container, 'My favorite image');
 
 	// Simulate inserting an image via the editor panel action
 	await editor.insert({
@@ -130,7 +132,9 @@ test('Updates heading level correctly', async () => {
 	const content = 'Hello, my dear friends!';
 	const editor = await renderRichEditor({ value: content });
 
-	selectContent(content);
+	const container = screen.getByRole('textbox');
+	expect(editor).not.toBeUndefined();
+	selectContent(container, content);
 
 	// Plain text becomes heading
 	await editor.insert({ type: 'heading', data: { level: 1 } });
@@ -153,7 +157,9 @@ test('Toggles text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const editor = await renderRichEditor({ value: content });
 
-	selectContent(content);
+	const container = screen.getByRole('textbox');
+	expect(editor).not.toBeUndefined();
+	selectContent(container, content);
 
 	// Apply bold
 	await editor.format('bold');
@@ -178,7 +184,10 @@ test('Combines multiple text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const editor = await renderRichEditor({ value: content });
 
-	selectContent(content);
+	const container = screen.getByRole('textbox');
+	expect(editor).not.toBeUndefined();
+	selectContent(container, content);
+
 	await editor.format('italic');
 	await editor.format('bold');
 	await editor.format('strikethrough');
@@ -224,7 +233,9 @@ test('Converts an unordered list to an ordered list', async () => {
 	});
 
 	// Select text
-	selectContent('First item');
+	const container = screen.getByRole('textbox');
+	expect(editor).not.toBeUndefined();
+	selectContent(container, 'First item');
 
 	// Update unordered list to ordered
 	await editor.insert({ type: 'list', data: { type: 'ordered' } });

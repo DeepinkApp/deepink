@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, within } from '@testing-library/react';
 
 const getFirstTextNode = (node: Node): Text | null => {
 	if (node.nodeType === Node.TEXT_NODE) return node as Text;
@@ -20,15 +20,19 @@ const getFirstTextNode = (node: Node): Text | null => {
  * Selects everything from the beginning of `startText` to the end of `endText`;
  * If `endText` is omitted, selects the entire `startText`.
  */
-export const selectContent = (startText: string, endText?: string) => {
-	const startNode = getFirstTextNode(screen.getByText(startText));
+export const selectContent = (
+	parent: HTMLElement,
+	startText: string,
+	endText?: string,
+) => {
+	const startNode = getFirstTextNode(within(parent).getByText(startText));
 	if (!startNode) throw new Error(`Text node not found for "${startText}"`);
 
 	const range = document.createRange();
 	range.setStart(startNode, 0);
 
 	if (endText) {
-		const endNode = getFirstTextNode(screen.getByText(endText));
+		const endNode = getFirstTextNode(within(parent).getByText(endText));
 		if (!endNode) throw new Error(`Text node not found for "${endText}"`);
 
 		range.setEnd(endNode, endText.length);
