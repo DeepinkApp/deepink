@@ -3,7 +3,8 @@ import saveAs from 'file-saver';
 import { getAppResourceDataInUrl } from '@core/features/links';
 import { openLink } from '@electron/requests/interactions/renderer';
 import { useFilesRegistry } from '@features/App/Workspace/WorkspaceProvider';
-import { useNotesControl } from '@hooks/notes/useNotesControl';
+
+import { useNoteActions } from './notes/useNoteActions';
 
 /**
  * Returns callback to open any links, including links with application defined protocols
@@ -11,7 +12,8 @@ import { useNotesControl } from '@hooks/notes/useNotesControl';
  */
 export const useUrlOpener = () => {
 	const filesRegistry = useFilesRegistry();
-	const notesControl = useNotesControl();
+
+	const { click: clickNote } = useNoteActions();
 
 	return useCallback(
 		async (url: string) => {
@@ -27,7 +29,7 @@ export const useUrlOpener = () => {
 						return true;
 					}
 					case 'note': {
-						notesControl.open(resourceData.id);
+						clickNote(resourceData.id, { preview: true });
 						return true;
 					}
 				}
@@ -46,6 +48,6 @@ export const useUrlOpener = () => {
 
 			return false;
 		},
-		[filesRegistry, notesControl],
+		[clickNote, filesRegistry],
 	);
 };
