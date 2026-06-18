@@ -8,14 +8,7 @@ import React, {
 	useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-	FaArrowLeft,
-	FaBoxArchive,
-	FaHashtag,
-	FaRegStar,
-	FaStar,
-	FaXmark,
-} from 'react-icons/fa6';
+import { FaArrowLeft, FaHashtag, FaRegStar, FaStar, FaXmark } from 'react-icons/fa6';
 import { Panel } from 'react-resizable-panels';
 import { debounce } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
@@ -152,23 +145,6 @@ const NoteControlsPanel = memo(({ note }: { note: INote }) => {
 						as={note.isBookmarked ? FaStar : FaRegStar}
 						transform="scale(1.2)"
 					/>
-				</Button>
-				<Button
-					variant="ghost"
-					data-active={note.isArchived ? true : undefined}
-					title={
-						note.isArchived
-							? t('note.actions.removeFromArchive')
-							: t('note.actions.moveToArchive')
-					}
-					size="xs"
-					onClick={() =>
-						runCommand(GLOBAL_COMMANDS.TOGGLE_NOTE_ARCHIVE, {
-							noteId: note.id,
-						})
-					}
-				>
-					<Box as={FaBoxArchive} transform="scale(1.1)" />
 				</Button>
 			</HStack>
 			<Separator orientation="vertical" h="1em" />
