@@ -38,6 +38,48 @@ console.log('Hello');
 	expect(screen.getByRole('link')).toHaveAttribute('href', 'http://example.com');
 });
 
+test('Editing one editor does not affect the other editor', async () => {
+	const editorA = await renderRichEditor({ value: `# Big text` });
+	const editorB = await renderRichEditor({ value: `## Small text` });
+
+	const [editorBoxA, editorBoxB] = screen.getAllByRole('textbox');
+	expect(screen.getAllByRole('textbox')).toHaveLength(2);
+
+	// initial state
+	expect(within(editorBoxA).getByRole('heading', { level: 1 })).toHaveTextContent(
+		'Big text',
+	);
+	expect(within(editorBoxB).getByRole('heading', { level: 2 })).toHaveTextContent(
+		'Small text',
+	);
+
+	// change heading level in editorA, editorB must stay untouched
+	selectContent(editorBoxA, 'Big text');
+	await editorA.insert({ type: 'heading', data: { level: 4 } });
+
+	expect(within(editorBoxA).getByRole('heading', { level: 4 })).toHaveTextContent(
+		'Big text',
+	);
+	expect(within(editorBoxB).getByRole('heading', { level: 2 })).toHaveTextContent(
+		'Small text',
+	);
+	expect(within(editorBoxA).queryByRole('heading', { level: 2 })).toBeNull();
+	expect(within(editorBoxB).queryByRole('heading', { level: 4 })).toBeNull();
+
+	// change heading level in editorB, editorA must stay untouched
+	selectContent(editorBoxB, 'Small text');
+	await editorB.insert({ type: 'heading', data: { level: 3 } });
+
+	expect(within(editorBoxA).getByRole('heading', { level: 4 })).toHaveTextContent(
+		'Big text',
+	);
+	expect(within(editorBoxB).getByRole('heading', { level: 3 })).toHaveTextContent(
+		'Small text',
+	);
+	expect(within(editorBoxA).queryByRole('heading', { level: 3 })).toBeNull();
+	expect(within(editorBoxB).queryByRole('heading', { level: 4 })).toBeNull();
+});
+
 test('Editor updates when value changes', async () => {
 	const editor = await renderRichEditor({ value: `# Big text` });
 
