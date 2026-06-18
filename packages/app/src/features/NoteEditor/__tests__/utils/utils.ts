@@ -17,8 +17,8 @@ const getFirstTextNode = (node: Node): Text | null => {
 
 /**
  * Simulates a text selection in the editor.
- * Selects everything from the beginning of `startText` to the end of `endText`;
- * If `endText` is omitted, selects the entire `startText`.
+ * Selects text starting from `startText`, if `endText` is provided, selects everything up to the end of `endText`.
+ * Otherwise, selects only `startText`.
  */
 export const selectContent = (
 	parent: HTMLElement,
