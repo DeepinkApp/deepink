@@ -110,7 +110,7 @@ test('Inserts image after block node', async () => {
 	});
 
 	// Place cursor position inside the code node
-	setCursorPosition(screen.getByRole('code'));
+	setCursorPosition(screen.getByRole('code'), 10);
 
 	await editor.insert({
 		type: 'image',

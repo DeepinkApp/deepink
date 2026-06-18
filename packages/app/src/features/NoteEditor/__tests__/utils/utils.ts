@@ -47,17 +47,17 @@ export const selectContent = (
 };
 
 /**
- * Simulates placing the cursor at the start of a node.
- * Finds the first text node inside node, places the cursor there
+ * Simulates placing the cursor at a given position within a node.
+ * Finds the first text node inside `node` and places the cursor at position
  */
-export const setCursorPosition = (node: Node) => {
+export const setCursorPosition = (node: Node, position: number) => {
 	const textNode = getFirstTextNode(node);
 	if (!textNode) throw new Error(`Text node not found inside ${node.nodeName}`);
 
 	const range = document.createRange();
 
-	range.setStart(textNode, 0);
-	range.setEnd(textNode, 0);
+	range.setStart(textNode, position);
+	range.setEnd(textNode, position);
 
 	window.getSelection()?.removeAllRanges();
 	window.getSelection()?.addRange(range);
