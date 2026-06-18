@@ -4,7 +4,9 @@ import {
 	defaultConfig,
 	defineConfig,
 	defineRecipe,
+	defineSlotRecipe,
 } from '@chakra-ui/react';
+import { codeBlockAnatomy } from '@chakra-ui/react/anatomy';
 
 import { linkRecipe } from '../components/Link';
 import { CSS_RESET_CLASS_NAME } from './constants';
@@ -140,6 +142,19 @@ const customConfig = defineConfig({
 				},
 			}),
 		},
+		slotRecipes: {
+			codeBlock: defineSlotRecipe({
+				slots: codeBlockAnatomy.keys(),
+				base: {
+					code: {
+						'& ::selection': {
+							bg: '#f1eae0',
+							color: '#191919',
+						},
+					},
+				},
+			}),
+		},
 	},
 	globalCss: {
 		'*': {
@@ -147,7 +162,6 @@ const customConfig = defineConfig({
 		},
 		'::selection': {
 			bg: '#f1eae0',
-			color: '#191919',
 		},
 		':root': {
 			bg: 'bg.canvas',
