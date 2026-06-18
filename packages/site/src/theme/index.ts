@@ -55,18 +55,30 @@ const customConfig = defineConfig({
 	theme: {
 		tokens: {
 			colors: {
-				bg: {
-					canvas: { value: '#fff6eb' },
-					image: { value: '#ffe7d3' },
+				accent: {
+					50: { value: '#fdf7f5' },
+					100: { value: '#fbece8' },
+					200: { value: '#f7d8d2' },
+					300: { value: '#efbba9' },
+					400: { value: '#e07d63' },
+					500: { value: '#cc583b' },
+					600: { value: '#b54d32' },
+					700: { value: '#943e28' },
+					800: { value: '#6b2c1d' },
+					900: { value: '#3b1810' },
 				},
-				brand: {
-					primary: { value: '#b55d0e' },
-					primaryHover: { value: '#f36e02' },
-					secondary: { value: '#654c3d' },
-					buttonSecondaryBg: { value: '#ffe7d3' },
-					buttonSecondaryText: { value: '#754f2f' },
-					heroHeader: { value: '#321e04' },
-					hrBorder: { value: '#f4e5dd' },
+				sand: {
+					50: { value: '#fbfaf7' },
+					100: { value: '#f7f4ef' },
+					200: { value: '#f1eae0' },
+					300: { value: '#eae0d0' },
+					400: { value: '#e9ddcf' },
+					500: { value: '#9c9384' },
+				},
+				typography: {
+					base: { value: '#191919' },
+					secondary: { value: '#6b665c' },
+					inverted: { value: '#fbfaf7' },
 				},
 			},
 			fonts: {
@@ -80,15 +92,31 @@ const customConfig = defineConfig({
 		},
 		semanticTokens: {
 			colors: {
+				brand: {
+					primary: { value: '#b54d32' },
+					primaryHover: { value: '#943e28' },
+					secondary: { value: '#6b665c' },
+					buttonSecondaryBg: { value: '#f7f4ef' },
+					buttonSecondaryText: { value: '#b54d32' },
+					heroHeader: { value: '#191919' },
+					hrBorder: { value: '#eae0d0' },
+				},
+
+				bg: {
+					canvas: { value: '#fbfaf7' },
+					image: { value: '#f7f4ef' },
+					panel: { value: '#f7f4ef' },
+				},
+
 				'color-palette-focus-ring': {
-					value: '{colors.orange.500}',
+					value: '#e07d63',
 				},
 
 				'link.default': { value: '{colors.brand.primary}' },
 				'link.hover': { value: '{colors.brand.primaryHover}' },
 				border: {
-					thin: { value: '#f6e8d5' },
-					contrast: { value: '#ffdbbd' },
+					thin: { value: '#f1eae0' },
+					contrast: { value: '#d5cdc0' },
 				},
 			},
 		},
@@ -118,8 +146,8 @@ const customConfig = defineConfig({
 			boxSizing: 'border-box',
 		},
 		'::selection': {
-			bg: '#ffe7d3',
-			color: '#b55d0e',
+			bg: '#f1eae0',
+			color: '#191919',
 		},
 		':root': {
 			bg: 'bg.canvas',
