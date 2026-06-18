@@ -2,6 +2,8 @@
 title: Vault
 ---
 
+![Vault creation screen](../introduction/vault-creation.png)
+
 A vault is a top-level container that stores all your data.
 
 Each vault is a directory on disk that contains workspaces, notes, attachments, and related metadata.

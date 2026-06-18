@@ -31,8 +31,6 @@ You can create a new note by clicking the button or using the hotkey `Ctrl+N` or
 
 With Deepink, you have flexibility in how you organize your notes.
 
-!["The Deepink screen with a workspace content"](workspace-content.png)
-
 ## Tags
 
 Tags are a powerful way to label your notes.

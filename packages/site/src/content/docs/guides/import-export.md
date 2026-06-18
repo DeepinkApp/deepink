@@ -2,6 +2,8 @@
 title: Import & Export
 ---
 
+![Import & Export window](./import-export.png)
+
 Deepink gives you full control over your notes.
 
 You can import notes from external files into Deepink or export your notes at any time for backup, migration, or use in other applications.

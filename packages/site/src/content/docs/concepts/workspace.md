@@ -2,6 +2,8 @@
 title: Workspace
 ---
 
+![Workspace creation popup](./workspace-creation.png)
+
 A workspace is a separate, isolated area inside your encrypted vault.
 
 It is designed to split your data into independent domains - such as personal life, work, research, or drafts - so they never mix.
