@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaApple, FaLinux, FaWindows } from 'react-icons/fa6';
 import { SiFlatpak, SiHomebrew } from 'react-icons/si';
-import { Code, Heading, VStack } from '@chakra-ui/react';
+import { Code, Heading, Separator, VStack } from '@chakra-ui/react';
 
 import { ANALYTICS_EVENT } from '../../components/analytics';
 import { useAnalytics } from '../../components/analytics/useAnalytics';
@@ -186,6 +186,8 @@ export default WithLayout(function Page({
 						/>
 					</Link>
 				</VStack>
+
+				<Separator alignSelf="stretch" />
 
 				<VStack width="100%" gap="3rem" fontSize="1.6rem">
 					<Heading as="h2" fontSize="2rem" lineHeight="1.3">
