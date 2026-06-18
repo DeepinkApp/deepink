@@ -232,7 +232,11 @@ export default WithLayout(function Page({
 												}}
 											/>
 										</Text>
-										<SimpleCodeBlock code="brew install deepinkapp/tap/deepink" />
+										<SimpleCodeBlock
+											code={
+												'brew install deepinkapp/tap/deepink\nbrew trust deepinkapp/tap'
+											}
+										/>
 									</VStack>
 								}
 							/>
