@@ -102,6 +102,14 @@ export default defineConfig({
 					autogenerate: { directory: 'introduction' },
 				},
 				{
+					label: 'Concepts',
+					items: [
+						'concepts/vault',
+						'concepts/workspace',
+						'concepts/snapshots',
+					],
+				},
+				{
 					label: 'Guides',
 					autogenerate: { directory: 'guides' },
 				},

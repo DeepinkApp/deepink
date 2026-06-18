@@ -1,5 +1,5 @@
 ---
-title: Notes history
+title: Snapshots
 ---
 
 Each note has an editing history. Deepink takes snapshots of note content a few seconds after you finish editing, so you can restore a previous version of a note at any time.
