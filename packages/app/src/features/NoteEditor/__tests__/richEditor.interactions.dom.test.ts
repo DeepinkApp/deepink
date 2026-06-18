@@ -1,0 +1,159 @@
+import { screen, within } from '@testing-library/react';
+
+import { renderRichEditor } from './utils/renderRichEditor';
+import { selectContent, setCursorPosition } from './utils/utils';
+
+test(`Inserts image between text nodes`, async () => {
+	const editor = await renderRichEditor({
+		value: `My favorite image\n\n I love cat`,
+	});
+
+	const editorNode = screen.getByRole('textbox');
+	setCursorPosition(editorNode, 'My favorite image'.length);
+
+	// Simulate inserting an image via the editor panel action
+	await editor.insert({
+		type: 'image',
+		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
+	});
+
+	// Image nodes inserting asynchronously, so use findByRole to wait for the img to appear
+	const img = await screen.findByRole('img');
+
+	expect(img).toBeInTheDocument();
+	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
+	expect(img).toHaveAttribute('alt', 'My cat');
+
+	// Image between two texts
+	const firstText = screen.getByText('My favorite image');
+	const secondText = screen.getByText('I love cat');
+	expect(img).toAppearAfter(firstText);
+	expect(img).toAppearBefore(secondText);
+});
+
+test('Inserts image after block node', async () => {
+	const editor = await renderRichEditor({
+		value: '```js\nconst a = 1;\n```',
+	});
+
+	// Place cursor position inside the code node
+	setCursorPosition(screen.getByRole('code'), 10);
+
+	await editor.insert({
+		type: 'image',
+		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
+	});
+
+	// Wait before image to appear
+	const img = await screen.findByRole('img');
+	const codeNode = screen.getByRole('code');
+	expect(img).toBeInTheDocument();
+	expect(codeNode).toBeInTheDocument();
+
+	// Image is inserted as next sibling of the code block
+	expect(img).toAppearAfter(codeNode);
+	expect(codeNode.nextElementSibling).toContainElement(img);
+});
+
+test('Updates heading level correctly', async () => {
+	const content = 'Hello, my dear friends!';
+	const editor = await renderRichEditor({ value: content });
+
+	const editorNode = screen.getByRole('textbox');
+	selectContent(editorNode, content);
+
+	// Plain text becomes heading
+	await editor.insert({ type: 'heading', data: { level: 1 } });
+	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(content);
+
+	// Heading level is updated when different level applied
+	await editor.insert({ type: 'heading', data: { level: 3 } });
+
+	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(content);
+	expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+
+	// Heading reverts to paragraph when same level applied again
+	await editor.insert({ type: 'heading', data: { level: 3 } });
+
+	expect(screen.queryByRole('heading')).not.toBeInTheDocument();
+	expect(screen.getByText(content)).toBeInTheDocument();
+});
+
+test('Converts an unordered list to an ordered list', async () => {
+	const editor = await renderRichEditor({
+		value: `- First item
+  - Nested item
+- Second item`,
+	});
+
+	// Select text
+	const editorNode = screen.getByRole('textbox');
+	selectContent(editorNode, 'First item');
+
+	// Update unordered list to ordered
+	await editor.insert({ type: 'list', data: { type: 'ordered' } });
+
+	const list = within(screen.getByRole('textbox')).getAllByRole('list')[0];
+	expect(list.tagName).toBe('OL');
+
+	const orderedList = within(screen.getByRole('textbox')).getAllByRole('listitem');
+	expect(orderedList).toHaveLength(3);
+
+	expect(orderedList[0]).toHaveTextContent('First item');
+
+	// Second item is nested inside first item
+	expect(within(orderedList[0]).getByText('Nested item')).toBeInTheDocument();
+
+	expect(orderedList[2]).toHaveTextContent('Second item');
+});
+
+test('Toggles text formatting', async () => {
+	const content = 'Hello, my dear friends!';
+	const editor = await renderRichEditor({ value: content });
+
+	const editorNode = screen.getByRole('textbox');
+	selectContent(editorNode, content);
+
+	// Apply bold
+	await editor.format('bold');
+	expect(screen.getByText(content).closest('b')).toBeInTheDocument();
+
+	// Remove bold
+	await editor.format('bold');
+	expect(screen.getByText(content).closest('b')).not.toBeInTheDocument();
+	expect(screen.getByRole('textbox')).toHaveTextContent(content);
+
+	// Apply italic
+	await editor.format('italic');
+	expect(screen.getByText(content).closest('em')).toBeInTheDocument();
+
+	// Remove italic
+	await editor.format('italic');
+	expect(screen.getByText(content).closest('em')).not.toBeInTheDocument();
+	expect(screen.getByRole('textbox')).toHaveTextContent(content);
+});
+
+test('Combines multiple text formatting', async () => {
+	const content = 'Hello, my dear friends!';
+	const editor = await renderRichEditor({ value: content });
+
+	const editorNode = screen.getByRole('textbox');
+	selectContent(editorNode, content);
+
+	await editor.format('italic');
+	await editor.format('bold');
+	await editor.format('strikethrough');
+
+	const formattedText = screen.getByText(content);
+	expect(formattedText.closest('b')).toBeInTheDocument();
+	expect(formattedText.closest('em')).toBeInTheDocument();
+	expect(formattedText.closest('del')).toBeInTheDocument();
+
+	// Removes bold without breaking others formatting
+	await editor.format('bold');
+
+	const updatedText = screen.getByText(content);
+	expect(updatedText.closest('b')).not.toBeInTheDocument();
+	expect(updatedText.closest('em')).toBeInTheDocument();
+	expect(updatedText.closest('del')).toBeInTheDocument();
+});
