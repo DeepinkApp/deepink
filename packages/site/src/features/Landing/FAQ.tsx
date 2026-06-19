@@ -111,7 +111,7 @@ export const FAQ = () => {
 		>
 			{faq.map((item, index) => (
 				<Accordion.Item key={index} value={item.value}>
-					<Accordion.ItemTrigger height="4rem">
+					<Accordion.ItemTrigger minHeight="4rem">
 						<Span flex="1">{item.title}</Span>
 						<Accordion.ItemIndicator />
 					</Accordion.ItemTrigger>
