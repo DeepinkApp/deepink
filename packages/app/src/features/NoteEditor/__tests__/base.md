@@ -22,8 +22,10 @@ Visit the [Markdown Guide](https://example.com)
 
 ![Sample Image](https://example.com/sample.png)
 
-- List item
-- Next item
+- First item
+- Second item
+    - Nested item
+- Third item    
 
 | Name  | Role      |
 | ------ | --------- |

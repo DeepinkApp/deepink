@@ -67,12 +67,19 @@ test('Renders simple markdown correctly', async () => {
 	expect(img).toHaveAttribute('alt', 'Sample Image');
 
 	// List
-	expect(screen.getByRole('list')).toBeInTheDocument();
-	const items = within(screen.getByRole('list')).getAllByRole('listitem');
+	expect(screen.getAllByRole('list')).toHaveLength(2);
 
-	expect(items).toHaveLength(2);
-	expect(items[0]).toHaveTextContent('List item');
-	expect(items[1]).toHaveTextContent('Next item');
+	const items = screen.getAllByRole('listitem');
+	expect(items).toHaveLength(4);
+
+	const [first, second, nested, third] = items;
+	expect(first).toHaveTextContent('First item');
+	expect(second).toHaveTextContent('Second item');
+	expect(nested).toHaveTextContent('Nested item');
+	expect(third).toHaveTextContent('Third item');
+
+	// Second item contains a nested nested item
+	expect(within(second).getByRole('list')).toContainElement(nested);
 
 	// Table
 	const table = screen.getByRole('table');
@@ -91,17 +98,58 @@ test('Renders a checklist with checked and unchecked items', async () => {
 	await renderRichEditor({
 		value: `- [x] First item
   - [ ] Nested item
+	- [x] Deep nested item
 - [ ] Second item`,
 	});
 
-	const checkboxList = within(screen.getByRole('textbox')).getAllByRole('checkbox');
-	expect(checkboxList).toHaveLength(3);
-	expect(checkboxList[0]).toHaveTextContent('First item');
-	expect(checkboxList[0]).toBeChecked();
+	const [firstItem, nestedItem, deepNestedItem, secondItem] =
+		screen.getAllByRole('checkbox');
+	expect(screen.getAllByRole('checkbox')).toHaveLength(4);
 
-	expect(checkboxList[1]).toHaveTextContent('Nested item');
-	expect(checkboxList[1]).not.toBeChecked();
+	// First item contains nested list
+	expect(firstItem).toHaveTextContent('First item');
+	expect(firstItem).toBeChecked();
 
-	expect(checkboxList[2]).toHaveTextContent('Second item');
-	expect(checkboxList[2]).not.toBeChecked();
+	const [firstItemNestedList] = within(firstItem).getAllByRole('list');
+	expect(firstItemNestedList).toContainElement(nestedItem);
+
+	// Nested item contains deep nested list
+	expect(nestedItem).toHaveTextContent('Nested item');
+	expect(nestedItem).not.toBeChecked();
+
+	const nestedItemList = within(nestedItem).getByRole('list');
+	expect(nestedItemList).toContainElement(deepNestedItem);
+
+	// Deep nested item
+	expect(deepNestedItem).toHaveTextContent('Deep nested item');
+	expect(deepNestedItem).toBeChecked();
+
+	// Second item
+	expect(secondItem).toHaveTextContent('Second item');
+	expect(secondItem).not.toBeChecked();
+});
+
+test('Renders a mixed list with regular and checkbox items correctly', async () => {
+	await renderRichEditor({
+		value: `- [x] First item
+  - Nested simple item
+- [ ] Second item`,
+	});
+
+	const checkboxes = screen.getAllByRole('checkbox');
+	expect(checkboxes).toHaveLength(2);
+	const [first, second] = checkboxes;
+
+	expect(first).toHaveTextContent('First item');
+	expect(first).toBeChecked();
+
+	expect(second).toHaveTextContent('Second item');
+	expect(second).not.toBeChecked();
+
+	// Nested item - regular, not checkbox
+	const nestedList = within(first).getByRole('list');
+	const nestedItem = within(nestedList).getByRole('listitem');
+
+	expect(nestedItem).toHaveTextContent('Nested simple item');
+	expect(within(nestedItem).queryByRole('checkbox')).toBeNull();
 });
