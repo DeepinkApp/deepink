@@ -1,19 +1,19 @@
 {
 	"betterThanOthers": {
 		"title": "Why is Deepink better than other note-taking apps?",
-		"text": "Deepink focuses on everyday ergonomics. Common tasks require fewer actions, while powerful organization, privacy, and note management features remain easy to use.\n\nWe have <security>explored</security> over 60 most popular note taking apps and did not found anything that is secure enough and easy to use at once. There are always tradeoff - you must either don't care for your privacy, or to be a geek who will felt a bad experience, ugly interfaces, and always configure something.\n\nMany apps is focused for geeks and programmers. Deepink is for everyone.\n\nMost of alternative apps is build to make money, Deepink is built to make people happy."
+		"text": "Deepink focuses on everyday ergonomics. Common tasks require fewer actions, while powerful organization, privacy, and note management features remain easy to use.\n\nWe have <security>explored</security> over 60 of the most popular note-taking apps and did not find anything that is both secure enough and easy to use. There are always tradeoffs - you must either not care about your privacy, or be a geek who will have a bad experience, use ugly interfaces, and always be configuring something.\n\nMany apps are focused on geeks and programmers. Deepink is for everyone.\n\nMost alternative apps are built to make money, Deepink is built to make people happy."
 	},
 	"differentFromOthers": {
 		"title": "What makes Deepink different from Obsidian, Notion, and Joplin?",
-		"text": "Deepink does not encourage or exploit obsessive-compulsive behavior to keep your engagement.\n\nWe do not hire an influencers to sell you a fake point that you have to grow your \"digital garden\" that is actually mean you will copy/paste the whole internet into your note taking app.\n\nDeepink encourage well being. Take only notes you really needed in. Do it quick, privately, and live your better life. That's it. Don't waste whole your life in computer."
+		"text": "Deepink does not encourage or exploit obsessive-compulsive behavior to keep you engaged.\n\nWe do not hire influencers to sell you the idea that you must grow your \"digital garden\", which often means copying and pasting the whole internet into your note-taking app.\n\nDeepink encourages well-being. Take only the notes you really need. Do it quickly, privately, and live a better life. That's it. Don't waste your whole life on the computer."
 	},
 	"import": {
 		"title": "What if I already have thousands of notes?",
-		"text": "You can <import>import your notes</import> from any other app into Deepink. Try Deepink for a week to feel it better."
+		"text": "You can <import>import your notes</import> from any other app into Deepink. Try Deepink for a week to get a better feel for it."
 	},
 	"export": {
 		"title": "What happens if I decide to stop using Deepink?",
-		"text": "You can <export>export your notes</export> anytime. All your content including attachments and cross notes links will be exported as zip archive with markdown files.\n\nWe would appreciate if you would leave your feedback at <email/> before leave us. Maybe we could fix your pain and improve Deepink for all people."
+		"text": "You can <export>export your notes</export> anytime. All your content, including attachments and cross-note links, will be exported as a zip archive with Markdown files.\n\nWe would appreciate it if you would leave your feedback at <email/> before you leave. Maybe we can address your issues and improve Deepink for everyone."
 	},
 	"workspacesVsVaults": {
 		"title": "Why does Deepink use workspaces instead of multiple vaults?",
