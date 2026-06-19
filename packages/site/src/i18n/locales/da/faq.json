@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Hvorfor er Deepink bedre end andre note-apps?",
+		"text": "Deepink fokuserer på daglig ergonomi. Almindelige opgaver kræver færre handlinger, mens kraftfulde funktioner til organisering, privatliv og notehåndtering forbliver nemme at bruge.\n\nVi har <security>undersøgt</security> over 60 af de mest populære note-apps og fandt intet, der både er sikkert nok og nemt at bruge. Der er altid kompromiser – enten må man ikke gå op i sit privatliv, eller også må man være nørdet og kæmpe med dårlige brugerflader og konstant opsætning.\n\nMange apps er målrettet programmører og entusiaster. Deepink er til alle.\n\nMange alternativer er bygget til at tjene penge; Deepink er bygget til at skabe glæde."
+	},
+	"differentFromOthers": {
+		"title": "Hvad gør Deepink anderledes end Obsidian, Notion og Joplin?",
+		"text": "Deepink opfordrer ikke til eller udnytter tvangspræget adfærd for at holde dig fanget i appen.\n\nVi hyrer ikke influencere til at sælge dig idéen om, at du skal dyrke din \"digitale have\", hvilket ofte blot betyder, at du kopierer og indsætter hele internettet i din note-app.\n\nDeepink fremmer velvære. Tag kun de noter, du rent faktisk har brug for. Gør det hurtigt, privat og lev et bedre liv. Det er det. Brug ikke hele dit liv foran computeren."
+	},
+	"import": {
+		"title": "Hvad hvis jeg allerede har tusindvis af noter?",
+		"text": "Du kan <import>importere dine noter</import> fra enhver anden app til Deepink. Prøv Deepink i en uge for at få en fornemmelse af det."
+	},
+	"export": {
+		"title": "Hvad sker der, hvis jeg beslutter mig for at stoppe med at bruge Deepink?",
+		"text": "Du kan <export>eksportere dine noter</export> når som helst. Alt dit indhold, inklusive vedhæftede filer og interne links, eksporteres som en zip-arkiv med Markdown-filer.\n\nVi vil sætte stor pris på din feedback på <email/>, før du forlader os. Måske kan vi løse dine udfordringer og gøre Deepink bedre for alle."
+	},
+	"workspacesVsVaults": {
+		"title": "Hvorfor bruger Deepink arbejdsområder i stedet for flere vaults?",
+		"text": "Arbejdsområder lader dig adskille forskellige kontekster uden at splitte din information op i flere vaults. Du logger kun ind én gang og skifter lynhurtigt mellem områder, når det er nødvendigt."
+	},
+	"workspacesVsFolders": {
+		"title": "Hvorfor er arbejdsområder bedre end mapper til organisering af noter?",
+		"text": "Mapper organiserer noter. Arbejdsområder organiserer kontekster. De hjælper med at adskille forskellige dele af dit liv, mens dine noter, tags og dit workflow forbliver fokuseret."
+	},
+	"stayingOrganized": {
+		"title": "Hvordan hjælper Deepink mig med at holde styr på det, når mine noter vokser?",
+		"text": "Arbejdsområder, tag-hierarkier, links og backlinks arbejder sammen om at holde informationen struktureret og let at finde, selv i store samlinger af noter."
+	},
+	"ergonomics": {
+		"title": "Hvorfor fokuserer Deepink så meget på ergonomi?",
+		"text": "Note-tagning er noget, man gør hver dag. Små forbedringer i workflowet sparer tid, mindsker irritation og gør oplevelsen mere behagelig på lang sigt."
+	},
+	"replaceMultipleApps": {
+		"title": "Kan Deepink erstatte flere apps til personlig vidensstyring?",
+		"text": "For mange, ja. Noter, dokumenter, research, dagbøger, påmindelser og referencemateriale kan alle leve sammen i den samme vault."
+	},
+	"nestedTags": {
+		"title": "Hvorfor bruge tag-hierarkier i stedet for mapper?",
+		"text": "Mapper tvinger hver note ind på ét bestemt sted. Tags gør det muligt for information at tilhøre flere kategorier på én gang, mens tag-hierarkier holder disse kategorier strukturerede."
+	},
+	"connectedInformation": {
+		"title": "Hvordan holder Deepink sammenhæng på relateret information?",
+		"text": "Links og backlinks gør relationer synlige. Du kan bevæge dig naturligt mellem relaterede noter uden at skulle duplikere information."
+	},
+	"privacy": {
+		"title": "Hvordan beskytter Deepink mit privatliv?",
+		"text": "Alt i din vault er krypteret, inklusiv noter, filer og metadata. Din information er privat som standard."
+	},
+	"openSource": {
+		"title": "Hvorfor er Deepink open source?",
+		"text": "Privatliv og sikkerhed bør kunne efterprøves. Open source gør det muligt for alle at inspicere koden og bekræfte, hvordan appen fungerer."
+	},
+	"personalOrWork": {
+		"title": "Er Deepink designet til personlige noter, arbejde eller begge dele?",
+		"text": "Begge dele. Arbejdsområder gør det nemt at adskille personlig og professionel information, mens alt stadig er tilgængeligt ét sted."
+	},
+	"largeVaults": {
+		"title": "Hvad sker der, når min vault bliver stor?",
+		"text": "Deepink er designet til at skalere fra en håndfuld noter til store vidensbaser. Organiseringsfunktionerne sikrer, at informationen forbliver overskuelig, efterhånden som din vault vokser."
+	},
+	"oneVault": {
+		"title": "Hvorfor gemme alt i én vault?",
+		"text": "Information er ofte forbundet på måder, vi ikke forventer. Ved at holde alt samlet er det lettere at opdage sammenhænge, søge på tværs af kontekster og undgå fragmentering."
+	},
+	"markdownFiles": {
+		"title": "Hvorfor ikke bare bruge en mappe med Markdown-filer?",
+		"text": "Markdown-filer gemmer indhold. Deepink tilføjer organisering, kryptering, historik, påmindelser, links, backlinks og et workflow, der er designet til at gøre information lettere at administrere."
+	}
+}

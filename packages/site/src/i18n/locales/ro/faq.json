@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "De ce este Deepink mai bun decât alte aplicații de notițe?",
+		"text": "Deepink pune accent pe ergonomia utilizării zilnice. Sarcinile comune necesită mai puține acțiuni, în timp ce funcțiile avansate de organizare, confidențialitate și gestionare a notițelor rămân ușor de utilizat.\n\nAm <security>analizat</security> peste 60 de aplicații de notițe populare și nu am găsit nimic care să fie simultan suficient de sigur și ușor de folosit. Există întotdeauna compromisuri – fie trebuie să nu îți pasă de confidențialitate, fie să fii un expert care va avea o experiență dificilă, cu interfețe greoaie și configurări constante.\n\nMulte aplicații sunt create pentru programatori și utilizatori avansați. Deepink este pentru toată lumea.\n\nMulte aplicații alternative sunt create pentru a face profit; Deepink este creat pentru a oferi plăcere utilizatorilor."
+	},
+	"differentFromOthers": {
+		"title": "Ce diferențiază Deepink de Obsidian, Notion sau Joplin?",
+		"text": "Deepink nu încurajează și nu exploatează comportamente obsesive pentru a te menține conectat.\n\nNu angajăm influenceri pentru a te convinge că trebuie să îți construiești o „grădină digitală”, ceea ce de multe ori înseamnă să dai copy-paste la tot internetul în aplicația ta de notițe.\n\nDeepink promovează starea de bine. Ia doar notițele de care ai cu adevărat nevoie. Fă asta rapid, privat și trăiește o viață mai bună. Atât. Nu-ți consuma întreaga viață în fața calculatorului."
+	},
+	"import": {
+		"title": "Ce fac dacă am deja mii de notițe?",
+		"text": "Poți <import>importa notițele</import> din orice altă aplicație în Deepink. Încearcă Deepink o săptămână pentru a te obișnui cu el."
+	},
+	"export": {
+		"title": "Ce se întâmplă dacă decid să nu mai folosesc Deepink?",
+		"text": "Poți <export>exporta notițele</export> în orice moment. Tot conținutul tău, inclusiv atașamentele și legăturile dintre notițe, va fi exportat sub formă de arhivă zip cu fișiere Markdown.\n\nAm aprecia dacă ne-ai lăsa un feedback la <email/> înainte de plecare. Poate putem rezolva problemele tale și putem îmbunătăți Deepink pentru toată lumea."
+	},
+	"workspacesVsVaults": {
+		"title": "De ce folosește Deepink spații de lucru în loc de mai multe depozite?",
+		"text": "Spațiile de lucru îți permit să separi contextele fără a fragmenta informația în mai multe depozite. Te autentifici o singură dată și schimbi spațiul instantaneu, ori de câte ori este nevoie."
+	},
+	"workspacesVsFolders": {
+		"title": "De ce sunt spațiile de lucru mai bune decât folderele pentru organizarea notițelor?",
+		"text": "Folderele organizează notițele. Spațiile de lucru organizează contextele. Ele te ajută să separi diferite arii ale vieții tale, menținând notițele, etichetele și fluxul de lucru concentrate."
+	},
+	"stayingOrganized": {
+		"title": "Cum mă ajută Deepink să rămân organizat pe măsură ce numărul de notițe crește?",
+		"text": "Spațiile de lucru, ierarhia etichetelor, link-urile și legăturile inverse lucrează împreună pentru a menține informația structurată și ușor de găsit, chiar și în colecții mari de notițe."
+	},
+	"ergonomics": {
+		"title": "De ce pune Deepink atât de mult accent pe ergonomie?",
+		"text": "Luarea notițelor este ceva ce oamenii fac în fiecare zi. Îmbunătățiri mici în fluxul de lucru economisesc timp, reduc efortul și fac experiența mai plăcută pe termen lung."
+	},
+	"replaceMultipleApps": {
+		"title": "Poate Deepink să înlocuiască mai multe aplicații pentru gestionarea cunoștințelor personale?",
+		"text": "Pentru mulți oameni, da. Notițele, documentele, cercetările, jurnalele, mementourile și materialele de referință pot exista toate împreună în același depozit."
+	},
+	"nestedTags": {
+		"title": "De ce să folosești ierarhia etichetelor în loc de foldere?",
+		"text": "Folderele forțează fiecare notiță să aibă o singură locație. Etichetele permit informației să aparțină mai multor categorii simultan, în timp ce ierarhia etichetelor menține acele categorii structurate."
+	},
+	"connectedInformation": {
+		"title": "Cum menține Deepink informațiile corelate conectate?",
+		"text": "Link-urile și legăturile inverse fac relațiile vizibile. Te poți deplasa natural între notițele corelate fără a duplica informația."
+	},
+	"privacy": {
+		"title": "Cum îmi protejează Deepink confidențialitatea?",
+		"text": "Totul în depozitul tău este criptat, inclusiv notițele, fișierele și metadatele. Informațiile tale rămân private prin design."
+	},
+	"openSource": {
+		"title": "De ce este Deepink open source?",
+		"text": "Confidențialitatea și securitatea trebuie să fie verificabile. Modelul open source permite oricui să inspecteze codul și să confirme modul în care funcționează aplicația."
+	},
+	"personalOrWork": {
+		"title": "Este Deepink conceput pentru notițe personale, pentru muncă sau pentru ambele?",
+		"text": "Pentru ambele. Spațiile de lucru permit separarea ușoară a informațiilor personale de cele profesionale, menținând totul accesibil într-un singur loc."
+	},
+	"largeVaults": {
+		"title": "Ce se întâmplă când depozitul meu devine foarte mare?",
+		"text": "Deepink este conceput să evolueze de la câteva notițe până la baze mari de cunoștințe. Funcțiile de organizare ajută informația să rămână gestionabilă pe măsură ce depozitul crește."
+	},
+	"oneVault": {
+		"title": "De ce să păstrez totul într-un singur depozit?",
+		"text": "Informațiile sunt adesea conectate în moduri neașteptate. Păstrarea tuturor într-un singur loc face mai ușoară descoperirea relațiilor, căutarea între contexte și evită fragmentarea."
+	},
+	"markdownFiles": {
+		"title": "De ce să nu folosesc pur și simplu un folder de fișiere Markdown?",
+		"text": "Fișierele Markdown stochează conținutul. Deepink adaugă organizare, criptare, istoric al notițelor, mementouri, link-uri, legături inverse și fluxuri de lucru concepute pentru a face gestionarea informației mai simplă."
+	}
+}

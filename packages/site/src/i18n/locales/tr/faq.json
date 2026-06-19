@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Deepink'i diğer not uygulamalarından daha iyi yapan nedir?",
+		"text": "Deepink, günlük kullanım ergonomisine odaklanır. Güçlü organizasyon, gizlilik ve not yönetimi özellikleri kolayca kullanılabilirken, rutin görevler daha az işlem gerektirir.\n\nEn popüler 60'tan fazla not uygulamasını <security>inceledik</security> ve hem yeterince güvenli hem de kullanımı kolay bir uygulama bulamadık. Genellikle bir ödün verilmesi gerekir: Ya gizliliğinizden vazgeçersiniz ya da sürekli bir şeyler yapılandırmak zorunda kalan, karmaşık arayüzlerle uğraşan teknik bir kullanıcı olursunuz.\n\nBirçok uygulama yazılımcılar ve teknik kullanıcılar için tasarlanmıştır. Deepink ise herkes içindir.\n\nAlternatif uygulamaların çoğu kâr amacı güder; Deepink ise insanların hayatını kolaylaştırmak için tasarlandı."
+	},
+	"differentFromOthers": {
+		"title": "Deepink'i Obsidian, Notion ve Joplin'den ayıran nedir?",
+		"text": "Deepink, sizi uygulamada tutmak için takıntılı davranışları teşvik etmez veya bundan faydalanmaz.\n\n\"Dijital bahçenizi büyütmeniz\" gerektiği fikrini satmak için influencer'larla çalışmayız; zira bu, genellikle internetteki her şeyi not uygulamanıza kopyalayıp yapıştırmak anlamına gelir.\n\nDeepink esenliği destekler. Sadece gerçekten ihtiyacınız olan notları alın. Bunu hızlıca, gizlilikle yapın ve hayatın tadını çıkarın. Hepsi bu. Tüm hayatınızı bilgisayar başında harcamayın."
+	},
+	"import": {
+		"title": "Hali hazırda binlerce notum varsa ne olacak?",
+		"text": "Notlarınızı herhangi bir uygulamadan Deepink'e <import>içe aktarabilirsiniz</import>. Deepink'i daha yakından tanımak için bir hafta deneyin."
+	},
+	"export": {
+		"title": "Deepink kullanmayı bırakmaya karar verirsem ne olur?",
+		"text": "Notlarınızı dilediğiniz zaman <export>dışa aktarabilirsiniz</export>. Ekler ve notlar arası bağlantılar dahil tüm içeriğiniz, Markdown dosyalarından oluşan bir zip arşivi olarak dışa aktarılır.\n\nAyrılmadan önce <email/> üzerinden geri bildiriminizi bırakırsanız çok seviniriz. Belki sorunlarınızı çözebilir ve Deepink'i herkes için daha iyi hale getirebiliriz."
+	},
+	"workspacesVsVaults": {
+		"title": "Deepink neden birden fazla kasa yerine çalışma alanlarını kullanıyor?",
+		"text": "Çalışma alanları, bilgilerinizi farklı kasalara bölmek zorunda kalmadan farklı bağlamları ayırmanızı sağlar. Tek bir sefer giriş yaparsınız ve ihtiyaç duyduğunuzda anında geçiş yapabilirsiniz."
+	},
+	"workspacesVsFolders": {
+		"title": "Notları düzenlemek için çalışma alanları neden klasörlerden daha iyidir?",
+		"text": "Klasörler notları düzenler. Çalışma alanları ise bağlamları düzenler. Notlarınız, etiketleriniz ve iş akışınız odaklı kalırken, hayatınızın farklı alanlarını ayırmanıza yardımcı olurlar."
+	},
+	"stayingOrganized": {
+		"title": "Notlarım arttıkça Deepink düzenli kalmama nasıl yardımcı olur?",
+		"text": "Çalışma alanları, etiket hiyerarşisi, bağlantılar ve geri bağlantılar; not koleksiyonunuz büyüse bile bilgilerin yapılandırılmış ve kolayca bulunabilir kalmasını sağlar."
+	},
+	"ergonomics": {
+		"title": "Deepink neden ergonomiye bu kadar odaklanıyor?",
+		"text": "Not almak her gün yapılan bir eylemdir. İş akışındaki küçük iyileştirmeler zaman kazandırır, sürtünmeyi azaltır ve uzun vadede deneyimi daha keyifli hale getirir."
+	},
+	"replaceMultipleApps": {
+		"title": "Deepink, kişisel bilgi yönetimi için birden fazla uygulamanın yerini tutabilir mi?",
+		"text": "Birçok kişi için evet. Notlar, belgeler, araştırmalar, günlükler, hatırlatıcılar ve referans materyallerin tamamı aynı kasa içinde bir arada yaşayabilir."
+	},
+	"nestedTags": {
+		"title": "Neden klasör yerine etiket hiyerarşisi kullanmalıyım?",
+		"text": "Klasörler her notu tek bir konuma hapseder. Etiketler ise bilgilerin aynı anda birden fazla kategoriye ait olmasına izin verir; etiket hiyerarşisi de bu kategorileri düzenli tutar."
+	},
+	"connectedInformation": {
+		"title": "Deepink ilgili bilgileri nasıl birbirine bağlı tutar?",
+		"text": "Bağlantılar ve geri bağlantılar ilişkileri görünür kılar. Bilgileri çoğaltmaya gerek kalmadan ilgili notlar arasında doğal bir şekilde geçiş yapabilirsiniz."
+	},
+	"privacy": {
+		"title": "Deepink gizliliğimi nasıl korur?",
+		"text": "Notlar, dosyalar ve meta veriler dahil olmak üzere kasanızdaki her şey şifrelenir. Bilgileriniz tasarım gereği gizli kalır."
+	},
+	"openSource": {
+		"title": "Deepink neden açık kaynaklı?",
+		"text": "Gizlilik ve güvenlik doğrulanabilir olmalıdır. Açık kaynak, herkesin kodu incelemesine ve uygulamanın nasıl çalıştığını onaylamasına olanak tanır."
+	},
+	"personalOrWork": {
+		"title": "Deepink kişisel notlar, iş veya her ikisi için mi tasarlandı?",
+		"text": "Her ikisi için de. Çalışma alanları, her şeye tek bir yerden erişirken kişisel ve profesyonel bilgileri kolayca ayırmanızı sağlar."
+	},
+	"largeVaults": {
+		"title": "Kasama çok fazla veri dolduğunda ne olur?",
+		"text": "Deepink, birkaç nottan devasa bilgi tabanlarına kadar ölçeklenecek şekilde tasarlanmıştır. Organizasyon özellikleri, kasanız büyüdükçe bilgilerin yönetilebilir kalmasına yardımcı olur."
+	},
+	"oneVault": {
+		"title": "Neden her şeyi tek bir kasada tutmalıyım?",
+		"text": "Bilgiler genellikle beklenmedik şekillerde birbirine bağlıdır. Her şeyi bir arada tutmak; ilişkileri keşfetmeyi, bağlamlar arası arama yapmayı ve parçalanmayı önlemeyi kolaylaştırır."
+	},
+	"markdownFiles": {
+		"title": "Neden sadece bir Markdown klasörü kullanmıyoruz?",
+		"text": "Markdown dosyaları içeriği saklar. Deepink ise bu içeriği yönetmeyi kolaylaştırmak için organizasyon, şifreleme, not geçmişi, hatırlatıcılar, bağlantılar, geri bağlantılar ve iş akışları sunar."
+	}
+}

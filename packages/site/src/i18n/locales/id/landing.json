@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Brankas digital yang bisa Anda percaya",
-				"text": "Semua isi brankas Anda terenkripsi. Berbeda dari banyak aplikasi lain, ini benar-benar berarti <0>seluruh data Anda</0> — termasuk isi catatan, file, dan metadata. Anda bisa memilih algoritma yang Anda percaya.\n\nDeepink adalah aplikasi <1>open source</1>, dengan kode yang bisa Anda verifikasi, bukan sekadar dipercaya begitu saja."
+				"text": "Segala hal di dalam vault Anda telah <encryption>dienkripsi</encryption>. Berbeda dengan banyak aplikasi lain, ini benar-benar berarti <security>seluruh data Anda</security>, termasuk isi catatan, file, dan metadata. Anda dapat memilih algoritma yang Anda percayai.\n\nDeepink adalah aplikasi <opensource>open source</opensource>, dengan kode yang dapat Anda verifikasi, bukan sekadar dipercaya."
 			},
 			"workflow": {
 				"title": "Ergonomis",
-				"text": "Deepink dirancang agar cepat digunakan sehari-hari, dengan menghilangkan hambatan dari tugas-tugas yang paling sering dilakukan. Untuk sebagian besar tugas, Deepink membutuhkan <0>hingga 80% lebih sedikit langkah</0> dibandingkan aplikasi catatan lainnya."
+				"text": "Deepink dirancang agar <strong>cepat digunakan sehari-hari</strong>, dengan meminimalkan hambatan pada tugas-tugas umum. Untuk sebagian besar tugas, aplikasi ini membutuhkan <0>hingga 80% lebih sedikit tindakan</0> dibandingkan aplikasi catatan lainnya."
 			},
 			"universality": {
 				"title": "Brankas Anda menampung segalanya",
-				"text": "Simpan semuanya dalam brankas Anda. Workspace dan tag bertingkat membantu Anda memisahkan konteks dan menemukan apa yang dibutuhkan dengan cepat — mulai dari spesifikasi proyek, kontrak, dan potongan kode hingga kutipan buku, jurnal harian, riset, dan lainnya."
+				"text": "Simpan <organizing>segalanya</organizing> di dalam vault Anda. <workspace>Workspace</workspace> dan hierarki tag membantu Anda memisahkan konteks dan menemukan apa yang Anda butuhkan dengan cepat, mulai dari spesifikasi proyek, kontrak, dan cuplikan kode, hingga kutipan buku, jurnal harian, riset, dan lainnya."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Susun pemikiran Anda",
-			"text": "Tangkap ide singkat atau bangun sesuatu yang kompleks. Deepink menghadirkan keteraturan dan fokus pada semua yang Anda tulis."
+			"text": "Catat ide singkat atau bangun sesuatu yang kompleks.\nDeepink memberikan keteraturan dan fokus pada setiap tulisan Anda."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Workspace",
-				"text": "Pisahkan berbagai area kehidupan Anda tanpa perlu membuat banyak brankas.\n\nWorkspace menciptakan ruang terfokus di dalam satu brankas yang aman. Buka brankas sekali, lalu beralih antar konteks seperti Proyek Klien, Jurnal Pribadi, Catatan Kesehatan, atau Pembelajaran tanpa mencampurkan apa pun.\n\nTetap terorganisir dan sesuai konteks. Berbagi layar pun bisa dilakukan dengan tenang — konten pribadi tidak akan muncul secara tidak sengaja.\n\nSatu brankas. Batas yang jelas. Tanpa hambatan."
+				"text": "Pisahkan berbagai area kehidupan Anda tanpa perlu membuat banyak vault.\n\n<workspace>Workspace</workspace> menciptakan ruang terfokus di dalam satu vault yang aman. Cukup buka vault Anda sekali, lalu berpindah antar konteks seperti Proyek Klien, Jurnal Pribadi, Catatan Kesehatan, atau Pembelajaran tanpa mencampuradukkannya.\n\nTetap terorganisir dan spesifik sesuai konteks. Bagikan layar Anda dengan percaya diri: konten pribadi <isolation>tidak akan muncul</isolation> secara tidak sengaja.\n\nSatu vault. Batas yang jelas. Tanpa hambatan."
 			},
 			"history": {
 				"title": "Versi catatan",
-				"text": "Setiap catatan menyimpan riwayat perubahan yang lengkap.\n\nDeepink menyimpan versi secara otomatis, sehingga Anda bisa melihat apa yang berubah, memulihkan draf sebelumnya, atau mengikuti perkembangan sebuah ide dari waktu ke waktu. Baik diedit kemarin maupun setahun lalu, tidak ada yang penting yang hilang.\n\nVersi sebelumnya selalu tersedia saat Anda membutuhkannya."
+				"text": "Setiap catatan menyimpan <history>riwayat perubahan lengkap</history>.\n\nDeepink menyimpan versi secara otomatis, sehingga Anda dapat melihat apa yang berubah, mengembalikan draf sebelumnya, atau mengikuti perkembangan sebuah ide dari waktu ke waktu. Baik itu diedit kemarin atau setahun yang lalu, tidak ada hal penting yang hilang.\n\nVersi sebelumnya selalu tersedia saat Anda membutuhkannya."
 			},
 			"reminders": {
 				"title": "Pengingat",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Tag bertingkat",
-				"text": "Organisasikan catatan Anda dengan tag yang mencerminkan hierarki yang jelas.\n\nTag bertingkat memungkinkan Anda membuat struktur induk/anak, sehingga topik umum bisa memuat subtopik yang lebih spesifik. Misalnya, Klien bisa mencakup nama klien individual, dan Keuangan bisa mencakup Pajak, Faktur, dan Laporan.\n\nBerbeda dari folder, tag tidak eksklusif. Satu catatan bisa memiliki beberapa tag sekaligus — klien, keuangan, dan periode waktu.\n\nTag bertingkat memberikan presisi sekaligus fleksibilitas, bahkan ketika topik saling tumpang tindih."
+				"text": "Atur catatan Anda dengan tag yang mencerminkan hierarki yang jelas.\n\n<tags>Hierarki tag</tags> memungkinkan Anda membuat struktur induk/anak, sehingga topik umum dapat berisi subtopik yang spesifik. Sebagai contoh, Klien dapat mencakup nama klien individu, dan Keuangan dapat mencakup Pajak, Faktur, dan Laporan.\n\nBerbeda dengan folder, tag tidak bersifat eksklusif. Sebuah catatan dapat memiliki beberapa tag sekaligus — klien, keuangan, dan periode waktu.\n\nHierarki tag memberi Anda presisi sekaligus fleksibilitas, bahkan saat topik saling tumpang tindih."
 			},
 			"encryption": {
 				"title": "Enkripsi",
-				"text": "Seluruh brankas terenkripsi. Beberapa aplikasi hanya mengenkripsi data saat sinkronisasi atau teks catatan saja. Deepink melindungi seluruh struktur brankas Anda.\n\nCatatan, lampiran, dan metadata Anda tidak bisa dibaca oleh siapa pun selain Anda — termasuk kami. Bahkan ukuran file disamarkan untuk mengurangi risiko analisis.\n\nApa yang Anda simpan tetap privat secara desain."
+				"text": "Seluruh vault telah <encryption>dienkripsi</encryption>. Beberapa aplikasi hanya mengenkripsi data saat sinkronisasi atau hanya teks catatan saja. Deepink melindungi seluruh struktur vault Anda.\n\nCatatan, lampiran, dan metadata Anda tidak dapat dibaca oleh siapa pun kecuali Anda, termasuk kami. Bahkan ukuran file pun disamarkan untuk mengurangi risiko analisis.\n\nApa yang Anda simpan tetap pribadi <reference>berdasarkan rancangannya</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Satu ruang untuk setiap sisi kehidupan Anda",
 		"text": "Simpan catatan harian, bacaan, dan rencana di satu tempat yang privat. Beralih konteks dalam sekali klik, tetap terorganisir, dan terus menulis tanpa kehilangan fokus.",
 		"button": "Dapatkan Deepink"
+	},
+	"faq": {
+		"title": "Pertanyaan yang Sering Diajukan",
+		"text": "Ingin memahami cara kerja Deepink?\nJawaban ini mencakup prinsip di balik aplikasi ini, bukan sekadar fitur saja."
 	}
 }

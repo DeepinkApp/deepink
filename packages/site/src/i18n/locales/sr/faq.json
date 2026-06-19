@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Zašto je Deepink bolji od drugih aplikacija za beleške?",
+		"text": "Deepink je fokusiran na svakodnevnu ergonomiju. Uobičajeni zadaci zahtevaju manje koraka, dok su napredne funkcije za organizaciju, privatnost i upravljanje beleškama jednostavne za korišćenje.\n\n<security>Istražili smo</security> preko 60 najpopularnijih aplikacija za beleške i nismo pronašli ništa što je istovremeno dovoljno sigurno i lako za upotrebu. Uvek postoji kompromis – ili ne brinete o privatnosti, ili ste entuzijasta koji se bori sa komplikovanim interfejsima i stalnim podešavanjem sistema.\n\nMnoge aplikacije su namenjene programerima i stručnjacima. Deepink je namenjen svima.\n\nVećina alternativnih aplikacija je napravljena da zaradi novac, a Deepink je napravljen da donosi zadovoljstvo."
+	},
+	"differentFromOthers": {
+		"title": "Po čemu se Deepink razlikuje od aplikacija kao što su Obsidian, Notion i Joplin?",
+		"text": "Deepink ne koristi psihološke trikove kako bi vas zadržao u aplikaciji.\n\nNe plaćamo influensere da bi vas ubedili da morate da negujete svoj „digitalni vrt“, što često znači da kopirate ceo internet u svoju aplikaciju.\n\nDeepink promoviše dobrobit. Zapisujte samo one beleške koje su vam zaista potrebne. Činite to brzo, privatno i uživajte u boljem životu. To je to. Ne trošite život ispred računara."
+	},
+	"import": {
+		"title": "Šta ako već imam hiljade beleški?",
+		"text": "Svoje beleške možete <import>uvesti iz bilo koje druge aplikacije</import> u Deepink. Isprobajte Deepink nedelju dana kako biste stekli pravi osećaj o radu."
+	},
+	"export": {
+		"title": "Šta ako odlučim da prestanem da koristim Deepink?",
+		"text": "Svoje beleške možete <export>izvesti u bilo kom trenutku</export>. Sav vaš sadržaj, uključujući priloge i veze između beleški, biće izvezen kao .zip arhiva sa Markdown datotekama.\n\nBilo bi nam drago da nam ostavite povratnu informaciju putem <email/> pre odlaska. Možda možemo da rešimo vaše probleme i unapredimo Deepink za sve korisnike."
+	},
+	"workspacesVsVaults": {
+		"title": "Zašto Deepink koristi prostore umesto više skladišta?",
+		"text": "Prostori vam omogućavaju da odvojite različite kontekste bez razbijanja informacija u više skladišta. Otključate se jednom i menjate prostore trenutno, kada god je to potrebno."
+	},
+	"workspacesVsFolders": {
+		"title": "Zašto su prostori bolji od fascikli za organizaciju beleški?",
+		"text": "Fascikle organizuju beleške. Prostori organizuju kontekste. Oni pomažu da odvojite različite delove svog života, dok beleške, tagovi i način rada ostaju fokusirani."
+	},
+	"stayingOrganized": {
+		"title": "Kako mi Deepink pomaže da ostanem organizovan kako broj beleški raste?",
+		"text": "Prostori, hijerarhija tagova, veze i povratne veze rade zajedno kako bi informacije ostale strukturirane i lako dostupne, čak i u velikim kolekcijama beleški."
+	},
+	"ergonomics": {
+		"title": "Zašto se Deepink toliko fokusira na ergonomiju?",
+		"text": "Pisanje beleški je nešto što ljudi rade svakodnevno. Mala poboljšanja u toku rada štede vreme, smanjuju napor i čine iskustvo prijatnijim na duge staze."
+	},
+	"replaceMultipleApps": {
+		"title": "Može li Deepink zameniti više aplikacija za upravljanje znanjem?",
+		"text": "Za mnoge korisnike, da. Beleške, dokumenti, istraživanja, dnevnici, podsetnici i referentni materijali mogu postojati zajedno unutar istog skladišta."
+	},
+	"nestedTags": {
+		"title": "Zašto koristiti hijerarhiju tagova umesto fascikli?",
+		"text": "Fascikle prisiljavaju svaku belešku da bude na samo jednoj lokaciji. Tagovi omogućavaju da informacija pripada više kategorija odjednom, dok hijerarhija tagova održava te kategorije strukturiranim."
+	},
+	"connectedInformation": {
+		"title": "Kako Deepink održava povezanost srodnih informacija?",
+		"text": "Veze i povratne veze čine odnose vidljivim. Možete prirodno da se krećete između srodnih beleški bez dupliranja informacija."
+	},
+	"privacy": {
+		"title": "Kako Deepink štiti moju privatnost?",
+		"text": "Sve u vašem skladištu je šifrovano, uključujući beleške, datoteke i metapodatke. Vaše informacije su po dizajnu privatne."
+	},
+	"openSource": {
+		"title": "Zašto je Deepink open source?",
+		"text": "Privatnost i bezbednost moraju biti proverljivi. Open source omogućava bilo kome da pregleda kod i potvrdi kako aplikacija funkcioniše."
+	},
+	"personalOrWork": {
+		"title": "Da li je Deepink dizajniran za lične beleške, posao ili oboje?",
+		"text": "Oboje. Prostori omogućavaju lako razdvajanje ličnih i profesionalnih informacija, dok je sve i dalje dostupno na jednom mestu."
+	},
+	"largeVaults": {
+		"title": "Šta se dešava kada moje skladište postane veliko?",
+		"text": "Deepink je dizajniran da raste od nekoliko beleški do velikih baza znanja. Funkcije organizacije pomažu da informacije ostanu pregledne kako vaše skladište raste."
+	},
+	"oneVault": {
+		"title": "Zašto držati sve u jednom skladištu?",
+		"text": "Informacije su često povezane na načine koje ne očekujemo. Držanje svega na jednom mestu olakšava otkrivanje veza, pretragu kroz različite kontekste i izbegavanje fragmentacije."
+	},
+	"markdownFiles": {
+		"title": "Zašto ne koristiti samo fasciklu sa Markdown datotekama?",
+		"text": "Markdown datoteke čuvaju sadržaj. Deepink dodaje organizaciju, enkripciju, istoriju beleški, podsetnike, veze, povratne veze i tokove rada koji olakšavaju upravljanje informacijama."
+	}
+}

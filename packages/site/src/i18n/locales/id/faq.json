@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Mengapa Deepink lebih baik dari aplikasi catatan lainnya?",
+		"text": "Deepink berfokus pada ergonomi penggunaan sehari-hari. Tugas umum dapat diselesaikan dengan lebih sedikit langkah, sementara fitur organisasi, privasi, dan manajemen catatan yang canggih tetap mudah digunakan.\n\nKami telah <security>mempelajari</security> lebih dari 60 aplikasi catatan terpopuler dan tidak menemukan satu pun yang cukup aman sekaligus mudah digunakan. Selalu ada kompromi—Anda harus mengabaikan privasi, atau menjadi pengguna teknis yang harus berurusan dengan antarmuka rumit dan konfigurasi yang terus-menerus.\n\nBanyak aplikasi berfokus pada programmer dan pengguna teknis. Deepink dirancang untuk semua orang.\n\nSebagian besar aplikasi alternatif dibuat untuk mencari keuntungan, Deepink dibuat untuk kenyamanan penggunanya."
+	},
+	"differentFromOthers": {
+		"title": "Apa yang membedakan Deepink dari Obsidian, Notion, dan Joplin?",
+		"text": "Deepink tidak mendorong atau memanfaatkan perilaku obsesif-kompulsif untuk membuat Anda terus terpaku pada aplikasi.\n\nKami tidak menggunakan influencer untuk meyakinkan Anda bahwa Anda harus membangun \"kebun digital\", yang sering kali berarti menyalin seluruh isi internet ke dalam aplikasi catatan Anda.\n\nDeepink mengutamakan kesejahteraan Anda. Catatlah hal-hal yang benar-benar Anda butuhkan. Lakukan dengan cepat, privat, dan jalani hidup dengan lebih baik. Itu saja. Jangan habiskan seluruh hidup Anda di depan komputer."
+	},
+	"import": {
+		"title": "Bagaimana jika saya sudah memiliki ribuan catatan?",
+		"text": "Anda dapat <import>mengimpor catatan Anda</import> dari aplikasi lain ke Deepink. Cobalah Deepink selama seminggu untuk merasakan manfaatnya."
+	},
+	"export": {
+		"title": "Apa yang terjadi jika saya memutuskan untuk berhenti menggunakan Deepink?",
+		"text": "Anda dapat <export>mengekspor catatan Anda</export> kapan saja. Semua konten, termasuk lampiran dan tautan antarcatatan, akan diekspor sebagai arsip zip berisi file Markdown.\n\nKami akan sangat berterima kasih jika Anda bersedia memberikan umpan balik melalui <email/> sebelum pergi. Mungkin kami dapat menyelesaikan kendala Anda dan meningkatkan Deepink untuk semua orang."
+	},
+	"workspacesVsVaults": {
+		"title": "Mengapa Deepink menggunakan ruang kerja alih-alih banyak vault?",
+		"text": "Ruang kerja memungkinkan Anda memisahkan konteks tanpa harus memecah informasi ke dalam banyak vault. Anda cukup masuk satu kali dan berpindah antarruang kerja secara instan saat dibutuhkan."
+	},
+	"workspacesVsFolders": {
+		"title": "Mengapa ruang kerja lebih baik daripada folder untuk mengatur catatan?",
+		"text": "Folder mengatur catatan. Ruang kerja mengatur konteks. Ruang kerja membantu memisahkan berbagai aspek kehidupan Anda sambil menjaga catatan, tag, dan alur kerja tetap terfokus."
+	},
+	"stayingOrganized": {
+		"title": "Bagaimana Deepink membantu saya tetap teratur seiring bertambahnya catatan?",
+		"text": "Ruang kerja, hierarki tag, tautan, dan tautan balik bekerja sama untuk menjaga informasi tetap terstruktur dan mudah ditemukan, bahkan dalam koleksi catatan yang besar."
+	},
+	"ergonomics": {
+		"title": "Mengapa Deepink sangat fokus pada ergonomi?",
+		"text": "Mencatat adalah kegiatan sehari-hari. Perbaikan kecil dalam alur kerja dapat menghemat waktu, mengurangi hambatan, dan membuat pengalaman penggunaan lebih menyenangkan dalam jangka panjang."
+	},
+	"replaceMultipleApps": {
+		"title": "Dapatkah Deepink menggantikan berbagai aplikasi manajemen pengetahuan pribadi?",
+		"text": "Bagi banyak orang, ya. Catatan, dokumen, riset, jurnal, pengingat, dan materi referensi dapat semuanya tersimpan bersama di dalam satu vault."
+	},
+	"nestedTags": {
+		"title": "Mengapa menggunakan hierarki tag alih-alih folder?",
+		"text": "Folder memaksa setiap catatan berada di satu lokasi saja. Tag memungkinkan informasi masuk ke beberapa kategori sekaligus, sementara hierarki tag menjaga kategori tersebut tetap terstruktur."
+	},
+	"connectedInformation": {
+		"title": "Bagaimana Deepink menjaga informasi terkait tetap terhubung?",
+		"text": "Tautan dan tautan balik membuat hubungan antarinformasi menjadi terlihat. Anda dapat berpindah antarcatatan terkait secara alami tanpa perlu menduplikasi informasi."
+	},
+	"privacy": {
+		"title": "Bagaimana Deepink melindungi privasi saya?",
+		"text": "Segala sesuatu di dalam vault Anda terenkripsi, termasuk catatan, file, dan metadata. Informasi Anda tetap privat secara desain."
+	},
+	"openSource": {
+		"title": "Mengapa Deepink bersifat open source?",
+		"text": "Privasi dan keamanan harus dapat diverifikasi. Sifat open source memungkinkan siapa saja untuk memeriksa kode dan memastikan cara kerja aplikasi ini."
+	},
+	"personalOrWork": {
+		"title": "Apakah Deepink dirancang untuk catatan pribadi, pekerjaan, atau keduanya?",
+		"text": "Keduanya. Ruang kerja memudahkan Anda memisahkan informasi pribadi dan profesional sambil tetap menjaga semuanya dapat diakses di satu tempat."
+	},
+	"largeVaults": {
+		"title": "Apa yang terjadi jika vault saya menjadi sangat besar?",
+		"text": "Deepink dirancang untuk berkembang dari sekadar beberapa catatan hingga basis pengetahuan yang besar. Fitur organisasi membantu informasi tetap mudah dikelola seiring berkembangnya vault Anda."
+	},
+	"oneVault": {
+		"title": "Mengapa menyimpan semuanya dalam satu vault?",
+		"text": "Informasi sering kali terhubung dengan cara yang tidak terduga. Menyimpan semuanya secara terpadu memudahkan Anda menemukan keterkaitan, mencari lintas konteks, dan menghindari fragmentasi data."
+	},
+	"markdownFiles": {
+		"title": "Mengapa tidak menggunakan folder berisi file Markdown saja?",
+		"text": "File Markdown hanya menyimpan konten. Deepink menambahkan pengorganisasian, enkripsi, riwayat catatan, pengingat, tautan, tautan balik, dan alur kerja yang dirancang untuk memudahkan pengelolaan informasi."
+	}
+}

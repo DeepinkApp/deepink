@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Tietovarasto, johon voit luottaa",
-				"text": "Kaikki tietovarastossasi on salattu. Toisin kuin monissa muissa sovelluksissa, tämä tarkoittaa todella <0>kaikkea tietoasi</0> — muistiinpanojen sisältöä, tiedostoja ja metatietoja. Voit valita salausalgoritmin, johon luotat.\n\nDeepink on <1>avoimen lähdekoodin</1> sovellus, jonka koodin voit tarkistaa itse — ei tarvitse luottaa sokeasti."
+				"text": "Kaikki säiliössäsi on <encryption>salattua</encryption>. Toisin kuin monissa muissa sovelluksissa, tämä tarkoittaa todella <security>kaikkea dataasi</security>, mukaan lukien muistiinpanojen sisällön, tiedostot ja metatiedot. Voit valita itse luottamasi algoritmin.\n\nDeepink on <opensource>avoin lähdekoodi</opensource>, joten voit tarkistaa koodin sijaan vain luottaa siihen."
 			},
 			"workflow": {
 				"title": "Ergonomia",
-				"text": "Deepink on suunniteltu nopeaksi päivittäisessä käytössä — turhat välivaiheet on karsittu yleisimmistä toiminnoista. Useimpiin tehtäviin tarvitaan <0>jopa 80 % vähemmän toimintoja</0> kuin muissa muistiinpanosovelluksissa."
+				"text": "Deepink on suunniteltu <strong>nopeaksi jokapäiväiseen käyttöön</strong>, ja yleisimmistä tehtävistä on poistettu kaikki turha kitka. Useimmissa tehtävissä se vaatii <0>jopa 80 % vähemmän vaiheita</0> kuin muut muistiinpano-sovellukset."
 			},
 			"universality": {
 				"title": "Tietovarastoon mahtuu kaikki",
-				"text": "Pidä kaikki yhdessä paikassa. Työtilat ja hierarkkiset tunnisteet auttavat erottamaan kontekstit toisistaan ja löytämään tarvitsemasi nopeasti — projektisuunnitelmista, sopimuksista ja koodinpätkistä kirjalainauksiin, päiväkirjaan, tutkimusmuistiinpanoihin ja muuhun."
+				"text": "Pidä <organizing>kaikki</organizing> säiliössäsi. <workspace>Työtilat</workspace> ja tunnisteiden hierarkia auttavat sinua erottelemaan eri aihealueet ja löytämään tarvittavan nopeasti – olipa kyseessä projektisuunnitelmat, sopimukset ja koodinpätkät tai kirjan lainaukset, päiväkirja, tutkimukset ja muut."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Jäsennä ajatteluasi",
-			"text": "Tallenna nopea oivallus tai rakenna jotain laajempaa. Deepink tuo järjestystä ja keskittymistä kaikkeen, mitä kirjoitat muistiin."
+			"text": "Taltioi nopea oivallus tai rakenna jotain monimutkaista.\nDeepink tuo järjestystä ja selkeyttä kaikkeen, mitä kirjoitat."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Työtilat",
-				"text": "Pidä elämäsi eri osa-alueet erillään ilman useita tietovarastoja.\n\nTyötilat luovat keskittyneitä tiloja yhden suojatun tietovaraston sisälle. Avaa tietovarasto kerran ja vaihda sitten kontekstien välillä — Asiakasprojektit, Henkilökohtainen päiväkirja, Terveysmuistiinpanot tai Oppiminen — ilman sekaannusta.\n\nPysy järjestäytyneenä ja kontekstissa. Jaa näyttösi luottavaisin mielin: yksityinen sisältö ei näy vahingossa.\n\nYksi tietovarasto. Selkeät rajat. Nolla kitkaa."
+				"text": "Pidä elämäsi eri osa-alueet erillään ilman useiden säiliöiden käyttöä.\n\n<workspace>Työtilat</workspace> luovat selkeitä alueita yhden suojatun säiliön sisälle. Avaa säiliösi vain kerran, ja voit sen jälkeen vaihtaa kontekstien välillä, kuten asiakasprojektien, henkilökohtaisen päiväkirjan, terveysmuistiinpanojen tai opiskelun välillä sekoittamatta niitä.\n\nPysy järjestyksessä ja keskity olennaiseen. Voit jakaa näyttösi luottavaisesti: yksityinen sisältö <isolation>ei näy</isolation> vahingossa.\n\nYksi säiliö. Selkeät rajat. Vaivatonta käyttöä."
 			},
 			"history": {
 				"title": "Muistiinpanojen versiot",
-				"text": "Jokaisesta muistiinpanosta säilyy täydellinen muutoshistoria.\n\nDeepink tallentaa versiot automaattisesti, joten voit nähdä, mikä muuttui, palauttaa aiemman luonnoksen tai seurata, miten idea kehittyi ajan myötä. Olipa muokkaus tehty eilen tai vuosi sitten, mitään tärkeää ei katoa.\n\nAiemmat versiot ovat aina saatavilla, kun niitä tarvitset."
+				"text": "Jokainen muistiinpano säilyttää <history>täydellisen historian</history> muutoksista.\n\nDeepink tallentaa versiot automaattisesti, joten näet mitä on muuttunut, voit palauttaa aiemman luonnoksen tai seurata, miten idea on kehittynyt ajan myötä. Olipa muutos tehty eilen tai vuosi sitten, mitään tärkeää ei mene hukkaan.\n\nEdelliset versiot ovat aina käytettävissäsi."
 			},
 			"reminders": {
 				"title": "Muistutukset",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Hierarkkiset tunnisteet",
-				"text": "Järjestä muistiinpanosi tunnisteilla, jotka heijastavat selkeää hierarkiaa.\n\nHierarkkiset tunnisteet mahdollistavat ylä- ja alatason rakenteen, jossa laajat aiheet voivat sisältää tarkempia alaluokkia. Esimerkiksi Asiakkaat voi sisältää yksittäisten asiakkaiden nimet ja Talous voi sisältää Verot, Laskut ja Raportit.\n\nToisin kuin kansiot, tunnisteet eivät ole poissulkevia. Muistiinpanolla voi olla useita tunnisteita samanaikaisesti — asiakas, talous ja ajanjakso.\n\nHierarkkiset tunnisteet tarjoavat sekä tarkkuutta että joustavuutta, myös silloin kun aiheet menevät päällekkäin."
+				"text": "Järjestä muistiinpanoja tunnisteilla, jotka noudattavat selkeää hierarkiaa.\n\n<tags>Tunnisteiden hierarkia</tags> antaa sinun luoda pää- ja alaluokkia, jolloin laajoja aiheita voi jakaa tarkempiin osioihin. Esimerkiksi ”Asiakkaat” voi sisältää yksittäiset asiakkaanimet ja ”Talous” voi sisältää kohdat kuten Verot, Laskut ja Raportit.\n\nToisin kuin kansiot, tunnisteet eivät ole rajoittavia. Yhdellä muistiinpanolla voi olla useita tunnisteita kerrallaan – esimerkiksi asiakas, talous ja tietty ajanjakso.\n\nTunnistehierarkia tarjoaa tarkkuutta ja joustavuutta, vaikka aiheet menisivät päällekkäin."
 			},
 			"encryption": {
 				"title": "Salaus",
-				"text": "Koko tietovarasto on salattu. Jotkin sovellukset salaavat tiedot vain synkronoinnin aikana tai pelkän muistiinpanon tekstin. Deepink suojaa tietovarastosi koko rakenteen.\n\nMuistiinpanosi, liitetiedostosi ja metatietosi ovat lukukelvottomia kaikille muille paitsi sinulle — myös meille. Jopa tiedostokoot on häivytetty analyysiriskien vähentämiseksi.\n\nTallentamasi tiedot pysyvät yksityisinä — suunnittelusta lähtien."
+				"text": "Koko säiliö on <encryption>salattu</encryption>. Jotkut sovellukset salaavat vain synkronoinnin aikana siirrettävän datan tai muistiinpanojen tekstin. Deepink suojaa koko säiliösi rakenteen.\n\nMuistiinpanojesi, liitteidesi ja metatietojesi sisältö on lukukelvotonta kaikille muille paitsi sinulle – myös meille. Jopa tiedostokoot on häivytetty analyysiriskin minimoimiseksi.\n\nTallentamasi tiedot pysyvät yksityisinä <reference>luonnostaan</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Tila jokaiselle elämäsi osa-alueelle",
 		"text": "Pidä arjen muistiinpanot, lukeminen ja suunnitelmat yhdessä yksityisessä paikassa. Vaihda kontekstia yhdellä napsautuksella, pysy järjestäytyneenä ja jatka kirjoittamista ilman keskeytyksiä.",
 		"button": "Hanki Deepink"
+	},
+	"faq": {
+		"title": "Usein kysytyt kysymykset",
+		"text": "Haluatko ymmärtää, miten Deepink toimii?\nNämä vastaukset käsittelevät sovelluksen perusperiaatteita, eivät vain sen ominaisuuksia."
 	}
 }

@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Et arkiv du kan stole på",
-				"text": "Alt i dit arkiv er krypteret. I modsætning til mange andre apps betyder det virkelig <0>alle dine data</0> — noteindhold, filer og metadata. Du kan vælge den algoritme, du stoler på.\n\nDeepink er en <1>open source</1>-app med kode, du selv kan verificere — ikke bare stole på."
+				"text": "Alt i din vault er <encryption>krypteret</encryption>. I modsætning til mange andre apps betyder det rent faktisk, at <security>alle dine data</security> er sikret – herunder indholdet i dine noter, filer og metadata. Du kan selv vælge den algoritme, du har tillid til.\n\nDeepink er en <opensource>open source</opensource>-app med kode, du kan verificere, fremfor blot at stole på den."
 			},
 			"workflow": {
 				"title": "Ergonomien",
-				"text": "Deepink er bygget til at være hurtig i daglig brug, hvor friktion er fjernet fra de mest almindelige opgaver. Til de fleste opgaver kræver det <0>op til 80 % færre handlinger</0> end andre noteapps."
+				"text": "Deepink er skabt til at være <strong>hurtig i hverdagen</strong>, hvor de mest almindelige opgaver er gjort så gnidningsfrie som muligt. De fleste handlinger kræver <0>op til 80% færre trin</0> end i andre note-apps."
 			},
 			"universality": {
 				"title": "Dit arkiv rummer alt",
-				"text": "Saml alt i dit arkiv. Arbejdsområder og indlejrede tags hjælper dig med at adskille kontekster og hurtigt finde det, du har brug for — fra projektspecifikationer, kontrakter og kodestykker til bogcitater, dagbog, research og meget mere."
+				"text": "Hold <organizing>alt</organizing> samlet i din vault. <workspace>Workspaces</workspace> og tag-hierarkier hjælper dig med at adskille forskellige kontekster, så du hurtigt finder det, du skal bruge – lige fra projektbeskrivelser, kontrakter og kode til bogcitater, dagbog, research og meget andet."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Strukturér dine tanker",
-			"text": "Fang en hurtig idé eller byg noget komplekst. Deepink bringer orden og fokus til alt, du skriver ned."
+			"text": "Fang en hurtig tanke eller byg noget komplekst.\nDeepink skaber orden og fokus i alt, hvad du skriver ned."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Arbejdsområder",
-				"text": "Hold forskellige dele af dit liv adskilt uden at oprette flere arkiver.\n\nArbejdsområder skaber fokuserede rum inden for ét sikkert arkiv. Lås dit arkiv op én gang, og skift derefter mellem kontekster som Kundeprojekter, Personlig dagbog, Sundhedsnoter eller Læring — uden at blande noget sammen.\n\nHold orden og kontekst. Del din skærm med ro i sindet: privat indhold dukker ikke op ved en fejl.\n\nÉt arkiv. Klare grænser. Ingen friktion."
+				"text": "Hold forskellige dele af dit liv adskilt uden at skulle oprette flere vaults.\n\n<workspace>Workspaces</workspace> skaber fokuserede områder inde i én sikker vault. Lås din vault op én gang, og skift derefter mellem kontekster som klientprojekter, personlig dagbog, sundhed eller læring uden at blande tingene sammen.\n\nBevar overblikket og konteksten. Del din skærm med ro i sindet: Privat indhold <isolation>vises ikke</isolation> ved en fejl.\n\nÉn vault. Klare grænser. Ingen friktion."
 			},
 			"history": {
 				"title": "Noteversioner",
-				"text": "Hver note gemmer en komplet historik over ændringer.\n\nDeepink gemmer versioner automatisk, så du kan se, hvad der blev ændret, gendanne et tidligere udkast eller følge, hvordan en idé udviklede sig over tid. Uanset om noten blev redigeret i går eller for et år siden, går intet vigtigt tabt.\n\nTidligere versioner er altid tilgængelige, når du har brug for dem."
+				"text": "Hver note gemmer en <history>fuld historik</history> over ændringer.\n\nDeepink gemmer automatisk versioner, så du kan se, hvad der er ændret, genoprette et tidligere udkast eller følge en idés udvikling over tid. Uanset om det blev redigeret i går eller for et år siden, går intet vigtigt tabt.\n\nTidligere versioner er altid tilgængelige, når du har brug for dem."
 			},
 			"reminders": {
 				"title": "Påmindelser",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Indlejrede tags",
-				"text": "Organisér dine noter med tags, der afspejler et klart hierarki.\n\nIndlejrede tags giver mulighed for en forælder/barn-struktur, så brede emner kan indeholde specifikke underemner. For eksempel kan Kunder indeholde individuelle kundenavne, og Økonomi kan indeholde Skat, Fakturaer og Rapporter.\n\nI modsætning til mapper er tags ikke eksklusive. En note kan have flere tags på én gang — kunde, økonomi og en tidsperiode.\n\nIndlejrede tags giver både præcision og fleksibilitet, selv når emner overlapper."
+				"text": "Organiser dine noter med tags, der følger et logisk hierarki.\n\n<tags>Tag-hierarkier</tags> lader dig skabe en struktur, hvor overordnede emner kan indeholde specifikke underemner. For eksempel kan 'Klienter' indeholde specifikke navne, og 'Økonomi' kan indeholde 'Skat', 'Fakturaer' og 'Rapporter'.\n\nI modsætning til mapper er tags ikke begrænsende. En note kan have flere tags på én gang – f.eks. klient, økonomi og en tidsperiode.\n\nHierarkiske tags giver dig både præcision og fleksibilitet, selv når emner overlapper."
 			},
 			"encryption": {
 				"title": "Kryptering",
-				"text": "Hele arkivet er krypteret. Nogle apps krypterer kun data under synkronisering eller selve noteteksten. Deepink beskytter den fulde struktur af dit arkiv.\n\nDine noter, vedhæftede filer og metadata er ulæselige for alle andre end dig — inklusiv os. Selv filstørrelser er slørede for at reducere risikoen for analyse.\n\nDet, du gemmer, forbliver privat by design."
+				"text": "Hele din vault er <encryption>krypteret</encryption>. Nogle apps krypterer kun data under synkronisering eller selve tekstindholdet. Deepink beskytter hele strukturen i din vault.\n\nDine noter, vedhæftede filer og metadata er ulæselige for alle andre end dig – også for os. Selv filstørrelser er slørede for at minimere risikoen for analyse.\n\nDet, du gemmer, forbliver privat <reference>som standard</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Et rum til alle dele af dit liv",
 		"text": "Saml hverdagsnoter, læsning og planer ét privat sted. Skift kontekst med et klik, hold orden og bliv ved med at skrive uden at miste dit flow.",
 		"button": "Hent Deepink"
+	},
+	"faq": {
+		"title": "Ofte stillede spørgsmål",
+		"text": "Vil du vide mere om, hvordan Deepink fungerer?\nDisse svar forklarer tankerne bag appen, ikke kun funktionerne."
 	}
 }

@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Miért jobb a Deepink, mint a többi jegyzetenapló?",
+		"text": "A Deepink a mindennapi ergonómiára összpontosít. A gyakori feladatok kevesebb lépést igényelnek, miközben a hatékony szervezés, a védelem és a jegyzetek kezelésének funkciói továbbra is könnyen használhatóak.\n\n<security>Megvizsgáltunk</security> több mint 60 népszerű jegyzetenaplót, de nem találtunk olyat, amely egyszerre elég biztonságos és könnyen használható lenne. Mindig vannak kompromisszumok – vagy nem törődsz a privát szféráddal, vagy egy technikai szakértővé válsz, aki kellemetlen felületekkel és folyamatos konfigurációkkal küzd.\n\nSok alkalmazás szakembereket és programozókat célozik meg. A Deepink mindenki számára készült.\n\nMíg a legtöbb alternatíva a profitra épül, a Deepink a felhasználók elégedettségére."
+	},
+	"differentFromOthers": {
+		"title": "Miben tér meg a Deepink az Obsidian, a Notion és a Joplin alkalmazásoktól?",
+		"text": "A Deepink nem ösztönöz és nem használ ki kényszeres viselkedést, hogy folyamatosan magánélőben tartson.\n\nNem alkalmazunk befolyásolókat, hogy eladják neked a „digitális kert” növelésének elvét, ami gyakran csak az internet egészének másolgatását jelenti a jegyzetenaplódba.\n\nA Deepink a jólétre helyezi a hangsúlyt. Csak azokat a jegyzéseket vezesd, amikre tényleg szükséged van. Tedd meg gyorsan, privát módon, és élj jobb életet. Ennyi az egész. Ne pazarold az egész életedet a számítógép előtt."
+	},
+	"import": {
+		"title": "Mi van, ha már több ezer jegyzetem van?",
+		"text": "Bármilyen más alkalmazásból <import>importálhatod jegyzeteidet</import> a Deepinkbe. Próbáld ki a Deepinket egy hétig, hogy jobban érezd, mire képes."
+	},
+	"export": {
+		"title": "Mi történik, ha úgy döntök, hogy nem használom tovább a Deepinket?",
+		"text": "A jegyzeteidet bármikor <export>exportálhatod</export>. Minden tartalmad – a mellékletekkel és a jegyzetek közötti hivatkozásokkal együtt – egy zip archívumban, Markdown fájlokként kerül k exportálásra.\n\nLátogatásod előtt szeretnénk megkérni, hogy írj nekünk <email/>, ha van visszajelzésed. Talán tudjuk megoldani a problémáidat, és még jobbá tehetjük a Deepinket mindenki számára."
+	},
+	"workspacesVsVaults": {
+		"title": "Miért használ a Deepink munkahelyeket több tárolóhely helyett?",
+		"text": "A munkahelyek lehetővé teszik a különböző kontextusok elkülönítését anélkül, hogy az információid több tárolóhelyre szétoszlottak volna. Egyszer csak feloldod a tárolót, és szükség esetén azonnal váltasz a különböző területek között."
+	},
+	"workspacesVsFolders": {
+		"title": "Miért jobbabbak a munkahelyek a mappáknál a jegyzetek szervezéséhez?",
+		"text": "A mappák a jegyzeteket rendszerezik. A munkahelyek a kontextusokat. Segítenek elkülöníteni életed különböző részeit, miközben a jegyzeteid, a címkék és a munkameneted összhangban marad."
+	},
+	"stayingOrganized": {
+		"title": "Hogyan segít a Deepink a rend megtartásában, ahogy nő a jegyzeteim mennyisége?",
+		"text": "A munkahelyek, a hierarchikus címkék, a hivatkozások és a visszahivatkozások együtt biztosítják, hogy az információk strukturáltak és könnyen megtalálhatóak maradjanak, még a hatalmas jegyzetgyűjtemények között is."
+	},
+	"ergonomics": {
+		"title": "Miért fekteti ennyire nagy hangsúlyt a Deepink az ergonómiára?",
+		"text": "A jegyzetvétel mindennapos tevékenység. A munkamenet apró fejlesztései időt takarítanak meg, csökkentik a feszültséget, és hosszú távon élvezhetőbbé teszik a felhasználói élményt."
+	},
+	"replaceMultipleApps": {
+		"title": "Leválthatja a Deepink a személyes tudásmenedzsmenthez használt más alkalmazásokat?",
+		"text": "Sokak számára igen. A jegyzetek, dokumentumok, kutatások, naplók, emlékeztetők és referenciák mind egyetlen tárolóhelyen élhetnek."
+	},
+	"nestedTags": {
+		"title": "Miért jobb a hierarchikus címkék használata a mappák helyett?",
+		"text": "A mappák arra kényszerítenek, hogy minden jegyzet egyetlen helyen legyen. A címkék lehetővé teszik, hogy az információk egyszerre több kategóriába is tartozhassanak, míg a hierarchikus felépítés rendszerezi ezeket a kategóriákat."
+	},
+	"connectedInformation": {
+		"title": "Hogyan tartja össze a Deepink a kapcsolódó információkat?",
+		"text": "A hivatkozások és visszahivatkozások láthatóvá teszik az összefüggéseket. Természetesen navigálhatsz a kapcsolódó jegyzetek között anélkül, hogy duplikálnod kellene az adatokat."
+	},
+	"privacy": {
+		"title": "Hogyan védi a Deepink a privát szférámat?",
+		"text": "A tárolóhelyedben lévő minden adat titkosítva van, beleértve a jegyzeteket, a fájlokat és a metaadatokat is. Az információid alapértelmezés szerint privát marad."
+	},
+	"openSource": {
+		"title": "Miért nyílt forráskódú a Deepink?",
+		"text": "A magánéletnek és a biztonságnak ellenőrizhetőnek kell lenniük. A nyílt forráskód lehetővé teszi bárki számára, hogy megvizsgálja a kódot, és megerősítse, hogyan működik az alkalmazás."
+	},
+	"personalOrWork": {
+		"title": "A Deepink személyes használatra, munkához, vagy mindkettőhöz készült?",
+		"text": "Mindkettőhöz. A munkahelyek megkönnyítik a személyes és a professzionális információk elkülönítését, miközben mindent egy helyen elérhetővé tesznek."
+	},
+	"largeVaults": {
+		"title": "Mi történik, ha a tárolóhelyem túl nagy lesz?",
+		"text": "A Deepink úgy készült, hogy néhány jegyzettől a hatalmas tudásbázisokig skálázható legyen. A szervezési funkciók segítenek abban, hogy az információk kezelhetőek maradjanak a tárolóhely növekedésével együtt."
+	},
+	"oneVault": {
+		"title": "Miért érdemes mindent egyetlen tárolóhelyen tartani?",
+		"text": "Az információk gyakran váratlan módon kapcsolódnak össze. Ha mindent együtt tartunk, könnyebb felfedezni az összefüggéseket, keresni a különböző kontextusok között, és elkerülni a szétesést."
+	},
+	"markdownFiles": {
+		"title": "Miért nem elég csak egy mappával a Markdown fájloknak?",
+		"text": "A Markdown fájlok tárolják a tartalmat. A Deepink szervezést, titkosítást, jegyzetelőzményt, emlékeztetőket, hivatkozásokat, visszahivatkozásokat és olyan munkameneteket biztosít, amelyek könnyebbé teszik az információk kezelését."
+	}
+}

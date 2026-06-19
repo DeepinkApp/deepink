@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Per què Deepink és millor que altres aplicacions de notes?",
+		"text": "Deepink es centra en l'ergonomia quotidiana. Les tasques comunes requereixen menys passos, mentre que les funcions avançades d'organització, privadesa i gestió de notes segueixen sent fàcils d'utilitzar.\n\nHem <security>analitzat</security> més de 60 de les aplicacions de notes més populars i no hem trobat cap que sigui prou segura i, alhora, fàcil d'utilitzar. Sempre hi ha compromisos: o no t'importa la teva privadesa, o has de ser un expert que té una experiència complicada, amb interfícies poc atractives i configurant coses constantment.\n\nMoltes aplicacions estan pensades per a experts i programadors. Deepink és per a tothom.\n\nLa majoria d'alternatives estan creades per guanyar diners; Deepink està creada per fer sentir bé les persones."
+	},
+	"differentFromOthers": {
+		"title": "En què es diferencia Deepink d'Obsidian, Notion i Joplin?",
+		"text": "Deepink no fomenta ni explota comportaments obsessius per mantenir la teva atenció.\n\nNo contractem influents per vendre't la idea que has de cultivar un \"jardí digital\", la qual cosa sovint significa copiar i enganxar tot internet a la teva aplicació de notes.\n\nDeepink prioritza el benestar. Agafa només les notes que realment necessitis. Fes-ho de forma ràpida, privada i viu una vida millor. Això és tot. No et gastis la vida davant l'ordinador."
+	},
+	"import": {
+		"title": "I si ja tinc milers de notes?",
+		"text": "Pots <import>importar les teves notes</import> de qualsevol altra aplicació a Deepink. Prova Deepink una setmana per familiaritzar-te amb ella."
+	},
+	"export": {
+		"title": "Què passa si decideixo deixar d'utilitzar Deepink?",
+		"text": "Pots <export>exportar les teves notes</export> en qualsevol moment. Tot el teu contingut, inclosos els adjunts i els enllaços entre notes, s'exportarà en un arxiu zip amb fitxers Markdown.\n\nEt agrairem que deixis els teus comentaris a <email/> abans de marxar. Potser podem resoldre els teus problemes i millorar Deepink per a tothom."
+	},
+	"workspacesVsVaults": {
+		"title": "Per què Deepink utilitza espais de treball en lloc de múltiples espais segurs?",
+		"text": "Els espais de treball et permeten separar contextos sense dividir la informació en múltiples espais segurs. Desbloqueja'l una sola vegada i canvia d'un lloc a l'altre instantàniament quan ho necessitis."
+	},
+	"workspacesVsFolders": {
+		"title": "Per què els espais de treball són millors que les carpetes per organitzar notes?",
+		"text": "Les carpetes organicen notes. Els espais de treball organicen contextos. T'ajuden a separar diferents àrees de la teva vida mantenint les notes, les etiquetes i el teu flux de treball enfocats."
+	},
+	"stayingOrganized": {
+		"title": "Com m'ajuda Deepink a mantenir l'ordre a mesura que creixen les notes?",
+		"text": "Els espais de treball, la jerarquia d'etiquetes, els enllaços i els enllaços inversos treballen junts per mantenir la informació estructurada i fàcil de trobar, fins i tot en col·leccions de notes molt extenses."
+	},
+	"ergonomics": {
+		"title": "Per què Deepink es focalitza tant en l'ergonomia?",
+		"text": "Prendre notes és una activitat quotidiana. Les petites millores en el flux de treball estalvien temps, redueixen la fricció i fan que l'experiència sigui més agradable a llarg termini."
+	},
+	"replaceMultipleApps": {
+		"title": "Pot Deepink substituir diverses aplicacions de gestió de coneixement?",
+		"text": "Per a moltes persones, sí. Notes, documents, investigacions, diaris, records i materials de referència poden coexistir dins del mateix espai segur."
+	},
+	"nestedTags": {
+		"title": "Per què utilitzar una jerarquia d'etiquetes en lloc de carpetes?",
+		"text": "Les carpetes obliguen cada nota a tenir una única ubicació. Les etiquetes permeten que la informació pertenga a diverses categories alhora, mentre que la jerarquia d'etiquetes manté aquestes categories estructurades."
+	},
+	"connectedInformation": {
+		"title": "Com manté Deepink la informació relacionada connectada?",
+		"text": "Els enllaços i els enllaços inversos fan que les relacions siguin visibles. Pots moure't de forma natural entre notes relacionades sense duplicar informació."
+	},
+	"privacy": {
+		"title": "Com protegeix Deepink la meva privadesa?",
+		"text": "Tot el que hi ha al teu espai segur està encriptat, incloent-hi notes, fitxers i metadades. La teva informació és privada per disseny."
+	},
+	"openSource": {
+		"title": "Per què Deepink és de codi obert?",
+		"text": "La privadesa i la seguretat han de ser verificables. El codi obert permet que qualsevol persona inspecti el codi i confirmi com funciona l'aplicació."
+	},
+	"personalOrWork": {
+		"title": "Deepink està dissenyat per a notes personals, de feina o amb ambdues?",
+		"text": "Amb ambdues. Els espais de treball faciliten la separació de la informació personal i professional, mantenint-ho tot accessible en un sol lloc."
+	},
+	"largeVaults": {
+		"title": "Què passa quan el meu espai segur creix molt?",
+		"text": "Deepink està dissenyat per escalar des d'unes poques notes fins a bases de coneixement massives. Les funcions d'organització ajuden que la informació sigui fàcil de gestionar a mesura que el teu espai segur creix."
+	},
+	"oneVault": {
+		"title": "Per què mantenir tot en un sol espai segur?",
+		"text": "Sovint, la informació està connectada de maneres inesperades. Mantindre tot conjunt facilita la descoberta de relacions, la cerca entre contextos i evita la fragmentació."
+	},
+	"markdownFiles": {
+		"title": "Per què no utilitzar simplement una carpeta de fitxers Markdown?",
+		"text": "Els fitxers Markdown emmagatzemen contingut. Deepink hi afegeix organització, encriptació, historial de notes, records, enllaços, enllaços inversos i fluxos de treball dissenyats per facilitar la gestió de la informació."
+	}
+}

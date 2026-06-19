@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Güvenebileceğiniz bir depo",
-				"text": "Deponuzdaki her şey şifrelenir. Birçok uygulamanın aksine bu gerçekten <0>tüm verileriniz</0> anlamına gelir — not içerikleri, dosyalar ve meta veriler dahil. Güvendiğiniz algoritmayı kendiniz seçebilirsiniz.\n\nDeepink <1>açık kaynaklı</1> bir uygulamadır; kodunu sadece güvenmek yerine doğrulayabilirsiniz."
+				"text": "Kasanızdaki her şey <encryption>şifrelenmiştir</encryption>. Birçok uygulamanın aksine bu, not içerikleri, dosyalar ve meta veriler dahil olmak üzere <security>tüm verilerinizin</security> güvende olduğu anlamına gelir. Güvendiğiniz algoritmayı kendiniz seçebilirsiniz.\n\nDeepink, sadece güvenmekle kalmayıp kodunu doğrulayabileceğiniz <opensource>açık kaynaklı</opensource> bir uygulamadır."
 			},
 			"workflow": {
 				"title": "Ergonomi",
-				"text": "Deepink, günlük kullanımda hızlı olmak için tasarlandı; en sık yapılan işlemlerdeki gereksiz adımlar kaldırıldı. Çoğu işlem için diğer not uygulamalarına kıyasla <0>%80'e kadar daha az eylem</0> gerektirir."
+				"text": "Deepink, en yaygın görevlerdeki engelleri kaldırarak <strong>günlük kullanımda hız</strong> sunmak üzere tasarlandı. Çoğu işlem için diğer not uygulamalarından <0>%80 daha az adım</0> gerektirir."
 			},
 			"universality": {
 				"title": "Deponuz her şeyi barındırır",
-				"text": "Her şeyi deponuzda tutabilirsiniz. Çalışma alanları ve iç içe etiketler, bağlamları ayırmanıza ve aradığınızı hızla bulmanıza yardımcı olur — proje dökümanlarından sözleşmelere, kod parçacıklarından kitap alıntılarına, günlük tutmaktan araştırmaya ve çok daha fazlasına."
+				"text": "Kasanızda <organizing>her şeyi</organizing> düzenli tutun. <workspace>Çalışma alanları</workspace> ve etiket hiyerarşisi; proje detaylarından sözleşmelere, kod parçacıklarından kitap alıntılarına, günlüklerden araştırmalara kadar her şeyi birbirinden ayırmanıza ve aradığınızı hızla bulmanıza yardımcı olur."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Düşüncelerinizi yapılandırın",
-			"text": "Anlık bir fikri kaydedin ya da karmaşık bir yapı oluşturun. Deepink, yazdığınız her şeye düzen ve odak katar."
+			"text": "İster hızlı bir fikir yakalayın, ister karmaşık bir yapı kurun.\nDeepink, yazdığınız her şeye düzen ve odak kazandırır."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Çalışma alanları",
-				"text": "Hayatınızın farklı alanlarını birden fazla depo oluşturmadan ayrı tutabilirsiniz.\n\nÇalışma alanları, tek bir güvenli depo içinde odaklanmış alanlar oluşturur. Deponuzu bir kez açın, ardından Müşteri Projeleri, Kişisel Günlük, Sağlık Notları veya Öğrenme gibi bağlamlar arasında hiçbir şeyi karıştırmadan geçiş yapın.\n\nDüzenli ve bağlama özel kalın. Ekranınızı güvenle paylaşın: özel içerikler yanlışlıkla görünmez.\n\nTek depo. Net sınırlar. Sıfır sürtünme."
+				"text": "Birden fazla kasa oluşturmanıza gerek kalmadan hayatınızın farklı alanlarını birbirinden ayrı tutun.\n\n<workspace>Çalışma alanları</workspace>, tek bir güvenli kasa içinde odaklanmış alanlar oluşturur. Kasanızın kilidini bir kez açın; ardından içerikleri birbirine karıştırmadan Müşteri Projeleri, Kişisel Günlük, Sağlık Notları veya Öğrenme gibi farklı alanlar arasında geçiş yapın.\n\nDüzenli ve konuya özel kalın. Ekranınızı güvenle paylaşın: özel içerikleriniz yanlışlıkla <isolation>görünmez</isolation>.\n\nTek kasa. Net sınırlar. Sıfır sürtünme."
 			},
 			"history": {
 				"title": "Not sürümleri",
-				"text": "Her not, değişikliklerin eksiksiz geçmişini saklar.\n\nDeepink sürümleri otomatik olarak kaydeder; böylece nelerin değiştiğini görebilir, önceki bir taslağa dönebilir veya bir fikrin zaman içinde nasıl geliştiğini takip edebilirsiniz. Dün ya da bir yıl önce düzenlenmiş olsun, önemli hiçbir şey kaybolmaz.\n\nÖnceki sürümler ihtiyaç duyduğunuzda her zaman erişilebilir."
+				"text": "Her not, değişikliklerin <history>tam geçmişini</history> saklar.\n\nDeepink sürümleri otomatik olarak kaydeder; böylece nelerin değiştiğini görebilir, eski bir taslağa dönebilir veya bir fikrin zaman içinde nasıl geliştiğini takip edebilirsiniz. İster dün ister bir yıl önce düzenlenmiş olsun, önemli hiçbir şey kaybolmaz.\n\nÖnceki sürümlere ihtiyaç duyduğunuz her an ulaşabilirsiniz."
 			},
 			"reminders": {
 				"title": "Hatırlatıcılar",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "İç içe etiketler",
-				"text": "Notlarınızı net bir hiyerarşiyi yansıtan etiketlerle düzenleyebilirsiniz.\n\nİç içe etiketler, üst/alt yapı oluşturmanıza olanak tanır; böylece geniş konular belirli alt konuları içerebilir. Örneğin, Müşteriler etiketi altında müşteri isimleri, Finans altında Vergiler, Faturalar ve Raporlar yer alabilir.\n\nKlasörlerden farklı olarak etiketler birbirini dışlamaz. Bir not aynı anda birden fazla etikete sahip olabilir — müşteri, finans ve bir zaman dilimi gibi.\n\nİç içe etiketler, konular örtüşse bile hem hassasiyet hem de esneklik sağlar."
+				"text": "Notlarınızı net bir hiyerarşiyi yansıtan etiketlerle düzenleyin.\n\n<tags>Etiket hiyerarşisi</tags> sayesinde üst ve alt etiket yapısı oluşturabilir, böylece genel konuların altında spesifik alt konular barındırabilirsiniz. Örneğin, 'Müşteriler' başlığı altında bireysel müşteri isimleri; 'Finans' başlığı altında ise Vergiler, Faturalar ve Raporlar yer alabilir.\n\nKlasörlerin aksine etiketler kısıtlayıcı değildir. Bir not; müşteri, finans ve belirli bir tarih gibi aynı anda birden fazla etikete sahip olabilir.\n\nEtiket hiyerarşisi, konular birbiriyle örtüşse bile size hem hassasiyet hem de esneklik sağlar."
 			},
 			"encryption": {
 				"title": "Şifreleme",
-				"text": "Deponun tamamı şifrelenir. Bazı uygulamalar yalnızca senkronizasyon sırasında veya sadece not metnini şifreler. Deepink, deponuzun tüm yapısını korur.\n\nNotlarınız, ekleriniz ve meta verileriniz biz dahil sizden başka hiç kimse tarafından okunamaz. Analiz riskini azaltmak için dosya boyutları bile gizlenir.\n\nSakladığınız her şey, tasarımı gereği gizli kalır."
+				"text": "Kasanın tamamı <encryption>şifrelenmiştir</encryption>. Bazı uygulamalar yalnızca senkronizasyon sırasında veya sadece not metnini şifreler. Deepink ise kasanızın tüm yapısını korur.\n\nNotlarınız, ekleriniz ve meta verileriniz, biz dahil hiç kimse tarafından okunamaz. Analiz riskini azaltmak için dosya boyutları bile gizlenir.\n\nSakladığınız her şey, <reference>tasarım gereği</reference> gizli kalır."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Hayatınızın her alanı için bir alan",
 		"text": "Günlük notlarınızı, okumalarınızı ve planlarınızı tek bir özel alanda tutun. Tek tıkla bağlam değiştirin, düzeninizi koruyun ve akışınızı bozmadan yazmaya devam edin.",
 		"button": "Deepink'i Edinin"
+	},
+	"faq": {
+		"title": "Sıkça Sorulan Sorular",
+		"text": "Deepink'in nasıl çalıştığını mı merak ediyorsunuz?\nBu yanıtlar sadece özellikleri değil, uygulamanın temel felsefesini kapsar."
 	}
 }
