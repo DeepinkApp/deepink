@@ -356,6 +356,7 @@ export default WithLayout(() => {
 								border="1px solid #00000017"
 								borderRadius="14px"
 								maxH="300px"
+								width="100%"
 							>
 								<Image
 									src={feature.image.src}
