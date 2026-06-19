@@ -63,5 +63,9 @@
 		"title": "A space for every part of your life",
 		"text": "Keep everyday notes, reading, and plans in one private place. Switch contexts in a click, stay organized, and keep writing without breaking your flow.",
 		"button": "Get Deepink"
+	},
+	"faq": {
+		"title": "Frequently Asked Questions",
+		"text": "Want to understand how Deepink works?\nThese answers cover the ideas behind the app, not just the features."
 	}
 }

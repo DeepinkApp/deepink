@@ -414,7 +414,40 @@ export default WithLayout(() => {
 				</Link>
 			</VStack>
 
-			<FAQ />
+			<Box maxW="100%" my="10rem">
+				<VStack
+					id="faq"
+					mb="3rem"
+					align="start"
+					gap="2rem"
+					w="100%"
+					scrollMarginBlock="3rem"
+				>
+					<Heading
+						as="h3"
+						fontSize="3.2rem"
+						lineHeight="3.2rem"
+						fontWeight="500"
+						m={0}
+					>
+						{t('faq.title')}
+					</Heading>
+					<Text
+						color="brand.secondary"
+						css={{
+							base: { fontSize: '1.6rem', lineHeight: '2.4rem' },
+							md: {
+								fontSize: '2rem',
+								lineHeight: '2.8rem',
+								whiteSpace: 'pre-line',
+							},
+						}}
+					>
+						{t('faq.text')}
+					</Text>
+				</VStack>
+				<FAQ />
+			</Box>
 
 			<Box
 				// Ensure space on bottom for mobiles
