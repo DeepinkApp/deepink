@@ -40,6 +40,24 @@ export const FAQ = () => {
 			),
 		},
 		{
+			value: 'export',
+			title: t('export.title'),
+			text: (
+				<Trans
+					t={t}
+					i18nKey="export.text"
+					components={{
+						export: <Link href="/guides/import-export/" />,
+						email: (
+							<Link href="mailto:contact@deepink.app">
+								contact@deepink.app
+							</Link>
+						),
+					}}
+				/>
+			),
+		},
+		{
 			value: 'ergonomics',
 			title: t('ergonomics.title'),
 			text: <Trans t={t} i18nKey="ergonomics.text" />,
@@ -104,24 +122,6 @@ export const FAQ = () => {
 			title: t('markdownFiles.title'),
 			text: <Trans t={t} i18nKey="markdownFiles.text" />,
 		},
-		{
-			value: 'export',
-			title: t('export.title'),
-			text: (
-				<Trans
-					t={t}
-					i18nKey="export.text"
-					components={{
-						export: <Link href="/guides/import-export/" />,
-						email: (
-							<Link href="mailto:contact@deepink.app">
-								contact@deepink.app
-							</Link>
-						),
-					}}
-				/>
-			),
-		},
 	];
 
 	return (
@@ -129,7 +129,7 @@ export const FAQ = () => {
 			variant="subtle"
 			size="lg"
 			multiple
-			defaultValue={['betterThanOthers', 'differentFromOthers', 'import']}
+			defaultValue={['betterThanOthers', 'differentFromOthers', 'import', 'export']}
 		>
 			{faq.map((item, index) => (
 				<Accordion.Item key={index} value={item.value}>
