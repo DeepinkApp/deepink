@@ -6,7 +6,7 @@ import {
 	defineRecipe,
 	defineSlotRecipe,
 } from '@chakra-ui/react';
-import { codeBlockAnatomy } from '@chakra-ui/react/anatomy';
+import { accordionAnatomy, codeBlockAnatomy } from '@chakra-ui/react/anatomy';
 
 import { linkRecipe } from '../components/Link';
 import { CSS_RESET_CLASS_NAME } from './constants';
@@ -151,6 +151,33 @@ const customConfig = defineConfig({
 							bg: '#f1eae0',
 							color: '#191919',
 						},
+					},
+				},
+			}),
+			accordion: defineSlotRecipe({
+				slots: accordionAnatomy.keys(),
+				base: {
+					root: {
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '.5rem',
+					},
+					itemIndicator: {
+						color: 'typography.secondary',
+					},
+					itemTrigger: {
+						border: 'none',
+						fontSize: { base: '1.2rem', sm: '1.5rem' },
+						fontWeight: '500',
+						color: 'typography.secondary',
+						bg: 'sand.200',
+						_hover: {
+							bg: 'sand.300',
+						},
+					},
+					itemContent: {
+						bg: 'sand.100',
+						padding: '.5rem 1rem',
 					},
 				},
 			}),
