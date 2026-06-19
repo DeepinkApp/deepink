@@ -292,7 +292,7 @@ export default WithLayout(() => {
 			</Stack>
 
 			{/* Features Section */}
-			<Box maxW="100%" my="10rem">
+			<Box maxW="100%" marginTop="10rem">
 				<VStack
 					mb="3rem"
 					align="start"
@@ -374,13 +374,11 @@ export default WithLayout(() => {
 
 			{/* CTA Section */}
 			<VStack
-				minH="100vh"
 				align="center"
 				justify="start"
 				gap="3rem"
 				boxSizing="border-box"
-				// Ensure space on top for all
-				paddingTop="15%"
+				paddingBlock="30%"
 			>
 				<Heading
 					as="h3"
@@ -414,7 +412,7 @@ export default WithLayout(() => {
 				</Link>
 			</VStack>
 
-			<Box maxW="100%" my="10rem">
+			<Box maxW="100%">
 				<VStack
 					id="faq"
 					mb="3rem"
