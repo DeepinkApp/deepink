@@ -27,9 +27,27 @@ export const FAQ = () => {
 			text: <Trans t={t} i18nKey="differentFromOthers.text" />,
 		},
 		{
-			value: 'whyVaults',
-			title: t('whyVaults.title'),
-			text: <Trans t={t} i18nKey="whyVaults.text" />,
+			value: 'import',
+			title: t('import.title'),
+			text: (
+				<Trans
+					t={t}
+					i18nKey="import.text"
+					components={{
+						import: <Link href="/guides/import-export/" />,
+					}}
+				/>
+			),
+		},
+		{
+			value: 'ergonomics',
+			title: t('ergonomics.title'),
+			text: <Trans t={t} i18nKey="ergonomics.text" />,
+		},
+		{
+			value: 'nestedTags',
+			title: t('nestedTags.title'),
+			text: <Trans t={t} i18nKey="nestedTags.text" />,
 		},
 		{
 			value: 'workspacesVsVaults',
@@ -42,24 +60,19 @@ export const FAQ = () => {
 			text: <Trans t={t} i18nKey="workspacesVsFolders.text" />,
 		},
 		{
+			value: 'largeVaults',
+			title: t('largeVaults.title'),
+			text: <Trans t={t} i18nKey="largeVaults.text" />,
+		},
+		{
 			value: 'stayingOrganized',
 			title: t('stayingOrganized.title'),
 			text: <Trans t={t} i18nKey="stayingOrganized.text" />,
 		},
 		{
-			value: 'ergonomics',
-			title: t('ergonomics.title'),
-			text: <Trans t={t} i18nKey="ergonomics.text" />,
-		},
-		{
 			value: 'replaceMultipleApps',
 			title: t('replaceMultipleApps.title'),
 			text: <Trans t={t} i18nKey="replaceMultipleApps.text" />,
-		},
-		{
-			value: 'nestedTags',
-			title: t('nestedTags.title'),
-			text: <Trans t={t} i18nKey="nestedTags.text" />,
 		},
 		{
 			value: 'connectedInformation',
@@ -82,11 +95,6 @@ export const FAQ = () => {
 			text: <Trans t={t} i18nKey="personalOrWork.text" />,
 		},
 		{
-			value: 'largeVaults',
-			title: t('largeVaults.title'),
-			text: <Trans t={t} i18nKey="largeVaults.text" />,
-		},
-		{
 			value: 'oneVault',
 			title: t('oneVault.title'),
 			text: <Trans t={t} i18nKey="oneVault.text" />,
@@ -96,6 +104,24 @@ export const FAQ = () => {
 			title: t('markdownFiles.title'),
 			text: <Trans t={t} i18nKey="markdownFiles.text" />,
 		},
+		{
+			value: 'export',
+			title: t('export.title'),
+			text: (
+				<Trans
+					t={t}
+					i18nKey="export.text"
+					components={{
+						export: <Link href="/guides/import-export/" />,
+						email: (
+							<Link href="mailto:contact@deepink.app">
+								contact@deepink.app
+							</Link>
+						),
+					}}
+				/>
+			),
+		},
 	];
 
 	return (
@@ -103,11 +129,7 @@ export const FAQ = () => {
 			variant="subtle"
 			size="lg"
 			multiple
-			defaultValue={[
-				'betterThanOthers',
-				'differentFromOthers',
-				'workspacesVsVaults',
-			]}
+			defaultValue={['betterThanOthers', 'differentFromOthers', 'import']}
 		>
 			{faq.map((item, index) => (
 				<Accordion.Item key={index} value={item.value}>

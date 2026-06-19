@@ -5,11 +5,15 @@
 	},
 	"differentFromOthers": {
 		"title": "What makes Deepink different from Obsidian, Notion, and Joplin?",
-		"text": "Deepink does not encourage or exploit obsessive-compulsive behavior to keep your engagement. We do not hire an influencers to sell you a fake point that you have to grow your \"digital garden\" that is actually mean you will try to copy/paste the whole internet into your note taking app.\n\nDeepink encourage well being. Take only notes you really needed in. Take it quick, privately, and live your better life. That's it. Don't waste whole your life in computer."
+		"text": "Deepink does not encourage or exploit obsessive-compulsive behavior to keep your engagement.\n\nWe do not hire an influencers to sell you a fake point that you have to grow your \"digital garden\" that is actually mean you will copy/paste the whole internet into your note taking app.\n\nDeepink encourage well being. Take only notes you really needed in. Do it quick, privately, and live your better life. That's it. Don't waste whole your life in computer."
 	},
-	"whyVaults": {
-		"title": "Why does Deepink use vaults?",
-		"text": "A vault keeps all of your information together in one encrypted space, making it easier to manage, secure, and organize."
+	"import": {
+		"title": "What if I already have thousands of notes?",
+		"text": "You can <import>import your notes</import> from any other app into Deepink. Try Deepink for a week to feel it better."
+	},
+	"export": {
+		"title": "What happens if I decide to stop using Deepink?",
+		"text": "You can <export>export your notes</export> anytime. All your content including attachments and cross notes links will be exported as zip archive with markdown files.\n\nWe would appreciate if you would leave your feedback at <email/> before leave us. Maybe we could fix your pain and improve Deepink for all people."
 	},
 	"workspacesVsVaults": {
 		"title": "Why does Deepink use workspaces instead of multiple vaults?",
