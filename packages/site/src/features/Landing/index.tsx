@@ -41,14 +41,16 @@ export default WithLayout(() => {
 				<Trans
 					t={t}
 					i18nKey="highlights.content.encryption.text"
-					components={[
-						<b key={1} />,
-						<Link
-							key={2}
-							href="https://github.com/DeepinkApp/deepink"
-							target="_blank"
-						/>,
-					]}
+					components={{
+						encryption: <Link href="/concepts/vault/#encryption" />,
+						security: <Link href="/reference/encryption/" />,
+						opensource: (
+							<Link
+								href="https://github.com/DeepinkApp/deepink"
+								target="_blank"
+							/>
+						),
+					}}
 				/>
 			),
 		},
@@ -64,7 +66,16 @@ export default WithLayout(() => {
 		},
 		{
 			title: t('highlights.content.universality.title'),
-			content: t('highlights.content.universality.text'),
+			content: (
+				<Trans
+					t={t}
+					i18nKey="highlights.content.universality.text"
+					components={{
+						organizing: <Link href="/guides/organizing-notes/" />,
+						workspace: <Link href="/concepts/workspace/" />,
+					}}
+				/>
+			),
 		},
 	];
 
@@ -80,12 +91,29 @@ export default WithLayout(() => {
 		},
 		{
 			title: t('features.content.workspaces.title'),
-			content: <Trans t={t} i18nKey="features.content.workspaces.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.workspaces.text"
+					components={{
+						workspace: <Link href="/concepts/workspace/" />,
+						isolation: <Link href="/concepts/workspace/#isolation" />,
+					}}
+				/>
+			),
 			image: workspacesScreenshot,
 		},
 		{
 			title: t('features.content.history.title'),
-			content: <Trans t={t} i18nKey="features.content.history.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.history.text"
+					components={{
+						history: <Link href="/concepts/snapshots/" />,
+					}}
+				/>
+			),
 			image: historyScreenshot,
 		},
 		{
@@ -95,12 +123,29 @@ export default WithLayout(() => {
 		},
 		{
 			title: t('features.content.tags.title'),
-			content: <Trans t={t} i18nKey="features.content.tags.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.tags.text"
+					components={{
+						tags: <Link href="/guides/organizing-notes/#tagging" />,
+					}}
+				/>
+			),
 			image: tagsScreenshot,
 		},
 		{
 			title: t('features.content.encryption.title'),
-			content: <Trans t={t} i18nKey="features.content.encryption.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.encryption.text"
+					components={{
+						encryption: <Link href="/concepts/vault/#encryption" />,
+						reference: <Link href="/reference/encryption/" />,
+					}}
+				/>
+			),
 			image: encryptionScreenshot,
 		},
 	];
@@ -270,6 +315,7 @@ export default WithLayout(() => {
 							md: {
 								fontSize: '2rem',
 								lineHeight: '2.8rem',
+								whiteSpace: 'pre-line',
 							},
 						}}
 					>
@@ -298,9 +344,6 @@ export default WithLayout(() => {
 								mb="0.5rem"
 								color="brand.secondary"
 								as="div"
-								display="flex"
-								flexDirection="column"
-								gap="1rem"
 								whiteSpace="pre-line"
 							>
 								{feature.content}
