@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { renderRichEditor } from './utils/renderRichEditor';
-import { selectContent, setCursorPosition } from './utils/utils';
+import { selectContent, selectPartialContent, setCursorPosition } from './utils/utils';
 
 test(`Inserts image between text nodes`, async () => {
 	const editor = await renderRichEditor({
@@ -157,22 +157,22 @@ test('Toggles text formatting', async () => {
 	const editorNode = screen.getByRole('textbox');
 	selectContent(editorNode, content);
 
-	// Apply bold
-	await editor.format('bold');
-	expect(screen.getByText(content).closest('b')).toBeInTheDocument();
+	// Apply strikethrough
+	await editor.format('strikethrough');
+	expect(screen.getByRole('deletion')).toHaveTextContent('Hello, my dear friends!');
 
-	// Remove bold
-	await editor.format('bold');
-	expect(screen.getByText(content).closest('b')).not.toBeInTheDocument();
+	// Remove strikethrough
+	await editor.format('strikethrough');
+	expect(screen.queryByRole('deletion')).not.toBeInTheDocument();
 	expect(screen.getByRole('textbox')).toHaveTextContent(content);
 
 	// Apply italic
 	await editor.format('italic');
-	expect(screen.getByText(content).closest('em')).toBeInTheDocument();
+	expect(screen.getByRole('emphasis')).toHaveTextContent('Hello, my dear friends!');
 
 	// Remove italic
 	await editor.format('italic');
-	expect(screen.getByText(content).closest('em')).not.toBeInTheDocument();
+	expect(screen.queryByRole('emphasis')).not.toBeInTheDocument();
 	expect(screen.getByRole('textbox')).toHaveTextContent(content);
 });
 
@@ -187,16 +187,51 @@ test('Combines multiple text formatting', async () => {
 	await editor.format('bold');
 	await editor.format('strikethrough');
 
-	const formattedText = screen.getByText(content);
-	expect(formattedText.closest('b')).toBeInTheDocument();
-	expect(formattedText.closest('em')).toBeInTheDocument();
-	expect(formattedText.closest('del')).toBeInTheDocument();
+	// Bold formatting is implemented using the <b> tag which has no ARIA role
+	expect(screen.getByText(content).closest('b')).toBeInTheDocument();
+	expect(screen.getByRole('emphasis')).toHaveTextContent('Hello, my dear friends!');
+	expect(screen.getByRole('deletion')).toHaveTextContent('Hello, my dear friends!');
 
 	// Removes bold without breaking others formatting
 	await editor.format('bold');
 
-	const updatedText = screen.getByText(content);
-	expect(updatedText.closest('b')).not.toBeInTheDocument();
-	expect(updatedText.closest('em')).toBeInTheDocument();
-	expect(updatedText.closest('del')).toBeInTheDocument();
+	expect(screen.getByText(content).closest('b')).not.toBeInTheDocument();
+	expect(screen.getByRole('emphasis')).toHaveTextContent('Hello, my dear friends!');
+	expect(screen.getByRole('deletion')).toHaveTextContent('Hello, my dear friends!');
+});
+
+// TODO: Remove `.fails` after fixing the formatting implementation
+// The assertions below describe the expected behavior and should remain unchanged
+test.fails('Applies formatting to a selected part of a text node', async () => {
+	const editor = await renderRichEditor({ value: 'Hello, my dear friends!' });
+
+	const editorNode = screen.getByRole('paragraph');
+	selectPartialContent(editorNode, 'friends');
+
+	// Apply formatting
+	await editor.format('italic');
+
+	expect(editorNode).toHaveTextContent('Hello, my dear friends!');
+
+	expect(screen.getByRole('emphasis')).toHaveTextContent(/^friends$/);
+	expect(screen.getByRole('emphasis')).not.toHaveTextContent('Hello, my dear');
+});
+
+test.fails('Applies formatting across multiple text blocks', async () => {
+	const editor = await renderRichEditor({
+		value: 'Hello, my dear friends! \n\n Nice to see you. \n\n How are you ?',
+	});
+
+	const editorNode = screen.getByRole('textbox');
+	selectContent(editorNode, 'Hello, my dear friends!', 'How are you ?');
+
+	// Apply formatting
+	await editor.format('italic');
+
+	const formattingNodes = screen.getAllByRole('emphasis');
+
+	expect(formattingNodes).toHaveLength(3);
+	expect(formattingNodes[0]).toHaveTextContent('Hello, my dear friends!');
+	expect(formattingNodes[1]).toHaveTextContent('Nice to see you');
+	expect(formattingNodes[2]).toHaveTextContent('How are you ?');
 });

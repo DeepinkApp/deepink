@@ -47,6 +47,25 @@ export const selectContent = (
 };
 
 /**
+ * Selects the given text within a provided element
+ */
+export const selectPartialContent = (element: HTMLElement, text: string) => {
+	const textNode = getFirstTextNode(element);
+	if (!textNode) throw new Error('No text node found in the provided element');
+
+	const textStart = textNode.textContent.indexOf(text);
+
+	const range = document.createRange();
+	range.setStart(textNode, textStart);
+	range.setEnd(textNode, textStart + text.length);
+
+	window.getSelection()?.removeAllRanges();
+	window.getSelection()?.addRange(range);
+
+	fireEvent(document, new Event('selectionchange'));
+};
+
+/**
  * Simulates placing the cursor at a given position within a node.
  * Finds the first text node inside `node` and places the cursor at position
  */
