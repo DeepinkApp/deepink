@@ -1,4 +1,5 @@
 import { screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { renderRichEditor } from './utils/renderRichEditor';
 import { selectContent, setCursorPosition } from './utils/utils';
@@ -105,6 +106,48 @@ test('Converts an unordered list to an ordered list', async () => {
 	expect(within(orderedList[0]).getByText('Nested item')).toBeInTheDocument();
 
 	expect(orderedList[2]).toHaveTextContent('Second item');
+});
+
+test('Pressing enter adds a new item to the list', async () => {
+	const user = userEvent.setup();
+	await renderRichEditor({ value: '- First item' });
+
+	expect(screen.getAllByRole('listitem')).toHaveLength(1);
+
+	// Set cursor and press Enter
+	const firstItem = screen.getByRole('listitem');
+	await user.click(firstItem);
+	setCursorPosition(firstItem, 'First item'.length);
+	await user.keyboard('{Enter}');
+
+	const items = await screen.findAllByRole('listitem');
+	expect(items).toHaveLength(2);
+	expect(items[0]).toHaveTextContent('First item');
+	expect(items[1]).toHaveTextContent('');
+});
+
+test('Pressing Enter on an empty last list item exits the list', async () => {
+	const user = userEvent.setup();
+	await renderRichEditor({ value: '- First item' });
+
+	expect(screen.getAllByRole('listitem')).toHaveLength(1);
+	expect(screen.queryByRole('paragraph')).not.toBeInTheDocument();
+
+	// Set cursor and press Enter
+	const firstItem = screen.getByRole('listitem');
+	await user.click(firstItem);
+	setCursorPosition(firstItem, 'First item'.length);
+	await user.keyboard('{Enter}');
+
+	expect(screen.getAllByRole('listitem')).toHaveLength(2);
+	expect(screen.queryByRole('paragraph')).not.toBeInTheDocument();
+
+	await user.keyboard('{Enter}');
+
+	expect(screen.getAllByRole('listitem')).toHaveLength(1);
+
+	// A new empty paragraph is created
+	expect(screen.getByRole('paragraph')).toHaveTextContent('');
 });
 
 test('Toggles text formatting', async () => {
