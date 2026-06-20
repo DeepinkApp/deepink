@@ -58,6 +58,7 @@ export enum ANALYTICS_EVENT {
 	SHARE_LINK = 'Share link click',
 	MOBILE_MENU = 'Mobile menu click',
 	FEATURES_CLICK = 'Features button click',
+	FAQ_CLICK = 'FAQ: Item click',
 }
 
 export type ANALYTICS_EVENT_PAYLOADS = {

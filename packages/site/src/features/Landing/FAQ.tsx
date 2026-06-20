@@ -2,10 +2,13 @@ import type React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Accordion, Span } from '@chakra-ui/react';
 
+import { ANALYTICS_EVENT } from '../../components/analytics';
+import { useAnalytics } from '../../components/analytics/useAnalytics';
 import { Link } from '../../components/Link';
 
 export const FAQ = () => {
 	const { t } = useTranslation('faq');
+	const analytics = useAnalytics();
 
 	const faq = [
 		{
@@ -133,7 +136,15 @@ export const FAQ = () => {
 		>
 			{faq.map((item, index) => (
 				<Accordion.Item key={index} value={item.value}>
-					<Accordion.ItemTrigger minHeight="4rem">
+					<Accordion.ItemTrigger
+						minHeight="4rem"
+						onClick={() => {
+							analytics.track(ANALYTICS_EVENT.FAQ_CLICK, {
+								id: item.value,
+								title: item.title,
+							});
+						}}
+					>
 						<Span flex="1">{item.title}</Span>
 						<Accordion.ItemIndicator />
 					</Accordion.ItemTrigger>
