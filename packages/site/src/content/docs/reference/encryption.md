@@ -5,7 +5,7 @@ description: Details of the Deepink encryption scheme and threat model resistanc
 
 Consider your data secured inside multiple independent layers of protection. These layers are not physical barriers but well-studied cryptographic constructions designed to resist both current and future attacks.
 
-Your password is never stored. It is used only to derive a key that unlocks a small encrypted container holding the actual vault key. This vault key is generated randomly and is entirely independent of your password. All user data is encrypted with this random key.
+Your password is never stored. It is used only to derive a key that unlocks a small encrypted container holding the actual vault key. The vault key is generated randomly and is entirely independent of your password. All user data is encrypted with this random key.
 
 As a result:
 
