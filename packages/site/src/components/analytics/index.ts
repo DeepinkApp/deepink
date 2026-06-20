@@ -12,6 +12,8 @@ import {
 } from 'plausible-client';
 import { getSessionId } from 'plausible-client/utils/uid';
 
+import { enableTrackKeyboardUsers } from './enableTrackKeyboardUsers';
+
 export const createPlausibleInstance = () => {
 	const plausible = new Plausible({
 		apiHost: 'https://uxt.vitonsky.net',
@@ -41,6 +43,8 @@ export const createPlausibleInstance = () => {
 
 		cleanups.push(enableAutoOutboundTracking(plausible, { captureText: true }));
 		cleanups.push(enableLinkClicksCapture(plausible, { captureText: true }));
+
+		cleanups.push(enableTrackKeyboardUsers(plausible));
 	}
 
 	return {
