@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Um cofre em que você pode confiar",
-				"text": "Tudo no seu cofre é criptografado. Diferente de muitos outros apps, isso realmente significa <0>todos os seus dados</0>, incluindo conteúdo das notas, arquivos e metadados. Você escolhe o algoritmo em que confia.\n\nDeepink é um app <1>open source</1>, com código que você pode verificar, não apenas confiar."
+				"text": "Tudo no seu cofre está <encryption>criptografado</encryption>. Diferente de muitos outros aplicativos, isso significa realmente <security>todos os seus dados</security>, incluindo o conteúdo das notas, arquivos e metadados. Você pode escolher o algoritmo em que confia.\n\nO Deepink é um app de <opensource>código aberto</opensource>, com um código que você pode verificar, em vez de apenas confiar."
 			},
 			"workflow": {
 				"title": "A ergonomia",
-				"text": "Deepink foi feito para ser rápido no uso diário, eliminando atritos das tarefas mais comuns. Para a maioria das ações, são necessárias <0>até 80% menos interações</0> do que em outros apps de notas."
+				"text": "O Deepink foi feito para ser <strong>ágil no uso diário</strong>, eliminando obstáculos das tarefas mais comuns. Para a maioria das atividades, ele exige <0>até 80% menos ações</0> do que outros aplicativos de notas."
 			},
 			"universality": {
 				"title": "Seu cofre comporta tudo",
-				"text": "Guarde tudo no seu cofre. Espaços de trabalho e tags aninhadas ajudam a separar contextos e encontrar o que você precisa rapidamente — de especificações de projetos, contratos e trechos de código a citações de livros, diário pessoal, pesquisas e muito mais."
+				"text": "Mantenha <organizing>tudo</organizing> no seu cofre. <workspace>Espaços de trabalho</workspace> e hierarquia de tags ajudam você a separar contextos e encontrar o que precisa rapidamente — de especificações de projetos, contratos e trechos de código a citações de livros, diários, pesquisas e muito mais."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Estruture seu pensamento",
-			"text": "Registre um insight rápido ou construa algo complexo. Deepink traz ordem e foco a tudo o que você escreve."
+			"text": "Capture um insight rápido ou construa algo complexo.\nO Deepink traz ordem e foco para tudo o que você escreve."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Espaços de trabalho",
-				"text": "Mantenha diferentes áreas da sua vida separadas sem precisar criar vários cofres.\n\nEspaços de trabalho criam ambientes focados dentro de um único cofre seguro. Desbloqueie seu cofre uma vez e alterne entre contextos como Projetos de Clientes, Diário Pessoal, Notas de Saúde ou Aprendizado, sem misturar nada.\n\nOrganização clara e específica por contexto. Compartilhe sua tela com tranquilidade: conteúdo privado não aparece por engano.\n\nUm cofre. Limites claros. Zero atrito."
+				"text": "Mantenha diferentes áreas da sua vida separadas sem precisar criar vários cofres.\n\nOs <workspace>Espaços de trabalho</workspace> criam áreas focadas dentro de um único cofre seguro. Desbloqueie seu cofre uma vez e alterne entre contextos como Projetos de Clientes, Diário Pessoal, Notas de Saúde ou Estudos, sem misturar nada.\n\nMantenha a organização e o foco. Compartilhe sua tela com confiança: o conteúdo privado <isolation>não aparecerá</isolation> por engano.\n\nUm cofre. Limites claros. Sem complicações."
 			},
 			"history": {
 				"title": "Versões da nota",
-				"text": "Cada nota mantém um histórico completo de alterações.\n\nDeepink salva versões automaticamente, permitindo ver o que mudou, restaurar um rascunho anterior ou acompanhar como uma ideia evoluiu ao longo do tempo. Seja uma edição de ontem ou de um ano atrás, nada importante se perde.\n\nVersões anteriores estão sempre disponíveis quando você precisar."
+				"text": "Cada nota mantém um <history>histórico completo</history> de alterações.\n\nO Deepink salva versões automaticamente, permitindo que você veja o que mudou, restaure um rascunho anterior ou acompanhe a evolução de uma ideia. Não importa se foi editado ontem ou há um ano, nada importante é perdido.\n\nVersões anteriores estão sempre disponíveis quando você precisar."
 			},
 			"reminders": {
 				"title": "Lembretes",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Tags aninhadas",
-				"text": "Organize suas notas com tags que refletem uma hierarquia clara.\n\nTags aninhadas permitem criar uma estrutura de pai e filho, onde temas amplos contêm subtemas específicos. Por exemplo, Clientes pode incluir nomes individuais de clientes, e Financeiro pode incluir Impostos, Faturas e Relatórios.\n\nDiferente de pastas, tags não são exclusivas. Uma nota pode ter várias tags ao mesmo tempo — cliente, financeiro e um período de tempo.\n\nTags aninhadas oferecem precisão e flexibilidade, mesmo quando os temas se sobrepõem."
+				"text": "Organize suas notas com tags que refletem uma hierarquia clara.\n\nAs <tags>hierarquias de tags</tags> permitem criar uma estrutura de tópicos, onde temas amplos contêm subtemas específicos. Por exemplo, \"Clientes\" pode incluir nomes individuais, e \"Finanças\" pode incluir Impostos, Faturas e Relatórios.\n\nAo contrário das pastas, as tags não são exclusivas. Uma nota pode ter várias tags ao mesmo tempo — cliente, finanças e um período de tempo.\n\nA hierarquia de tags oferece precisão e flexibilidade, mesmo quando os temas se sobrepõem."
 			},
 			"encryption": {
 				"title": "Criptografia",
-				"text": "O cofre inteiro é criptografado. Alguns apps criptografam apenas os dados durante a sincronização ou o texto da nota. Deepink protege toda a estrutura do seu cofre.\n\nSuas notas, anexos e metadados são ilegíveis para qualquer pessoa além de você — incluindo nós. Até os tamanhos dos arquivos são ofuscados para reduzir o risco de análise.\n\nO que você armazena permanece privado por design."
+				"text": "Todo o cofre está <encryption>criptografado</encryption>. Alguns aplicativos criptografam apenas os dados durante a sincronização ou o texto da nota. O Deepink protege toda a estrutura do seu cofre.\n\nSuas notas, anexos e metadados são ilegíveis para qualquer pessoa, exceto você — inclusive para nós. Até o tamanho dos arquivos é ocultado para reduzir riscos de análise.\n\nO que você armazena permanece privado <reference>por princípio</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Um espaço para cada parte da sua vida",
 		"text": "Mantenha notas do dia a dia, leituras e planos em um só lugar privado. Alterne entre contextos com um clique, mantenha a organização e continue escrevendo sem perder o ritmo.",
 		"button": "Baixar Deepink"
+	},
+	"faq": {
+		"title": "Perguntas Frequentes",
+		"text": "Quer entender como o Deepink funciona?\nEstas respostas explicam os conceitos por trás do app, não apenas as funcionalidades."
 	}
 }

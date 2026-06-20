@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Сеф коме можете веровати",
-				"text": "Све у вашем сефу је шифровано. За разлику од многих других апликација, то заиста значи <0>све ваше податке</0> — укључујући садржај бележака, фајлове и метаподатке. Можете одабрати алгоритам коме верујете.\n\nDeepink је апликација <1>отвореног кода</1>, чији код можете проверити, а не само веровати."
+				"text": "Sve u vašem skladištu je <encryption>enkriptovano</encryption>. Za razliku od mnogih drugih aplikacija, to zaista znači <security>svi vaši podaci</security>, uključujući sadržaj beleški, datoteke i metapodatke. Možete odabrati algoritam kojem verujete.\n\nDeepink je <opensource>open source</opensource> aplikacija, sa kodom koji možete proveriti, a ne samo mu verovati."
 			},
 			"workflow": {
 				"title": "Ергономија",
-				"text": "Deepink је направљен да буде брз у свакодневној употреби, без непотребних корака при најчешћим задацима. За већину задатака потребно је <0>до 80% мање радњи</0> него у другим апликацијама за белешке."
+				"text": "Deepink je dizajniran da bude <strong>brz u svakodnevnoj upotrebi</strong>, uz minimalno koraka za najčešće zadatke. Za većinu operacija, potrebno je <0>do 80% manje akcija</0> nego kod drugih aplikacija za beleške."
 			},
 			"universality": {
 				"title": "У ваш сеф стаје све",
-				"text": "Чувајте све на једном месту. Радни простори и угнежђене ознаке помажу вам да раздвојите контексте и брзо пронађете оно што вам треба — од спецификација пројеката, уговора и делова кода до цитата из књига, дневника, истраживања и још много тога."
+				"text": "Držite <organizing>sve</organizing> u svom skladištu. <workspace>Prostori</workspace> i hijerarhija tagova pomažu vam da razdvojite kontekste i brzo pronađete ono što vam je potrebno — od specifikacija projekata, ugovora i isečaka koda, do citata iz knjiga, dnevnika, istraživanja i još mnogo toga."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Структурирајте своје мисли",
-			"text": "Забележите брзу идеју или изградите нешто сложено. Deepink уноси ред и фокус у све што запишете."
+			"text": "Zabeležite brzu misao ili izgradite nešto kompleksno.\nDeepink donosi red i fokus u sve što zapišete."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Радни простори",
-				"text": "Раздвојите различите области свог живота без потребе за креирањем више сефова.\n\nРадни простори стварају фокусиране целине унутар једног безбедног сефа. Откључајте сеф једном, а затим прелазите између контекста као што су Клијентски пројекти, Лични дневник, Здравствене белешке или Учење — без мешања садржаја.\n\nОстаните организовани и усредсређени на контекст. Делите екран са поверењем — приватни садржај се неће случајно појавити.\n\nЈедан сеф. Јасне границе. Без сувишних корака."
+				"text": "Zadržite različite sfere života odvojene bez potrebe za kreiranjem više skladišta.\n\n<workspace>Prostori</workspace> stvaraju fokusirana okruženja unutar jednog sigurnog skladišta. Otključajte skladište jednom i menjajte kontekste, poput klijentskih projekata, ličnog dnevnika, zdravstvenih beleški ili učenja, bez mešanja sadržaja.\n\nOstanite organizovani i fokusirani na ono što radite. Delite ekran sa punim poverenjem: privatni sadržaj se <isolation>neće pojaviti</isolation> greškom.\n\nJedno skladište. Jasne granice. Bez suvišnih koraka."
 			},
 			"history": {
 				"title": "Верзије бележака",
-				"text": "Свака белешка чува комплетну историју измена.\n\nDeepink аутоматски чува верзије, тако да можете видети шта је промењено, вратити ранију верзију или пратити како се идеја развијала током времена. Било да је белешка уређена јуче или пре годину дана, ништа важно се не губи.\n\nПретходне верзије су увек доступне када вам затребају."
+				"text": "Svaka beleška čuva <history>kompletnu istoriju</history> izmena.\n\nDeepink automatski čuva verzije, tako da možete videti šta je promenjeno, vratiti raniju verziju ili pratiti kako se ideja razvijala kroz vreme. Bez obzira da li je nešto izmenjeno juče ili pre godinu dana, ništa važno nije izgubljeno.\n\nPrethodne verzije su uvek dostupne kada su vam potrebne."
 			},
 			"reminders": {
 				"title": "Подсетници",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Угнежђене ознаке",
-				"text": "Организујте белешке помоћу ознака које одражавају јасну хијерархију.\n\nУгнежђене ознаке омогућавају креирање структуре родитељ/дете, тако да шире теме могу садржати конкретне подтеме. На пример, Клијенти могу укључивати имена појединачних клијената, а Финансије могу укључивати Порезе, Фактуре и Извештаје.\n\nЗа разлику од фасцикли, ознаке нису ексклузивне. Белешка може имати више ознака истовремено — клијент, финансије и временски период.\n\nУгнежђене ознаке пружају и прецизност и флексибилност, чак и када се теме преклапају."
+				"text": "Organizujte svoje beleške pomoću tagova koji prate jasnu hijerarhiju.\n\n<tags>Hijerarhija tagova</tags> omogućava vam kreiranje strukture gde opšte teme sadrže specifične podteme. Na primer, „Klijenti“ mogu obuhvatiti imena pojedinačnih klijenata, dok „Finansije“ mogu uključivati poreze, fakture i izveštaje.\n\nZa razliku od fascikli, tagovi nisu isključivi. Beleška može imati više tagova odjednom — klijenta, finansije i određeni vremenski period.\n\nHijerarhija tagova pruža preciznost i fleksibilnost, čak i kada se teme preklapaju."
 			},
 			"encryption": {
 				"title": "Шифровање",
-				"text": "Цео сеф је шифрован. Неке апликације шифрују податке само током синхронизације или само текст белешке. Deepink штити комплетну структуру вашег сефа.\n\nВаше белешке, прилози и метаподаци су нечитљиви за свакога осим за вас — укључујући и нас. Чак су и величине фајлова маскиране како би се смањио ризик од анализе.\n\nОно што чувате остаје приватно — по дизајну."
+				"text": "Sle dose skladište je <encryption>enkriptovano</encryption>. Neke aplikacije enkriptuju samo podatke tokom sinhronizacije ili samo tekst beleške. Deepink štiti kompletnu strukturu vašeg skladišta.\n\nVaše beleške, prilozi i metapodaci su nečitljivi bilo kome osim vama, uključujući i nas. Čak su i veličine datoteka sakrivene kako bi se smanjio rizik od analize.\n\nOno što čuvate ostaje privatno <reference>po dizajnu</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Простор за сваки део вашег живота",
 		"text": "Свакодневне белешке, читање и планови — све на једном приватном месту. Промена контекста једним кликом, јасна организација и писање без прекида.",
 		"button": "Преузмите Deepink"
+	},
+	"faq": {
+		"title": "Često postavljana pitanja",
+		"text": "Želite da razumete kako Deepink funkcioniše?\nOvi odgovori objašnjavaju principe na kojima počiva aplikacija, a ne samo njene funkcije."
 	}
 }

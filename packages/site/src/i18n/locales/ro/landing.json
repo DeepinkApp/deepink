@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Un seif digital de încredere",
-				"text": "Tot ce se află în seiful tău este criptat. Spre deosebire de multe alte aplicații, asta înseamnă cu adevărat <0>toate datele tale</0> — conținutul notițelor, fișierele și metadatele. Poți alege algoritmul în care ai încredere.\n\nDeepink este o aplicație <1>open source</1>, cu cod pe care îl poți verifica, nu doar în care să ai încredere."
+				"text": "Tot ceea ce se află în <encryption>seiful</encryption> tău este <encryption>criptat</encryption>. Spre deosebire de multe alte aplicații, acest lucru înseamnă cu adevărat <security>toate datele tale</security>, inclusiv conținutul notelor, fișierele și metadatele. Poți alege algoritmul în care ai încredere.\n\nDeepink este o aplicație <opensource>open source</opensource>, cu un cod pe care îl poți verifica, nu doar pe care trebuie să îl crezi."
 			},
 			"workflow": {
 				"title": "Ergonomia",
-				"text": "Deepink este conceput pentru a fi rapid în utilizarea zilnică, eliminând fricțiunile din sarcinile cele mai frecvente. Pentru majoritatea operațiunilor, necesită <0>cu până la 80% mai puține acțiuni</0> decât alte aplicații de notițe."
+				"text": "Deepink este conceput să fie <strong>rapid în utilizarea zilnică</strong>, eliminând orice obstacol în parcursul sarcinilor comune. Pentru majoritatea acțiunilor, sunt necesare <0>cu până la 80% mai puține pași</0> decât la alte aplicații de luat notițe."
 			},
 			"universality": {
 				"title": "Seiful tău cuprinde totul",
-				"text": "Păstrează totul în seiful tău. Spațiile de lucru și etichetele ierarhice te ajută să separi contextele și să găsești rapid ce ai nevoie — de la specificații de proiect, contracte și fragmente de cod, până la citate din cărți, jurnal zilnic, cercetare și multe altele."
+				"text": "Păstrează <organizing>totul</organizing> în seiful tău. <workspace>Spațiile de lucru</workspace> și ierarhia de tag-uri te ajută să separi contextul și să găsești rapid ce ai nevoie — de la specificații de proiect, contracte și fragmente de cod, până la citate din cărți, jurnalul zilnic, cercetări și multe altele."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Structurează-ți gândirea",
-			"text": "O idee rapidă sau un proiect complex. Deepink aduce ordine și claritate în tot ce notezi."
+			"text": "Înregistrează o idee rapidă sau construiește ceva complex.\nDeepink aduce ordine și concentrare în tot ceea ce scrii."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Spații de lucru",
-				"text": "Diferitele zone ale vieții tale rămân separate, fără a crea mai multe seifuri.\n\nSpațiile de lucru creează zone dedicate într-un singur seif securizat. Deblochezi seiful o singură dată, apoi comuți între contexte precum Proiecte Clienți, Jurnal Personal, Notițe Medicale sau Învățare — fără a amesteca nimic.\n\nOrganizare clară, specifică fiecărui context. Poți partaja ecranul cu încredere: conținutul privat nu va apărea din greșeală.\n\nUn singur seif. Granițe clare. Zero fricțiune."
+				"text": "Menține diferite aspecte ale vieții tale separate, fără a crea mai multe seifuri.\n\n<workspace>Spațiile de lucru</workspace> creează zone de concentrare în interiorul unui singur seif securizat. Deblochează seiful o singură dată, apoi comută între contexte, precum Proiecte Clienți, Jurnal Personal, Note Sănătate sau Învățare, fără a amesteca nimic.\n\nRămâi organizat și concentrat pe context. Partajează ecranul cu încredere: conținutul privat <isolation>nu va apărea</isolation> din greșeală.\n\nUn singur seif. Limite clare. Fără efort inutil."
 			},
 			"history": {
 				"title": "Versiuni ale notițelor",
-				"text": "Fiecare notiță păstrează un istoric complet al modificărilor.\n\nDeepink salvează versiunile automat, astfel încât poți vedea ce s-a schimbat, restaura o versiune anterioară sau urmări cum s-a dezvoltat o idee în timp. Fie că a fost editată ieri sau acum un an, nimic important nu se pierde.\n\nVersiunile anterioare sunt mereu disponibile când ai nevoie de ele."
+				"text": "Fiecare notă păstrează o <history>istorie completă</history> a modificărilor.\n\nDeepink salvează versiunile automat, astfel încât poți vedea ce s-a schimbat, poți restaura un draft anterior sau poți urmări evoluția unei idei în timp. Indiferent dacă a fost editată ieri sau acum un an, nimic important nu se pierde.\n\nVersiunile anterioare sunt întotdeauna disponibile atunci când ai nevoie de ele."
 			},
 			"reminders": {
 				"title": "Remindere",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Etichete ierarhice",
-				"text": "Notițele se organizează cu etichete care reflectă o ierarhie clară.\n\nEtichetele ierarhice permit crearea unei structuri părinte/copil, astfel încât subiectele generale pot conține subteme specifice. De exemplu, Clienți poate include nume individuale de clienți, iar Finanțe poate include Taxe, Facturi și Rapoarte.\n\nSpre deosebire de foldere, etichetele nu sunt exclusive. O notiță poate avea mai multe etichete simultan — client, finanțe și o perioadă de timp.\n\nEtichetele ierarhice oferă atât precizie, cât și flexibilitate, chiar și când subiectele se suprapun."
+				"text": "Organizează-ți notele cu tag-uri care reflectă o ierarhie clară.\n\n<tags>Ierarhia de tag-uri</tags> îți permite să creezi o structură de tip părinte/copil, astfel încât subiectele generale să conțină subtopice specifice. De exemplu, „Clienți” poate include numele unor clienți individuali, iar „Finanțe” poate include „Taxe”, „Facturi” și „Rapoarte”.\n\nSpre deosebire de foldere, tag-urile nu sunt exclusive. O notă poate avea mai multe tag-uri simultan — client, finanțe și o perioadă de timp.\n\nIerarhia de tag-uri îți oferă precizie și flexibilitate, chiar și atunci când subiectele se suprapun."
 			},
 			"encryption": {
 				"title": "Criptare",
-				"text": "Întregul seif este criptat. Unele aplicații criptează datele doar în timpul sincronizării sau doar textul notiței. Deepink protejează structura completă a seifului.\n\nNotițele, atașamentele și metadatele tale sunt ilizibile pentru oricine altcineva, inclusiv pentru noi. Chiar și dimensiunile fișierelor sunt mascate pentru a reduce riscul de analiză.\n\nCe stochezi rămâne privat prin design."
+				"text": "Întregul seif este <encryption>criptat</encryption>. Unele aplicații criptrează doar datele în timpul sincronizării sau doar textul notei. Deepink protejează întreaga structură a seifului tău.\n\nNotele, atașamentele și metadatele tale sunt ilizibile pentru oricine, inclusiv pentru noi. Chiar și dimensiunea fișierelor este mascată pentru a reduce riscul de analiză.\n\nCeea ce stochezi rămâne privat <reference>prin design</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Un spațiu pentru fiecare parte a vieții tale",
 		"text": "Notițe zilnice, lecturi și planuri — toate într-un singur loc privat. Comutarea între contexte se face dintr-un click, organizarea rămâne clară, iar fluxul de scriere nu se întrerupe.",
 		"button": "Descarcă Deepink"
+	},
+	"faq": {
+		"title": "Întrebări frecvente",
+		"text": "Vrei să înțelegi cum funcționează Deepink?\nAceste răspunsuri acoperă conceptele din spatele aplicației, nu doar funcționalitățile."
 	}
 }

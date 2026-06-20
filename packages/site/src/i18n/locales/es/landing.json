@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Un almacén en el que puedes confiar",
-				"text": "Todo en tu almacén está cifrado. A diferencia de muchas otras apps, esto significa realmente <0>todos tus datos</0>: contenido de las notas, archivos y metadatos. Puedes elegir el algoritmo en el que confías.\n\nDeepink es una app de <1>código abierto</1>, con código que puedes verificar, no solo confiar."
+				"text": "Todo en tu bóveda está <encryption>cifrado</encryption>. A diferencia de otras aplicaciones, esto significa realmente que <security>todos tus datos</security> están protegidos, incluyendo el contenido de las notas, archivos y metadatos. Puedes elegir el algoritmo en el que confíes.\n\nDeepink es una aplicación de <opensource>código abierto</opensource>, con un código que puedes verificar, no solo confiar."
 			},
 			"workflow": {
 				"title": "La ergonomía",
-				"text": "Deepink está diseñado para ser ágil en el uso diario, eliminando la fricción de las tareas más habituales. Para la mayoría de las acciones, requiere <0>hasta un 80 % menos de pasos</0> que otras apps de notas."
+				"text": "Deepink está diseñado para ser <strong>rápido en el uso diario</strong>, eliminando la fricción en las tareas más comunes. Para la mayoría de las actividades, requiere <0>hasta un 80% menos de acciones</0> que otras aplicaciones de notas."
 			},
 			"universality": {
 				"title": "Tu almacén lo abarca todo",
-				"text": "Guarda todo en tu almacén. Los espacios de trabajo y las etiquetas anidadas te ayudan a separar contextos y encontrar lo que necesitas rápidamente: desde especificaciones de proyectos, contratos y fragmentos de código hasta citas de libros, un diario personal, investigación y mucho más."
+				"text": "Mantén <organizing>todo</organizing> en tu bóveda. Los <workspace>espacios de trabajo</workspace> y la jerarquía de etiquetas te ayudan a separar contextos y encontrar lo que necesitas rápidamente: desde especificaciones de proyectos, contratos y fragmentos de código, hasta citas de libros, un diario personal, investigaciones y más."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Estructura tu pensamiento",
-			"text": "Captura una idea rápida o construye algo complejo. Deepink aporta orden y enfoque a todo lo que escribes."
+			"text": "Captura una idea rápida o construye algo complejo.\nDeepink aporta orden y enfoque a todo lo que escribes."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Espacios de trabajo",
-				"text": "Mantén separadas las distintas áreas de tu vida sin crear múltiples almacenes.\n\nLos espacios de trabajo crean entornos enfocados dentro de un único almacén seguro. Desbloquea tu almacén una vez y cambia entre contextos como Proyectos de clientes, Diario personal, Notas de salud o Aprendizaje sin mezclar nada.\n\nOrganización clara y específica por contexto. Comparte tu pantalla con tranquilidad: el contenido privado no aparecerá por error.\n\nUn almacén. Límites claros. Cero fricción."
+				"text": "Mantén separadas las distintas áreas de tu vida sin necesidad de crear múltiples bóvedas.\n\nLos <workspace>espacios de trabajo</workspace> crean entornos enfocados dentro de una misma bóveda segura. Desbloquea tu bóveda una sola vez y cambia entre contextos como Proyectos de Clientes, Diario Personal, Notas de Salud o Aprendizaje sin mezclar nada.\n\nMantén la organización y el contexto. Comparte tu pantalla con total confianza: el contenido privado <isolation>no aparecerá</isolation> por error.\n\nUna bóveda. Límites claros. Sin fricciones."
 			},
 			"history": {
 				"title": "Versiones de notas",
-				"text": "Cada nota conserva un historial completo de cambios.\n\nDeepink guarda versiones automáticamente, para que puedas ver qué cambió, restaurar un borrador anterior o seguir cómo evolucionó una idea con el tiempo. Ya sea que se editó ayer o hace un año, nada importante se pierde.\n\nLas versiones anteriores siempre están disponibles cuando las necesitas."
+				"text": "Cada nota conserva un <history>historial completo</history> de cambios.\n\nDeepink guarda versiones automáticamente para que puedas ver qué cambió, restaurar un borrador anterior o seguir la evolución de una idea. Ya sea que se editara ayer o hace un año, nada importante se pierde.\n\nLas versiones anteriores siempre están disponibles cuando las necesites."
 			},
 			"reminders": {
 				"title": "Recordatorios",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Etiquetas anidadas",
-				"text": "Organiza tus notas con etiquetas que reflejan una jerarquía clara.\n\nLas etiquetas anidadas permiten crear una estructura padre/hijo, de modo que los temas amplios pueden contener subtemas específicos. Por ejemplo, Clientes puede incluir nombres individuales de clientes, y Finanzas puede incluir Impuestos, Facturas e Informes.\n\nA diferencia de las carpetas, las etiquetas no son excluyentes. Una nota puede tener varias etiquetas a la vez: cliente, finanzas y un período de tiempo.\n\nLas etiquetas anidadas ofrecen precisión y flexibilidad, incluso cuando los temas se solapan."
+				"text": "Organiza tus notas con etiquetas que reflejen una jerarquía clara.\n\nLa <tags>jerarquía de etiquetas</tags> te permite crear una estructura de categorías y subcategorías, para que los temas generales contengan temas específicos. Por ejemplo, \"Clientes\" puede incluir nombres individuales, y \"Finanzas\" puede incluir Impuestos, Facturas e Informes.\n\nA diferencia de las carpetas, las etiquetas no son excluyentes. Una nota puede tener varias etiquetas a la vez: cliente, finanzas y un periodo de tiempo.\n\nLas etiquetas jerárquicas te ofrecen precisión y flexibilidad, incluso cuando los temas se solapan."
 			},
 			"encryption": {
 				"title": "Cifrado",
-				"text": "El almacén completo está cifrado. Algunas apps solo cifran los datos durante la sincronización o el texto de la nota. Deepink protege la estructura completa de tu almacén.\n\nTus notas, archivos adjuntos y metadatos son ilegibles para cualquiera excepto tú, incluidos nosotros. Incluso los tamaños de archivo se ofuscan para reducir el riesgo de análisis.\n\nLo que guardas permanece privado por diseño."
+				"text": "Toda la bóveda está <encryption>cifrada</encryption>. Algunas aplicaciones solo cifran los datos durante la sincronización o el texto de la nota. Deepink protege la estructura completa de tu bóveda.\n\nTus notas, archivos adjuntos y metadatos son ilegibles para cualquier persona excepto para ti, incluyéndonos a nosotros. Incluso el tamaño de los archivos se oculta para reducir el riesgo de análisis.\n\nLo que guardas permanece privado <reference>por diseño</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Un espacio para cada parte de tu vida",
 		"text": "Notas del día a día, lecturas y planes en un solo lugar privado. Cambia de contexto con un clic, mantén el orden y sigue escribiendo sin perder el ritmo.",
 		"button": "Obtener Deepink"
+	},
+	"faq": {
+		"title": "Preguntas frecuentes",
+		"text": "¿Quieres entender cómo funciona Deepink?\nEstas respuestas explican la filosofía detrás de la aplicación, no solo sus funciones."
 	}
 }

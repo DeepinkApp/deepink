@@ -312,7 +312,7 @@ export default defineConfig({
 							backgroundColor: 'control.input.background',
 
 							_hover: {
-								'&:not(:focus-visible)': {
+								'&:not(:focus)': {
 									borderColor: 'control.input.active.border',
 									backgroundColor: 'control.input.background',
 								},
@@ -320,7 +320,7 @@ export default defineConfig({
 
 							_focus: {
 								backgroundColor: 'transparent',
-								borderColor: 'control.input.border',
+								borderColor: 'transparent',
 							},
 						},
 						flushed: {

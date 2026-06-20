@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Tại sao Deepink tốt hơn các ứng dụng ghi chú khác?",
+		"text": "Deepink tập trung vào trải nghiệm sử dụng hàng ngày. Các tác vụ phổ biến được tối giản hóa, trong khi các tính năng mạnh mẽ về tổ chức, bảo mật và quản lý ghi chú vẫn cực kỳ dễ sử dụng.\n\nChúng tôi đã <security>nghiên cứu</security> hơn 60 ứng dụng ghi chú phổ biến nhất và không tìm thấy ứng dụng nào vừa đủ bảo mật lại vừa dễ dùng. Luôn có sự đánh đổi — hoặc bạn phải chấp nhận thiếu an toàn, hoặc phải là một chuyên gia công nghệ phải đối mặt với giao diện phức tạp và việc thiết lập cấu hình rắc rối.\n\nNhiều ứng dụng được thiết kế cho lập trình viên và những người am hiểu công nghệ. Deepink dành cho tất cả mọi người.\n\nTrong khi hầu hết các ứng dụng khác được tạo ra để kiếm lời, Deepink được tạo ra để mang lại sự hài lòng cho người dùng."
+	},
+	"differentFromOthers": {
+		"title": "Deepink khác gì so với Obsidian, Notion và Joplin?",
+		"text": "Deepink không khuyến khích hay lợi dụng tâm lý ám ảnh cưỡng chế để giữ chân bạn ở lại ứng dụng.\n\nChúng tôi không thuê những người có sức ảnh hưởng để thuyết phục bạn rằng mình phải xây dựng một \"khu vườn số\", điều mà thường dẫn đến việc sao chép và dán cả thế giới internet vào ứng dụng ghi chú của bạn.\n\nDeepink hướng tới sự cân bằng. Chỉ ghi lại những gì bạn thực sự cần. Thực hiện nhanh chóng, riêng tư và tận hưởng cuộc sống tốt đẹp hơn. Chỉ vậy thôi. Đừng lãng phí cả cuộc đời bên máy tính."
+	},
+	"import": {
+		"title": "Nếu tôi đã có hàng ngàn ghi chú thì sao?",
+		"text": "Bạn có thể <import>nhập ghi chú</import> từ bất kỳ ứng dụng nào khác vào Deepink. Hãy dùng thử Deepink trong một tuần để có trải nghiệm thực tế nhất."
+	},
+	"export": {
+		"title": "Nếu tôi quyết định ngừng dùng Deepink thì sao?",
+		"text": "Bạn có thể <export>xuất ghi chú</export> bất cứ lúc nào. Toàn bộ nội dung, bao gồm cả tệp đính kèm và các liên kết giữa các ghi chú, sẽ được xuất dưới dạng tệp nén zip chứa các tệp Markdown.\n\nChúng tôi rất trân trọng nếu bạn để lại phản hồi tại <email/> trước khi rời đi. Có thể chúng tôi sẽ giải quyết được vấn đề của bạn và cải thiện Deepink tốt hơn cho mọi người."
+	},
+	"workspacesVsVaults": {
+		"title": "Tại sao Deepink dùng không gian làm việc thay vì nhiều kho lưu trữ?",
+		"text": "Không gian làm việc cho phép bạn tách biệt các ngữ cảnh khác nhau mà không cần chia nhỏ thông tin vào nhiều kho lưu trữ. Bạn chỉ cần mở khóa một lần và có thể chuyển đổi tức thì khi cần."
+	},
+	"workspacesVsFolders": {
+		"title": "Tại sao không gian làm việc tốt hơn thư mục để tổ chức ghi chú?",
+		"text": "Thư mục dùng để sắp xếp ghi chú. Không gian làm việc dùng để sắp xếp ngữ cảnh. Chúng giúp phân tách các lĩnh vực khác nhau trong cuộc sống của bạn trong khi vẫn giữ cho ghi chú, thẻ và quy trình làm việc luôn tập trung."
+	},
+	"stayingOrganized": {
+		"title": "Deepink giúp tôi giữ mọi thứ ngăn nắp khi lượng ghi chú tăng lên như thế nào?",
+		"text": "Không gian làm việc, hệ thống thẻ phân cấp, liên kết và liên kết ngược phối hợp với nhau để giữ cho thông tin luôn có cấu trúc và dễ tìm, ngay cả khi bạn có một bộ sưu tập ghi chú khổng lồ."
+	},
+	"ergonomics": {
+		"title": "Tại sao Deepink lại chú trọng vào tính tiện dụng đến vậy?",
+		"text": "Ghi chú là việc chúng ta làm hàng ngày. Những cải tiến nhỏ trong quy trình sẽ giúp tiết kiệm thời gian, giảm bớt sự phiền toái và khiến trải nghiệm trở nên thú vị hơn về lâu dài."
+	},
+	"replaceMultipleApps": {
+		"title": "Deepink có thể thay thế nhiều ứng dụng quản lý kiến thức cá nhân không?",
+		"text": "Với nhiều người là có thể. Ghi chú, tài liệu, nghiên cứu, nhật ký, lời nhắc và tài liệu tham khảo đều có thể cùng tồn tại trong một kho lưu trữ duy nhất."
+	},
+	"nestedTags": {
+		"title": "Tại sao nên dùng thẻ phân cấp thay vì thư mục?",
+		"text": "Thư mục buộc mỗi ghi chú phải nằm ở một vị trí duy nhất. Thẻ cho phép thông tin thuộc về nhiều danh mục cùng lúc, trong khi hệ thống thẻ phân cấp giúp các danh mục đó luôn có cấu trúc rõ ràng."
+	},
+	"connectedInformation": {
+		"title": "Deepink kết nối các thông tin liên quan như thế nào?",
+		"text": "Các liên kết và liên kết ngược giúp các mối quan hệ trở nên trực quan. Bạn có thể di chuyển tự nhiên giữa các ghi chú liên quan mà không cần phải nhân bản thông tin."
+	},
+	"privacy": {
+		"title": "Deepink bảo vệ quyền riêng tư của tôi như thế nào?",
+		"text": "Mọi thứ trong kho lưu trữ của bạn đều được mã hóa, bao gồm cả ghi chú, tệp và siêu dữ liệu. Quyền riêng tư của bạn được đảm bảo ngay từ thiết kế cốt lõi."
+	},
+	"openSource": {
+		"title": "Tại sao Deepink là mã nguồn mở?",
+		"text": "Quyền riêng tư và bảo mật cần phải được kiểm chứng. Mã nguồn mở cho phép bất kỳ ai cũng có thể kiểm tra mã lệnh và xác nhận cách thức ứng dụng hoạt động."
+	},
+	"personalOrWork": {
+		"title": "Deepink dành cho ghi chú cá nhân, công việc, hay cả hai?",
+		"text": "Cả hai. Không gian làm việc giúp bạn dễ dàng tách biệt thông tin cá nhân và công việc trong khi vẫn giữ cho mọi thứ luôn sẵn sàng ở một nơi."
+	},
+	"largeVaults": {
+		"title": "Điều gì xảy ra khi kho lưu trữ của tôi trở nên lớn?",
+		"text": "Deepink được thiết kế để mở rộng từ một vài ghi chú đến các cơ sở kiến thức lớn. Các tính năng tổ chức giúp thông tin luôn dễ quản lý khi kho lưu trữ của bạn phát triển."
+	},
+	"oneVault": {
+		"title": "Tại sao nên giữ mọi thứ trong một kho lưu trữ?",
+		"text": "Thông tin thường liên kết với nhau theo những cách chúng ta không ngờ tới. Giữ mọi thứ cùng nhau giúp dễ dàng khám phá các mối liên hệ, tìm kiếm xuyên suốt các ngữ cảnh và tránh tình trạng dữ liệu bị phân mảnh."
+	},
+	"markdownFiles": {
+		"title": "Tại sao không chỉ dùng một thư mục chứa các tệp Markdown?",
+		"text": "Tệp Markdown chỉ lưu trữ nội dung. Deepink bổ sung thêm khả năng tổ chức, mã hóa, lịch sử ghi chú, lời nhắc, liên kết, liên kết ngược và các quy trình làm việc được thiết kế để giúp việc quản lý thông tin trở nên dễ dàng hơn."
+	}
+}

@@ -7,7 +7,7 @@ import { getStaticLangPaths, i18nGetContext } from '../../i18n/utils';
 const { lang } = Astro.params;
 const i18n = i18nGetContext({
 	language: lang,
-	namespaces: ['landing'],
+	namespaces: ['landing', 'faq'],
 	path: Astro.url.pathname,
 });
 

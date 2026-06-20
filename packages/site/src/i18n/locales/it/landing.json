@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Un archivio di cui fidarsi",
-				"text": "Tutto nel tuo archivio è crittografato. A differenza di molte altre app, questo significa davvero <0>tutti i tuoi dati</0>: contenuto delle note, file e metadati. L'algoritmo di crittografia è a tua scelta.\n\nDeepink è un'app <1>open source</1>, con codice che puoi verificare, non solo fidarti."
+				"text": "Tutto ciò che è nel tuo vault è <encryption>criptato</encryption>. A differenza di molte altre app, questo significa realmente <security>tutti i tuoi dati</security>, inclusi il contenuto delle note, i file e i metadati. Puoi scegliere l'algoritmo di cui ti fidi.\n\nDeepink è un'app <opensource>open source</opensource>, con un codice che puoi verificare, non solo fidarti."
 			},
 			"workflow": {
 				"title": "L'ergonomia",
-				"text": "Deepink è progettata per essere veloce nell'uso quotidiano, eliminando ogni attrito dalle operazioni più comuni. Per la maggior parte delle attività servono <0>fino all'80% di azioni in meno</0> rispetto ad altre app per appunti."
+				"text": "Deepink è progettata per essere <strong>rapida nell'uso quotidiano</strong>, eliminando ogni ostacolo dalle attività più comuni. Per la maggior parte delle operazioni, richiede <0>fino all'80% di passaggi in meno</0> rispetto ad altre app per appunti."
 			},
 			"universality": {
 				"title": "Il tuo archivio contiene tutto",
-				"text": "Conserva tutto nel tuo archivio. Workspace e tag annidati aiutano a separare i contesti e trovare rapidamente ciò che serve: specifiche di progetto, contratti, frammenti di codice, citazioni da libri, diario personale, ricerche e molto altro."
+				"text": "Conserva <organizing>tutto</organizing> nel tuo vault. Gli <workspace>spazi di lavoro</workspace> e le gerarchie di tag ti aiutano a separare i diversi contesti e a trovare rapidamente ciò di cui hai bisogno: dalle specifiche di un progetto, contratti e frammenti di codice, fino a citazioni di libri, un diario personale, ricerche e altro ancora."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Dai struttura al tuo pensiero",
-			"text": "Un'intuizione veloce o un progetto complesso. Deepink porta ordine e concentrazione in tutto ciò che scrivi."
+			"text": "Cattura un'idea veloce o costruisci qualcosa di complesso.\nDeepink porta ordine e concentrazione in tutto ciò che scrivi."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Workspace",
-				"text": "Tieni separati i diversi ambiti della tua vita senza creare più archivi.\n\nI workspace creano spazi dedicati all'interno di un unico archivio sicuro. Sblocca l'archivio una volta, poi passa da un contesto all'altro — Progetti Clienti, Diario Personale, Note Salute, Studio — senza mescolare nulla.\n\nOrganizzazione chiara e specifica per ogni contesto. Condividi lo schermo con tranquillità: i contenuti privati non appariranno per errore.\n\nUn archivio. Confini netti. Zero attriti."
+				"text": "Mantieni separate le diverse aree della tua vita senza dover creare più vault.\n\nGli <workspace>spazi di lavoro</workspace> creano ambienti dedicati all'interno di un unico vault sicuro. Sblocca il tuo vault una sola volta, poi passa da un contesto all'altro — come Progetti Clienti, Diario Personale, Note Salute o Studio — senza mischiare nulla.\n\nRimani organizzato e focalizzato sul contesto. Condividi lo schermo in totale sicurezza: i contenuti privati <isolation>non appariranno</isolation> per errore.\n\nUn unico vault. Confini chiari. Nessuna complicazione."
 			},
 			"history": {
 				"title": "Versioni delle note",
-				"text": "Ogni nota conserva una cronologia completa delle modifiche.\n\nDeepink salva le versioni automaticamente: puoi vedere cosa è cambiato, ripristinare una bozza precedente o seguire come un'idea si è sviluppata nel tempo. Che la modifica risalga a ieri o a un anno fa, nulla di importante va perso.\n\nLe versioni precedenti sono sempre disponibili quando servono."
+				"text": "Ogni nota mantiene una <history>cronologia completa</history> delle modifiche.\n\nDeepink salva automaticamente le versioni, così puoi vedere cosa è cambiato, ripristinare una bozza precedente o seguire l'evoluzione di un'idea nel tempo. Che sia stata modificata ieri o un anno fa, nulla di importante va perduto.\n\nLe versioni precedenti sono sempre disponibili quando ne hai bisogno."
 			},
 			"reminders": {
 				"title": "Promemoria",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Tag annidati",
-				"text": "Organizza le note con tag che riflettono una gerarchia chiara.\n\nI tag annidati permettono di creare una struttura padre/figlio, così gli argomenti generali possono contenere sotto-argomenti specifici. Ad esempio, Clienti può includere i nomi dei singoli clienti, e Finanza può includere Tasse, Fatture e Report.\n\nA differenza delle cartelle, i tag non sono esclusivi. Una nota può avere più tag contemporaneamente — cliente, finanza e un periodo temporale.\n\nI tag annidati offrono precisione e flessibilità, anche quando gli argomenti si sovrappongono."
+				"text": "Organizza le tue note con tag che seguono una gerarchia chiara.\n\nLa <tags>gerarchia di tag</tags> ti permette di creare una struttura a livelli, in modo che gli argomenti generali possano contenere sottotemi specifici. Ad esempio, 'Clienti' può includere i nomi dei singoli clienti, e 'Finanze' può includere 'Tasse', 'Fatture' e 'Report'.\n\nA differenza delle cartelle, i tag non sono esclusivi. Una nota può avere più tag contemporaneamente: un cliente, un ambito finanziario e un periodo di tempo.\n\nLa gerarchia dei tag ti offre precisione e flessibilità, anche quando gli argomenti si sovrappongono."
 			},
 			"encryption": {
 				"title": "Crittografia",
-				"text": "L'intero archivio è crittografato. Alcune app proteggono i dati solo durante la sincronizzazione o il testo delle note. Deepink protegge l'intera struttura del tuo archivio.\n\nLe note, gli allegati e i metadati sono illeggibili per chiunque tranne te, inclusi noi. Anche le dimensioni dei file vengono offuscate per ridurre il rischio di analisi.\n\nCiò che conservi resta privato per design."
+				"text": "L'intero vault è <encryption>criptato</encryption>. Alcune app criptano i dati solo durante la sincronizzazione o solo il testo della nota. Deepink protegge l'intera struttura del tuo vault.\n\nLe tue note, gli allegati e i metadati sono illeggibili per chiunque tranne che per te, incluso il nostro team. Persino le dimensioni dei file sono offuscate per ridurre il rischio di analisi.\n\nCiò che conservi rimane privato <reference>per progettazione</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Uno spazio per ogni aspetto della tua vita",
 		"text": "Note quotidiane, letture e piani in un unico luogo privato. Cambia contesto con un clic, mantieni l'ordine e continua a scrivere senza interrompere il flusso.",
 		"button": "Scarica Deepink"
+	},
+	"faq": {
+		"title": "Domande frequenti",
+		"text": "Vuoi capire come funziona Deepink?\nQueste risposte spiegano i principi alla base dell'app, non solo le sue funzioni."
 	}
 }

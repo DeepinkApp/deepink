@@ -38,7 +38,7 @@ function getSupportedLangs(localesPath: string) {
 			// .cache dir may appears while development
 			// it is created by translation tools
 			// so we can ignore that directory
-			.filter((dirent) => dirent.isDirectory() && dirent.name !== '.transly')
+			.filter((dirent) => dirent.isDirectory() && !dirent.name.startsWith('.'))
 			.map((dirent) => dirent.name)
 	);
 }
@@ -106,11 +106,16 @@ export function i18nGetContext({
 							const segments = path.split('/');
 							segments[1] = lang; // swap language only
 
-							return {
-								langCode: lang,
-								langName: getNativeLanguageName(lang),
-								url: segments.join('/'),
-							};
+							try {
+								return {
+									langCode: lang,
+									langName: getNativeLanguageName(lang),
+									url: segments.join('/'),
+								};
+							} catch (error) {
+								console.log('Language', lang);
+								throw error;
+							}
 						})
 						.toArray(),
 	};

@@ -18,6 +18,7 @@ import { useLocalePath } from '../../components/Locale';
 import { Text } from '../../components/Text';
 import { TheRock } from '../../components/TheRock';
 
+import { FAQ } from './FAQ';
 import screenshot from './screenshots/app.png';
 import encryptionScreenshot from './screenshots/encryption.png';
 import historyScreenshot from './screenshots/history.png';
@@ -31,6 +32,7 @@ export default WithLayout(() => {
 	const localePath = useLocalePath();
 
 	const { t } = useTranslation('landing');
+
 	const highlights: {
 		title: string;
 		content: ReactNode;
@@ -41,14 +43,16 @@ export default WithLayout(() => {
 				<Trans
 					t={t}
 					i18nKey="highlights.content.encryption.text"
-					components={[
-						<b key={1} />,
-						<Link
-							key={2}
-							href="https://github.com/DeepinkApp/deepink"
-							target="_blank"
-						/>,
-					]}
+					components={{
+						encryption: <Link href="/concepts/vault/#encryption" />,
+						security: <Link href="/reference/encryption/" />,
+						opensource: (
+							<Link
+								href="https://github.com/DeepinkApp/deepink"
+								target="_blank"
+							/>
+						),
+					}}
 				/>
 			),
 		},
@@ -64,7 +68,16 @@ export default WithLayout(() => {
 		},
 		{
 			title: t('highlights.content.universality.title'),
-			content: t('highlights.content.universality.text'),
+			content: (
+				<Trans
+					t={t}
+					i18nKey="highlights.content.universality.text"
+					components={{
+						organizing: <Link href="/guides/organizing-notes/" />,
+						workspace: <Link href="/concepts/workspace/" />,
+					}}
+				/>
+			),
 		},
 	];
 
@@ -80,12 +93,29 @@ export default WithLayout(() => {
 		},
 		{
 			title: t('features.content.workspaces.title'),
-			content: <Trans t={t} i18nKey="features.content.workspaces.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.workspaces.text"
+					components={{
+						workspace: <Link href="/concepts/workspace/" />,
+						isolation: <Link href="/concepts/workspace/#isolation" />,
+					}}
+				/>
+			),
 			image: workspacesScreenshot,
 		},
 		{
 			title: t('features.content.history.title'),
-			content: <Trans t={t} i18nKey="features.content.history.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.history.text"
+					components={{
+						history: <Link href="/concepts/snapshots/" />,
+					}}
+				/>
+			),
 			image: historyScreenshot,
 		},
 		{
@@ -95,12 +125,29 @@ export default WithLayout(() => {
 		},
 		{
 			title: t('features.content.tags.title'),
-			content: <Trans t={t} i18nKey="features.content.tags.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.tags.text"
+					components={{
+						tags: <Link href="/guides/organizing-notes/#tagging" />,
+					}}
+				/>
+			),
 			image: tagsScreenshot,
 		},
 		{
 			title: t('features.content.encryption.title'),
-			content: <Trans t={t} i18nKey="features.content.encryption.text" />,
+			content: (
+				<Trans
+					t={t}
+					i18nKey="features.content.encryption.text"
+					components={{
+						encryption: <Link href="/concepts/vault/#encryption" />,
+						reference: <Link href="/reference/encryption/" />,
+					}}
+				/>
+			),
 			image: encryptionScreenshot,
 		},
 	];
@@ -245,7 +292,7 @@ export default WithLayout(() => {
 			</Stack>
 
 			{/* Features Section */}
-			<Box maxW="100%" my="10rem">
+			<Box maxW="100%" marginTop="10rem">
 				<VStack
 					mb="3rem"
 					align="start"
@@ -270,6 +317,7 @@ export default WithLayout(() => {
 							md: {
 								fontSize: '2rem',
 								lineHeight: '2.8rem',
+								whiteSpace: 'pre-line',
 							},
 						}}
 					>
@@ -298,9 +346,6 @@ export default WithLayout(() => {
 								mb="0.5rem"
 								color="brand.secondary"
 								as="div"
-								display="flex"
-								flexDirection="column"
-								gap="1rem"
 								whiteSpace="pre-line"
 							>
 								{feature.content}
@@ -311,6 +356,7 @@ export default WithLayout(() => {
 								border="1px solid #00000017"
 								borderRadius="14px"
 								maxH="300px"
+								width="100%"
 							>
 								<Image
 									src={feature.image.src}
@@ -328,15 +374,11 @@ export default WithLayout(() => {
 
 			{/* CTA Section */}
 			<VStack
-				minH="100vh"
 				align="center"
 				justify="start"
 				gap="3rem"
 				boxSizing="border-box"
-				// Ensure space on top for all
-				paddingTop="15%"
-				// Ensure space on bottom for mobiles
-				paddingBottom="10rem"
+				paddingBlock="30%"
 			>
 				<Heading
 					as="h3"
@@ -369,6 +411,46 @@ export default WithLayout(() => {
 					{t('cta.button')}
 				</Link>
 			</VStack>
+
+			<Box maxW="100%">
+				<VStack
+					id="faq"
+					mb="3rem"
+					align="start"
+					gap="2rem"
+					w="100%"
+					scrollMarginBlock="3rem"
+				>
+					<Heading
+						as="h3"
+						fontSize="3.2rem"
+						lineHeight="3.2rem"
+						fontWeight="500"
+						m={0}
+					>
+						{t('faq.title')}
+					</Heading>
+					<Text
+						color="brand.secondary"
+						css={{
+							base: { fontSize: '1.6rem', lineHeight: '2.4rem' },
+							md: {
+								fontSize: '2rem',
+								lineHeight: '2.8rem',
+								whiteSpace: 'pre-line',
+							},
+						}}
+					>
+						{t('faq.text')}
+					</Text>
+				</VStack>
+				<FAQ />
+			</Box>
+
+			<Box
+				// Ensure space on bottom for mobiles
+				paddingBottom="10rem"
+			/>
 		</>
 	);
 });

@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Por que o Deepink é melhor que outros apps de notas?",
+		"text": "O Deepink foca na ergonomia do dia a dia. Tarefas comuns exigem menos ações, enquanto recursos poderosos de organização, privacidade e gerenciamento de notas permanecem fáceis de usar.\n\nNós <security>analisamos</security> mais de 60 dos aplicativos de notas mais populares e não encontramos nada que fosse simultaneamente seguro e fácil de usar. Sempre há concessões — ou você não se importa com sua privacidade, ou precisa ser um especialista para lidar com interfaces complexas e configurações constantes.\n\nMuitos apps são focados em programadores. O Deepink é para todos.\n\nEnquanto a maioria dos aplicativos é feita para lucrar, o Deepink é feito para proporcionar satisfação."
+	},
+	"differentFromOthers": {
+		"title": "O que diferencia o Deepink do Obsidian, Notion e Joplin?",
+		"text": "O Deepink não incentiva nem explora comportamentos obsessivos para manter você engajado.\n\nNão contratamos influenciadores para vender a ideia de que você precisa cultivar um \"jardim digital\", o que geralmente significa copiar e colar toda a internet no seu app de notas.\n\nO Deepink incentiva o bem-estar. Tome apenas as notas que você realmente precisa. Faça isso de forma rápida, privada e viva melhor. Só isso. Não gaste a vida inteira na frente do computador."
+	},
+	"import": {
+		"title": "E se eu já tiver milhares de notas?",
+		"text": "Você pode <import>importar suas notas</import> de qualquer outro aplicativo para o Deepink. Experimente o Deepink por uma semana para sentir como ele funciona."
+	},
+	"export": {
+		"title": "O que acontece se eu decidir parar de usar o Deepink?",
+		"text": "Você pode <export>exportar suas notas</export> a qualquer momento. Todo o seu conteúdo, incluindo anexos e links entre notas, será exportado como um arquivo zip com arquivos Markdown.\n\nAgradeceríamos se você deixasse seu feedback em <email/> antes de partir. Talvez possamos resolver seus problemas e melhorar o Deepink para todos."
+	},
+	"workspacesVsVaults": {
+		"title": "Por que o Deepink usa espaços em vez de múltiplos cofres?",
+		"text": "Os espaços permitem separar contextos sem dividir suas informações em vários cofres. Você faz o login uma única vez e alterna instantaneamente entre eles quando precisar."
+	},
+	"workspacesVsFolders": {
+		"title": "Por que espaços são melhores que pastas para organizar notas?",
+		"text": "Pastas organizam notas. Espaços organizam contextos. Eles ajudam a separar diferentes áreas da sua vida, mantendo suas notas, tags e fluxo de trabalho focados."
+	},
+	"stayingOrganized": {
+		"title": "Como o Deepink me ajuda a manter a organização conforme minhas notas aumentam?",
+		"text": "Espaços, hierarquia de tags, links e retrolinks trabalham juntos para manter as informações estruturadas e fáceis de encontrar, mesmo em grandes coleções de notas."
+	},
+	"ergonomics": {
+		"title": "Por que o Deepink foca tanto em ergonomia?",
+		"text": "Anotar coisas é algo que fazemos todos os dias. Pequenas melhorias no fluxo de trabalho economizam tempo, reduzem o esforço e tornam a experiência mais agradável a longo prazo."
+	},
+	"replaceMultipleApps": {
+		"title": "O Deepink pode substituir vários apps de gestão de conhecimento?",
+		"text": "Para muitas pessoas, sim. Notas, documentos, pesquisas, diários, lembretes e materiais de referência podem coexistir dentro do mesmo cofre."
+	},
+	"nestedTags": {
+		"title": "Por que usar hierarquia de tags em vez de pastas?",
+		"text": "Pastas forçam cada nota a ficar em um único local. As tags permitem que a informação pertença a várias categorias ao mesmo tempo, enquanto a hierarquia de tags mantém essas categorias estruturadas."
+	},
+	"connectedInformation": {
+		"title": "Como o Deepink mantém as informações relacionadas conectadas?",
+		"text": "Links e retrolinks tornam as relações visíveis. Você pode navegar naturalmente entre notas relacionadas sem duplicar informações."
+	},
+	"privacy": {
+		"title": "Como o Deepink protege minha privacidade?",
+		"text": "Tudo no seu cofre é criptografado, incluindo notas, arquivos e metadados. Suas informações permanecem privadas por design."
+	},
+	"openSource": {
+		"title": "Por que o Deepink é de código aberto?",
+		"text": "Privacidade e segurança devem ser verificáveis. O código aberto permite que qualquer pessoa inspecione o software e confirme como o aplicativo funciona."
+	},
+	"personalOrWork": {
+		"title": "O Deepink é para notas pessoais, trabalho ou ambos?",
+		"text": "Ambos. Os espaços facilitam a separação de informações pessoais e profissionais, mantendo tudo acessível em um só lugar."
+	},
+	"largeVaults": {
+		"title": "O que acontece quando meu cofre fica muito grande?",
+		"text": "O Deepink foi projetado para escalar de poucas notas até grandes bases de conhecimento. Os recursos de organização ajudam a manter as informações gerenciáveis conforme seu cofre cresce."
+	},
+	"oneVault": {
+		"title": "Por que manter tudo em um único cofre?",
+		"text": "As informações costumam estar conectadas de formas inesperadas. Manter tudo junto facilita a descoberta de relações, a busca entre contextos e evita a fragmentação."
+	},
+	"markdownFiles": {
+		"title": "Por que não usar apenas uma pasta de arquivos Markdown?",
+		"text": "Arquivos Markdown armazenam conteúdo. O Deepink adiciona organização, criptografia, histórico de notas, lembretes, links, retrolinks e fluxos de trabalho projetados para facilitar o gerenciamento das informações."
+	}
+}

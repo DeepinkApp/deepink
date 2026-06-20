@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Ein Tresor, dem Sie vertrauen können",
-				"text": "Alles in Ihrem Tresor ist verschlüsselt. Anders als bei vielen anderen Apps bedeutet das wirklich <0>alle Ihre Daten</0> – Notizeninhalt, Dateien und Metadaten. Sie können den Algorithmus wählen, dem Sie vertrauen.\n\nDeepink ist eine <1>Open-Source</1>-App mit Code, den Sie selbst überprüfen können – nicht nur vertrauen müssen."
+				"text": "Alles in deinem Vault ist <encryption>verschlüsselt</encryption>. Im Gegensatz zu vielen anderen Apps bedeutet das wirklich <security>alle deine Daten</security>, einschließlich Notizen, Dateien und Metadaten. Du kannst den Algorithmus wählen, dem du vertraust.\n\nDeepink ist eine <opensource>Open-Source</opensource>-App mit Code, den du verifizieren kannst, anstatt ihm nur zu vertrauen."
 			},
 			"workflow": {
 				"title": "Die Ergonomie",
-				"text": "Deepink ist für den schnellen Einsatz im Alltag gebaut – mit möglichst wenig Reibung bei den häufigsten Aufgaben. Für die meisten Aktionen braucht es <0>bis zu 80 % weniger Schritte</0> als andere Notiz-Apps."
+				"text": "Deepink ist darauf ausgelegt, <strong>im Alltag schnell zu sein</strong>, indem es Reibungsverluste bei den häufigsten Aufgaben minimiert. Für die meisten Aufgaben benötigt es <0>bis zu 80 % weniger Schritte</0> als andere Notiz-Apps."
 			},
 			"universality": {
 				"title": "Ihr Tresor fasst alles",
-				"text": "Bewahren Sie alles in Ihrem Tresor auf. Arbeitsbereiche und verschachtelte Tags helfen, Kontexte zu trennen und schnell zu finden, was Sie brauchen – von Projektspezifikationen, Verträgen und Code-Snippets bis hin zu Buchzitaten, Tagebuch, Recherchen und mehr."
+				"text": "Behalte <organizing>alles</organizing> in deinem Vault. <workspace>Workspaces</workspace> und Tag-Hierarchien helfen dir dabei, Kontexte zu trennen und schnell zu finden, was du brauchst – von Projektspezifikationen, Verträgen und Code-Snippets bis hin zu Zitaten, Tagebüchern, Recherchen und mehr."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Struktur für Ihre Gedanken",
-			"text": "Einen schnellen Gedanken festhalten oder etwas Komplexes aufbauen. Deepink bringt Ordnung und Fokus in alles, was Sie aufschreiben."
+			"text": "Halte eine kurze Erkenntnis fest oder entwickle etwas Komplexes.\nDeepink bringt Ordnung und Fokus in alles, was du aufschreibst."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Arbeitsbereiche",
-				"text": "Verschiedene Lebensbereiche lassen sich trennen, ohne mehrere Tresore anlegen zu müssen.\n\nArbeitsbereiche schaffen fokussierte Bereiche innerhalb eines einzigen sicheren Tresors. Tresor einmal entsperren, dann zwischen Kontexten wie Kundenprojekte, Persönliches Tagebuch, Gesundheitsnotizen oder Lernen wechseln – ohne Vermischung.\n\nAlles bleibt organisiert und kontextbezogen. Bildschirm teilen mit gutem Gewissen: Private Inhalte tauchen nicht versehentlich auf.\n\nEin Tresor. Klare Grenzen. Kein Aufwand."
+				"text": "Halte verschiedene Lebensbereiche getrennt, ohne mehrere Vaults erstellen zu müssen.\n\n<workspace>Workspaces</workspace> schaffen fokussierte Bereiche innerhalb eines einzigen, sicheren Vaults. Entsperre deinen Vault einmal und wechsle dann zwischen Kontexten wie Kundenprojekten, persönlichem Journal, Gesundheitsnotizen oder Lerninhalten, ohne dass etwas vermischt wird.\n\nBleibe organisiert und kontextbezogen. Teile deinen Bildschirm mit Vertrauen: Private Inhalte <isolation>werden nicht versehentlich angezeigt</isolation>.\n\nEin Vault. Klare Grenzen. Kein Aufwand."
 			},
 			"history": {
 				"title": "Notizversionen",
-				"text": "Jede Notiz bewahrt eine vollständige Änderungshistorie.\n\nDeepink speichert Versionen automatisch – so lässt sich nachvollziehen, was sich geändert hat, ein früherer Entwurf wiederherstellen oder die Entwicklung einer Idee über die Zeit verfolgen. Ob gestern oder vor einem Jahr bearbeitet – nichts Wichtiges geht verloren.\n\nFrühere Versionen sind jederzeit verfügbar, wenn sie gebraucht werden."
+				"text": "Jede Notiz bewahrt eine <history>vollständige Historie</history> aller Änderungen.\n\nDeepink speichert Versionen automatisch, sodass du sehen kannst, was sich geändert hat, einen früheren Entwurf wiederherstellen oder nachvollziehen kannst, wie eine Idee über die Zeit entstanden ist. Egal, ob die Änderung gestern oder vor einem Jahr erfolgte – nichts Wichtiges geht verloren.\n\nFrühere Versionen sind jederzeit verfügbar, wenn du sie brauchst."
 			},
 			"reminders": {
 				"title": "Erinnerungen",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Verschachtelte Tags",
-				"text": "Notizen lassen sich mit Tags organisieren, die eine klare Hierarchie abbilden.\n\nVerschachtelte Tags ermöglichen eine Eltern-Kind-Struktur: Übergeordnete Themen können spezifische Unterthemen enthalten. Zum Beispiel kann Kunden einzelne Kundennamen umfassen, und Finanzen kann Steuern, Rechnungen und Berichte enthalten.\n\nAnders als Ordner sind Tags nicht exklusiv. Eine Notiz kann mehrere Tags gleichzeitig tragen – Kunde, Finanzen und einen Zeitraum.\n\nVerschachtelte Tags bieten Präzision und Flexibilität, auch wenn sich Themen überschneiden."
+				"text": "Organisiere deine Notizen mit Tags, die eine klare Struktur widerspiegeln.\n\nMit <tags>Tag-Hierarchien</tags> kannst du eine Eltern-Kind-Struktur erstellen, sodass übergeordnete Themen spezifische Unterthemen enthalten können. Zum Beispiel können unter „Kunden“ einzelne Kundennamen stehen, und unter „Finanzen“ Themen wie Steuern, Rechnungen und Berichte.\n\nIm Gegensatz zu Ordnern sind Tags nicht exklusiv. Eine Notiz kann mehrere Tags gleichzeitig haben – zum Beispiel Kunde, Finanzen und einen Zeitraum.\n\nTag-Hierarchien bieten dir Präzision und Flexibilität, selbst wenn sich Themen überschneiden."
 			},
 			"encryption": {
 				"title": "Verschlüsselung",
-				"text": "Der gesamte Tresor ist verschlüsselt. Manche Apps verschlüsseln nur Daten während der Synchronisierung oder den Notiztext. Deepink schützt die vollständige Struktur Ihres Tresors.\n\nIhre Notizen, Anhänge und Metadaten sind für niemanden lesbar außer für Sie – auch nicht für uns. Selbst Dateigrößen werden verschleiert, um das Risiko einer Analyse zu reduzieren.\n\nWas Sie speichern, bleibt privat – by Design."
+				"text": "Der gesamte Vault ist <encryption>verschlüsselt</encryption>. Manche Apps verschlüsseln Daten nur während der Synchronisierung oder nur den Notiztext. Deepink schützt die gesamte Struktur deines Vaults.\n\nDeine Notizen, Anhänge und Metadaten sind für niemanden außer dir lesbar – auch nicht für uns. Sogar die Dateigrößen werden verschleiert, um das Risiko von Analysen zu verringern.\n\nWas du speicherst, bleibt <reference>systembedingt privat</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Ein Ort für jeden Bereich Ihres Lebens",
 		"text": "Alltägliche Notizen, Lektüre und Pläne an einem privaten Ort. Mit einem Klick den Kontext wechseln, organisiert bleiben und weiterschreiben, ohne den Fluss zu unterbrechen.",
 		"button": "Deepink holen"
+	},
+	"faq": {
+		"title": "Häufig gestellte Fragen",
+		"text": "Möchtest du verstehen, wie Deepink funktioniert?\nDiese Antworten erklären das Konzept hinter der App, nicht nur die Funktionen."
 	}
 }

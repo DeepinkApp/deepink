@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Waarom is Deepink beter dan andere note-apps?",
+		"text": "Deepink is gericht op dagelijkse ergonomie. Veelvoorkomende taken vereisen minder handelingen, terwijl krachtige functies voor organisatie, privacy en notitiebeheer eenvoudig blijven gebruiken.\n\nWe hebben meer dan 60 van de populairste note-apps <security>onderzocht</security> en niets gevonden dat zowel veilig genoeg als gebruiksvriendelijk is. Er zijn altijd compromissen: ofwel je geeft niets om je privacy, ofwel je bent een techneut die te maken krijgt met een moeizame ervaring, lelijke interfaces en constante configuraties.\n\nVeel apps zijn gericht op programmeurs en techneuten. Deepink is voor iedereen.\n\nDe meeste alternatieve apps zijn gebouwd om winst te maken; Deepink is gebouwd om mensen een prettige ervaring te bieden."
+	},
+	"differentFromOthers": {
+		"title": "Wat maakt Deepink anders dan Obsidian, Notion en Joplin?",
+		"text": "Deepink stimuleert of exploiteert geen dwangmatig gedrag om je zo lang mogelijk in de app te houden.\n\nWe huren geen influencers in om je te overtuigen dat je een \"digitale tuin\" moet onderhouden, wat vaak neerkomt op het kopiëren en plakken van het hele internet in je notities.\n\nDeepink bevordert welzijn. Maak alleen de aantekeningen die je echt nodig hebt. Doe het snel, privé en leef een beter leven. Dat is alles. Verspil niet je hele leven achter een computer."
+	},
+	"import": {
+		"title": "Wat als ik al duizenden notities heb?",
+		"text": "Je kunt je <import>notities importeren</import> van elke andere app naar Deepink. Probeer Deepink een week om een goed gevoel bij de app te krijgen."
+	},
+	"export": {
+		"title": "Wat gebeurt er als ik besluit te stoppen met Deepink?",
+		"text": "Je kunt je <export>notities op elk moment exporteren</export>. Al je inhoud, inclusief bijlagen en links tussen notities, wordt geëxporteerd als een zip-archief met Markdown-bestanden.\n\nWe zouden het waarderen als je je feedback achterlaat via <email/> voordat je vertrekt. Misschien kunnen we je problemen oplossen en Deepink verbeteren voor iedereen."
+	},
+	"workspacesVsVaults": {
+		"title": "Waarom gebruikt Deepink workspaces in plaats van meerdere vaults?",
+		"text": "Workspaces laten je verschillende contexten scheiden zonder je informatie over meerdere vaults te verspreiden. Je ontgrendelt de app één keer en schakelt direct tussen ruimtes wanneer dat nodig is."
+	},
+	"workspacesVsFolders": {
+		"title": "Waarom zijn workspaces beter dan mappen voor het organiseren van notities?",
+		"text": "Mappen organiseren notities. Workspaces organiseren contexten. Ze helpen verschillende gebieden van je leven te scheiden, terwijl je notities, tags en workflow gefocust blijven."
+	},
+	"stayingOrganized": {
+		"title": "Hoe helpt Deepink me georganiseerd te blijven als ik meer notities krijg?",
+		"text": "Workspaces, taghiërarchieën, links en backlinks werken samen om informatie gestructureerd en vindbaar te houden, zelfs in grote collecties notities."
+	},
+	"ergonomics": {
+		"title": "Waarom richt Deepink zich zo sterk op ergonomie?",
+		"text": "Notities maken is iets wat mensen dagelijks doen. Kleine verbeteringen in de workflow besparen tijd, verminderen frictie en maken de ervaring op de lange termijn prettiger."
+	},
+	"replaceMultipleApps": {
+		"title": "Kan Deepink meerdere apps voor persoonlijke kennisbeheer vervangen?",
+		"text": "Voor veel mensen wel. Notities, documenten, onderzoek, dagboeken, herinneringen en referentiemateriaal kunnen allemaal samen bestaan binnen dezelfde vault."
+	},
+	"nestedTags": {
+		"title": "Waarom taghiërarchieën gebruiken in plaats van mappen?",
+		"text": "Mappen dwingen elke notitie in één specifieke locatie. Tags zorgen ervoor dat informatie bij meerdere categorieën tegelijk kan horen, terwijl de taghiërarchie deze categorieën gestructureerd houdt."
+	},
+	"connectedInformation": {
+		"title": "Hoe houdt Deepink gerelateerde informatie verbonden?",
+		"text": "Links en backlinks maken relaties zichtbaar. Je kunt natuurlijk bewegen tussen gerelateerde notities zonder informatie te dupliceren."
+	},
+	"privacy": {
+		"title": "Hoe beschermt Deepink mijn privacy?",
+		"text": "Alles in je vault is versleuteld, inclusief notities, bestanden en metadata. Je informatie is standaard privé."
+	},
+	"openSource": {
+		"title": "Waarom is Deepink open source?",
+		"text": "Privacy en veiligheid moeten controleerbaar zijn. Open source stelt iedereen in staat om de code te inspecteren en te bevestigen hoe de applicatie werkt."
+	},
+	"personalOrWork": {
+		"title": "Is Deepink ontworpen voor persoonlijke notities, werk, of beide?",
+		"text": "Beide. Workspaces maken het eenvoudig om persoonlijke en professionele informatie te scheiden, terwijl alles op één plek toegankelijk blijft."
+	},
+	"largeVaults": {
+		"title": "Wat gebeurt er als mijn vault groot wordt?",
+		"text": "Deepink is ontworpen om mee te schalen, van een handvol notities tot grote kennisbases. Organisatiefuncties helpen om informatie beheersbaar te houden naarmate je vault groeit."
+	},
+	"oneVault": {
+		"title": "Waarom alles in één vault bewaren?",
+		"text": "Informatie is vaak op onverwachte manieren verbonden. Door alles bij elkaar te houden, is het gemakkelijker om relaties te ontdekken, door verschillende contexten te zoeken en versnippering te voorkomen."
+	},
+	"markdownFiles": {
+		"title": "Waarom niet gewoon een map met Markdown-bestanden gebruiken?",
+		"text": "Markdown-bestanden slaan inhoud op. Deepink voegt organisatie, versleuteling, notitiegeschiedenis, herinneringen, links, backlinks en workflows toe die ontworpen zijn om informatie makkelijker te beheren."
+	}
+}

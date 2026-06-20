@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Sejf, któremu można zaufać",
-				"text": "Wszystko w Twoim sejfie jest zaszyfrowane. W odróżnieniu od wielu innych aplikacji, oznacza to naprawdę <0>wszystkie dane</0> — treść notatek, pliki i metadane. Algorytm szyfrowania wybierasz sam.\n\nDeepink to aplikacja <1>open source</1> — kod można zweryfikować, a nie tylko ufać na słowo."
+				"text": "Wszystko w Twoim sejfie jest <encryption>szyfrowane</encryption>. W przeciwieństwie do wielu innych aplikacji, oznacza to realnie <security>wszystkie Twoje dane</security>, w tym treść notatek, pliki i metadane. Możesz samodzielnie wybrać algorytm, któremu ufasz.\n\nDeepink to aplikacja <opensource>open source</opensource> – oferujemy kod, który możesz zweryfikować, a nie tylko przyjąć na słowo."
 			},
 			"workflow": {
 				"title": "Ergonomia",
-				"text": "Deepink jest zaprojektowany tak, by codzienne korzystanie było szybkie i bezproblemowe. Większość zadań wymaga <0>do 80% mniej działań</0> niż w innych aplikacjach do notatek."
+				"text": "Deepink został stworzony, aby <strong>działać szybko na co dzień</strong>, eliminując zbędne kroki podczas najczęstszych czynności. W większości zadań wymaga <0>nawet o 80% mniej działań</0> niż inne aplikacje do notatek."
 			},
 			"universality": {
 				"title": "Twój sejf pomieści wszystko",
-				"text": "Przechowuj wszystko w jednym miejscu. Przestrzenie robocze i zagnieżdżone tagi pomagają rozdzielać konteksty i szybko znajdować to, czego potrzebujesz — od specyfikacji projektów, umów i fragmentów kodu po cytaty z książek, dziennik, notatki z badań i wiele więcej."
+				"text": "Przechowuj <organizing>wszystko</organizing> w swoim sejfie. <workspace>Przestrzenie</workspace> i hierarchia tagów pomagają oddzielić różne konteksty i szybko odnaleźć to, czego potrzebujesz – od specyfikacji projektów, umów i fragmentów kodu, po cytaty z książek, dziennik, badania i wiele więcej."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Uporządkuj swoje myśli",
-			"text": "Szybka myśl albo złożony projekt. Deepink nadaje strukturę i skupienie wszystkiemu, co zapiszesz."
+			"text": "Zapisuj szybkie myśli lub twórz złożone projekty.\nDeepink wprowadza porządek i skupienie do wszystkiego, co zapisujesz."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Przestrzenie robocze",
-				"text": "Różne obszary życia mogą być rozdzielone bez tworzenia wielu sejfów.\n\nPrzestrzenie robocze to wydzielone strefy wewnątrz jednego bezpiecznego sejfu. Wystarczy odblokować sejf raz, a potem przełączać się między kontekstami — Projekty klientów, Osobisty dziennik, Zdrowie, Nauka — bez mieszania treści.\n\nPorządek i jasny podział kontekstów. Udostępnianie ekranu bez obaw — prywatne treści nie pojawią się przypadkowo.\n\nJeden sejf. Wyraźne granice. Zero tarcia."
+				"text": "Oddzielaj różne sfery życia bez konieczności tworzenia wielu sejfów.\n\n<workspace>Przestrzenie</workspace> tworzą dedykowane miejsca wewnątrz jednego, bezpiecznego sejfu. Odblokuj sejf raz, a potem swobodnie przełączaj się między kontekstami, takimi jak Projekty Klientów, Dziennik, Notatki Zdrowotne czy Nauka, bez ryzyka pomieszania danych.\n\nZachowaj porządek i właściwy kontekst. Udostępniaj ekran bez obaw: prywatne treści <isolation>nie pojawią się</isolation> przez przypadek.\n\nJeden sejf. Jasne granice. Pełna płynność."
 			},
 			"history": {
 				"title": "Wersje notatek",
-				"text": "Każda notatka zachowuje pełną historię zmian.\n\nDeepink zapisuje wersje automatycznie — można sprawdzić, co się zmieniło, przywrócić wcześniejszy szkic albo prześledzić, jak rozwijał się pomysł. Niezależnie od tego, czy edycja była wczoraj, czy rok temu — nic ważnego nie ginie.\n\nPoprzednie wersje są zawsze dostępne, gdy ich potrzebujesz."
+				"text": "Każda notatka przechowuje <history>pełną historię</history> zmian.\n\nDeepink automatycznie zapisuje wersje, dzięki czemu widzisz, co uległo zmianie, możesz przywrócić wcześniejszy szkic lub prześledzić rozwój danej idei. Niezależnie od tego, czy edycja miała miejsce wczoraj, czy rok temu – nic ważnego nie zginie.\n\nPoprzednie wersje są zawsze dostępne wtedy, gdy ich potrzebujesz."
 			},
 			"reminders": {
 				"title": "Przypomnienia",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Zagnieżdżone tagi",
-				"text": "Notatki można organizować za pomocą tagów odzwierciedlających przejrzystą hierarchię.\n\nZagnieżdżone tagi tworzą strukturę nadrzędny/podrzędny — szerokie tematy mogą zawierać konkretne podtematy. Na przykład tag Klienci może obejmować nazwy poszczególnych klientów, a Finanse — Podatki, Faktury i Raporty.\n\nW odróżnieniu od folderów tagi nie są wykluczające. Jedna notatka może mieć kilka tagów jednocześnie — klient, finanse i okres rozliczeniowy.\n\nZagnieżdżone tagi dają precyzję i elastyczność, nawet gdy tematy się przenikają."
+				"text": "Organizuj notatki za pomocą tagów, które tworzą przejrzystą strukturę.\n\n<tags>Hierarchia tagów</tags> pozwala tworzyć relacje nadrzędne i podrzędne, dzięki czemu ogólne tematy mogą zawierać bardziej szczegółowe zagadnienia. Na przykład pod tagiem „Klienci” mogą znajdować się konkretne nazwiska, a pod „Finanse” – „Podatki”, „Faktury” i „Raporty”.\n\nW przeciwieństwie do folderów, tagi nie wykluczają się nawzajem. Notatka może mieć wiele tagów jednocześnie – np. klienta, finansów i konkretny okres.\n\nHierarchia tagów zapewnia precyzję i elastyczność, nawet gdy tematy się przenikają."
 			},
 			"encryption": {
 				"title": "Szyfrowanie",
-				"text": "Cały sejf jest zaszyfrowany. Niektóre aplikacje szyfrują dane tylko podczas synchronizacji albo sam tekst notatki. Deepink chroni pełną strukturę sejfu.\n\nNotatki, załączniki i metadane są nieczytelne dla nikogo poza Tobą — również dla nas. Nawet rozmiary plików są zaciemniane, by ograniczyć ryzyko analizy.\n\nTo, co przechowujesz, pozostaje prywatne z założenia."
+				"text": "Cały sejf jest <encryption>szyfrowany</encryption>. Niektóre aplikacje szyfrują tylko dane podczas synchronizacji lub samą treść notatek. Deepink chroni całą strukturę Twojego sejfu.\n\nTwoje notatki, załączniki i metadane są nieczytelne dla każdego poza Tobą – również dla nas. Nawet rozmiary plików są maskowane, aby zminimalizować ryzyko analizy.\n\nTo, co przechowujesz, pozostaje prywatne <reference>z założenia</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Miejsce na każdy obszar Twojego życia",
 		"text": "Codzienne notatki, lektury i plany w jednym prywatnym miejscu. Przełączanie kontekstów jednym kliknięciem, porządek i pisanie bez przerywania toku myśli.",
 		"button": "Pobierz Deepink"
+	},
+	"faq": {
+		"title": "Najczęściej zadawane pytania",
+		"text": "Chcesz dowiedzieć się, jak działa Deepink?\nTe odpowiedzi wyjaśniają ideę stojącą za aplikacją, a nie tylko jej funkcje."
 	}
 }
