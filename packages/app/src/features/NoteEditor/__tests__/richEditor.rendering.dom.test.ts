@@ -6,7 +6,7 @@ import { renderRichEditor } from './utils/renderRichEditor';
 
 test('Renders simple markdown correctly', async () => {
 	const markdown = readFileSync(
-		path.resolve(path.dirname(__filename), 'base.md'),
+		path.resolve(path.dirname(__filename), 'resources/example.md'),
 		'utf8',
 	);
 	await renderRichEditor({ value: markdown });
