@@ -36,46 +36,35 @@ test('Editor is not editable in readonly mode', async () => {
 	expect(screen.queryByText('Some text')).not.toBeInTheDocument();
 });
 
-test('Editing one editor does not affect the other editor', async () => {
-	const editorA = await renderRichEditor({ value: `# Big text` });
-	const editorB = await renderRichEditor({ value: `## Small text` });
+test('Formatting text in one editor does not affect the other editor', async () => {
+	const editorA = await renderRichEditor({ value: 'Big text' });
+	const editorB = await renderRichEditor({ value: 'Small text' });
 
 	const [editorBoxA, editorBoxB] = screen.getAllByRole('textbox');
-	expect(screen.getAllByRole('textbox')).toHaveLength(2);
 
 	// initial state
-	expect(within(editorBoxA).getByRole('heading', { level: 1 })).toHaveTextContent(
-		'Big text',
-	);
-	expect(within(editorBoxB).getByRole('heading', { level: 2 })).toHaveTextContent(
-		'Small text',
-	);
+	expect(within(editorBoxA).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(within(editorBoxA).queryByRole('paragraph')).toHaveTextContent('Big text');
 
-	// change heading level in editorA, editorB must stay untouched
+	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(within(editorBoxB).queryByRole('paragraph')).toHaveTextContent('Small text');
+
+	// apply italic in editorA
 	selectContent(editorBoxA, 'Big text');
-	await editorA.insert({ type: 'heading', data: { level: 4 } });
+	await editorA.format('italic');
 
-	expect(within(editorBoxA).getByRole('heading', { level: 4 })).toHaveTextContent(
-		'Big text',
-	);
-	expect(within(editorBoxB).getByRole('heading', { level: 2 })).toHaveTextContent(
-		'Small text',
-	);
-	expect(within(editorBoxA).queryByRole('heading', { level: 2 })).toBeNull();
-	expect(within(editorBoxB).queryByRole('heading', { level: 4 })).toBeNull();
+	expect(within(editorBoxA).getByRole('emphasis')).toHaveTextContent('Big text');
+	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
 
-	// change heading level in editorB, editorA must stay untouched
+	// apply strikethrough in editorB
 	selectContent(editorBoxB, 'Small text');
-	await editorB.insert({ type: 'heading', data: { level: 3 } });
+	await editorB.format('strikethrough');
 
-	expect(within(editorBoxA).getByRole('heading', { level: 4 })).toHaveTextContent(
-		'Big text',
-	);
-	expect(within(editorBoxB).getByRole('heading', { level: 3 })).toHaveTextContent(
-		'Small text',
-	);
-	expect(within(editorBoxA).queryByRole('heading', { level: 3 })).toBeNull();
-	expect(within(editorBoxB).queryByRole('heading', { level: 4 })).toBeNull();
+	expect(within(editorBoxB).getByRole('deletion')).toHaveTextContent('Small text');
+	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
+
+	expect(within(editorBoxA).getByRole('emphasis')).toHaveTextContent('Big text');
+	expect(within(editorBoxA).queryByRole('deletion')).not.toBeInTheDocument();
 });
 
 test('ReadOnly editor is not editable while the other editor remains editable', async () => {
@@ -92,9 +81,10 @@ test('ReadOnly editor is not editable while the other editor remains editable', 
 
 	// editorB is editable — format must work
 	selectContent(editorBoxB, content);
-	await editorB.format('bold');
-	expect(within(editorBoxB).getByText(content).closest('b')).toBeInTheDocument();
+	await editorB.format('italic');
+	expect(within(editorBoxB).getByRole('emphasis')).toHaveTextContent(content);
 
 	// editorA must stay untouched
-	expect(within(editorBoxA).getByText(content).closest('b')).not.toBeInTheDocument();
+	expect(within(editorBoxA).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(editorBoxA).toHaveAttribute('contenteditable', 'false');
 });

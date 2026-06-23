@@ -4,7 +4,7 @@ import { screen, within } from '@testing-library/react';
 
 import { renderRichEditor } from './utils/renderRichEditor';
 
-test('Renders simple markdown correctly', async () => {
+test('Renders markdown correctly', async () => {
 	const markdown = readFileSync(
 		path.resolve(path.dirname(__filename), 'resources/example.md'),
 		'utf8',
