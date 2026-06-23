@@ -18,6 +18,12 @@ import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEdit
 import { render } from '@testing-library/react';
 import { createTestStore } from '@tests/utils/redux';
 
+// Mock useUrlOpener to avoid importing monaco-editor-core in tests,
+// which causes Vite module resolution errors during test setup
+vi.mock('@hooks/useUrlOpener', () => ({
+	useUrlOpener: () => vi.fn(),
+}));
+
 const MockWorkspaceProvider = ({ children }: { children: React.ReactNode }) => {
 	const filesRegistry = {
 		add: vi.fn(),
