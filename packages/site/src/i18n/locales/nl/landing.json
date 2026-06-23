@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Een kluis die je kunt vertrouwen",
-				"text": "Alles in je kluis is versleuteld. In tegenstelling tot veel andere apps betekent dat echt <0>al je gegevens</0>, inclusief de inhoud van notities, bestanden en metadata. Je kiest zelf het algoritme dat je vertrouwt.\n\nDeepink is een <1>open source</1> app, met code die je kunt controleren — niet alleen op vertrouwen hoeft aan te nemen."
+				"text": "Alles in je vault is <encryption>versleuteld</encryption>. In tegenstelling tot veel andere apps, betekent dit echt <security>al je gegevens</security>, inclusief de inhoud van notities, bestanden en metadata. Je kiest zelf het algoritme waar je op vertrouwt.\n\nDeepink is een <opensource>open source</opensource> app, met code die je kunt controleren in plaats van alleen maar hoeft te vertrouwen."
 			},
 			"workflow": {
 				"title": "De ergonomie",
-				"text": "Deepink is ontworpen om snel te zijn in dagelijks gebruik, zonder onnodige stappen bij de meest voorkomende taken. Voor de meeste taken zijn <0>tot 80% minder handelingen</0> nodig dan bij andere notitie-apps."
+				"text": "Deepink is ontworpen om <strong>snel te werken in het dagelijks gebruik</strong>, waarbij drempels bij veelvoorkomende taken zijn weggenomen. Voor de meeste taken zijn <0>tot 80% minder handelingen</0> nodig dan bij andere notitie-apps."
 			},
 			"universality": {
 				"title": "Je kluis past alles",
-				"text": "Bewaar alles in je kluis. Werkruimtes en geneste tags helpen je om contexten te scheiden en snel te vinden wat je zoekt — van projectspecificaties, contracten en codefragmenten tot boekencitaten, een dagelijks journaal, onderzoek en meer."
+				"text": "Houd <organizing>alles</organizing> in je vault. <workspace>Workspaces</workspace> en taghiërarchieën helpen je om verschillende contexten te scheiden en snel te vinden wat je nodig hebt: van projectspecificaties, contracten en codefragmenten tot citaten uit boeken, een dagboek, onderzoek en meer."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Geef structuur aan je gedachten",
-			"text": "Leg een snel inzicht vast of bouw iets complexs op. Deepink brengt orde en focus in alles wat je opschrijft."
+			"text": "Leg een snelle ingeving vast of bouw iets complex op.\nDeepink brengt orde en focus in alles wat je opschrijft."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Werkruimtes",
-				"text": "Houd verschillende delen van je leven gescheiden zonder meerdere kluizen aan te maken.\n\nWerkruimtes creëren afgebakende ruimtes binnen één beveiligde kluis. Ontgrendel je kluis één keer en schakel vervolgens tussen contexten zoals Klantprojecten, Persoonlijk Journaal, Gezondheidsnotities of Leermateriaal — zonder dat iets door elkaar loopt.\n\nBlijf georganiseerd en contextgericht. Deel je scherm met vertrouwen: privé-inhoud verschijnt niet per ongeluk.\n\nEén kluis. Duidelijke grenzen. Geen gedoe."
+				"text": "Houd verschillende delen van je leven gescheiden zonder meerdere vaults aan te maken.\n\n<workspace>Workspaces</workspace> creëren gefocuste ruimtes binnen één beveiligde vault. Ontgrendel je vault één keer en schakel daarna moeiteloos tussen contexten zoals Cliëntprojecten, Persoonlijk Dagboek, Gezondheid of Leren, zonder dat zaken door elkaar lopen.\n\nBlijf georganiseerd en contextspecifiek. Deel je scherm met een gerust hart: privécontent <isolation>verschijnt niet</isolation> per ongeluk.\n\nEén vault. Duidelijke grenzen. Geen hindernissen."
 			},
 			"history": {
 				"title": "Notitieversies",
-				"text": "Elke notitie bewaart een volledige geschiedenis van wijzigingen.\n\nDeepink slaat versies automatisch op, zodat je kunt zien wat er is veranderd, een eerdere versie kunt herstellen of kunt volgen hoe een idee zich in de loop van de tijd heeft ontwikkeld. Of een notitie gisteren of een jaar geleden is bewerkt — niets belangrijks gaat verloren.\n\nEerdere versies zijn altijd beschikbaar wanneer je ze nodig hebt."
+				"text": "Elke notitie houdt een <history>volledige geschiedenis</history> van wijzigingen bij.\n\nDeepink slaat automatisch versies op, zodat je kunt zien wat er is veranderd, een eerder concept kunt herstellen of kunt volgen hoe een idee zich heeft ontwikkeld. Of het nu gisteren of een jaar geleden is bewerkt, niets belangrijks gaat verloren.\n\nEerdere versies zijn altijd beschikbaar wanneer je ze nodig hebt."
 			},
 			"reminders": {
 				"title": "Herinneringen",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Geneste tags",
-				"text": "Organiseer je notities met tags die een duidelijke hiërarchie weerspiegelen.\n\nGeneste tags maken een ouder/kind-structuur mogelijk, zodat brede onderwerpen specifieke subonderwerpen kunnen bevatten. Bijvoorbeeld: Klanten kan individuele klantnamen bevatten, en Financiën kan Belastingen, Facturen en Rapporten bevatten.\n\nIn tegenstelling tot mappen zijn tags niet exclusief. Een notitie kan meerdere tags tegelijk hebben — klant, financiën en een tijdsperiode.\n\nGeneste tags bieden zowel precisie als flexibiliteit, ook wanneer onderwerpen overlappen."
+				"text": "Organiseer je notities met tags die een duidelijke hiërarchie volgen.\n\nMet <tags>taghiërarchieën</tags> kun je een structuur aanmaken, zodat brede onderwerpen specifieke subonderwerpen kunnen bevatten. Zo kunnen 'Cliënten' bijvoorbeeld individuele namen bevatten, en kan 'Financiën' onderwerpen als 'Belastingen', 'Facturen' en 'Rapporten' omvatten.\n\nIn tegenstelling tot mappen zijn tags niet exclusief. Een notitie kan meerdere tags tegelijk hebben — bijvoorbeeld een cliënt, financiën en een bepaalde periode.\n\nTaghiërarchieën bieden je zowel precisie als flexibiliteit, zelfs wanneer onderwerpen elkaar overlappen."
 			},
 			"encryption": {
 				"title": "Versleuteling",
-				"text": "De volledige kluis is versleuteld. Sommige apps versleutelen alleen gegevens tijdens synchronisatie of de notitietekst. Deepink beschermt de complete structuur van je kluis.\n\nJe notities, bijlagen en metadata zijn onleesbaar voor iedereen behalve jij — inclusief ons. Zelfs bestandsgroottes worden versluierd om het risico op analyse te verkleinen.\n\nWat je opslaat, blijft privé. Dat zit in het ontwerp."
+				"text": "De volledige vault is <encryption>versleuteld</encryption>. Sommige apps versleutelen alleen gegevens tijdens de synchronisatie of alleen de tekst van de notitie. Deepink beschermt de volledige structuur van je vault.\n\nJe notities, bijlagen en metadata zijn onleesbaar voor iedereen behalve voor jou, ook voor ons. Zelfs bestandsgroottes worden onherkenbaar gemaakt om het risico op analyse te verkleinen.\n\nWat je opslaat, blijft privé <reference>door ontwerp</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Ruimte voor elk deel van je leven",
 		"text": "Bewaar dagelijkse notities, leesmateriaal en plannen op één privéplek. Schakel met één klik van context, blijf georganiseerd en schrijf door zonder je flow te verliezen.",
 		"button": "Download Deepink"
+	},
+	"faq": {
+		"title": "Veelgestelde vragen",
+		"text": "Wil je begrijpen hoe Deepink werkt?\nDeze antwoorden leggen de principes achter de app uit, niet alleen de functies."
 	}
 }

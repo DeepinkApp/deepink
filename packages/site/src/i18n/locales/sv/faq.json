@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Varför är Deepink bättre än andra anteckningsappar?",
+		"text": "Deepink fokuserar på vardaglig ergonomi. Vanliga uppgifter kräver färre steg, samtidigt som kraftfull organisering, integritet och hantering av anteckningar förblir enkelt att använda.\n\nVi har <security>granskat</security> över 60 av de mest populära anteckningsapparna och hittade inget som var både tillräckligt säkert och lättanvänt. Det finns alltid kompromisser – antingen får man bortse från sin integritet, eller så blir man en entusiast som får en krånglig upplevelse med fula gränssnitt och ständiga konfigurationsinställningar.\n\nMånga appar är till för programmerare och tekniker. Deepink är för alla.\n\nMånga alternativ är byggda för att tjäna pengar, Deepink är byggd för att skapa en bra användarupplevelse."
+	},
+	"differentFromOthers": {
+		"title": "Vad skiljer Deepink från Obsidian, Notion och Joplin?",
+		"text": "Deepink uppmuntrar inte till, och utnyttjar inte, ett tvångsmässigt beteende för att hålla dig kvar i appen.\n\nVi anlitar inte influencers för att sälja in idén om att du måste odla din \"digitala trädgård\", vilket ofta innebär att man kopierar och klistrar in hela internet i sin anteckningsapp.\n\nDeepink främjar välmående. Ta bara de anteckningar du verkligen behöver. Gör det snabbt, privat och lev ett bättre liv. Det är allt. Slösa inte hela livet framför datorn."
+	},
+	"import": {
+		"title": "Tänk om jag redan har tusentals anteckningar?",
+		"text": "Du kan <import>importera dina anteckningar</import> från vilken annan app som helst till Deepink. Prova Deepink i en vecka för att få en känsla för hur det fungerar."
+	},
+	"export": {
+		"title": "Vad händer om jag väljer att sluta använda Deepink?",
+		"text": "Du kan <export>exportera dina anteckningar</export> när som helst. Allt ditt innehåll, inklusive bilagor och länkar mellan anteckningar, exporteras som ett zip-arkiv med Markdown-filer.\n\nVi skulle uppskatta om du lämnade feedback till <email/> innan du går. Kanske kan vi åtgärda dina problem och förbättra Deepink för alla."
+	},
+	"workspacesVsVaults": {
+		"title": "Varför använder Deepink arbetsytor istället för flera valv?",
+		"text": "Arbetsytor låter dig separera olika sammanhang utan att behöva dela upp din information i flera valv. Du låser upp en gång och växlar omedelbart när det behövs."
+	},
+	"workspacesVsFolders": {
+		"title": "Varför är arbetsytor bättre än mappar för att organisera anteckningar?",
+		"text": "Mappar organiserar anteckningar. Arbetsytor organiserar sammanhang. De hjälper dig att separera olika delar av livet samtidigt som dina anteckningar, taggar och arbetsflöden förblir fokuserade."
+	},
+	"stayingOrganized": {
+		"title": "Hur hjälper Deepink mig att hålla ordning när mängden anteckningar växer?",
+		"text": "Arbetsytor, tagghierarkier, länkar och returlänkar samverkar för att hålla informationen strukturerad och lätt att hitta, även i stora samlingar av anteckningar."
+	},
+	"ergonomics": {
+		"title": "Varför fokuserar Deepink så mycket på ergonomi?",
+		"text": "Anteckningar är något man gör varje dag. Små förbättringar i arbetsflödet sparar tid, minskar friktion och gör upplevelsen mer behaglig på lång sikt."
+	},
+	"replaceMultipleApps": {
+		"title": "Kan Deepink ersätta flera appar för personlig kunskapshantering?",
+		"text": "För många, ja. Anteckningar, dokument, forskning, dagböcker, påminnelser och referensmaterial kan alla leva tillsammans i samma valv."
+	},
+	"nestedTags": {
+		"title": "Varför använda tagghierarkier istället för mappar?",
+		"text": "Mappar tvingar in varje anteckning på en enda plats. Taggar gör att information kan tillhöra flera kategorier samtidigt, medan tagghierarkier håller dessa kategorier strukturerade."
+	},
+	"connectedInformation": {
+		"title": "Hur håller Deepink ihop relaterad information?",
+		"text": "Länkar och returlänkar gör relationer synliga. Du kan röra dig naturligt mellan relaterade anteckningar utan att behöva duplicera information."
+	},
+	"privacy": {
+		"title": "Hur skyddar Deepink min integritet?",
+		"text": "Allt i ditt valv är krypterat, inklusive anteckningar, filer och metadata. Din information är privat genom sin design."
+	},
+	"openSource": {
+		"title": "Varför är Deepink open source?",
+		"text": "Integritet och säkerhet bör vara verifierbara. Open source gör det möjligt för vem som helst att granska koden och bekräfta hur applikationen fungerar."
+	},
+	"personalOrWork": {
+		"title": "Är Deepink designad för privata anteckningar, arbete eller båda?",
+		"text": "Båda. Arbetsytor gör det enkelt att separera privat och professionell information, samtidigt som allt förblir tillgängligt på ett ställe."
+	},
+	"largeVaults": {
+		"title": "Vad händer när mitt valv blir stort?",
+		"text": "Deepink är designad för att skala från ett fåtal anteckningar till stora kunskapsbaser. Organiseringsfunktionerna hjälper till att hålla informationen hanterbar i takt med att ditt valv växer."
+	},
+	"oneVault": {
+		"title": "Varför ha allt i ett enda valv?",
+		"text": "Information är ofta sammanhängande på sätt vi inte förväntar oss. Genom att hålla allt samlat blir det lättare att upptäcka samband, söka över olika sammanhang och undvika fragmentering."
+	},
+	"markdownFiles": {
+		"title": "Varför inte bara använda en mapp med Markdown-filer?",
+		"text": "Markdown-filer lagrar innehåll. Deepink tillför organisering, kryptering, anteckningshistorik, påminnelser, länkar, returlänkar och arbetsflöden som är designade för att göra informationen enklare att hantera."
+	}
+}

@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Miksi Deepink on muita muistiinpano-sovelluksia parempi?",
+		"text": "Deepink keskittyy jokapäiväiseen käytettävyyteen. Arkiset tehtävät vaativat vähemmän vaiheita, vaikka tehokas organisointi, tietosuoja ja muistiinpanojen hallinta pysyvätkin helppoina.\n\nOlemme <security>tutkineet</security> yli 60 suosituinta muistiinpano-sovellusta, emmekä löytäneet mitään, joka olisi yhtä aikaa riittävän turvallista ja helppokäyttöistä. Aina on tehtävä kompromisseja – joko sinun on luovuttava yksityisyydestäsi tai oltava tekninen asiantuntija, joka joutuu käyttämään vaikeita käyttöliittymiä ja säätämään asetuksia jatkuvasti.\n\nMonet sovellukset on suunnattu koodareille ja teknisille harrastajille. Deepink on tarkoitettu kaikille.\n\nUseimmat vaihtoehdot on rakennettu tuottamaan voittoa, Deepink on rakennettu tuottamaan mielihyvää."
+	},
+	"differentFromOthers": {
+		"title": "Mikä tekee Deepinkistä erilaisen kuin Obsidian, Notion tai Joplin?",
+		"text": "Deepink ei pyri koukuttamaan käyttäjää pakkomielteisellä käytöllä.\n\nEmme palkkaa vaikuttajia myymään ajatusta ”digitaalisesta puutarhasta”, mikä usein tarkoittaa koko internetin kopioimista muistiinpano-sovellukseen.\n\nDeepink tukee hyvinvointia. Tee vain ne muistiinpanot, joita todella tarvitset. Tee se nopeasti, yksityisesti ja elä parempaa elämää. Siinä se on. Älä tuhlaa koko elämääsi tietokoneen ääressä."
+	},
+	"import": {
+		"title": "Entä jos minulla on jo tuhansia muistiinpanoja?",
+		"text": "Voit <import>tuoda muistiinpanosi</import> mistä tahansa muusta sovelluksesta Deepinkiin. Kokeile Deepinkiä viikon ajan saadaksesi paremman tuntuman siihen."
+	},
+	"export": {
+		"title": "Mitä tapahtuu, jos päätän lopettaa Deepinkin käytön?",
+		"text": "Voit <export>viedä muistiinpanosi</export> milloin tahansa. Kaikki sisältösi, mukaan lukien liitetiedostot ja muistiinpanojen väliset linkit, viedään zip-arkistona Markdown-tiedostoina.\n\nArvostaisimme, jos jättäisit palautetta <email/> ennen poistumistasi. Voimme ehkä ratkaista ongelmasi ja kehittää Deepinkiä kaikkia varten paremmaksi."
+	},
+	"workspacesVsVaults": {
+		"title": "Miksi Deepink käyttää työtiloja useiden säiliöiden sijaan?",
+		"text": "Työtilat antavat sinun erotella eri asiayhteyksiä ilman, että tieto jakautuu useisiin eri säiliöihin. Kirjaudut sisään kerran ja vaihdat tilaa välittömästi tarvittaessa."
+	},
+	"workspacesVsFolders": {
+		"title": "Miksi työtilat ovat kansioita parempia muistiinpanojen organisoinnissa?",
+		"text": "Kansiot järjestävät muistiinpanoja. Työtilat järjestävät asiayhteyksiä. Ne auttavat erottamaan elämän eri osa-alueet pitäen samalla muistiinpanot, tunnisteet ja työskentelytavan selkeinä."
+	},
+	"stayingOrganized": {
+		"title": "Miten Deepink auttaa pysymään järjestelmällisenä muistiinpanojen määrän kasvaessa?",
+		"text": "Työtilat, tunnisteiden hierarkia, linkit ja takaisinkytkennät toimivat yhdessä pitäen tiedon rakenteellisena ja helposti löydettävänä, vaikka muistiinpanoja olisi suuri määrä."
+	},
+	"ergonomics": {
+		"title": "Miksi Deepink keskittyy niin paljon käytettävyyteen?",
+		"text": "Muistiinpanojen tekeminen on jokapäiväinen asia. Pienet parannukset työskentelyssä säästävät aikaa, vähentävät kitkaa ja tekevät kokemuksesta nautinnollisemman pitkällä aikavälillä."
+	},
+	"replaceMultipleApps": {
+		"title": "Voiko Deepink korvata useita sovelluksia henkilökohtaisessa tiedonhallinnassa?",
+		"text": "Monille kyllä. Muistiinpanot, dokumentit, tutkimukset, päiväkirjat, muistutukset ja lähdemateriaalit voivat kaikki sijaita samassa säiliössä."
+	},
+	"nestedTags": {
+		"title": "Miksi käyttää tunnisteiden hierarkiaa kansioiden sijaan?",
+		"text": "Kansiot pakottavat jokaisen muistiinpanon vain yhteen paikkaan. Tunnisteet mahdollistavat sen, että tieto voi kuulua useaan kategoriaan samanaikaisesti, ja tunnisteiden hierarkia pitää nämä kategoriat järjestyksessä."
+	},
+	"connectedInformation": {
+		"title": "Miten Deepink pitää liittyvän tiedon koossa?",
+		"text": "Linkit ja takaisinkytkennät tekevät yhteyksistä näkyviä. Voit liikkua luonnollisesti liittyvien muistiinpanojen välillä ilman tiedon monistamista."
+	},
+	"privacy": {
+		"title": "Miten Deepink suojaa yksityisyyttäni?",
+		"text": "Kaikki säiliössäsi on salattu, mukaan lukien muistiinpanot, tiedostot ja metatiedot. Tietosi on suunniteltu pysymään yksityisenä."
+	},
+	"openSource": {
+		"title": "Miksi Deepink on avointa lähdekoodia?",
+		"text": "Yksityisyyden ja turvallisuuden tulee olla varmistettavissa. Avoin lähdekoodi antaa kenen tahansa tarkistaa koodin ja vahvistaa, miten sovellus toimii."
+	},
+	"personalOrWork": {
+		"title": "Onko Deepink suunniteltu henkilökohtaisiin muistiinpanoihin, työhön vai molempiin?",
+		"text": "Molempiin. Työtilat tekevät henkilökohtaisen ja ammatillisen tiedon erottelusta helppoa, mutta pitävät kaiken silti yhdessä paikassa saavutettavana."
+	},
+	"largeVaults": {
+		"title": "Mitä tapahtuu, kun säiliöni kasvaa suureksi?",
+		"text": "Deepink on suunniteltu skaalautumaan muutamasta muistiinpanosta laajoihin tietokantoihin. Organisointityökalut auttavat pitämään tiedon hallittavana säiliön kasvaessa."
+	},
+	"oneVault": {
+		"title": "Miksi pitää kaikki yhdessä säiliössä?",
+		"text": "Tieto on usein yhteydessä tavalla, jota emme odota. Kaiken pitäminen yhdessä helpottaa yhteyksien löytämistä, hakua eri asiayhteyksistä ja tiedon hajoamisen välttämistä."
+	},
+	"markdownFiles": {
+		"title": "Miksi ei voisi käyttää vain Markdown-tiedostojen kansiota?",
+		"text": "Markdown-tiedostot tallentavat sisältöä. Deepink lisää niihin organisoinnin, salauksen, muistiinpanojen historian, muistutukset, linkit, takaisinkytkennät ja työnkulut, jotka on suunniteltu tekemään tiedon hallinnasta helpompaa."
+	}
+}

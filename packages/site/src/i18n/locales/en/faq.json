@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Why is Deepink better than other note-taking apps?",
+		"text": "Deepink focuses on everyday ergonomics. Common tasks require fewer actions, while powerful organization, privacy, and note management features remain easy to use.\n\nWe have <security>explored</security> over 60 of the most popular note-taking apps and did not find anything that is both secure enough and easy to use. There are always tradeoffs - you must either not care about your privacy, or be a geek who will have a bad experience, use ugly interfaces, and always be configuring something.\n\nMany apps are focused on geeks and programmers. Deepink is for everyone.\n\nMost alternative apps are built to make money, Deepink is built to make people happy."
+	},
+	"differentFromOthers": {
+		"title": "What makes Deepink different from Obsidian, Notion, and Joplin?",
+		"text": "Deepink does not encourage or exploit obsessive-compulsive behavior to keep you engaged.\n\nWe do not hire influencers to sell you the idea that you must grow your \"digital garden\", which often means copying and pasting the whole internet into your note-taking app.\n\nDeepink encourages well-being. Take only the notes you really need. Do it quickly, privately, and live a better life. That's it. Don't waste your whole life on the computer."
+	},
+	"import": {
+		"title": "What if I already have thousands of notes?",
+		"text": "You can <import>import your notes</import> from any other app into Deepink. Try Deepink for a week to get a better feel for it."
+	},
+	"export": {
+		"title": "What happens if I decide to stop using Deepink?",
+		"text": "You can <export>export your notes</export> anytime. All your content, including attachments and cross-note links, will be exported as a zip archive with Markdown files.\n\nWe would appreciate it if you would leave your feedback at <email/> before you leave. Maybe we can address your issues and improve Deepink for everyone."
+	},
+	"workspacesVsVaults": {
+		"title": "Why does Deepink use workspaces instead of multiple vaults?",
+		"text": "Workspaces let you separate contexts without splitting your information across multiple vaults. You unlock once and switch instantly when needed."
+	},
+	"workspacesVsFolders": {
+		"title": "Why are workspaces better than folders for organizing notes?",
+		"text": "Folders organize notes. Workspaces organize contexts. They help separate different areas of your life while keeping your notes, tags, and workflow focused."
+	},
+	"stayingOrganized": {
+		"title": "How does Deepink help me stay organized as my notes grow?",
+		"text": "Workspaces, nested tags, links, and backlinks work together to keep information structured and easy to find, even in large collections of notes."
+	},
+	"ergonomics": {
+		"title": "Why does Deepink focus so much on ergonomics?",
+		"text": "Note-taking is something people do every day. Small improvements in workflow save time, reduce friction, and make the experience more enjoyable over the long term."
+	},
+	"replaceMultipleApps": {
+		"title": "Can Deepink replace multiple apps for personal knowledge management?",
+		"text": "For many people, yes. Notes, documents, research, journals, reminders, and reference material can all live together inside the same vault."
+	},
+	"nestedTags": {
+		"title": "Why use nested tags instead of folders?",
+		"text": "Folders force each note into a single location. Tags allow information to belong to multiple categories at once, while nested tags keep those categories structured."
+	},
+	"connectedInformation": {
+		"title": "How does Deepink keep related information connected?",
+		"text": "Links and backlinks make relationships visible. You can move naturally between related notes without duplicating information."
+	},
+	"privacy": {
+		"title": "How does Deepink protect my privacy?",
+		"text": "Everything in your vault is encrypted, including notes, files, and metadata. Your information remains private by design."
+	},
+	"openSource": {
+		"title": "Why is Deepink open source?",
+		"text": "Privacy and security should be verifiable. Open source allows anyone to inspect the code and confirm how the application works."
+	},
+	"personalOrWork": {
+		"title": "Is Deepink designed for personal notes, work, or both?",
+		"text": "Both. Workspaces make it easy to separate personal and professional information while keeping everything accessible in one place."
+	},
+	"largeVaults": {
+		"title": "What happens when my vault becomes large?",
+		"text": "Deepink is designed to scale from a handful of notes to large knowledge bases. Organization features help information remain manageable as your vault grows."
+	},
+	"oneVault": {
+		"title": "Why keep everything in one vault?",
+		"text": "Information is often connected in ways we do not expect. Keeping everything together makes it easier to discover relationships, search across contexts, and avoid fragmentation."
+	},
+	"markdownFiles": {
+		"title": "Why not just use a folder of Markdown files?",
+		"text": "Markdown files store content. Deepink adds organization, encryption, note history, reminders, links, backlinks, and workflows designed to make information easier to manage."
+	}
+}

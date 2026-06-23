@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Úložiště, kterému můžete věřit",
-				"text": "Vše ve vašem úložišti je šifrované. Na rozdíl od mnoha jiných aplikací to skutečně znamená <0>všechna vaše data</0> včetně obsahu poznámek, souborů a metadat. Šifrovací algoritmus si můžete zvolit sami.\n\nDeepink je aplikace s <1>otevřeným zdrojovým kódem</1>, který si můžete ověřit, nejen mu důvěřovat."
+				"text": "Vše ve vašem úložišti je <encryption>šifrované</encryption>. Na rozdíl od mnoha jiných aplikací to skutečně znamená <security>veškerá vaše data</security>, včetně obsahu poznámek, souborů i metadat. Můžete si vybrat algoritmus, kterému důvěřujete.\n\nDeepink je <opensource>open-source</opensource> aplikace, jejíž kód si můžete sami ověřit, místo abyste mu jen věřili."
 			},
 			"workflow": {
 				"title": "Ergonomie",
-				"text": "Deepink je navržený tak, aby byl v každodenním používání rychlý a odstranil zbytečné kroky z nejčastějších úkonů. U většiny úkolů vyžaduje <0>až o 80 % méně akcí</0> než jiné aplikace na poznámky."
+				"text": "Deepink je navržen tak, aby byl <strong>v každodenním používání bleskově rychlý</strong>, a od těch nejčastějších úkolů odstraňuje jakékoli překážky. Pro většinu operací vyžaduje <0>až o 80 % méně kroků</0> než ostatní aplikace pro poznámky."
 			},
 			"universality": {
 				"title": "Vaše úložiště pojme vše",
-				"text": "Uchovávejte vše na jednom místě. Pracovní prostory a vnořené štítky pomáhají oddělovat kontexty a rychle najít, co potřebujete — od specifikací projektů, smluv a úryvků kódu po citáty z knih, denní záznamy, výzkum a další."
+				"text": "<organizing>Vše</organizing> si udržujte ve svém úložišti. <workspace>Prostory</workspace> a hierarchie štítků vám pomohou oddělit různé kontexty a rychle najít to, co potřebujete – od projektové dokumentace, smluv a kousků kódu až po citáty z knih, deník, výzkum a další."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Dejte myšlenkám strukturu",
-			"text": "Zachyťte rychlý nápad nebo vybudujte něco komplexního. Deepink přináší řád a soustředění do všeho, co si zapisujete."
+			"text": "Zachytit nápad vteřinu po něm, nebo vytvořit něco komplexního.\nDeepink vnáší pořádek a soustředěnost do všeho, co si zapíšete."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Pracovní prostory",
-				"text": "Oddělte různé oblasti svého života, aniž byste museli vytvářet více úložišť.\n\nPracovní prostory vytvářejí oddělené prostředí uvnitř jednoho zabezpečeného úložiště. Odemkněte úložiště jednou a pak přepínejte mezi kontexty jako Klientské projekty, Osobní deník, Zdravotní záznamy nebo Studium — bez jakéhokoli míchání.\n\nVše zůstává organizované a v kontextu. Sdílejte obrazovku s jistotou: soukromý obsah se nezobrazí omylem.\n\nJedno úložiště. Jasné hranice. Žádné zbytečné kroky."
+				"text": "Udržujte různé oblasti svého života oddělené, aniž byste museli vytvářet více úložišť.\n\n<workspace>Prostory</workspace> vytvářejí zaměřené oblasti uvnitř jednoho zabezpečeného úložiště. Odemkněte své úložiště jednou a poté se přepínejte mezi kontexty, jako jsou Klientovy projekty, Osobní deník, Zdravotní poznámky nebo Vzdělávání, aniž byste cokoli protínali.\n\nZůstaňte organizovaní a věnovaní konkrétnímu tématu. Můžete s klidem sdílet obrazovku: soukromý obsah se <isolation>nikdy neobjeví</isolation> omylem.\n\nJedno úložiště. Jasné hranice. Žádné zbytečné kroky."
 			},
 			"history": {
 				"title": "Verze poznámek",
-				"text": "Každá poznámka uchovává kompletní historii změn.\n\nDeepink ukládá verze automaticky, takže můžete vidět, co se změnilo, obnovit dřívější verzi nebo sledovat, jak se myšlenka vyvíjela v čase. Ať byla poznámka upravena včera nebo před rokem, nic důležitého se neztratí.\n\nPředchozí verze jsou vždy k dispozici, když je potřebujete."
+				"text": "Každá poznámka si uchovává <history>úplnou historii</history> změn.\n\nDeepink ukládá verze automaticky, takže můžete vidět, co se změnilo, obnovit předchozí verzi nebo sledovat, jak se myšlenka v čase vyvíjela. Ať už byla poznámka upravena včera nebo před rokem, nic důležitého neztratíte.\n\nPředchozí verze jsou vám kdykoli k dispozici."
 			},
 			"reminders": {
 				"title": "Připomínky",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Vnořené štítky",
-				"text": "Organizujte poznámky pomocí štítků s jasnou hierarchií.\n\nVnořené štítky umožňují vytvořit strukturu nadřazený/podřazený, takže široká témata mohou obsahovat konkrétní podtémata. Například Klienti mohou zahrnovat jména jednotlivých klientů a Finance mohou obsahovat Daně, Faktury a Reporty.\n\nNa rozdíl od složek nejsou štítky exkluzivní. Poznámka může mít více štítků najednou — klient, finance a časové období.\n\nVnořené štítky nabízejí přesnost i flexibilitu, i když se témata překrývají."
+				"text": "Organizujte své poznámky pomocí štítků, které mají jasnou strukturu.\n\n<tags>Hierarchie štítků</tags> vám umožní vytvořit vztah mezi nadřazenými a podřazenými tématy, takže obecné kategorie mohou obsahovat specifické podtémata. Například pod „Klienty“ můžete mít jména jednotlivých klientů a pod „Finance“ například Daně, Faktury a Reporty.\n\nNa rozdíl od složek nejsou štítky omezené. Jedna poznámka může mít několik štítků najednou – například klienta, finance i časové období.\n\nHierarchie štítků vám poskytuje přesnost i flexibilitu, i když se témata překrývají."
 			},
 			"encryption": {
 				"title": "Šifrování",
-				"text": "Celé úložiště je šifrované. Některé aplikace šifrují data pouze při synchronizaci nebo jen text poznámky. Deepink chrání kompletní strukturu vašeho úložiště.\n\nVaše poznámky, přílohy a metadata jsou nečitelné pro kohokoli kromě vás, včetně nás. Dokonce i velikosti souborů jsou maskovány, aby se snížilo riziko analýzy.\n\nCo si uložíte, zůstává soukromé už od základu."
+				"text": "Celé úložiště je <encryption>šifrované</encryption>. Některé aplikace šifrují pouze data při synchronizaci nebo pouze text poznámky. Deepink chrání celou strukturu vašeho úložiště.\n\nVaše poznámky, přílohy i metadata jsou pro kohokoliv jiného než pro vás nečitelná, včetně nás. Dokonce i velikosti souborů jsou maskované, aby se snížilo riziko analýzy.\n\nTo, co si ukládáte, zůstává soukromé <reference>v základu systému</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Prostor pro každou část vašeho života",
 		"text": "Uchovávejte každodenní poznámky, čtení i plány na jednom soukromém místě. Přepínejte kontexty jedním kliknutím, udržujte pořádek a pište bez přerušení.",
 		"button": "Získat Deepink"
+	},
+	"faq": {
+		"title": "Často kladené dotazy",
+		"text": "Chcete pochopit, jak Deepink funguje?\nTyto odpovědi vysvětlují principy aplikace, nikoliv jen její funkce."
 	}
 }

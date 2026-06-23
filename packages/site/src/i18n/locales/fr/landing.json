@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Un coffre-fort numérique fiable",
-				"text": "Tout dans votre coffre-fort est chiffré. Contrairement à beaucoup d'autres applications, cela concerne réellement <0>toutes vos données</0> : contenu des notes, fichiers et métadonnées. L'algorithme de chiffrement est à votre choix.\n\nDeepink est une application <1>open source</1>, avec un code que vous pouvez vérifier, pas seulement croire sur parole."
+				"text": "Tout ce qui se trouve dans votre coffre est <encryption>chiffré</encryption>. Contrairement à de nombreuses applications, cela signifie réellement <security>toutes vos données</security>, y compris le contenu des notes, les fichiers et les métadonnées. Vous choisissez l'algorithme en lequel vous avez confiance.\n\nDeepink est une application en <opensource>open source</opensource>, avec un code que vous pouvez vérifier, et pas seulement croire sur parole."
 			},
 			"workflow": {
 				"title": "L'ergonomie",
-				"text": "Deepink est conçu pour être rapide au quotidien, en éliminant les frictions des tâches les plus courantes. Pour la plupart des opérations, il nécessite <0>jusqu'à 80 % d'actions en moins</0> que les autres applications de prise de notes."
+				"text": "Deepink est conçu pour être <strong>rapide au quotidien</strong>, en éliminant toute friction lors des tâches les plus courantes. Pour la plupart des actions, il nécessite <0>jusqu'à 80 % de gestes en moins</0> que les autres applications de prise de notes."
 			},
 			"universality": {
 				"title": "Votre coffre-fort accueille tout",
-				"text": "Centralisez tout dans votre coffre-fort. Les espaces de travail et les tags imbriqués permettent de séparer les contextes et de retrouver rapidement ce dont vous avez besoin : cahiers des charges, contrats, extraits de code, citations de livres, journal quotidien, recherches, et bien plus."
+				"text": "Gardez <organizing>tout</organizing> dans votre coffre. Les <workspace>espaces de travail</workspace> et la hiérarchie des tags vous aident à séparer vos contextes et à trouver rapidement ce dont vous avez besoin : des spécifications de projet, contrats et extraits de code aux citations de livres, journal intime, recherches et bien plus encore."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Structurez votre réflexion",
-			"text": "Capturez une idée rapide ou construisez quelque chose de complexe. Deepink apporte ordre et clarté à tout ce que vous écrivez."
+			"text": "Capturez une idée rapide ou construisez quelque chose de complexe.\nDeepink apporte ordre et clarté à tout ce que vous écrivez."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Espaces de travail",
-				"text": "Séparez les différents domaines de votre vie sans créer plusieurs coffres-forts.\n\nLes espaces de travail créent des zones dédiées au sein d'un seul coffre-fort sécurisé. Déverrouillez votre coffre-fort une fois, puis passez d'un contexte à l'autre — Projets clients, Journal personnel, Notes de santé ou Apprentissage — sans rien mélanger.\n\nL'organisation reste claire et contextuelle. Le partage d'écran se fait en toute confiance : le contenu privé n'apparaît pas par erreur.\n\nUn seul coffre-fort. Des frontières nettes. Zéro friction."
+				"text": "Séparez les différents aspects de votre vie sans avoir à créer plusieurs coffres.\n\nLes <workspace>espaces de travail</workspace> créent des zones dédiées au sein d'un seul coffre sécurisé. Déverrouillez votre coffre une seule fois, puis passez d'un contexte à l'autre — Projets clients, Journal personnel, Santé ou Apprentissage — sans rien mélanger.\n\nRestez organisé et concentré. Partagez votre écran en toute sérénité : votre contenu privé <isolation>n'apparaîtra pas</isolation> par erreur.\n\nUn seul coffre. Des limites claires. Aucune friction."
 			},
 			"history": {
 				"title": "Versions des notes",
-				"text": "Chaque note conserve un historique complet de ses modifications.\n\nDeepink enregistre les versions automatiquement : vous pouvez voir ce qui a changé, restaurer un brouillon antérieur ou suivre l'évolution d'une idée au fil du temps. Qu'une modification date d'hier ou d'il y a un an, rien d'important n'est perdu.\n\nLes versions précédentes restent toujours accessibles quand vous en avez besoin."
+				"text": "Chaque note conserve un <history>historique complet</history> des modifications.\n\nDeepink enregistre les versions automatiquement. Vous pouvez voir ce qui a été modifié, restaurer un ancien brouillon ou suivre l'évolution d'une idée au fil du temps. Qu'une modification date d'hier ou d'un an, rien d'important n'est perdu.\n\nLes versions précédentes sont toujours disponibles quand vous en avez besoin."
 			},
 			"reminders": {
 				"title": "Rappels",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Tags imbriqués",
-				"text": "Les notes s'organisent grâce à des tags qui reflètent une hiérarchie claire.\n\nLes tags imbriqués permettent de créer une structure parent/enfant : les thèmes généraux contiennent des sous-thèmes précis. Par exemple, Clients peut inclure les noms de chaque client, et Finance peut regrouper Impôts, Factures et Rapports.\n\nContrairement aux dossiers, les tags ne sont pas exclusifs. Une note peut porter plusieurs tags à la fois — client, finance et période.\n\nLes tags imbriqués offrent à la fois précision et flexibilité, même quand les sujets se recoupent."
+				"text": "Organisez vos notes avec des tags qui respectent une structure claire.\n\nLa <tags>hiérarchie des tags</tags> vous permet de créer des relations parent/enfant, afin que des sujets larges puissent contenir des sous-sujets spécifiques. Par exemple, « Clients » peut inclure des noms de clients individuels, et « Finances » peut inclure « Impôts », « Factures » et « Rapports ».\n\nContrairement aux dossiers, les tags ne sont pas exclusifs. Une note peut posséder plusieurs tags simultanément : un client, un domaine financier et une période donnée.\n\nLa hiérarchie des tags offre précision et flexibilité, même lorsque les sujets se recoupent."
 			},
 			"encryption": {
 				"title": "Chiffrement",
-				"text": "L'intégralité du coffre-fort est chiffrée. Certaines applications ne chiffrent les données que pendant la synchronisation ou se limitent au texte des notes. Deepink protège la structure complète de votre coffre-fort.\n\nVos notes, pièces jointes et métadonnées sont illisibles pour quiconque sauf vous, y compris pour nous. Même la taille des fichiers est masquée pour réduire le risque d'analyse.\n\nCe que vous stockez reste privé, par conception."
+				"text": "L'intégralité du coffre est <encryption>chiffrée</encryption>. Certaines applications ne chiffrent que les données pendant la synchronisation ou le texte des notes. Deepink protège la structure complète de votre coffre.\n\nVos notes, pièces jointes et métadonnées sont illisibles pour quiconque d'autre que vous, y compris nous. Même la taille des fichiers est masquée pour limiter les risques d'analyse.\n\nCe que vous stockez reste privé <reference>par conception</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Un espace pour chaque facette de votre vie",
 		"text": "Notes du quotidien, lectures et projets réunis dans un seul espace privé. Changez de contexte en un clic, restez organisé et continuez à écrire sans perdre le fil.",
 		"button": "Obtenir Deepink"
+	},
+	"faq": {
+		"title": "Questions fréquentes",
+		"text": "Vous souhaitez comprendre le fonctionnement de Deepink ?\nCes réponses portent sur la philosophie de l'application, au-delà de ses simples fonctionnalités."
 	}
 }

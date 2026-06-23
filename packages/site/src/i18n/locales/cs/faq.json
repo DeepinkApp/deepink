@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Proč je Deepink lepší než ostatní aplikace pro poznámky?",
+		"text": "Deepink se zaměřuje na každodenní ergonomii. Běžné úkoly vyžadují méně kroků, přičemž výkonné funkce pro organizaci, soukromí a správu poznámek zůstávají snadno ovladatelné.\n\n<security>Prozkoumali</security> jsme více než 60 nejoblíbenějších aplikací pro poznámky a nenašli jsme žádnou, která by byla zároveň dostatečně bezpečná a jednoduchá na používání. Vždy se naráží na kompromisy – buď musíte zavřít oči nad svým soukromím, nebo se stát technickým nadšencem, který bojuje s nepřehledným rozhraním a neustálým nastavováním.\n\nMnoho aplikací je určených pro programátory a experty. Deepink je určen pro každého.\n\nMnoho alternativních aplikací je postavených tak, aby vydělávaly peníze. Deepink je postaven tak, aby lidem vnášel radost."
+	},
+	"differentFromOthers": {
+		"title": "V čem se Deepink liší od Obsidianu, Notionu nebo Joplinu?",
+		"text": "Deepink nepodporuje ani nevyužívá obsesivní chování, aby vás udržel u obrazovky.\n\nNeplatíme influencery, aby vám prodávali představu, že musíte budovat svůj „digitální zahrádek“, což ve skutečnosti často znamená jen kopírování a vkladání celého internetu do vaší aplikace.\n\nDeepink podporuje duševní pohodu. Pište si jen poznámky, které skutečně potřebujete. Rychle, soukromě a s klidem. To je všechno. Nestrávejte celý život u počítače."
+	},
+	"import": {
+		"title": "Co když už mám tisíce poznámek?",
+		"text": "Své poznámky si můžete <import>importovat</import> z jakékoli jiné aplikace přímo do Deepinku. Vyzkoušejte Deepink týden, abyste si ho osvojili."
+	},
+	"export": {
+		"title": "Co se stane, když se rozhodnu Deepink přestat používat?",
+		"text": "Své poznámky můžete <export>exportovat</export> kdykoli. Veškerý obsah včetně příloh a odkazů mezi poznámkami bude exportován jako zip archív s Markdown soubory.\n\nByl by nám potěšen, kdybyste nám před odchodem zanechali zpětnou vazbu na <email/>. Možná díky tomu vyřešíme vaše potíže a Deepink zlepšíme pro všechny."
+	},
+	"workspacesVsVaults": {
+		"title": "Proč používá Deepink prostory místo více úložišť?",
+		"text": "Prostory vám umožňují oddělit různé kontexty, aniž byste museli rozdělovat své informace do více úložišť. Přihlasujete se pouze jednou a mezi prostory přepínáte okamžitě podle potřeby."
+	},
+	"workspacesVsFolders": {
+		"title": "Proč jsou prostory pro organizaci poznámek lepší než složky?",
+		"text": "Složky organizují poznámky. Prostory organizují kontexty. Pomáhají oddělit různé oblasti vašeho života a zároveň udržují vaše poznámky, štítky a pracovní postup přehledné."
+	},
+	"stayingOrganized": {
+		"title": "Jak mi Deepink pomůže zůstat v organizaci, i když přibývá poznámek?",
+		"text": "Prostory, hierarchie štítků, odkazy a zpětné odkazy spolu pracují tak, aby informace zůstaly strukturované a snadno dohledatelné i v rozsáhlých kolekcích poznámek."
+	},
+	"ergonomics": {
+		"title": "Proč se Deepink takto zaměřuje na ergonomii?",
+		"text": "Psaní poznámek je činnost, kterou lidé provádějí každý den. Malé vylepšení pracovního postupu šetří čas, snižuje námahu a dlouhodobě zvyšuje celkový komfort používání."
+	},
+	"replaceMultipleApps": {
+		"title": "Může Deepink nahradit více aplikací pro správu znalostí?",
+		"text": "Pro mnoho lidí ano. Poznámenávací zápisky, dokumenty, výzkum, deníky, připomínky i referenční materiály mohou všechny existovat společně v rámci jednoho úložiště."
+	},
+	"nestedTags": {
+		"title": "Proč používat hierarchii štítků místo složek?",
+		"text": "Složky nutí každou poznámku patřit na jedno konkrétní místo. Štítky umožňují informacím spadat do více kategorií zároveň, zatímco hierarchie těchto štítků udržuje kategorie přehledné."
+	},
+	"connectedInformation": {
+		"title": "Jak Deepink udržuje související informace propojené?",
+		"text": "Odkazy a zpětné odkazy činí vztahy mezi informacemi viditelnými. Mezi souvisejícími poznámkami můžete přecházet přirozeně, aniž byste museli informace duplikovat."
+	},
+	"privacy": {
+		"title": "Jak Deepink chrání mé soukromí?",
+		"text": "Vše v vašem úložišti je šifrováno, včetně poznámek, souborů i metadat. Vaše informace jsou navrženy tak, aby zůstaly soukromé."
+	},
+	"openSource": {
+		"title": "Proč je Deepink open source?",
+		"text": "Soukromí a bezpečnost musí být ověřitelné. Díky otevřenému kódu může kód zkontrolovat kdokoli a potvrdit, jak aplikace skutečně funguje."
+	},
+	"personalOrWork": {
+		"title": "Je Deepink určen pro osobní poznámky, práci, nebo obojí?",
+		"text": "Obojí. Díky prostorům můžete snadno oddělit osobní a pracovní informace a přitom mít vše dostupné na jednom místě."
+	},
+	"largeVaults": {
+		"title": "Co se stane, když moje úložiště naroste?",
+		"text": "Deepink je navržen tak, aby zvládl vše od pár poznámek až po rozsáhlé znalostní báze. Funkce pro organizaci pomáhají udržet informace přehledné i při rostoucím objemu dat."
+	},
+	"oneVault": {
+		"title": "Proč mít vše v jednom úložišti?",
+		"text": "Informace jsou často propojeny způsoby, které nečekáme. Když držíte vše pohromadě, snáze nacházíte souvislosti, prohledáváte napříč kontexty a předejdete fragmentaci dat."
+	},
+	"markdownFiles": {
+		"title": "Proč nepoužít jen složku s Markdown soubory?",
+		"text": "Markdown soubory ukládají obsah. Deepink přidává organizaci, šifrování, historii poznámek, připomínky, odkazy, zpětné odkazy a pracovní postupy navržené tak, aby byly informace snadno spravovatelné."
+	}
+}

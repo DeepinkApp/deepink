@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Kho dữ liệu đáng tin cậy",
-				"text": "Mọi thứ trong kho dữ liệu của bạn đều được mã hóa. Khác với nhiều ứng dụng khác, điều này thực sự có nghĩa là <0>toàn bộ dữ liệu</0> bao gồm nội dung ghi chú, tệp đính kèm và siêu dữ liệu. Bạn có thể chọn thuật toán mã hóa mà mình tin tưởng.\n\nDeepink là ứng dụng <1>mã nguồn mở</1>, với mã nguồn bạn có thể tự kiểm chứng, không chỉ tin lời."
+				"text": "Mọi thứ trong kho lưu trữ của bạn đều được <encryption>mã hóa</encryption>. Khác với nhiều ứng dụng khác, điều này thực sự có nghĩa là <security>toàn bộ dữ liệu của bạn</security>, bao gồm nội dung ghi chú, tệp đính kèm và siêu dữ liệu. Bạn có thể tùy chọn thuật toán mà mình tin tưởng.\n\nDeepink là một ứng dụng <opensource>mã nguồn mở</opensource>, với mã nguồn mà bạn có thể tự mình xác minh thay vì chỉ đặt niềm tin."
 			},
 			"workflow": {
 				"title": "Thiết kế tiện dụng",
-				"text": "Deepink được xây dựng để thao tác nhanh trong sử dụng hàng ngày, loại bỏ những bước thừa khỏi các tác vụ phổ biến nhất. Với hầu hết các tác vụ, Deepink cần <0>ít hơn đến 80% thao tác</0> so với các ứng dụng ghi chú khác."
+				"text": "Deepink được thiết kế để <strong>sử dụng nhanh chóng mỗi ngày</strong>, loại bỏ mọi rào cản trong các tác vụ phổ biến nhất. Với hầu hết các thao tác, ứng dụng cần <0>ít hơn tới 80% số bước thực hiện</0> so với các ứng dụng ghi chú khác."
 			},
 			"universality": {
 				"title": "Kho dữ liệu chứa được mọi thứ",
-				"text": "Lưu trữ mọi thứ trong kho dữ liệu của bạn. Không gian làm việc và thẻ phân cấp giúp bạn tách biệt ngữ cảnh và tìm kiếm nhanh chóng — từ tài liệu dự án, hợp đồng, đoạn mã đến trích dẫn sách, nhật ký hàng ngày, nghiên cứu và nhiều hơn nữa."
+				"text": "Lưu trữ <organizing>mọi thứ</organizing> trong kho lưu trữ của bạn. Các <workspace>không gian làm việc</workspace> và phân cấp thẻ giúp bạn tách biệt các ngữ cảnh và tìm thấy thứ mình cần một cách nhanh chóng, từ thông số dự án, hợp đồng, đoạn mã đến các trích dẫn sách, nhật ký hàng ngày, nghiên cứu và nhiều hơn thế nữa."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Hệ thống hóa suy nghĩ",
-			"text": "Ghi lại một ý tưởng chợt đến hay xây dựng nội dung phức tạp. Deepink mang lại sự ngăn nắp và tập trung cho mọi thứ bạn viết."
+			"text": "Ghi lại một ý tưởng thoáng qua hoặc xây dựng một nội dung phức tạp.\nDeepink mang lại sự ngăn nắp và tập trung cho mọi thứ bạn viết xuống."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Không gian làm việc",
-				"text": "Tách biệt các lĩnh vực khác nhau trong cuộc sống mà không cần tạo nhiều kho dữ liệu.\n\nKhông gian làm việc tạo ra các khu vực riêng biệt bên trong một kho dữ liệu bảo mật duy nhất. Mở khóa kho dữ liệu một lần, sau đó chuyển đổi giữa các ngữ cảnh như Dự án Khách hàng, Nhật ký Cá nhân, Ghi chú Sức khỏe hay Học tập mà không lẫn lộn.\n\nMọi thứ được sắp xếp rõ ràng theo ngữ cảnh. Chia sẻ màn hình một cách tự tin — nội dung riêng tư sẽ không vô tình hiển thị.\n\nMột kho dữ liệu. Ranh giới rõ ràng. Không rào cản."
+				"text": "Giữ các khía cạnh khác nhau của cuộc sống riêng biệt mà không cần tạo nhiều kho lưu trữ.\n\n<workspace>Không gian làm việc</workspace> tạo ra các khu vực tập trung bên trong một kho lưu trữ an toàn duy nhất. Chỉ cần mở khóa kho lưu trữ một lần, sau đó bạn có thể chuyển đổi giữa các ngữ cảnh như Dự án khách hàng, Nhật ký cá nhân, Ghi chú sức khỏe hoặc Học tập mà không lo bị lẫn lộn.\n\nLuôn ngăn nắp và đúng trọng tâm. Bạn có thể tự tin chia sẻ màn hình: các nội dung riêng tư <isolation>sẽ không xuất hiện</isolation> một cách vô ý.\n\nMột kho lưu trữ. Ranh giới rõ ràng. Không rào cản."
 			},
 			"history": {
 				"title": "Lịch sử phiên bản",
-				"text": "Mỗi ghi chú lưu giữ toàn bộ lịch sử thay đổi.\n\nDeepink tự động lưu các phiên bản, giúp bạn xem những gì đã thay đổi, khôi phục bản nháp trước đó, hoặc theo dõi quá trình phát triển của một ý tưởng. Dù được chỉnh sửa hôm qua hay một năm trước, không có gì quan trọng bị mất.\n\nCác phiên bản trước luôn sẵn sàng khi bạn cần."
+				"text": "Mỗi ghi chú đều lưu giữ <history>toàn bộ lịch sử</history> thay đổi.\n\nDeepink tự động lưu các phiên bản, giúp bạn xem được những gì đã thay đổi, khôi phục bản nháp trước đó hoặc theo dõi quá trình phát triển của một ý tưởng theo thời gian. Dù được chỉnh sửa vào hôm qua hay một năm trước, không có nội dung quan trọng nào bị mất đi.\n\nCác phiên bản trước luôn sẵn sàng khi bạn cần."
 			},
 			"reminders": {
 				"title": "Nhắc nhở",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Thẻ phân cấp",
-				"text": "Sắp xếp ghi chú bằng hệ thống thẻ có cấu trúc phân cấp rõ ràng.\n\nThẻ phân cấp cho phép tạo cấu trúc cha/con, để các chủ đề rộng có thể chứa các chủ đề con cụ thể. Ví dụ, Khách hàng có thể bao gồm tên từng khách hàng, và Tài chính có thể bao gồm Thuế, Hóa đơn và Báo cáo.\n\nKhác với thư mục, thẻ không loại trừ lẫn nhau. Một ghi chú có thể mang nhiều thẻ cùng lúc — khách hàng, tài chính và khoảng thời gian.\n\nThẻ phân cấp mang lại cả sự chính xác lẫn linh hoạt, ngay cả khi các chủ đề chồng chéo."
+				"text": "Tổ chức ghi chú của bạn bằng các thẻ theo một hệ thống phân cấp rõ ràng.\n\n<tags>Thẻ phân cấp</tags> cho phép bạn tạo cấu trúc cha/con, để các chủ đề lớn có thể chứa các chủ đề phụ cụ thể. Ví dụ: 'Khách hàng' có thể bao gồm tên từng khách hàng, và 'Tài chính' có thể bao gồm Thuế, Hóa đơn và Báo cáo.\n\nKhác với thư mục, thẻ không bị giới hạn. Một ghi chú có thể có nhiều thẻ cùng lúc - như khách hàng, tài chính và một khoảng thời gian.\n\nThẻ phân cấp mang lại cho bạn cả sự chính xác lẫn tính linh hoạt, ngay cả khi các chủ đề chồng lấp lên nhau."
 			},
 			"encryption": {
 				"title": "Mã hóa",
-				"text": "Toàn bộ kho dữ liệu được mã hóa. Một số ứng dụng chỉ mã hóa dữ liệu khi đồng bộ hoặc chỉ nội dung ghi chú. Deepink bảo vệ toàn bộ cấu trúc kho dữ liệu của bạn.\n\nGhi chú, tệp đính kèm và siêu dữ liệu của bạn không thể đọc được bởi bất kỳ ai ngoài bạn, kể cả chúng tôi. Ngay cả kích thước tệp cũng được che giấu để giảm thiểu rủi ro phân tích.\n\nNhững gì bạn lưu trữ luôn được bảo mật theo thiết kế."
+				"text": "Toàn bộ kho lưu trữ đều được <encryption>mã hóa</encryption>. Một số ứng dụng chỉ mã hóa dữ liệu khi đồng bộ hóa hoặc chỉ mã hóa văn bản ghi chú. Deepink bảo vệ toàn bộ cấu trúc kho lưu trữ của bạn.\n\nGhi chú, tệp đính kèm và siêu dữ liệu của bạn sẽ không thể đọc được bởi bất kỳ ai ngoại trừ bạn, kể cả chúng tôi. Ngay cả kích thước tệp cũng được làm mờ để giảm thiểu rủi ro bị phân tích.\n\nNhững gì bạn lưu trữ luôn luôn riêng tư <reference>theo thiết kế cốt lõi</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Không gian cho mọi khía cạnh cuộc sống",
 		"text": "Lưu giữ ghi chú hàng ngày, tài liệu đọc và kế hoạch trong một nơi riêng tư duy nhất. Chuyển đổi ngữ cảnh chỉ với một cú nhấp, duy trì sự ngăn nắp và tiếp tục viết mà không bị gián đoạn.",
 		"button": "Tải Deepink"
+	},
+	"faq": {
+		"title": "Câu hỏi thường gặp",
+		"text": "Bạn muốn hiểu cách Deepink hoạt động?\nNhững câu trả lời này sẽ giải thích các nguyên lý đằng sau ứng dụng, thay vì chỉ nói về các tính năng."
 	}
 }

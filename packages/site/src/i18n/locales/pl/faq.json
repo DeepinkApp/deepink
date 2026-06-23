@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Dlaczego Deepink jest lepszy od innych aplikacji do notatek?",
+		"text": "Deepink stawia na codzienną ergonomię. Typowe zadania wymagają mniej kroków, a zaawansowane funkcje organizacji, prywatności i zarządzania notatkami pozostają proste w obsłudze.\n\n<security>Przeanalizowaliśmy</security> ponad 60 najpopularniejszych aplikacji do notatek i nie znaleźliśmy żadnej, która byłaby jednocześnie wystarczająco bezpieczna i łatwa w użyciu. Zawsze pojawiają się kompromisy – albo rezygnujesz z prywatności, albo musisz być ekspertem, który mierzy się ze skomplikowanymi interfejsami i ciągłą konfiguracją.\n\nWiele aplikacji jest tworzonych dla programistów i pasjonatów technologii. Deepink jest dla każdego.\n\nWiększość alternatyw powstała po to, by zarabiać. Deepink powstał po to, by dawać satysfakcję."
+	},
+	"differentFromOthers": {
+		"title": "Co odróżnia Deepink od Obsidian, Notion czy Joplin?",
+		"text": "Deepink nie wykorzystuje mechanizmów uzależniających, aby zatrzymać Cię w aplikacji jak najdłużej.\n\nNie zatrudniamy influencerów, by przekonywać Cię, że musisz budować swój „cyfrowy ogród”, co często sprowadza się do kopiowania i wklejania całego internetu do aplikacji.\n\nDeepink wspiera dobrostan. Zapisuj tylko to, czego naprawdę potrzebujesz. Rób to szybko, prywatnie i żyj pełniej. To wszystko. Nie spędzaj całego życia przed komputerem."
+	},
+	"import": {
+		"title": "A co, jeśli mam już tysiące notatek?",
+		"text": "Możesz <import>zaimportować swoje notatki</import> z dowolnej innej aplikacji do Deepink. Wypróbuj Deepink przez tydzień, aby sprawdzić, jak Ci się pracuje."
+	},
+	"export": {
+		"title": "Co się stanie, jeśli zdecyduję się przestać używać Deepink?",
+		"text": "Możesz <export>wyeksportować swoje notatki</export> w dowolnym momencie. Cała zawartość, w tym załączniki i linki między notatkami, zostanie wyeksportowana jako archiwum ZIP z plikami Markdown.\n\nBędziemy wdzięczni za opinię pod adresem <email/> przed rezygnacją. Może uda nam się rozwiązać Twoje problemy i ulepszyć Deepink dla wszystkich."
+	},
+	"workspacesVsVaults": {
+		"title": "Dlaczego w Deepink używa się przestrzeni roboczych zamiast wielu zaszyfrowanych kontenerów?",
+		"text": "Przestrzenie robocze pozwalają oddzielić od siebie różne konteksty bez konieczności rozdzielania informacji między wiele kontenerów. Odblokowujesz aplikację raz i błyskawicznie przełączasz się między obszarami, gdy zajdzie taka potrzeba."
+	},
+	"workspacesVsFolders": {
+		"title": "Dlaczego przestrzenie robocze są lepsze od folderów w organizacji notatek?",
+		"text": "Foldery porządkują notatki. Przestrzenie robocze porządkują konteksty. Pomagają oddzielić różne sfery życia, pozwalając zachować skupienie na notatkach, tagach i procesach pracy."
+	},
+	"stayingOrganized": {
+		"title": "Jak Deepink pomaga utrzymać porządek wraz ze wzrostem liczby notatek?",
+		"text": "Przestrzenie robocze, hierarchia tagów, linki oraz połączenia zwrotne współpracują ze sobą, dzięki czemu informacje pozostają uporządkowane i łatwe do znalezienia, nawet w dużych zbiorach."
+	},
+	"ergonomics": {
+		"title": "Dlaczego Deepink tak bardzo skupia się na ergonomii?",
+		"text": "Notowanie to czynność wykonywana codziennie. Małe usprawnienia w procesie pracy oszczędzają czas, redukują frustrację i sprawiają, że korzystanie z aplikacji staje się przyjemniejsze w dłuższej perspektywie."
+	},
+	"replaceMultipleApps": {
+		"title": "Czy Deepink może zastąpić wiele aplikacji do zarządzania wiedzą?",
+		"text": "Dla wielu osób – tak. Notatki, dokumenty, badania, dzienniki, przypomnienia i materiały referencyjne mogą znajdować się w jednym bezpiecznym miejscu."
+	},
+	"nestedTags": {
+		"title": "Dlaczego warto używać hierarchii tagów zamiast folderów?",
+		"text": "Foldery narzucają każdej notatce tylko jedno miejsce. Tagi pozwalają informacjom należeć do wielu kategorii jednocześnie, a hierarchia tagów pozwala zachować strukturę tych kategorii."
+	},
+	"connectedInformation": {
+		"title": "W jaki sposób Deepink łączy powiązane ze sobą informacje?",
+		"text": "Linki i połączenia zwrotne czynią relacje między treściami widocznymi. Możesz naturalnie przemieszczać się między powiązanymi notatkami bez konieczności dublowania informacji."
+	},
+	"privacy": {
+		"title": "W jaki sposób Deepink chroni moją prywatność?",
+		"text": "Wszystko w Twoim bezpiecznym kontenerze jest zaszyfrowane, w tym notatki, pliki i metadane. Prywatność jest wpisana w fundamenty tej aplikacji."
+	},
+	"openSource": {
+		"title": "Dlaczego Deepink jest oprogramowaniem open source?",
+		"text": "Prywatność i bezpieczeństwo powinny być weryfikowalne. Model open source pozwala każdemu sprawdzić kod i potwierdzić, w jaki sposób działa aplikacja."
+	},
+	"personalOrWork": {
+		"title": "Czy Deepink jest przeznaczony do notatek prywatnych, zawodowych, czy obu rodzajów?",
+		"text": "Do obu. Przestrzenie robocze ułatwiają oddzielenie spraw prywatnych od zawodowych, zachowując jednocześnie dostęp do wszystkiego w jednym miejscu."
+	},
+	"largeVaults": {
+		"title": "Co się stanie, gdy mój bezpieczny kontener stanie się bardzo duży?",
+		"text": "Deepink został zaprojektowany tak, aby skalować się od kilku notatek do ogromnych baz wiedzy. Funkcje organizacji pomagają zarządzać informacjami, nawet gdy ich liczba znacznie wzrośnie."
+	},
+	"oneVault": {
+		"title": "Dlaczego warto trzymać wszystko w jednym miejscu?",
+		"text": "Informacje często łączą się w nieoczekiwany sposób. Trzymanie wszystkiego razem ułatwia odkrywanie powiązań, przeszukiwanie różnych kontekstów i zapobiega rozproszeniu danych."
+	},
+	"markdownFiles": {
+		"title": "Dlaczego nie wystarczy zwykły folder z plikami Markdown?",
+		"text": "Pliki Markdown przechowują treść. Deepink dodaje do nich organizację, szyfrowanie, historię zmian, przypomnienia, linki oraz procesy pracy zaprojektowane tak, aby ułatwić zarządzanie informacjami."
+	}
+}

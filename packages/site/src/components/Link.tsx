@@ -52,10 +52,9 @@ export const linkRecipe = defineRecipe({
 				padding: '.4rem .8rem',
 				borderRadius: '6px',
 				fontWeight: '500',
-				color: '#262423',
+				color: 'typography.base',
 				_hover: {
-					bg: '#ffe2cb',
-					color: 'brand.buttonSecondaryText',
+					bg: 'sand.200',
 				},
 			},
 			'button-primary': {
@@ -66,11 +65,10 @@ export const linkRecipe = defineRecipe({
 				py: '0.7rem',
 				borderRadius: '8px',
 				fontWeight: '500',
-				bg: '#df560e',
-				color: 'white',
+				bg: 'accent.500',
+				color: 'accent.50',
 				_hover: {
-					bg: '#ee5708',
-					color: 'white',
+					bg: 'accent.600',
 				},
 			},
 			'button-secondary': {
@@ -81,11 +79,10 @@ export const linkRecipe = defineRecipe({
 				py: '0.7rem',
 				borderRadius: '8px',
 				fontWeight: '500',
-				bg: 'brand.buttonSecondaryBg',
-				color: 'brand.buttonSecondaryText',
+				bg: 'sand.200',
+				color: 'typography.secondary',
 				_hover: {
-					bg: '#ffe2cb',
-					color: 'brand.buttonSecondaryText',
+					bg: 'sand.300',
 				},
 			},
 		},

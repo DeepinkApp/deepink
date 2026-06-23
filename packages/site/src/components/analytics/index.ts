@@ -12,6 +12,8 @@ import {
 } from 'plausible-client';
 import { getSessionId } from 'plausible-client/utils/uid';
 
+import { enableTrackKeyboardUsers } from './enableTrackKeyboardUsers';
+
 export const createPlausibleInstance = () => {
 	const plausible = new Plausible({
 		apiHost: 'https://uxt.vitonsky.net',
@@ -41,6 +43,8 @@ export const createPlausibleInstance = () => {
 
 		cleanups.push(enableAutoOutboundTracking(plausible, { captureText: true }));
 		cleanups.push(enableLinkClicksCapture(plausible, { captureText: true }));
+
+		cleanups.push(enableTrackKeyboardUsers(plausible));
 	}
 
 	return {
@@ -58,6 +62,7 @@ export enum ANALYTICS_EVENT {
 	SHARE_LINK = 'Share link click',
 	MOBILE_MENU = 'Mobile menu click',
 	FEATURES_CLICK = 'Features button click',
+	FAQ_CLICK = 'FAQ: Item click',
 }
 
 export type ANALYTICS_EVENT_PAYLOADS = {

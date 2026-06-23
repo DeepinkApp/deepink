@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "A vault you can trust",
-				"text": "Everything in your vault is encrypted. Unlike many other apps, it does really mean <0>all your data</0> including notes content, files, and metadata. You can choose the algorithm you trust.\n\nDeepink is an <1>open source</1> app, with code you can verify, not just trust."
+				"text": "Everything in your vault is <encryption>encrypted</encryption>. Unlike many other apps, it does really mean <security>all your data</security> including notes content, files, and metadata. You can choose the algorithm you trust.\n\nDeepink is an <opensource>open source</opensource> app, with code you can verify, not just trust."
 			},
 			"workflow": {
 				"title": "The ergonomics",
-				"text": "Deepink is built to be quick in everyday use, with friction removed from the most common tasks. For most tasks, it needs <0>up to 80% fewer actions</0> than other note-taking apps."
+				"text": "Deepink is built to be <strong>quick in everyday use</strong>, with friction removed from the most common tasks. For most tasks, it needs <0>up to 80% fewer actions</0> than other note-taking apps."
 			},
 			"universality": {
 				"title": "Your vault fits everything",
-				"text": "Keep everything in your vault. Workspaces and nested tags help you separate contexts and find what you need quickly, from project specs, contracts, and code snippets to book quotes, a daily journal, research, and more."
+				"text": "Keep <organizing>everything</organizing> in your vault. <workspace>Workspaces</workspace> and nested tags help you separate contexts and find what you need quickly, from project specs, contracts, and code snippets to book quotes, a daily journal, research, and more."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Structure your thinking",
-			"text": "Capture a quick insight or build something complex. Deepink brings order and focus to everything you write down."
+			"text": "Capture a quick insight or build something complex.\nDeepink brings order and focus to everything you write down."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Workspaces",
-				"text": "Keep different areas of your life separate without creating multiple vaults.\n\nWorkspaces create focused spaces inside one secure vault. Unlock your vault once, then switch between contexts like Client Projects, Personal Journal, Health Notes, or Learning without mixing anything.\n\nStay organized and context-specific. Share your screen with confidence: private content won’t appear by mistake.\n\nOne vault. Clear boundaries. Zero friction."
+				"text": "Keep different areas of your life separate without creating multiple vaults.\n\n<workspace>Workspaces</workspace> create focused spaces inside one secure vault. Unlock your vault once, then switch between contexts like Client Projects, Personal Journal, Health Notes, or Learning without mixing anything.\n\nStay organized and context-specific. Share your screen with confidence: private content <isolation>won’t appear</isolation> by mistake.\n\nOne vault. Clear boundaries. Zero friction."
 			},
 			"history": {
 				"title": "Note versions",
-				"text": "Each note keeps a complete history of changes.\n\nDeepink saves versions automatically, so you can see what changed, restore an earlier draft, or follow how an idea developed over time. Whether it was edited yesterday or a year ago, nothing important is lost.\n\nPrevious versions are always available when you need them."
+				"text": "Each note keeps a <history>complete history</history> of changes.\n\nDeepink saves versions automatically, so you can see what changed, restore an earlier draft, or follow how an idea developed over time. Whether it was edited yesterday or a year ago, nothing important is lost.\n\nPrevious versions are always available when you need them."
 			},
 			"reminders": {
 				"title": "Reminders",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Nested tags",
-				"text": "Organize your notes with tags that reflect a clear hierarchy.\n\nNested tags let you create a parent/child structure, so broad topics can contain specific subtopics. For example, Clients can include individual client names, and Finance can include Taxes, Invoices, and Reports.\n\nUnlike folders, tags aren’t exclusive. A note can have multiple tags at once - client, finance, and a time period.\n\nNested tags give you both precision and flexibility, even when topics overlap."
+				"text": "Organize your notes with tags that reflect a clear hierarchy.\n\n<tags>Nested tags</tags> let you create a parent/child structure, so broad topics can contain specific subtopics. For example, Clients can include individual client names, and Finance can include Taxes, Invoices, and Reports.\n\nUnlike folders, tags aren’t exclusive. A note can have multiple tags at once - client, finance, and a time period.\n\nNested tags give you both precision and flexibility, even when topics overlap."
 			},
 			"encryption": {
 				"title": "Encryption",
-				"text": "The entire vault is encrypted. Some apps only encrypt data during sync or the note text. Deepink protects the full structure of your vault.\n\nYour notes, attachments, and metadata are unreadable to anyone but you, including us. Even file sizes are obfuscated to reduce the risk of analysis.\n\nWhat you store stays private by design."
+				"text": "The entire vault is <encryption>encrypted</encryption>. Some apps only encrypt data during sync or the note text. Deepink protects the full structure of your vault.\n\nYour notes, attachments, and metadata are unreadable to anyone but you, including us. Even file sizes are obfuscated to reduce the risk of analysis.\n\nWhat you store stays private <reference>by design</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "A space for every part of your life",
 		"text": "Keep everyday notes, reading, and plans in one private place. Switch contexts in a click, stay organized, and keep writing without breaking your flow.",
 		"button": "Get Deepink"
+	},
+	"faq": {
+		"title": "Frequently Asked Questions",
+		"text": "Want to understand how Deepink works?\nThese answers cover the ideas behind the app, not just the features."
 	}
 }

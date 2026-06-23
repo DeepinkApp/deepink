@@ -11,15 +11,15 @@
 		"content": {
 			"encryption": {
 				"title": "Trezor, ki mu lahko zaupate",
-				"text": "Vse v vašem trezorju je šifrirano. Za razliko od mnogih drugih aplikacij to resnično pomeni <0>vse vaše podatke</0>, vključno z vsebino zapiskov, datotekami in metapodatki. Izberete lahko algoritem, ki mu zaupate.\n\nDeepink je aplikacija z <1>odprto kodo</1>, ki jo lahko preverite, ne le zaupate."
+				"text": "Vse v vašem arhivu je <encryption>šifrirano</encryption>. Za razliko od večine drugih aplikacij to zares pomeni <security>vso vašo podatkovno strukturo</security>, vključno vsebino zapiskov, datoteke in metapodatke. Algoritem lahko izberete sami.\n\nDeepink je <opensource>odprtokodni</opensource> projekt z morsko kodo, ki jo lahko preverite, namesto da bi ji le zaupali."
 			},
 			"workflow": {
 				"title": "Ergonomija",
-				"text": "Deepink je zasnovan za hitro vsakodnevno uporabo, brez nepotrebnih korakov pri najpogostejših opravilih. Za večino nalog potrebuje <0>do 80 % manj dejanj</0> kot druge aplikacije za zapisovanje."
+				"text": "Deepink je zasnovan za <strong>hitro vsakodnevno uporabo</strong>, pri čemer so ovire pri najpogostejših opravilih odstranjene. Za večino opravil zahteva <0>do 80 % manj dejanj</0> kot druge aplikacije za zapisovanje."
 			},
 			"universality": {
 				"title": "Vaš trezor sprejme vse",
-				"text": "Hranite vse na enem mestu. Delovni prostori in ugnezdene oznake pomagajo ločiti kontekste in hitro najti, kar potrebujete — od specifikacij projektov, pogodb in odrezkov kode do citatov iz knjig, dnevnika, raziskav in še več."
+				"text": "V svojem arhivu hranite <organizing>vse</organizing>. <workspace>Prostori</workspace> in hierarchija oznak vam pomagajo ločiti kontekste in hitro najti tisto, kar potrebujete – od specifikacij projektov, pogodb in kode do citatov iz knjig, dnevnikov, raziskav in še več."
 			}
 		},
 		"cta": {
@@ -30,7 +30,7 @@
 	"features": {
 		"intro": {
 			"title": "Strukturirajte svoje misli",
-			"text": "Zabeležite hitro idejo ali zgradite nekaj kompleksnega. Deepink prinaša red in fokus vsemu, kar zapišete."
+			"text": "Zapišite hitro misel ali ustvarite nekaj kompleksnega.\nDeepink v vse, kar zapišete, vnese red in osredotočenost."
 		},
 		"content": {
 			"links": {
@@ -39,11 +39,11 @@
 			},
 			"workspaces": {
 				"title": "Delovni prostori",
-				"text": "Ločite različna področja svojega življenja, ne da bi ustvarjali več trezorjev.\n\nDelovni prostori ustvarijo osredotočene prostore znotraj enega varnega trezorja. Odklenite trezor enkrat, nato preklapljajte med konteksti, kot so Projekti za stranke, Osebni dnevnik, Zdravstveni zapiski ali Učenje — brez mešanja.\n\nVsebina ostane organizirana in kontekstno ločena. Zaslon lahko delite brez skrbi: zasebna vsebina se ne prikaže po pomoti.\n\nEn trezor. Jasne meje. Brez trenja."
+				"text": "Ločite različne področja svojega življenja, ne da bi ustvarjali več arhivov.\n\n<workspace>Prostori</workspace> ustvarijo osredotočena področja znotraj enega varnega arhiva. Arhiv odklenete le enkrat, nato pa preklapljate med konteksti, kot so Projekti strank, Osebni dnevnik, Zdravje ali Učenje, ne da bi stvari mešali.\n\nBodite organizirani in specifični. Zaupno delajte z zaslonom: zasebne vsebine <isolation>ne bodo</isolation> prikazane po pomoti.\n\nEna arhiva. Jasne meje. Brez ovir."
 			},
 			"history": {
 				"title": "Različice zapiskov",
-				"text": "Vsak zapisek hrani celotno zgodovino sprememb.\n\nDeepink samodejno shranjuje različice, tako da lahko vidite, kaj se je spremenilo, obnovite prejšnji osnutek ali spremljate, kako se je ideja razvijala skozi čas. Ne glede na to, ali je bil zapisek urejen včeraj ali pred letom dni, nič pomembnega ni izgubljenega.\n\nPrejšnje različice so vedno na voljo, ko jih potrebujete."
+				"text": "Vsak zapis ohranja <history>celotno zgodovino</history> sprememb.\n\nDeepink samodejno shranjuje različice, zato lahko vidite, kaj se je spremenilo, obnovite starejšo različico ali spremljate razvoj ideje skozi čas. Ne glede na to, ali je bil zapis urejan včeraj ali pred letom, nič pomembnega ni izgubljeno.\n\nPrejšnje različice so vedno na voljo, ko jih potrebujete."
 			},
 			"reminders": {
 				"title": "Opomniki",
@@ -51,11 +51,11 @@
 			},
 			"tags": {
 				"title": "Ugnezdene oznake",
-				"text": "Organizirajte zapiske z oznakami, ki odražajo jasno hierarhijo.\n\nUgnezdene oznake omogočajo strukturo nadrejeni/podrejeni, tako da širše teme vsebujejo specifične podteme. Na primer, Stranke lahko vključujejo imena posameznih strank, Finance pa lahko vključujejo Davke, Račune in Poročila.\n\nZa razliko od map oznake niso izključujoče. Zapisek ima lahko več oznak hkrati — stranka, finance in časovno obdobje.\n\nUgnezdene oznake nudijo natančnost in prilagodljivost, tudi ko se teme prekrivajo."
+				"text": "Zapiše organizirajte z oznakami, ki sledijo jasni hierarchiji.\n\n<tags>Hierarhične oznake</tags> vam omogočajo ustvarjanje strukture z glavnimi in podnatenji, tako da lahko splošne teme vsebujejo specifične podteme. Na primer, pod »Stranke« lahko vključite imena posameznih strank, pod »Finance« pa davke, račune in poročila.\n\nZa razliko od map oznake niso omejujoče. Zapis lahko ima hkrati več oznak – npr. stranka, finance in časovno obdobje.\n\nHierarhične oznake vam zagotavljajo natančnost in prilagodljivost, tudi ko se teme prepletajo."
 			},
 			"encryption": {
 				"title": "Šifriranje",
-				"text": "Celoten trezor je šifriran. Nekatere aplikacije šifrirajo podatke le med sinhronizacijo ali samo besedilo zapiska. Deepink ščiti celotno strukturo vašega trezorja.\n\nVaši zapiski, priponke in metapodatki so neberljivi za vse razen za vas — vključno z nami. Tudi velikosti datotek so zakriti, da se zmanjša tveganje analize.\n\nKar shranite, ostane zasebno po zasnovi."
+				"text": "Celoten arhiv je <encryption>šifriran</encryption>. Nekatere aplikacije šifrirajo le podatke med sinhronizacijo ali le besedilo zapisa. Deepink zaščiti celotno strukturo vašega arhiva.\n\nVaši zapisi, priloge in metapodatki so za vse razen vas nečitljivi – vključno z nami. Celo velikosti datotek so prikrite, da se zmanjša tveganje za analizo.\n\nTo, kar hranite, ostane zasebno <reference>po zasnovi</reference>."
 			}
 		}
 	},
@@ -63,5 +63,9 @@
 		"title": "Prostor za vsak del vašega življenja",
 		"text": "Hranite vsakodnevne zapiske, branje in načrte na enem zasebnem mestu. Preklapljajte med konteksti z enim klikom, ohranjajte red in pišite brez prekinitev.",
 		"button": "Prenesi Deepink"
+	},
+	"faq": {
+		"title": "Pogosta vprašanja",
+		"text": "Želite razumeti, kako Deepink deluje?\nTi odgovori pojasnjujejo princip delovanja aplikacije, ne le njene funkcije."
 	}
 }

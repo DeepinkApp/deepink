@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "Perché Deepink è migliore delle altre app per appunti?",
+		"text": "Deepink si concentra sull'ergonomia quotidiana. Le attività comuni richiedono meno passaggi, mentre le potenti funzioni di organizzazione, privacy e gestione degli appunti restano semplici da usare.\n\nAbbiamo <security>analizzato</security> oltre 60 delle app per appunti più diffuse e non abbiamo trovato nulla che fosse allo stesso tempo sicuro e facile da usare. Ci sono sempre compromessi: o non ci si preoccupa della privacy, o si è un esperto che deve affrontare un'esperienza difficile, interfacce poco gradevoli e configurazioni infinite.\n\nMolte app sono pensate per programmatori ed esperti. Deepink è per tutti.\n\nLa maggior parte delle alternative è costruita per generare profitto; Deepink è costruita per offrire benessere."
+	},
+	"differentFromOthers": {
+		"title": "Cosa distingue Deepink da Obsidian, Notion e Joplin?",
+		"text": "Deepink non incoraggia né sfrutta comportamenti ossessivi per trattenerti sull'app.\n\nNon assumiamo influencer per venderti l'idea che devi coltivare un \"giardino digitale\", il che spesso significa copiare e incollare l'intero internet nella tua app.\n\nDeepink favorisce il benessere. Prendi solo gli appunti che ti servono davvero. Fallo in modo rapido, privato e vivi meglio. Tutto qui. Non sprecare la vita davanti al computer."
+	},
+	"import": {
+		"title": "E se avessi già migliaia di appunti?",
+		"text": "Puoi <import>importare i tuoi appunti</import> da qualsiasi altra app in Deepink. Prova Deepink per una settimana per familiarizzare con l'esperienza."
+	},
+	"export": {
+		"title": "Cosa succede se decido di smettere di usare Deepink?",
+		"text": "Puoi <export>esportare i tuoi appunti</export> in qualsiasi momento. Tutto il tuo contenuto, inclusi allegati e collegamenti tra appunti, verrà esportato come archivio zip con file Markdown.\n\nApprezzeremmo molto un tuo feedback su <email/> prima di andare via. Potremmo risolvere i problemi e migliorare Deepink per tutti."
+	},
+	"workspacesVsVaults": {
+		"title": "Perché Deepink usa gli spazi di lavoro invece di più vault?",
+		"text": "Gli spazi di lavoro ti permettono di separare i diversi contesti senza dividere le informazioni in più vault. Ti autentichi una sola volta e passi da uno all'altro istantaneamente."
+	},
+	"workspacesVsFolders": {
+		"title": "Perché gli spazi di lavoro sono migliori delle cartelle per organizzare gli appunti?",
+		"text": "Le cartelle organizzano gli appunti. Gli spazi di lavoro organizzano i contesti. Ti aiutano a separare i diversi ambiti della tua vita mantenendo appunti, tag e flussi di lavoro focalizzati."
+	},
+	"stayingOrganized": {
+		"title": "Come fa Deepink ad aiutarmi a rimanere organizzato man mano che gli appunti aumentano?",
+		"text": "Spazi di lavoro, gerarchie di tag, collegamenti e backlink lavorano insieme per mantenere le informazioni strutturate e facili da trovare, anche in collezioni molto vaste."
+	},
+	"ergonomics": {
+		"title": "Perché Deepink punta così tanto sull'ergonomia?",
+		"text": "Scrivere appunti è un'attività quotidiana. Piccoli miglioramenti nel flusso di lavoro fanno risparmiare tempo, riducono la fatica e rendono l'esperienza più piacevole nel lungo periodo."
+	},
+	"replaceMultipleApps": {
+		"title": "Deepink può sostituire diverse app per la gestione della conoscenza personale?",
+		"text": "Per molte persone, sì. Appunti, documenti, ricerche, diari, promemoria e materiale di riferimento possono coesistere all'interno dello stesso vault."
+	},
+	"nestedTags": {
+		"title": "Perché usare le gerarchie di tag invece delle cartelle?",
+		"text": "Le cartelle costringono ogni appunto in un'unica posizione. I tag permettono alle informazioni di appartenere a più categorie contemporaneamente, mentre le gerarchie di tag mantengono tali categorie strutturate."
+	},
+	"connectedInformation": {
+		"title": "Come fa Deepink a mantenere connessioni tra informazioni correlate?",
+		"text": "Link e backlink rendono visibili le relazioni. Puoi muoverti naturalmente tra appunti correlati senza duplicare le informazioni."
+	},
+	"privacy": {
+		"title": "Come protegge Deepink la mia privacy?",
+		"text": "Tutto ciò che si trova nel tuo vault è criptato, inclusi appunti, file e metadati. Le tue informazioni sono private per progettazione."
+	},
+	"openSource": {
+		"title": "Perché Deepink è open source?",
+		"text": "La privacy e la sicurezza devono essere verificabili. L'open source permette a chiunque di ispezionare il codice e confermare come funziona l'applicazione."
+	},
+	"personalOrWork": {
+		"title": "Deepink è pensata per appunti personali, di lavoro o per entrambi?",
+		"text": "Entrambi. Gli spazi di lavoro rendono facile separare informazioni personali e professionali, mantenendo tutto accessibile in un unico posto."
+	},
+	"largeVaults": {
+		"title": "Cosa succede quando il mio vault diventa molto grande?",
+		"text": "Deepink è progettata per scalare da pochi appunti a vaste basi di conoscenza. Le funzioni di organizzazione aiutano le informazioni a rimanere gestibili man mano che il vault cresce."
+	},
+	"oneVault": {
+		"title": "Perché tenere tutto in un unico vault?",
+		"text": "Le informazioni sono spesso connesse in modi inaspettati. Tenere tutto insieme facilita la scoperta di relazioni, la ricerca tra diversi contesti ed evita la frammentazione."
+	},
+	"markdownFiles": {
+		"title": "Perché non usare semplicemente una cartella di file Markdown?",
+		"text": "I file Markdown archiviano il contenuto. Deepink aggiunge organizzazione, crittografia, cronologia degli appunti, promemoria, collegamenti, backlink e flussi di lavoro progettati per rendere le informazioni più facili da gestire."
+	}
+}

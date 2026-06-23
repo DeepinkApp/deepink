@@ -1,0 +1,70 @@
+{
+	"betterThanOthers": {
+		"title": "¿Por qué Deepink es mejor que otras apps de notas?",
+		"text": "Deepink se centra en la ergonomía diaria. Las tareas comunes requieren menos pasos, mientras que las funciones avanzadas de organización, privacidad y gestión de notas siguen siendo fáciles de usar.\n\nHemos <security>analizado</security> más de 60 de las aplicaciones de notas más populares y no encontramos ninguna que fuera lo suficientemente segura y, a la vez, fácil de usar. Siempre hay concesiones: o dejas de lado tu privacidad, o tienes que ser un experto técnico que lidia con interfaces complicadas y configuraciones constantes.\n\nMuchas apps están diseñadas para programadores. Deepink es para todo el mundo.\n\nLa mayoría de las alternativas están hechas para ganar dinero; Deepink está hecha para que la gente se sienta bien."
+	},
+	"differentFromOthers": {
+		"title": "¿Qué diferencia a Deepink de Obsidian, Notion o Joplin?",
+		"text": "Deepink no fomenta ni explota comportamientos obsesivos para retener tu atención.\n\nNo contratamos influencers para venderte la idea de que debes cultivar un \"jardín digital\", lo que a menudo significa copiar y pegar medio internet en tu aplicación.\n\nDeepink fomenta el bienestar. Toma solo las notas que realmente necesites. Hazlo de forma rápida, privada y vive mejor. Eso es todo. No pierdas la vida frente al ordenador."
+	},
+	"import": {
+		"title": "¿Qué pasa si ya tengo miles de notas?",
+		"text": "Puedes <import>importar tus notas</import> desde cualquier otra aplicación a Deepink. Prueba Deepink durante una semana para familiarizarte con ella."
+	},
+	"export": {
+		"title": "¿Qué pasa si decido dejar de usar Deepink?",
+		"text": "Puedes <export>exportar tus notas</export> en cualquier momento. Todo tu contenido, incluidos archivos adjuntos y enlaces entre notas, se exportará en un archivo zip con archivos Markdown.\n\nNos encantaría recibir tus comentarios en <email/> antes de que te vayas. Quizás podamos resolver tus problemas y mejorar Deepink para todos."
+	},
+	"workspacesVsVaults": {
+		"title": "¿Por qué Deepink usa espacios en lugar de varios cofres?",
+		"text": "Los espacios te permiten separar contextos sin fragmentar tu información en varios cofres. Te desbloqueas una vez y cambias de espacio al instante cuando lo necesites."
+	},
+	"workspacesVsFolders": {
+		"title": "¿Por qué los espacios son mejores que las carpetas para organizar notas?",
+		"text": "Las carpetas organizan notas. Los espacios organizan contextos. Te ayudan a separar diferentes áreas de tu vida manteniendo tus notas, etiquetas y flujo de trabajo enfocados."
+	},
+	"stayingOrganized": {
+		"title": "¿Cómo me ayuda Deepink a mantenerme organizada conforme crecen mis notas?",
+		"text": "Los espacios, la jerarquía de etiquetas, los enlaces y las retroconexiones trabajan juntos para mantener la información estructurada y fácil de encontrar, incluso en colecciones grandes."
+	},
+	"ergonomics": {
+		"title": "¿Por qué Deepink se centra tanto en la ergonomía?",
+		"text": "Tomar notas es algo que hacemos a diario. Las pequeñas mejoras en el flujo de trabajo ahorran tiempo, reducen la fricción y hacen que la experiencia sea más agradable a largo plazo."
+	},
+	"replaceMultipleApps": {
+		"title": "¿Puede Deepink sustituir varias aplicaciones de gestión de conocimiento?",
+		"text": "Para muchas personas, sí. Notas, documentos, investigaciones, diarios, recordatorios y material de consulta pueden convivir en el mismo cofre."
+	},
+	"nestedTags": {
+		"title": "¿Por qué usar jerarquía de etiquetas en lugar de carpetas?",
+		"text": "Las carpetas obligan a cada nota a estar en un solo lugar. Las etiquetas permiten que la información pertenezca a varias categorías a la vez, mientras que la jerarquía de etiquetas mantiene esas categorías estructuradas."
+	},
+	"connectedInformation": {
+		"title": "¿Cómo mantiene Deepink la información relacionada conectada?",
+		"text": "Los enlaces y las retroconexiones hacen visibles las relaciones. Puedes moverte de forma natural entre notas relacionadas sin duplicar información."
+	},
+	"privacy": {
+		"title": "¿Cómo protege Deepink mi privacidad?",
+		"text": "Todo en tu cofre está cifrado, incluyendo notas, archivos y metadatos. Tu información es privada por diseño."
+	},
+	"openSource": {
+		"title": "¿Por qué Deepink es de código abierto?",
+		"text": "La privacidad y la seguridad deben ser verificables. El código abierto permite que cualquiera inspeccione el código y confirme cómo funciona la aplicación."
+	},
+	"personalOrWork": {
+		"title": "¿Deepink es para notas personales, de trabajo o para ambos?",
+		"text": "Para ambos. Los espacios facilitan la separación de la información personal y profesional, manteniendo todo accesible en un solo lugar."
+	},
+	"largeVaults": {
+		"title": "¿Qué pasa cuando mi cofre se vuelve muy grande?",
+		"text": "Deepink está diseñada para escalar, desde unas pocas notas hasta grandes bases de conocimiento. Las funciones de organización ayudan a que la información siga siendo manejable a medida que tu cofre crece."
+	},
+	"oneVault": {
+		"title": "¿Por qué mantener todo en un solo cofre?",
+		"text": "La información suele estar conectada de formas inesperadas. Mantenerlo todo junto facilita descubrir relaciones, buscar en distintos contextos y evitar la fragmentación."
+	},
+	"markdownFiles": {
+		"title": "¿Por qué no usar simplemente una carpeta de archivos Markdown?",
+		"text": "Los archivos Markdown almacenan contenido. Deepink añade organización, cifrado, historial de notas, recordatorios, enlaces, retroconexiones y flujos de trabajo diseñados para facilitar la gestión de la información."
+	}
+}

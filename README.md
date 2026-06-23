@@ -18,7 +18,7 @@ With up to **80% fewer actions** than other note-taking apps for common tasks, D
 
 | Feature | Description |
 |---|---|
-| 🔐 **Full Vault Encryption** | Notes, attachments, files, and metadata are [all encrypted](https://deepink.app/introduction/encryption/). Even file sizes are obfuscated. You choose the algorithm. (Read [Why it does even matter?](https://deepink.app/introduction/security/)) |
+| 🔐 **Full Vault Encryption** | Notes, attachments, files, and metadata are [all encrypted](https://deepink.app/reference/encryption/). Even file sizes are obfuscated. You choose the algorithm. (Read [Why it does even matter?](https://deepink.app/introduction/security/)) |
 | ⚡ **Ergonomic by Design** | Friction removed from the most common tasks — up to 80% fewer actions than other apps. |
 | 🗂️ **Workspaces** | Separate contexts (e.g. Client Projects, Personal Journal, Health Notes) inside one secure vault — no leaking between spaces. |
 | 🔗 **Linked Notes** | Reference any note from anywhere. Backlinks make it easy to trace connections and navigate your knowledge graph naturally. |
