@@ -7,20 +7,21 @@ import { selectContent, selectText, setCursorPosition } from './utils/utils';
 test('Pressing Enter inside a paragraph splits it into two paragraphs', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: 'My favorite dish is cake' });
+	const editor = screen.getByRole('textbox');
 
 	// Initial state
-	expect(screen.getAllByRole('paragraph')).toHaveLength(1);
-	const [paragraph] = screen.getAllByRole('paragraph');
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(1);
+	const [paragraph] = within(editor).getAllByRole('paragraph');
 	expect(paragraph).toHaveTextContent('My favorite dish is cake');
 
-	// Place cursor and press Enter, (splits text to "My favorite dis" | "h is cake")
+	// Place cursor and press Enter
 	await user.click(paragraph);
 	setCursorPosition(paragraph, 'My favorite dis'.length);
 	await user.keyboard('{Enter}');
 
 	// Editor should now have two paragraphs split at the cursor
-	const [firstParagraph, secondParagraph] = screen.getAllByRole('paragraph');
-	expect(screen.getAllByRole('paragraph')).toHaveLength(2);
+	const [firstParagraph, secondParagraph] = within(editor).getAllByRole('paragraph');
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(2);
 	expect(firstParagraph).toHaveTextContent('My favorite dis');
 	expect(secondParagraph).toHaveTextContent('h is cake');
 });
@@ -29,30 +30,31 @@ test('Ctrl+Enter exits a block node and creates a new empty paragraph', async ()
 	const user = userEvent.setup();
 	const content = 'This is a blockquote';
 	const richEditor = await renderRichEditor({ value: `> ${content}` });
+	const editor = screen.getByRole('textbox');
 
 	// One blockquote containing one paragraph
-	expect(screen.getByRole('blockquote')).toHaveTextContent(content);
-	expect(screen.getAllByRole('paragraph')).toHaveLength(1);
+	expect(within(editor).getByRole('blockquote')).toHaveTextContent(content);
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(1);
 
 	// Press Ctrl+Enter to exit the blockquote
-	await user.click(screen.getByRole('blockquote'));
+	await user.click(within(editor).getByRole('blockquote'));
 	await user.keyboard('{Control>}{Enter}{/Control}');
 
 	// New empty paragraph is added
-	const paragraphs = screen.getAllByRole('paragraph');
+	const paragraphs = within(editor).getAllByRole('paragraph');
 	expect(paragraphs).toHaveLength(2);
 
 	const [blockquoteParagraph, newParagraph] = paragraphs;
 	expect(blockquoteParagraph).toHaveTextContent(content);
 	expect(newParagraph).toHaveTextContent('');
-	expect(newParagraph).toAppearAfter(screen.getByRole('blockquote'));
+	expect(newParagraph).toAppearAfter(within(editor).getByRole('blockquote'));
 
-	expect(screen.getByRole('blockquote')).toHaveTextContent(content);
+	expect(within(editor).getByRole('blockquote')).toHaveTextContent(content);
 
 	// Cursor lands in the new paragraph - inserted content inside new paragraph
 	await richEditor.insert({ type: 'date', data: { date: '01.01.2025' } });
-	expect(screen.getByText('01.01.2025')).toBeInTheDocument();
-	expect(screen.getByRole('blockquote')).not.toHaveTextContent('01.01.2025');
+	expect(within(editor).getByText('01.01.2025')).toBeInTheDocument();
+	expect(within(editor).getByRole('blockquote')).not.toHaveTextContent('01.01.2025');
 });
 
 test(`Inserts image between text nodes`, async () => {
@@ -60,7 +62,8 @@ test(`Inserts image between text nodes`, async () => {
 		value: `My favorite image\n\n I love cat`,
 	});
 
-	setCursorPosition(screen.getByRole('textbox'), 'My favorite image'.length);
+	const editor = screen.getByRole('textbox');
+	setCursorPosition(editor, 'My favorite image'.length);
 
 	// Simulate inserting an image via the editor panel action
 	await richEditor.insert({
@@ -69,14 +72,16 @@ test(`Inserts image between text nodes`, async () => {
 	});
 
 	// Image nodes inserting asynchronously, so use findByRole to wait for the img to appear
-	const img = await screen.findByRole('img');
+	const img = await within(editor).findByRole('img');
+
 	expect(img).toBeInTheDocument();
 	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
 	expect(img).toHaveAttribute('alt', 'My cat');
 
 	// Image between two texts
-	const firstText = screen.getByText('My favorite image');
-	const secondText = screen.getByText('I love cat');
+	const firstText = within(editor).getByText('My favorite image');
+	const secondText = within(editor).getByText('I love cat');
+
 	expect(img).toAppearAfter(firstText);
 	expect(img).toAppearBefore(secondText);
 });
@@ -87,7 +92,8 @@ test('Inserts image after block node', async () => {
 	});
 
 	// Place cursor position inside the code node
-	setCursorPosition(screen.getByRole('code'), 10);
+	const editor = screen.getByRole('textbox');
+	setCursorPosition(within(editor).getByRole('code'), 10);
 
 	await richEditor.insert({
 		type: 'image',
@@ -95,9 +101,10 @@ test('Inserts image after block node', async () => {
 	});
 
 	// Wait before image to appear
-	const img = await screen.findByRole('img');
-	const codeNode = screen.getByRole('code');
+	const img = await within(editor).findByRole('img');
 	expect(img).toBeInTheDocument();
+
+	const codeNode = within(editor).getByRole('code');
 	expect(codeNode).toBeInTheDocument();
 
 	// Image is inserted as next sibling of the code block
@@ -109,24 +116,24 @@ test('Updates heading level correctly', async () => {
 	const content = 'Hello, my dear friends!';
 	const richEditor = await renderRichEditor({ value: content });
 
-	const editorNode = screen.getByRole('textbox');
-	selectContent(editorNode, content);
+	const editor = screen.getByRole('textbox');
+	selectContent(editor, content);
 
 	// Plain text becomes heading
 	await richEditor.insert({ type: 'heading', data: { level: 1 } });
-	expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(content);
+	expect(within(editor).getByRole('heading', { level: 1 })).toHaveTextContent(content);
 
 	// Heading level is updated when different level applied
 	await richEditor.insert({ type: 'heading', data: { level: 3 } });
 
-	expect(screen.getByRole('heading', { level: 3 })).toHaveTextContent(content);
-	expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+	expect(within(editor).getByRole('heading', { level: 3 })).toHaveTextContent(content);
+	expect(within(editor).queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
 
 	// Heading reverts to paragraph when same level applied again
 	await richEditor.insert({ type: 'heading', data: { level: 3 } });
 
-	expect(screen.queryByRole('heading')).not.toBeInTheDocument();
-	expect(screen.getByText(content)).toBeInTheDocument();
+	expect(within(editor).queryByRole('heading')).not.toBeInTheDocument();
+	expect(within(editor).getByText(content)).toBeInTheDocument();
 });
 
 test('Converts an unordered list to an ordered list', async () => {
@@ -137,12 +144,13 @@ test('Converts an unordered list to an ordered list', async () => {
 	});
 
 	// Select text
-	selectContent(screen.getByRole('textbox'), 'First item');
+	const editor = screen.getByRole('textbox');
+	selectContent(editor, 'First item');
 
 	// Update unordered list to ordered
 	await richEditor.insert({ type: 'list', data: { type: 'ordered' } });
 
-	const list = within(screen.getByRole('textbox')).getAllByRole('list')[0];
+	const list = within(editor).getAllByRole('list')[0];
 	expect(list.tagName).toBe('OL');
 
 	const orderedList = within(list).getAllByRole('listitem');
@@ -202,48 +210,50 @@ test('Toggles text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const richEditor = await renderRichEditor({ value: content });
 
-	selectContent(screen.getByRole('textbox'), content);
+	const editor = screen.getByRole('textbox');
+	selectContent(editor, content);
 
 	// Apply strikethrough
 	await richEditor.format('strikethrough');
-	expect(screen.getByRole('deletion')).toHaveTextContent('Hello, my dear friends!');
+	expect(within(editor).getByRole('deletion')).toHaveTextContent(content);
 
 	// Remove strikethrough
 	await richEditor.format('strikethrough');
-	expect(screen.queryByRole('deletion')).not.toBeInTheDocument();
-	expect(screen.getByRole('textbox')).toHaveTextContent(content);
+	expect(within(editor).queryByRole('deletion')).not.toBeInTheDocument();
+	expect(editor).toHaveTextContent(content);
 
 	// Apply italic
 	await richEditor.format('italic');
-	expect(screen.getByRole('emphasis')).toHaveTextContent('Hello, my dear friends!');
+	expect(within(editor).getByRole('emphasis')).toHaveTextContent(content);
 
 	// Remove italic
 	await richEditor.format('italic');
-	expect(screen.queryByRole('emphasis')).not.toBeInTheDocument();
-	expect(screen.getByRole('textbox')).toHaveTextContent(content);
+	expect(within(editor).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(editor).toHaveTextContent(content);
 });
 
 test('Combines multiple text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const richEditor = await renderRichEditor({ value: content });
 
-	selectContent(screen.getByRole('textbox'), content);
+	const editor = screen.getByRole('textbox');
+	selectContent(editor, content);
 
 	await richEditor.format('italic');
 	await richEditor.format('bold');
 	await richEditor.format('strikethrough');
 
 	// Bold formatting is implemented using the <b> tag which has no ARIA role
-	expect(screen.getByText(content).closest('b')).toBeInTheDocument();
-	expect(screen.getByRole('emphasis')).toHaveTextContent('Hello, my dear friends!');
-	expect(screen.getByRole('deletion')).toHaveTextContent('Hello, my dear friends!');
+	expect(within(editor).getByText(content).closest('b')).toBeInTheDocument();
+	expect(within(editor).getByRole('emphasis')).toHaveTextContent(content);
+	expect(within(editor).getByRole('deletion')).toHaveTextContent(content);
 
 	// Removes bold without breaking others formatting
 	await richEditor.format('bold');
 
-	expect(screen.getByText(content).closest('b')).not.toBeInTheDocument();
-	expect(screen.getByRole('emphasis')).toHaveTextContent('Hello, my dear friends!');
-	expect(screen.getByRole('deletion')).toHaveTextContent('Hello, my dear friends!');
+	expect(within(editor).getByText(content).closest('b')).not.toBeInTheDocument();
+	expect(within(editor).getByRole('emphasis')).toHaveTextContent(content);
+	expect(within(editor).getByRole('deletion')).toHaveTextContent(content);
 });
 
 // TODO: Remove `.fails` after fixing the formatting implementation
@@ -251,15 +261,18 @@ test('Combines multiple text formatting', async () => {
 test.fails('Applies formatting to a selected part of a text node', async () => {
 	const richEditor = await renderRichEditor({ value: 'Hello, my dear friends!' });
 
-	selectText(screen.getByRole('paragraph'), 'friends');
+	const editor = screen.getByRole('textbox');
+	selectText(editor, 'friends');
 
 	// Apply formatting
 	await richEditor.format('italic');
 
-	expect(screen.getByRole('paragraph')).toHaveTextContent('Hello, my dear friends!');
+	expect(within(editor).getByRole('paragraph')).toHaveTextContent(
+		'Hello, my dear friends!',
+	);
 
-	expect(screen.getByRole('emphasis')).toHaveTextContent(/^friends$/);
-	expect(screen.getByRole('emphasis')).not.toHaveTextContent('Hello, my dear');
+	expect(within(editor).getByRole('emphasis')).toHaveTextContent(/^friends$/);
+	expect(within(editor).getByRole('emphasis')).not.toHaveTextContent('Hello, my dear');
 });
 
 test.fails('Applies formatting across multiple text blocks', async () => {
@@ -267,16 +280,13 @@ test.fails('Applies formatting across multiple text blocks', async () => {
 		value: 'Hello, my dear friends! \n\n Nice to see you. \n\n How are you ?',
 	});
 
-	selectContent(
-		screen.getByRole('textbox'),
-		'Hello, my dear friends!',
-		'How are you ?',
-	);
+	const editor = screen.getByRole('textbox');
+	selectContent(editor, 'Hello, my dear friends!', 'How are you ?');
 
 	// Apply formatting
 	await richEditor.format('italic');
 
-	const formattingNodes = screen.getAllByRole('emphasis');
+	const formattingNodes = within(editor).getAllByRole('emphasis');
 
 	expect(formattingNodes).toHaveLength(3);
 	expect(formattingNodes[0]).toHaveTextContent('Hello, my dear friends!');
