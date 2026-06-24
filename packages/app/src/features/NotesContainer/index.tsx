@@ -79,10 +79,11 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 				isSnapshotsDisabled: note.isSnapshotsDisabled,
 			});
 			await notesRegistry.getById([note.id]).then(([note]) => {
+				// Ensure note is found
+				if (!note) return;
+
 				// Skip if another update for that note is emitted
 				if (updateSymbol !== noteUpdateContexts.current[note.id]) return;
-
-				if (!note) return;
 
 				const {
 					updatedTimestamp,
