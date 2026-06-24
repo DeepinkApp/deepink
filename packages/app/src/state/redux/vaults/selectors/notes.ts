@@ -86,3 +86,12 @@ export const selectNewNoteTemplate = createWorkspaceSelector(
 		return config.newNote;
 	},
 );
+
+export const selectActiveNote = createWorkspaceSelector(
+	[selectActiveNoteId, selectOpenedNotes],
+	(activeNoteId, openedNotes) => {
+		if (!activeNoteId) return null;
+
+		return openedNotes.find((note) => note.id === activeNoteId) ?? null;
+	},
+);
