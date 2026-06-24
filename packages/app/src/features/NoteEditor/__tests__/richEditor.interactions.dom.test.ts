@@ -9,6 +9,7 @@ test('Pressing Enter inside a paragraph splits it into two paragraphs', async ()
 	await renderRichEditor({ value: 'My favorite dish is cake' });
 
 	// Initial state
+	expect(screen.getAllByRole('paragraph')).toHaveLength(1);
 	const [paragraph] = screen.getAllByRole('paragraph');
 	expect(paragraph).toHaveTextContent('My favorite dish is cake');
 
@@ -26,7 +27,7 @@ test('Pressing Enter inside a paragraph splits it into two paragraphs', async ()
 
 test('Ctrl+Enter exits a block node and creates a new empty paragraph', async () => {
 	const user = userEvent.setup();
-	const content = 'This is a blockquote.';
+	const content = 'This is a blockquote';
 	const richEditor = await renderRichEditor({ value: `> ${content}` });
 
 	// One blockquote containing one paragraph
@@ -38,16 +39,17 @@ test('Ctrl+Enter exits a block node and creates a new empty paragraph', async ()
 	await user.keyboard('{Control>}{Enter}{/Control}');
 
 	// New empty paragraph is added
-	expect(screen.getByRole('blockquote')).toHaveTextContent(content);
-
 	const paragraphs = screen.getAllByRole('paragraph');
 	expect(paragraphs).toHaveLength(2);
 
 	const [blockquoteParagraph, newParagraph] = paragraphs;
 	expect(blockquoteParagraph).toHaveTextContent(content);
 	expect(newParagraph).toHaveTextContent('');
+	expect(newParagraph).toAppearAfter(screen.getByRole('blockquote'));
 
-	// Cursor lands in the new paragraph — inserted content inside new paragraph
+	expect(screen.getByRole('blockquote')).toHaveTextContent(content);
+
+	// Cursor lands in the new paragraph - inserted content inside new paragraph
 	await richEditor.insert({ type: 'date', data: { date: '01.01.2025' } });
 	expect(screen.getByText('01.01.2025')).toBeInTheDocument();
 	expect(screen.getByRole('blockquote')).not.toHaveTextContent('01.01.2025');
@@ -58,8 +60,7 @@ test(`Inserts image between text nodes`, async () => {
 		value: `My favorite image\n\n I love cat`,
 	});
 
-	const editorNode = screen.getByRole('textbox');
-	setCursorPosition(editorNode, 'My favorite image'.length);
+	setCursorPosition(screen.getByRole('textbox'), 'My favorite image'.length);
 
 	// Simulate inserting an image via the editor panel action
 	await richEditor.insert({
@@ -69,7 +70,6 @@ test(`Inserts image between text nodes`, async () => {
 
 	// Image nodes inserting asynchronously, so use findByRole to wait for the img to appear
 	const img = await screen.findByRole('img');
-
 	expect(img).toBeInTheDocument();
 	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
 	expect(img).toHaveAttribute('alt', 'My cat');
@@ -137,8 +137,7 @@ test('Converts an unordered list to an ordered list', async () => {
 	});
 
 	// Select text
-	const editorNode = screen.getByRole('textbox');
-	selectContent(editorNode, 'First item');
+	selectContent(screen.getByRole('textbox'), 'First item');
 
 	// Update unordered list to ordered
 	await richEditor.insert({ type: 'list', data: { type: 'ordered' } });
@@ -146,7 +145,7 @@ test('Converts an unordered list to an ordered list', async () => {
 	const list = within(screen.getByRole('textbox')).getAllByRole('list')[0];
 	expect(list.tagName).toBe('OL');
 
-	const orderedList = within(screen.getByRole('textbox')).getAllByRole('listitem');
+	const orderedList = within(list).getAllByRole('listitem');
 	expect(orderedList).toHaveLength(3);
 
 	expect(orderedList[0]).toHaveTextContent('First item');
@@ -203,8 +202,7 @@ test('Toggles text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const richEditor = await renderRichEditor({ value: content });
 
-	const editorNode = screen.getByRole('textbox');
-	selectContent(editorNode, content);
+	selectContent(screen.getByRole('textbox'), content);
 
 	// Apply strikethrough
 	await richEditor.format('strikethrough');
@@ -229,8 +227,7 @@ test('Combines multiple text formatting', async () => {
 	const content = 'Hello, my dear friends!';
 	const richEditor = await renderRichEditor({ value: content });
 
-	const editorNode = screen.getByRole('textbox');
-	selectContent(editorNode, content);
+	selectContent(screen.getByRole('textbox'), content);
 
 	await richEditor.format('italic');
 	await richEditor.format('bold');
@@ -254,13 +251,12 @@ test('Combines multiple text formatting', async () => {
 test.fails('Applies formatting to a selected part of a text node', async () => {
 	const richEditor = await renderRichEditor({ value: 'Hello, my dear friends!' });
 
-	const editorNode = screen.getByRole('paragraph');
-	selectText(editorNode, 'friends');
+	selectText(screen.getByRole('paragraph'), 'friends');
 
 	// Apply formatting
 	await richEditor.format('italic');
 
-	expect(editorNode).toHaveTextContent('Hello, my dear friends!');
+	expect(screen.getByRole('paragraph')).toHaveTextContent('Hello, my dear friends!');
 
 	expect(screen.getByRole('emphasis')).toHaveTextContent(/^friends$/);
 	expect(screen.getByRole('emphasis')).not.toHaveTextContent('Hello, my dear');
@@ -271,8 +267,11 @@ test.fails('Applies formatting across multiple text blocks', async () => {
 		value: 'Hello, my dear friends! \n\n Nice to see you. \n\n How are you ?',
 	});
 
-	const editorNode = screen.getByRole('textbox');
-	selectContent(editorNode, 'Hello, my dear friends!', 'How are you ?');
+	selectContent(
+		screen.getByRole('textbox'),
+		'Hello, my dear friends!',
+		'How are you ?',
+	);
 
 	// Apply formatting
 	await richEditor.format('italic');
