@@ -36,9 +36,9 @@ export const selectContent = (
 		const endNode = getFirstTextNode(within(container).getByText(endText));
 		if (!endNode) throw new Error(`Text node not found for "${endText}"`);
 
-		range.setEnd(endNode, endNode.textContent?.length ?? 0);
+		range.setEnd(endNode, endNode.textContent.length);
 	} else {
-		range.setEnd(startNode, startNode.textContent?.length ?? 0);
+		range.setEnd(startNode, startNode.textContent.length);
 	}
 
 	window.getSelection()?.removeAllRanges();
