@@ -56,7 +56,7 @@ export const selectPartialContent = (element: HTMLElement, text: string) => {
 
 	const textStart = textNode.textContent.indexOf(text);
 	if (textStart === -1)
-		throw new Error(`Text "${text}" in provided element not founded not found`);
+		throw new Error(`Text "${text}" in provided element not founded`);
 
 	const range = document.createRange();
 	range.setStart(textNode, textStart);
@@ -69,8 +69,7 @@ export const selectPartialContent = (element: HTMLElement, text: string) => {
 };
 
 /**
- * Simulates placing the cursor at a given position within a node.
- * Finds the first text node inside `node` and places the cursor at position
+ * Simulates placing the cursor at a given position within a node
  */
 export const setCursorPosition = (node: Node, position: number) => {
 	const textNode = getFirstTextNode(node);
