@@ -3,7 +3,7 @@
 	"productName": "Deepink",
 	"description": "Snapshot Your Thoughts",
 	"author": "Robert Vitonsky",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"main": "dist/main.js",
 	"homepage": "https://github.com/DeepinkApp/deepink",
 	"bugs": {

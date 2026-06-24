@@ -84,8 +84,8 @@ modules:
       # flatpak-builder downloads and verifies the sha256 before building.
       # Update both url and sha256 on every new release.
       - type: archive
-        url: https://github.com/DeepinkApp/deepink/releases/download/v0.2.0/deepink-linux-x64-0.2.0.zip
-        sha256: d73eec955f147365c03a8045e524707f72e098b3c66699518dbbb698c43a19d3
+        url: https://github.com/DeepinkApp/deepink/releases/download/v0.2.1/deepink-linux-x64-0.2.1.zip
+        sha256: 226ebb2b4914ffaa809961b7192ed43bdaaf33a4eda341f706433fff211f2296
         dest: "artifacts/app"
 
       - type: file

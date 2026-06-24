@@ -69,9 +69,14 @@
   </screenshots>
 
   <releases>
+    <release version="0.2.1" date="2026-06-23">
+      <description>
+        <p>User interface improvements.</p>
+      </description>
+    </release>
     <release version="0.2.0" date="2026-06-15">
       <description>
-        <p>Initial public release of Deepink.</p>
+        <p>User interface improvements.</p>
       </description>
     </release>
   </releases>
