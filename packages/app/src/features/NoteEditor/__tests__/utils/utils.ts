@@ -50,17 +50,17 @@ export const selectContent = (
 /**
  * Selects the given text within a provided element
  */
-export const selectPartialContent = (element: HTMLElement, text: string) => {
+export const selectText = (element: HTMLElement, text: string) => {
 	const textNode = getFirstTextNode(element);
 	if (!textNode) throw new Error('No text node found in the provided element');
 
-	const textStart = textNode.textContent.indexOf(text);
-	if (textStart === -1)
-		throw new Error(`Text "${text}" in provided element not founded`);
+	const startPosition = textNode.textContent.indexOf(text);
+	if (startPosition === -1)
+		throw new Error(`Text "${text}" not found in the provided element`);
 
 	const range = document.createRange();
-	range.setStart(textNode, textStart);
-	range.setEnd(textNode, textStart + text.length);
+	range.setStart(textNode, startPosition);
+	range.setEnd(textNode, startPosition + text.length);
 
 	window.getSelection()?.removeAllRanges();
 	window.getSelection()?.addRange(range);
@@ -71,14 +71,14 @@ export const selectPartialContent = (element: HTMLElement, text: string) => {
 /**
  * Simulates placing the cursor at a given position within a node
  */
-export const setCursorPosition = (node: Node, position: number) => {
-	const textNode = getFirstTextNode(node);
-	if (!textNode) throw new Error(`Text node not found inside ${node.nodeName}`);
+export const setCursorPosition = (container: Node, offset: number) => {
+	const textNode = getFirstTextNode(container);
+	if (!textNode) throw new Error(`Text node not found inside ${container.nodeName}`);
 
 	const range = document.createRange();
 
-	range.setStart(textNode, position);
-	range.setEnd(textNode, position);
+	range.setStart(textNode, offset);
+	range.setEnd(textNode, offset);
 
 	window.getSelection()?.removeAllRanges();
 	window.getSelection()?.addRange(range);

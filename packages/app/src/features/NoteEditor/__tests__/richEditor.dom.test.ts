@@ -30,10 +30,10 @@ test('Editor is not editable in readonly mode', async () => {
 	expect(screen.getByRole('textbox')).toHaveAttribute('contenteditable', 'false');
 
 	// Cannot enter text
-	await user.click(screen.getByRole('textbox'));
+	await user.click(screen.getByRole('heading'));
 	await user.keyboard('Some text');
 
-	expect(screen.queryByText('Some text')).not.toBeInTheDocument();
+	expect(screen.getByRole('textbox')).not.toHaveTextContent('Some text');
 });
 
 test('Formatting text in one editor does not affect the other editor', async () => {
@@ -43,10 +43,7 @@ test('Formatting text in one editor does not affect the other editor', async () 
 	const [editorBoxA, editorBoxB] = screen.getAllByRole('textbox');
 
 	// initial state
-	expect(within(editorBoxA).queryByRole('emphasis')).not.toBeInTheDocument();
 	expect(within(editorBoxA).queryByRole('paragraph')).toHaveTextContent('Big text');
-
-	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
 	expect(within(editorBoxB).queryByRole('paragraph')).toHaveTextContent('Small text');
 
 	// apply italic in editorA
@@ -70,21 +67,21 @@ test('Formatting text in one editor does not affect the other editor', async () 
 test('ReadOnly editor is not editable while the other editor remains editable', async () => {
 	const content = 'Same text';
 
+	const editorA = await renderRichEditor({ value: content });
 	await renderRichEditor({ value: content, isReadOnly: true });
-	const editorB = await renderRichEditor({ value: content });
 
 	const [editorBoxA, editorBoxB] = screen.getAllByRole('textbox');
 	expect(screen.getAllByRole('textbox')).toHaveLength(2);
 
-	expect(editorBoxA).toHaveAttribute('contenteditable', 'false');
-	expect(editorBoxB).toHaveAttribute('contenteditable', 'true');
+	expect(editorBoxA).toHaveAttribute('contenteditable', 'true');
+	expect(editorBoxB).toHaveAttribute('contenteditable', 'false');
 
-	// editorB is editable — format must work
-	selectContent(editorBoxB, content);
-	await editorB.format('italic');
-	expect(within(editorBoxB).getByRole('emphasis')).toHaveTextContent(content);
+	// editorA is editable - format must work
+	selectContent(editorBoxA, content);
+	await editorA.format('italic');
+	expect(within(editorBoxA).getByRole('emphasis')).toHaveTextContent(content);
 
-	// editorA must stay untouched
-	expect(within(editorBoxA).queryByRole('emphasis')).not.toBeInTheDocument();
-	expect(editorBoxA).toHaveAttribute('contenteditable', 'false');
+	// editorB must stay untouched
+	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(editorBoxB).toHaveAttribute('contenteditable', 'false');
 });

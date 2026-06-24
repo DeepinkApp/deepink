@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { renderRichEditor } from './utils/renderRichEditor';
-import { selectContent, selectPartialContent, setCursorPosition } from './utils/utils';
+import { selectContent, selectText, setCursorPosition } from './utils/utils';
 
 test('Pressing Enter inside a paragraph splits it into two paragraphs', async () => {
 	const user = userEvent.setup();
@@ -255,7 +255,7 @@ test.fails('Applies formatting to a selected part of a text node', async () => {
 	const richEditor = await renderRichEditor({ value: 'Hello, my dear friends!' });
 
 	const editorNode = screen.getByRole('paragraph');
-	selectPartialContent(editorNode, 'friends');
+	selectText(editorNode, 'friends');
 
 	// Apply formatting
 	await richEditor.format('italic');
