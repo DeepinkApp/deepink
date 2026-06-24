@@ -24,6 +24,17 @@ vi.mock('@hooks/useUrlOpener', () => ({
 	useUrlOpener: () => vi.fn(),
 }));
 
+// JSdom does not perform real image loading, so the Image `onload` event is never triggered
+// Mock it to allow components that depend on image loading (such as ImageNode) to render correctly
+class MockImage {
+	onload = () => {};
+
+	set src(_: string) {
+		queueMicrotask(() => this.onload());
+	}
+}
+global.Image = MockImage as any;
+
 const MockWorkspaceProvider = ({ children }: { children: React.ReactNode }) => {
 	const filesRegistry = {
 		add: vi.fn(),

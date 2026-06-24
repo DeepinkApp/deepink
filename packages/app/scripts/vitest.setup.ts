@@ -4,17 +4,6 @@ if (isDOMLikeEnv) {
 	require('@testing-library/jest-dom');
 	require('blob-polyfill');
 
-	// JSdom does not perform real image loading, so the Image `onload` event is never triggered
-	// Mock it to allow components that depend on image loading (such as ImageNode) to render correctly
-	class MockImage {
-		onload = () => {};
-
-		set src(_: string) {
-			queueMicrotask(() => this.onload());
-		}
-	}
-	global.Image = MockImage as any;
-
 	// Mock this function because jsdom does not implement the layout API; getClientRects returns an object without the `item` method,
 	// causing HighlightingPlugin to crash
 	Element.prototype.getClientRects = () =>
