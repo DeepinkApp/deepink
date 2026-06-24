@@ -18,27 +18,27 @@ const getFirstTextNode = (node: Node): Text | null => {
 /**
  * Selects text between `startText` and `endText`.
  *
- * If `endText` is not provided, only the node containing `startText` is selected,
+ * If `endText` is not provided, the entire text node containing `startText` is selected
  * Otherwise, all content from `startText` to the end of `endText` is selected
  */
 export const selectContent = (
-	parent: HTMLElement,
+	container: HTMLElement,
 	startText: string,
 	endText?: string,
 ) => {
-	const startNode = getFirstTextNode(within(parent).getByText(startText));
+	const startNode = getFirstTextNode(within(container).getByText(startText));
 	if (!startNode) throw new Error(`Text node not found for "${startText}"`);
 
 	const range = document.createRange();
 	range.setStart(startNode, 0);
 
 	if (endText) {
-		const endNode = getFirstTextNode(within(parent).getByText(endText));
+		const endNode = getFirstTextNode(within(container).getByText(endText));
 		if (!endNode) throw new Error(`Text node not found for "${endText}"`);
 
-		range.setEnd(endNode, endText.length);
+		range.setEnd(endNode, endNode.textContent?.length ?? 0);
 	} else {
-		range.setEnd(startNode, startText.length);
+		range.setEnd(startNode, startNode.textContent?.length ?? 0);
 	}
 
 	window.getSelection()?.removeAllRanges();
@@ -55,6 +55,8 @@ export const selectPartialContent = (element: HTMLElement, text: string) => {
 	if (!textNode) throw new Error('No text node found in the provided element');
 
 	const textStart = textNode.textContent.indexOf(text);
+	if (textStart === -1)
+		throw new Error(`Text "${text}" in provided element not founded not found`);
 
 	const range = document.createRange();
 	range.setStart(textNode, textStart);

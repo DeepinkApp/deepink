@@ -91,8 +91,8 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 		 * Simulates an editor panel action like inserting image
 		 */
 		insert: async (payload: InsertingPayload) => {
-			// The Rich Editor can update the DOM asynchronously,
-			// the act must be awaited to ensure all pending updates are finished before making assertions
+			// Wrap editor actions in act() so React flushes all state updates
+			// before assertions are executed
 			await act(async () => onInserting(payload));
 		},
 
