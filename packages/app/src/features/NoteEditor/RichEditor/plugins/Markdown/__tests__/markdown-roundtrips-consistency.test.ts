@@ -6,7 +6,12 @@ import { $getRoot } from 'lexical';
 import { u } from 'unist-builder';
 
 import { convertLexicalNodeToMarkdownNode } from '../convertLexicalNodeToMarkdownNode';
-import { $convertFromMarkdownString, markdownProcessor } from '../markdownParser';
+import {
+	$convertFromMarkdownString,
+	$convertToMarkdownString,
+	markdownProcessor,
+} from '../markdownParser';
+import { mixedList } from './markdown-samples';
 import {
 	createLexicalEditorInstance,
 	normalizeMarkdownTree,
@@ -37,8 +42,7 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		},
 		{
 			title: 'Mixed list',
-			markdown:
-				'- level 1-1\n  -[x] level 2-1\n  -[x] level 2-2\n  -[ ] level 2-3\n- level 1-2',
+			markdown: mixedList,
 		},
 	];
 
@@ -64,6 +68,8 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 					),
 				}),
 			).toMatchObject(normalizeMarkdownTree(markdownProcessor.parse(sourceText)));
+
+			expect(editor.read(() => $convertToMarkdownString())).toMatchSnapshot();
 		}),
 	);
 });
