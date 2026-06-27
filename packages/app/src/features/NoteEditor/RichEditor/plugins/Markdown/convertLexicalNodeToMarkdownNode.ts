@@ -141,7 +141,7 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 	if ($isLinkNode(node)) {
 		return u('link', {
 			url: node.getURL(),
-			alt: node.getTitle(),
+			title: node.getTitle(),
 			children: node
 				.getChildren()
 				.map(convertLexicalNodeToMarkdownNode) as Link['children'],

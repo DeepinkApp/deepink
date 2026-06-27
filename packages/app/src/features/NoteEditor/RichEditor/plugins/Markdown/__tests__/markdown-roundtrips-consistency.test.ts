@@ -8,7 +8,12 @@ import {
 	$serializeAsMarkdownAST,
 	parseMarkdownToAST,
 } from '../markdownParser';
-import { mixedList, postWithHeaders, simpleCode } from './markdown-samples';
+import {
+	formattedLine,
+	mixedList,
+	postWithHeaders,
+	simpleCode,
+} from './markdown-samples';
 import {
 	createLexicalEditorInstance,
 	normalizeMarkdownTree,
@@ -52,6 +57,14 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		{
 			title: 'Simple code',
 			markdown: simpleCode,
+		},
+		{
+			title: 'Formatted line',
+			markdown: formattedLine,
+		},
+		{
+			title: 'Links',
+			markdown: `Some [link](https://url "Title") and [another link](proto://url)`,
 		},
 	];
 

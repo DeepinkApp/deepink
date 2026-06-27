@@ -42,3 +42,7 @@ const x = 42;
 console.log("Your number is", x ** x);
 \`\`\`
 `.trim();
+
+export const formattedLine = `
+**That** is a ***formatted*** *line*.
+`.trim();

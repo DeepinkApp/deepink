@@ -21,6 +21,16 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Formatted line 1`] = `
+"**That** is a ***formatted*** *line*.
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Links 1`] = `
+"Some [link](https://url "Title") and [another link](proto://url)
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Mixed list 1`] = `
 "- level 1-1
   - [x] level 2-1
