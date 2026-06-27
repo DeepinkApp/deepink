@@ -64,13 +64,44 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 	const { enabled: isSnapshotsEnabled, interval: snapshotsInterval } =
 		useVaultSelector(selectSnapshotSettings);
 	const syncJobsRef = useRef<Record<string, NodeJS.Timeout>>({});
+	const noteUpdateContexts = useRef<Record<string, symbol>>({});
 	const updateNote = useImmutableCallback(
 		async (note: INote) => {
+			const updateSymbol = Symbol();
+
+			// Set context
+			noteUpdateContexts.current[note.id] = updateSymbol;
+
 			noteUpdated(note);
 
 			await notesRegistry.update(note.id, note.content);
 			await notesRegistry.updateMeta([note.id], {
 				isSnapshotsDisabled: note.isSnapshotsDisabled,
+			});
+			await notesRegistry.getById([note.id]).then(([note]) => {
+				// Ensure note is found
+				if (!note) return;
+
+				// Skip if another update for that note is emitted
+				if (updateSymbol !== noteUpdateContexts.current[note.id]) return;
+
+				const {
+					updatedTimestamp,
+					createdTimestamp,
+					isArchived,
+					isBookmarked,
+					isDeleted,
+					isVisible,
+				} = note;
+				noteUpdated({
+					...note,
+					updatedTimestamp,
+					createdTimestamp,
+					isArchived,
+					isBookmarked,
+					isDeleted,
+					isVisible,
+				});
 			});
 			eventBus.emit(WorkspaceEvents.NOTE_EDITED, note.id);
 
