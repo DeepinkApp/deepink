@@ -33,6 +33,7 @@ test('Editor is not editable in readonly mode', async () => {
 	await user.click(screen.getByRole('heading'));
 	await user.keyboard('Some text');
 
+	expect(screen.getByRole('textbox')).toHaveTextContent('Hello');
 	expect(screen.getByRole('textbox')).not.toHaveTextContent('Some text');
 });
 
@@ -65,23 +66,27 @@ test('Formatting text in one editor does not affect the other editor', async () 
 });
 
 test('ReadOnly editor is not editable while the other editor remains editable', async () => {
-	const content = 'Same text';
+	const user = userEvent.setup();
+	await renderRichEditor({ value: 'Editable text' });
+	await renderRichEditor({ value: 'ReadOnly text', isReadOnly: true });
 
-	const editorA = await renderRichEditor({ value: content });
-	await renderRichEditor({ value: content, isReadOnly: true });
+	const textBoxes = screen.getAllByRole('textbox');
+	expect(textBoxes).toHaveLength(2);
 
-	const [editorBoxA, editorBoxB] = screen.getAllByRole('textbox');
-	expect(screen.getAllByRole('textbox')).toHaveLength(2);
+	expect(textBoxes[0]).toHaveAttribute('contenteditable', 'true');
+	expect(textBoxes[1]).toHaveAttribute('contenteditable', 'false');
 
-	expect(editorBoxA).toHaveAttribute('contenteditable', 'true');
-	expect(editorBoxB).toHaveAttribute('contenteditable', 'false');
+	// editorA is editable — editing works
+	await user.click(within(textBoxes[0]).getByText('Editable text'));
+	await user.keyboard('New text ');
 
-	// editorA is editable - format must work
-	selectContent(editorBoxA, content);
-	await editorA.format('italic');
-	expect(within(editorBoxA).getByRole('emphasis')).toHaveTextContent(content);
+	expect(textBoxes[0]).toHaveTextContent('New text Editable text');
 
-	// editorB must stay untouched
-	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
-	expect(editorBoxB).toHaveAttribute('contenteditable', 'false');
+	// editorB is readOnly — editing must be ignored
+	await user.click(within(textBoxes[1]).getByText('ReadOnly text'));
+	await user.keyboard('Some text');
+
+	expect(textBoxes[1]).toHaveTextContent('ReadOnly text');
+	expect(textBoxes[1]).not.toHaveTextContent('Some text');
+	expect(textBoxes[1]).toHaveAttribute('contenteditable', 'false');
 });
