@@ -8,11 +8,11 @@ import {
 	IS_CODE,
 	LexicalNode,
 } from 'lexical';
-import { Content, Root } from 'mdast';
+import { Content, Root, RootContent } from 'mdast';
 import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
-import { unified } from 'unified';
+import { Plugin, unified } from 'unified';
 import { u } from 'unist-builder';
 import { $createCodeNode } from '@lexical/code';
 import { $createLinkNode } from '@lexical/link';
@@ -31,8 +31,37 @@ import { convertLexicalNodeToMarkdownNode } from './convertLexicalNodeToMarkdown
 import { $createFormattingNode } from './nodes/FormattingNode';
 import { $createRawNode } from './nodes/RawNode';
 
+const remarkPreserveBlankLines: Plugin<[], Root> = () => {
+	return (tree: Root) => {
+		const newChildren: RootContent[] = [];
+
+		for (let i = 0; i < tree.children.length; i++) {
+			const current = tree.children[i];
+			const next = tree.children[i + 1];
+
+			newChildren.push(current);
+
+			if (next && current.position && next.position) {
+				const lineGap = next.position.start.line - current.position.end.line;
+				// lineGap === 2 means exactly one blank line, 3 means two, etc.
+				const blankLineCount = lineGap - 1;
+
+				for (let b = 0; b < blankLineCount; b++) {
+					newChildren.push({
+						type: 'paragraph',
+						children: [],
+					} as RootContent);
+				}
+			}
+		}
+
+		tree.children = newChildren;
+	};
+};
+
 export const markdownProcessor = unified()
 	.use(remarkParse)
+	.use(remarkPreserveBlankLines)
 	.use(remarkGfm)
 	.use(remarkStringify, {
 		bullet: '-',
@@ -44,6 +73,10 @@ export const markdownProcessor = unified()
 		],
 	})
 	.freeze();
+
+export const parseMarkdownToAST = (source: string) => {
+	return markdownProcessor.runSync(markdownProcessor.parse(source));
+};
 
 export const dumpMarkdownNode = (node: Content) => {
 	const content = markdownProcessor.stringify(
@@ -60,7 +93,7 @@ export const dumpMarkdownNode = (node: Content) => {
 };
 
 export const $convertFromMarkdownString = (rawMarkdown: string) => {
-	const mdTree = markdownProcessor.parse(rawMarkdown);
+	const mdTree = parseMarkdownToAST(rawMarkdown);
 
 	function convertToMarkdownNode(node: Content): LexicalNode {
 		switch (node.type) {
@@ -122,19 +155,19 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 			}
 			case 'table': {
 				const table = $createTableNode();
-				table.append(...convertToMarkdownNodes(node.children, true));
+				table.append(...convertToMarkdownNodes(node.children));
 				return table;
 			}
 			case 'tableRow': {
 				const tableRow = $createTableRowNode();
-				tableRow.append(...convertToMarkdownNodes(node.children, true));
+				tableRow.append(...convertToMarkdownNodes(node.children));
 				return tableRow;
 			}
 			case 'tableCell': {
 				const tableCell = $createTableCellNode(TableCellHeaderStates.NO_STATUS);
 
 				const paragraph = $createParagraphNode();
-				paragraph.append(...convertToMarkdownNodes(node.children, true));
+				paragraph.append(...convertToMarkdownNodes(node.children));
 				tableCell.append(paragraph);
 
 				return tableCell;
@@ -182,32 +215,9 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 		return rawNode;
 	}
 
-	function convertToMarkdownNodes(
-		mdTree: Content[],
-		strictMode = false,
-	): LexicalNode[] {
+	function convertToMarkdownNodes(mdTree: Content[]): LexicalNode[] {
 		const lexicalTree: LexicalNode[] = [];
-
-		let lastNode: Content | null = null;
 		for (const mdNode of mdTree) {
-			if (!strictMode) {
-				// Insert line breaks
-				if (
-					lastNode !== null &&
-					lastNode.position &&
-					mdNode !== null &&
-					mdNode.position
-				) {
-					const missedLines =
-						mdNode.position.start.line - lastNode.position.end.line;
-
-					for (let i = 0; i < missedLines - 1; i++) {
-						lexicalTree.push($createParagraphNode());
-					}
-				}
-			}
-
-			lastNode = mdNode;
 			lexicalTree.push(convertToMarkdownNode(mdNode));
 		}
 
@@ -227,12 +237,14 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 	rootNode.append(...lexicalNodes);
 };
 
-export const $convertToMarkdownString = () => {
+export const $serializeAsMarkdownAST = () => {
 	const rootNode = $getRoot();
 	const children = rootNode.getChildren();
-	const mdTree = u('root', {
+	return u('root', {
 		children: children.map(convertLexicalNodeToMarkdownNode),
 	}) satisfies Root;
+};
 
-	return markdownProcessor.stringify(mdTree);
+export const $convertToMarkdownString = () => {
+	return markdownProcessor.stringify($serializeAsMarkdownAST());
 };

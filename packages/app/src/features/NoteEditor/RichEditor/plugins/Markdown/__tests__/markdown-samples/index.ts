@@ -11,3 +11,27 @@ export const mixedList = `
   - [ ] level 2-3
 - level 1-2
 `.trim();
+
+export const postWithHeaders = `
+# The title
+
+A few lines
+In one paragraph.
+
+Another paragraph.
+
+## Another section
+
+Introduction
+
+---
+
+Text after a separator
+
+## Header with no space
+Text under header
+
+## Yet another section
+
+Section content
+`.trim();

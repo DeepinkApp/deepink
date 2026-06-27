@@ -2,16 +2,13 @@
  * @vitest-environment jsdom
  */
 
-import { $getRoot } from 'lexical';
-import { u } from 'unist-builder';
-
-import { convertLexicalNodeToMarkdownNode } from '../convertLexicalNodeToMarkdownNode';
 import {
 	$convertFromMarkdownString,
 	$convertToMarkdownString,
-	markdownProcessor,
+	$serializeAsMarkdownAST,
+	parseMarkdownToAST,
 } from '../markdownParser';
-import { mixedList } from './markdown-samples';
+import { mixedList, postWithHeaders } from './markdown-samples';
 import {
 	createLexicalEditorInstance,
 	normalizeMarkdownTree,
@@ -44,6 +41,14 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 			title: 'Mixed list',
 			markdown: mixedList,
 		},
+		{
+			title: 'Simple post with headers',
+			markdown: postWithHeaders,
+		},
+		{
+			title: 'Text with few empty lines',
+			markdown: 'foo\n\n\nbar',
+		},
 	];
 
 	cases.forEach(({ title, markdown: sourceText }) =>
@@ -56,18 +61,8 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 			});
 
 			expect(
-				u('root', {
-					children: editor.read(() =>
-						$getRoot()
-							.getChildren()
-							.map((node) =>
-								normalizeMarkdownTree(
-									convertLexicalNodeToMarkdownNode(node),
-								),
-							),
-					),
-				}),
-			).toMatchObject(normalizeMarkdownTree(markdownProcessor.parse(sourceText)));
+				editor.read(() => normalizeMarkdownTree($serializeAsMarkdownAST())),
+			).toMatchObject(normalizeMarkdownTree(parseMarkdownToAST(sourceText)));
 
 			expect(editor.read(() => $convertToMarkdownString())).toMatchSnapshot();
 		}),

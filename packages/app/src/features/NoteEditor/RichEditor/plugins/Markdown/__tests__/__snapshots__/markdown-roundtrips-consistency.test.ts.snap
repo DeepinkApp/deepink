@@ -49,3 +49,36 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
   - baz
 "
 `;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple post with headers 1`] = `
+"# The title
+
+A few lines
+In one paragraph.
+
+Another paragraph.
+
+## Another section
+
+Introduction
+
+***
+
+Text after a separator
+
+## Header with no space
+Text under header
+
+## Yet another section
+
+Section content
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Text with few empty lines 1`] = `
+"foo
+
+
+bar
+"
+`;

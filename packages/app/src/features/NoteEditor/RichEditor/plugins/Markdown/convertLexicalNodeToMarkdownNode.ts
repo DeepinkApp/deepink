@@ -47,16 +47,6 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 	if ($isParagraphNode(node)) {
 		const paragraph = u('paragraph', { children: [] }) as Paragraph;
 
-		const nestedNodes = node.getChildren();
-		if (
-			nestedNodes.length === 0 ||
-			(nestedNodes.every((node) => $isTextNode(node)) &&
-				node.getTextContent().trim().length === 0)
-		) {
-			paragraph.children.push(u('text', { value: '' }) satisfies Text);
-			return paragraph;
-		}
-
 		for (const child of node.getChildren()) {
 			const content = convertLexicalNodeToMarkdownNode(child);
 			paragraph.children.push(content as any);
