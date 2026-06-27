@@ -35,3 +35,10 @@ Text under header
 
 Section content
 `.trim();
+
+export const simpleCode = `
+\`\`\`js
+const x = 42;
+console.log("Your number is", x ** x);
+\`\`\`
+`.trim();

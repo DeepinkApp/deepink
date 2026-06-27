@@ -75,6 +75,7 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 	if ($isCodeNode(node)) {
 		return u('code', {
 			lang: node.getLanguage(),
+			meta: null,
 			value: node.getTextContent(),
 		}) satisfies Code;
 	}

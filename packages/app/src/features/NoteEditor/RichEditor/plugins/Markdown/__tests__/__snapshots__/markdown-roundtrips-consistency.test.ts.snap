@@ -50,6 +50,14 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple code 1`] = `
+"\`\`\`js
+const x = 42;
+console.log("Your number is", x ** x);
+\`\`\`
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple post with headers 1`] = `
 "# The title
 

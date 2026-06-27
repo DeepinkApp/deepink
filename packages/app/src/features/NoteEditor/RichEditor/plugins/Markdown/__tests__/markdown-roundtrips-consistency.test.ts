@@ -8,7 +8,7 @@ import {
 	$serializeAsMarkdownAST,
 	parseMarkdownToAST,
 } from '../markdownParser';
-import { mixedList, postWithHeaders } from './markdown-samples';
+import { mixedList, postWithHeaders, simpleCode } from './markdown-samples';
 import {
 	createLexicalEditorInstance,
 	normalizeMarkdownTree,
@@ -48,6 +48,10 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		{
 			title: 'Text with few empty lines',
 			markdown: 'foo\n\n\nbar',
+		},
+		{
+			title: 'Simple code',
+			markdown: simpleCode,
 		},
 	];
 
