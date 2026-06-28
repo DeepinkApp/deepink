@@ -26,6 +26,16 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Image 1`] = `
+"![Alt text](https://url)
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Image wrapped by link 1`] = `
+"[![Alt text](https://url)](proto://url2 "Link title")
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Links 1`] = `
 "Some [link](https://url "Title") and [another link](proto://url)
 "

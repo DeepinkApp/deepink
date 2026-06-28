@@ -66,6 +66,16 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 			title: 'Links',
 			markdown: `Some [link](https://url "Title") and [another link](proto://url)`,
 		},
+		{
+			title: 'Image',
+			// TODO: support for title
+			markdown: `![Alt text](https://url)`,
+		},
+		{
+			title: 'Image wrapped by link',
+			// TODO: support for title
+			markdown: `[![Alt text](https://url)](proto://url2 "Link title")`,
+		},
 	];
 
 	cases.forEach(({ title, markdown: sourceText }) =>

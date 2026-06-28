@@ -59,6 +59,7 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 		return u('image', {
 			url: node.getSrc(),
 			alt: node.getAltText(),
+			title: null,
 		}) satisfies Image;
 	}
 
