@@ -9,6 +9,7 @@ import {
 	parseMarkdownToAST,
 } from '../markdownParser';
 import {
+	detailsWithSummary,
 	formattedLine,
 	mixedList,
 	nestedQuote,
@@ -16,6 +17,7 @@ import {
 	simpleCode,
 	simpleQuote,
 	simpleTable,
+	unsupportedFeatures,
 } from './markdown-samples';
 import {
 	createLexicalEditorInstance,
@@ -90,6 +92,14 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		{
 			title: 'Simple table',
 			markdown: simpleTable,
+		},
+		{
+			title: 'Details with summary',
+			markdown: detailsWithSummary,
+		},
+		{
+			title: 'Unsupported features',
+			markdown: unsupportedFeatures,
 		},
 	];
 

@@ -21,6 +21,18 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Details with summary 1`] = `
+"<details open>
+<summary>Shopping list</summary>
+
+- Vegetables
+- Fruits
+- Fish
+
+</details>
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Formatted line 1`] = `
 "**That** is a ***formatted*** *line*.
 "
@@ -134,5 +146,10 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 
 
 bar
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Unsupported features 1`] = `
+"<button>Some button</button>
 "
 `;

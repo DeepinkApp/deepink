@@ -69,3 +69,18 @@ export const simpleTable = `
 | Two  | 2     |
 | Three | 3    |
 `.trim();
+
+export const detailsWithSummary = `
+<details open>
+<summary>Shopping list</summary>
+
+* Vegetables
+* Fruits
+* Fish
+
+</details>
+`.trim();
+
+export const unsupportedFeatures = `
+<button>Some button</button>
+`.trim();
