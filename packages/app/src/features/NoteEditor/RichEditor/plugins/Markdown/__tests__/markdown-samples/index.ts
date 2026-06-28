@@ -61,3 +61,11 @@ export const nestedQuote = `
 > >
 > > With some spaces
 `.trim();
+
+export const simpleTable = `
+| Name | Value |
+| ---- | ----- |
+| One  | 1     |
+| Two  | 2     |
+| Three | 3    |
+`.trim();

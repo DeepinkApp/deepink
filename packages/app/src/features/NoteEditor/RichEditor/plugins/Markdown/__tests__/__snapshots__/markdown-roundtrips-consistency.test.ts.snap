@@ -120,6 +120,15 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple table 1`] = `
+"| Name  | Value |
+| ----- | ----- |
+| One   | 1     |
+| Two   | 2     |
+| Three | 3     |
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Text with few empty lines 1`] = `
 "foo
 

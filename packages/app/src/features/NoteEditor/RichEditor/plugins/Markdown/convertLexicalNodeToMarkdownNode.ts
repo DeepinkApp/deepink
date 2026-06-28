@@ -159,6 +159,7 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 
 	if ($isTableNode(node)) {
 		return u('table', {
+			align: [null, null],
 			children: node
 				.getChildren()
 				.map(convertLexicalNodeToMarkdownNode) as Table['children'],

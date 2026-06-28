@@ -15,6 +15,7 @@ import {
 	postWithHeaders,
 	simpleCode,
 	simpleQuote,
+	simpleTable,
 } from './markdown-samples';
 import {
 	createLexicalEditorInstance,
@@ -85,6 +86,10 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		{
 			title: 'Nested quote',
 			markdown: nestedQuote,
+		},
+		{
+			title: 'Simple table',
+			markdown: simpleTable,
 		},
 	];
 

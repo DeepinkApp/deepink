@@ -33,13 +33,21 @@ import { $createFormattingNode } from './nodes/FormattingNode';
 import { $createRawNode } from './nodes/RawNode';
 
 const remarkPreserveBlankLines: Plugin<[], Root> = () => {
+	const ignoredNodeTypes = new Set<string>([
+		'table',
+		'tableCell',
+		'tableRow',
+	] satisfies RootContent['type'][]);
+
 	return (tree: Root) => {
 		const skipNodes = new Set<unknown>();
 
-		// TODO: walk only block nodes explicitly
 		visit(tree, (node) => {
 			// Skip nodes with no nested elements
 			if (!('children' in node)) return SKIP;
+
+			// Skip ignored node types
+			if (ignoredNodeTypes.has(node.type)) return SKIP;
 
 			// Skip already handled nodes
 			if (skipNodes.has(node)) return SKIP;
@@ -190,9 +198,7 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 			case 'tableCell': {
 				const tableCell = $createTableCellNode(TableCellHeaderStates.NO_STATUS);
 
-				const paragraph = $createParagraphNode();
-				paragraph.append(...convertToMarkdownNodes(node.children));
-				tableCell.append(paragraph);
+				tableCell.append(...convertToMarkdownNodes(node.children));
 
 				return tableCell;
 			}
