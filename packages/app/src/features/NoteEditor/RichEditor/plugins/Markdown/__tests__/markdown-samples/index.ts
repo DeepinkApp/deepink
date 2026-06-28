@@ -57,4 +57,7 @@ export const nestedQuote = `
 >
 >
 > > Quote inside another quote
+> >
+> >
+> > With some spaces
 `.trim();

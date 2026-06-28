@@ -62,6 +62,9 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 >
 >
 > > Quote inside another quote
+> >
+> >
+> > With some spaces
 "
 `;
 
