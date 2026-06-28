@@ -7,11 +7,12 @@ import { selectContent, selectText, setCursorPosition } from './utils/utils';
 test('Pressing Enter inside a paragraph splits it into two paragraphs', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: 'My favorite dish is cake' });
-	const editor = screen.getByRole('textbox');
 
 	// Initial state
-	expect(within(editor).getAllByRole('paragraph')).toHaveLength(1);
-	const [paragraph] = within(editor).getAllByRole('paragraph');
+	const editor = screen.getByRole('textbox');
+	expect(editor.children).toHaveLength(1);
+	const paragraph = editor.children[0];
+	expect(paragraph).toHaveRole('paragraph');
 	expect(paragraph).toHaveTextContent('My favorite dish is cake');
 
 	// Place cursor and press Enter
@@ -20,20 +21,28 @@ test('Pressing Enter inside a paragraph splits it into two paragraphs', async ()
 	await user.keyboard('{Enter}');
 
 	// Editor should now have two paragraphs split at the cursor
-	const [firstParagraph, secondParagraph] = within(editor).getAllByRole('paragraph');
-	expect(within(editor).getAllByRole('paragraph')).toHaveLength(2);
-	expect(firstParagraph).toHaveTextContent('My favorite dis');
-	expect(secondParagraph).toHaveTextContent('h is cake');
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(2);
+
+	expect(editorChildren[0]).toHaveRole('paragraph');
+	expect(editorChildren[0]).toHaveTextContent('My favorite dis');
+
+	expect(editorChildren[1]).toHaveRole('paragraph');
+	expect(editorChildren[1]).toHaveTextContent('h is cake');
 });
 
 test('Ctrl+Enter exits a block node and creates a new empty paragraph', async () => {
 	const user = userEvent.setup();
 	const content = 'This is a blockquote';
 	const richEditor = await renderRichEditor({ value: `> ${content}` });
-	const editor = screen.getByRole('textbox');
 
-	// One blockquote containing one paragraph
-	expect(within(editor).getByRole('blockquote')).toHaveTextContent(content);
+	// One blockquote with one paragraph inside
+	const editor = screen.getByRole('textbox');
+	const initialChildren = editor.children;
+	expect(initialChildren).toHaveLength(1);
+	expect(initialChildren[0]).toHaveRole('blockquote');
+	expect(initialChildren[0]).toHaveTextContent(content);
+
 	expect(within(editor).getAllByRole('paragraph')).toHaveLength(1);
 
 	// Press Ctrl+Enter to exit the blockquote
@@ -41,15 +50,16 @@ test('Ctrl+Enter exits a block node and creates a new empty paragraph', async ()
 	await user.keyboard('{Control>}{Enter}{/Control}');
 
 	// New empty paragraph is added
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(2);
+	expect(editorChildren[0]).toHaveRole('blockquote');
+	expect(editorChildren[1]).toHaveRole('paragraph');
+
+	// Two paragraph: one inside the blockquote and one in top level
 	const paragraphs = within(editor).getAllByRole('paragraph');
 	expect(paragraphs).toHaveLength(2);
-
-	const [blockquoteParagraph, newParagraph] = paragraphs;
-	expect(blockquoteParagraph).toHaveTextContent(content);
-	expect(newParagraph).toHaveTextContent('');
-	expect(newParagraph).toAppearAfter(within(editor).getByRole('blockquote'));
-
-	expect(within(editor).getByRole('blockquote')).toHaveTextContent(content);
+	expect(paragraphs[0]).toHaveTextContent(content);
+	expect(paragraphs[1]).toHaveTextContent('');
 
 	// Cursor lands in the new paragraph - inserted content inside new paragraph
 	await richEditor.insert({ type: 'date', data: { date: '01.01.2025' } });
@@ -81,9 +91,21 @@ test(`Inserts image between text nodes`, async () => {
 	// Image between two texts
 	const firstText = within(editor).getByText('My favorite image');
 	const secondText = within(editor).getByText('I love cat');
-
 	expect(img).toAppearAfter(firstText);
 	expect(img).toAppearBefore(secondText);
+
+	// Editor contains only expected nodes
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(3);
+	Array.from(editor.children).forEach((child) => {
+		expect(child).toHaveRole('paragraph');
+	});
+
+	// First paragraph contains text and image
+	expect(editorChildren[0]).toContainElement(img);
+	expect(editorChildren[0]).toHaveTextContent('My favorite image');
+	expect(editorChildren[1]).toHaveTextContent('');
+	expect(editorChildren[2]).toHaveTextContent('I love cat');
 });
 
 test('Inserts image after block node', async () => {
@@ -110,6 +132,14 @@ test('Inserts image after block node', async () => {
 	// Image is inserted as next sibling of the code block
 	expect(img).toAppearAfter(codeNode);
 	expect(codeNode.nextElementSibling).toContainElement(img);
+
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(2);
+	expect(editorChildren[0]).toHaveRole('code');
+	expect(editorChildren[1]).toHaveRole('paragraph');
+
+	// Image is inside the paragraph
+	expect(editorChildren[1]).toContainElement(img);
 });
 
 test('Updates heading level correctly', async () => {
@@ -134,6 +164,12 @@ test('Updates heading level correctly', async () => {
 
 	expect(within(editor).queryByRole('heading')).not.toBeInTheDocument();
 	expect(within(editor).getByText(content)).toBeInTheDocument();
+
+	// After editing the screen should contain one paragraph with a text
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(1);
+	expect(editorChildren[0]).toHaveRole('paragraph');
+	expect(editorChildren[0].children).toHaveLength(1);
 });
 
 test('Converts an unordered list to an ordered list', async () => {
@@ -164,19 +200,32 @@ test('Converts an unordered list to an ordered list', async () => {
 	expect(orderedList[2]).toHaveTextContent('Second item');
 });
 
-test('Pressing enter adds a new item to the list', async () => {
+test('Pressing Enter adds a new item to the list', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: '- First item' });
 
-	expect(screen.getAllByRole('listitem')).toHaveLength(1);
+	// Initial state
+	const editor = screen.getByRole('textbox');
+	const initialChildren = editor.children;
+	expect(initialChildren).toHaveLength(1);
+	expect(initialChildren[0]).toHaveRole('list');
+	expect(initialChildren[0].children).toHaveLength(1);
 
-	// Set cursor and press Enter
-	const firstItem = screen.getByRole('listitem');
+	const [firstItem] = within(editor).getAllByRole('listitem');
+	expect(firstItem).toHaveTextContent('First item');
+
+	// Place cursor and press Enter
 	await user.click(firstItem);
 	setCursorPosition(firstItem, 'First item'.length);
 	await user.keyboard('{Enter}');
 
-	const items = await screen.findAllByRole('listitem');
+	// Editor contains only one list with two items
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(1);
+	expect(editorChildren[0]).toHaveRole('list');
+	expect(editorChildren[0].children).toHaveLength(2);
+
+	const items = within(editor).getAllByRole('listitem');
 	expect(items).toHaveLength(2);
 	expect(items[0]).toHaveTextContent('First item');
 	expect(items[1]).toHaveTextContent('');
@@ -186,24 +235,38 @@ test('Pressing Enter on an empty last list item exits the list', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: '- First item' });
 
-	expect(screen.getAllByRole('listitem')).toHaveLength(1);
-	expect(screen.queryByRole('paragraph')).not.toBeInTheDocument();
+	// Initial state
+	const editor = screen.getByRole('textbox');
+	const initialChildren = editor.children;
+	expect(initialChildren).toHaveLength(1);
+	expect(initialChildren[0]).toHaveRole('list');
+	expect(initialChildren[0].children).toHaveLength(1);
+
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(1);
+	expect(within(editor).queryByRole('paragraph')).not.toBeInTheDocument();
 
 	// Set cursor and press Enter
-	const firstItem = screen.getByRole('listitem');
+	const firstItem = within(editor).getByRole('listitem');
 	await user.click(firstItem);
 	setCursorPosition(firstItem, 'First item'.length);
 	await user.keyboard('{Enter}');
 
-	expect(screen.getAllByRole('listitem')).toHaveLength(2);
-	expect(screen.queryByRole('paragraph')).not.toBeInTheDocument();
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(2);
+	expect(within(editor).queryByRole('paragraph')).not.toBeInTheDocument();
 
 	await user.keyboard('{Enter}');
 
-	expect(screen.getAllByRole('listitem')).toHaveLength(1);
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(1);
 
 	// A new empty paragraph is created
-	expect(screen.getByRole('paragraph')).toHaveTextContent('');
+	expect(within(editor).getByRole('paragraph')).toHaveTextContent('');
+
+	// Editor contains only list with one items and one paragraph
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(2);
+	expect(editorChildren[0]).toHaveRole('list');
+	expect(editorChildren[0].children).toHaveLength(1);
+	expect(editorChildren[1]).toHaveRole('paragraph');
 });
 
 test('Toggles text formatting', async () => {
@@ -267,12 +330,20 @@ test.fails('Applies formatting to a selected part of a text node', async () => {
 	// Apply formatting
 	await richEditor.format('italic');
 
-	expect(within(editor).getByRole('paragraph')).toHaveTextContent(
-		'Hello, my dear friends!',
-	);
+	// Editor contains one paragraph
+	const editorChildren = editor.children;
+	expect(editorChildren).toHaveLength(1);
+	expect(editorChildren[0]).toHaveRole('paragraph');
 
-	expect(within(editor).getByRole('emphasis')).toHaveTextContent(/^friends$/);
-	expect(within(editor).getByRole('emphasis')).not.toHaveTextContent('Hello, my dear');
+	const paragraph = editorChildren[0];
+	expect(paragraph).toHaveTextContent('Hello, my dear friends!');
+	expect(paragraph.children).toHaveLength(3);
+
+	// Only "friends" is wrapped in emphasis
+	expect(paragraph.children[0]).toHaveTextContent('Hello, my dear ');
+	expect(paragraph.children[1]).toHaveRole('emphasis');
+	expect(paragraph.children[1]).toHaveTextContent('friends');
+	expect(paragraph.children[2]).toHaveTextContent('!');
 });
 
 test.fails('Applies formatting across multiple text blocks', async () => {
@@ -286,8 +357,8 @@ test.fails('Applies formatting across multiple text blocks', async () => {
 	// Apply formatting
 	await richEditor.format('italic');
 
+	// Each line should be wrapped in emphasis
 	const formattingNodes = within(editor).getAllByRole('emphasis');
-
 	expect(formattingNodes).toHaveLength(3);
 	expect(formattingNodes[0]).toHaveTextContent('Hello, my dear friends!');
 	expect(formattingNodes[1]).toHaveTextContent('Nice to see you');
