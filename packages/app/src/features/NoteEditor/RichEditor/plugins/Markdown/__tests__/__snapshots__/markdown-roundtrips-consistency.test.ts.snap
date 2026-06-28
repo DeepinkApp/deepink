@@ -56,6 +56,12 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Nested quote 1`] = `
+"> The quote
+> > Quote inside another quote
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Numbered list 1`] = `
 "1. foo
 2. bar
@@ -100,6 +106,11 @@ Text under header
 ## Yet another section
 
 Section content
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple quote 1`] = `
+"> The quote
 "
 `;
 

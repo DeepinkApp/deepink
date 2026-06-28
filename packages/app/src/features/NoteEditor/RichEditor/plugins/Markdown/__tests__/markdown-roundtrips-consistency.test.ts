@@ -11,8 +11,10 @@ import {
 import {
 	formattedLine,
 	mixedList,
+	nestedQuote,
 	postWithHeaders,
 	simpleCode,
+	simpleQuote,
 } from './markdown-samples';
 import {
 	createLexicalEditorInstance,
@@ -68,13 +70,21 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		},
 		{
 			title: 'Image',
-			// TODO: support for title
+			// TODO: support for image title
 			markdown: `![Alt text](https://url)`,
 		},
 		{
 			title: 'Image wrapped by link',
-			// TODO: support for title
+			// TODO: support for image title
 			markdown: `[![Alt text](https://url)](proto://url2 "Link title")`,
+		},
+		{
+			title: 'Simple quote',
+			markdown: simpleQuote,
+		},
+		{
+			title: 'Nested quote',
+			markdown: nestedQuote,
 		},
 	];
 

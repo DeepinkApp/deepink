@@ -46,3 +46,16 @@ console.log("Your number is", x ** x);
 export const formattedLine = `
 **That** is a ***formatted*** *line*.
 `.trim();
+
+export const simpleQuote = `
+> The quote
+`.trim();
+
+// TODO: preserve empty lines
+export const nestedQuote = `
+> The quote
+>
+>
+>
+> > Quote inside another quote
+`.trim();
