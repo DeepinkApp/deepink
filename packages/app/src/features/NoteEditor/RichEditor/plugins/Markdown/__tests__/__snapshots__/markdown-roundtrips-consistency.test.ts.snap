@@ -58,6 +58,9 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Nested quote 1`] = `
 "> The quote
+>
+>
+>
 > > Quote inside another quote
 "
 `;

@@ -51,7 +51,6 @@ export const simpleQuote = `
 > The quote
 `.trim();
 
-// TODO: preserve empty lines
 export const nestedQuote = `
 > The quote
 >
