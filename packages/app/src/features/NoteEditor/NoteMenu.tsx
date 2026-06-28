@@ -6,11 +6,12 @@ import {
 	FaCopy,
 	FaEllipsis,
 	FaFileExport,
+	FaThumbtack,
 	FaTrashCan,
 	FaTrashCanArrowUp,
 } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { Button, HStack, Menu, Portal, Text } from '@chakra-ui/react';
+import { Box, Button, HStack, Menu, Portal, Text } from '@chakra-ui/react';
 import { INote } from '@core/features/notes';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useCommand } from '@hooks/commands/useCommand';
@@ -41,6 +42,29 @@ export const NoteMenu = memo(({ note }: { note: INote }) => {
 							<Portal>
 								<Menu.Positioner>
 									<Menu.Content>
+										<Menu.Item
+											onSelect={() =>
+												runCommand(
+													GLOBAL_COMMANDS.TOGGLE_NOTE_PIN,
+													{
+														noteId: note.id,
+													},
+												)
+											}
+											value="togglePin"
+										>
+											<HStack>
+												<Box
+													as={FaThumbtack}
+													transform="rotate(45deg)"
+												/>
+												<Text>
+													{note.isPinned
+														? t('note.menu.unpin')
+														: t('note.menu.pin')}
+												</Text>
+											</HStack>
+										</Menu.Item>
 										<Menu.Item
 											value="copyReference"
 											onSelect={() =>

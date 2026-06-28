@@ -5,6 +5,7 @@ export enum WorkspaceEvents {
 	NOTE_UPDATED = 'noteUpdated',
 	NOTE_EDITED = 'noteChanged',
 	NOTE_HISTORY_UPDATED = 'noteHistoryUpdated',
+	NOTE_META_UPDATED = 'noteMetaChanged',
 }
 
 /**
@@ -23,6 +24,13 @@ export type WorkspaceEventsPayloadMap = {
 	 * For example note version has been applied or remote end force updated a note
 	 */
 	[WorkspaceEvents.NOTE_UPDATED]: NoteId;
+
+	/**
+	 * Fired when specific note metadata has been updated and change is committed in DB
+	 *
+	 * Metadata includes all note properties except the title and content
+	 */
+	[WorkspaceEvents.NOTE_META_UPDATED]: NoteId;
 
 	/**
 	 * Fired when note has been edited by user and change is committed in DB

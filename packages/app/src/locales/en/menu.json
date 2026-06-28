@@ -24,6 +24,10 @@
 		"deletePermanently": "Delete permanently",
 		"restoreFromBin": "Restore from bin",
 		"deleteToBin": "Move to bin",
+		"noteList": {
+			"pinNote": "Pin note",
+			"unpinNote": "Unpin note"
+		},
 		"tab": {
 			"close": "Close",
 			"closeOthers": "Close Others",

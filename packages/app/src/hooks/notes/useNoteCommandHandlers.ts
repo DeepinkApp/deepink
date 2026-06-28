@@ -181,4 +181,24 @@ export const useNoteCommandHandlers = () => {
 			});
 		},
 	);
+
+	useWorkspaceCommandCallback(GLOBAL_COMMANDS.TOGGLE_NOTE_PIN, async ({ noteId }) => {
+		const [note] = await notes.getById([noteId]);
+		if (!note) {
+			console.warn(`Not found note with id ${noteId}`);
+			return;
+		}
+
+		const newPinnedState = !note.isPinned;
+		await notes.updateMeta([noteId], {
+			isPinned: newPinnedState,
+		});
+
+		eventBus.emit(WorkspaceEvents.NOTE_META_UPDATED, noteId);
+		eventBus.emit(WorkspaceEvents.NOTE_UPDATED, noteId);
+
+		telemetry.track(TELEMETRY_EVENT_NAME.NOTE_PIN_TOGGLE, {
+			action: newPinnedState ? 'Pinned' : 'Unpinned',
+		});
+	});
 };
