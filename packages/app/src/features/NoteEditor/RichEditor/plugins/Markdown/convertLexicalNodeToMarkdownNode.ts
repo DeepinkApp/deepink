@@ -14,6 +14,7 @@ import {
 	List,
 	ListItem,
 	Paragraph,
+	PhrasingContent,
 	Strong,
 	Table,
 	TableCell,
@@ -173,10 +174,24 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 		}) satisfies TableRow;
 	}
 	if ($isTableCellNode(node)) {
+		const children: PhrasingContent[] = [];
+		for (const child of node.getChildren()) {
+			if ($isParagraphNode(child)) {
+				children.push(
+					...(child
+						.getChildren()
+						.map(convertLexicalNodeToMarkdownNode) as PhrasingContent[]),
+				);
+			} else {
+				console.warn(
+					`Table cell node have unexpected primary children with type "${child.getType()}". Expected node type is "paragraph". That means we have to review the code that serialize Lexical state into Markdown`,
+				);
+				children.push(convertLexicalNodeToMarkdownNode(child) as PhrasingContent);
+			}
+		}
+
 		return u('tableCell', {
-			children: node
-				.getChildren()
-				.map(convertLexicalNodeToMarkdownNode) as TableCell['children'],
+			children,
 		}) satisfies TableCell;
 	}
 

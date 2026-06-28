@@ -198,7 +198,9 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 			case 'tableCell': {
 				const tableCell = $createTableCellNode(TableCellHeaderStates.NO_STATUS);
 
-				tableCell.append(...convertToMarkdownNodes(node.children));
+				const p = $createParagraphNode();
+				p.append(...convertToMarkdownNodes(node.children));
+				tableCell.append(p);
 
 				return tableCell;
 			}
