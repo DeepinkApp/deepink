@@ -1,0 +1,167 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Check list with all checked items 1`] = `
+"- [x] foo
+  - [x] bar
+  - [x] baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Check list with no checked items 1`] = `
+"- [ ] foo
+  - [ ] bar
+  - [ ] baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Check list with one checked item 1`] = `
+"- [ ] foo
+  - [x] bar
+  - [ ] baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Details with summary 1`] = `
+"<details open>
+<summary>Shopping list</summary>
+
+- Vegetables
+- Fruits
+- Fish
+
+</details>
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Formatted line 1`] = `
+"**That** is a ***formatted*** *line*.
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Image 1`] = `
+"![Alt text](https://url)
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Image wrapped by link 1`] = `
+"[![Alt text](https://url)](proto://url2 "Link title")
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Links 1`] = `
+"Some [link](https://url "Title") and [another link](proto://url)
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > List item with inline elements 1`] = `
+"- foo [bar](...) baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > List item with inline elements and nested list 1`] = `
+"- item 1 [foo](...) bar
+  - item 1-2
+  - item 2-2
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Mixed list 1`] = `
+"- level 1-1
+  - [x] level 2-1
+  - [x] level 2-2
+    1. level 3-1
+    2. level 3-2
+       1. level 4-1
+       2. level 4-2
+       3. level 4-3
+    3. level 3-3
+  - [ ] level 2-3
+- level 1-2
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Nested quote 1`] = `
+"> The quote
+>
+>
+>
+> > Quote inside another quote
+> >
+> >
+> > With some spaces
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Numbered list 1`] = `
+"1. foo
+2. bar
+3. baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Plain list 1`] = `
+"- foo
+  - bar
+  - baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple code 1`] = `
+"\`\`\`js
+const x = 42;
+console.log("Your number is", x ** x);
+\`\`\`
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple post with headers 1`] = `
+"# The title
+
+A few lines
+In one paragraph.
+
+Another paragraph.
+
+## Another section
+
+Introduction
+
+***
+
+Text after a separator
+
+## Header with no space
+Text under header
+
+## Yet another section
+
+Section content
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple quote 1`] = `
+"> The quote
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple table 1`] = `
+"| Name  | Value |
+| ----- | ----- |
+| One   | 1     |
+| Two   | 2     |
+| Three | 3     |
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Text with few empty lines 1`] = `
+"foo
+
+
+bar
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Unsupported features 1`] = `
+"<button>Some button</button>
+"
+`;
