@@ -77,6 +77,7 @@ export const createLexicalEditorInstance = () => {
 		rootElement,
 		destroy() {
 			editor.setRootElement(null);
+			rootElement.remove();
 		},
 	};
 };
