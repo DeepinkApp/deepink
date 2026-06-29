@@ -11,7 +11,63 @@ exports[`Export all notes and attached files > Files list 1`] = `
 ]
 `;
 
-exports[`Export all notes and attached files > Notes texts 1`] = `undefined`;
+exports[`Export all notes and attached files > Notes texts 1`] = `
+[
+  "---
+title: Note 1
+created: 100000
+updated: 200000
+tags:
+  - bar
+  - baz
+  - foo
+
+---
+
+Hello world!
+",
+  "---
+title: Note 2
+created: 100003
+updated: 200003
+tags: []
+
+---
+
+Mention for [Note 1](./[REDACTED-UUID].md)
+",
+  "---
+title: Note 3
+created: 100002
+updated: 200002
+tags: []
+
+---
+
+Note with [attachment](./_resources/[REDACTED-UUID]-test.txt)
+",
+  "---
+title: Note 4
+created: 100004
+updated: 200004
+tags: []
+
+---
+
+Note with [attachment](./_resources/[REDACTED-UUID]-test.txt) and mention for [Note 1](./[REDACTED-UUID].md)
+",
+  "---
+title: Note 5
+created: 100001
+updated: 200001
+tags: []
+
+---
+
+Note with [invalid attachment](res://[REDACTED-UUID]) and mention for [invalid note](note://[REDACTED-UUID])
+",
+]
+`;
 
 exports[`Export all notes and attached files > onProcessed hook calls 1`] = `
 [
