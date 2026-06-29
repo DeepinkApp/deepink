@@ -34,7 +34,7 @@ import { $isTableCellNode, $isTableNode, $isTableRowNode } from '@lexical/table'
 import { $isImageNode } from '../Image/ImageNode';
 import { $isFormattingNode } from './nodes/FormattingNode';
 
-const inlineTypes = new Set([
+const inlineTypes = new Set<string>([
 	'text',
 	'emphasis',
 	'strong',
@@ -43,10 +43,39 @@ const inlineTypes = new Set([
 	'break',
 	'link',
 	'image',
-]);
+	'html',
+] satisfies PhrasingContent['type'][]);
 
 const isInlineNode = (node: RootContent): node is PhrasingContent =>
 	inlineTypes.has(node.type);
+
+const wrapInlineNodesWithParagraph = (mdNodes: RootContent[]) => {
+	const children: RootContent[] = [];
+
+	let paragraph: Paragraph | null = null;
+	for (const node of mdNodes) {
+		// Use block element as is
+		if (!isInlineNode(node)) {
+			paragraph = null;
+			children.push(node);
+			continue;
+		}
+
+		// Ensure paragraph node
+		if (!paragraph) {
+			paragraph = u('paragraph', {
+				children: [],
+			});
+
+			children.push(paragraph);
+		}
+
+		// Wrap node with paragraph
+		paragraph.children.push(node);
+	}
+
+	return children;
+};
 
 export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => {
 	if ($isParagraphNode(node)) {
@@ -128,34 +157,12 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 		}) satisfies List;
 	}
 	if ($isListItemNode(node)) {
-		const mdNodes = node.getChildren().map(convertLexicalNodeToMarkdownNode);
-
-		const children: RootContent[] = [];
-		let paragraph: Paragraph | null = null;
-		for (const node of mdNodes) {
-			// Insert block element
-			if (!isInlineNode(node)) {
-				paragraph = null;
-				children.push(node);
-				continue;
-			}
-
-			// Ensure paragraph node
-			if (!paragraph) {
-				paragraph = u('paragraph', {
-					children: [],
-				});
-
-				children.push(paragraph);
-			}
-
-			paragraph.children.push(node);
-		}
-
 		return u('listItem', {
 			spread: false,
 			checked: node.getChecked() ?? null,
-			children: children,
+			children: wrapInlineNodesWithParagraph(
+				node.getChildren().map(convertLexicalNodeToMarkdownNode),
+			),
 		}) as ListItem;
 	}
 
