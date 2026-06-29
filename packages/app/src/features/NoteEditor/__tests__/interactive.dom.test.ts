@@ -167,7 +167,7 @@ test('Updates heading level correctly', async () => {
 	const editorChildren = editor.children;
 	expect(editorChildren).toHaveLength(1);
 	expect(editorChildren[0]).toHaveRole('paragraph');
-	expect(editorChildren[0].children).toHaveLength(1);
+	expect(editorChildren[0]).toHaveTextContent(content);
 });
 
 test('Converts an unordered list to an ordered list', async () => {
@@ -176,34 +176,38 @@ test('Converts an unordered list to an ordered list', async () => {
   - Nested item
 - Second item`,
 	});
-
-	// Select text
 	const editor = screen.getByRole('textbox');
-	selectContent(editor, 'First item');
 
-	// Update unordered list to ordered
+	expect(editor.children[0].tagName).toBe('UL');
+	expect(editor.children[0].children).toHaveLength(2);
+
+	// Select text and convert to ordered list
+	selectContent(editor, 'First item');
 	await richEditor.insert({ type: 'list', data: { type: 'ordered' } });
 
-	const list = within(editor).getAllByRole('list')[0];
-	expect(list.tagName).toBe('OL');
+	expect(editor.children[0].tagName).toBe('OL');
 
-	const orderedList = within(list).getAllByRole('listitem');
-	expect(orderedList).toHaveLength(3);
+	const listItems = editor.children[0].children;
+	expect(listItems).toHaveLength(2);
 
-	expect(orderedList[0]).toHaveTextContent('First item');
+	// First item has text and nested list
+	const firstItemChildren = listItems[0].children;
+	expect(firstItemChildren).toHaveLength(2);
+	expect(listItems[0]).toHaveTextContent('First item');
 
-	// Second item is nested inside first item
-	expect(within(orderedList[0]).getByText('Nested item')).toBeInTheDocument();
+	const nestedListChildren = firstItemChildren[1].children;
+	expect(nestedListChildren).toHaveLength(1);
+	expect(nestedListChildren[0]).toHaveTextContent('Nested item');
 
-	expect(orderedList[2]).toHaveTextContent('Second item');
+	expect(listItems[1].children).toHaveLength(1);
+	expect(listItems[1]).toHaveTextContent('Second item');
 });
 
 test('Pressing Enter adds a new item to the list', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: '- First item' });
-
-	// Initial state
 	const editor = screen.getByRole('textbox');
+
 	const initialChildren = editor.children;
 	expect(initialChildren).toHaveLength(1);
 	expect(initialChildren[0]).toHaveRole('list');
@@ -221,9 +225,8 @@ test('Pressing Enter adds a new item to the list', async () => {
 	const editorChildren = editor.children;
 	expect(editorChildren).toHaveLength(1);
 	expect(editorChildren[0]).toHaveRole('list');
-	expect(editorChildren[0].children).toHaveLength(2);
 
-	const items = within(editor).getAllByRole('listitem');
+	const items = editorChildren[0].children;
 	expect(items).toHaveLength(2);
 	expect(items[0]).toHaveTextContent('First item');
 	expect(items[1]).toHaveTextContent('');
@@ -232,9 +235,8 @@ test('Pressing Enter adds a new item to the list', async () => {
 test('Pressing Enter on an empty last list item exits the list', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: '- First item' });
-
-	// Initial state
 	const editor = screen.getByRole('textbox');
+
 	const initialChildren = editor.children;
 	expect(initialChildren).toHaveLength(1);
 	expect(initialChildren[0]).toHaveRole('list');
@@ -254,10 +256,9 @@ test('Pressing Enter on an empty last list item exits the list', async () => {
 
 	await user.keyboard('{Enter}');
 
-	expect(within(editor).getAllByRole('listitem')).toHaveLength(1);
-
 	// A new empty paragraph is created
 	expect(within(editor).getByRole('paragraph')).toHaveTextContent('');
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(1);
 
 	// Editor contains only list with one items and one paragraph
 	const editorChildren = editor.children;
@@ -280,8 +281,9 @@ test('Toggles text formatting', async () => {
 
 	// Remove strikethrough
 	await richEditor.format('strikethrough');
+	expect(editor.children).toHaveLength(1);
+	expect(editor.children[0]).toHaveTextContent(content);
 	expect(within(editor).queryByRole('deletion')).not.toBeInTheDocument();
-	expect(editor).toHaveTextContent(content);
 
 	// Apply italic
 	await richEditor.format('italic');
@@ -289,8 +291,9 @@ test('Toggles text formatting', async () => {
 
 	// Remove italic
 	await richEditor.format('italic');
+	expect(editor.children).toHaveLength(1);
+	expect(editor.children[0]).toHaveTextContent(content);
 	expect(within(editor).queryByRole('emphasis')).not.toBeInTheDocument();
-	expect(editor).toHaveTextContent(content);
 });
 
 test('Combines multiple text formatting', async () => {
