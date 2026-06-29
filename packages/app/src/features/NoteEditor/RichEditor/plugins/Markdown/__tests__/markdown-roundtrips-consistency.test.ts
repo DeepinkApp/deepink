@@ -37,15 +37,15 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 		},
 		{
 			title: 'Check list with no checked items',
-			markdown: '-[ ] foo\n  -[ ] bar\n  -[ ] baz',
+			markdown: '- [ ] foo\n  - [ ] bar\n  - [ ] baz',
 		},
 		{
 			title: 'Check list with one checked item',
-			markdown: '-[ ] foo\n  -[x] bar\n  -[ ] baz',
+			markdown: '- [ ] foo\n  - [x] bar\n  - [ ] baz',
 		},
 		{
 			title: 'Check list with all checked items',
-			markdown: '-[x] foo\n  -[x] bar\n  -[x] baz',
+			markdown: '- [x] foo\n  - [x] bar\n  - [x] baz',
 		},
 		{
 			title: 'Mixed list',

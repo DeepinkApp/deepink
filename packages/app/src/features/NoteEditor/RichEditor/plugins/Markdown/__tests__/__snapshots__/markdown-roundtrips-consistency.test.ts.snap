@@ -1,23 +1,23 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Check list with all checked items 1`] = `
-"-\\[x] foo
--\\[x] bar
--\\[x] baz
+"- [x] foo
+  - [x] bar
+  - [x] baz
 "
 `;
 
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Check list with no checked items 1`] = `
-"-\\[ ] foo
--\\[ ] bar
--\\[ ] baz
+"- [ ] foo
+  - [ ] bar
+  - [ ] baz
 "
 `;
 
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Check list with one checked item 1`] = `
-"-\\[ ] foo
--\\[x] bar
--\\[ ] baz
+"- [ ] foo
+  - [x] bar
+  - [ ] baz
 "
 `;
 
