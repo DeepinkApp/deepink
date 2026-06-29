@@ -53,6 +53,18 @@ exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level >
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > List item with inline elements 1`] = `
+"- foo [bar](...) baz
+"
+`;
+
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > List item with inline elements and nested list 1`] = `
+"- item 1 [foo](...) bar
+  - item 1-2
+  - item 2-2
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Mixed list 1`] = `
 "- level 1-1
   - [x] level 2-1

@@ -124,6 +124,13 @@ export const dumpMarkdownNode = (node: Content) => {
 	return content;
 };
 
+export const $wrapWithParagraph = (children: LexicalNode[]) => {
+	const p = $createParagraphNode();
+	p.append(...children);
+
+	return p;
+};
+
 export const $convertFromMarkdownString = (rawMarkdown: string) => {
 	const mdTree = parseMarkdownToAST(rawMarkdown);
 
@@ -169,7 +176,9 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 			}
 			case 'listItem': {
 				const listItem = $createListItemNode(node.checked ?? undefined);
-				listItem.append(...convertToMarkdownNodes(node.children));
+				listItem.append(
+					$wrapWithParagraph(convertToMarkdownNodes(node.children)),
+				);
 
 				return listItem;
 			}

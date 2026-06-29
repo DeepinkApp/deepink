@@ -32,6 +32,14 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 			markdown: '- foo\n  - bar\n  - baz',
 		},
 		{
+			title: 'List item with inline elements',
+			markdown: '- foo [bar](...) baz',
+		},
+		{
+			title: 'List item with inline elements and nested list',
+			markdown: '- item 1 [foo](...) bar\n  - item 1-2\n  - item 2-2',
+		},
+		{
 			title: 'Numbered list',
 			markdown: '1. foo\n  2. bar\n  3. baz',
 		},

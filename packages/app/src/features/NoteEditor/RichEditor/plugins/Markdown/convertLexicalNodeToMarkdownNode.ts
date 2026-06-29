@@ -15,6 +15,7 @@ import {
 	ListItem,
 	Paragraph,
 	PhrasingContent,
+	RootContent,
 	Strong,
 	Table,
 	TableCell,
@@ -43,6 +44,9 @@ const inlineTypes = new Set([
 	'link',
 	'image',
 ]);
+
+const isInlineNode = (node: RootContent): node is PhrasingContent =>
+	inlineTypes.has(node.type);
 
 export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => {
 	if ($isParagraphNode(node)) {
@@ -124,19 +128,34 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 		}) satisfies List;
 	}
 	if ($isListItemNode(node)) {
+		const mdNodes = node.getChildren().map(convertLexicalNodeToMarkdownNode);
+
+		const children: RootContent[] = [];
+		let paragraph: Paragraph | null = null;
+		for (const node of mdNodes) {
+			// Insert block element
+			if (!isInlineNode(node)) {
+				paragraph = null;
+				children.push(node);
+				continue;
+			}
+
+			// Ensure paragraph node
+			if (!paragraph) {
+				paragraph = u('paragraph', {
+					children: [],
+				});
+
+				children.push(paragraph);
+			}
+
+			paragraph.children.push(node);
+		}
+
 		return u('listItem', {
 			spread: false,
 			checked: node.getChecked() ?? null,
-			children: node.getChildren().map((children) => {
-				const mdNode = convertLexicalNodeToMarkdownNode(children);
-
-				if (inlineTypes.has(mdNode.type))
-					return u('paragraph', {
-						children: [mdNode],
-					});
-
-				return mdNode;
-			}),
+			children: children,
 		}) as ListItem;
 	}
 
