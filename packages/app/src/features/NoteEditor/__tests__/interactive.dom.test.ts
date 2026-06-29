@@ -55,7 +55,6 @@ test('Ctrl+Enter exits a block node and creates a new empty paragraph', async ()
 	expect(editorChildren[0]).toHaveRole('blockquote');
 	expect(editorChildren[1]).toHaveRole('paragraph');
 
-	// Two paragraph: one inside the blockquote and one in top level
 	const paragraphs = within(editor).getAllByRole('paragraph');
 	expect(paragraphs).toHaveLength(2);
 	expect(paragraphs[0]).toHaveTextContent(content);
@@ -83,7 +82,6 @@ test(`Inserts image between text nodes`, async () => {
 
 	// Image nodes inserting asynchronously, so use findByRole to wait for the img to appear
 	const img = await within(editor).findByRole('img');
-
 	expect(img).toBeInTheDocument();
 	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
 	expect(img).toHaveAttribute('alt', 'My cat');

@@ -41,28 +41,29 @@ test('Formatting text in one editor does not affect the other editor', async () 
 	const editorA = await renderRichEditor({ value: 'Big text' });
 	const editorB = await renderRichEditor({ value: 'Small text' });
 
-	const [editorBoxA, editorBoxB] = screen.getAllByRole('textbox');
+	const textBoxes = screen.getAllByRole('textbox');
+	expect(textBoxes).toHaveLength(2);
 
 	// initial state
-	expect(within(editorBoxA).queryByRole('paragraph')).toHaveTextContent('Big text');
-	expect(within(editorBoxB).queryByRole('paragraph')).toHaveTextContent('Small text');
+	expect(within(textBoxes[0]).queryByRole('paragraph')).toHaveTextContent('Big text');
+	expect(within(textBoxes[1]).queryByRole('paragraph')).toHaveTextContent('Small text');
 
 	// apply italic in editorA
-	selectContent(editorBoxA, 'Big text');
+	selectContent(textBoxes[0], 'Big text');
 	await editorA.format('italic');
 
-	expect(within(editorBoxA).getByRole('emphasis')).toHaveTextContent('Big text');
-	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(within(textBoxes[0]).getByRole('emphasis')).toHaveTextContent('Big text');
+	expect(within(textBoxes[1]).queryByRole('emphasis')).not.toBeInTheDocument();
 
 	// apply strikethrough in editorB
-	selectContent(editorBoxB, 'Small text');
+	selectContent(textBoxes[1], 'Small text');
 	await editorB.format('strikethrough');
 
-	expect(within(editorBoxB).getByRole('deletion')).toHaveTextContent('Small text');
-	expect(within(editorBoxB).queryByRole('emphasis')).not.toBeInTheDocument();
+	expect(within(textBoxes[1]).getByRole('deletion')).toHaveTextContent('Small text');
+	expect(within(textBoxes[1]).queryByRole('emphasis')).not.toBeInTheDocument();
 
-	expect(within(editorBoxA).getByRole('emphasis')).toHaveTextContent('Big text');
-	expect(within(editorBoxA).queryByRole('deletion')).not.toBeInTheDocument();
+	expect(within(textBoxes[0]).getByRole('emphasis')).toHaveTextContent('Big text');
+	expect(within(textBoxes[0]).queryByRole('deletion')).not.toBeInTheDocument();
 });
 
 test('ReadOnly editor is not editable while the other editor remains editable', async () => {
