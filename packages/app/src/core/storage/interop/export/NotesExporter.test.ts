@@ -107,9 +107,11 @@ test('Export all notes and attached files', async () => {
 	const filesList = exportTarget.list();
 	await expect(
 		filesList.then((paths) =>
-			paths.map((path) =>
-				path.replaceAll(/[a-z\d]+(-[a-z\d]+){4}/g, '[REDACTED-UUID]'),
-			),
+			paths
+				.map((path) =>
+					path.replaceAll(/[a-z\d]+(-[a-z\d]+){4}/g, '[REDACTED-UUID]'),
+				)
+				.sort(),
 		),
 	).resolves.toMatchSnapshot('Files list');
 
@@ -129,7 +131,7 @@ test('Export all notes and attached files', async () => {
 					.replace(/updated: \d+/, `updated: ${200_000 + index}`)
 					.replaceAll(/[a-z\d]+(-[a-z\d]+){4}/g, '[REDACTED-UUID]');
 			}),
-		),
+		).then((notes) => notes.sort()),
 	).resolves.toMatchSnapshot('Notes texts');
 });
 
@@ -218,9 +220,11 @@ test('Export all notes and attached files with custom file names', async () => {
 	const filesList = exportTarget.list();
 	await expect(
 		filesList.then((paths) =>
-			paths.map((path) =>
-				path.replaceAll(/[a-z\d]+(-[a-z\d]+){4}/g, '[REDACTED-UUID]'),
-			),
+			paths
+				.map((path) =>
+					path.replaceAll(/[a-z\d]+(-[a-z\d]+){4}/g, '[REDACTED-UUID]'),
+				)
+				.sort(),
 		),
 	).resolves.toMatchSnapshot('Files list');
 
@@ -240,7 +244,7 @@ test('Export all notes and attached files with custom file names', async () => {
 					.replace(/updated: \d+/, `updated: ${200_000 + index}`)
 					.replaceAll(/[a-z\d]+(-[a-z\d]+){4}/g, '[REDACTED-UUID]');
 			}),
-		),
+		).then((notes) => notes.sort()),
 	).resolves.toMatchSnapshot('Notes texts');
 });
 

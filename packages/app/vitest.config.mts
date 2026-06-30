@@ -40,5 +40,24 @@ export default defineConfig({
 		// so we increase default timeout.
 		// As alternative solution we may wait initialization in `beforeAll` hook
 		testTimeout: 10_000,
+
+		projects: [
+			{
+				extends: true,
+				test: {
+					name: 'node',
+					environment: 'node',
+					exclude: ['**/*.dom.test.ts'],
+				},
+			},
+			{
+				extends: true,
+				test: {
+					name: 'dom',
+					environment: 'jsdom',
+					include: ['**/*.dom.test.ts'],
+				},
+			},
+		],
 	},
 });
