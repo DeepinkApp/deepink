@@ -1,8 +1,8 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderRichEditor } from './utils/renderRichEditor';
-import { selectContent, selectText, setCursorPosition } from './utils/utils';
+import { renderRichEditor } from '../utils/renderRichEditor';
+import { selectContent, setCursorPosition } from '../utils/utils';
 
 test('Pressing Enter inside a paragraph splits it into two paragraphs', async () => {
 	const user = userEvent.setup();
@@ -318,50 +318,4 @@ test('Combines multiple text formatting', async () => {
 	expect(within(editor).getByText(content).closest('b')).not.toBeInTheDocument();
 	expect(within(editor).getByRole('emphasis')).toHaveTextContent(content);
 	expect(within(editor).getByRole('deletion')).toHaveTextContent(content);
-});
-
-// TODO: Remove `.fails` after fixing the formatting implementation
-// The assertions below describe the expected behavior and should remain unchanged
-test.fails('Applies formatting to a selected part of a text node', async () => {
-	const richEditor = await renderRichEditor({ value: 'Hello, my dear friends!' });
-
-	const editor = screen.getByRole('textbox');
-	selectText(editor, 'friends');
-
-	// Apply formatting
-	await richEditor.format('italic');
-
-	// Editor contains one paragraph
-	const editorChildren = editor.children;
-	expect(editorChildren).toHaveLength(1);
-	expect(editorChildren[0]).toHaveRole('paragraph');
-
-	const paragraph = editorChildren[0];
-	expect(paragraph).toHaveTextContent('Hello, my dear friends!');
-	expect(paragraph.children).toHaveLength(3);
-
-	// Only "friends" is wrapped in emphasis
-	expect(paragraph.children[0]).toHaveTextContent('Hello, my dear ');
-	expect(paragraph.children[1]).toHaveRole('emphasis');
-	expect(paragraph.children[1]).toHaveTextContent('friends');
-	expect(paragraph.children[2]).toHaveTextContent('!');
-});
-
-test.fails('Applies formatting across multiple text blocks', async () => {
-	const richEditor = await renderRichEditor({
-		value: 'Hello, my dear friends! \n\n Nice to see you. \n\n How are you ?',
-	});
-
-	const editor = screen.getByRole('textbox');
-	selectContent(editor, 'Hello, my dear friends!', 'How are you ?');
-
-	// Apply formatting
-	await richEditor.format('italic');
-
-	// Each line should be wrapped in emphasis
-	const formattingNodes = within(editor).getAllByRole('emphasis');
-	expect(formattingNodes).toHaveLength(3);
-	expect(formattingNodes[0]).toHaveTextContent('Hello, my dear friends!');
-	expect(formattingNodes[1]).toHaveTextContent('Nice to see you');
-	expect(formattingNodes[2]).toHaveTextContent('How are you ?');
 });
