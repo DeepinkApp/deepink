@@ -11,7 +11,6 @@ import {
 	ElementNode,
 	KEY_ENTER_COMMAND,
 	KEY_SPACE_COMMAND,
-	TextNode,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -19,7 +18,6 @@ import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
 
 import { $isFormattingNode, FormattingNode } from '../Markdown/nodes/FormattingNode';
-import { $convertTextNodeFormatting } from './utils';
 
 const OUT_OF_BLOCK_NODE_COMMAND = createCommand<ElementNode>();
 
@@ -66,7 +64,7 @@ export const FormattingPlugin = () => {
 	useEffect(
 		() =>
 			mergeRegister(
-				editor.registerNodeTransform(TextNode, $convertTextNodeFormatting),
+				// editor.registerNodeTransform(TextNode, $convertTextNodeFormatting),
 				editor.registerNodeTransform(FormattingNode, (node: FormattingNode) => {
 					// Remove empty formatting nodes
 					const textContent = node.getTextContent();

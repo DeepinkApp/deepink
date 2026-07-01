@@ -1,3 +1,11 @@
+export const simpleFormatting = `
+Text may be **bold**, *italic*, ~~strikethrough~~.
+`.trim();
+
+export const richFormatting = `
+*All text can be italic, something additionally can be **bold**, ~~strikethrough~~, or **~~bold AND strikethrough~~***
+`.trim();
+
 export const mixedList = `
 - level 1-1
   - [x] level 2-1

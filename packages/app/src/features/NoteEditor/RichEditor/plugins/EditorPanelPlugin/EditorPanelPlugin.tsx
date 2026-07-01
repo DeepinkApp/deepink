@@ -3,14 +3,14 @@ import {
 	$createParagraphNode,
 	$createTextNode,
 	$getRoot,
-	$getSelection,
 	$isBlockElementNode,
 	$isParagraphNode,
 	$isRootNode,
 	$isTextNode,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
+	FORMAT_TEXT_COMMAND,
 } from 'lexical';
-import { $createCodeNode, $isCodeNode } from '@lexical/code';
+import { $createCodeNode } from '@lexical/code';
 import { TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
 	INSERT_CHECK_LIST_COMMAND,
@@ -20,20 +20,13 @@ import {
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
 import { $createHeadingNode, $createQuoteNode, $isHeadingNode } from '@lexical/rich-text';
-import { $dfs } from '@lexical/utils';
 
 import { InsertingPayloadMap, useEditorPanelContext } from '../../../EditorPanel';
 import { $getCursorNode } from '../../utils/selection';
 
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
-import { $toggleFormatNode } from './utils/format';
-import {
-	$canInsertElementsToNode,
-	$findCommonAncestor,
-	$getNearestSibling,
-	$wrapNodes,
-} from './utils/tree';
+import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
 
 /**
  * Plugin to handle editor panel actions about formatting and nodes insertion
@@ -47,18 +40,7 @@ export const EditorPanelPlugin = () => {
 		const cleanupFormatting = onFormatting.watch((format) => {
 			// TODO: support formatting selected text slices
 			editor.update(() => {
-				const selection = $getSelection();
-				if (!selection) return;
-
-				const nodes = selection.getNodes();
-				if (nodes.length === 0) return;
-
-				const commonAncestor = $findCommonAncestor(nodes[0], nodes, (node) =>
-					$dfs(node).some(({ node }) => $isCodeNode(node)),
-				);
-				if (!commonAncestor) return;
-
-				$toggleFormatNode(commonAncestor, format);
+				editor.dispatchCommand(FORMAT_TEXT_COMMAND, format);
 			});
 		});
 
