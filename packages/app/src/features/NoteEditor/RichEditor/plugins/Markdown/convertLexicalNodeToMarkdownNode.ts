@@ -1,4 +1,10 @@
-import { $isLineBreakNode, $isParagraphNode, $isTextNode, LexicalNode } from 'lexical';
+import {
+	$isLineBreakNode,
+	$isParagraphNode,
+	$isTextNode,
+	LexicalNode,
+	TextFormatType,
+} from 'lexical';
 import {
 	Blockquote,
 	Break,
@@ -104,7 +110,25 @@ export const convertLexicalNodeToMarkdownNode = (node: LexicalNode): Content => 
 			}) satisfies InlineCode;
 		}
 
-		return u('text', { value: node.getTextContent() }) satisfies Text;
+		let wrappedNode: PhrasingContent = u('text', {
+			value: node.getTextContent(),
+		}) satisfies Text;
+
+		const formatsOrder = (
+			['strikethrough', 'italic', 'bold'] satisfies TextFormatType[]
+		).reverse();
+		const nodesMap = {
+			italic: 'emphasis',
+			bold: 'strong',
+			strikethrough: 'delete',
+		} satisfies Partial<Record<TextFormatType, PhrasingContent['type']>>;
+
+		formatsOrder.forEach((format) => {
+			if (!node.hasFormat(format)) return;
+			wrappedNode = u(nodesMap[format], { children: [wrappedNode] });
+		});
+
+		return wrappedNode;
 	}
 
 	if ($isCodeNode(node)) {

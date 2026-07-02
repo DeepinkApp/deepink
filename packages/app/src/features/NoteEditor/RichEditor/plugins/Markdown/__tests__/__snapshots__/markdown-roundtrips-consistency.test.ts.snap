@@ -114,6 +114,11 @@ console.log("Your number is", x ** x);
 "
 `;
 
+exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple formatting 1`] = `
+"Text may be **bold**, *italic*, ~~strikethrough~~.
+"
+`;
+
 exports[`Markdown-Lexical-Markdown round-trips must be consistent on AST level > Simple post with headers 1`] = `
 "# The title
 

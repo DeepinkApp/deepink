@@ -6,6 +6,7 @@ import {
 	$convertFromMarkdownString,
 	$convertToMarkdownString,
 	$serializeAsMarkdownAST,
+	markdownProcessor,
 	parseMarkdownToAST,
 } from '../markdownParser';
 import {
@@ -14,7 +15,9 @@ import {
 	mixedList,
 	nestedQuote,
 	postWithHeaders,
+	richFormatting,
 	simpleCode,
+	simpleFormatting,
 	simpleQuote,
 	simpleTable,
 	unsupportedFeatures,
@@ -25,11 +28,29 @@ import {
 	updateEditorState,
 } from './utils';
 
+test('Markdown parser round-trips', () => {
+	const ast = parseMarkdownToAST(richFormatting);
+	const out = markdownProcessor.stringify(ast);
+
+	expect(normalizeMarkdownTree(parseMarkdownToAST(out))).toEqual(
+		normalizeMarkdownTree(ast),
+	);
+});
+
 describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level', () => {
 	const cases = [
+		// TODO: support
+		// {
+		// 	title: 'Rich formatting',
+		// 	markdown: richFormatting,
+		// },
 		{
 			title: 'Plain list',
 			markdown: '- foo\n  - bar\n  - baz',
+		},
+		{
+			title: 'Simple formatting',
+			markdown: simpleFormatting,
 		},
 		{
 			title: 'List item with inline elements',
@@ -124,7 +145,15 @@ describe('Markdown-Lexical-Markdown round-trips must be consistent on AST level'
 				editor.read(() => normalizeMarkdownTree($serializeAsMarkdownAST())),
 			).toMatchObject(normalizeMarkdownTree(parseMarkdownToAST(sourceText)));
 
-			expect(editor.read(() => $convertToMarkdownString())).toMatchSnapshot();
+			const out = editor.read(() => $convertToMarkdownString());
+			expect(out).toMatchSnapshot();
+
+			// Parse markdown
+			await updateEditorState(editor, () => {
+				$convertFromMarkdownString(out);
+			});
+
+			expect(editor.read(() => $convertToMarkdownString())).toBe(out);
 		}),
 	);
 });
