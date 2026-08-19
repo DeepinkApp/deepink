@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {
 	$addUpdateTag,
 	$createParagraphNode,
+	$findMatchingParent,
 	$getSelection,
 	$isParagraphNode,
 	$isRangeSelection,
@@ -13,8 +14,10 @@ import {
 	ElementNode,
 	KEY_DOWN_COMMAND,
 	KEY_ENTER_COMMAND,
+	KEY_TAB_COMMAND,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
+import { $createListNode, $isListItemNode, $isListNode } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
@@ -98,6 +101,48 @@ export const KeyboardControlsPlugin = () => {
 						blockElement.insertAfter(newParagraph);
 						newParagraph.select();
 
+						return true;
+					},
+					COMMAND_PRIORITY_LOW,
+				),
+				editor.registerCommand(
+					KEY_TAB_COMMAND,
+					(event) => {
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return false;
+
+						const listItem = $findMatchingParent(
+							selection.anchor.getNode(),
+							$isListItemNode,
+						);
+						if (!listItem) return false;
+
+						const parentList = listItem.getParent();
+						if (!$isListNode(parentList)) return false;
+
+						event.preventDefault();
+
+						// Changing nesting is not possible for the first element of the list
+						const previousSibling = listItem.getPreviousSibling();
+						if (!$isListItemNode(previousSibling)) return true;
+
+						// Move listItem one level deeper by nesting it under previousSibling
+						// If previousSibling already has a nested list - reuse it, otherwise create a new nested list
+						const listType = parentList.getListType();
+						const nestedList = previousSibling
+							.getChildren()
+							.filter($isListNode)
+							.find((list) => list.getListType() === listType);
+
+						if (nestedList) {
+							nestedList.append(listItem);
+						} else {
+							const newNestedList = $createListNode(listType);
+							previousSibling.append(newNestedList);
+							newNestedList.append(listItem);
+						}
+
+						listItem.selectStart();
 						return true;
 					},
 					COMMAND_PRIORITY_LOW,
