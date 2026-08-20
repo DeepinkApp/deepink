@@ -70,7 +70,7 @@ const $getParentOfTextOnEnd = (selection: BaseSelection | null) => {
 
 export const MOVE_BLOCKS_TAG = 'MOVE_BLOCKS_TAG';
 
-const indentListItem = (listItem: ListItemNode) => {
+const increaseListItemNesting = (listItem: ListItemNode) => {
 	const parentList = listItem.getParent();
 	if (!$isListNode(parentList)) return false;
 
@@ -92,6 +92,32 @@ const indentListItem = (listItem: ListItemNode) => {
 		const newNestedList = $createListNode(listType);
 		previousSibling.append(newNestedList);
 		newNestedList.append(listItem);
+	}
+
+	listItem.selectStart();
+	return true;
+};
+
+const decreaseListItemNesting = (listItem: ListItemNode) => {
+	const currentList = listItem.getParent();
+	if (!$isListNode(currentList)) return false;
+
+	// Handle only if listItem is nested, not on the first level
+	const parentListItem = currentList.getParent();
+	if (!$isListItemNode(parentListItem)) return true;
+
+	// Capture items after listItem — they'll be re-nested under it once it moves up
+	const followingListItems = listItem.getNextSiblings().filter($isListItemNode);
+	parentListItem.insertAfter(listItem);
+
+	if (followingListItems.length > 0) {
+		const newNestedList = $createListNode(currentList.getListType());
+		followingListItems.forEach((item) => newNestedList.append(item));
+		listItem.append(newNestedList);
+	}
+
+	if (currentList.getChildrenSize() === 0) {
+		currentList.remove();
 	}
 
 	listItem.selectStart();
@@ -151,14 +177,22 @@ export const KeyboardControlsPlugin = () => {
 						if (!listItem) return false;
 
 						event.preventDefault();
-						return indentListItem(listItem);
+
+						return event.shiftKey
+							? decreaseListItemNesting(listItem)
+							: increaseListItemNesting(listItem);
 					},
 					COMMAND_PRIORITY_LOW,
 				),
 				editor.registerCommand(
 					KEY_DOWN_COMMAND,
 					(event) => {
-						if (!((event.ctrlKey || event.metaKey) && event.key === ']'))
+						if (
+							!(
+								(event.ctrlKey || event.metaKey) &&
+								(event.key === ']' || event.key === '[')
+							)
+						)
 							return false;
 
 						const selection = $getSelection();
@@ -171,7 +205,10 @@ export const KeyboardControlsPlugin = () => {
 						if (!listItem) return false;
 
 						event.preventDefault();
-						return indentListItem(listItem);
+
+						return event.key === '['
+							? decreaseListItemNesting(listItem)
+							: increaseListItemNesting(listItem);
 					},
 					COMMAND_PRIORITY_LOW,
 				),
