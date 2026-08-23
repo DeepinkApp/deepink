@@ -332,7 +332,7 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
 		});
 
-		test('Nests multiple selected items', async () => {
+		test('Unnests multiple selected items across multiple levels', async () => {
 			const { editor, user } = await setupEditor(`- First item
 	- Second item
 		- Third item`);
@@ -344,7 +344,7 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(items[0]).toContainElement(items[1]);
 			expect(items[1]).toContainElement(items[2]);
 
-			// Select Nested item and Third item, then un-nests it together
+			// Select the nested item and the third item, then decrease their nesting
 			await user.click(items[1]);
 			selectContent(
 				within(editor).getAllByRole('list')[0],
@@ -353,6 +353,7 @@ describe('Decrease nesting level list items via keyboard', () => {
 			);
 			await user.keyboard(shortcut);
 
+			// Second item is un-nested from First, while Third remains nested under it
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
@@ -360,7 +361,7 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[1]);
 			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
 
-			// Select the same two items again and decrease it nesting
+			// Select the same two items again and decrease their nesting
 			await user.click(within(editor).getAllByRole('listitem')[1]);
 			selectContent(
 				within(editor).getAllByRole('list')[0],
@@ -369,13 +370,17 @@ describe('Decrease nesting level list items via keyboard', () => {
 			);
 			await user.keyboard(shortcut);
 
-			// Now Third item nests inside Second item, which nests inside First item
-			// expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			// One flat list with no nesting
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
 
-			// const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
-			// expect(itemsAfterSecondUpdate).toHaveLength(3);
-			// expect(itemsAfterSecondUpdate[0]).toContainElement(itemsAfterSecondUpdate[1]);
-			// expect(itemsAfterSecondUpdate[1]).toContainElement(itemsAfterSecondUpdate[2]);
+			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
+			expect(itemsAfterSecondUpdate).toHaveLength(3);
+			expect(itemsAfterSecondUpdate[0]).not.toContainElement(
+				itemsAfterSecondUpdate[1],
+			);
+			expect(itemsAfterSecondUpdate[1]).not.toContainElement(
+				itemsAfterSecondUpdate[2],
+			);
 		});
 	});
 });

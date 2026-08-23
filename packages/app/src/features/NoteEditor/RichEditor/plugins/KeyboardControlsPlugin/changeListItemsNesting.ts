@@ -1,4 +1,4 @@
-import { RangeSelection } from 'lexical';
+import { $findMatchingParent, RangeSelection } from 'lexical';
 import {
 	$createListNode,
 	$isListItemNode,
@@ -6,7 +6,7 @@ import {
 	ListItemNode,
 } from '@lexical/list';
 
-import { $getSelectedListItems } from './getSelectedListItems';
+import { $hasSelectedAncestor } from './utils';
 
 /**
  * Nests a list item one level deep under sibling
@@ -74,13 +74,32 @@ export const $changeListItemsNesting = (
 	selection: RangeSelection,
 	direction: 'increase' | 'decrease',
 ): boolean => {
-	const listItems = $getSelectedListItems(selection);
+	const selectedItems = new Map<string, ListItemNode>();
+
+	for (const node of selection.getNodes()) {
+		const listItem = $findMatchingParent(node, $isListItemNode);
+
+		if (listItem) {
+			selectedItems.set(listItem.getKey(), listItem);
+		}
+	}
+
+	const listItems = Array.from(selectedItems.values());
 	if (listItems.length === 0) return false;
 
-	const changedItems = listItems.map((item) =>
-		direction === 'decrease'
-			? $decreaseListItemNesting(item)
-			: $increaseListItemNesting(item),
+	// 'increase': Filter out children if their parent is selected, because
+	// moving the parent automatically brings its children along
+	// 'decrease': Handle both parent and child item. Reverse the order,
+	// so moving a parent doesn't prematurely shift or orphan its children before they are processed
+	const itemsToProcess =
+		direction === 'increase'
+			? listItems.filter((item) => !$hasSelectedAncestor(item, selectedItems))
+			: [...listItems].reverse();
+
+	const changedItems = itemsToProcess.map((item) =>
+		direction === 'increase'
+			? $increaseListItemNesting(item)
+			: $decreaseListItemNesting(item),
 	);
 
 	return changedItems.some(Boolean);
