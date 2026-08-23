@@ -15,6 +15,8 @@ import {
 	KEY_DOWN_COMMAND,
 	KEY_ENTER_COMMAND,
 	KEY_TAB_COMMAND,
+	LexicalNode,
+	RangeSelection,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
 import {
@@ -124,6 +126,34 @@ const decreaseListItemNesting = (listItem: ListItemNode) => {
 	return true;
 };
 
+const hasSelectedAncestor = (
+	node: LexicalNode,
+	listItems: Map<string, ListItemNode>,
+): boolean => {
+	const parent = node.getParent();
+	if (!parent) return false;
+
+	if ($isListItemNode(parent) && listItems.has(parent.getKey())) return true;
+
+	return hasSelectedAncestor(parent, listItems);
+};
+
+const getSelectedListItems = (selection: RangeSelection) => {
+	const nodes = selection.getNodes();
+	const listItems = new Map<string, ListItemNode>();
+
+	for (const node of nodes) {
+		const listItem = $findMatchingParent(node, $isListItemNode);
+		if (listItem) {
+			listItems.set(listItem.getKey(), listItem);
+		}
+	}
+
+	return Array.from(listItems.values()).filter(
+		(item) => !hasSelectedAncestor(item, listItems),
+	);
+};
+
 /**
  * Plugin for nodes management via keyboard
  */
@@ -170,17 +200,19 @@ export const KeyboardControlsPlugin = () => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return false;
 
-						const listItem = $findMatchingParent(
-							selection.anchor.getNode(),
-							$isListItemNode,
-						);
-						if (!listItem) return false;
+						const listItems = getSelectedListItems(selection);
+						if (listItems.length === 0) return false;
 
 						event.preventDefault();
 
-						return event.shiftKey
-							? decreaseListItemNesting(listItem)
-							: increaseListItemNesting(listItem);
+						let handled = false;
+						for (const item of listItems) {
+							const result = event.shiftKey
+								? decreaseListItemNesting(item)
+								: increaseListItemNesting(item);
+							handled = handled || result;
+						}
+						return handled;
 					},
 					COMMAND_PRIORITY_LOW,
 				),
