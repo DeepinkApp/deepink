@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import {
 	$addUpdateTag,
 	$createParagraphNode,
-	$findMatchingParent,
 	$getSelection,
 	$isParagraphNode,
 	$isRangeSelection,
@@ -15,21 +14,14 @@ import {
 	KEY_DOWN_COMMAND,
 	KEY_ENTER_COMMAND,
 	KEY_TAB_COMMAND,
-	LexicalNode,
-	RangeSelection,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
-import {
-	$createListNode,
-	$isListItemNode,
-	$isListNode,
-	ListItemNode,
-} from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
 
 import { $applyMovePlan, $getMovePlan, MoveDirection } from './blockNavigation';
+import { $changeListItemsNesting } from './changeListItemsNesting';
 
 const OUT_OF_BLOCK_NODE_COMMAND = createCommand<ElementNode>();
 
@@ -71,88 +63,6 @@ const $getParentOfTextOnEnd = (selection: BaseSelection | null) => {
 };
 
 export const MOVE_BLOCKS_TAG = 'MOVE_BLOCKS_TAG';
-
-const increaseListItemNesting = (listItem: ListItemNode) => {
-	const parentList = listItem.getParent();
-	if (!$isListNode(parentList)) return false;
-
-	// Changing nesting is not possible for the first element of the list
-	const previousSibling = listItem.getPreviousSibling();
-	if (!$isListItemNode(previousSibling)) return true;
-
-	// Move listItem one level deeper by nesting it under previousSibling
-	// If previousSibling already has a nested list - reuse it, otherwise create a new nested list
-	const listType = parentList.getListType();
-	const nestedList = previousSibling
-		.getChildren()
-		.filter($isListNode)
-		.find((list) => list.getListType() === listType);
-
-	if (nestedList) {
-		nestedList.append(listItem);
-	} else {
-		const newNestedList = $createListNode(listType);
-		previousSibling.append(newNestedList);
-		newNestedList.append(listItem);
-	}
-
-	listItem.selectStart();
-	return true;
-};
-
-const decreaseListItemNesting = (listItem: ListItemNode) => {
-	const currentList = listItem.getParent();
-	if (!$isListNode(currentList)) return false;
-
-	// Handle only if listItem is nested, not on the first level
-	const parentListItem = currentList.getParent();
-	if (!$isListItemNode(parentListItem)) return true;
-
-	// Capture items after listItem — they'll be re-nested under it once it moves up
-	const followingListItems = listItem.getNextSiblings().filter($isListItemNode);
-	parentListItem.insertAfter(listItem);
-
-	if (followingListItems.length > 0) {
-		const newNestedList = $createListNode(currentList.getListType());
-		followingListItems.forEach((item) => newNestedList.append(item));
-		listItem.append(newNestedList);
-	}
-
-	if (currentList.getChildrenSize() === 0) {
-		currentList.remove();
-	}
-
-	listItem.selectStart();
-	return true;
-};
-
-const hasSelectedAncestor = (
-	node: LexicalNode,
-	listItems: Map<string, ListItemNode>,
-): boolean => {
-	const parent = node.getParent();
-	if (!parent) return false;
-
-	if ($isListItemNode(parent) && listItems.has(parent.getKey())) return true;
-
-	return hasSelectedAncestor(parent, listItems);
-};
-
-const getSelectedListItems = (selection: RangeSelection) => {
-	const nodes = selection.getNodes();
-	const listItems = new Map<string, ListItemNode>();
-
-	for (const node of nodes) {
-		const listItem = $findMatchingParent(node, $isListItemNode);
-		if (listItem) {
-			listItems.set(listItem.getKey(), listItem);
-		}
-	}
-
-	return Array.from(listItems.values()).filter(
-		(item) => !hasSelectedAncestor(item, listItems),
-	);
-};
 
 /**
  * Plugin for nodes management via keyboard
@@ -200,19 +110,14 @@ export const KeyboardControlsPlugin = () => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return false;
 
-						const listItems = getSelectedListItems(selection);
-						if (listItems.length === 0) return false;
+						const changed = $changeListItemsNesting(
+							selection,
+							event.shiftKey ? 'decrease' : 'increase',
+						);
+						if (!changed) return false;
 
 						event.preventDefault();
-
-						let handled = false;
-						for (const item of listItems) {
-							const result = event.shiftKey
-								? decreaseListItemNesting(item)
-								: increaseListItemNesting(item);
-							handled = handled || result;
-						}
-						return handled;
+						return true;
 					},
 					COMMAND_PRIORITY_LOW,
 				),
@@ -222,7 +127,8 @@ export const KeyboardControlsPlugin = () => {
 						if (
 							!(
 								(event.ctrlKey || event.metaKey) &&
-								(event.key === ']' || event.key === '[')
+								(event.code === 'BracketLeft' ||
+									event.code === 'BracketRight')
 							)
 						)
 							return false;
@@ -230,17 +136,14 @@ export const KeyboardControlsPlugin = () => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return false;
 
-						const listItem = $findMatchingParent(
-							selection.anchor.getNode(),
-							$isListItemNode,
+						const changed = $changeListItemsNesting(
+							selection,
+							event.code === 'BracketRight' ? 'decrease' : 'increase',
 						);
-						if (!listItem) return false;
+						if (!changed) return false;
 
 						event.preventDefault();
-
-						return event.key === '['
-							? decreaseListItemNesting(listItem)
-							: increaseListItemNesting(listItem);
+						return true;
 					},
 					COMMAND_PRIORITY_LOW,
 				),
