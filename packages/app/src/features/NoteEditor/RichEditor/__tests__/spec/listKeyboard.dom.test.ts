@@ -31,11 +31,11 @@ const setupEditor = async (value: string) => {
 
 	const applyShortcutToSelection = async (
 		anchorItem: HTMLElement,
-		range: [from: string, to: string],
+		range: { from: string; to: string },
 		shortcut: string,
 	) => {
 		await user.click(anchorItem);
-		selectContent(within(editor).getAllByRole('list')[0], ...range);
+		selectContent(within(editor).getAllByRole('list')[0], range.from, range.to);
 		await user.keyboard(shortcut);
 	};
 
@@ -99,8 +99,8 @@ describe('Increase nesting level list items via keyboard', () => {
 
 		test('allows nesting an item deeper than its siblings', async () => {
 			const { editor, applyShortcut } = await setupEditor(`- First item
-    - Nested item
-- Second item`);
+    - Second item
+- Third item`);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const items = within(editor).getAllByRole('listitem');
@@ -133,7 +133,7 @@ describe('Increase nesting level list items via keyboard', () => {
 			expect(itemsAfterThirdUpdate).toHaveLength(3);
 
 			expect(itemsAfterThirdUpdate[1]).toContainElement(itemsAfterThirdUpdate[2]);
-			expect(itemsAfterThirdUpdate[2]).toHaveTextContent('Second item');
+			expect(itemsAfterThirdUpdate[2]).toHaveTextContent('Third item');
 		});
 
 		test('nests multiple selected items', async () => {
@@ -146,7 +146,7 @@ describe('Increase nesting level list items via keyboard', () => {
 			// Select second and third items, then nest them together
 			await applyShortcutToSelection(
 				items[1],
-				['Second item', 'Third item'],
+				{ from: 'Second item', to: 'Third item' },
 				shortcut,
 			);
 
@@ -162,7 +162,7 @@ describe('Increase nesting level list items via keyboard', () => {
 			// Select the same two items again and increase their nesting
 			await applyShortcutToSelection(
 				itemsAfterUpdate[1],
-				['Second item', 'Third item'],
+				{ from: 'Second item', to: 'Third item' },
 				shortcut,
 			);
 
@@ -173,6 +173,7 @@ describe('Increase nesting level list items via keyboard', () => {
 
 			expect(itemsAfterSecondUpdate[0]).toContainElement(itemsAfterSecondUpdate[1]);
 			expect(itemsAfterSecondUpdate[1]).toContainElement(itemsAfterSecondUpdate[2]);
+
 			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Second item');
 			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
@@ -200,7 +201,6 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const items = within(editor).getAllByRole('listitem');
 			expect(items).toHaveLength(3);
-
 			expect(items[0]).toContainElement(items[1]);
 
 			// Unnest the nested item to the top level
@@ -244,7 +244,6 @@ describe('Decrease nesting level list items via keyboard', () => {
 				itemsAfterSecondUpdate[1],
 			);
 			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Second item');
-			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 
 		test('allows unnesting an item deeper than its siblings', async () => {
@@ -282,6 +281,7 @@ describe('Decrease nesting level list items via keyboard', () => {
 
 			// Second item is still nested under the first
 			expect(itemsAfterSecondUpdate[0]).toContainElement(itemsAfterSecondUpdate[1]);
+
 			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 
@@ -305,11 +305,14 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[1]);
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[2]);
+
+			expect(itemsAfterUpdate[1]).toHaveTextContent('Second item');
 			expect(itemsAfterUpdate[2]).toHaveTextContent('Third item');
 		});
 
 		test('unnests multiple selected items across multiple levels', async () => {
-			const { editor, user } = await setupEditor(deeplyNestedValue);
+			const { editor, applyShortcutToSelection } =
+				await setupEditor(deeplyNestedValue);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
 			const items = within(editor).getAllByRole('listitem');
@@ -319,13 +322,11 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(items[1]).toContainElement(items[2]);
 
 			// Select two items and decrease their nesting
-			await user.click(items[1]);
-			selectContent(
-				within(editor).getAllByRole('list')[0],
-				'Second item',
-				'Third item',
+			await applyShortcutToSelection(
+				items[1],
+				{ from: 'Second item', to: 'Third item' },
+				shortcut,
 			);
-			await user.keyboard(shortcut);
 
 			// The second item is on the same level as the first and contains the third item
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
@@ -336,13 +337,11 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
 
 			// Select the same two items again and decrease their nesting
-			await user.click(itemsAfterUpdate[1]);
-			selectContent(
-				within(editor).getAllByRole('list')[0],
-				'Second item',
-				'Third item',
+			await applyShortcutToSelection(
+				itemsAfterUpdate[1],
+				{ from: 'Second item', to: 'Third item' },
+				shortcut,
 			);
-			await user.keyboard(shortcut);
 
 			// One flat list with no nesting
 			expect(within(editor).getAllByRole('list')).toHaveLength(1);
@@ -355,6 +354,8 @@ describe('Decrease nesting level list items via keyboard', () => {
 			expect(itemsAfterSecondUpdate[1]).not.toContainElement(
 				itemsAfterSecondUpdate[2],
 			);
+
+			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Second item');
 			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 	});
