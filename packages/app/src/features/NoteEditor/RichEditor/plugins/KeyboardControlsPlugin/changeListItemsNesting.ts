@@ -58,10 +58,19 @@ const $decreaseListItemNesting = (listItem: ListItemNode) => {
 
 	// Keep following siblings nested under the moved item
 	if (followingListItems.length > 0) {
-		const newNestedList = $createListNode(currentList.getListType());
-		followingListItems.forEach((item) => newNestedList.append(item));
+		const nestedList = listItem
+			.getChildren()
+			.filter($isListNode)
+			.find((list) => list.getListType() === currentList.getListType());
 
-		listItem.append(newNestedList);
+		if (nestedList) {
+			followingListItems.forEach((item) => nestedList.append(item));
+		} else {
+			const newNestedList = $createListNode(currentList.getListType());
+			followingListItems.forEach((item) => newNestedList.append(item));
+
+			listItem.append(newNestedList);
+		}
 	}
 
 	if (currentList.getChildrenSize() === 0) {
