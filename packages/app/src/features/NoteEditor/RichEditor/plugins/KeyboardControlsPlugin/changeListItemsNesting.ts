@@ -9,7 +9,8 @@ import {
 import { $hasSelectedAncestor } from './utils';
 
 /**
- * Nests a list item one level deep under sibling
+ * Increases the nesting level of a list item by moving it inside its previous sibling.
+ * Has no effect if the item is already first in its list
  */
 const $increaseListItemNesting = (listItem: ListItemNode) => {
 	const parentList = listItem.getParent();
@@ -31,32 +32,35 @@ const $increaseListItemNesting = (listItem: ListItemNode) => {
 		nestedList.append(listItem);
 	} else {
 		const newNestedList = $createListNode(listType);
-		previousSibling.append(newNestedList);
 		newNestedList.append(listItem);
+		previousSibling.append(newNestedList);
 	}
 
 	return true;
 };
 
 /**
- * Moves a nested list item one level up, re-nesting any following
- * siblings underneath it so they stay its children
+ * Moves a nested list item one level up.
+ * Following siblings are re-nested under the moved item to preserve the list structure
  */
 const $decreaseListItemNesting = (listItem: ListItemNode) => {
 	const currentList = listItem.getParent();
 	if (!$isListNode(currentList)) return false;
 
-	// Handle only if listItem is nested, not on the first level
+	// Cannot unnest a top-level item
 	const parentListItem = currentList.getParent();
 	if (!$isListItemNode(parentListItem)) return true;
 
-	// Capture items after listItem — they'll be re-nested under it once it moves up
+	// Move the item one level up
 	const followingListItems = listItem.getNextSiblings().filter($isListItemNode);
+
 	parentListItem.insertAfter(listItem);
 
+	// Keep following siblings nested under the moved item
 	if (followingListItems.length > 0) {
 		const newNestedList = $createListNode(currentList.getListType());
 		followingListItems.forEach((item) => newNestedList.append(item));
+
 		listItem.append(newNestedList);
 	}
 
@@ -76,31 +80,26 @@ export const $changeListItemsNesting = (
 ): boolean => {
 	const selectedItems = new Map<string, ListItemNode>();
 
-	for (const node of selection.getNodes()) {
+	selection.getNodes().forEach((node) => {
 		const listItem = $findMatchingParent(node, $isListItemNode);
 
-		if (listItem) {
-			selectedItems.set(listItem.getKey(), listItem);
-		}
-	}
+		if (listItem) selectedItems.set(listItem.getKey(), listItem);
+	});
 
 	const listItems = Array.from(selectedItems.values());
 	if (listItems.length === 0) return false;
 
-	// 'increase': Filter out children if their parent is selected, because
-	// moving the parent automatically brings its children along
-	// 'decrease': Handle both parent and child item. Reverse the order,
-	// so moving a parent doesn't prematurely shift or orphan its children before they are processed
-	const itemsToProcess =
-		direction === 'increase'
-			? listItems.filter((item) => !$hasSelectedAncestor(item, selectedItems))
-			: [...listItems].reverse();
-
-	const changedItems = itemsToProcess.map((item) =>
-		direction === 'increase'
-			? $increaseListItemNesting(item)
-			: $decreaseListItemNesting(item),
-	);
+	let changedItems: boolean[];
+	if (direction === 'increase') {
+		// Filter out children if their parent is selected,
+		// because moving the parent automatically brings its children along
+		changedItems = listItems
+			.filter((item) => !$hasSelectedAncestor(item, selectedItems))
+			.map($increaseListItemNesting);
+	} else {
+		// Process list items bottom-up (reverse) to prevent children from being orphaned or shifted early
+		changedItems = listItems.toReversed().map($decreaseListItemNesting);
+	}
 
 	return changedItems.some(Boolean);
 };
