@@ -1,350 +1,324 @@
 import { screen, within } from '@testing-library/react';
-import userEvent, { UserEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 
 import { renderRichEditor } from '../utils/renderRichEditor';
 import { selectContent, setCursorPosition } from '../utils/utils';
+
+const shortcuts = [
+	{
+		title: 'Tab',
+		increase: '{Tab}',
+		decrease: '{Shift>}{Tab}{/Shift}',
+	},
+	{
+		title: 'Ctrl+]/[',
+		increase: '{Control>}]{/Control}',
+		// `[` is a special character in userEvent syntax, so it must be doubled
+		decrease: '{Control>}[[{/Control}',
+	},
+];
 
 const setupEditor = async (value: string) => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value });
 	const editor = screen.getByRole('textbox');
 
-	return { user, editor };
-};
+	const applyShortcut = async (item: HTMLElement, shortcut: string) => {
+		await user.click(item);
+		setCursorPosition(item, 0);
+		await user.keyboard(shortcut);
+	};
 
-const applyNestingShortcut = async (
-	user: UserEvent,
-	item: HTMLElement,
-	shortcut: string,
-) => {
-	await user.click(item);
-	setCursorPosition(item, 0);
-	await user.keyboard(shortcut);
+	const applyShortcutToSelection = async (
+		anchorItem: HTMLElement,
+		range: [from: string, to: string],
+		shortcut: string,
+	) => {
+		await user.click(anchorItem);
+		selectContent(within(editor).getAllByRole('list')[0], ...range);
+		await user.keyboard(shortcut);
+	};
+
+	return { user, editor, applyShortcut, applyShortcutToSelection };
 };
 
 describe('Increase nesting level list items via keyboard', () => {
-	const cases: {
-		title: string;
-		shortcut: string;
-	}[] = [
-		{ title: 'Tab', shortcut: '{Tab}' },
-		{
-			title: 'Ctrl+]',
-			shortcut: '{Control>}]{/Control}',
-		},
-	];
+	const cases = shortcuts.map(({ title, increase }) => ({
+		title,
+		shortcut: increase,
+	}));
 
 	const initialValue = `- First item
 - Second item
 - Third item`;
 
-	const expectInitialFlatList = (editor: HTMLElement, count: number) => {
-		expect(within(editor).getAllByRole('list')).toHaveLength(1);
-		const items = within(editor).getAllByRole('listitem');
-		expect(items).toHaveLength(count);
-		return items;
-	};
-
 	describe.each(cases)('Using $title', ({ shortcut }) => {
-		test('keeps the first list item at the top level', async () => {
-			const user = userEvent.setup();
-			await renderRichEditor({ value: `- One item` });
-
-			const editor = screen.getByRole('textbox');
-			expect(within(editor).getAllByRole('list')).toHaveLength(1);
-
-			const items = within(editor).getAllByRole('listitem');
-			expect(items).toHaveLength(1);
-
-			await applyNestingShortcut(user, items[0], shortcut);
-
-			// structure must stay exactly the same: still one list, one item
-			expect(within(editor).getAllByRole('list')).toHaveLength(1);
-
-			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
-			expect(itemsAfterUpdate).toHaveLength(1);
-			expect(itemsAfterUpdate[0]).toHaveTextContent('One item');
-		});
-
 		test('nests item one level deeper', async () => {
-			const { editor, user } = await setupEditor(initialValue);
+			const { editor, applyShortcut } = await setupEditor(initialValue);
 
-			// Initial state
-			const items = expectInitialFlatList(editor, 3);
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const items = within(editor).getAllByRole('listitem');
+			expect(items).toHaveLength(3);
 
-			await applyNestingShortcut(user, items[1], shortcut);
+			await applyShortcut(items[1], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
-
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[0]).toContainElement(itemsAfterUpdate[1]);
 			expect(itemsAfterUpdate[1]).toHaveTextContent('Second item');
 		});
 
 		test('pressing shortcut twice does not nest further than one level deep', async () => {
-			const { editor, user } = await setupEditor(initialValue);
+			const { editor, applyShortcut } = await setupEditor(initialValue);
 
-			// Initial state
-			const items = expectInitialFlatList(editor, 3);
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const items = within(editor).getAllByRole('listitem');
+			expect(items).toHaveLength(3);
 
-			await applyNestingShortcut(user, items[1], shortcut);
+			await applyShortcut(items[1], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
-
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[0]).toContainElement(itemsAfterUpdate[1]);
 
-			// Second Tab does not further increase the nesting level
-			await applyNestingShortcut(user, items[1], shortcut);
+			// Second shortcut does not further increase the nesting level
+			await applyShortcut(itemsAfterUpdate[1], shortcut);
 
 			// The structure must stay unchanged, the nesting level is still two
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
-
 			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterSecondUpdate).toHaveLength(3);
+
 			expect(itemsAfterSecondUpdate[0]).toContainElement(itemsAfterSecondUpdate[1]);
 			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Second item');
 		});
 
 		test('allows nesting an item deeper than its siblings', async () => {
-			const { editor, user } = await setupEditor(`- First item
-	- Nested item
+			const { editor, applyShortcut } = await setupEditor(`- First item
+    - Nested item
 - Second item`);
 
-			// Initial state
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const items = within(editor).getAllByRole('listitem');
 			expect(items).toHaveLength(3);
 			expect(items[0]).toContainElement(items[1]);
+			expect(items[0]).not.toContainElement(items[2]);
 
 			// Nest third item under the first item
-			await applyNestingShortcut(user, items[2], shortcut);
+			await applyShortcut(items[2], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
 			expect(itemsAfterUpdate[0]).toContainElement(itemsAfterUpdate[2]);
+			expect(itemsAfterUpdate[1]).not.toContainElement(itemsAfterUpdate[2]);
 
 			// Nest third item one level deeper
-			await applyNestingShortcut(user, items[2], shortcut);
+			await applyShortcut(itemsAfterUpdate[2], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
 			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterSecondUpdate).toHaveLength(3);
 			expect(itemsAfterSecondUpdate[1]).toContainElement(itemsAfterSecondUpdate[2]);
 
-			// Further nesting has no effect
-			await applyNestingShortcut(user, items[2], shortcut);
+			// Further nesting of the third element has no effect
+			await applyShortcut(itemsAfterSecondUpdate[2], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
 			const itemsAfterThirdUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterThirdUpdate).toHaveLength(3);
+
 			expect(itemsAfterThirdUpdate[1]).toContainElement(itemsAfterThirdUpdate[2]);
 			expect(itemsAfterThirdUpdate[2]).toHaveTextContent('Second item');
 		});
 
-		test('Nests multiple selected items', async () => {
-			const { editor, user } = await setupEditor(initialValue);
+		test('nests multiple selected items', async () => {
+			const { editor, applyShortcutToSelection } = await setupEditor(initialValue);
 
-			const items = expectInitialFlatList(editor, 3);
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const items = within(editor).getAllByRole('listitem');
+			expect(items).toHaveLength(3);
 
-			// Select Nested item and Third item, then nests it together
-			await user.click(items[1]);
-			selectContent(within(editor).getByRole('list'), 'Second item', 'Third item');
-			await user.keyboard(shortcut);
+			// Select second and third items, then nest them together
+			await applyShortcutToSelection(
+				items[1],
+				['Second item', 'Third item'],
+				shortcut,
+			);
 
 			// Both selected items become one nested sub-list under First item
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
-
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[0]).toContainElement(itemsAfterUpdate[1]);
 			expect(itemsAfterUpdate[0]).toContainElement(itemsAfterUpdate[2]);
 			expect(itemsAfterUpdate[1]).not.toContainElement(itemsAfterUpdate[2]);
 
-			// Select the same two items again and increase it nesting
-			await user.click(within(editor).getAllByRole('listitem')[1]);
-			selectContent(
-				within(editor).getAllByRole('list')[0],
-				'Second item',
-				'Third item',
+			// Select the same two items again and increase their nesting
+			await applyShortcutToSelection(
+				itemsAfterUpdate[1],
+				['Second item', 'Third item'],
+				shortcut,
 			);
-			await user.keyboard(shortcut);
 
-			// Now Third item nests inside Second item, which nests inside First item
+			// Nesting increasing only for third item
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
-
 			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterSecondUpdate).toHaveLength(3);
+
 			expect(itemsAfterSecondUpdate[0]).toContainElement(itemsAfterSecondUpdate[1]);
 			expect(itemsAfterSecondUpdate[1]).toContainElement(itemsAfterSecondUpdate[2]);
+			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Second item');
+			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 	});
 });
 
 describe('Decrease nesting level list items via keyboard', () => {
-	const cases: {
-		title: string;
-		shortcut: string;
-	}[] = [
-		{ title: 'Tab', shortcut: '{Shift>}{Tab}{/Shift}' },
-		{
-			title: 'Ctrl+]',
-			shortcut: '{Control>}[[{/Control}',
-		},
-	];
+	const cases = shortcuts.map(({ title, decrease }) => ({
+		title,
+		shortcut: decrease,
+	}));
 
 	const initialValue = `- First item
-	- Nested item
-- Second item`;
+    - Second item
+- Third item`;
+
+	const deeplyNestedValue = `- First item
+    - Second item
+        - Third item`;
 
 	describe.each(cases)('Using $title', ({ shortcut }) => {
-		test('keeps a top-level item at the top level', async () => {
-			const user = userEvent.setup();
-			await renderRichEditor({ value: `- One item` });
-
-			const editor = screen.getByRole('textbox');
-			expect(within(editor).getAllByRole('list')).toHaveLength(1);
-
-			const items = within(editor).getAllByRole('listitem');
-			expect(items).toHaveLength(1);
-
-			await applyNestingShortcut(user, items[0], shortcut);
-
-			// structure must stay exactly the same: still one list, one item
-			expect(within(editor).getAllByRole('list')).toHaveLength(1);
-			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
-			expect(itemsAfterUpdate).toHaveLength(1);
-			expect(itemsAfterUpdate[0]).toHaveTextContent('One item');
-		});
-
 		test('unnests item one level up', async () => {
-			const { editor, user } = await setupEditor(initialValue);
+			const { editor, applyShortcut } = await setupEditor(initialValue);
 
-			// Initial state
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const items = within(editor).getAllByRole('listitem');
 			expect(items).toHaveLength(3);
+
 			expect(items[0]).toContainElement(items[1]);
 
 			// Unnest the nested item to the top level
-			await applyNestingShortcut(user, items[1], shortcut);
+			await applyShortcut(items[1], shortcut);
 
-			// There should be one flat list without nesting
+			// One flat list without nesting
 			expect(within(editor).getAllByRole('list')).toHaveLength(1);
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[1]);
-			expect(itemsAfterUpdate[1]).toHaveTextContent('Nested item');
+			expect(itemsAfterUpdate[1]).toHaveTextContent('Second item');
 		});
 
 		test('pressing shortcut twice does not unnest further than the top level', async () => {
-			const { editor, user } = await setupEditor(initialValue);
+			const { editor, applyShortcut } = await setupEditor(initialValue);
 
-			// Initial state
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const items = within(editor).getAllByRole('listitem');
 			expect(items).toHaveLength(3);
+
 			expect(items[0]).toContainElement(items[1]);
 
-			await applyNestingShortcut(user, items[1], shortcut);
+			await applyShortcut(items[1], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(1);
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[1]);
 
-			// Second shortcut press does not further decrease the nesting level
-			await applyNestingShortcut(user, items[1], shortcut);
+			// Second shortcut does not further decrease the nesting level
+			await applyShortcut(itemsAfterUpdate[1], shortcut);
 
-			// The structure must stay unchanged, still one flat list
+			// The structure is unchanged, one flat list
 			expect(within(editor).getAllByRole('list')).toHaveLength(1);
-
 			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterSecondUpdate).toHaveLength(3);
+
 			expect(itemsAfterSecondUpdate[0]).not.toContainElement(
 				itemsAfterSecondUpdate[1],
 			);
-			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Nested item');
-			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Second item');
+			expect(itemsAfterSecondUpdate[1]).toHaveTextContent('Second item');
+			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 
 		test('allows unnesting an item deeper than its siblings', async () => {
-			const { editor, user } = await setupEditor(`- First item
-    - Nested item
-        - Second item`);
+			const { editor, applyShortcut } = await setupEditor(deeplyNestedValue);
 
-			// Initial state
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
 			const items = within(editor).getAllByRole('listitem');
 			expect(items).toHaveLength(3);
+
 			expect(items[1]).toContainElement(items[2]);
 
-			// Unnest third item to the level of the nested item
-			await applyNestingShortcut(user, items[2], shortcut);
+			// Decrease nesting for third item
+			await applyShortcut(items[2], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[1]).not.toContainElement(itemsAfterUpdate[2]);
 			expect(itemsAfterUpdate[0]).toContainElement(itemsAfterUpdate[2]);
 
-			// Unnest third item one level up, to the top level
-			await user.click(itemsAfterUpdate[2]);
-			setCursorPosition(itemsAfterUpdate[2], 0);
-			await user.keyboard(shortcut);
+			// Move the third item to the top level
+			await applyShortcut(itemsAfterUpdate[2], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
-			const itemsAfterSecond = within(editor).getAllByRole('listitem');
-			expect(itemsAfterSecond).toHaveLength(3);
-			expect(itemsAfterSecond[0]).not.toContainElement(itemsAfterSecond[2]);
-			expect(itemsAfterSecond[1]).not.toContainElement(itemsAfterSecond[2]);
-			// First item must still contain the nested item — only the third item moved out
-			expect(itemsAfterSecond[0]).toContainElement(itemsAfterSecond[1]);
+			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
+			expect(itemsAfterSecondUpdate).toHaveLength(3);
+
+			expect(itemsAfterSecondUpdate[0]).not.toContainElement(
+				itemsAfterSecondUpdate[2],
+			);
+			expect(itemsAfterSecondUpdate[1]).not.toContainElement(
+				itemsAfterSecondUpdate[2],
+			);
+
+			// Second item is still nested under the first
+			expect(itemsAfterSecondUpdate[0]).toContainElement(itemsAfterSecondUpdate[1]);
+			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 
 		test('moves nested children along when unnesting their parent', async () => {
-			const { editor, user } = await setupEditor(`- First item
-	- Nested item
-		- Child of nested`);
+			const { editor, applyShortcut } = await setupEditor(deeplyNestedValue);
 
-			// Initial state
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
 			const items = within(editor).getAllByRole('listitem');
 			expect(items).toHaveLength(3);
+
 			expect(items[0]).toContainElement(items[1]);
 			expect(items[1]).toContainElement(items[2]);
 
-			// Unnest nested item — its child must move together with it
-			await applyNestingShortcut(user, items[1], shortcut);
+			// Decrease nesting for second item, its child moves with them
+			await applyShortcut(items[1], shortcut);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
 
-			// Nested item is now a sibling of First item, not contained by it
+			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[1]);
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[2]);
-
-			// The child stays nested under its original parent
-			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
+			expect(itemsAfterUpdate[2]).toHaveTextContent('Third item');
 		});
 
-		test('Unnests multiple selected items across multiple levels', async () => {
-			const { editor, user } = await setupEditor(`- First item
-	- Second item
-		- Third item`);
-
-			screen.debug();
+		test('unnests multiple selected items across multiple levels', async () => {
+			const { editor, user } = await setupEditor(deeplyNestedValue);
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(3);
 			const items = within(editor).getAllByRole('listitem');
+			expect(items).toHaveLength(3);
+
 			expect(items[0]).toContainElement(items[1]);
 			expect(items[1]).toContainElement(items[2]);
 
-			// Select the nested item and the third item, then decrease their nesting
+			// Select two items and decrease their nesting
 			await user.click(items[1]);
 			selectContent(
 				within(editor).getAllByRole('list')[0],
@@ -353,16 +327,16 @@ describe('Decrease nesting level list items via keyboard', () => {
 			);
 			await user.keyboard(shortcut);
 
-			// Second item is un-nested from First, while Third remains nested under it
+			// The second item is on the same level as the first and contains the third item
 			expect(within(editor).getAllByRole('list')).toHaveLength(2);
-
 			const itemsAfterUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterUpdate).toHaveLength(3);
+
 			expect(itemsAfterUpdate[0]).not.toContainElement(itemsAfterUpdate[1]);
 			expect(itemsAfterUpdate[1]).toContainElement(itemsAfterUpdate[2]);
 
 			// Select the same two items again and decrease their nesting
-			await user.click(within(editor).getAllByRole('listitem')[1]);
+			await user.click(itemsAfterUpdate[1]);
 			selectContent(
 				within(editor).getAllByRole('list')[0],
 				'Second item',
@@ -372,43 +346,66 @@ describe('Decrease nesting level list items via keyboard', () => {
 
 			// One flat list with no nesting
 			expect(within(editor).getAllByRole('list')).toHaveLength(1);
-
 			const itemsAfterSecondUpdate = within(editor).getAllByRole('listitem');
 			expect(itemsAfterSecondUpdate).toHaveLength(3);
+
 			expect(itemsAfterSecondUpdate[0]).not.toContainElement(
 				itemsAfterSecondUpdate[1],
 			);
 			expect(itemsAfterSecondUpdate[1]).not.toContainElement(
 				itemsAfterSecondUpdate[2],
 			);
+			expect(itemsAfterSecondUpdate[2]).toHaveTextContent('Third item');
 		});
 	});
 });
 
-test('nesting and then unnesting an item restores the original structure', async () => {
-	const { editor, user } = await setupEditor(`- First item
+describe('Nesting level boundaries and round-trip', () => {
+	describe.each(shortcuts)('Using $title', ({ increase, decrease }) => {
+		test.each([
+			['increasing', increase],
+			['decreasing', decrease],
+		])('%s nesting has no effect on a single top-level item', async (_, shortcut) => {
+			const { editor, applyShortcut } = await setupEditor('- One item');
+
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const items = within(editor).getAllByRole('listitem');
+			expect(items).toHaveLength(1);
+
+			await applyShortcut(items[0], shortcut);
+
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const itemsAfter = within(editor).getAllByRole('listitem');
+			expect(itemsAfter).toHaveLength(1);
+
+			expect(itemsAfter[0]).toHaveTextContent('One item');
+		});
+
+		test('nesting and then unnesting an item restores the original structure', async () => {
+			const { editor, applyShortcut } = await setupEditor(`- First item
 - Nested item`);
 
-	// Initial state
-	expect(within(editor).getAllByRole('list')).toHaveLength(1);
-	const items = within(editor).getAllByRole('listitem');
-	expect(items).toHaveLength(2);
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const items = within(editor).getAllByRole('listitem');
+			expect(items).toHaveLength(2);
 
-	// Nest second item under the first
-	await applyNestingShortcut(user, items[1], '{Tab}');
+			await applyShortcut(items[1], increase);
 
-	expect(within(editor).getAllByRole('list')).toHaveLength(2);
-	const itemsAfterNest = within(editor).getAllByRole('listitem');
-	expect(itemsAfterNest).toHaveLength(2);
-	expect(itemsAfterNest[0]).toContainElement(itemsAfterNest[1]);
+			expect(within(editor).getAllByRole('list')).toHaveLength(2);
+			const itemsAfterNest = within(editor).getAllByRole('listitem');
+			expect(itemsAfterNest).toHaveLength(2);
 
-	// Unnest it back to the top level
-	await applyNestingShortcut(user, items[1], '{Shift>}{Tab}{/Shift}');
+			expect(itemsAfterNest[0]).toContainElement(itemsAfterNest[1]);
 
-	expect(within(editor).getAllByRole('list')).toHaveLength(1);
-	const itemsAfterUnnest = within(editor).getAllByRole('listitem');
-	expect(itemsAfterUnnest).toHaveLength(2);
-	expect(itemsAfterUnnest[0]).not.toContainElement(itemsAfterUnnest[1]);
-	expect(itemsAfterUnnest[0]).toHaveTextContent('First item');
-	expect(itemsAfterUnnest[1]).toHaveTextContent('Nested item');
+			await applyShortcut(items[1], decrease);
+
+			expect(within(editor).getAllByRole('list')).toHaveLength(1);
+			const itemsAfterUnnest = within(editor).getAllByRole('listitem');
+			expect(itemsAfterUnnest).toHaveLength(2);
+
+			expect(itemsAfterUnnest[0]).not.toContainElement(itemsAfterUnnest[1]);
+			expect(itemsAfterUnnest[0]).toHaveTextContent('First item');
+			expect(itemsAfterUnnest[1]).toHaveTextContent('Nested item');
+		});
+	});
 });
