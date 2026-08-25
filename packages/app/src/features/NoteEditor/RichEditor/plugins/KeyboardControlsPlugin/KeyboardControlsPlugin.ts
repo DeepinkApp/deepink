@@ -142,6 +142,7 @@ export const KeyboardControlsPlugin = () => {
 						);
 						if (!hasChanged) return false;
 
+						event.preventDefault();
 						return true;
 					},
 					COMMAND_PRIORITY_LOW,
