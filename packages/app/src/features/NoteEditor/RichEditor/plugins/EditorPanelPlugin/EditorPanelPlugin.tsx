@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import {
 	$createParagraphNode,
 	$createTextNode,
+	$findMatchingParent,
 	$getRoot,
 	$getSelection,
 	$insertNodes,
@@ -16,9 +17,11 @@ import {
 import { $createCodeNode } from '@lexical/code-core';
 import { $createLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
+	$isListNode,
 	INSERT_CHECK_LIST_COMMAND,
 	INSERT_ORDERED_LIST_COMMAND,
 	INSERT_UNORDERED_LIST_COMMAND,
+	REMOVE_LIST_COMMAND,
 } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
@@ -95,6 +98,12 @@ export const EditorPanelPlugin = () => {
 					});
 				},
 				list({ type }) {
+					const listTypeMap = {
+						checkbox: 'check',
+						ordered: 'number',
+						unordered: 'bullet',
+					};
+
 					editor.update(() => {
 						const target = $getCursorNode();
 						if (!target) return;
@@ -105,6 +114,21 @@ export const EditorPanelPlugin = () => {
 							paragraph.select();
 						}
 					});
+
+					let isAlreadyRequestedType = false;
+					editor.read(() => {
+						const target = $getCursorNode();
+						if (!target) return;
+
+						const listParent = $findMatchingParent(target, $isListNode);
+						isAlreadyRequestedType =
+							listParent?.getListType() === listTypeMap[type];
+					});
+
+					if (isAlreadyRequestedType) {
+						editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
+						return;
+					}
 
 					switch (type) {
 						case 'checkbox':
