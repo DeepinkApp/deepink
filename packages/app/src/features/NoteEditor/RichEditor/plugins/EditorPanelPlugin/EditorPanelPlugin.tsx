@@ -104,25 +104,24 @@ export const EditorPanelPlugin = () => {
 						unordered: 'bullet',
 					};
 
-					editor.update(() => {
-						const target = $getCursorNode();
-						if (!target) return;
-
-						if ($isRootNode(target)) {
-							const paragraph = $createParagraphNode();
-							target.append(paragraph);
-							paragraph.select();
-						}
-					});
-
+					// Check if the list is already of the requested type
+					// If so, convert the list to a plain paragraph
 					let isAlreadyRequestedType = false;
-					editor.read(() => {
+					editor.update(() => {
 						const target = $getCursorNode();
 						if (!target) return;
 
 						const listParent = $findMatchingParent(target, $isListNode);
 						isAlreadyRequestedType =
 							listParent?.getListType() === listTypeMap[type];
+
+						if (isAlreadyRequestedType) return;
+
+						if ($isRootNode(target)) {
+							const paragraph = $createParagraphNode();
+							target.append(paragraph);
+							paragraph.select();
+						}
 					});
 
 					if (isAlreadyRequestedType) {

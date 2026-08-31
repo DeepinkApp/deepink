@@ -37,6 +37,25 @@ test('Converts an unordered list to an ordered list', async () => {
 	expect(listItems[1]).toHaveTextContent('Second item');
 });
 
+test('Converts a list to plain paragraphs', async () => {
+	const richEditor = await renderRichEditor({
+		value: `- First item
+- Second item
+- Third item`,
+	});
+	const editor = screen.getByRole('textbox');
+	expect(within(editor).getAllByRole('list')).toHaveLength(1);
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(3);
+
+	// Select all list and convert to plain text
+	selectContent(editor, 'First item', 'Second item');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(3);
+	expect(within(editor).queryAllByRole('list')).toHaveLength(0);
+	expect(within(editor).queryAllByRole('listitem')).toHaveLength(0);
+});
+
 test('Pressing Enter adds a new item to the list', async () => {
 	const user = userEvent.setup();
 	await renderRichEditor({ value: '- First item' });
