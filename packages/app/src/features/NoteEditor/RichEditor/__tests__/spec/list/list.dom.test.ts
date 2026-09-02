@@ -37,23 +37,97 @@ test('Converts an unordered list to an ordered list', async () => {
 	expect(listItems[1]).toHaveTextContent('Second item');
 });
 
-test('Converts a list to plain paragraphs', async () => {
+test('Converts a list to paragraphs', async () => {
 	const richEditor = await renderRichEditor({
 		value: `- First item
 - Second item
 - Third item`,
 	});
+
 	const editor = screen.getByRole('textbox');
 	expect(within(editor).getAllByRole('list')).toHaveLength(1);
 	expect(within(editor).getAllByRole('listitem')).toHaveLength(3);
 
-	// Select all list and convert to plain text
-	selectContent(editor, 'First item', 'Second item');
+	// Select the list and convert it to plain text
+	selectContent(editor, 'First item', 'Third item');
 	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
 
 	expect(within(editor).getAllByRole('paragraph')).toHaveLength(3);
 	expect(within(editor).queryAllByRole('list')).toHaveLength(0);
 	expect(within(editor).queryAllByRole('listitem')).toHaveLength(0);
+});
+
+test('Converts paragraphs to a list', async () => {
+	const richEditor = await renderRichEditor({
+		value: `First item \n\n Second item \n\n Third item`,
+	});
+
+	const editor = screen.getByRole('textbox');
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(3);
+	expect(within(editor).queryAllByRole('list')).toHaveLength(0);
+
+	selectContent(editor, 'First item', 'Third item');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(within(editor).queryAllByRole('list')).toHaveLength(1);
+	const items = within(editor).queryAllByRole('listitem');
+	expect(items).toHaveLength(3);
+
+	// List has the correct item order
+	expect(items[0]).toHaveTextContent('First item');
+	expect(items[1]).toHaveTextContent('Second item');
+	expect(items[2]).toHaveTextContent('Third item');
+});
+
+test('Converts paragraphs to a list and back to paragraphs', async () => {
+	const richEditor = await renderRichEditor({
+		value: `1 \n 2 \n\n 3`,
+	});
+
+	const editor = screen.getByRole('textbox');
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(2);
+	expect(within(editor).queryAllByRole('list')).toHaveLength(0);
+
+	// Convert text to a list
+	selectContent(editor, '1 2', '3');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(within(editor).getAllByRole('list')).toHaveLength(1);
+	const items = within(editor).getAllByRole('listitem');
+	expect(items).toHaveLength(2);
+	expect(items[0]).toHaveTextContent('1 2');
+	expect(items[1]).toHaveTextContent('3');
+
+	// Convert the list back to plain text
+	selectContent(editor, '1 2', '3');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(within(editor).queryAllByRole('list')).toHaveLength(0);
+	const paragraphs = within(editor).queryAllByRole('paragraph');
+	expect(paragraphs).toHaveLength(2);
+	expect(paragraphs[0]).toHaveTextContent('1 2');
+	expect(paragraphs[1]).toHaveTextContent('3');
+});
+
+test('Converts selected paragraphs to a list', async () => {
+	const richEditor = await renderRichEditor({
+		value: `First separate text \n\n Second item \n\n Third item`,
+	});
+
+	const editor = screen.getByRole('textbox');
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(3);
+
+	selectContent(editor, 'Second item', 'Third item');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	const list = within(editor).getAllByRole('list');
+	expect(list).toHaveLength(1);
+	expect(within(list[0]).getAllByRole('listitem')).toHaveLength(2);
+
+	// The first paragraph remains a plain paragraph
+	const paragraphs = within(editor).queryAllByRole('paragraph');
+	expect(paragraphs[0]).toHaveTextContent('First separate text');
+	expect(list[0]).not.toContainElement(paragraphs[0]);
 });
 
 test('Pressing Enter adds a new item to the list', async () => {
