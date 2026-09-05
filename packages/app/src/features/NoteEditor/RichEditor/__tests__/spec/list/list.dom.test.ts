@@ -57,10 +57,10 @@ test('Converts a list to paragraphs', async () => {
 	expect(within(editor).queryAllByRole('listitem')).toHaveLength(0);
 });
 
-test('Convert mixed list', async () => {
+test('Convert a mixed list', async () => {
 	const richEditor = await renderRichEditor({
 		value: `- First item
-	- [ ] Second item
+    - [ ] Second item
 - Third item`,
 	});
 
@@ -69,13 +69,39 @@ test('Convert mixed list', async () => {
 	expect(within(editor).getAllByRole('listitem')).toHaveLength(2);
 	expect(within(editor).getAllByRole('checkbox')).toHaveLength(1);
 
-	// Select the list and convert it to unordered list
+	// Select the list and convert it to an unordered list
 	selectContent(editor, 'First item', 'Third item');
 	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
 
-	// First conversation for mixed list - must unified list to one type
+	// The first conversion of the mixed list should unify it into a single list type
 	expect(within(editor).getAllByRole('listitem')).toHaveLength(3);
 	expect(within(editor).queryByRole('checkbox')).not.toBeInTheDocument();
+
+	// The second conversion should convert the list to plain text
+	selectContent(editor, 'First item', 'Third item');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(within(editor).queryByRole('list')).not.toBeInTheDocument();
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(3);
+});
+
+test('Convert a mixed list', async () => {
+	const richEditor = await renderRichEditor({
+		value: `- First item
+    - Second item
+- Third item`,
+	});
+
+	const editor = screen.getByRole('textbox');
+	expect(within(editor).getAllByRole('list')).toHaveLength(2);
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(3);
+
+	// Select the list and convert it to plain text
+	selectContent(editor, 'First item', 'Third item');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(within(editor).queryByRole('list')).not.toBeInTheDocument();
+	expect(within(editor).getAllByRole('paragraph')).toHaveLength(3);
 });
 
 test('Converts paragraphs to a list', async () => {

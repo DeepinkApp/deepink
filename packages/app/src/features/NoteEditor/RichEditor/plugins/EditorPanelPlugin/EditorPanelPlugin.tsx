@@ -13,16 +13,18 @@ import {
 	$isTextNode,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
 	FORMAT_TEXT_COMMAND,
+	LexicalNode,
+	ParagraphNode,
 } from 'lexical';
 import { $createCodeNode } from '@lexical/code-core';
 import { $createLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
+	$isListItemNode,
 	$isListNode,
 	INSERT_CHECK_LIST_COMMAND,
 	INSERT_ORDERED_LIST_COMMAND,
 	INSERT_UNORDERED_LIST_COMMAND,
 	ListNode,
-	REMOVE_LIST_COMMAND,
 } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
@@ -38,6 +40,41 @@ import { $getCursorNode } from '../../utils/selection';
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
 import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
+
+const $convertListToParagraphs = (listNode: ListNode) => {
+	const paragraphs: ParagraphNode[] = [];
+
+	const collectItems = (node: LexicalNode) => {
+		if ($isListNode(node)) {
+			node.getChildren().forEach(collectItems);
+			return;
+		}
+
+		if ($isListItemNode(node)) {
+			const paragraph = $createParagraphNode();
+
+			node.getChildren().forEach((child) => {
+				if ($isListNode(child)) {
+					collectItems(child);
+				} else {
+					paragraph.append(child);
+				}
+			});
+			paragraphs.push(paragraph);
+		}
+	};
+	collectItems(listNode);
+
+	if (paragraphs.length === 0) {
+		listNode.remove();
+		return;
+	}
+
+	paragraphs.toReversed().forEach((paragraph) => {
+		listNode.insertAfter(paragraph);
+	});
+	listNode.remove();
+};
 
 /**
  * Plugin to handle editor panel actions about formatting and nodes insertion
@@ -112,26 +149,23 @@ export const EditorPanelPlugin = () => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return;
 
-						const nodes = selection.getNodes();
-						const listNodesInSelection = new Set<ListNode>();
-
-						nodes.forEach((node) => {
+						const listNodes = new Set<ListNode>();
+						selection.getNodes().forEach((node) => {
 							const listParent = $findMatchingParent(node, $isListNode);
-							if (listParent) listNodesInSelection.add(listParent);
+							if (listParent) listNodes.add(listParent);
 						});
 
-						// Only if all items in list is the same type
+						// If the selection contains nested lists of different types, unify them into one type
 						isAlreadyRequestedType =
-							listNodesInSelection.size > 0 &&
-							Array.from(listNodesInSelection).every(
+							listNodes.size > 0 &&
+							Array.from(listNodes).every(
 								(list) => list.getListType() === listTypeMap[type],
 							);
-					});
 
-					if (isAlreadyRequestedType) {
-						editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined);
-						return;
-					}
+						if (isAlreadyRequestedType)
+							listNodes.forEach($convertListToParagraphs);
+					});
+					if (isAlreadyRequestedType) return;
 
 					switch (type) {
 						case 'checkbox':
