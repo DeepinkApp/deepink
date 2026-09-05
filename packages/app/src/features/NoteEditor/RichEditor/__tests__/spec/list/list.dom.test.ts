@@ -57,6 +57,27 @@ test('Converts a list to paragraphs', async () => {
 	expect(within(editor).queryAllByRole('listitem')).toHaveLength(0);
 });
 
+test('Convert mixed list', async () => {
+	const richEditor = await renderRichEditor({
+		value: `- First item
+	- [ ] Second item
+- Third item`,
+	});
+
+	const editor = screen.getByRole('textbox');
+	expect(within(editor).getAllByRole('list')).toHaveLength(2);
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(2);
+	expect(within(editor).getAllByRole('checkbox')).toHaveLength(1);
+
+	// Select the list and convert it to unordered list
+	selectContent(editor, 'First item', 'Third item');
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	// First conversation for mixed list - must unified list to one type
+	expect(within(editor).getAllByRole('listitem')).toHaveLength(3);
+	expect(within(editor).queryByRole('checkbox')).not.toBeInTheDocument();
+});
+
 test('Converts paragraphs to a list', async () => {
 	const richEditor = await renderRichEditor({
 		value: `First item \n\n Second item \n\n Third item`,
