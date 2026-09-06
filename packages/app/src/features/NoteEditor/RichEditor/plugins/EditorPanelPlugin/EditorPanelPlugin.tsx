@@ -13,12 +13,10 @@ import {
 	$isTextNode,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
 	FORMAT_TEXT_COMMAND,
-	LexicalNode,
 } from 'lexical';
 import { $createCodeNode } from '@lexical/code-core';
 import { $createLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
-	$isListItemNode,
 	$isListNode,
 	INSERT_CHECK_LIST_COMMAND,
 	INSERT_ORDERED_LIST_COMMAND,
@@ -38,34 +36,13 @@ import { $getCursorNode } from '../../utils/selection';
 
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
+import { $convertListToParagraphs } from './utils/$convertListToParagraphs';
 import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
 
-const $convertListToParagraphs = (list: ListNode) => {
-	const insertParagraphs = (node: LexicalNode) => {
-		if ($isListNode(node)) {
-			node.getChildren().forEach(insertParagraphs);
-			return;
-		}
-
-		if ($isListItemNode(node)) {
-			const paragraph = $createParagraphNode();
-			const nestedLists: ListNode[] = [];
-
-			node.getChildren().forEach((child) => {
-				if ($isListNode(child)) {
-					nestedLists.push(child);
-				} else {
-					paragraph.append(child);
-				}
-			});
-
-			list.insertBefore(paragraph);
-			nestedLists.forEach(insertParagraphs);
-		}
-	};
-
-	insertParagraphs(list);
-	list.remove();
+const listTypeMap = {
+	checkbox: 'check',
+	ordered: 'number',
+	unordered: 'bullet',
 };
 
 /**
@@ -128,16 +105,9 @@ export const EditorPanelPlugin = () => {
 					});
 				},
 				list({ type }) {
-					const listTypeMap = {
-						checkbox: 'check',
-						ordered: 'number',
-						unordered: 'bullet',
-					};
-
 					// Check if the list is already of the requested type
 					// If so, convert the list to a plain paragraph
 					let didConvert = false;
-
 					editor.update(() => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return;
@@ -162,6 +132,17 @@ export const EditorPanelPlugin = () => {
 					});
 
 					if (didConvert) return;
+
+					editor.update(() => {
+						const target = $getCursorNode();
+						if (!target) return;
+
+						if ($isRootNode(target) && target.getChildren().length === 0) {
+							const paragraph = $createParagraphNode();
+							target.append(paragraph);
+							paragraph.select();
+						}
+					});
 
 					switch (type) {
 						case 'checkbox':
