@@ -14,7 +14,6 @@ import {
 	CONTROLLED_TEXT_INSERTION_COMMAND,
 	FORMAT_TEXT_COMMAND,
 	LexicalNode,
-	ParagraphNode,
 } from 'lexical';
 import { $createCodeNode } from '@lexical/code-core';
 import { $createLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
@@ -41,39 +40,32 @@ import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
 import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
 
-const $convertListToParagraphs = (listNode: ListNode) => {
-	const paragraphs: ParagraphNode[] = [];
-
-	const collectItems = (node: LexicalNode) => {
+const $convertListToParagraphs = (list: ListNode) => {
+	const insertParagraphs = (node: LexicalNode) => {
 		if ($isListNode(node)) {
-			node.getChildren().forEach(collectItems);
+			node.getChildren().forEach(insertParagraphs);
 			return;
 		}
 
 		if ($isListItemNode(node)) {
 			const paragraph = $createParagraphNode();
+			const nestedLists: ListNode[] = [];
 
 			node.getChildren().forEach((child) => {
 				if ($isListNode(child)) {
-					collectItems(child);
+					nestedLists.push(child);
 				} else {
 					paragraph.append(child);
 				}
 			});
-			paragraphs.push(paragraph);
+
+			list.insertBefore(paragraph);
+			nestedLists.forEach(insertParagraphs);
 		}
 	};
-	collectItems(listNode);
 
-	if (paragraphs.length === 0) {
-		listNode.remove();
-		return;
-	}
-
-	paragraphs.toReversed().forEach((paragraph) => {
-		listNode.insertAfter(paragraph);
-	});
-	listNode.remove();
+	insertParagraphs(list);
+	list.remove();
 };
 
 /**
@@ -144,7 +136,8 @@ export const EditorPanelPlugin = () => {
 
 					// Check if the list is already of the requested type
 					// If so, convert the list to a plain paragraph
-					let isAlreadyRequestedType = false;
+					let didConvert = false;
+
 					editor.update(() => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return;
@@ -156,16 +149,19 @@ export const EditorPanelPlugin = () => {
 						});
 
 						// If the selection contains nested lists of different types, unify them into one type
-						isAlreadyRequestedType =
+						const isAlreadyRequestedType =
 							listNodes.size > 0 &&
 							Array.from(listNodes).every(
 								(list) => list.getListType() === listTypeMap[type],
 							);
 
-						if (isAlreadyRequestedType)
-							listNodes.forEach($convertListToParagraphs);
+						if (!isAlreadyRequestedType) return;
+
+						listNodes.forEach($convertListToParagraphs);
+						didConvert = true;
 					});
-					if (isAlreadyRequestedType) return;
+
+					if (didConvert) return;
 
 					switch (type) {
 						case 'checkbox':
