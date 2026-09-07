@@ -2,7 +2,7 @@ import { $createParagraphNode, LexicalNode } from 'lexical';
 import { $isListItemNode, $isListNode, ListNode } from '@lexical/list';
 
 /**
- * Convert the list (including nested items) into a sequence of plain paragraphs
+ * Convert the list, including nested items, into a sequence of plain paragraphs
  */
 export const $convertListToParagraphs = (list: ListNode) => {
 	const insertParagraphs = (node: LexicalNode) => {
@@ -23,6 +23,7 @@ export const $convertListToParagraphs = (list: ListNode) => {
 				}
 			});
 
+			// The nested list must be handled after the parent to preserve the correct order
 			list.insertBefore(paragraph);
 			nestedLists.forEach(insertParagraphs);
 		}
