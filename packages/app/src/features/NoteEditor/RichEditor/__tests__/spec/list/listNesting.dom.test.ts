@@ -1,8 +1,8 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderRichEditor } from '../utils/renderRichEditor';
-import { selectContent, setCursorPosition } from '../utils/utils';
+import { renderRichEditor } from '../../utils/renderRichEditor';
+import { selectContent, setCursorPosition } from '../../utils/utils';
 
 const shortcuts = [
 	{
