@@ -72,7 +72,7 @@ describe('Increase nesting level list items via keyboard', () => {
 
 			expect(itemsAfterUpdate[0]).toHaveTextContent('First item');
 			expect(itemsAfterUpdate[1]).toHaveTextContent('Second item');
-			expect(itemsAfterUpdate[1]).toHaveTextContent('Third item');
+			expect(itemsAfterUpdate[2]).toHaveTextContent('Third item');
 		});
 
 		test('pressing shortcut twice does not nest further than one level deep', async () => {

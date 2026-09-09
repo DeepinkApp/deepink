@@ -1,12 +1,10 @@
-import { $findMatchingParent, RangeSelection } from 'lexical';
+import { $findMatchingParent, LexicalNode, RangeSelection } from 'lexical';
 import {
 	$createListNode,
 	$isListItemNode,
 	$isListNode,
 	ListItemNode,
 } from '@lexical/list';
-
-import { $hasSelectedAncestor } from './utils';
 
 /**
  * Increases the nesting level of a list item by moving it inside its previous sibling.
@@ -20,16 +18,16 @@ const $increaseListItemNesting = (listItem: ListItemNode) => {
 	const previousSibling = listItem.getPreviousSibling();
 	if (!$isListItemNode(previousSibling)) return true;
 
-	// Move listItem one level deeper by nesting it under previousSibling
-	// If previousSibling already has a nested list - reuse it, otherwise create a new nested list
+	// Move item one level deeper by nesting it under previous sibling
 	const listType = parentList.getListType();
-	const nestedList = previousSibling
+	const siblingNestedList = previousSibling
 		.getChildren()
 		.filter($isListNode)
 		.find((list) => list.getListType() === listType);
 
-	if (nestedList) {
-		nestedList.append(listItem);
+	// If previous sibling already has a nested list - reuse it, otherwise create a new nested list
+	if (siblingNestedList) {
+		siblingNestedList.append(listItem);
 	} else {
 		const newNestedList = $createListNode(listType);
 		newNestedList.append(listItem);
@@ -44,11 +42,11 @@ const $increaseListItemNesting = (listItem: ListItemNode) => {
  * Following siblings are re-nested under the moved item to preserve the list structure
  */
 const $decreaseListItemNesting = (listItem: ListItemNode) => {
-	const currentList = listItem.getParent();
-	if (!$isListNode(currentList)) return false;
+	const parentList = listItem.getParent();
+	if (!$isListNode(parentList)) return false;
 
 	// Cannot unnest a top-level item
-	const parentListItem = currentList.getParent();
+	const parentListItem = parentList.getParent();
 	if (!$isListItemNode(parentListItem)) return true;
 
 	// Move the item one level up
@@ -58,26 +56,40 @@ const $decreaseListItemNesting = (listItem: ListItemNode) => {
 
 	// Keep following siblings nested under the moved item
 	if (followingListItems.length > 0) {
-		const nestedList = listItem
+		const listType = parentList.getListType();
+
+		const childNestedList = listItem
 			.getChildren()
 			.filter($isListNode)
-			.find((list) => list.getListType() === currentList.getListType());
+			.find((list) => list.getListType() === listType);
 
-		if (nestedList) {
-			followingListItems.forEach((item) => nestedList.append(item));
+		if (childNestedList) {
+			followingListItems.forEach((item) => childNestedList.append(item));
 		} else {
-			const newNestedList = $createListNode(currentList.getListType());
+			const newNestedList = $createListNode(listType);
 			followingListItems.forEach((item) => newNestedList.append(item));
 
 			listItem.append(newNestedList);
 		}
 	}
 
-	if (currentList.getChildrenSize() === 0) {
-		currentList.remove();
+	if (parentList.getChildrenSize() === 0) {
+		parentList.remove();
 	}
 
 	return true;
+};
+
+const $hasSelectedAncestor = (
+	node: LexicalNode,
+	selectedListItems: Map<string, ListItemNode>,
+): boolean => {
+	const parent = node.getParent();
+	if (!parent) return false;
+
+	if ($isListItemNode(parent) && selectedListItems.has(parent.getKey())) return true;
+
+	return $hasSelectedAncestor(parent, selectedListItems);
 };
 
 /**
@@ -106,7 +118,7 @@ export const $changeListItemsNesting = (
 			.filter((item) => !$hasSelectedAncestor(item, selectedItems))
 			.map($increaseListItemNesting);
 	} else {
-		// Process list items bottom-up (reverse) to prevent children from being orphaned or shifted early
+		// Process list items bottom-up to prevent children from being orphaned or shifted early
 		changedItems = listItems.toReversed().map($decreaseListItemNesting);
 	}
 
