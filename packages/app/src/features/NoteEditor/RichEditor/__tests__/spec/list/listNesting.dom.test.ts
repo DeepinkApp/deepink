@@ -399,7 +399,7 @@ describe('Nesting level boundaries and round-trip', () => {
 		test.each([
 			['increasing', increase],
 			['decreasing', decrease],
-		])('%s nesting has no effect on a single top-level item', async (_, shortcut) => {
+		])('%s nesting has no effect on the only item in a list', async (_, shortcut) => {
 			const { editor, applyShortcutForItem } = await setupEditor('- One item');
 
 			expect(within(editor).getAllByRole('list')).toHaveLength(1);
