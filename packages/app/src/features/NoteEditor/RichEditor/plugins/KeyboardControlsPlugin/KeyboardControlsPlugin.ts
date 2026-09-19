@@ -1,13 +1,17 @@
 import { useEffect } from 'react';
 import {
 	$createParagraphNode,
+	$findMatchingParent,
 	$getSelection,
+	$isElementNode,
 	$isParagraphNode,
+	$isRangeSelection,
 	$isTextNode,
 	BaseSelection,
 	COMMAND_PRIORITY_LOW,
 	createCommand,
 	ElementNode,
+	KEY_BACKSPACE_COMMAND,
 	KEY_ENTER_COMMAND,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
@@ -90,6 +94,53 @@ export const KeyboardControlsPlugin = () => {
 						blockElement.insertAfter(newParagraph);
 						newParagraph.select();
 
+						return true;
+					},
+					COMMAND_PRIORITY_LOW,
+				),
+				editor.registerCommand(
+					KEY_BACKSPACE_COMMAND,
+					(event) => {
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection) || !selection.isCollapsed())
+							return false;
+						if (selection.anchor.offset !== 0) return false;
+
+						// Handle Backspace at the beginning of a quote: unwrap the quote or remove it if it is empty
+						const quoteNode = $findMatchingParent(
+							selection.anchor.getNode(),
+							$isQuoteNode,
+						);
+						if (!quoteNode) return false;
+
+						// A quote can contain multiple lines, find the line containing the cursor
+						// Continue unwrapping the quote only when the cursor is in its first line,
+						// otherwise, let Lexical handle backspace
+						const cursorLine = $findMatchingParent(
+							selection.anchor.getNode(),
+							(node) => node.getParent() === quoteNode,
+						);
+						if (cursorLine && cursorLine !== quoteNode.getFirstChild())
+							return false;
+
+						// Unwrap the quote, reducing its nesting level or removing it entirely
+						const parent = quoteNode.getParent();
+						if (!$isElementNode(parent)) return false;
+
+						const children = quoteNode.getChildren();
+
+						// Move the quote's children into its parent preserving their content
+						if (children.length > 0) {
+							const index = quoteNode.getIndexWithinParent();
+							parent.splice(index, 1, children);
+							children[0].selectStart();
+						} else {
+							// Remove empty quote
+							quoteNode.remove();
+							parent.selectEnd();
+						}
+
+						event.preventDefault();
 						return true;
 					},
 					COMMAND_PRIORITY_LOW,

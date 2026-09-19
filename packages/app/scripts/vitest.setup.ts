@@ -26,4 +26,9 @@ if (isDOMLikeEnv) {
 		y: 0,
 		toJSON: () => {},
 	});
+
+	Object.defineProperty(Selection.prototype, 'modify', {
+		value: vi.fn(),
+		configurable: true,
+	});
 }
