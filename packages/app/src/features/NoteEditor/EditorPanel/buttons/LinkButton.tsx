@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { AutoFocusInside } from 'react-focus-lock';
+import { MoveFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { FaLink } from 'react-icons/fa6';
 import { LOCALE_NAMESPACE } from 'src/i18n';
@@ -51,7 +51,7 @@ export const LinkButton: FC<
 										</Text>
 
 										<Box w="100%" asChild>
-											<AutoFocusInside>
+											<MoveFocusInside>
 												<PropertiesForm
 													options={[
 														{
@@ -80,7 +80,7 @@ export const LinkButton: FC<
 													)}
 													onCancel={onClose}
 												/>
-											</AutoFocusInside>
+											</MoveFocusInside>
 										</Box>
 									</VStack>
 								</Dialog.Body>
