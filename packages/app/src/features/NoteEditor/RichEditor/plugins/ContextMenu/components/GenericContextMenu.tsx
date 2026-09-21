@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { $isLinkNode } from '@lexical/link';
+import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { $findMatchingParent } from '@lexical/utils';
 
 import { $isImageNode } from '../../Image/ImageNode';
@@ -50,6 +50,7 @@ export const GenericContextMenu: FC<ContextMenuRendererProps> = ({
 			? node
 			: $findMatchingParent(node, (node) => $isLinkNode(node));
 		if ($isLinkNode(linkNode)) {
+			// TODO: add button to convert link back to text explicitly
 			return (
 				<ObjectPropertiesEditor
 					title={t('contextMenu.linkProperties.title')}
@@ -63,6 +64,12 @@ export const GenericContextMenu: FC<ContextMenuRendererProps> = ({
 					]}
 					onUpdate={({ url, alt }) => {
 						editor.update(() => {
+							if (url.trim() === '') {
+								linkNode.select();
+								editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
+								return;
+							}
+
 							linkNode.setURL(url);
 							linkNode.setTitle(alt);
 						});
