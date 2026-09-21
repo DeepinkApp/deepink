@@ -3,15 +3,18 @@ import {
 	$createParagraphNode,
 	$createTextNode,
 	$getRoot,
+	$getSelection,
+	$insertNodes,
 	$isBlockElementNode,
 	$isParagraphNode,
+	$isRangeSelection,
 	$isRootNode,
 	$isTextNode,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
 	FORMAT_TEXT_COMMAND,
 } from 'lexical';
 import { $createCodeNode } from '@lexical/code-core';
-import { TOGGLE_LINK_COMMAND } from '@lexical/link';
+import { $createLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
 	INSERT_CHECK_LIST_COMMAND,
 	INSERT_ORDERED_LIST_COMMAND,
@@ -118,7 +121,18 @@ export const EditorPanelPlugin = () => {
 					}
 				},
 				link({ url }) {
-					editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url });
+					editor.update(() => {
+						const selection = $getSelection();
+						if (!selection) return;
+
+						if ($isRangeSelection(selection) && selection.isCollapsed()) {
+							const linkNode = $createLinkNode(url);
+							linkNode.append($createTextNode(url));
+							$insertNodes([linkNode]);
+						} else {
+							editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url });
+						}
+					});
 				},
 				image({ url, altText }) {
 					editor.update(() => {
