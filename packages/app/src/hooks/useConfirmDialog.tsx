@@ -1,5 +1,5 @@
 import React, { ReactNode, useCallback } from 'react';
-import { AutoFocusInside } from 'react-focus-lock';
+import { MoveFocusInside } from 'react-focus-lock';
 import { Box, CloseButton, Dialog, HStack, VStack } from '@chakra-ui/react';
 import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 
@@ -31,7 +31,7 @@ export const useConfirmDialog = () => {
 
 									{action && (
 										<HStack justifyContent="end" w="100%" asChild>
-											<AutoFocusInside>{action}</AutoFocusInside>
+											<MoveFocusInside>{action}</MoveFocusInside>
 										</HStack>
 									)}
 								</VStack>

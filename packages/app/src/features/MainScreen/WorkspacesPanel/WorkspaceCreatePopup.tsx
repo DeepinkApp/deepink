@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { AutoFocusInside } from 'react-focus-lock';
+import { MoveFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { z } from 'zod';
@@ -69,7 +69,7 @@ export const WorkspaceCreatePopup = () => {
 					<Text variant="secondary">{tFeatures('description')}</Text>
 
 					<Box w="100%" asChild>
-						<AutoFocusInside>
+						<MoveFocusInside>
 							<PropertiesForm
 								options={[
 									{
@@ -128,7 +128,7 @@ export const WorkspaceCreatePopup = () => {
 								onCancel={onClose}
 								isPending={isPending}
 							/>
-						</AutoFocusInside>
+						</MoveFocusInside>
 					</Box>
 				</VStack>
 			</Dialog.Body>

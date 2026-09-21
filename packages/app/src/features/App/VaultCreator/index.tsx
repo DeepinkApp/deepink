@@ -8,7 +8,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
-import { AutoFocusInside } from 'react-focus-lock';
+import { MoveFocusInside } from 'react-focus-lock';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaDice, FaShield, FaThumbsDown, FaThumbsUp } from 'react-icons/fa6';
 import bytes from 'bytes';
@@ -358,7 +358,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 									</Dialog.Body>
 									<Dialog.Footer>
 										<HStack w="100%" justifyContent="end" asChild>
-											<AutoFocusInside>
+											<MoveFocusInside>
 												<Button
 													variant="accent"
 													onClick={() => {
@@ -379,7 +379,7 @@ export const VaultCreator: FC<VaultCreatorProps> = ({
 														'creator.noEncryptionDialog.actions.cancel',
 													)}
 												</Button>
-											</AutoFocusInside>
+											</MoveFocusInside>
 										</HStack>
 									</Dialog.Footer>
 								</Dialog.Content>
