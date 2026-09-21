@@ -12,7 +12,6 @@ test('Convert selected text into link', async () => {
 	});
 	onTestFinished(destroy);
 
-	// Initial state
 	const editor = page.getByRole('textbox');
 	expect(editor.getByRole('link')).not.toBeInTheDocument();
 
@@ -25,13 +24,42 @@ test('Convert selected text into link', async () => {
 	expect(editor.element().outerHTML).toMatchSnapshot();
 });
 
-test('Insert link with no text', async () => {
+test('Convert link back to text', async () => {
+	const sampleText = 'My favorite dish is cake';
+	const { destroy, insert, command, getEditor } = await renderRichEditorInDOM({
+		value: sampleText,
+	});
+	onTestFinished(destroy);
+
+	const editor = page.getByRole('textbox');
+	expect(editor.getByRole('link')).not.toBeInTheDocument();
+
+	const snapshotBeforeChanges = editor.element().outerHTML;
+
+	// Convert selected text into link
+	await act(async () => {
+		selectText(getEditor().getRootElement()!, 'favorite');
+	});
+	await insert({ type: 'link', data: { url: 'https://example.com' } });
+
+	expect(
+		editor.getByRole('link', { exact: true, name: 'favorite' }),
+	).toBeInTheDocument();
+	expect(editor.element().outerHTML).toMatchSnapshot();
+
+	// Convert link back to text
+	await command({ command: 'removeLink' });
+	expect(editor.getByRole('link')).not.toBeInTheDocument();
+
+	expect(editor.element().outerHTML).toBe(snapshotBeforeChanges);
+});
+
+test('Link insertion with no text selection must create a link with url as a text', async () => {
 	const { destroy, insert } = await renderRichEditorInDOM({
 		value: 'My favorite dish is cake',
 	});
 	onTestFinished(destroy);
 
-	// Initial state
 	const editor = page.getByRole('textbox');
 	expect(editor.getByRole('link')).not.toBeInTheDocument();
 
