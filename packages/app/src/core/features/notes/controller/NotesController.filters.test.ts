@@ -27,7 +27,7 @@ test('filter by update time', async () => {
 	await expect(
 		notes.get({
 			updatedAt: { from: new Date('01/01/2002 12:00') },
-			sort: { by: 'createdAt', order: 'asc' },
+			sort: [{ by: 'createdAt', order: 'asc' }],
 		}),
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2002' }) }),
@@ -37,7 +37,7 @@ test('filter by update time', async () => {
 	await expect(
 		notes.get({
 			updatedAt: { to: new Date('01/01/2002 12:00') },
-			sort: { by: 'createdAt', order: 'asc' },
+			sort: [{ by: 'createdAt', order: 'asc' }],
 		}),
 	).resolves.toEqual([
 		expect.objectContaining({ content: expect.objectContaining({ title: '2001' }) }),
@@ -284,6 +284,23 @@ describe('data fetching', () => {
 		await expect(
 			registry.get({ meta: { isBookmarked: false } }),
 		).resolves.toHaveLength(notesSample.length - 40);
+	});
+
+	test('filters notes by pinned status', async () => {
+		const { db, workspaceId } = getWorkspaceContext();
+		const registry = new NotesController(db, workspaceId);
+
+		const notesId = await registry
+			.get({ limit: 60 })
+			.then((notes) => notes.map((note) => note.id));
+
+		await registry.updateMeta(notesId, { isPinned: true });
+		await expect(registry.get({ meta: { isPinned: true } })).resolves.toHaveLength(
+			60,
+		);
+		await expect(registry.get({ meta: { isPinned: false } })).resolves.toHaveLength(
+			notesSample.length - 60,
+		);
 	});
 
 	test('method getLength consider filters', async () => {

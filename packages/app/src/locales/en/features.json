@@ -116,7 +116,9 @@
 			"removeFromArchive": "Remove from archive",
 			"deleteToBin": "Delete to bin",
 			"deletePermanently": "Delete permanently",
-			"restoreFromBin": "Restore from bin"
+			"restoreFromBin": "Restore from bin",
+			"pin": "Pin note",
+			"unpin": "Unpin note"
 		},
 		"version": {
 			"chars": "{{count}} characters",

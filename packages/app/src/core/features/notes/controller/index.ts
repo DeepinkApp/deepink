@@ -6,9 +6,10 @@ export type NoteMeta = {
 	isDeleted: boolean;
 	isArchived: boolean;
 	isBookmarked: boolean;
+	isPinned: boolean;
 };
 
-export type NoteSortField = 'id' | 'createdAt' | 'updatedAt' | 'deletedAt';
+export type NoteSortField = 'id' | 'createdAt' | 'updatedAt' | 'deletedAt' | 'pinnedAt';
 
 export type NoteContentUpdateInfo = {
 	id: NoteId;
@@ -74,7 +75,7 @@ export type NotesControllerFetchOptions = {
 	sort?: {
 		by: NoteSortField;
 		order?: 'desc' | 'asc';
-	};
+	}[];
 };
 
 export type ControlledNoteMeta = Partial<NoteMeta> & { updatedAt?: number };

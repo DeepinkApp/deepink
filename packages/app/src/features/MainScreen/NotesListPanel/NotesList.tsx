@@ -22,6 +22,7 @@ import {
 import { ScrollToOptions, useVirtualizer } from '@tanstack/react-virtual';
 
 import { useNotesData } from './useNotesData';
+import { useOptimisticPinDisplay } from './useOptimisticPinDisplay';
 import { useScrollToActiveNote } from './useScrollToActiveNote';
 
 const MemoizedSkeleton = memo(Skeleton);
@@ -80,6 +81,8 @@ export const NotesList: FC<NotesListProps> = () => {
 		activeNoteRef,
 	});
 
+	const pinDisplayOverride = useOptimisticPinDisplay(notesData);
+
 	// TODO: implement dragging and moving items
 	return (
 		<VStack
@@ -91,6 +94,7 @@ export const NotesList: FC<NotesListProps> = () => {
 				align: 'center',
 				userSelect: 'none',
 				paddingInlineEnd: '.3rem',
+				overflowAnchor: 'none',
 			}}
 		>
 			{noteIds.length === 0 ? (
@@ -201,6 +205,11 @@ export const NotesList: FC<NotesListProps> = () => {
 											},
 										);
 									}}
+									isPinned={
+										pinDisplayOverride?.noteId === note.id
+											? pinDisplayOverride.isPinned
+											: note.isPinned
+									}
 									onDoubleClick={() => {
 										// Convert preview tab to regular
 										noteActions.click(note.id, { preview: false });
