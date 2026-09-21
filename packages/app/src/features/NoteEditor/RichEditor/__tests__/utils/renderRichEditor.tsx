@@ -12,6 +12,7 @@ import {
 	NotesRegistryContext,
 } from '@features/App/Workspace/WorkspaceProvider';
 import {
+	CommandsPayload,
 	editorPanelContext,
 	InsertingPayload,
 	TextFormat,
@@ -79,6 +80,7 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 	const { store } = createTestStore();
 	const onFormatting = createEvent<TextFormat>();
 	const onInserting = createEvent<InsertingPayload>();
+	const onCommand = createEvent<CommandsPayload>();
 
 	const editorRef = createRef<LexicalEditor>();
 
@@ -104,7 +106,7 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 				<I18nextProvider i18n={i18n}>
 					<MockWorkspaceProvider>
 						<editorPanelContext.Provider
-							value={{ onInserting, onFormatting }}
+							value={{ onInserting, onFormatting, onCommand }}
 						>
 							<RichEditor placeholder="Enter text" {...props} />
 						</editorPanelContext.Provider>

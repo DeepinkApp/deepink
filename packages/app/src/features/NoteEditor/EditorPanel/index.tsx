@@ -6,6 +6,16 @@ export type TextFormat = 'bold' | 'italic' | 'strikethrough';
 
 export type HeaderLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
+export type CommandsPayloadMap = {
+	removeLink: void;
+};
+
+export type CommandsPayload = {
+	[K in keyof CommandsPayloadMap]: {
+		command: K;
+	} & (void extends CommandsPayloadMap[K] ? {} : { data: CommandsPayloadMap[K] });
+}[keyof CommandsPayloadMap];
+
 export type InsertingPayloadMap = {
 	heading: {
 		level: HeaderLevel;
@@ -39,6 +49,7 @@ export type InsertingPayload = {
 export const editorPanelContext = createContext<{
 	onFormatting: EventCallable<TextFormat>;
 	onInserting: EventCallable<InsertingPayload>;
+	onCommand: EventCallable<CommandsPayload>;
 }>(null as any);
 
 export const useEditorPanelContext = createContextGetterHook(editorPanelContext);
@@ -46,6 +57,7 @@ export const EditorPanelContext = ({ children }: PropsWithChildren) => {
 	const [events] = useState(() => ({
 		onFormatting: createEvent<TextFormat>(),
 		onInserting: createEvent<InsertingPayload>(),
+		onCommand: createEvent<CommandsPayload>(),
 	}));
 
 	return (
