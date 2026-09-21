@@ -21,7 +21,6 @@ export const ContextMenuPlugin = ({
 	...props
 }: ContextMenuProps) => {
 	const [editor] = useLexicalComposerContext();
-	const rootElement = editor.getRootElement();
 
 	const [menuContext, setMenuContext] = useState<{
 		node: LexicalNode;
@@ -34,6 +33,7 @@ export const ContextMenuPlugin = ({
 
 	// Trigger context menu
 	useEffect(() => {
+		const rootElement = editor.getRootElement();
 		if (!rootElement) return;
 
 		const onContextMenu = (evt: MouseEvent) => {
@@ -54,11 +54,13 @@ export const ContextMenuPlugin = ({
 			});
 		};
 
-		rootElement.addEventListener('contextmenu', onContextMenu);
+		rootElement.addEventListener('contextmenu', onContextMenu, { capture: true });
 		return () => {
-			rootElement.removeEventListener('contextmenu', onContextMenu);
+			rootElement.removeEventListener('contextmenu', onContextMenu, {
+				capture: true,
+			});
 		};
-	}, [editor, rootElement, setMenuContext]);
+	}, [editor, setMenuContext]);
 
 	// Maintain context data
 	useEffect(() => {
