@@ -98,6 +98,22 @@ export const renderRichEditorInDOM = async (props: RichEditorContentProps) => {
 			container.remove();
 		},
 
+		/**
+		 * Simulates an editor panel action like inserting image
+		 */
+		insert: async (payload: InsertingPayload) => {
+			// Wrap editor actions in act() so React flushes all state updates
+			// before assertions are executed
+			await act(async () => onInserting(payload));
+		},
+
+		/**
+		 * Simulates an editor panel formatting action like bold, italic and etc
+		 */
+		format: async (format: TextFormat) => {
+			await act(async () => onFormatting(format));
+		},
+
 		getEditor() {
 			const editor = editorRef.current;
 			if (!editor) throw new Error('Error instance is not set');
