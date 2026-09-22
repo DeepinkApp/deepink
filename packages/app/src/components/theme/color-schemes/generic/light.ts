@@ -54,7 +54,9 @@ export default function (accentColor: string) {
 						hover: { value: accent['600'] },
 					},
 					overlay: {
+						300: { value: '#5b58584d' },
 						500: { value: '#00000075' },
+						600: { value: '#3635354d' },
 					},
 					message: {
 						error: { value: '#b30606' },
@@ -111,6 +113,13 @@ export default function (accentColor: string) {
 							active: {
 								foreground: { value: '{colors.typography.base}' },
 								background: { value: '{colors.dim.200}' },
+							},
+						},
+						floating: {
+							foreground: { value: '{colors.typography.inverted}' },
+							background: { value: '{colors.overlay.300}' },
+							hover: {
+								background: { value: '{colors.overlay.600}' },
 							},
 						},
 					},
