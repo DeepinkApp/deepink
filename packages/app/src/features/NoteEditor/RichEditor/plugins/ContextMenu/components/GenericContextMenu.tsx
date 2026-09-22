@@ -44,7 +44,13 @@ export const LinkEditor = ({
 			>
 				<Card.Body padding=".5rem">
 					<MoveFocusInside>
-						<form onSubmit={updateUrl} aria-label="Link props editor">
+						<form
+							aria-label="Link props editor"
+							onSubmit={(event) => {
+								event.preventDefault();
+								updateUrl();
+							}}
+						>
 							<Group>
 								<Input
 									ref={inputRef}
@@ -53,6 +59,7 @@ export const LinkEditor = ({
 									size="sm"
 								/>
 								<IconButton
+									type="submit"
 									size="sm"
 									variant="accent"
 									icon={<FaCheck />}
