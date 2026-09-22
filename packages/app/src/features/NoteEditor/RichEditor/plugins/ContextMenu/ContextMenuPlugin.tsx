@@ -29,7 +29,8 @@ export const ContextMenuPlugin = ({
 
 	const close = useCallback(() => {
 		setMenuContext(null);
-	}, []);
+		editor.focus();
+	}, [editor]);
 
 	// Trigger context menu
 	useEffect(() => {
