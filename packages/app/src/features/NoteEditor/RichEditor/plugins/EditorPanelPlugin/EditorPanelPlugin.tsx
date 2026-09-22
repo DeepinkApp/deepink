@@ -2,9 +2,12 @@ import { useEffect } from 'react';
 import {
 	$createParagraphNode,
 	$createTextNode,
+	$findMatchingParent,
 	$getRoot,
+	$getSelection,
 	$isBlockElementNode,
 	$isParagraphNode,
+	$isRangeSelection,
 	$isRootNode,
 	$isTextNode,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
@@ -13,9 +16,11 @@ import {
 import { $createCodeNode } from '@lexical/code-core';
 import { TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
+	$isListNode,
 	INSERT_CHECK_LIST_COMMAND,
 	INSERT_ORDERED_LIST_COMMAND,
 	INSERT_UNORDERED_LIST_COMMAND,
+	ListNode,
 } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
@@ -26,7 +31,14 @@ import { $getCursorNode } from '../../utils/selection';
 
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
+import { $convertListToParagraphs } from './utils/$convertListToParagraphs';
 import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
+
+const listTypeMap = {
+	checkbox: 'check',
+	ordered: 'number',
+	unordered: 'bullet',
+};
 
 /**
  * Plugin to handle editor panel actions about formatting and nodes insertion
@@ -88,11 +100,39 @@ export const EditorPanelPlugin = () => {
 					});
 				},
 				list({ type }) {
+					// Check whether all selected lists already have the requested type
+					// If they do, convert them to paragraphs instead of applying the same list type
+					let didConvert = false;
+					editor.update(() => {
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return;
+
+						const listNodes = new Set<ListNode>();
+						selection.getNodes().forEach((node) => {
+							const listParent = $findMatchingParent(node, $isListNode);
+							if (listParent) listNodes.add(listParent);
+						});
+
+						const isAlreadyRequestedType =
+							listNodes.size > 0 &&
+							Array.from(listNodes).every(
+								(list) => list.getListType() === listTypeMap[type],
+							);
+
+						if (!isAlreadyRequestedType) return;
+
+						listNodes.forEach($convertListToParagraphs);
+						didConvert = true;
+					});
+
+					if (didConvert) return;
+
+					// Ensure the editor is not empty
 					editor.update(() => {
 						const target = $getCursorNode();
 						if (!target) return;
 
-						if ($isRootNode(target)) {
+						if ($isRootNode(target) && target.getChildren().length === 0) {
 							const paragraph = $createParagraphNode();
 							target.append(paragraph);
 							paragraph.select();
