@@ -6,7 +6,7 @@ import { selectText } from '../utils/utils';
 
 vi.mock('electron', () => () => {});
 
-test('Convert selected text into link', async () => {
+test('Selected text must be converted into link', async () => {
 	const { destroy, insert, getEditor } = await renderRichEditorInDOM({
 		value: 'My favorite dish is cake',
 	});
@@ -89,7 +89,7 @@ describe('Link context menu', () => {
 		};
 	};
 
-	test('Update link URL', async () => {
+	test('Link URL can be updated via menu', async () => {
 		const { makeLink, openContextMenu, locators } = await createPlayground();
 
 		await makeLink();
@@ -110,7 +110,7 @@ describe('Link context menu', () => {
 		expect(locators.link).toHaveAttribute('href', 'https://updated.example.com');
 	});
 
-	test('Update link URL via keyboard', async () => {
+	test('Link URL can be updated via keyboard interaction in menu', async () => {
 		const { makeLink, openContextMenu, locators } = await createPlayground();
 
 		await makeLink();
@@ -131,7 +131,7 @@ describe('Link context menu', () => {
 		expect(locators.link).toHaveAttribute('href', 'https://updated.example.com');
 	});
 
-	test('Convert link to text', async () => {
+	test('Link can be converted into text', async () => {
 		const { makeLink, openContextMenu, locators } = await createPlayground();
 
 		// No link
