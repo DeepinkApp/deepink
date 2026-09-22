@@ -44,7 +44,7 @@ export const LinkEditor = ({
 			>
 				<Card.Body padding=".5rem">
 					<MoveFocusInside>
-						<form onSubmit={updateUrl}>
+						<form onSubmit={updateUrl} aria-label="Link props editor">
 							<Group>
 								<Input
 									ref={inputRef}

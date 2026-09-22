@@ -26,7 +26,7 @@ test('Convert selected text into link', async () => {
 
 test('Convert link back to text', async () => {
 	const sampleText = 'My favorite dish is cake';
-	const { destroy, insert, command, getEditor } = await renderRichEditorInDOM({
+	const { destroy, insert, getEditor } = await renderRichEditorInDOM({
 		value: sampleText,
 	});
 	onTestFinished(destroy);
@@ -48,9 +48,16 @@ test('Convert link back to text', async () => {
 	expect(editor.element().outerHTML).toMatchSnapshot();
 
 	// Convert link back to text
-	await command({ command: 'removeLink' });
-	expect(editor.getByRole('link')).not.toBeInTheDocument();
+	await act(async () => {
+		const linkLocator = editor.getByRole('link', { exact: true, name: 'favorite' });
+		await userEvent.hover(linkLocator);
+		await userEvent.click(linkLocator, { button: 'right' });
+		await page
+			.getByRole('button', { exact: true, name: 'Convert link to text' })
+			.click();
+	});
 
+	expect(editor.getByRole('link')).not.toBeInTheDocument();
 	expect(editor.element().outerHTML).toBe(snapshotBeforeChanges);
 });
 
