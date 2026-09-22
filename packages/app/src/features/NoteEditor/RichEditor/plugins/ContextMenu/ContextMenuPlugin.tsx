@@ -100,7 +100,13 @@ export const ContextMenuPlugin = ({
 
 	return children ? (
 		<Portal>
-			<Popper referenceRef={menuContext?.element} onClose={close} {...props}>
+			<Popper
+				referenceRef={menuContext?.element}
+				onClose={close}
+				allowedPlacements={['bottom', 'top']}
+				boundary={editor.getRootElement() ?? undefined}
+				{...props}
+			>
 				{children}
 			</Popper>
 		</Portal>

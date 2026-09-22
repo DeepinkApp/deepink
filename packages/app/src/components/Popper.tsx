@@ -3,6 +3,7 @@ import { Box, BoxProps, mergeRefs, Portal } from '@chakra-ui/react';
 import {
 	autoPlacement,
 	autoUpdate,
+	Boundary,
 	hide,
 	offset,
 	OffsetOptions,
@@ -25,6 +26,7 @@ export const Popper = forwardRef<
 		allowedPlacements?: Placement[];
 		offset?: OffsetOptions;
 		viewportOffset?: number;
+		boundary?: Boundary;
 	}
 >(
 	(
@@ -35,6 +37,7 @@ export const Popper = forwardRef<
 			offset: offsetConfig = { mainAxis: 2 },
 			viewportOffset = 5,
 			children,
+			boundary,
 			...props
 		},
 		ref,
@@ -48,12 +51,17 @@ export const Popper = forwardRef<
 			strategy: 'fixed',
 			middleware: [
 				offset(offsetConfig),
-				hide(),
-				shift(),
+				hide({ boundary, altBoundary: true }),
+				shift({ boundary, crossAxis: true }),
 				autoPlacement({
 					allowedPlacements,
+					boundary,
+					altBoundary: true,
+					crossAxis: true,
 				}),
 				size({
+					boundary,
+					altBoundary: true,
 					apply({ availableWidth, availableHeight, elements }) {
 						// Change styles, e.g.
 						Object.assign(elements.floating.style, {
