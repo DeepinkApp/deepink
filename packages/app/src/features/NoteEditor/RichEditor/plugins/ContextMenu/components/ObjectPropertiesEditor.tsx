@@ -40,7 +40,7 @@ export const ObjectPropertiesEditor = <T extends OptionObject[]>({
 					<Text>{title}</Text>
 					{onClose && (
 						<HStack marginLeft="1rem">
-							<Button size="sm" onClick={onClose}>
+							<Button size="sm" variant="ghost" onClick={onClose}>
 								<FaXmark />
 							</Button>
 						</HStack>
