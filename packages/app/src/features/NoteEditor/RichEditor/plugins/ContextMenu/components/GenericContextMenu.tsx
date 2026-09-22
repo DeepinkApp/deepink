@@ -2,6 +2,7 @@ import React, { FC, useCallback, useRef } from 'react';
 import FocusLock, { MoveFocusInside } from 'react-focus-lock';
 import { useTranslation } from 'react-i18next';
 import { FaCheck, FaLinkSlash } from 'react-icons/fa6';
+import { $getSelection, $isNodeSelection, $isRangeSelection } from 'lexical';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Card, Group, Input } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
@@ -122,7 +123,17 @@ export const GenericContextMenu: FC<ContextMenuRendererProps> = ({
 				editor.update(() => {
 					// Remove link
 					if (url === null || url.trim() === '') {
-						linkNode.select();
+						const selection = $getSelection();
+
+						let isCursorOnLink = false;
+						if ($isRangeSelection(selection) || $isNodeSelection(selection)) {
+							isCursorOnLink = selection
+								.getNodes()
+								.every((node) => node.is(linkNode));
+						}
+
+						if (!isCursorOnLink) linkNode.select();
+
 						editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
 						return;
 					}
