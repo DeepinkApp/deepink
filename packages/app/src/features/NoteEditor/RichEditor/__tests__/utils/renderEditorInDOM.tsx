@@ -1,5 +1,5 @@
 import React, { act, createRef } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, Root } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createEvent } from 'effector';
 import { LexicalEditor } from 'lexical';
@@ -63,7 +63,19 @@ export const MockWorkspaceProvider = ({ children }: { children: React.ReactNode 
 	);
 };
 
-export const renderRichEditorInDOM = async (props: RichEditorContentProps) => {
+export type RichEditorTestAPI = {
+	root: Root;
+	container: HTMLDivElement;
+	destroy(): void;
+	insert: (payload: InsertingPayload) => Promise<void>;
+	format: (format: TextFormat) => Promise<void>;
+	command: (format: CommandsPayload) => Promise<void>;
+	getEditor(): LexicalEditor;
+};
+
+export const renderRichEditorInDOM = async (
+	props: RichEditorContentProps,
+): Promise<RichEditorTestAPI> => {
 	const { store } = createTestStore();
 	const onFormatting = createEvent<TextFormat>();
 	const onInserting = createEvent<InsertingPayload>();
