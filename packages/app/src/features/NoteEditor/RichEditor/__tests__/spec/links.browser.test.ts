@@ -45,89 +45,109 @@ test('Link insertion with no text selection must create a link with url as a tex
 
 describe('Link context menu', () => {
 	const sampleText = 'My favorite dish is cake';
-
-	test('Update link URL', async () => {
+	const createPlayground = async () => {
 		const { destroy, insert } = await renderRichEditorInDOM({
 			value: sampleText,
 		});
 		onTestFinished(destroy);
 
-		const editor = page.getByRole('textbox');
-		const linkLocator = editor.getByRole('link');
+		const editorLocator = page.getByRole('textbox');
+		const linkLocator = editorLocator.getByRole('link');
 
 		// No link
 		expect(linkLocator).not.toBeInTheDocument();
 
 		// Convert selected text into link
-		await act(async () => {
-			selectText(editor.element(), 'favorite');
-		});
-		await insert({ type: 'link', data: { url: 'https://example.com' } });
+		const makeLink = async () => {
+			await act(async () => {
+				selectText(editorLocator.element(), 'favorite');
+			});
+			await insert({ type: 'link', data: { url: 'https://example.com' } });
 
-		expect(linkLocator).toBeInTheDocument();
-		expect(linkLocator).toHaveTextContent(/^favorite$/);
-		expect(linkLocator).toHaveAttribute('href', 'https://example.com');
+			expect(linkLocator).toBeInTheDocument();
+			expect(linkLocator).toHaveTextContent(/^favorite$/);
+			expect(linkLocator).toHaveAttribute('href', 'https://example.com');
+		};
 
-		// Open context menu
-		await act(async () => {
-			await userEvent.hover(linkLocator);
-			await userEvent.click(linkLocator, { button: 'right' });
-		});
+		const openContextMenu = async () => {
+			await act(async () => {
+				await userEvent.hover(linkLocator);
+				await userEvent.click(linkLocator, { button: 'right' });
+			});
 
-		expect(page.getByRole('form')).toBeInTheDocument();
+			expect(page.getByRole('form')).toBeInTheDocument();
+		};
 
-		// Update URL
-		const inputLocator = page.getByRole('form').getByRole('textbox');
+		return {
+			makeLink,
+			openContextMenu,
+			locators: {
+				editor: editorLocator,
+				link: linkLocator,
+				menu: page.getByRole('form'),
+			},
+		};
+	};
+
+	test('Update link URL', async () => {
+		const { makeLink, openContextMenu, locators } = await createPlayground();
+
+		await makeLink();
+		expect(locators.link).toHaveAttribute('href', 'https://example.com');
+
+		await openContextMenu();
+
+		const inputLocator = locators.menu.getByRole('textbox');
 		expect(inputLocator).toBeInTheDocument();
 		expect(inputLocator).toHaveValue('https://example.com');
 
+		// Update URL
 		await act(async () => {
 			await userEvent.fill(inputLocator, 'https://updated.example.com');
 			await page.getByRole('button', { exact: true, name: 'Update URL' }).click();
 		});
 
-		expect(linkLocator).toHaveAttribute('href', 'https://updated.example.com');
+		expect(locators.link).toHaveAttribute('href', 'https://updated.example.com');
+	});
+
+	test('Update link URL via keyboard', async () => {
+		const { makeLink, openContextMenu, locators } = await createPlayground();
+
+		await makeLink();
+		expect(locators.link).toHaveAttribute('href', 'https://example.com');
+
+		await openContextMenu();
+
+		const inputLocator = locators.menu.getByRole('textbox');
+		expect(inputLocator).toBeInTheDocument();
+		expect(inputLocator).toHaveValue('https://example.com');
+
+		// Update URL
+		await act(async () => {
+			await userEvent.fill(inputLocator, 'https://updated.example.com');
+			await userEvent.keyboard('{Enter}');
+		});
+
+		expect(locators.link).toHaveAttribute('href', 'https://updated.example.com');
 	});
 
 	test('Convert link to text', async () => {
-		const { destroy, insert } = await renderRichEditorInDOM({
-			value: sampleText,
-		});
-		onTestFinished(destroy);
-
-		const editor = page.getByRole('textbox');
-		const linkLocator = editor.getByRole('link');
+		const { makeLink, openContextMenu, locators } = await createPlayground();
 
 		// No link
-		const snapshotBeforeChanges = editor.element().outerHTML;
-		expect(linkLocator).not.toBeInTheDocument();
-
-		// Convert selected text into link
-		await act(async () => {
-			selectText(editor.element(), 'favorite');
-		});
-		await insert({ type: 'link', data: { url: 'https://example.com' } });
-
-		expect(linkLocator).toBeInTheDocument();
-		expect(linkLocator).toHaveTextContent(/^favorite$/);
-		expect(linkLocator).toHaveAttribute('href', 'https://example.com');
-
-		// Open context menu
-		await act(async () => {
-			await userEvent.hover(linkLocator);
-			await userEvent.click(linkLocator, { button: 'right' });
-		});
-
-		expect(page.getByRole('form')).toBeInTheDocument();
+		const snapshotBeforeChanges = locators.editor.element().outerHTML;
+		expect(locators.link).not.toBeInTheDocument();
 
 		// Convert link to text
+		await makeLink();
+		await openContextMenu();
 		await act(async () => {
 			await page
 				.getByRole('button', { exact: true, name: 'Convert link to text' })
 				.click();
 		});
 
-		expect(linkLocator).not.toBeInTheDocument();
-		expect(editor.element().outerHTML).toBe(snapshotBeforeChanges);
+		expect(locators.link).not.toBeInTheDocument();
+		expect(locators.editor.element().outerHTML).toBe(snapshotBeforeChanges);
 	});
 });
