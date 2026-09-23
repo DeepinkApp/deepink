@@ -1,6 +1,8 @@
 import React, { useCallback, useRef } from 'react';
 import FocusLock, { MoveFocusInside } from 'react-focus-lock';
+import { useTranslation } from 'react-i18next';
 import { FaCheck, FaLinkSlash } from 'react-icons/fa6';
+import { LOCALE_NAMESPACE } from 'src/i18n';
 import { Card, Group, Input } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
 
@@ -15,6 +17,8 @@ export const LinkEditor = ({
 	onUnlink: () => void;
 	onClose: () => void;
 }) => {
+	const { t } = useTranslation(LOCALE_NAMESPACE.features);
+
 	const inputRef = useRef<HTMLInputElement>(null);
 	const updateUrl = useCallback(() => {
 		const value = inputRef.current?.value;
@@ -35,7 +39,7 @@ export const LinkEditor = ({
 				<Card.Body padding=".5rem">
 					<MoveFocusInside>
 						<form
-							aria-label="Link props editor"
+							aria-label={t('contextMenu.linkProperties.title')}
 							onSubmit={(event) => {
 								event.preventDefault();
 								updateUrl();
@@ -44,7 +48,7 @@ export const LinkEditor = ({
 							<Group>
 								<Input
 									ref={inputRef}
-									placeholder="Link URL"
+									placeholder={t('contextMenu.linkProperties.urlLabel')}
 									defaultValue={url}
 									size="sm"
 								/>
@@ -53,14 +57,14 @@ export const LinkEditor = ({
 									size="sm"
 									variant="accent"
 									icon={<FaCheck />}
-									title="Update URL"
+									title={t('contextMenu.linkProperties.actions.update')}
 									onClick={updateUrl}
 								/>
 								<IconButton
 									size="sm"
 									variant="subtle"
 									icon={<FaLinkSlash />}
-									title="Convert link to text"
+									title={t('contextMenu.linkProperties.actions.remove')}
 									onClick={() => {
 										onUnlink();
 										onClose();

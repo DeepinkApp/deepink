@@ -286,8 +286,12 @@
 			"altLabel": "Image alt text"
 		},
 		"linkProperties": {
-			"title": "Link properties",
-			"urlLabel": "Link url"
+			"title": "Link properties editor",
+			"urlLabel": "Link URL",
+			"actions": {
+				"update": "Update URL",
+				"remove": "Convert link to text"
+			}
 		}
 	},
 	"statusBar": {
