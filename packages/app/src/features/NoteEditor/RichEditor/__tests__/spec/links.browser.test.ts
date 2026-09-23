@@ -5,6 +5,7 @@ import { renderRichEditorInDOM } from '../utils/renderEditorInDOM';
 import { selectText } from '../utils/utils';
 
 vi.mock('electron', () => () => {});
+vi.mock('@electron/requests/interop/renderer', () => ({ setAppLanguage: () => {} }));
 
 test('Selected text must be converted into link', async () => {
 	const { insert } = await renderRichEditorInDOM({
