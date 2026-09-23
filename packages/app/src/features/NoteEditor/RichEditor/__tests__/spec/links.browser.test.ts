@@ -7,49 +7,57 @@ import { selectText } from '../utils/utils';
 vi.mock('electron', () => () => {});
 
 test('Selected text must be converted into link', async () => {
-	const { destroy, insert, getEditor } = await renderRichEditorInDOM({
+	const { insert } = await renderRichEditorInDOM({
 		value: 'My favorite dish is cake',
 	});
-	onTestFinished(destroy);
 
-	const editor = page.getByRole('textbox');
-	expect(editor.getByRole('link')).not.toBeInTheDocument();
+	const editorLocator = page.getByRole('textbox');
+	expect(editorLocator).toBeInTheDocument();
+
+	const linkLocator = editorLocator.getByRole('link');
+	expect(linkLocator).not.toBeInTheDocument();
 
 	await act(async () => {
-		selectText(getEditor().getRootElement()!, 'favorite');
+		selectText(editorLocator.element(), 'favorite');
 	});
 
 	await insert({ type: 'link', data: { url: 'https://example.com' } });
-	expect(editor.getByRole('link', { name: /^favorite$/ })).toBeInTheDocument();
-	expect(editor.element().outerHTML).toMatchSnapshot();
+	expect(linkLocator).toBeInTheDocument();
+	expect(linkLocator).toHaveTextContent(/^favorite$/);
+	expect(linkLocator).toHaveAttribute('href', 'https://example.com');
+	expect(editorLocator.element().outerHTML).toMatchSnapshot();
 });
 
 test('Link insertion with no text selection must create a link with url as a text', async () => {
-	const { destroy, insert } = await renderRichEditorInDOM({
+	const { insert } = await renderRichEditorInDOM({
 		value: 'My favorite dish is cake',
 	});
-	onTestFinished(destroy);
 
-	const editor = page.getByRole('textbox');
-	expect(editor.getByRole('link')).not.toBeInTheDocument();
+	const editorLocator = page.getByRole('textbox');
+	expect(editorLocator).toBeInTheDocument();
+
+	const linkLocator = editorLocator.getByRole('link');
+	expect(linkLocator).not.toBeInTheDocument();
 
 	await act(async () => {
-		await editor.click();
+		await editorLocator.click();
 		await userEvent.keyboard('{Space}');
 	});
 
 	await insert({ type: 'link', data: { url: 'https://example.com' } });
-	expect(editor.getByRole('link', { name: 'https://example.com' })).toBeInTheDocument();
-	expect(editor.element().outerHTML).toMatchSnapshot();
+
+	expect(linkLocator).toBeInTheDocument();
+	expect(linkLocator.element().textContent).toBe('https://example.com');
+	expect(linkLocator).toHaveAttribute('href', 'https://example.com');
+	expect(editorLocator.element().outerHTML).toMatchSnapshot();
 });
 
 describe('Link context menu', () => {
 	const sampleText = 'My favorite dish is cake';
 	const createPlayground = async () => {
-		const { destroy, insert } = await renderRichEditorInDOM({
+		const { insert } = await renderRichEditorInDOM({
 			value: sampleText,
 		});
-		onTestFinished(destroy);
 
 		const editorLocator = page.getByRole('textbox');
 		const linkLocator = editorLocator.getByRole('link');

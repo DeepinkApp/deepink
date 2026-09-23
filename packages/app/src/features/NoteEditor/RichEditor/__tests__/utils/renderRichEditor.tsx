@@ -1,3 +1,4 @@
+/* eslint-disable i18next/no-literal-string */
 import React, { act, createRef } from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
