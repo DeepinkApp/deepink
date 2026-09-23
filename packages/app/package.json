@@ -99,6 +99,7 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.54.0",
 		"unbzip2-stream": "^1.4.3",
+		"vite-plugin-static-copy": "^4.1.1",
 		"vite-tsconfig-paths": "^6.1.1",
 		"vitest": "^4.1.10",
 		"webpack": "^5.106.2",

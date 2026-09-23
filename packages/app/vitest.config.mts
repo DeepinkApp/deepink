@@ -103,7 +103,6 @@ export default defineConfig({
 						],
 					}),
 				],
-				// publicDir: 'src',
 				test: {
 					browser: {
 						// Vitest's default browser server port (63315) is in the
