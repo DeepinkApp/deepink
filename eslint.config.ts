@@ -329,5 +329,35 @@ export default tseslint.config(
 	{
 		files: ['packages/app/**/*.tsx'],
 		...i18next.configs['flat/recommended'],
+		rules: {
+			'i18next/no-literal-string': [
+				'error',
+				{
+					mode: 'jsx-only',
+					'jsx-attributes': {
+						include: [
+							'title',
+							'alt',
+							'placeholder',
+
+							'aria-label',
+							'aria-description',
+							'aria-placeholder',
+							'aria-roledescription',
+							'aria-valuetext',
+							'aria-errormessage',
+
+							'label',
+							'helperText',
+							'error',
+							'description',
+							'caption',
+							'heading',
+							'text',
+						],
+					},
+				},
+			],
+		},
 	},
 );

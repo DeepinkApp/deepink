@@ -145,3 +145,5 @@ uuidv
 fuzzysort
 dbus
 contenteditable
+roledescription
+valuetext
