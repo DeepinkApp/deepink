@@ -174,7 +174,7 @@ export const WorkspaceSettings = () => {
 						>
 							<Input
 								{...workspaceNameForm.register('name')}
-								placeholder="e.g., Personal"
+								placeholder={t('workspace.name.placeholder')}
 								flex="100"
 								size="sm"
 							/>

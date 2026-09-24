@@ -10,6 +10,7 @@
 		"update": "Update",
 		"add": "Add",
 		"create": "Create",
+		"resetValue": "Reset to default",
 		"close": "Close"
 	},
 	"form": {

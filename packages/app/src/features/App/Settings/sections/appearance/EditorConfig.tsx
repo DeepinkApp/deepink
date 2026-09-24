@@ -120,7 +120,7 @@ export const EditorConfig = () => {
 				>
 					<RelaxedInput
 						size="sm"
-						placeholder="e.g., DD/MM/YYYY HH:mm"
+						placeholder={t('editor.dateFormat.placeholder')}
 						value={editorConfig.dateFormat}
 						onValueChange={(value) => {
 							dispatch(

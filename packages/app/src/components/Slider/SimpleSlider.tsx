@@ -1,5 +1,7 @@
 import React, { useReducer } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FaRotateLeft } from 'react-icons/fa6';
+import { LOCALE_NAMESPACE } from 'src/i18n';
 import { HStack, Slider } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
 import { Tooltip } from '@components/ui/tooltip';
@@ -30,6 +32,8 @@ export const SimpleSlider = ({
 	onChange,
 	onValueChangeEnd,
 }: SimpleSliderProps) => {
+	const { t } = useTranslation(LOCALE_NAMESPACE.common);
+
 	const [state, updateState] = useReducer<SliderState, [Partial<SliderState>]>(
 		(state, changes) => {
 			return { ...state, ...changes };
@@ -103,7 +107,7 @@ export const SimpleSlider = ({
 				<IconButton
 					size="sm"
 					icon={<FaRotateLeft />}
-					title="Reset to default value"
+					title={t('actions.resetValue')}
 					disabled={value === resetValue}
 					onClick={() => {
 						onChange?.(resetValue);

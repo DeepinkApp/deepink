@@ -146,6 +146,7 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 							onClose(id) {
 								noteActions.close(id);
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_CLOSED, {
+									// eslint-disable-next-line i18next/no-literal-string
 									context: 'top bar',
 								});
 							},
@@ -153,6 +154,7 @@ export const NotesContainer: FC<NotesContainerProps> = ({ ...props }) => {
 								noteActions.click(id, options);
 
 								telemetry.track(TELEMETRY_EVENT_NAME.NOTE_OPENED, {
+									// eslint-disable-next-line i18next/no-literal-string
 									context: 'top bar',
 								});
 							},

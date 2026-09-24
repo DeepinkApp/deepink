@@ -100,6 +100,7 @@
 			"title": "Date format",
 			"description": "Set the date format used when inserting dates. Supports standard token syntax like DD/MM/YYYY HH:mm:ss.",
 			"formatReference": "date format reference",
+			"placeholder": "e.g., DD/MM/YYYY HH:mm",
 			"example": "Example"
 		},
 		"plainText": {
@@ -210,6 +211,7 @@
 	"workspace": {
 		"name": {
 			"title": "Workspace name",
+			"placeholder": "e.g., Personal",
 			"update": "Update"
 		},
 		"newNoteTitle": {

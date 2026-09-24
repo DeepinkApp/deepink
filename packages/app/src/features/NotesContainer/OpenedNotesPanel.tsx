@@ -125,6 +125,7 @@ export const OpenedNotesPanel: FC<TopBarProps> = ({
 					// TODO: handle case when object not found
 					const note = notes.find((note) => note.id === noteId);
 					if (!note) {
+						// eslint-disable-next-line i18next/no-literal-string
 						throw new Error('Note not found');
 					}
 
