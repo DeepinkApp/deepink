@@ -4,9 +4,6 @@ import { renderRichEditorInDOM } from '@features/NoteEditor/RichEditor/__tests__
 
 import { $convertToMarkdownString, parseMarkdownToAST } from '../markdownParser';
 
-vi.mock('electron', () => () => {});
-vi.mock('@electron/requests/interop/renderer', () => ({ setAppLanguage: () => {} }));
-
 test('Exact paragraphs count must be preserved', async () => {
 	const { getEditor } = await renderRichEditorInDOM({ value: '' });
 

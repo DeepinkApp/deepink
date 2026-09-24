@@ -104,6 +104,9 @@ export default defineConfig({
 					}),
 				],
 				test: {
+					name: 'browser',
+					include: ['./**/*.browser.test.ts'],
+					setupFiles: ['./scripts/vitest/browser-setup.ts'],
 					browser: {
 						// Vitest's default browser server port (63315) is in the
 						// ephemeral range, and Windows reserves randomized blocks of
@@ -127,8 +130,6 @@ export default defineConfig({
 							},
 						}),
 					},
-					include: ['./**/*.browser.test.ts'],
-					name: 'browser',
 				},
 			},
 		],
