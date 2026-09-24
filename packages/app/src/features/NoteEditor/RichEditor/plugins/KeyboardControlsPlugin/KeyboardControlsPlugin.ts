@@ -3,17 +3,22 @@ import {
 	$createParagraphNode,
 	$getSelection,
 	$isParagraphNode,
+	$isRangeSelection,
 	$isTextNode,
 	BaseSelection,
+	COMMAND_PRIORITY_HIGH,
 	COMMAND_PRIORITY_LOW,
 	createCommand,
 	ElementNode,
+	KEY_DOWN_COMMAND,
 	KEY_ENTER_COMMAND,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
+
+import { $getBlocksToMove, $getMoveTarget, MoveDirection } from './blockNavigation';
 
 const OUT_OF_BLOCK_NODE_COMMAND = createCommand<ElementNode>();
 
@@ -93,6 +98,48 @@ export const KeyboardControlsPlugin = () => {
 						return true;
 					},
 					COMMAND_PRIORITY_LOW,
+				),
+				editor.registerCommand(
+					KEY_DOWN_COMMAND,
+					(event) => {
+						if (
+							(event.key !== 'ArrowUp' && event.key !== 'ArrowDown') ||
+							!event.altKey
+						)
+							return false;
+
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return false;
+
+						const direction: MoveDirection =
+							event.key === 'ArrowUp' ? 'up' : 'down';
+
+						const blocksToMove = $getBlocksToMove(selection, direction);
+						if (!blocksToMove?.length) return false;
+
+						if (direction === 'up') {
+							const previousBlock = $getMoveTarget(blocksToMove[0], 'up');
+							if (!previousBlock) return false;
+
+							blocksToMove.forEach((block) => {
+								previousBlock.insertBefore(block);
+							});
+						} else {
+							const nextBlock = $getMoveTarget(
+								blocksToMove[blocksToMove.length - 1],
+								'down',
+							);
+							if (!nextBlock) return false;
+
+							blocksToMove.toReversed().forEach((block) => {
+								nextBlock.insertAfter(block);
+							});
+						}
+
+						event.preventDefault();
+						return true;
+					},
+					COMMAND_PRIORITY_HIGH,
 				),
 			),
 		[editor],
