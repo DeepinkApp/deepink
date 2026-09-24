@@ -149,6 +149,8 @@ describe('Link context menu', () => {
 
 		// Convert link to text
 		await makeLink();
+		expect(locators.link).toBeInTheDocument();
+
 		await openContextMenu();
 		await act(async () => {
 			await page
