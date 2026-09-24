@@ -141,6 +141,19 @@ export const KeyboardControlsPlugin = () => {
 					},
 					COMMAND_PRIORITY_HIGH,
 				),
+
+				// Keep target node in focus
+				editor.registerUpdateListener(({ editorState }) => {
+					editorState.read(() => {
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return;
+
+						const element = editor.getElementByKey(
+							selection.focus.getNode().getKey(),
+						);
+						element?.scrollIntoView({ block: 'nearest' });
+					});
+				}),
 			),
 		[editor],
 	);
