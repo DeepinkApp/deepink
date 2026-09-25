@@ -115,7 +115,7 @@ test('Does not move paragraphs beyond document boundaries', async () => {
 	expect(paragraphsAfterMoves.nth(1)).toHaveTextContent('Last paragraph');
 });
 
-test.todo('Moves a whole list with Alt+ArrowUp', async () => {
+test('Moves a whole list with Alt+ArrowUp', async () => {
 	await renderRichEditorInDOM({
 		value: 'Before list\n\n- First item\n- Second item\n\nAfter list',
 	});
@@ -124,6 +124,7 @@ test.todo('Moves a whole list with Alt+ArrowUp', async () => {
 	const list = editor.getByRole('list');
 
 	await act(async () => {
+		await list.click();
 		selectContent(editor.element() as HTMLElement, 'First item', 'Second item');
 	});
 	await moveSelection('up');
@@ -131,15 +132,18 @@ test.todo('Moves a whole list with Alt+ArrowUp', async () => {
 	const blocks = editor.element().children;
 	expect(blocks).toHaveLength(3);
 	expect(blocks[0]).toHaveRole('list');
+
 	expect(blocks[1]).toHaveRole('paragraph');
 	expect(blocks[1]).toHaveTextContent('Before list');
+	expect(blocks[2]).toHaveRole('paragraph');
 	expect(blocks[2]).toHaveTextContent('After list');
+
 	expect(list).toHaveTextContent('First item');
 	expect(list).toHaveTextContent('Second item');
 	expect(list.getByRole('listitem')).toHaveLength(2);
 });
 
-test.todo('Moves a list item with Alt+ArrowDown', async () => {
+test('Moves a list item with Alt+ArrowDown', async () => {
 	await renderRichEditorInDOM({
 		value: '- First item\n- Second item\n- Third item',
 	});
@@ -149,7 +153,7 @@ test.todo('Moves a list item with Alt+ArrowDown', async () => {
 
 	await act(async () => {
 		await items.nth(1).click();
-		setCursorPosition(items.nth(1).element(), 0);
+		setCursorPosition(items.nth(1).element(), 2);
 	});
 	await moveSelection('down');
 
