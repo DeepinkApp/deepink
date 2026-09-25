@@ -363,3 +363,87 @@ test('Moves an edge item correctly at a deeper nesting level', async () => {
 	expect(items.nth(4)).toHaveTextContent('Deep two');
 	expect(items.nth(5)).toHaveTextContent('Root two');
 });
+
+test('Moves a middle quote paragraph within the quote', async () => {
+	await renderRichEditorInDOM({
+		value: 'Before\n\n> Quote one\n>\n> Quote two\n>\n> Quote three\n\nAfter',
+	});
+
+	const editor = page.getByRole('textbox');
+	const quote = editor.getByRole('blockquote');
+	const paragraphs = quote.getByRole('paragraph');
+
+	await act(async () => {
+		await paragraphs.nth(1).click();
+		setCursorPosition(paragraphs.nth(1).element(), 0);
+	});
+	await moveSelection('up');
+
+	const paragraphsAfterMove = quote.getByRole('paragraph');
+	expect(paragraphsAfterMove.nth(0)).toHaveTextContent('Quote two');
+	expect(paragraphsAfterMove.nth(1)).toHaveTextContent('Quote one');
+	expect(paragraphsAfterMove.nth(2)).toHaveTextContent('Quote three');
+});
+
+test('Moves the whole quote when its first paragraph moves up', async () => {
+	await renderRichEditorInDOM({
+		value: 'Before\n\n> Quote one\n>\n> Quote two\n>\n> Quote three\n\nAfter',
+	});
+
+	const editor = page.getByRole('textbox');
+	const quote = editor.getByRole('blockquote');
+	const firstParagraph = quote.getByRole('paragraph').nth(0);
+
+	await act(async () => {
+		await firstParagraph.click();
+		setCursorPosition(firstParagraph.element(), 0);
+	});
+	await moveSelection('up');
+
+	const blocks = editor.element().children;
+	expect(blocks[0]).toHaveRole('blockquote');
+	expect(blocks[1]).toHaveTextContent('Before');
+	expect(blocks[2]).toHaveTextContent('After');
+});
+
+test('Moves a mixed root-level selection as an ordered group', async () => {
+	await renderRichEditorInDOM({
+		value: 'Before\n\n- One\n- Two\n\nBetween\n\n> Quote\n\nAfter',
+	});
+
+	const editor = page.getByRole('textbox');
+	await act(async () => {
+		selectContent(editor.element() as HTMLElement, 'One', 'Quote');
+	});
+	await moveSelection('up');
+
+	const blocks = editor.element().children;
+	expect(blocks[0]).toHaveRole('list');
+	expect(blocks[1]).toHaveRole('paragraph');
+	expect(blocks[1]).toHaveTextContent('Between');
+	expect(blocks[2]).toHaveRole('blockquote');
+	expect(blocks[3]).toHaveTextContent('Before');
+	expect(blocks[4]).toHaveTextContent('After');
+});
+
+test('Keeps the cursor in a list item after moving it', async () => {
+	await renderRichEditorInDOM({
+		value: '- foo\n- bar\n- baz',
+	});
+
+	const editor = page.getByRole('textbox');
+	const bar = editor.getByRole('listitem').nth(1);
+
+	await act(async () => {
+		await bar.click();
+		setCursorPosition(bar.element(), 3);
+	});
+	await moveSelection('up');
+
+	await act(async () => {
+		await userEvent.keyboard('X');
+	});
+
+	expect(editor.getByRole('listitem').nth(0)).toHaveTextContent('barX');
+	expect(editor.getByRole('listitem').nth(1)).toHaveTextContent('foo');
+});
