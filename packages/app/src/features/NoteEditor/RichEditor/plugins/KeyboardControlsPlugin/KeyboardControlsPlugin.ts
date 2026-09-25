@@ -18,7 +18,13 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
 
-import { $getBlocksToMove, $getMoveTarget, MoveDirection } from './blockNavigation';
+import {
+	$applyMovePlan,
+	$getBlocksToMove,
+	$getListItemMovePlan,
+	$getMoveTarget,
+	MoveDirection,
+} from './blockNavigation';
 
 const OUT_OF_BLOCK_NODE_COMMAND = createCommand<ElementNode>();
 
@@ -113,6 +119,13 @@ export const KeyboardControlsPlugin = () => {
 
 						const direction: MoveDirection =
 							event.key === 'ArrowUp' ? 'up' : 'down';
+
+						const listItemPlan = $getListItemMovePlan(selection, direction);
+						if (listItemPlan) {
+							$applyMovePlan(listItemPlan);
+							event.preventDefault();
+							return true;
+						}
 
 						const blocksToMove = $getBlocksToMove(selection, direction);
 						if (!blocksToMove?.length) return false;

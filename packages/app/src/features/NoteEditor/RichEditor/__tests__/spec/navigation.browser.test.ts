@@ -164,3 +164,202 @@ test('Moves a list item with Alt+ArrowDown', async () => {
 	expect(itemsAfterMove.nth(1)).toHaveTextContent('Third item');
 	expect(itemsAfterMove.nth(2)).toHaveTextContent('Second item');
 });
+
+test('Moves the whole root list when its first item moves up', async () => {
+	await renderRichEditorInDOM({
+		value: 'Before list\n\n- First item\n- Second item\n\nAfter list',
+	});
+
+	const editor = page.getByRole('textbox');
+	const list = editor.getByRole('list');
+	const firstItem = editor.getByRole('listitem').nth(0);
+
+	await act(async () => {
+		await firstItem.click();
+		setCursorPosition(firstItem.element(), 0);
+	});
+	await moveSelection('up');
+
+	const blocks = editor.element().children;
+	expect(blocks).toHaveLength(3);
+	expect(blocks[0]).toHaveRole('list');
+	expect(blocks[1]).toHaveTextContent('Before list');
+	expect(blocks[2]).toHaveTextContent('After list');
+	expect(list.getByRole('listitem').nth(0)).toHaveTextContent('First item');
+	expect(list.getByRole('listitem').nth(1)).toHaveTextContent('Second item');
+});
+
+test('Moves the whole root list when its last item moves down', async () => {
+	await renderRichEditorInDOM({
+		value: 'Before list\n\n- First item\n- Second item\n\nAfter list',
+	});
+
+	const editor = page.getByRole('textbox');
+	const list = editor.getByRole('list');
+	const lastItem = editor.getByRole('listitem').nth(1);
+
+	await act(async () => {
+		await lastItem.click();
+		setCursorPosition(lastItem.element(), 0);
+	});
+	await moveSelection('down');
+
+	const blocks = editor.element().children;
+	expect(blocks).toHaveLength(3);
+	expect(blocks[0]).toHaveTextContent('Before list');
+	expect(blocks[1]).toHaveTextContent('After list');
+	expect(blocks[2]).toHaveRole('list');
+	expect(list.getByRole('listitem').nth(0)).toHaveTextContent('First item');
+	expect(list.getByRole('listitem').nth(1)).toHaveTextContent('Second item');
+});
+
+test('Moves an edge nested item into the previous parent item', async () => {
+	await renderRichEditorInDOM({
+		value: '- Parent one\n- Parent two\n  - Nested one\n  - Nested two\n- Parent three',
+	});
+
+	const editor = page.getByRole('textbox');
+	const nestedItems = editor.getByRole('listitem');
+	const nestedOne = nestedItems.nth(2);
+
+	await act(async () => {
+		await nestedOne.click();
+		setCursorPosition(nestedOne.element(), 0);
+	});
+	await moveSelection('up');
+
+	const items = editor.getByRole('listitem');
+	expect(items).toHaveLength(5);
+	expect(items.nth(0)).toHaveTextContent('Parent one');
+	expect(items.nth(0)).toContainElement(items.nth(1).element());
+	expect(items.nth(1)).toHaveTextContent('Nested one');
+	expect(items.nth(2)).toHaveTextContent('Parent two');
+	expect(items.nth(2)).toContainElement(items.nth(3).element());
+	expect(items.nth(3)).toHaveTextContent('Nested two');
+	expect(items.nth(4)).toHaveTextContent('Parent three');
+});
+
+test('Moves an edge nested item into the next parent list', async () => {
+	// TODO: fix list styles to show its nesting
+	await renderRichEditorInDOM({
+		value: '- Parent one\n  - Nested one\n  - Nested two\n- Parent two\n- Parent three',
+	});
+
+	const editor = page.getByRole('textbox');
+	const nestedTwo = editor.getByRole('listitem').filter({ hasText: /^Nested two$/ });
+
+	await act(async () => {
+		await nestedTwo.click();
+		setCursorPosition(nestedTwo.element(), 0);
+	});
+	await moveSelection('down');
+
+	const items = editor.getByRole('listitem');
+	expect(items).toHaveLength(5);
+	expect(items.nth(0)).toHaveTextContent('Parent one');
+	expect(items.nth(0)).toContainElement(items.nth(1).element());
+	expect(items.nth(1)).toHaveTextContent('Nested one');
+
+	expect(items.nth(2)).toHaveTextContent('Parent two');
+	expect(items.nth(2)).toContainElement(items.nth(3).element());
+	expect(items.nth(3)).toHaveTextContent('Nested two');
+
+	expect(items.nth(4)).toHaveTextContent('Parent three');
+});
+
+test('Appends an upward-moving nested item to an existing nested list', async () => {
+	await renderRichEditorInDOM({
+		value: '- Parent one\n  - Existing child\n- Parent two\n  - Moving child',
+	});
+
+	const editor = page.getByRole('textbox');
+	const movingChild = editor.getByRole('listitem').nth(3);
+
+	await act(async () => {
+		await movingChild.click();
+		setCursorPosition(movingChild.element(), 0);
+	});
+	await moveSelection('up');
+
+	const nestedLists = editor.getByRole('list');
+	expect(nestedLists).toHaveLength(2);
+	expect(nestedLists.nth(1).getByRole('listitem')).toHaveLength(2);
+	expect(nestedLists.nth(1).getByRole('listitem').nth(0)).toHaveTextContent(
+		'Existing child',
+	);
+	expect(nestedLists.nth(1).getByRole('listitem').nth(1)).toHaveTextContent(
+		'Moving child',
+	);
+});
+
+test('Prepends a downward-moving nested item to an existing nested list', async () => {
+	await renderRichEditorInDOM({
+		value: '- Parent one\n  - Moving child\n- Parent two\n  - Existing child',
+	});
+
+	const editor = page.getByRole('textbox');
+	const movingChild = editor.getByRole('listitem').nth(1);
+
+	await act(async () => {
+		await movingChild.click();
+		setCursorPosition(movingChild.element(), 0);
+	});
+	await moveSelection('down');
+
+	const nestedLists = editor.getByRole('list');
+	expect(nestedLists).toHaveLength(2);
+	expect(nestedLists.nth(1).getByRole('listitem')).toHaveLength(2);
+	expect(nestedLists.nth(1).getByRole('listitem').nth(0)).toHaveTextContent(
+		'Moving child',
+	);
+	expect(nestedLists.nth(1).getByRole('listitem').nth(1)).toHaveTextContent(
+		'Existing child',
+	);
+});
+
+test('Moves the outer list when an edge nested item has no parent sibling', async () => {
+	await renderRichEditorInDOM({
+		value: 'Before list\n\n- Parent\n  - Nested one\n  - Nested two\n- Another item\n\nAfter list',
+	});
+
+	const editor = page.getByRole('textbox');
+	const nestedOne = editor.getByRole('listitem').nth(1);
+
+	await act(async () => {
+		await nestedOne.click();
+		setCursorPosition(nestedOne.element(), 0);
+	});
+	await moveSelection('up');
+
+	const blocks = editor.element().children;
+	expect(blocks).toHaveLength(3);
+	expect(blocks[0]).toHaveRole('list');
+	expect(blocks[1]).toHaveTextContent('Before list');
+	expect(blocks[2]).toHaveTextContent('After list');
+	expect(editor.getByRole('list').first()).toHaveTextContent('Nested one');
+});
+
+test('Moves an edge item correctly at a deeper nesting level', async () => {
+	await renderRichEditorInDOM({
+		value: '- Root one\n  - Parent one\n    - Deep one\n    - Deep two\n  - Parent two\n- Root two',
+	});
+
+	const editor = page.getByRole('textbox');
+	const deepTwo = editor.getByRole('listitem').nth(3);
+
+	await act(async () => {
+		await deepTwo.click();
+		setCursorPosition(deepTwo.element(), 0);
+	});
+	await moveSelection('down');
+
+	const items = editor.getByRole('listitem');
+	expect(items).toHaveLength(6);
+	expect(items.nth(0)).toHaveTextContent('Root one');
+	expect(items.nth(1)).toHaveTextContent('Parent one');
+	expect(items.nth(2)).toHaveTextContent('Deep one');
+	expect(items.nth(3)).toHaveTextContent('Parent two');
+	expect(items.nth(3)).toContainElement(items.nth(4).element());
+	expect(items.nth(4)).toHaveTextContent('Deep two');
+	expect(items.nth(5)).toHaveTextContent('Root two');
+});
