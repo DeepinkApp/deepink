@@ -19,13 +19,17 @@ export type MoveDirection = 'up' | 'down';
 
 type MoveDestination =
 	| { type: 'before' | 'after'; reference: LexicalNode }
-	| { type: 'append'; parent: ElementNode };
+	| { type: 'append'; parent: ElementNode }
+	| { type: 'append-list'; parent: ListItemNode; listType: ListType };
+
+type MovementUnit = {
+	nodes: LexicalNode[];
+	parent: ElementNode;
+};
 
 export type MovePlan = {
-	nodes: LexicalNode[];
+	unit: MovementUnit;
 	destination: MoveDestination;
-	cleanup?: ElementNode;
-	createListType?: ListType;
 };
 
 type SelectionPoint = {
@@ -140,6 +144,41 @@ const $getCompatibleList = (
 	);
 };
 
+const $isDescendantOf = (node: LexicalNode, ancestor: LexicalNode) => {
+	for (
+		let current: LexicalNode | null = node.getParent();
+		current;
+		current = current.getParent()
+	) {
+		if (current === ancestor) return true;
+	}
+	return false;
+};
+
+const $getListInsertion = (list: ListNode, direction: MoveDirection): MoveDestination => {
+	const first = list.getFirstChild();
+	const last = list.getLastChild();
+
+	if (direction === 'up' && last) return { type: 'after', reference: last };
+	if (direction === 'down' && first) return { type: 'before', reference: first };
+	return { type: 'append', parent: list };
+};
+
+const $createMovementUnit = (
+	nodes: LexicalNode[],
+	parent: ElementNode,
+): MovementUnit => ({ nodes, parent });
+
+const $cleanupEmptyAncestors = (container: ElementNode) => {
+	let current: ElementNode | null = container;
+	while (current && current.getChildrenSize() === 0) {
+		const parent: LexicalNode | null = current.getParent();
+		if (!$isElementNode(parent) || $isRootNode(current)) return;
+		current.remove();
+		current = parent;
+	}
+};
+
 const $getNestedListPlan = (
 	selection: RangeSelection,
 	direction: MoveDirection,
@@ -157,7 +196,7 @@ const $getNestedListPlan = (
 	const sibling = $getSibling(item, direction);
 	if (sibling) {
 		return {
-			nodes: [item],
+			unit: $createMovementUnit([item], list),
 			destination: {
 				type: direction === 'up' ? 'before' : 'after',
 				reference: sibling,
@@ -173,8 +212,10 @@ const $getNestedListPlan = (
 		if (!owner) {
 			const siblingList = $getSibling(list, direction);
 			if (siblingList) {
+				const listParent = list.getParent();
+				if (!$isElementNode(listParent)) return null;
 				return {
-					nodes: [list],
+					unit: $createMovementUnit([list], listParent),
 					destination: {
 						type: direction === 'up' ? 'before' : 'after',
 						reference: siblingList,
@@ -193,25 +234,19 @@ const $getNestedListPlan = (
 		if ($isListItemNode(ownerSibling)) {
 			const targetList = $getCompatibleList(ownerSibling, item);
 			if (targetList) {
-				const first = targetList.getFirstChild();
-				const last = targetList.getLastChild();
 				return {
-					nodes: [item],
-					destination:
-						direction === 'up' && last
-							? { type: 'after', reference: last }
-							: direction === 'down' && first
-								? { type: 'before', reference: first }
-								: { type: 'append', parent: targetList },
-					cleanup: list,
+					unit: $createMovementUnit([item], list),
+					destination: $getListInsertion(targetList, direction),
 				};
 			}
 
 			return {
-				nodes: [item],
-				destination: { type: 'append', parent: ownerSibling },
-				cleanup: list,
-				createListType: list.getListType(),
+				unit: $createMovementUnit([item], list),
+				destination: {
+					type: 'append-list',
+					parent: ownerSibling,
+					listType: list.getListType(),
+				},
 			};
 		}
 
@@ -253,7 +288,7 @@ const $getStructuralPlan = (
 
 		if (sibling) {
 			return {
-				nodes,
+				unit: $createMovementUnit(nodes, container),
 				destination: {
 					type: direction === 'up' ? 'before' : 'after',
 					reference: sibling,
@@ -277,36 +312,56 @@ export const $getMovePlan = (
 
 export const $applyMovePlan = (plan: MovePlan, selection: RangeSelection) => {
 	const snapshot = $getSelectionSnapshot(selection);
+	const { unit, destination } = plan;
+	const { nodes } = unit;
 	let parent: ElementNode;
 	let reference: LexicalNode | null = null;
 
-	if (plan.createListType) {
-		if (plan.destination.type !== 'append') return false;
-		const list = $createListNode(plan.createListType);
-		plan.destination.parent.append(list);
+	if (destination.type === 'append-list') {
+		if (
+			nodes.some(
+				(node) =>
+					node === destination.parent ||
+					$isDescendantOf(destination.parent, node),
+			)
+		) {
+			return false;
+		}
+		const list = $createListNode(destination.listType);
+		destination.parent.append(list);
 		parent = list;
-	} else if (plan.destination.type === 'append') {
-		parent = plan.destination.parent;
+	} else if (destination.type === 'append') {
+		parent = destination.parent;
 	} else {
-		reference = plan.destination.reference;
-		const destinationParent = reference.getParent();
+		const destinationReference = destination.reference;
+		if (
+			nodes.some(
+				(node) =>
+					node === destinationReference ||
+					$isDescendantOf(destinationReference, node),
+			)
+		) {
+			return false;
+		}
+		reference = destinationReference;
+		const destinationParent = destinationReference.getParent();
 		if (!$isElementNode(destinationParent)) return false;
 		parent = destinationParent;
 	}
 
-	for (const node of plan.nodes) node.remove();
+	for (const node of nodes) node.remove();
 
 	if (reference) {
-		if (plan.destination.type === 'before') {
-			for (const node of plan.nodes) reference.insertBefore(node);
+		if (destination.type === 'before') {
+			for (const node of nodes) reference.insertBefore(node);
 		} else {
-			for (const node of plan.nodes.toReversed()) reference.insertAfter(node);
+			for (const node of nodes.toReversed()) reference.insertAfter(node);
 		}
 	} else {
-		parent.append(...plan.nodes);
+		parent.append(...nodes);
 	}
 
-	if (plan.cleanup && plan.cleanup.getChildrenSize() === 0) plan.cleanup.remove();
+	if (unit.parent !== parent) $cleanupEmptyAncestors(unit.parent);
 	$restoreMoveSelection(selection, snapshot);
 	return true;
 };
