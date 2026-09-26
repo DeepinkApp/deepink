@@ -208,8 +208,8 @@ test('Does not move nested list items out of their parent list', async () => {
 	expect(itemsAfterDown).toHaveLength(3);
 
 	expect(itemsAfterDown[0]).toHaveTextContent('Item one');
-	expect(itemsAfterDown[1]).toHaveTextContent('Nested item');
-	expect(itemsAfterDown[2]).toHaveTextContent('Simple item');
+	expect(itemsAfterDown[1]).toHaveTextContent('Simple item');
+	expect(itemsAfterDown[2]).toHaveTextContent('Nested item');
 
 	await user.click(items[1]);
 	setCursorPosition(items[1], 0);
