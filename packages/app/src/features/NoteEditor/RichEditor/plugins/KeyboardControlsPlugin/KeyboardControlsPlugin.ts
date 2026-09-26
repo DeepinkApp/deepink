@@ -132,7 +132,9 @@ export const KeyboardControlsPlugin = () => {
 						const element = editor.getElementByKey(
 							selection.focus.getNode().getKey(),
 						);
-						element?.scrollIntoView({ block: 'nearest' });
+
+						if (element && element.scrollIntoView)
+							element.scrollIntoView({ block: 'nearest' });
 					});
 				}),
 			),
