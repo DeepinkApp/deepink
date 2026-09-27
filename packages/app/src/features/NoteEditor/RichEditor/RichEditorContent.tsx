@@ -13,7 +13,6 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import { HorizontalRulePlugin } from '@lexical/react/LexicalHorizontalRulePlugin';
 import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
-import { TabIndentationPlugin } from '@lexical/react/LexicalTabIndentationPlugin';
 import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import { useAppSelector } from '@state/redux/hooks';
 import {
@@ -137,7 +136,6 @@ export const RichEditorContent = ({
 			<DropFilesPlugin />
 			<EditorPanelPlugin />
 			<HistoryPlugin />
-			<TabIndentationPlugin />
 			<ListPlugin />
 			<CheckListPlugin />
 			<TablePlugin />
