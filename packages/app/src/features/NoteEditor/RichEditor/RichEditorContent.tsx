@@ -55,6 +55,7 @@ export type RichEditorContentProps = RichTextContainerProps &
 export const RichEditorContent = ({
 	value,
 	onChanged,
+	syncDelay,
 	placeholder,
 	isReadOnly,
 	search,
@@ -121,7 +122,11 @@ export const RichEditorContent = ({
 		>
 			<ContextMenuPlugin renderer={GenericContextMenu} />
 			<RichTextContainer {...props} placeholder={placeholder} />
-			<MarkdownSerializePlugin value={value} onChanged={onChanged} />
+			<MarkdownSerializePlugin
+				value={value}
+				onChanged={onChanged}
+				syncDelay={syncDelay}
+			/>
 			<MarkdownShortcutPlugin />
 			<KeyboardControlsPlugin />
 			<ImagesPlugin />
