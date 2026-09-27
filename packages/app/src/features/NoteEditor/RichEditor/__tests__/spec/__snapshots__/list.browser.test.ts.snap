@@ -1,0 +1,169 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`item nesting can be decreased and empty list will be removed > Flat list 1`] = `
+<div
+  class="RichEditor css-1fa09jb"
+  contenteditable="true"
+  data-lexical-editor="true"
+  role="textbox"
+  spellcheck="true"
+  style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+>
+  <ul
+    class="RichEditor__ul RichEditor__checklist"
+    dir="auto"
+  >
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked"
+      role="checkbox"
+      tabindex="-1"
+      value="1"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        1
+      </span>
+    </li>
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked"
+      role="checkbox"
+      tabindex="-1"
+      value="2"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        2
+      </span>
+    </li>
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked"
+      role="checkbox"
+      tabindex="-1"
+      value="3"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        3
+      </span>
+    </li>
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked"
+      role="checkbox"
+      tabindex="-1"
+      value="4"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        4
+      </span>
+    </li>
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked"
+      role="checkbox"
+      tabindex="-1"
+      value="5"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        5
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`item nesting can be decreased and empty list will be removed > The deepest nested item is moved 1`] = `
+<div
+  class="RichEditor css-1fa09jb"
+  contenteditable="true"
+  data-lexical-editor="true"
+  role="textbox"
+  spellcheck="true"
+  style="user-select: text; white-space: pre-wrap; word-break: break-word;"
+>
+  <ul
+    class="RichEditor__ul RichEditor__checklist"
+    dir="auto"
+  >
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked RichEditor__nestedListItem"
+      role="checkbox"
+      tabindex="-1"
+      value="1"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        1
+      </span>
+      <ul
+        class="RichEditor__ul RichEditor__checklist"
+      >
+        <li
+          aria-checked="false"
+          class="RichEditor__listItem RichEditor__listItemUnchecked"
+          role="checkbox"
+          tabindex="-1"
+          value="1"
+        >
+          <span
+            data-lexical-text="true"
+          >
+            2
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          class="RichEditor__listItem RichEditor__listItemUnchecked"
+          role="checkbox"
+          tabindex="-1"
+          value="2"
+        >
+          <span
+            data-lexical-text="true"
+          >
+            3
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          class="RichEditor__listItem RichEditor__listItemUnchecked"
+          role="checkbox"
+          tabindex="-1"
+          value="3"
+        >
+          <span
+            data-lexical-text="true"
+          >
+            4
+          </span>
+        </li>
+      </ul>
+    </li>
+    <li
+      aria-checked="false"
+      class="RichEditor__listItem RichEditor__listItemUnchecked"
+      role="checkbox"
+      tabindex="-1"
+      value="2"
+    >
+      <span
+        data-lexical-text="true"
+      >
+        5
+      </span>
+    </li>
+  </ul>
+</div>
+`;
