@@ -1,19 +1,25 @@
 import { useEffect } from 'react';
 import {
+	$addUpdateTag,
 	$createParagraphNode,
 	$getSelection,
 	$isParagraphNode,
+	$isRangeSelection,
 	$isTextNode,
 	BaseSelection,
+	COMMAND_PRIORITY_HIGH,
 	COMMAND_PRIORITY_LOW,
 	createCommand,
 	ElementNode,
+	KEY_DOWN_COMMAND,
 	KEY_ENTER_COMMAND,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
+
+import { $applyMovePlan, $getMovePlan, MoveDirection } from './blockNavigation';
 
 const OUT_OF_BLOCK_NODE_COMMAND = createCommand<ElementNode>();
 
@@ -53,6 +59,8 @@ const $getParentOfTextOnEnd = (selection: BaseSelection | null) => {
 
 	return null;
 };
+
+export const MOVE_BLOCKS_TAG = 'MOVE_BLOCKS_TAG';
 
 /**
  * Plugin for nodes management via keyboard
@@ -94,6 +102,47 @@ export const KeyboardControlsPlugin = () => {
 					},
 					COMMAND_PRIORITY_LOW,
 				),
+				editor.registerCommand(
+					KEY_DOWN_COMMAND,
+					(event) => {
+						if (
+							(event.key !== 'ArrowUp' && event.key !== 'ArrowDown') ||
+							!event.altKey
+						)
+							return false;
+
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return false;
+
+						const direction: MoveDirection =
+							event.key === 'ArrowUp' ? 'up' : 'down';
+
+						const plan = $getMovePlan(selection, direction);
+						if (!plan || !$applyMovePlan(plan, selection)) return false;
+
+						event.preventDefault();
+						$addUpdateTag(MOVE_BLOCKS_TAG);
+						return true;
+					},
+					COMMAND_PRIORITY_HIGH,
+				),
+
+				// Keep the current selection visible
+				editor.registerUpdateListener(({ editorState, tags }) => {
+					if (!tags.has(MOVE_BLOCKS_TAG)) return;
+
+					editorState.read(() => {
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return;
+
+						const element = editor.getElementByKey(
+							selection.focus.getNode().getKey(),
+						);
+
+						if (element && element.scrollIntoView)
+							element.scrollIntoView({ block: 'nearest' });
+					});
+				}),
 			),
 		[editor],
 	);
