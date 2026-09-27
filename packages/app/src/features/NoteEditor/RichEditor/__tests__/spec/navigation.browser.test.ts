@@ -2,7 +2,7 @@ import { act } from 'react';
 import { page, userEvent } from 'vitest/browser';
 
 import { renderRichEditorInDOM } from '../utils/renderEditorInDOM';
-import { selectContent, setCursorPosition } from '../utils/utils';
+import { selectContent } from '../utils/utils';
 
 const moveSelection = async (direction: 'up' | 'down') => {
 	await act(async () => {
@@ -12,112 +12,143 @@ const moveSelection = async (direction: 'up' | 'down') => {
 	});
 };
 
-test('Moves a paragraph up with Alt+ArrowUp', async () => {
+const expectMarkdown = async (onChanged: ReturnType<typeof vi.fn>, lines: string[]) => {
+	await expect.poll(() => onChanged).toHaveBeenLastCalledWith(`${lines.join('\n')}\n`);
+};
+
+test('Alt+ArrowUp moves a paragraph before the previous paragraph', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'First paragraph\n\nSecond paragraph\n\nThird paragraph',
+		value: ['First paragraph', '', 'Second paragraph', '', 'Third paragraph'].join(
+			'\n',
+		),
+		onChanged,
 	});
 
-	const editor = page.getByRole('textbox');
-	const paragraphs = editor.getByRole('paragraph');
+	await act(async () => {
+		await page.getByText('Second paragraph', { exact: true }).click();
+	});
+	await moveSelection('up');
 
-	expect(paragraphs).toHaveLength(3);
+	await expectMarkdown(onChanged, [
+		'Second paragraph',
+		'',
+		'First paragraph',
+		'',
+		'Third paragraph',
+	]);
+});
+
+test('Alt+ArrowDown moves a paragraph after the next paragraph', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: ['First paragraph', '', 'Second paragraph', '', 'Third paragraph'].join(
+			'\n',
+		),
+		onChanged,
+	});
+
+	await act(async () => {
+		await page.getByText('Second paragraph', { exact: true }).click();
+	});
+	await moveSelection('down');
+
+	await expectMarkdown(onChanged, [
+		'First paragraph',
+		'',
+		'Third paragraph',
+		'',
+		'Second paragraph',
+	]);
+});
+
+test('Alt+ArrowDown moves selected paragraphs together', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: ['Green cup', '', 'Red cup', '', 'Black cup'].join('\n'),
+		onChanged,
+	});
+
+	await act(async () => {
+		selectContent(document.body, 'Green cup', 'Red cup');
+	});
+	await moveSelection('down');
+
+	await expectMarkdown(onChanged, ['Black cup', '', 'Green cup', '', 'Red cup']);
+});
+
+test('Alt+ArrowUp moves selected paragraphs together', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: ['Green cup', '', 'Red cup', '', 'Black cup'].join('\n'),
+		onChanged,
+	});
+
+	await act(async () => {
+		selectContent(document.body, 'Red cup', 'Black cup');
+	});
+	await moveSelection('up');
+
+	await expectMarkdown(onChanged, ['Red cup', '', 'Black cup', '', 'Green cup']);
+});
+
+test('Alt+ArrowUp does not move the first paragraph past the document boundary', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: ['First paragraph', '', 'Last paragraph'].join('\n'),
+		onChanged,
+	});
+
+	await act(async () => {
+		await page.getByText('First paragraph', { exact: true }).click();
+	});
+	await moveSelection('up');
+
+	expect(onChanged).not.toHaveBeenCalled();
+	const paragraphs = page.getByRole('paragraph');
+	expect(paragraphs).toHaveLength(2);
 	expect(paragraphs.nth(0)).toHaveTextContent('First paragraph');
-	expect(paragraphs.nth(1)).toHaveTextContent('Second paragraph');
-	expect(paragraphs.nth(2)).toHaveTextContent('Third paragraph');
-
-	await act(async () => {
-		await paragraphs.nth(1).click();
-		setCursorPosition(paragraphs.nth(1).element(), 0);
-	});
-	await moveSelection('up');
-
-	const paragraphsAfterMove = editor.getByRole('paragraph');
-	expect(paragraphsAfterMove).toHaveLength(3);
-	expect(paragraphsAfterMove.nth(0)).toHaveTextContent('Second paragraph');
-	expect(paragraphsAfterMove.nth(1)).toHaveTextContent('First paragraph');
-	expect(paragraphsAfterMove.nth(2)).toHaveTextContent('Third paragraph');
+	expect(paragraphs.nth(1)).toHaveTextContent('Last paragraph');
 });
 
-test('Moves a paragraph down with Alt+ArrowDown', async () => {
+test('Alt+ArrowDown does not move the last paragraph past the document boundary', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'First paragraph\n\nSecond paragraph\n\nThird paragraph',
+		value: ['First paragraph', '', 'Last paragraph'].join('\n'),
+		onChanged,
 	});
 
-	const editor = page.getByRole('textbox');
-	const paragraphs = editor.getByRole('paragraph');
-
 	await act(async () => {
-		await paragraphs.nth(1).click();
-		setCursorPosition(paragraphs.nth(1).element(), 0);
+		await page.getByText('Last paragraph', { exact: true }).click();
 	});
 	await moveSelection('down');
 
-	const paragraphsAfterMove = editor.getByRole('paragraph');
-	expect(paragraphsAfterMove).toHaveLength(3);
-	expect(paragraphsAfterMove.nth(0)).toHaveTextContent('First paragraph');
-	expect(paragraphsAfterMove.nth(1)).toHaveTextContent('Third paragraph');
-	expect(paragraphsAfterMove.nth(2)).toHaveTextContent('Second paragraph');
+	expect(onChanged).not.toHaveBeenCalled();
+	const paragraphs = page.getByRole('paragraph');
+	expect(paragraphs).toHaveLength(2);
+	expect(paragraphs.nth(0)).toHaveTextContent('First paragraph');
+	expect(paragraphs.nth(1)).toHaveTextContent('Last paragraph');
 });
 
-test('Moves a contiguous paragraph selection down and back up', async () => {
+test('Alt+ArrowUp moves a selected list as one block', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Green cup\n\nRed cup\n\nBlack cup',
-	});
-
-	const editor = page.getByRole('textbox');
-
-	await act(async () => {
-		selectContent(editor.element() as HTMLElement, 'Green cup', 'Red cup');
-	});
-	await moveSelection('down');
-
-	const paragraphsAfterDown = editor.getByRole('paragraph');
-	expect(paragraphsAfterDown).toHaveLength(3);
-	expect(paragraphsAfterDown.nth(0)).toHaveTextContent('Black cup');
-	expect(paragraphsAfterDown.nth(1)).toHaveTextContent('Green cup');
-	expect(paragraphsAfterDown.nth(2)).toHaveTextContent('Red cup');
-
-	await act(async () => {
-		selectContent(editor.element() as HTMLElement, 'Green cup', 'Red cup');
-	});
-	await moveSelection('up');
-
-	const paragraphsAfterUp = editor.getByRole('paragraph');
-	expect(paragraphsAfterUp).toHaveLength(3);
-	expect(paragraphsAfterUp.nth(0)).toHaveTextContent('Green cup');
-	expect(paragraphsAfterUp.nth(1)).toHaveTextContent('Red cup');
-	expect(paragraphsAfterUp.nth(2)).toHaveTextContent('Black cup');
-});
-
-test('Does not move paragraphs beyond document boundaries', async () => {
-	await renderRichEditorInDOM({
-		value: 'First paragraph\n\nLast paragraph',
-	});
-
-	const editor = page.getByRole('textbox');
-	const paragraphs = editor.getByRole('paragraph');
-
-	await act(async () => {
-		await paragraphs.nth(0).click();
-		setCursorPosition(paragraphs.nth(0).element(), 0);
-	});
-	await moveSelection('up');
-
-	await act(async () => {
-		await editor.getByRole('paragraph').nth(1).click();
-		setCursorPosition(editor.getByRole('paragraph').nth(1).element(), 0);
-	});
-	await moveSelection('down');
-
-	const paragraphsAfterMoves = editor.getByRole('paragraph');
-	expect(paragraphsAfterMoves).toHaveLength(2);
-	expect(paragraphsAfterMoves.nth(0)).toHaveTextContent('First paragraph');
-	expect(paragraphsAfterMoves.nth(1)).toHaveTextContent('Last paragraph');
-});
-
-test('Moves a whole list with Alt+ArrowUp', async () => {
-	await renderRichEditorInDOM({
-		value: 'Before list\n\n- First item\n- Second item\n\nAfter list',
+		value: [
+			'Before list',
+			'',
+			'- First item',
+			'- Second item',
+			'',
+			'After list',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
@@ -129,268 +160,315 @@ test('Moves a whole list with Alt+ArrowUp', async () => {
 	});
 	await moveSelection('up');
 
-	const blocks = editor.element().children;
-	expect(blocks).toHaveLength(3);
-	expect(blocks[0]).toHaveRole('list');
-
-	expect(blocks[1]).toHaveRole('paragraph');
-	expect(blocks[1]).toHaveTextContent('Before list');
-	expect(blocks[2]).toHaveRole('paragraph');
-	expect(blocks[2]).toHaveTextContent('After list');
-
-	expect(list).toHaveTextContent('First item');
-	expect(list).toHaveTextContent('Second item');
-	expect(list.getByRole('listitem')).toHaveLength(2);
+	await expectMarkdown(onChanged, [
+		'- First item',
+		'- Second item',
+		'',
+		'Before list',
+		'',
+		'After list',
+	]);
 });
 
-test('Moves a list item with Alt+ArrowDown', async () => {
+test('Alt+ArrowDown moves a list item after its next sibling', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- First item\n- Second item\n- Third item',
+		value: ['- First item', '- Second item', '- Third item'].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const items = editor.getByRole('listitem');
+	const secondItem = editor.getByText('Second item', { exact: true });
 
 	await act(async () => {
-		await items.nth(1).click();
-		setCursorPosition(items.nth(1).element(), 2);
+		await secondItem.click();
 	});
 	await moveSelection('down');
 
-	const itemsAfterMove = editor.getByRole('listitem');
-	expect(editor.getByRole('list')).toHaveLength(1);
-	expect(itemsAfterMove).toHaveLength(3);
-	expect(itemsAfterMove.nth(0)).toHaveTextContent('First item');
-	expect(itemsAfterMove.nth(1)).toHaveTextContent('Third item');
-	expect(itemsAfterMove.nth(2)).toHaveTextContent('Second item');
+	await expectMarkdown(onChanged, ['- First item', '- Third item', '- Second item']);
 });
 
-test('Moves the whole root list when its first item moves up', async () => {
+test('Alt+ArrowUp on the first list item moves the whole list up', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Before list\n\n- First item\n- Second item\n\nAfter list',
+		value: [
+			'Before list',
+			'',
+			'- First item',
+			'- Second item',
+			'',
+			'After list',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const list = editor.getByRole('list');
-	const firstItem = editor.getByRole('listitem').nth(0);
+	const firstItem = editor.getByText('First item', { exact: true });
 
 	await act(async () => {
 		await firstItem.click();
-		setCursorPosition(firstItem.element(), 0);
 	});
 	await moveSelection('up');
 
-	const blocks = editor.element().children;
-	expect(blocks).toHaveLength(3);
-	expect(blocks[0]).toHaveRole('list');
-	expect(blocks[1]).toHaveTextContent('Before list');
-	expect(blocks[2]).toHaveTextContent('After list');
-	expect(list.getByRole('listitem').nth(0)).toHaveTextContent('First item');
-	expect(list.getByRole('listitem').nth(1)).toHaveTextContent('Second item');
+	await expectMarkdown(onChanged, [
+		'- First item',
+		'- Second item',
+		'',
+		'Before list',
+		'',
+		'After list',
+	]);
 });
 
-test('Moves the whole root list when its last item moves down', async () => {
+test('Alt+ArrowDown on the last list item moves the whole list down', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Before list\n\n- First item\n- Second item\n\nAfter list',
+		value: [
+			'Before list',
+			'',
+			'- First item',
+			'- Second item',
+			'',
+			'After list',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const list = editor.getByRole('list');
-	const lastItem = editor.getByRole('listitem').nth(1);
+	const lastItem = editor.getByText('Second item', { exact: true });
 
 	await act(async () => {
 		await lastItem.click();
-		setCursorPosition(lastItem.element(), 0);
 	});
 	await moveSelection('down');
 
-	const blocks = editor.element().children;
-	expect(blocks).toHaveLength(3);
-	expect(blocks[0]).toHaveTextContent('Before list');
-	expect(blocks[1]).toHaveTextContent('After list');
-	expect(blocks[2]).toHaveRole('list');
-	expect(list.getByRole('listitem').nth(0)).toHaveTextContent('First item');
-	expect(list.getByRole('listitem').nth(1)).toHaveTextContent('Second item');
+	await expectMarkdown(onChanged, [
+		'Before list',
+		'',
+		'After list',
+		'',
+		'- First item',
+		'- Second item',
+	]);
 });
 
-test('Moves an edge nested item into the previous parent item', async () => {
+test('Alt+ArrowUp moves a nested item into the previous parent’s list', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- Parent one\n- Parent two\n  - Nested one\n  - Nested two\n- Parent three',
+		value: [
+			'- Parent one',
+			'- Parent two',
+			'  - Nested one',
+			'  - Nested two',
+			'- Parent three',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const nestedItems = editor.getByRole('listitem');
-	const nestedOne = nestedItems.nth(2);
+	const nestedOne = editor.getByText('Nested one', { exact: true });
 
 	await act(async () => {
 		await nestedOne.click();
-		setCursorPosition(nestedOne.element(), 0);
 	});
 	await moveSelection('up');
 
-	const items = editor.getByRole('listitem');
-	expect(items).toHaveLength(5);
-	expect(items.nth(0)).toHaveTextContent('Parent one');
-	expect(items.nth(0)).toContainElement(items.nth(1).element());
-	expect(items.nth(1)).toHaveTextContent('Nested one');
-	expect(items.nth(2)).toHaveTextContent('Parent two');
-	expect(items.nth(2)).toContainElement(items.nth(3).element());
-	expect(items.nth(3)).toHaveTextContent('Nested two');
-	expect(items.nth(4)).toHaveTextContent('Parent three');
+	await expectMarkdown(onChanged, [
+		'- Parent one',
+		'  - Nested one',
+		'- Parent two',
+		'  - Nested two',
+		'- Parent three',
+	]);
 });
 
-test('Moves an edge nested item into the next parent list', async () => {
-	// TODO: fix list styles to show its nesting
+test('Alt+ArrowDown moves a nested item into the next parent’s list', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- Parent one\n  - Nested one\n  - Nested two\n- Parent two\n- Parent three',
+		value: [
+			'- Parent one',
+			'  - Nested one',
+			'  - Nested two',
+			'- Parent two',
+			'- Parent three',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const nestedTwo = editor.getByRole('listitem').filter({ hasText: /^Nested two$/ });
+	const nestedTwo = editor.getByText('Nested two', { exact: true });
 
 	await act(async () => {
 		await nestedTwo.click();
-		setCursorPosition(nestedTwo.element(), 0);
 	});
 	await moveSelection('down');
 
-	const items = editor.getByRole('listitem');
-	expect(items).toHaveLength(5);
-	expect(items.nth(0)).toHaveTextContent('Parent one');
-	expect(items.nth(0)).toContainElement(items.nth(1).element());
-	expect(items.nth(1)).toHaveTextContent('Nested one');
-
-	expect(items.nth(2)).toHaveTextContent('Parent two');
-	expect(items.nth(2)).toContainElement(items.nth(3).element());
-	expect(items.nth(3)).toHaveTextContent('Nested two');
-
-	expect(items.nth(4)).toHaveTextContent('Parent three');
+	await expectMarkdown(onChanged, [
+		'- Parent one',
+		'  - Nested one',
+		'- Parent two',
+		'  - Nested two',
+		'- Parent three',
+	]);
 });
 
-test('Appends an upward-moving nested item to an existing nested list', async () => {
+test('Alt+ArrowUp appends a nested item to the previous parent’s existing list', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- Parent one\n  - Existing child\n- Parent two\n  - Moving child',
+		value: [
+			'- Parent one',
+			'  - Existing child',
+			'- Parent two',
+			'  - Moving child',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const movingChild = editor.getByRole('listitem').nth(3);
+	const movingChild = editor.getByText('Moving child', { exact: true });
 
 	await act(async () => {
 		await movingChild.click();
-		setCursorPosition(movingChild.element(), 0);
 	});
 	await moveSelection('up');
 
-	const nestedLists = editor.getByRole('list');
-	expect(nestedLists).toHaveLength(2);
-	expect(nestedLists.nth(1).getByRole('listitem')).toHaveLength(2);
-	expect(nestedLists.nth(1).getByRole('listitem').nth(0)).toHaveTextContent(
-		'Existing child',
-	);
-	expect(nestedLists.nth(1).getByRole('listitem').nth(1)).toHaveTextContent(
-		'Moving child',
-	);
+	await expectMarkdown(onChanged, [
+		'- Parent one',
+		'  - Existing child',
+		'  - Moving child',
+		'- Parent two',
+	]);
 });
 
-test('Prepends a downward-moving nested item to an existing nested list', async () => {
+test('Alt+ArrowDown prepends a nested item to the next parent’s existing list', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- Parent one\n  - Moving child\n- Parent two\n  - Existing child',
+		value: [
+			'- Parent one',
+			'  - Moving child',
+			'- Parent two',
+			'  - Existing child',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const movingChild = editor.getByRole('listitem').nth(1);
+	const movingChild = editor.getByText('Moving child', { exact: true });
 
 	await act(async () => {
 		await movingChild.click();
-		setCursorPosition(movingChild.element(), 0);
 	});
 	await moveSelection('down');
 
-	const nestedLists = editor.getByRole('list');
-	expect(nestedLists).toHaveLength(2);
-	expect(nestedLists.nth(1).getByRole('listitem')).toHaveLength(2);
-	expect(nestedLists.nth(1).getByRole('listitem').nth(0)).toHaveTextContent(
-		'Moving child',
-	);
-	expect(nestedLists.nth(1).getByRole('listitem').nth(1)).toHaveTextContent(
-		'Existing child',
-	);
+	await expectMarkdown(onChanged, [
+		'- Parent one',
+		'- Parent two',
+		'  - Moving child',
+		'  - Existing child',
+	]);
 });
 
-test('Moves the outer list when an edge nested item has no parent sibling', async () => {
+test('Alt+ArrowUp moves the outer list when a nested item has no previous parent sibling', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Before list\n\n- Parent\n  - Nested one\n  - Nested two\n- Another item\n\nAfter list',
+		value: [
+			'Before list',
+			'',
+			'- Parent',
+			'  - Nested one',
+			'  - Nested two',
+			'- Another item',
+			'',
+			'After list',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const nestedOne = editor.getByRole('listitem').nth(1);
+	const nestedOne = editor.getByText('Nested one', { exact: true });
 
 	await act(async () => {
 		await nestedOne.click();
-		setCursorPosition(nestedOne.element(), 0);
 	});
 	await moveSelection('up');
 
-	const blocks = editor.element().children;
-	expect(blocks).toHaveLength(3);
-	expect(blocks[0]).toHaveRole('list');
-	expect(blocks[1]).toHaveTextContent('Before list');
-	expect(blocks[2]).toHaveTextContent('After list');
-	expect(editor.getByRole('list').first()).toHaveTextContent('Nested one');
+	await expectMarkdown(onChanged, [
+		'- Parent',
+		'  - Nested one',
+		'  - Nested two',
+		'- Another item',
+		'',
+		'Before list',
+		'',
+		'After list',
+	]);
 });
 
-test('Moves an edge item correctly at a deeper nesting level', async () => {
+test('Alt+ArrowDown creates a nested list under the next parent at a deeper level', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- Root one\n  - Parent one\n    - Deep one\n    - Deep two\n  - Parent two\n- Root two',
+		value: [
+			'- Root one',
+			'  - Parent one',
+			'    - Deep one',
+			'    - Deep two',
+			'  - Parent two',
+			'- Root two',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const deepTwo = editor.getByRole('listitem').nth(3);
+	const deepTwo = editor.getByText('Deep two', { exact: true });
 
 	await act(async () => {
 		await deepTwo.click();
-		setCursorPosition(deepTwo.element(), 0);
 	});
 	await moveSelection('down');
 
-	const items = editor.getByRole('listitem');
-	expect(items).toHaveLength(6);
-	expect(items.nth(0)).toHaveTextContent('Root one');
-	expect(items.nth(1)).toHaveTextContent('Parent one');
-	expect(items.nth(2)).toHaveTextContent('Deep one');
-	expect(items.nth(3)).toHaveTextContent('Parent two');
-	expect(items.nth(3)).toContainElement(items.nth(4).element());
-	expect(items.nth(4)).toHaveTextContent('Deep two');
-	expect(items.nth(5)).toHaveTextContent('Root two');
+	await expectMarkdown(onChanged, [
+		'- Root one',
+		'  - Parent one',
+		'    - Deep one',
+		'  - Parent two',
+		'    - Deep two',
+		'- Root two',
+	]);
 });
 
-test('Removes the empty source list when a deeply nested item moves under the next root item', async () => {
+test('Alt+ArrowDown removes empty source lists when moving the last deep child', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: '- Root one\n  - Parent one\n    - Deep only\n- Root two',
+		value: ['- Root one', '  - Parent one', '    - Deep only', '- Root two'].join(
+			'\n',
+		),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
-	const deepOnly = editor.getByRole('listitem').nth(2);
-	const originalItems = editor.getByRole('listitem');
-	expect(editor.getByRole('list')).toHaveLength(3);
-	expect(originalItems.nth(0)).toContainElement(originalItems.nth(1).element());
-	expect(originalItems.nth(1)).toContainElement(deepOnly.element());
+	const deepOnly = editor.getByText('Deep only', { exact: true });
 
 	await act(async () => {
 		await deepOnly.click();
-		setCursorPosition(deepOnly.element(), 0);
 	});
 	await moveSelection('down');
 
-	const items = editor.getByRole('listitem');
-	expect(items).toHaveLength(4);
-	expect(items.nth(0)).toHaveTextContent('Root one');
-	expect(items.nth(1)).toHaveTextContent('Parent one');
-	expect(items.nth(2)).toHaveTextContent('Root two');
-	expect(items.nth(2)).toContainElement(items.nth(3).element());
-	expect(items.nth(3)).toHaveTextContent('Deep only');
-	expect(items.nth(1).element().querySelectorAll('ul, ol')).toHaveLength(0);
-	expect(editor.getByRole('list')).toHaveLength(3);
+	await expectMarkdown(onChanged, [
+		'- Root one',
+		'  - Parent one',
+		'- Root two',
+		'  - Deep only',
+	]);
 });
 
 test('Alt+ArrowUp moves a deep item into the previous sibling’s existing list', async () => {
@@ -413,23 +491,17 @@ test('Alt+ArrowUp moves a deep item into the previous sibling’s existing list'
 
 	await act(async () => {
 		await movingChild.click();
-		setCursorPosition(movingChild.element(), 0);
 	});
 	await moveSelection('up');
 
-	await expect
-		.poll(() => onChanged)
-		.toHaveBeenLastCalledWith(
-			[
-				'- Root',
-				'  - Group',
-				'    - Parent A',
-				'      - Existing child',
-				'      - Moving child',
-				'    - Parent B',
-				'',
-			].join('\n'),
-		);
+	await expectMarkdown(onChanged, [
+		'- Root',
+		'  - Group',
+		'    - Parent A',
+		'      - Existing child',
+		'      - Moving child',
+		'    - Parent B',
+	]);
 });
 
 test('Alt+ArrowDown moves a deep item and its children into the next sibling’s list', async () => {
@@ -453,24 +525,18 @@ test('Alt+ArrowDown moves a deep item and its children into the next sibling’s
 
 	await act(async () => {
 		await movingChild.click();
-		setCursorPosition(movingChild.element(), 0);
 	});
 	await moveSelection('down');
 
-	await expect
-		.poll(() => onChanged)
-		.toHaveBeenLastCalledWith(
-			[
-				'- Root',
-				'  - Group',
-				'    - Parent A',
-				'    - Parent B',
-				'      - Moving child',
-				'        - Grandchild',
-				'      - Existing child',
-				'',
-			].join('\n'),
-		);
+	await expectMarkdown(onChanged, [
+		'- Root',
+		'  - Group',
+		'    - Parent A',
+		'    - Parent B',
+		'      - Moving child',
+		'        - Grandchild',
+		'      - Existing child',
+	]);
 });
 
 test('Alt+ArrowDown moves selected nested items together', async () => {
@@ -493,18 +559,13 @@ test('Alt+ArrowDown moves selected nested items together', async () => {
 	});
 	await moveSelection('down');
 
-	await expect
-		.poll(() => onChanged)
-		.toHaveBeenLastCalledWith(
-			[
-				'- Root',
-				'  - Parent',
-				'    - Third',
-				'    - First',
-				'    - Second',
-				'',
-			].join('\n'),
-		);
+	await expectMarkdown(onChanged, [
+		'- Root',
+		'  - Parent',
+		'    - Third',
+		'    - First',
+		'    - Second',
+	]);
 });
 
 test('Alt+ArrowDown keeps an unordered item separate from an ordered sibling list', async () => {
@@ -526,27 +587,34 @@ test('Alt+ArrowDown keeps an unordered item separate from an ordered sibling lis
 
 	await act(async () => {
 		await movingChild.click();
-		setCursorPosition(movingChild.element(), 0);
 	});
 	await moveSelection('down');
 
-	await expect
-		.poll(() => onChanged)
-		.toHaveBeenLastCalledWith(
-			[
-				'- Root',
-				'  - Parent A',
-				'  - Parent B',
-				'    1. Existing ordered child',
-				'    - Moving child',
-				'',
-			].join('\n'),
-		);
+	await expectMarkdown(onChanged, [
+		'- Root',
+		'  - Parent A',
+		'  - Parent B',
+		'    1. Existing ordered child',
+		'    - Moving child',
+	]);
 });
 
-test('Moves a middle quote paragraph within the quote', async () => {
+test('Alt+ArrowUp moves a quote paragraph before the previous quote paragraph', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Before\n\n> Quote one\n>\n> Quote two\n>\n> Quote three\n\nAfter',
+		value: [
+			'Before',
+			'',
+			'> Quote one',
+			'>',
+			'> Quote two',
+			'>',
+			'> Quote three',
+			'',
+			'After',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
@@ -555,19 +623,38 @@ test('Moves a middle quote paragraph within the quote', async () => {
 
 	await act(async () => {
 		await paragraphs.nth(1).click();
-		setCursorPosition(paragraphs.nth(1).element(), 0);
 	});
 	await moveSelection('up');
 
-	const paragraphsAfterMove = quote.getByRole('paragraph');
-	expect(paragraphsAfterMove.nth(0)).toHaveTextContent('Quote two');
-	expect(paragraphsAfterMove.nth(1)).toHaveTextContent('Quote one');
-	expect(paragraphsAfterMove.nth(2)).toHaveTextContent('Quote three');
+	await expectMarkdown(onChanged, [
+		'Before',
+		'',
+		'> Quote two',
+		'>',
+		'> Quote one',
+		'>',
+		'> Quote three',
+		'',
+		'After',
+	]);
 });
 
-test('Moves the whole quote when its first paragraph moves up', async () => {
+test('Alt+ArrowUp moves the whole quote before the previous paragraph', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Before\n\n> Quote one\n>\n> Quote two\n>\n> Quote three\n\nAfter',
+		value: [
+			'Before',
+			'',
+			'> Quote one',
+			'>',
+			'> Quote two',
+			'>',
+			'> Quote three',
+			'',
+			'After',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
@@ -576,19 +663,39 @@ test('Moves the whole quote when its first paragraph moves up', async () => {
 
 	await act(async () => {
 		await firstParagraph.click();
-		setCursorPosition(firstParagraph.element(), 0);
 	});
 	await moveSelection('up');
 
-	const blocks = editor.element().children;
-	expect(blocks[0]).toHaveRole('blockquote');
-	expect(blocks[1]).toHaveTextContent('Before');
-	expect(blocks[2]).toHaveTextContent('After');
+	await expectMarkdown(onChanged, [
+		'> Quote one',
+		'>',
+		'> Quote two',
+		'>',
+		'> Quote three',
+		'',
+		'Before',
+		'',
+		'After',
+	]);
 });
 
-test('Moves a mixed root-level selection as an ordered group', async () => {
+test('Alt+ArrowUp moves a mixed list, paragraph, and quote selection together', async () => {
+	const onChanged = vi.fn();
+
 	await renderRichEditorInDOM({
-		value: 'Before\n\n- One\n- Two\n\nBetween\n\n> Quote\n\nAfter',
+		value: [
+			'Before',
+			'',
+			'- One',
+			'- Two',
+			'',
+			'Between',
+			'',
+			'> Quote',
+			'',
+			'After',
+		].join('\n'),
+		onChanged,
 	});
 
 	const editor = page.getByRole('textbox');
@@ -597,18 +704,23 @@ test('Moves a mixed root-level selection as an ordered group', async () => {
 	});
 	await moveSelection('up');
 
-	const blocks = editor.element().children;
-	expect(blocks[0]).toHaveRole('list');
-	expect(blocks[1]).toHaveRole('paragraph');
-	expect(blocks[1]).toHaveTextContent('Between');
-	expect(blocks[2]).toHaveRole('blockquote');
-	expect(blocks[3]).toHaveTextContent('Before');
-	expect(blocks[4]).toHaveTextContent('After');
+	await expectMarkdown(onChanged, [
+		'- One',
+		'- Two',
+		'',
+		'Between',
+		'',
+		'> Quote',
+		'',
+		'Before',
+		'',
+		'After',
+	]);
 });
 
-test('Keeps the cursor in a list item after moving it', async () => {
+test('Alt+ArrowUp keeps the cursor in a moved list item', async () => {
 	await renderRichEditorInDOM({
-		value: '- foo\n- bar\n- baz',
+		value: ['- foo', '- bar', '- baz'].join('\n'),
 	});
 
 	const editor = page.getByRole('textbox');
@@ -616,7 +728,6 @@ test('Keeps the cursor in a list item after moving it', async () => {
 
 	await act(async () => {
 		await bar.click();
-		setCursorPosition(bar.element(), 3);
 	});
 	await moveSelection('up');
 
