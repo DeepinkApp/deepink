@@ -364,6 +364,35 @@ test('Moves an edge item correctly at a deeper nesting level', async () => {
 	expect(items.nth(5)).toHaveTextContent('Root two');
 });
 
+test('Removes the empty source list when a deeply nested item moves under the next root item', async () => {
+	await renderRichEditorInDOM({
+		value: '- Root one\n  - Parent one\n    - Deep only\n- Root two',
+	});
+
+	const editor = page.getByRole('textbox');
+	const deepOnly = editor.getByRole('listitem').nth(2);
+	const originalItems = editor.getByRole('listitem');
+	expect(editor.getByRole('list')).toHaveLength(3);
+	expect(originalItems.nth(0)).toContainElement(originalItems.nth(1).element());
+	expect(originalItems.nth(1)).toContainElement(deepOnly.element());
+
+	await act(async () => {
+		await deepOnly.click();
+		setCursorPosition(deepOnly.element(), 0);
+	});
+	await moveSelection('down');
+
+	const items = editor.getByRole('listitem');
+	expect(items).toHaveLength(4);
+	expect(items.nth(0)).toHaveTextContent('Root one');
+	expect(items.nth(1)).toHaveTextContent('Parent one');
+	expect(items.nth(2)).toHaveTextContent('Root two');
+	expect(items.nth(2)).toContainElement(items.nth(3).element());
+	expect(items.nth(3)).toHaveTextContent('Deep only');
+	expect(items.nth(1).element().querySelectorAll('ul, ol')).toHaveLength(0);
+	expect(editor.getByRole('list')).toHaveLength(3);
+});
+
 test('Moves a middle quote paragraph within the quote', async () => {
 	await renderRichEditorInDOM({
 		value: 'Before\n\n> Quote one\n>\n> Quote two\n>\n> Quote three\n\nAfter',
