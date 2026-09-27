@@ -393,6 +393,157 @@ test('Removes the empty source list when a deeply nested item moves under the ne
 	expect(editor.getByRole('list')).toHaveLength(3);
 });
 
+test('Alt+ArrowUp moves a deep item into the previous sibling’s existing list', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: [
+			'- Root',
+			'  - Group',
+			'    - Parent A',
+			'      - Existing child',
+			'    - Parent B',
+			'      - Moving child',
+		].join('\n'),
+		onChanged,
+	});
+
+	const editor = page.getByRole('textbox');
+	const movingChild = editor.getByText('Moving child', { exact: true });
+
+	await act(async () => {
+		await movingChild.click();
+		setCursorPosition(movingChild.element(), 0);
+	});
+	await moveSelection('up');
+
+	await expect
+		.poll(() => onChanged)
+		.toHaveBeenLastCalledWith(
+			[
+				'- Root',
+				'  - Group',
+				'    - Parent A',
+				'      - Existing child',
+				'      - Moving child',
+				'    - Parent B',
+				'',
+			].join('\n'),
+		);
+});
+
+test('Alt+ArrowDown moves a deep item and its children into the next sibling’s list', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: [
+			'- Root',
+			'  - Group',
+			'    - Parent A',
+			'      - Moving child',
+			'        - Grandchild',
+			'    - Parent B',
+			'      - Existing child',
+		].join('\n'),
+		onChanged,
+	});
+
+	const editor = page.getByRole('textbox');
+	const movingChild = editor.getByText('Moving child', { exact: true });
+
+	await act(async () => {
+		await movingChild.click();
+		setCursorPosition(movingChild.element(), 0);
+	});
+	await moveSelection('down');
+
+	await expect
+		.poll(() => onChanged)
+		.toHaveBeenLastCalledWith(
+			[
+				'- Root',
+				'  - Group',
+				'    - Parent A',
+				'    - Parent B',
+				'      - Moving child',
+				'        - Grandchild',
+				'      - Existing child',
+				'',
+			].join('\n'),
+		);
+});
+
+test('Alt+ArrowDown moves selected nested items together', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: [
+			'- Root',
+			'  - Parent',
+			'    - First',
+			'    - Second',
+			'    - Third',
+		].join('\n'),
+		onChanged,
+	});
+
+	const editor = page.getByRole('textbox');
+	await act(async () => {
+		selectContent(editor.element() as HTMLElement, 'First', 'Second');
+	});
+	await moveSelection('down');
+
+	await expect
+		.poll(() => onChanged)
+		.toHaveBeenLastCalledWith(
+			[
+				'- Root',
+				'  - Parent',
+				'    - Third',
+				'    - First',
+				'    - Second',
+				'',
+			].join('\n'),
+		);
+});
+
+test('Alt+ArrowDown keeps an unordered item separate from an ordered sibling list', async () => {
+	const onChanged = vi.fn();
+
+	await renderRichEditorInDOM({
+		value: [
+			'- Root',
+			'  - Parent A',
+			'    - Moving child',
+			'  - Parent B',
+			'    1. Existing ordered child',
+		].join('\n'),
+		onChanged,
+	});
+
+	const editor = page.getByRole('textbox');
+	const movingChild = editor.getByText('Moving child', { exact: true });
+
+	await act(async () => {
+		await movingChild.click();
+		setCursorPosition(movingChild.element(), 0);
+	});
+	await moveSelection('down');
+
+	await expect
+		.poll(() => onChanged)
+		.toHaveBeenLastCalledWith(
+			[
+				'- Root',
+				'  - Parent A',
+				'  - Parent B',
+				'    1. Existing ordered child',
+				'    - Moving child',
+				'',
+			].join('\n'),
+		);
+});
+
 test('Moves a middle quote paragraph within the quote', async () => {
 	await renderRichEditorInDOM({
 		value: 'Before\n\n> Quote one\n>\n> Quote two\n>\n> Quote three\n\nAfter',
