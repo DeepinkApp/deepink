@@ -11,16 +11,43 @@ Follow these rules whenever you add, change, move, or review tests.
 - For a bug fix, state the broken behavior and the expected behavior before writing the test. Prefer a regression test that would fail before the fix.
 - If the expected behavior is unclear, ask for clarification instead of making the test choose a new product behavior.
 
-## Choose test scope
+## Choose the test scope and environment
 
-- Use the smallest test scope that can demonstrate the behavior reliably.
-- Use a unit test for a small unit’s own rules and outputs.
-- Use a DOM or browser test when behavior depends on rendering, focus, keyboard or pointer interaction, accessibility, or browser integration.
-- Use an integration test when the contract crosses multiple real components or services.
-- Do not use a broader, slower test environment when a smaller one proves the same behavior.
-- Do not replace a useful integration test with a unit test that only verifies a mock was called.
+Choose the environment based on the behavior the test must prove. Do not choose JSDOM just because it can render the component.
+
+### Node unit tests
+
+- Use a plain `.test.ts` test for logic or state transformations that can run without a DOM.
+- For Lexical state behavior, create or update Lexical state directly and assert the resulting state.
+- Do not render React or simulate user input unless the component or input handling is part of the contract.
+
+### JSDOM tests
+
+- Use a `.dom.test.ts` test to mount the real React Lexical editor and its plugins when the behavior depends on their composition or wiring.
+- Treat JSDOM tests as tests of editor or component state, not as tests of user interaction.
+- Assert the resulting Lexical state, document structure, serialized content, or a public callback when that is the contract.
+- Do not add a JSDOM test to prove that a user can successfully use a button, click, keyboard shortcut, selection, caret, focus, or other UI interaction. Test user interactions in a browser test.
+- Synthetic clicks or keyboard events may be used only to establish test setup, such as focusing the editor or arranging state required by the test. Do not claim that the synthetic interaction itself works as the result.
+- Set up Lexical state directly through the editor when practical. If a synthetic event is needed only for setup, make that reason clear.
+- Do not use JSDOM assertions about layout, visual appearance, scrolling, native selection, or browser-specific event behavior.
+
+JSDOM creates a DOM tree for React, but it does not provide Chromium’s layout, painting, or native input behavior. A passing JSDOM interaction test does not prove that the interaction works in Electron or Chrome.
+
+### Browser tests
+
+- Use a `.browser.test.ts` test when the contract is that a user can perform an action and get the expected result in the app.
+- Use browser tests for clicks, keyboard shortcuts, focus, selection, caret movement, contenteditable behavior, pointer behavior, layout, scrolling, and browser APIs.
+- Assert the user-visible result of the interaction, such as the changed document, ordering, focus, selection, or accessible state.
+
+### Avoid duplicate coverage
+
+- Do not test the same interaction in both JSDOM and the browser just to have a faster copy.
+- Keep tests in different environments only when they prove distinct contracts: JSDOM for React/editor state composition; browser tests for real user interaction.
+- If you cannot clearly state what additional risk a second test covers, do not add it.
+- Use the smallest reliable scope. Do not replace a useful integration test with a unit test that only verifies a mock was called.
 - Prefer real collaborators for behavior under test. Mock external systems or boundaries when needed; do not mock the behavior the test is meant to prove.
-- Follow existing project conventions. In the app, use `.dom.test.ts` for JSDOM tests and `.browser.test.ts` for Vitest browser tests.
+- Use an integration test when the contract crosses multiple real components or services.
+- Follow project naming conventions: `.test.ts` for Node tests, `.dom.test.ts` for JSDOM tests, and `.browser.test.ts` for Vitest browser tests.
 
 ## Design each test as a readable scenario
 
