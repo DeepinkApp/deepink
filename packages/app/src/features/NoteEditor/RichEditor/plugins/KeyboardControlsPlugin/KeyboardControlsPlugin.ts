@@ -109,12 +109,11 @@ export const KeyboardControlsPlugin = () => {
 					(event) => {
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return false;
-
-						const hasChanged = $changeListItemsNesting(
+						const handled = $changeListItemsNesting(
 							selection,
 							event.shiftKey ? 'decrease' : 'increase',
 						);
-						if (!hasChanged) return false;
+						if (!handled) return false;
 
 						event.preventDefault();
 						return true;
@@ -135,12 +134,11 @@ export const KeyboardControlsPlugin = () => {
 
 						const selection = $getSelection();
 						if (!$isRangeSelection(selection)) return false;
-
-						const hasChanged = $changeListItemsNesting(
+						const handled = $changeListItemsNesting(
 							selection,
 							event.code === 'BracketLeft' ? 'decrease' : 'increase',
 						);
-						if (!hasChanged) return false;
+						if (!handled) return false;
 
 						event.preventDefault();
 						return true;
