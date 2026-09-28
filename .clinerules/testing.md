@@ -1,3 +1,10 @@
+---
+paths:
+  - "**/*.test.ts"
+  - "**/*.spec.ts"
+  - "**/__tests__/**"
+---
+
 # Testing rules
 
 Follow these rules whenever you add, change, move, or review tests.
