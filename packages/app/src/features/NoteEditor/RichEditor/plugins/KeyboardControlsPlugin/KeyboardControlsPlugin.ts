@@ -13,6 +13,7 @@ import {
 	ElementNode,
 	KEY_DOWN_COMMAND,
 	KEY_ENTER_COMMAND,
+	KEY_TAB_COMMAND,
 } from 'lexical';
 import { $isCodeNode } from '@lexical/code-core';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -20,6 +21,7 @@ import { $isQuoteNode } from '@lexical/rich-text';
 import { mergeRegister } from '@lexical/utils';
 
 import { $applyMovePlan, $getMovePlan, MoveDirection } from './blockNavigation';
+import { $changeListItemsNesting } from './changeListItemsNesting';
 
 const OUT_OF_BLOCK_NODE_COMMAND = createCommand<ElementNode>();
 
@@ -98,6 +100,47 @@ export const KeyboardControlsPlugin = () => {
 						blockElement.insertAfter(newParagraph);
 						newParagraph.select();
 
+						return true;
+					},
+					COMMAND_PRIORITY_LOW,
+				),
+				editor.registerCommand(
+					KEY_TAB_COMMAND,
+					(event) => {
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return false;
+						const handled = $changeListItemsNesting(
+							selection,
+							event.shiftKey ? 'decrease' : 'increase',
+						);
+						if (!handled) return false;
+
+						event.preventDefault();
+						return true;
+					},
+					COMMAND_PRIORITY_LOW,
+				),
+				editor.registerCommand(
+					KEY_DOWN_COMMAND,
+					(event) => {
+						if (
+							!(
+								(event.ctrlKey || event.metaKey) &&
+								(event.code === 'BracketLeft' ||
+									event.code === 'BracketRight')
+							)
+						)
+							return false;
+
+						const selection = $getSelection();
+						if (!$isRangeSelection(selection)) return false;
+						const handled = $changeListItemsNesting(
+							selection,
+							event.code === 'BracketLeft' ? 'decrease' : 'increase',
+						);
+						if (!handled) return false;
+
+						event.preventDefault();
 						return true;
 					},
 					COMMAND_PRIORITY_LOW,

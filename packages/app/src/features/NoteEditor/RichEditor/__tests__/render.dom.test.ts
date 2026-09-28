@@ -91,9 +91,14 @@ test('Renders markdown correctly', async () => {
 	expect(link).toHaveAttribute('href', 'https://example.com');
 
 	// Image
-	const img = await within(editor).findByRole('img');
-	expect(img).toHaveAttribute('src', 'https://example.com/sample.png');
-	expect(img).toHaveAttribute('alt', 'Sample Image');
+	await expect
+		.poll(() => within(editor).findByRole('img'))
+		.toSatisfy((img) => {
+			expect(img).toHaveAttribute('src', 'https://example.com/sample.png');
+			expect(img).toHaveAttribute('alt', 'Sample Image');
+
+			return true;
+		});
 
 	// Lists
 	expect(within(editor).getAllByRole('list')).toHaveLength(2);

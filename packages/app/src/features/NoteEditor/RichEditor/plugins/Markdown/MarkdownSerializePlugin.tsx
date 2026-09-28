@@ -18,11 +18,13 @@ export const isFocusedElement = (element: HTMLElement | null) => {
 export type MarkdownSerializePluginProps = {
 	value: string;
 	onChanged?: (value: string) => void;
+	syncDelay?: number;
 };
 
 export const MarkdownSerializePlugin = ({
 	value,
 	onChanged,
+	syncDelay = 500,
 }: MarkdownSerializePluginProps) => {
 	const [editor] = useLexicalComposerContext();
 
@@ -58,7 +60,7 @@ export const MarkdownSerializePlugin = ({
 				onChange($convertToMarkdownString());
 			});
 		},
-		{ wait: 500 },
+		{ wait: syncDelay },
 	);
 
 	return (

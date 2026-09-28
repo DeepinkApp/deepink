@@ -1,8 +1,8 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderRichEditor } from '../utils/renderRichEditor';
-import { selectContent, setCursorPosition } from '../utils/utils';
+import { renderRichEditor } from '../../utils/renderRichEditor';
+import { selectContent, setCursorPosition } from '../../utils/utils';
 
 test('Converts an unordered list to an ordered list', async () => {
 	const richEditor = await renderRichEditor({

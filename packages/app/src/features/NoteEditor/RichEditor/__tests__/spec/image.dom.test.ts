@@ -3,6 +3,9 @@ import { screen, within } from '@testing-library/react';
 import { renderRichEditor } from '../utils/renderRichEditor';
 import { setCursorPosition } from '../utils/utils';
 
+const EXAMPLE_IMAGE_URL =
+	'https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_%28Vienna%29_-_Google_Art_Project_-_edited.jpg/500px-Pieter_Bruegel_the_Elder_-_The_Tower_of_Babel_%28Vienna%29_-_Google_Art_Project_-_edited.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail';
+
 test(`Inserts image between text nodes`, async () => {
 	const richEditor = await renderRichEditor({
 		value: `My favorite image\n\n\n\nI love cat`,
@@ -14,13 +17,15 @@ test(`Inserts image between text nodes`, async () => {
 	// Simulate inserting an image via the editor panel action
 	await richEditor.insert({
 		type: 'image',
-		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
+		data: { url: EXAMPLE_IMAGE_URL, altText: 'My cat' },
 	});
 
 	// Image nodes inserting asynchronously, so use findByRole to wait for the img to appear
 	const img = await within(editor).findByRole('img');
 	expect(img).toBeInTheDocument();
-	expect(img).toHaveAttribute('src', 'http://example.com/cat.png');
+	await expect
+		.poll(() => within(editor).findByRole('img'))
+		.toHaveAttribute('src', EXAMPLE_IMAGE_URL);
 	expect(img).toHaveAttribute('alt', 'My cat');
 
 	// Image between two texts
@@ -54,7 +59,7 @@ test('Inserts image after block node', async () => {
 
 	await richEditor.insert({
 		type: 'image',
-		data: { url: 'http://example.com/cat.png', altText: 'My cat' },
+		data: { url: EXAMPLE_IMAGE_URL, altText: 'My cat' },
 	});
 
 	// Wait before image to appear

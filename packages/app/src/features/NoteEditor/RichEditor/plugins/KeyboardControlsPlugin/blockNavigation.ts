@@ -15,6 +15,8 @@ import {
 	type ListType,
 } from '@lexical/list';
 
+import { $getCompatibleNestedList } from './listNestingUtils';
+
 export type MoveDirection = 'up' | 'down';
 
 type MoveDestination =
@@ -126,24 +128,6 @@ const $getListItem = (node: LexicalNode) => {
 	return null;
 };
 
-const $getCompatibleList = (
-	item: ListItemNode,
-	source: ListItemNode,
-): ListNode | null => {
-	const sourceList = source.getParent();
-	if (!$isListNode(sourceList)) return null;
-
-	return (
-		item
-			.getChildren()
-			.find(
-				(child): child is ListNode =>
-					$isListNode(child) &&
-					child.getListType() === sourceList.getListType(),
-			) ?? null
-	);
-};
-
 const $isDescendantOf = (node: LexicalNode, ancestor: LexicalNode) => {
 	for (
 		let current: LexicalNode | null = node.getParent();
@@ -232,7 +216,7 @@ const $getNestedListPlan = (
 
 		const ownerSibling = $getSibling(owner, direction);
 		if ($isListItemNode(ownerSibling)) {
-			const targetList = $getCompatibleList(ownerSibling, item);
+			const targetList = $getCompatibleNestedList(ownerSibling, item);
 			if (targetList) {
 				return {
 					unit: $createMovementUnit([item], list),

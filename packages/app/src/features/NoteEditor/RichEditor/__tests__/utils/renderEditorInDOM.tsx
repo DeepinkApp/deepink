@@ -98,7 +98,11 @@ export const renderRichEditorInDOM = async ({
 						<editorPanelContext.Provider
 							value={{ onInserting, onFormatting, onCommand }}
 						>
-							<RichEditor placeholder="Enter text" {...props} />
+							<RichEditor
+								placeholder="Enter text"
+								syncDelay={0}
+								{...props}
+							/>
 						</editorPanelContext.Provider>
 					</MockWorkspaceProvider>
 				</LocalesProvider>
