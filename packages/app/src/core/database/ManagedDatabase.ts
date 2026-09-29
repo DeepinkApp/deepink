@@ -61,9 +61,14 @@ export class ManagedDatabase<T> implements IManagedDatabase<T> {
 		this.dbFile = dbFile;
 
 		// Auto sync changes
-		this.debouncedSync = debounce(this.sync, {
-			wait: sync.delay,
-		});
+		this.debouncedSync = debounce(
+			() => {
+				requestIdleCallback(() => this.sync());
+			},
+			{
+				wait: sync.delay,
+			},
+		);
 
 		this.cleanups.push(dbContainer.onChanged.watch(this.debouncedSync));
 	}
