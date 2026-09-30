@@ -1,4 +1,5 @@
 import { IEncryptionController } from '@core/encryption';
+import { BufferCursor } from '@core/encryption/utils/bytes/BufferCursor';
 import { IFilesStorage } from '@core/features/files';
 
 import { ipcRendererFetcher } from '../../utils/ipc/ipcRendererFetcher';
@@ -13,6 +14,7 @@ export class ElectronFilesController implements IFilesStorage {
 		private readonly storageApi: StorageChannelAPI,
 		private readonly subdirectory: string,
 		private readonly encryption?: IEncryptionController,
+		private readonly config: { chunkSize?: number } = {},
 	) {
 		this.subdirectory = subdirectory;
 		this.encryption = encryption;
@@ -23,8 +25,22 @@ export class ElectronFilesController implements IFilesStorage {
 			? await this.encryption.encrypt(buffer)
 			: buffer;
 
-		// Absolute file name with no slash
-		return this.storageApi.upload(filename, encryptedBuffer, this.subdirectory);
+		const sessionId = await this.storageApi.createUploadSession(
+			filename,
+			this.subdirectory,
+		);
+
+		const bufferCursor = new BufferCursor(encryptedBuffer);
+		while (bufferCursor.getRemainingBytes() > 0) {
+			const slice = bufferCursor.readBytes(
+				1024 ** 2 * (this.config.chunkSize ?? 5),
+			);
+			if (!slice) throw new Error('Unexpected end of file');
+
+			await this.storageApi.uploadChunk(sessionId, slice.slice(0).buffer);
+		}
+
+		await this.storageApi.commitUpload(sessionId);
 	}
 
 	public async get(id: string) {
