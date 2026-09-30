@@ -1,10 +1,17 @@
 import { IpcMainInvokeEvent } from 'electron';
-import { existsSync, statSync } from 'fs';
+import { once } from 'events';
+import {
+	createWriteStream,
+	existsSync,
+	renameSync,
+	rmSync,
+	statSync,
+	WriteStream,
+} from 'fs';
 import path from 'path';
 import recursive from 'recursive-readdir';
-import { joinBuffers } from '@core/encryption/utils/buffers';
 import { ApiToHandlers } from '@electron/utils/ipc';
-import { recoveryAtomicFile, writeFileAtomic } from '@utils/files';
+import { recoveryAtomicFile } from '@utils/files';
 
 import { getUserDataPath, joinPath } from '../../utils/files';
 import { ipcMainHandler } from '../../utils/ipc/ipcMainHandler';
@@ -12,7 +19,17 @@ import { ipcMainHandler } from '../../utils/ipc/ipcMainHandler';
 import { mkdir, readFile, rm } from 'fs/promises';
 import { storageChannel, StorageChannelAPI } from '.';
 
-export const createStorageBackend = () => {
+type FilePaths = {
+	resolvedPath: string;
+	dirname: string;
+	filename: string;
+	tmp: string;
+	bkp: string;
+};
+
+export const createStorageBackend = ({
+	tmpPrefix = '.tmp-fs',
+}: { tmpPrefix?: string } = {}) => {
 	const getScopedPath = (subdir: string | undefined, path?: string) =>
 		path ? joinPath(getUserDataPath(subdir), path) : getUserDataPath(subdir);
 
@@ -21,12 +38,37 @@ export const createStorageBackend = () => {
 	const uploadSessions = new Map<
 		string,
 		{
-			path: string;
-			// TODO: write buffers instantly to a file
-			buffer: ArrayBuffer[];
+			paths: FilePaths;
+			stream: WriteStream;
 			error?: unknown;
 		}
 	>();
+
+	const getFilePaths = (subdir: string, fileId: string) => {
+		const resolvedPath = getScopedPath(subdir, fileId);
+		const dirname = path.dirname(resolvedPath);
+		const filename = path.basename(resolvedPath);
+
+		const tmp = path.resolve(
+			path.join(dirname, [tmpPrefix, 'tmp', filename].join('-')),
+		);
+		if (!tmp.startsWith(dirname))
+			throw new Error('Temp file path is out of allowed path');
+
+		const bkp = path.resolve(
+			path.join(dirname, [tmpPrefix, 'bkp', filename].join('-')),
+		);
+		if (!bkp.startsWith(dirname))
+			throw new Error('Backup file path is out of allowed path');
+
+		return {
+			resolvedPath,
+			dirname,
+			filename,
+			tmp,
+			bkp,
+		} satisfies FilePaths;
+	};
 
 	return {
 		async get({ req: [id, subdir] }) {
@@ -72,7 +114,8 @@ export const createStorageBackend = () => {
 			req: [id: string, subdir: string];
 			ctx: Electron.IpcMainInvokeEvent;
 		}): Promise<string | undefined> => {
-			const resolvedPath = getScopedPath(subdir, fileId);
+			const paths = getFilePaths(subdir, fileId);
+			const { resolvedPath } = paths;
 
 			// Cancel previous session
 			const previousSessionId = pathUploadSessions.get(resolvedPath);
@@ -81,16 +124,24 @@ export const createStorageBackend = () => {
 				const session = uploadSessions.get(previousSessionId);
 				if (session) {
 					session.error = new Error('Another session is started');
-					session.buffer = [];
+					session.stream.close();
+					await once(session.stream, 'close');
 				}
 			}
+
+			// Create tmp file
+			await mkdir(paths.dirname, { recursive: true });
+
+			if (existsSync(paths.tmp)) rmSync(paths.tmp);
+			const stream = createWriteStream(paths.tmp);
+			await once(stream, 'open');
 
 			// Start new session
 			const sessionId = String(++uploadId);
 			pathUploadSessions.set(resolvedPath, sessionId);
 			uploadSessions.set(sessionId, {
-				path: resolvedPath,
-				buffer: [],
+				paths,
+				stream,
 			});
 
 			return sessionId;
@@ -108,7 +159,10 @@ export const createStorageBackend = () => {
 			// eslint-disable-next-line @typescript-eslint/only-throw-error
 			if (session.error !== undefined) throw session.error;
 
-			session.buffer.push(buffer);
+			const { stream } = session;
+			if (!stream.write(new Uint8Array(buffer))) {
+				await once(stream, 'drain');
+			}
 		},
 
 		commitUpload: async function ({
@@ -123,16 +177,27 @@ export const createStorageBackend = () => {
 			// eslint-disable-next-line @typescript-eslint/only-throw-error
 			if (session.error !== undefined) throw session.error;
 
-			const { path: filePath, buffer } = session;
-
-			await mkdir(path.dirname(filePath), { recursive: true });
-
-			console.time('Convert buffer');
-			const nodeBuffer = Buffer.from(joinBuffers(buffer));
-			console.timeEnd('Convert buffer');
+			const { paths, stream } = session;
 
 			try {
-				await writeFileAtomic(filePath, nodeBuffer);
+				// Finish stream
+				stream.end();
+				await once(stream, 'finish');
+
+				// Make sure file is uploaded
+				if (!existsSync(paths.tmp))
+					throw new Error('Temporary file is not found');
+
+				// Remove backup file
+				if (existsSync(paths.bkp)) rmSync(paths.bkp);
+
+				// Backup file
+				if (existsSync(paths.resolvedPath))
+					renameSync(paths.resolvedPath, paths.bkp);
+
+				// Rename temp file
+				renameSync(paths.tmp, paths.resolvedPath);
+				if (existsSync(paths.bkp)) rmSync(paths.bkp);
 			} finally {
 				uploadSessions.delete(sessionId);
 			}
