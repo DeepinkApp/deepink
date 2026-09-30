@@ -17,11 +17,14 @@ export const createStorageBackend = () => {
 		path ? joinPath(getUserDataPath(subdir), path) : getUserDataPath(subdir);
 
 	let uploadId = 0;
+	const pathUploadSessions = new Map<string, string>();
 	const uploadSessions = new Map<
 		string,
 		{
 			path: string;
+			// TODO: write buffers instantly to a file
 			buffer: ArrayBuffer[];
+			error?: unknown;
 		}
 	>();
 
@@ -69,11 +72,22 @@ export const createStorageBackend = () => {
 			req: [id: string, subdir: string];
 			ctx: Electron.IpcMainInvokeEvent;
 		}): Promise<string | undefined> => {
-			// TODO: ensure only one instance can write file
 			const resolvedPath = getScopedPath(subdir, fileId);
 
-			const sessionId = String(++uploadId);
+			// Cancel previous session
+			const previousSessionId = pathUploadSessions.get(resolvedPath);
+			if (previousSessionId !== undefined) {
+				// TODO: schedule deletion by timeout for case the session will not be accessed
+				const session = uploadSessions.get(previousSessionId);
+				if (session) {
+					session.error = new Error('Another session is started');
+					session.buffer = [];
+				}
+			}
 
+			// Start new session
+			const sessionId = String(++uploadId);
+			pathUploadSessions.set(resolvedPath, sessionId);
 			uploadSessions.set(sessionId, {
 				path: resolvedPath,
 				buffer: [],
@@ -91,6 +105,9 @@ export const createStorageBackend = () => {
 			const session = uploadSessions.get(sessionId);
 			if (!session) throw new Error(`No session found with id ${sessionId}`);
 
+			// eslint-disable-next-line @typescript-eslint/only-throw-error
+			if (session.error !== undefined) throw session.error;
+
 			session.buffer.push(buffer);
 		},
 
@@ -103,6 +120,9 @@ export const createStorageBackend = () => {
 			const session = uploadSessions.get(sessionId);
 			if (!session) throw new Error(`No session found with id ${sessionId}`);
 
+			// eslint-disable-next-line @typescript-eslint/only-throw-error
+			if (session.error !== undefined) throw session.error;
+
 			const { path: filePath, buffer } = session;
 
 			await mkdir(path.dirname(filePath), { recursive: true });
@@ -111,7 +131,11 @@ export const createStorageBackend = () => {
 			const nodeBuffer = Buffer.from(joinBuffers(buffer));
 			console.timeEnd('Convert buffer');
 
-			await writeFileAtomic(filePath, nodeBuffer);
+			try {
+				await writeFileAtomic(filePath, nodeBuffer);
+			} finally {
+				uploadSessions.delete(sessionId);
+			}
 		},
 	} satisfies ApiToHandlers<StorageChannelAPI, IpcMainInvokeEvent>;
 };
