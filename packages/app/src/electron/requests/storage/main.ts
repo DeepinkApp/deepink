@@ -76,8 +76,11 @@ export const createStorageBackend = ({
 	};
 
 	return {
-		async get({ req: [id, subdir] }) {
-			const filePath = getScopedPath(subdir, id);
+		async get({ req: [fileId, subdir] }) {
+			// Do not return special files
+			if (!isAllowedPath(fileId)) return null;
+
+			const filePath = getScopedPath(subdir, fileId);
 
 			recoveryAtomicFile(filePath);
 
@@ -87,9 +90,12 @@ export const createStorageBackend = ({
 			return new Uint8Array(buffer).buffer;
 		},
 
-		async delete({ req: [ids, subdir] }) {
-			for (const id of ids) {
-				const filePath = getScopedPath(subdir, id);
+		async delete({ req: [fileIds, subdir] }) {
+			for (const fileId of fileIds) {
+				// Skip special files
+				if (!isAllowedPath(fileId)) continue;
+
+				const filePath = getScopedPath(subdir, fileId);
 
 				if (!existsSync(filePath)) {
 					console.debug('Not found file', filePath);

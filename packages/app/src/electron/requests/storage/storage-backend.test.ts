@@ -30,7 +30,7 @@ describe('Special names', () => {
 		).rejects.toThrow('File name must not start from ".tmp"');
 	});
 
-	test('Temporary files is not listed', async () => {
+	test('Files with special name is unavailable', async () => {
 		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
 
 		// Start uploading session
@@ -38,11 +38,20 @@ describe('Special names', () => {
 		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
 
 		// Temp file is present in FS
-		expect(vol.readdirSync('/', { recursive: true })).toContainEqual(
-			expect.stringMatching(/\.tmp/),
+		expect(vol.readdirSync('/', { recursive: true })).toContain(
+			'/home/userData/appDir/app/foo/bar/.tmp-tmp-filename',
 		);
 
 		await expect(storageApi.list('/')).resolves.toEqual([]);
+		await expect(storageApi.get('.tmp-tmp-filename', '/foo/bar')).resolves.toBe(null);
+
+		// Deletion does not work
+		await expect(
+			storageApi.delete(['.tmp-tmp-filename'], '/foo/bar'),
+		).resolves.toBeUndefined();
+		expect(vol.readdirSync('/', { recursive: true })).toContain(
+			'/home/userData/appDir/app/foo/bar/.tmp-tmp-filename',
+		);
 	});
 });
 
