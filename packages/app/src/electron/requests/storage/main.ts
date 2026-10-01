@@ -151,6 +151,10 @@ export const createStorageBackend = ({
 			const paths = getFilePaths(subdir, fileId);
 			const { resolvedPath } = paths;
 
+			// Prevent write into directory
+			if (existsSync(resolvedPath) && !statSync(resolvedPath).isFile())
+				throw new Error(`Path is exist and it is not a file '${resolvedPath}'`);
+
 			// Cancel previous session
 			const previousSessionId = pathUploadSessions.get(resolvedPath);
 			if (previousSessionId !== undefined) {
@@ -163,7 +167,7 @@ export const createStorageBackend = ({
 				}
 			}
 
-			// Create tmp file
+			// Ensure directory
 			await mkdir(paths.dirname, { recursive: true });
 
 			if (existsSync(paths.tmp)) rmSync(paths.tmp);

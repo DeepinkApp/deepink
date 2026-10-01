@@ -55,7 +55,6 @@ describe('Special names', () => {
 	});
 });
 
-// TODO: add cases for restore from backup, cleanup for tmp file
 describe('Upload sessions', () => {
 	beforeEach(() => {
 		vol.reset();

@@ -194,7 +194,7 @@ describe('Path traversal isolation', () => {
 	test('Attempt to write content in directory must throws error', async () => {
 		const files = new ElectronFilesController(storageApi, 'vaultDir');
 		await expect(files.write('/', new ArrayBuffer(1))).rejects.toThrowError(
-			"EISDIR: illegal operation on a directory, open '/home/userData/appDir/app/vaultDir'",
+			'Path is exist and it is not a file',
 		);
 	});
 
