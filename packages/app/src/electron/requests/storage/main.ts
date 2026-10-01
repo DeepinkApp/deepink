@@ -11,7 +11,6 @@ import {
 import path from 'path';
 import recursive from 'recursive-readdir';
 import { ApiToHandlers } from '@electron/utils/ipc';
-import { recoveryAtomicFile } from '@utils/files';
 
 import { getUserDataPath, joinPath } from '../../utils/files';
 import { ipcMainHandler } from '../../utils/ipc/ipcMainHandler';
@@ -34,20 +33,6 @@ export const createStorageBackend = ({
 }: StorageBackendOptions = {}) => {
 	const getScopedPath = (subdir: string | undefined, path?: string) =>
 		path ? joinPath(getUserDataPath(subdir), path) : getUserDataPath(subdir);
-
-	const isAllowedPath = (filename: string) =>
-		filename.split('/').every((segment) => !segment.startsWith(tmpPrefix));
-
-	let uploadId = 0;
-	const pathUploadSessions = new Map<string, string>();
-	const uploadSessions = new Map<
-		string,
-		{
-			paths: FilePaths;
-			stream: WriteStream;
-			error?: unknown;
-		}
-	>();
 
 	const getFilePaths = (subdir: string, fileId: string) => {
 		const resolvedPath = getScopedPath(subdir, fileId);
@@ -75,18 +60,41 @@ export const createStorageBackend = ({
 		} satisfies FilePaths;
 	};
 
+	const isAllowedPath = (filename: string) =>
+		filename.split('/').every((segment) => !segment.startsWith(tmpPrefix));
+
+	let uploadId = 0;
+	const pathUploadSessions = new Map<string, string>();
+	const uploadSessions = new Map<
+		string,
+		{
+			paths: FilePaths;
+			stream: WriteStream;
+			error?: unknown;
+		}
+	>();
+
 	return {
 		async get({ req: [fileId, subdir] }) {
 			// Do not return special files
 			if (!isAllowedPath(fileId)) return null;
 
-			const filePath = getScopedPath(subdir, fileId);
+			const { resolvedPath, bkp } = getFilePaths(subdir, fileId);
 
-			recoveryAtomicFile(filePath);
+			// Restore file
+			if (
+				!existsSync(resolvedPath) &&
+				!pathUploadSessions.has(resolvedPath) &&
+				existsSync(bkp) &&
+				statSync(bkp).isFile()
+			) {
+				renameSync(bkp, resolvedPath);
+			}
 
-			if (!existsSync(filePath) || !statSync(filePath).isFile()) return null;
+			if (!existsSync(resolvedPath) || !statSync(resolvedPath).isFile())
+				return null;
 
-			const buffer = await readFile(filePath);
+			const buffer = await readFile(resolvedPath);
 			return new Uint8Array(buffer).buffer;
 		},
 
@@ -218,6 +226,11 @@ export const createStorageBackend = ({
 				if (existsSync(paths.bkp)) rmSync(paths.bkp);
 			} finally {
 				uploadSessions.delete(sessionId);
+
+				// Terminate session
+				const currentSessionId = pathUploadSessions.get(paths.resolvedPath);
+				if (currentSessionId === sessionId)
+					pathUploadSessions.delete(paths.resolvedPath);
 			}
 		},
 	} satisfies ApiToHandlers<StorageChannelAPI, IpcMainInvokeEvent>;

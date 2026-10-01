@@ -167,3 +167,26 @@ describe('Upload sessions', () => {
 		).toHaveLength(1024 * 2);
 	});
 });
+
+describe('File integrity', () => {
+	beforeEach(() => {
+		vol.reset();
+	});
+
+	test('File can be restored from backup', async () => {
+		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
+
+		const fileContent = getRandomBytes(1024);
+
+		// Create backup file
+		vol.mkdirSync('/home/userData/appDir/app/foo/bar', { recursive: true });
+		vol.writeFileSync(
+			'/home/userData/appDir/app/foo/bar/.tmp-bkp-filename',
+			fileContent,
+		);
+
+		await expect(storageApi.get('filename', '/foo/bar')).resolves.toStrictEqual(
+			fileContent.buffer,
+		);
+	});
+});
