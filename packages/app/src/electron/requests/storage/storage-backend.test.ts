@@ -9,18 +9,15 @@ vi.mock('fs/promises', () => vi.importActual('@mocks/fs/promises'));
 vi.mock('recursive-readdir', () => vi.importActual('@mocks/recursive-readdir'));
 vi.mock('electron', () => vi.importActual('@mocks/electron'));
 
+// TODO: add cases for rewrite, restore from backup, cleanup for tmp file
 describe('Upload sessions', () => {
-	let cleanups = [] as (() => void)[];
 	beforeEach(() => {
 		vol.reset();
-		cleanups.push(enableStorage());
-	});
-	afterEach(() => {
-		cleanups.forEach((cleanup) => cleanup());
-		cleanups = [];
 	});
 
 	test('File can be loaded with session', async () => {
+		onTestFinished(enableStorage());
+
 		const session = await storageApi.createUploadSession('filename', '/foo/bar');
 
 		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
@@ -34,7 +31,24 @@ describe('Upload sessions', () => {
 		).toHaveLength(1024 * 3);
 	});
 
+	test('Temporary files is not listed', async () => {
+		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
+
+		// Start uploading session
+		const session = await storageApi.createUploadSession('filename', '/foo/bar');
+		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
+
+		// Temp file is present in FS
+		expect(vol.readdirSync('/', { recursive: true })).toContainEqual(
+			expect.stringMatching(/\.tmp/),
+		);
+
+		await expect(storageApi.list('/')).resolves.toEqual([]);
+	});
+
 	test('Creation of new session for the same path must cancel previous session', async () => {
+		onTestFinished(enableStorage());
+
 		const session1 = await storageApi.createUploadSession('filename', '/foo/bar');
 		await storageApi.uploadChunk(session1, getRandomBytes(1024).buffer);
 
@@ -57,6 +71,8 @@ describe('Upload sessions', () => {
 	});
 
 	test('Many sessions may exists in parallel', async () => {
+		onTestFinished(enableStorage());
+
 		const session1 = await storageApi.createUploadSession('filename1', '/foo/bar');
 		const session2 = await storageApi.createUploadSession('filename2', '/foo/bar');
 

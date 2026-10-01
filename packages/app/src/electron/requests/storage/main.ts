@@ -27,9 +27,11 @@ type FilePaths = {
 	bkp: string;
 };
 
+type StorageBackendOptions = { tmpPrefix?: string };
+
 export const createStorageBackend = ({
 	tmpPrefix = '.tmp-fs',
-}: { tmpPrefix?: string } = {}) => {
+}: StorageBackendOptions = {}) => {
 	const getScopedPath = (subdir: string | undefined, path?: string) =>
 		path ? joinPath(getUserDataPath(subdir), path) : getUserDataPath(subdir);
 
@@ -102,10 +104,16 @@ export const createStorageBackend = ({
 			if (!existsSync(filesDir)) return [];
 
 			const files = await recursive(filesDir);
-			return files.map((path) =>
-				// Remove root path
-				path.slice(filesDir.length),
-			);
+			return files
+				.values()
+				.map((path) =>
+					// Remove root path
+					path.slice(filesDir.length),
+				)
+				.filter((info) =>
+					info.split('/').every((segment) => !segment.startsWith(tmpPrefix)),
+				)
+				.toArray();
 		},
 
 		createUploadSession: async ({
@@ -205,5 +213,5 @@ export const createStorageBackend = ({
 	} satisfies ApiToHandlers<StorageChannelAPI, IpcMainInvokeEvent>;
 };
 
-export const enableStorage = () =>
-	storageChannel.server(ipcMainHandler, createStorageBackend());
+export const enableStorage = (options: StorageBackendOptions = {}) =>
+	storageChannel.server(ipcMainHandler, createStorageBackend(options));
