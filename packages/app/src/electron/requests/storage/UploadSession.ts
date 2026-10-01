@@ -18,8 +18,8 @@ export class UploadSession {
 	private isInitializationCalled = false;
 	private onCommit?: () => void;
 	public async init(onCommit?: () => void) {
-		// eslint-disable-next-line @typescript-eslint/only-throw-error
-		if (this.error !== undefined) throw this.error;
+		this.assertNotAborted();
+
 		if (this.stream) throw new Error('Session is already initialized');
 		if (this.isInitializationCalled) throw new Error('Initialization is in progress');
 		this.isInitializationCalled = true;
@@ -57,8 +57,7 @@ export class UploadSession {
 	}
 
 	public async write(buffer: ArrayBuffer) {
-		// eslint-disable-next-line @typescript-eslint/only-throw-error
-		if (this.error !== undefined) throw this.error;
+		this.assertNotAborted();
 
 		if (!this.stream) throw new Error('Session is not initialized yet');
 
@@ -68,8 +67,7 @@ export class UploadSession {
 	}
 
 	public async commit() {
-		// eslint-disable-next-line @typescript-eslint/only-throw-error
-		if (this.error !== undefined) throw this.error;
+		this.assertNotAborted();
 
 		if (!this.stream) throw new Error('Session is not initialized yet');
 
@@ -80,6 +78,7 @@ export class UploadSession {
 			// Finish stream
 			stream.end();
 			await once(stream, 'finish');
+			this.assertNotAborted();
 
 			// Make sure file is uploaded
 			if (!existsSync(paths.tmp)) throw new Error('Temporary file is not found');
@@ -96,5 +95,10 @@ export class UploadSession {
 		} finally {
 			this.onCommit?.();
 		}
+	}
+
+	public assertNotAborted() {
+		// eslint-disable-next-line @typescript-eslint/only-throw-error
+		if (this.error !== undefined) throw this.error;
 	}
 }
