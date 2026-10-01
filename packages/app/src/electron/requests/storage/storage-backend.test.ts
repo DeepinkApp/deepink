@@ -55,7 +55,7 @@ describe('Special names', () => {
 	});
 });
 
-// TODO: add cases for rewrite, restore from backup, cleanup for tmp file
+// TODO: add cases for restore from backup, cleanup for tmp file
 describe('Upload sessions', () => {
 	beforeEach(() => {
 		vol.reset();
@@ -75,6 +75,49 @@ describe('Upload sessions', () => {
 		expect(
 			vol.readFileSync('/home/userData/appDir/app/foo/bar/filename'),
 		).toHaveLength(1024 * 3);
+	});
+
+	test('Session cannot be re-used', async () => {
+		onTestFinished(enableStorage());
+
+		const session = await storageApi.createUploadSession('filename', '/foo/bar');
+		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
+		await storageApi.commitUpload(session);
+
+		expect(
+			vol.readFileSync('/home/userData/appDir/app/foo/bar/filename'),
+		).toHaveLength(1024);
+
+		await expect(
+			storageApi.uploadChunk(session, getRandomBytes(1024).buffer),
+		).rejects.toThrow('No session found');
+		await expect(storageApi.commitUpload(session)).rejects.toThrow(
+			'No session found',
+		);
+	});
+
+	test('File can be changed', async () => {
+		onTestFinished(enableStorage());
+
+		// Write
+		const session = await storageApi.createUploadSession('filename', '/foo/bar');
+		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
+		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
+		await storageApi.commitUpload(session);
+
+		expect(
+			vol.readFileSync('/home/userData/appDir/app/foo/bar/filename'),
+		).toHaveLength(1024 * 2);
+
+		// Write
+		const session2 = await storageApi.createUploadSession('filename', '/foo/bar');
+		await storageApi.uploadChunk(session2, getRandomBytes(100).buffer);
+		await storageApi.uploadChunk(session2, getRandomBytes(100).buffer);
+		await storageApi.commitUpload(session2);
+
+		expect(
+			vol.readFileSync('/home/userData/appDir/app/foo/bar/filename'),
+		).toHaveLength(100 * 2);
 	});
 
 	test('Creation of new session for the same path must cancel previous session', async () => {
