@@ -100,12 +100,7 @@ export const createStorageBackend = ({
 
 				const { resolvedPath, bkp, tmp } = getFilePaths(subdir, fileId);
 
-				if (!existsSync(resolvedPath)) {
-					console.debug('Not found file', resolvedPath);
-					continue;
-				}
-
-				if (statSync(resolvedPath).isDirectory()) {
+				if (existsSync(resolvedPath) && statSync(resolvedPath).isDirectory()) {
 					// Recursive directory deletion
 					await rm(resolvedPath, { force: true, recursive: true });
 					console.debug('Directory removed', resolvedPath);

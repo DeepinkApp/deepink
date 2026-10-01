@@ -210,4 +210,20 @@ describe('File integrity', () => {
 			expect.stringContaining('filename'),
 		);
 	});
+
+	test('Deleting a file removes its backup even when the target is missing', async () => {
+		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
+
+		const root = '/home/userData/appDir/app/foo/bar';
+		const backupPath = `${root}/.tmp-bkp-note`;
+		vol.mkdirSync(root, { recursive: true });
+		vol.writeFileSync(backupPath, 'deleted content');
+		expect(vol.existsSync(`${root}/note`)).toBe(false);
+		expect(vol.existsSync(backupPath)).toBe(true);
+
+		await storageApi.delete(['note'], '/foo/bar');
+
+		expect(vol.existsSync(backupPath)).toBe(false);
+		await expect(storageApi.get('note', '/foo/bar')).resolves.toBe(null);
+	});
 });
