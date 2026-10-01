@@ -18,16 +18,16 @@ describe('Special names', () => {
 		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
 
 		await expect(storageApi.createUploadSession('.tmp', '/foo/bar')).rejects.toThrow(
-			'File name must not start from ".tmp"',
+			"File name must not start from '.tmp'",
 		);
 
 		await expect(
 			storageApi.createUploadSession('foo/bar/.tmp', '/foo/bar'),
-		).rejects.toThrow('File name must not start from ".tmp"');
+		).rejects.toThrow("File name must not start from '.tmp'");
 
 		await expect(
 			storageApi.createUploadSession('foo/bar/.tmp-bkp', '/foo/bar'),
-		).rejects.toThrow('File name must not start from ".tmp"');
+		).rejects.toThrow("File name must not start from '.tmp'");
 	});
 
 	test('Files with special name is unavailable', async () => {
