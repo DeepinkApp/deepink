@@ -3,6 +3,13 @@ import path from 'path';
 
 import { isDevMode } from './app';
 
+const isRootedPath = (root: string, targetPath: string) => {
+	const pathSegments = targetPath.split(path.sep);
+	return root
+		.split(path.sep)
+		.every((rootSegment, index) => rootSegment === pathSegments[index]);
+};
+
 /**
  * Safe join path segments and resolve it
  *
@@ -10,7 +17,7 @@ import { isDevMode } from './app';
  */
 export const joinPath = (root: string, ...segments: string[]) => {
 	const resolvedPath = path.resolve(path.join(root, ...segments));
-	if (!resolvedPath.startsWith(root)) {
+	if (!isRootedPath(root, resolvedPath)) {
 		throw new TypeError('Resolved path is out of root directory');
 	}
 

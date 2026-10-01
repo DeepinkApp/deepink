@@ -191,6 +191,43 @@ describe('Path traversal isolation', () => {
 		);
 	});
 
+	test('Client cannot read from a sibling directory with a matching root prefix', async () => {
+		const files = new ElectronFilesController(storageApi, 'vaultDir');
+		vol.mkdirSync('/home/userData/appDir/app/vaultDir2', { recursive: true });
+		vol.writeFileSync(
+			'/home/userData/appDir/app/vaultDir2/secret.txt',
+			'sibling secret',
+		);
+
+		await expect(files.get('../vaultDir2/secret.txt')).rejects.toThrow(
+			'Resolved path is out of root directory',
+		);
+	});
+
+	test('Client cannot overwrite a file in a sibling directory with a matching root prefix', async () => {
+		const files = new ElectronFilesController(storageApi, 'vaultDir');
+		const siblingSecretPath = '/home/userData/appDir/app/vaultDir2/secret.txt';
+		vol.mkdirSync('/home/userData/appDir/app/vaultDir2', { recursive: true });
+		vol.writeFileSync(siblingSecretPath, 'sibling secret');
+
+		await expect(
+			files.write('../vaultDir2/secret.txt', getBufferFromText('overwritten')),
+		).rejects.toThrow('Resolved path is out of root directory');
+		expect(vol.readFileSync(siblingSecretPath, 'utf8')).toBe('sibling secret');
+	});
+
+	test('Client cannot delete a file in a sibling directory with a matching root prefix', async () => {
+		const files = new ElectronFilesController(storageApi, 'vaultDir');
+		const siblingSecretPath = '/home/userData/appDir/app/vaultDir2/secret.txt';
+		vol.mkdirSync('/home/userData/appDir/app/vaultDir2', { recursive: true });
+		vol.writeFileSync(siblingSecretPath, 'sibling secret');
+
+		await expect(files.delete(['../vaultDir2/secret.txt'])).rejects.toThrow(
+			'Resolved path is out of root directory',
+		);
+		expect(vol.readFileSync(siblingSecretPath, 'utf8')).toBe('sibling secret');
+	});
+
 	test('Attempt to write content in directory must throws error', async () => {
 		const files = new ElectronFilesController(storageApi, 'vaultDir');
 		await expect(files.write('/', new ArrayBuffer(1))).rejects.toThrowError(
