@@ -82,12 +82,7 @@ export const createStorageBackend = ({
 			const { resolvedPath, bkp } = getFilePaths(subdir, fileId);
 
 			// Restore file
-			if (
-				!existsSync(resolvedPath) &&
-				!pathUploadSessions.has(resolvedPath) &&
-				existsSync(bkp) &&
-				statSync(bkp).isFile()
-			) {
+			if (!existsSync(resolvedPath) && existsSync(bkp) && statSync(bkp).isFile()) {
 				renameSync(bkp, resolvedPath);
 			}
 
