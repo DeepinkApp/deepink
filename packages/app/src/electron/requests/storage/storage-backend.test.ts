@@ -9,6 +9,43 @@ vi.mock('fs/promises', () => vi.importActual('@mocks/fs/promises'));
 vi.mock('recursive-readdir', () => vi.importActual('@mocks/recursive-readdir'));
 vi.mock('electron', () => vi.importActual('@mocks/electron'));
 
+describe('Special names', () => {
+	beforeEach(() => {
+		vol.reset();
+	});
+
+	test('File name with special prefix cannot be created', async () => {
+		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
+
+		await expect(storageApi.createUploadSession('.tmp', '/foo/bar')).rejects.toThrow(
+			'File name must not start from ".tmp"',
+		);
+
+		await expect(
+			storageApi.createUploadSession('foo/bar/.tmp', '/foo/bar'),
+		).rejects.toThrow('File name must not start from ".tmp"');
+
+		await expect(
+			storageApi.createUploadSession('foo/bar/.tmp-bkp', '/foo/bar'),
+		).rejects.toThrow('File name must not start from ".tmp"');
+	});
+
+	test('Temporary files is not listed', async () => {
+		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
+
+		// Start uploading session
+		const session = await storageApi.createUploadSession('filename', '/foo/bar');
+		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
+
+		// Temp file is present in FS
+		expect(vol.readdirSync('/', { recursive: true })).toContainEqual(
+			expect.stringMatching(/\.tmp/),
+		);
+
+		await expect(storageApi.list('/')).resolves.toEqual([]);
+	});
+});
+
 // TODO: add cases for rewrite, restore from backup, cleanup for tmp file
 describe('Upload sessions', () => {
 	beforeEach(() => {
@@ -29,21 +66,6 @@ describe('Upload sessions', () => {
 		expect(
 			vol.readFileSync('/home/userData/appDir/app/foo/bar/filename'),
 		).toHaveLength(1024 * 3);
-	});
-
-	test('Temporary files is not listed', async () => {
-		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
-
-		// Start uploading session
-		const session = await storageApi.createUploadSession('filename', '/foo/bar');
-		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
-
-		// Temp file is present in FS
-		expect(vol.readdirSync('/', { recursive: true })).toContainEqual(
-			expect.stringMatching(/\.tmp/),
-		);
-
-		await expect(storageApi.list('/')).resolves.toEqual([]);
 	});
 
 	test('Creation of new session for the same path must cancel previous session', async () => {

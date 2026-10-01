@@ -35,6 +35,9 @@ export const createStorageBackend = ({
 	const getScopedPath = (subdir: string | undefined, path?: string) =>
 		path ? joinPath(getUserDataPath(subdir), path) : getUserDataPath(subdir);
 
+	const isAllowedPath = (filename: string) =>
+		filename.split('/').every((segment) => !segment.startsWith(tmpPrefix));
+
 	let uploadId = 0;
 	const pathUploadSessions = new Map<string, string>();
 	const uploadSessions = new Map<
@@ -110,9 +113,7 @@ export const createStorageBackend = ({
 					// Remove root path
 					path.slice(filesDir.length),
 				)
-				.filter((info) =>
-					info.split('/').every((segment) => !segment.startsWith(tmpPrefix)),
-				)
+				.filter(isAllowedPath)
 				.toArray();
 		},
 
@@ -122,6 +123,9 @@ export const createStorageBackend = ({
 			req: [id: string, subdir: string];
 			ctx: Electron.IpcMainInvokeEvent;
 		}): Promise<string | undefined> => {
+			if (!isAllowedPath(fileId))
+				throw new Error(`File name must not start from "${tmpPrefix}"`);
+
 			const paths = getFilePaths(subdir, fileId);
 			const { resolvedPath } = paths;
 
