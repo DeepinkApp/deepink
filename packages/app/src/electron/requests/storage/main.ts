@@ -98,15 +98,28 @@ export const createStorageBackend = ({
 				// Skip special files
 				if (!isAllowedPath(fileId)) continue;
 
-				const filePath = getScopedPath(subdir, fileId);
+				const { resolvedPath, bkp, tmp } = getFilePaths(subdir, fileId);
 
-				if (!existsSync(filePath)) {
-					console.debug('Not found file', filePath);
+				if (!existsSync(resolvedPath)) {
+					console.debug('Not found file', resolvedPath);
 					continue;
 				}
 
-				await rm(filePath, { force: true, recursive: true });
-				console.debug('Removed file', filePath);
+				if (statSync(resolvedPath).isDirectory()) {
+					// Recursive directory deletion
+					await rm(resolvedPath, { force: true, recursive: true });
+					console.debug('Directory removed', resolvedPath);
+				} else {
+					// Delete file and its related files
+					const pathsToRemove = [resolvedPath, bkp];
+					if (!pathUploadSessions.has(resolvedPath)) pathsToRemove.push(tmp);
+
+					for (const path of pathsToRemove) {
+						if (!existsSync(path) || !statSync(path).isFile()) continue;
+						rmSync(path);
+						console.debug('File deleted', path);
+					}
+				}
 			}
 		},
 

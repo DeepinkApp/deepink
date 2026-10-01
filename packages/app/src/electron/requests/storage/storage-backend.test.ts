@@ -189,4 +189,26 @@ describe('File integrity', () => {
 			fileContent.buffer,
 		);
 	});
+
+	test('File deletes with all related tmp files', async () => {
+		onTestFinished(enableStorage({ tmpPrefix: '.tmp' }));
+
+		const fileContent = getRandomBytes(1024);
+
+		// Create backup file
+		vol.mkdirSync('/home/userData/appDir/app/foo/bar', { recursive: true });
+		vol.writeFileSync(
+			'/home/userData/appDir/app/foo/bar/.tmp-bkp-filename',
+			fileContent,
+		);
+		vol.writeFileSync('/home/userData/appDir/app/foo/bar/filename', fileContent);
+		expect(vol.readdirSync('/', { recursive: true })).toContainEqual(
+			expect.stringContaining('filename'),
+		);
+
+		await storageApi.delete(['filename'], '/foo/bar');
+		expect(vol.readdirSync('/', { recursive: true })).not.toContainEqual(
+			expect.stringContaining('filename'),
+		);
+	});
 });
