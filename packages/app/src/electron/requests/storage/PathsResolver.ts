@@ -56,7 +56,9 @@ export class PathsResolver {
 	public isAllowedPath(filename: string) {
 		const { tmpPrefix } = this.config;
 
-		return filename.split('/').every((segment) => !segment.startsWith(tmpPrefix));
+		return filename
+			.split(path.sep)
+			.every((segment) => !segment.startsWith(tmpPrefix));
 	}
 
 	public getPrefix() {

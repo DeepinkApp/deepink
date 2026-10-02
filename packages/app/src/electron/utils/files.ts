@@ -3,10 +3,10 @@ import path from 'path';
 
 import { isDevMode } from './app';
 
-const isRootedPath = (root: string, targetPath: string) => {
-	const pathSegments = targetPath.split(path.sep);
+export const isRootedPath = (root: string, targetPath: string, separator = path.sep) => {
+	const pathSegments = targetPath.split(separator);
 	return root
-		.split(path.sep)
+		.split(separator)
 		.every((rootSegment, index) => rootSegment === pathSegments[index]);
 };
 

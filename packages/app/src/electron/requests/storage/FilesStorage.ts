@@ -1,4 +1,5 @@
 import { existsSync, renameSync, rmSync, statSync } from 'fs';
+import path from 'path';
 import recursive from 'recursive-readdir';
 
 import { readFile, rm } from 'fs/promises';
@@ -61,11 +62,11 @@ export class FilesStorage {
 		const files = await recursive(filesDir);
 		return files
 			.values()
-			.map((path) =>
-				// Remove root path
-				path.slice(filesDir.length),
-			)
 			.filter((path) => this.paths.isAllowedPath(path))
+			.map((filename) =>
+				// Remove root path
+				filename.slice(filesDir.length).split(path.sep).join('/'),
+			)
 			.toArray();
 	}
 }
