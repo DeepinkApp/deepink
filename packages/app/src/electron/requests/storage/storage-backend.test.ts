@@ -143,6 +143,41 @@ describe('Upload sessions', () => {
 		).toHaveLength(1024);
 	});
 
+	test('Aborted session reasons are retained temporarily, then discarded', async () => {
+		vi.useFakeTimers();
+		onTestFinished(() => {
+			vi.useRealTimers();
+		});
+		onTestFinished(enableStorage());
+
+		const previousSession = await storageApi.createUploadSession(
+			'filename',
+			'/foo/bar',
+		);
+		await storageApi.uploadChunk(previousSession, getRandomBytes(1024).buffer);
+
+		const currentSession = await storageApi.createUploadSession(
+			'filename',
+			'/foo/bar',
+		);
+		await storageApi.commitUpload(currentSession);
+
+		await expect(
+			storageApi.uploadChunk(previousSession, getRandomBytes(1024).buffer),
+		).rejects.toThrow('Another session is started');
+
+		await vi.advanceTimersByTimeAsync(59_000);
+		await expect(
+			storageApi.uploadChunk(previousSession, getRandomBytes(1024).buffer),
+		).rejects.toThrow('Another session is started');
+
+		await vi.advanceTimersByTimeAsync(10_000);
+
+		await expect(
+			storageApi.uploadChunk(previousSession, getRandomBytes(1024).buffer),
+		).rejects.toThrow('No session found');
+	});
+
 	test('No race conditions for sessions', async () => {
 		onTestFinished(enableStorage());
 

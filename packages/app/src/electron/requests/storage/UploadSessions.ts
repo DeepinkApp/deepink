@@ -1,11 +1,13 @@
 import { MutexMap } from './MutexMap';
 import { PathsResolver } from './PathsResolver';
+import { Tombstones } from './Tombstones';
 import { UploadSession } from './UploadSession';
 
 export class UploadSessions {
-	private readonly mutexMap = new MutexMap();
 	private readonly pathUploadSessions = new Map<string, string>();
 	private readonly uploadSessions = new Map<string, UploadSession>();
+	private readonly mutexMap = new MutexMap();
+	private readonly tombstones = new Tombstones(60_000);
 
 	constructor(private readonly paths: PathsResolver) {}
 
@@ -19,10 +21,12 @@ export class UploadSessions {
 			// Cancel previous session
 			const previousSessionId = this.pathUploadSessions.get(paths.resolvedPath);
 			if (previousSessionId !== undefined) {
-				// TODO: schedule deletion by timeout for case the session will not be accessed
 				const session = this.uploadSessions.get(previousSessionId);
 				if (session) {
-					await session.abort(new Error('Another session is started'));
+					const error = new Error('Another session is started');
+					this.tombstones.set(previousSessionId, error);
+					this.uploadSessions.delete(previousSessionId);
+					await session.abort(error);
 				}
 			}
 
@@ -49,13 +53,18 @@ export class UploadSessions {
 
 	public getByFilename(filename: string) {
 		const sessionId = this.pathUploadSessions.get(filename);
-
-		if (sessionId === undefined) return null;
-		return this.uploadSessions.get(sessionId) ?? null;
+		return sessionId ? this.getById(sessionId) : undefined;
 	}
 
 	public getById(sessionId: string) {
-		return this.uploadSessions.get(sessionId) ?? null;
+		const session = this.uploadSessions.get(sessionId);
+		if (session) return session;
+
+		const tombstone = this.tombstones.get(sessionId);
+		// eslint-disable-next-line @typescript-eslint/only-throw-error
+		if (tombstone) throw tombstone;
+
+		return null;
 	}
 
 	private uploadId = 0;
