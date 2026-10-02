@@ -1,3 +1,5 @@
+import { Mutex } from 'async-mutex';
+
 import { PathsResolver } from './PathsResolver';
 import { UploadSession } from './UploadSession';
 
@@ -8,40 +10,54 @@ export class UploadSessions {
 
 	constructor(private readonly paths: PathsResolver) {}
 
+	private readonly pathMutexMap = new Map<string, Mutex>();
+	private getPathMutex(resolvedPath: string) {
+		const mutex = this.pathMutexMap.get(resolvedPath);
+		if (mutex) return mutex;
+
+		const newMutex = new Mutex();
+		this.pathMutexMap.set(resolvedPath, newMutex);
+
+		return newMutex;
+	}
+
 	public async create(fileId: string, subdir: string) {
 		if (!this.paths.isAllowedPath(fileId))
 			throw new Error(`File name must not start from '${this.paths.getPrefix()}'`);
 
 		const paths = this.paths.getFilePaths(subdir, fileId);
-		const { resolvedPath } = paths;
+		const mutex = this.getPathMutex(paths.resolvedPath);
 
-		// Cancel previous session
-		const previousSessionId = this.pathUploadSessions.get(resolvedPath);
-		if (previousSessionId !== undefined) {
-			// TODO: schedule deletion by timeout for case the session will not be accessed
-			const session = this.uploadSessions.get(previousSessionId);
-			if (session) {
-				await session.abort(new Error('Another session is started'));
+		return mutex.runExclusive(async () => {
+			// Cancel previous session
+			const previousSessionId = this.pathUploadSessions.get(paths.resolvedPath);
+			if (previousSessionId !== undefined) {
+				// TODO: schedule deletion by timeout for case the session will not be accessed
+				const session = this.uploadSessions.get(previousSessionId);
+				if (session) {
+					await session.abort(new Error('Another session is started'));
+				}
 			}
-		}
 
-		// Start new session
-		const sessionId = String(++this.uploadId);
+			// Start new session
+			const session = new UploadSession(paths);
 
-		const session = new UploadSession(paths);
-		await session.init(() => {
-			this.uploadSessions.delete(sessionId);
+			const sessionId = String(++this.uploadId);
+			this.pathUploadSessions.set(paths.resolvedPath, sessionId);
+			this.uploadSessions.set(sessionId, session);
 
-			// Terminate session
-			const currentSessionId = this.pathUploadSessions.get(paths.resolvedPath);
-			if (currentSessionId === sessionId)
-				this.pathUploadSessions.delete(paths.resolvedPath);
+			await session.init(() => {
+				// Terminate session
+				this.uploadSessions.delete(sessionId);
+
+				// Cleanup related
+				const currentSessionId = this.pathUploadSessions.get(paths.resolvedPath);
+				if (currentSessionId === sessionId)
+					this.pathUploadSessions.delete(paths.resolvedPath);
+			});
+
+			return sessionId;
 		});
-
-		this.pathUploadSessions.set(resolvedPath, sessionId);
-		this.uploadSessions.set(sessionId, session);
-
-		return sessionId;
 	}
 
 	public getByFilename(filename: string) {

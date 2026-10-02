@@ -143,6 +143,28 @@ describe('Upload sessions', () => {
 		).toHaveLength(1024);
 	});
 
+	test('No race conditions for sessions', async () => {
+		onTestFinished(enableStorage());
+
+		const sessionIds = await Promise.all([
+			storageApi.createUploadSession('filename', '/foo/bar'),
+			storageApi.createUploadSession('filename', '/foo/bar'),
+			storageApi.createUploadSession('filename', '/foo/bar'),
+			storageApi.createUploadSession('filename', '/foo/bar'),
+			storageApi.createUploadSession('filename', '/foo/bar'),
+		]);
+
+		await expect(
+			Promise.allSettled(
+				sessionIds.map((id) =>
+					storageApi.uploadChunk(id, getRandomBytes(100).buffer),
+				),
+			).then((results) =>
+				results.filter((result) => result.status === 'fulfilled'),
+			),
+		).resolves.toHaveLength(1);
+	});
+
 	test('Many sessions may exists in parallel', async () => {
 		onTestFinished(enableStorage());
 
