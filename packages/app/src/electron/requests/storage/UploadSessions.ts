@@ -1,9 +1,9 @@
-import { Mutex } from 'async-mutex';
-
+import { MutexMap } from './MutexMap';
 import { PathsResolver } from './PathsResolver';
 import { UploadSession } from './UploadSession';
 
 export class UploadSessions {
+	private readonly mutexMap = new MutexMap();
 	private readonly pathUploadSessions = new Map<string, string>();
 	private readonly uploadSessions = new Map<string, UploadSession>();
 
@@ -14,9 +14,8 @@ export class UploadSessions {
 			throw new Error(`File name must not start from '${this.paths.getPrefix()}'`);
 
 		const paths = this.paths.getFilePaths(subdir, fileId);
-		const mutex = this.getPathMutex(paths.resolvedPath);
 
-		return mutex.runExclusive(async () => {
+		return this.mutexMap.runExclusive(paths.resolvedPath, async () => {
 			// Cancel previous session
 			const previousSessionId = this.pathUploadSessions.get(paths.resolvedPath);
 			if (previousSessionId !== undefined) {
@@ -62,16 +61,5 @@ export class UploadSessions {
 	private uploadId = 0;
 	private getSessionId() {
 		return String(++this.uploadId);
-	}
-
-	private readonly pathMutexMap = new Map<string, Mutex>();
-	private getPathMutex(resolvedPath: string) {
-		const mutex = this.pathMutexMap.get(resolvedPath);
-		if (mutex) return mutex;
-
-		const newMutex = new Mutex();
-		this.pathMutexMap.set(resolvedPath, newMutex);
-
-		return newMutex;
 	}
 }
