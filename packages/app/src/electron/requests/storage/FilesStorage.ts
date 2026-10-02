@@ -13,10 +13,10 @@ export class FilesStorage {
 	) {}
 
 	async get(fileId: string, subdir: string) {
-		// Do not return special files
-		if (!this.paths.isAllowedPath(fileId)) return null;
-
 		const { resolvedPath, bkp } = this.paths.getFilePaths(subdir, fileId);
+
+		// Do not return special files
+		if (!this.paths.isAllowedPath(resolvedPath)) return null;
 
 		// Restore file
 		if (!existsSync(resolvedPath) && existsSync(bkp) && statSync(bkp).isFile()) {
@@ -31,10 +31,10 @@ export class FilesStorage {
 
 	async delete(fileIds: string[], subdir: string) {
 		for (const fileId of fileIds) {
-			// Skip special files
-			if (!this.paths.isAllowedPath(fileId)) continue;
-
 			const { resolvedPath, bkp, tmp } = this.paths.getFilePaths(subdir, fileId);
+
+			// Skip special files
+			if (!this.paths.isAllowedPath(resolvedPath)) continue;
 
 			if (existsSync(resolvedPath) && statSync(resolvedPath).isDirectory()) {
 				// Recursive directory deletion

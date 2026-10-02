@@ -12,10 +12,10 @@ export class UploadSessions {
 	constructor(private readonly paths: PathsResolver) {}
 
 	public async create(fileId: string, subdir: string) {
-		if (!this.paths.isAllowedPath(fileId))
-			throw new Error(`File name must not start from '${this.paths.getPrefix()}'`);
-
 		const paths = this.paths.getFilePaths(subdir, fileId);
+
+		if (!this.paths.isAllowedPath(paths.resolvedPath))
+			throw new Error(`File name must not start from '${this.paths.getPrefix()}'`);
 
 		return this.mutexMap.runExclusive(paths.resolvedPath, async () => {
 			// Cancel previous session
