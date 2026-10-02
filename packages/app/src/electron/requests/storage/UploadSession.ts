@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { once } from 'node:events';
 import {
 	createWriteStream,
@@ -62,7 +63,30 @@ export class UploadSession {
 		if (!this.stream) throw new Error('Session is not initialized yet');
 
 		if (!this.stream.write(new Uint8Array(buffer))) {
-			await once(this.stream, 'drain');
+			const stream = this.stream;
+			await new Promise<void>((resolve, reject) => {
+				const cleanup = () => {
+					stream.off('drain', onDrain);
+					stream.off('close', onClose);
+					stream.off('error', onError);
+				};
+				const onDrain = () => {
+					cleanup();
+					resolve();
+				};
+				const onClose = () => {
+					cleanup();
+					reject(this.error ?? new Error('Upload stream closed before drain'));
+				};
+				const onError = (error: Error) => {
+					cleanup();
+					reject(error);
+				};
+
+				stream.once('drain', onDrain);
+				stream.once('close', onClose);
+				stream.once('error', onError);
+			});
 		}
 	}
 
