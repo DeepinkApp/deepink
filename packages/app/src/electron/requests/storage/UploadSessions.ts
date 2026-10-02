@@ -4,22 +4,10 @@ import { PathsResolver } from './PathsResolver';
 import { UploadSession } from './UploadSession';
 
 export class UploadSessions {
-	private uploadId = 0;
 	private readonly pathUploadSessions = new Map<string, string>();
 	private readonly uploadSessions = new Map<string, UploadSession>();
 
 	constructor(private readonly paths: PathsResolver) {}
-
-	private readonly pathMutexMap = new Map<string, Mutex>();
-	private getPathMutex(resolvedPath: string) {
-		const mutex = this.pathMutexMap.get(resolvedPath);
-		if (mutex) return mutex;
-
-		const newMutex = new Mutex();
-		this.pathMutexMap.set(resolvedPath, newMutex);
-
-		return newMutex;
-	}
 
 	public async create(fileId: string, subdir: string) {
 		if (!this.paths.isAllowedPath(fileId))
@@ -42,7 +30,7 @@ export class UploadSessions {
 			// Start new session
 			const session = new UploadSession(paths);
 
-			const sessionId = String(++this.uploadId);
+			const sessionId = this.getSessionId();
 			this.pathUploadSessions.set(paths.resolvedPath, sessionId);
 			this.uploadSessions.set(sessionId, session);
 
@@ -69,5 +57,21 @@ export class UploadSessions {
 
 	public getById(sessionId: string) {
 		return this.uploadSessions.get(sessionId) ?? null;
+	}
+
+	private uploadId = 0;
+	private getSessionId() {
+		return String(++this.uploadId);
+	}
+
+	private readonly pathMutexMap = new Map<string, Mutex>();
+	private getPathMutex(resolvedPath: string) {
+		const mutex = this.pathMutexMap.get(resolvedPath);
+		if (mutex) return mutex;
+
+		const newMutex = new Mutex();
+		this.pathMutexMap.set(resolvedPath, newMutex);
+
+		return newMutex;
 	}
 }
