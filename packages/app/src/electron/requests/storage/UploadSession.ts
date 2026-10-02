@@ -44,7 +44,7 @@ export class UploadSession {
 
 	private error?: unknown;
 	public async abort(error: unknown) {
-		if (this.error !== undefined) throw new Error('Already aborted');
+		if (this.error !== undefined) return;
 
 		// Set error immediately
 		this.error = error;
