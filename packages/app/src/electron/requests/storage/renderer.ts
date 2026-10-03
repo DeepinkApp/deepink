@@ -44,13 +44,42 @@ export class ElectronFilesController implements IFilesStorage {
 	}
 
 	public async get(id: string) {
-		return this.storageApi.get(id, this.subdirectory).then((buffer) => {
-			// Don't handle empty data
-			if (!buffer) return buffer;
+		const sessionInfo = await this.storageApi.createReadSession(
+			id,
+			this.subdirectory,
+		);
+		if (!sessionInfo) return null;
 
-			if (!this.encryption) return buffer;
-			return this.encryption.decrypt(buffer);
-		});
+		const { size, id: sessionId } = sessionInfo;
+
+		const buffer = new ArrayBuffer(size, { maxByteLength: size * 3 });
+		const bv = new Uint8Array(buffer);
+
+		const chunkSize = 1024 ** 2 * (this.config.chunkSize ?? 5);
+		let offset = 0;
+		while (true) {
+			const chunk = await this.storageApi.readChunk(sessionId, chunkSize);
+
+			// End when whole file is drained
+			if (!chunk) {
+				await this.storageApi.closeReader(sessionId);
+				if (buffer.byteLength !== offset) buffer.resize(offset);
+				break;
+			}
+
+			// Extend buffer if needed
+			const leftSpace = buffer.byteLength - offset;
+			const extraSizeNeeded = chunk.byteLength - leftSpace;
+			if (extraSizeNeeded > 0) {
+				buffer.resize(buffer.byteLength + extraSizeNeeded);
+			}
+
+			// Write
+			bv.set(new Uint8Array(chunk), offset);
+			offset += chunk.byteLength;
+		}
+
+		return buffer;
 	}
 
 	public async delete(ids: string[]) {

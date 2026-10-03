@@ -270,7 +270,7 @@ describe('FS backend', () => {
 			'No handler registered for storage.list',
 		);
 		await expect(filesController.get('/')).rejects.toThrow(
-			'No handler registered for storage.get',
+			'No handler registered for storage.createReadSession',
 		);
 		await expect(filesController.write('/', new ArrayBuffer(1))).rejects.toThrow(
 			'No handler registered for storage.createUploadSession',
