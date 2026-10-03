@@ -1,26 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Check files content > Files content 1`] = `
-[
-  {
-    "content": "File text content",
-    "path": "/test.txt",
-  },
-  {
-    "content": "File text content",
-    "path": "/foo/bar/baz/test.txt",
-  },
-]
-`;
-
-exports[`Write files > Controller files list after writing 1`] = `
+exports[`Basic ops > File uploading persist data on disk > Controller files list after writing 1`] = `
 [
   "/test.txt",
   "/foo/bar/baz/test.txt",
 ]
 `;
 
-exports[`Write files > FS structure after writing 1`] = `
+exports[`Basic ops > File uploading persist data on disk > FS structure after writing 1`] = `
 [
   "/home/userData/appDir/app",
   "/home/userData/appDir",
@@ -32,5 +19,18 @@ exports[`Write files > FS structure after writing 1`] = `
   "/home/userData/appDir/app/vaultDir/foo/bar/baz/test.txt",
   "/home/userData",
   "/home/userData/appDir/app/vaultDir",
+]
+`;
+
+exports[`Basic ops > File uploading persist data on disk > Files content 1`] = `
+[
+  {
+    "content": "File text content",
+    "path": "/test.txt",
+  },
+  {
+    "content": "File text content",
+    "path": "/foo/bar/baz/test.txt",
+  },
 ]
 `;

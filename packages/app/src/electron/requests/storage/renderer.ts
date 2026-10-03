@@ -1,4 +1,5 @@
 import { IEncryptionController } from '@core/encryption';
+import { BufferCursor } from '@core/encryption/utils/bytes/BufferCursor';
 import { IFilesStorage } from '@core/features/files';
 
 import { ipcRendererFetcher } from '../../utils/ipc/ipcRendererFetcher';
@@ -13,6 +14,7 @@ export class ElectronFilesController implements IFilesStorage {
 		private readonly storageApi: StorageChannelAPI,
 		private readonly subdirectory: string,
 		private readonly encryption?: IEncryptionController,
+		private readonly config: { chunkSize?: number } = {},
 	) {
 		this.subdirectory = subdirectory;
 		this.encryption = encryption;
@@ -23,18 +25,52 @@ export class ElectronFilesController implements IFilesStorage {
 			? await this.encryption.encrypt(buffer)
 			: buffer;
 
-		// Absolute file name with no slash
-		return this.storageApi.upload(filename, encryptedBuffer, this.subdirectory);
+		const sessionId = await this.storageApi.createUploadSession(
+			filename,
+			this.subdirectory,
+		);
+
+		const bufferCursor = new BufferCursor(encryptedBuffer);
+		while (bufferCursor.getRemainingBytes() > 0) {
+			const slice = bufferCursor.readBytes(
+				1024 ** 2 * (this.config.chunkSize ?? 5),
+			);
+			if (!slice) throw new Error('Unexpected end of file');
+
+			await this.storageApi.uploadChunk(sessionId, slice.slice(0).buffer);
+		}
+
+		await this.storageApi.commitUpload(sessionId);
 	}
 
 	public async get(id: string) {
-		return this.storageApi.get(id, this.subdirectory).then((buffer) => {
-			// Don't handle empty data
-			if (!buffer) return buffer;
+		const sessionInfo = await this.storageApi.createReadSession(
+			id,
+			this.subdirectory,
+		);
+		if (!sessionInfo) return null;
 
-			if (!this.encryption) return buffer;
-			return this.encryption.decrypt(buffer);
-		});
+		const { size, id: sessionId } = sessionInfo;
+
+		const buffer = new Uint8Array(size);
+
+		const chunkSize = 1024 ** 2 * (this.config.chunkSize ?? 5);
+		let offset = 0;
+		while (true) {
+			const chunk = await this.storageApi.readChunk(sessionId, chunkSize);
+
+			// End when whole file is drained
+			if (!chunk) {
+				await this.storageApi.closeReader(sessionId);
+				break;
+			}
+
+			// Write
+			buffer.set(new Uint8Array(chunk), offset);
+			offset += chunk.byteLength;
+		}
+
+		return buffer.buffer;
 	}
 
 	public async delete(ids: string[]) {
