@@ -53,21 +53,21 @@ export class ElectronFilesController implements IFilesStorage {
 		const { size, id: sessionId } = sessionInfo;
 
 		const buffer = new Uint8Array(size);
+		try {
+			const chunkSize = 1024 ** 2 * (this.config.chunkSize ?? 5);
+			let offset = 0;
+			while (true) {
+				const chunk = await this.storageApi.readChunk(sessionId, chunkSize);
 
-		const chunkSize = 1024 ** 2 * (this.config.chunkSize ?? 5);
-		let offset = 0;
-		while (true) {
-			const chunk = await this.storageApi.readChunk(sessionId, chunkSize);
+				// End when whole file is drained
+				if (!chunk) break;
 
-			// End when whole file is drained
-			if (!chunk) {
-				await this.storageApi.closeReader(sessionId);
-				break;
+				// Write
+				buffer.set(new Uint8Array(chunk), offset);
+				offset += chunk.byteLength;
 			}
-
-			// Write
-			buffer.set(new Uint8Array(chunk), offset);
-			offset += chunk.byteLength;
+		} finally {
+			await this.storageApi.closeReader(sessionId);
 		}
 
 		return buffer.buffer;

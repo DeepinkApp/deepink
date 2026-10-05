@@ -1,8 +1,10 @@
 import { vol } from 'memfs';
 import { getRandomBytes } from '@core/encryption/utils/random';
+import { ipcMainHandler } from '@electron/utils/ipc/ipcMainHandler';
 
-import { enableStorage } from './main';
+import { createStorageBackend, enableStorage } from './main';
 import { ElectronFilesController, storageApi } from './renderer';
+import { storageChannel } from '.';
 
 vi.mock('fs', () => vi.importActual('@mocks/fs'));
 vi.mock('fs/promises', () => vi.importActual('@mocks/fs/promises'));
@@ -383,5 +385,45 @@ describe('Deletion tests', () => {
 
 		await files.delete(['/']);
 		await expect(files.list()).resolves.toHaveLength(0);
+	});
+});
+
+describe('Resources must not leak', () => {
+	beforeAll(() => {
+		vi.clearAllMocks();
+	});
+	afterAll(() => {
+		vi.clearAllMocks();
+	});
+	beforeEach(() => {
+		vol.reset();
+	});
+
+	test('Reader must close session for successful reads', async () => {
+		const backend = createStorageBackend();
+		onTestFinished(storageChannel.server(ipcMainHandler, backend));
+
+		const files = new ElectronFilesController(storageApi, '/');
+		await createFiles(files, ['/data']);
+
+		const closeReaderSpy = vi.spyOn(backend, 'closeReader');
+		await expect(files.get('/data')).resolves.not.toThrow();
+		expect(closeReaderSpy).toHaveBeenCalledTimes(1);
+	});
+
+	test('Reader must close session when error occurs', async () => {
+		const backend = createStorageBackend();
+		onTestFinished(storageChannel.server(ipcMainHandler, backend));
+
+		const files = new ElectronFilesController(storageApi, '/');
+		await createFiles(files, ['/data']);
+
+		const closeReaderSpy = vi.spyOn(backend, 'closeReader');
+
+		vi.spyOn(backend, 'readChunk').mockRejectedValueOnce(
+			new Error('Emulated read error'),
+		);
+		await expect(files.get('/data')).rejects.toThrow('Emulated read error');
+		expect(closeReaderSpy).toHaveBeenCalledTimes(1);
 	});
 });
