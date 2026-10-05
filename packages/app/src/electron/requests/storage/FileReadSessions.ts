@@ -24,7 +24,8 @@ export class FileReadSessions {
 		}
 
 		// Exist for non exists files
-		if (!existsSync(paths.resolvedPath)) return null;
+		if (!existsSync(paths.resolvedPath) || !statSync(paths.resolvedPath).isFile())
+			return null;
 
 		const session = new FileReadSession();
 		await session.open(paths.resolvedPath);

@@ -41,12 +41,9 @@ describe('Chunking', () => {
 	])(
 		'File reading returns exact equal buffer as original data (chunk size $chunkSize Mb, file size $size Mb)',
 		async ({ size, chunkSize }) => {
-			const filesController = new ElectronFilesController(
-				storageApi,
-				'size-test',
-				undefined,
-				{ chunkSize },
-			);
+			const filesController = new ElectronFilesController(storageApi, 'size-test', {
+				chunkSize,
+			});
 			const originalBuffer = getRandomBytes(1024 ** 2 * size);
 
 			await filesController.write('data', originalBuffer.buffer);
@@ -108,6 +105,13 @@ describe('Basic ops', () => {
 				),
 			),
 		).resolves.toMatchSnapshot('Files content');
+	});
+
+	test('Fetching for directory returns nothing', async () => {
+		const files = new ElectronFilesController(storageApi, 'vaultDir');
+		await createFiles(files, ['/foo/bar/baz/test.txt']);
+
+		await expect(files.get('/foo')).resolves.toBe(null);
 	});
 });
 
