@@ -43,7 +43,9 @@ describe('Special names', () => {
 		);
 
 		await expect(storageApi.list('/')).resolves.toEqual([]);
-		await expect(storageApi.get('.tmp-tmp-filename', '/foo/bar')).resolves.toBe(null);
+		await expect(
+			storageApi.createReadSession('.tmp-tmp-filename', '/foo/bar'),
+		).resolves.toBe(null);
 
 		// Deletion does not work
 		await expect(
@@ -241,7 +243,9 @@ describe('File integrity', () => {
 			fileContent,
 		);
 
-		await expect(storageApi.get('filename', '/foo/bar')).resolves.toStrictEqual(
+		const session = await storageApi.createReadSession('filename', '/foo/bar');
+		expect(session).not.toBe(null);
+		await expect(storageApi.readChunk(session!.id, 10_000)).resolves.toStrictEqual(
 			fileContent.buffer,
 		);
 	});
@@ -281,6 +285,8 @@ describe('File integrity', () => {
 		await storageApi.delete(['note'], '/foo/bar');
 
 		expect(vol.existsSync(backupPath)).toBe(false);
-		await expect(storageApi.get('note', '/foo/bar')).resolves.toBe(null);
+		await expect(storageApi.createReadSession('note', '/foo/bar')).resolves.toBe(
+			null,
+		);
 	});
 });

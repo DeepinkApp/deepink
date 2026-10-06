@@ -11,8 +11,7 @@ export class FileReadSessions {
 	public async create(fileId: string, subdir: string) {
 		const paths = this.paths.getFilePaths(subdir, fileId);
 
-		if (!this.paths.isAllowedPath(paths.resolvedPath))
-			throw new Error(`File name must not start from '${this.paths.getPrefix()}'`);
+		if (!this.paths.isAllowedPath(paths.resolvedPath)) return null;
 
 		// Restore file
 		if (

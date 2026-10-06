@@ -1,8 +1,8 @@
-import { existsSync, renameSync, rmSync, statSync } from 'fs';
+import { existsSync, rmSync, statSync } from 'fs';
 import path from 'path';
 import recursive from 'recursive-readdir';
 
-import { readFile, rm } from 'fs/promises';
+import { rm } from 'fs/promises';
 import { PathsResolver } from './PathsResolver';
 import { UploadSessions } from './UploadSessions';
 
@@ -11,23 +11,6 @@ export class FilesStorage {
 		private readonly paths: PathsResolver,
 		private readonly opSessions: UploadSessions,
 	) {}
-
-	async get(fileId: string, subdir: string) {
-		const { resolvedPath, bkp } = this.paths.getFilePaths(subdir, fileId);
-
-		// Do not return special files
-		if (!this.paths.isAllowedPath(resolvedPath)) return null;
-
-		// Restore file
-		if (!existsSync(resolvedPath) && existsSync(bkp) && statSync(bkp).isFile()) {
-			renameSync(bkp, resolvedPath);
-		}
-
-		if (!existsSync(resolvedPath) || !statSync(resolvedPath).isFile()) return null;
-
-		const buffer = await readFile(resolvedPath);
-		return new Uint8Array(buffer).buffer;
-	}
 
 	async delete(fileIds: string[], subdir: string) {
 		for (const fileId of fileIds) {

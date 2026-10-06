@@ -17,10 +17,6 @@ export const createStorageBackend = ({ tmpPrefix = '.tmp-fs' }: StorageOptions =
 	const readSessions = new FileReadSessions(pathsResolver);
 
 	return {
-		async get({ req: [fileId, subdir] }) {
-			return storage.get(fileId, subdir);
-		},
-
 		async delete({ req: [fileIds, subdir] }) {
 			return storage.delete(fileIds, subdir);
 		},
