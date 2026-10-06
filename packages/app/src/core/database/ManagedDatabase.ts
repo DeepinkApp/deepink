@@ -44,6 +44,15 @@ export type Options = {
 	};
 };
 
+const requestRunOnIdle = (cb: () => void, deadline: number) => {
+	if (typeof globalThis.requestIdleCallback === 'function') {
+		globalThis.requestIdleCallback(cb, { timeout: deadline });
+		return;
+	}
+
+	setTimeout(cb, 0);
+};
+
 /**
  * Class to manage database data synchronization
  */
@@ -61,9 +70,14 @@ export class ManagedDatabase<T> implements IManagedDatabase<T> {
 		this.dbFile = dbFile;
 
 		// Auto sync changes
-		this.debouncedSync = debounce(this.sync, {
-			wait: sync.delay,
-		});
+		this.debouncedSync = debounce(
+			() => {
+				requestRunOnIdle(() => this.sync(), sync.deadline);
+			},
+			{
+				wait: sync.delay,
+			},
+		);
 
 		this.cleanups.push(dbContainer.onChanged.watch(this.debouncedSync));
 	}

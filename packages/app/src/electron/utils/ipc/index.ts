@@ -39,7 +39,9 @@ export const createChannel = <T extends ApiSchema>(options: ChannelOptions) => {
 		): T => {
 			// Return proxy object with virtual callbacks
 			return new Proxy<T>({} as any, {
-				get: function (_target, methodName: string) {
+				get: function (target, methodName: string) {
+					if (typeof methodName !== 'string') return target[methodName];
+
 					const endpoint = getResolvedEndpointName(methodName);
 					const mapper = mappers[methodName as keyof T];
 					return (...args: Parameters<T[keyof T]>) => {
@@ -59,8 +61,10 @@ export const createChannel = <T extends ApiSchema>(options: ChannelOptions) => {
 			callbacks: ApiToHandlers<T, Context>,
 		): (() => void) => {
 			// Subscribe on channels
-			const cleanups = Object.entries(callbacks).map(([methodName, callback]) =>
-				receiver(getResolvedEndpointName(methodName), callback),
+			const cleanups = Object.keys(callbacks).map((methodName) =>
+				receiver(getResolvedEndpointName(methodName), (params) =>
+					callbacks[methodName](params),
+				),
 			);
 			return () => {
 				cleanups.forEach((cleanup) => cleanup());

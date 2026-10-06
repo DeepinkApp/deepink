@@ -1,65 +1,102 @@
 import { IpcMainInvokeEvent } from 'electron';
-import { existsSync, statSync } from 'fs';
-import path from 'path';
-import recursive from 'recursive-readdir';
 import { ApiToHandlers } from '@electron/utils/ipc';
-import { recoveryAtomicFile, writeFileAtomic } from '@utils/files';
 
-import { getUserDataPath, joinPath } from '../../utils/files';
 import { ipcMainHandler } from '../../utils/ipc/ipcMainHandler';
 
-import { mkdir, readFile, rm } from 'fs/promises';
+import { FileReadSessions } from './FileReadSessions';
+import { FilesStorage } from './FilesStorage';
+import { PathsResolver, StorageOptions } from './PathsResolver';
+import { UploadSessions } from './UploadSessions';
 import { storageChannel, StorageChannelAPI } from '.';
 
-export const createStorageBackend = () => {
-	const getScopedPath = (subdir: string | undefined, path?: string) =>
-		path ? joinPath(getUserDataPath(subdir), path) : getUserDataPath(subdir);
+export const createStorageBackend = ({ tmpPrefix = '.tmp-fs' }: StorageOptions = {}) => {
+	const pathsResolver = new PathsResolver({ tmpPrefix });
+	const uploadSessions = new UploadSessions(pathsResolver);
+	const storage = new FilesStorage(pathsResolver, uploadSessions);
+
+	const readSessions = new FileReadSessions(pathsResolver);
 
 	return {
-		async upload({ req: [id, buffer, subdir] }) {
-			const filePath = getScopedPath(subdir, id);
-			await mkdir(path.dirname(filePath), { recursive: true });
-			await writeFileAtomic(filePath, Buffer.from(new Uint8Array(buffer)));
-		},
-
-		async get({ req: [id, subdir] }) {
-			const filePath = getScopedPath(subdir, id);
-
-			recoveryAtomicFile(filePath);
-
-			if (!existsSync(filePath) || !statSync(filePath).isFile()) return null;
-
-			const buffer = await readFile(filePath);
-			return new Uint8Array(buffer).buffer;
-		},
-
-		async delete({ req: [ids, subdir] }) {
-			for (const id of ids) {
-				const filePath = getScopedPath(subdir, id);
-
-				if (!existsSync(filePath)) {
-					console.debug('Not found file', filePath);
-					continue;
-				}
-
-				await rm(filePath, { force: true, recursive: true });
-				console.debug('Removed file', filePath);
-			}
+		async delete({ req: [fileIds, subdir] }) {
+			return storage.delete(fileIds, subdir);
 		},
 
 		async list({ req: [subdir] }) {
-			const filesDir = getScopedPath(subdir);
+			return storage.list(subdir);
+		},
 
-			if (!existsSync(filesDir)) return [];
+		createUploadSession: async ({
+			req: [fileId, subdir],
+		}: {
+			req: [id: string, subdir: string];
+			ctx: Electron.IpcMainInvokeEvent;
+		}): Promise<string | undefined> => {
+			return uploadSessions.create(fileId, subdir);
+		},
 
-			const files = await recursive(filesDir);
-			return files.map((path) =>
-				// Remove root path
-				path.slice(filesDir.length),
-			);
+		uploadChunk: async function ({
+			req: [sessionId, buffer],
+		}: {
+			req: [id: string, buffer: ArrayBuffer];
+			ctx: Electron.IpcMainInvokeEvent;
+		}) {
+			const session = uploadSessions.getById(sessionId);
+			if (!session) throw new Error(`No session found with id ${sessionId}`);
+
+			await session.write(buffer);
+		},
+
+		commitUpload: async function ({
+			req: [sessionId],
+		}: {
+			req: [id: string];
+			ctx: Electron.IpcMainInvokeEvent;
+		}) {
+			const session = uploadSessions.getById(sessionId);
+			if (!session) throw new Error(`No session found with id ${sessionId}`);
+
+			await session.commit();
+		},
+
+		createReadSession: async function ({
+			req: [fileId, subdir],
+		}: {
+			req: [fileId: string, subdir: string];
+			ctx: Electron.IpcMainInvokeEvent;
+		}) {
+			const sessionId = await readSessions.create(fileId, subdir);
+			if (sessionId === null) return null;
+
+			const session = readSessions.getById(sessionId);
+			if (!session) throw new Error(`No session found for id ${sessionId}`);
+
+			const size = await session.size();
+
+			return { id: sessionId, size };
+		},
+		readChunk: async function ({
+			req: [sessionId, size],
+		}: {
+			req: [sessionId: string, size: number];
+			ctx: Electron.IpcMainInvokeEvent;
+		}) {
+			const session = readSessions.getById(sessionId);
+			if (!session) throw new Error(`No session found for id ${sessionId}`);
+
+			return session.read(size);
+		},
+		closeReader: async function ({
+			req: [sessionId],
+		}: {
+			req: [sessionId: string];
+			ctx: Electron.IpcMainInvokeEvent;
+		}) {
+			const session = readSessions.getById(sessionId);
+			if (!session) throw new Error(`No session found for id ${sessionId}`);
+			await session.close();
 		},
 	} satisfies ApiToHandlers<StorageChannelAPI, IpcMainInvokeEvent>;
 };
 
-export const enableStorage = () =>
-	storageChannel.server(ipcMainHandler, createStorageBackend());
+export const enableStorage = (options: StorageOptions = {}) =>
+	storageChannel.server(ipcMainHandler, createStorageBackend(options));
