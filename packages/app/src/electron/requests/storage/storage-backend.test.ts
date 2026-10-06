@@ -1,12 +1,12 @@
 import { vol } from 'memfs';
 import { getRandomBytes } from '@core/encryption/utils/random';
+import { readdir } from '@tests/utils/fs';
 
 import { enableStorage } from './main';
 import { storageApi } from './renderer';
 
 vi.mock('fs', () => vi.importActual('@mocks/fs'));
 vi.mock('fs/promises', () => vi.importActual('@mocks/fs/promises'));
-vi.mock('recursive-readdir', () => vi.importActual('@mocks/recursive-readdir'));
 vi.mock('electron', () => vi.importActual('@mocks/electron'));
 
 describe('Special names', () => {
@@ -38,7 +38,7 @@ describe('Special names', () => {
 		await storageApi.uploadChunk(session, getRandomBytes(1024).buffer);
 
 		// Temp file is present in FS
-		expect(vol.readdirSync('/', { recursive: true })).toContain(
+		expect(readdir('/')).toContain(
 			'/home/userData/appDir/app/foo/bar/.tmp-tmp-filename',
 		);
 
@@ -51,7 +51,7 @@ describe('Special names', () => {
 		await expect(
 			storageApi.delete(['.tmp-tmp-filename'], '/foo/bar'),
 		).resolves.toBeUndefined();
-		expect(vol.readdirSync('/', { recursive: true })).toContain(
+		expect(readdir('/')).toContain(
 			'/home/userData/appDir/app/foo/bar/.tmp-tmp-filename',
 		);
 	});
@@ -262,14 +262,10 @@ describe('File integrity', () => {
 			fileContent,
 		);
 		vol.writeFileSync('/home/userData/appDir/app/foo/bar/filename', fileContent);
-		expect(vol.readdirSync('/', { recursive: true })).toContainEqual(
-			expect.stringContaining('filename'),
-		);
+		expect(readdir('/')).toContainEqual(expect.stringContaining('filename'));
 
 		await storageApi.delete(['filename'], '/foo/bar');
-		expect(vol.readdirSync('/', { recursive: true })).not.toContainEqual(
-			expect.stringContaining('filename'),
-		);
+		expect(readdir('/')).not.toContainEqual(expect.stringContaining('filename'));
 	});
 
 	test('Deleting a file removes its backup even when the target is missing', async () => {

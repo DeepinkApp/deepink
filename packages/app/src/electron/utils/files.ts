@@ -16,8 +16,9 @@ export const isRootedPath = (root: string, targetPath: string, separator = path.
  * In case resolved path are out of root path - thrown error
  */
 export const joinPath = (root: string, ...segments: string[]) => {
+	const resolvedRoot = path.resolve(root);
 	const resolvedPath = path.resolve(path.join(root, ...segments));
-	if (!isRootedPath(root, resolvedPath)) {
+	if (!isRootedPath(resolvedRoot, resolvedPath)) {
 		throw new TypeError('Resolved path is out of root directory');
 	}
 

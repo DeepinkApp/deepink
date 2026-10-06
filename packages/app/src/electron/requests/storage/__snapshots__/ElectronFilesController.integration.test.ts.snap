@@ -9,16 +9,16 @@ exports[`Basic ops > File uploading persist data on disk > Controller files list
 
 exports[`Basic ops > File uploading persist data on disk > FS structure after writing 1`] = `
 [
-  "/home/userData/appDir/app",
+  "/home",
+  "/home/userData",
   "/home/userData/appDir",
+  "/home/userData/appDir/app",
+  "/home/userData/appDir/app/vaultDir",
+  "/home/userData/appDir/app/vaultDir/foo",
   "/home/userData/appDir/app/vaultDir/foo/bar",
   "/home/userData/appDir/app/vaultDir/foo/bar/baz",
-  "/home/userData/appDir/app/vaultDir/foo",
-  "/home",
-  "/home/userData/appDir/app/vaultDir/test.txt",
   "/home/userData/appDir/app/vaultDir/foo/bar/baz/test.txt",
-  "/home/userData",
-  "/home/userData/appDir/app/vaultDir",
+  "/home/userData/appDir/app/vaultDir/test.txt",
 ]
 `;
 

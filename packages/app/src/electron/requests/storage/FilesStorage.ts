@@ -1,8 +1,7 @@
 import { existsSync, rmSync, statSync } from 'fs';
 import path from 'path';
-import recursive from 'recursive-readdir';
 
-import { rm } from 'fs/promises';
+import { readdir, rm } from 'fs/promises';
 import { PathsResolver } from './PathsResolver';
 import { UploadSessions } from './UploadSessions';
 
@@ -42,14 +41,30 @@ export class FilesStorage {
 
 		if (!existsSync(filesDir)) return [];
 
-		const files = await recursive(filesDir);
-		return files
-			.values()
-			.filter((path) => this.paths.isAllowedPath(path))
-			.map((filename) =>
-				// Remove root path
-				filename.slice(filesDir.length).split(path.sep).join('/'),
-			)
-			.toArray();
+		const files: string[] = [];
+		for (const entry of await readdir(filesDir, {
+			recursive: true,
+			withFileTypes: true,
+		})) {
+			// Skip non-files
+			if (!entry.isFile() || entry.isSymbolicLink()) continue;
+
+			const resolvedFilename = path.resolve(
+				path.join(entry.parentPath, entry.name),
+			);
+
+			// Skip special files
+			if (!this.paths.isAllowedPath(resolvedFilename)) continue;
+
+			// Remove root path
+			const virtualPath = resolvedFilename
+				.slice(filesDir.length)
+				.split(path.sep)
+				.join('/');
+
+			files.push(virtualPath);
+		}
+
+		return files;
 	}
 }

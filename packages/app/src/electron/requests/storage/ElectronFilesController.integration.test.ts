@@ -1,14 +1,16 @@
 import { vol } from 'memfs';
 import { getRandomBytes } from '@core/encryption/utils/random';
 import { ipcMainHandler } from '@electron/utils/ipc/ipcMainHandler';
+import { readdir } from '@tests/utils/fs';
 
 import { createStorageBackend, enableStorage } from './main';
 import { ElectronFilesController, storageApi } from './renderer';
 import { storageChannel } from '.';
 
 vi.mock('fs', () => vi.importActual('@mocks/fs'));
+vi.mock('node:fs', () => vi.importActual('@mocks/fs'));
 vi.mock('fs/promises', () => vi.importActual('@mocks/fs/promises'));
-vi.mock('recursive-readdir', () => vi.importActual('@mocks/recursive-readdir'));
+vi.mock('node:fs/promises', () => vi.importActual('@mocks/fs/promises'));
 vi.mock('electron', () => vi.importActual('@mocks/electron'));
 
 const getBufferFromText = (text: string) => new Uint8Array(Buffer.from(text)).buffer;
@@ -71,7 +73,7 @@ describe('Basic ops', () => {
 
 	test('File uploading persist data on disk', async () => {
 		// No files in FS
-		expect(vol.readdirSync('/', { recursive: true })).toEqual([]);
+		expect(readdir('/')).toEqual([]);
 
 		const filesController = new ElectronFilesController(storageApi, 'vaultDir');
 
@@ -85,9 +87,7 @@ describe('Basic ops', () => {
 			'Controller files list after writing',
 		);
 
-		expect(vol.readdirSync('/', { recursive: true }), 'Explore FS').toMatchSnapshot(
-			'FS structure after writing',
-		);
+		expect(readdir('/'), 'Explore FS').toMatchSnapshot('FS structure after writing');
 
 		// Explore files content
 		await expect(
