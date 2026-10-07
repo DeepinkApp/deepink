@@ -149,3 +149,37 @@ test('Tab on the first item leaves the list unchanged and keeps editor focus', a
 	expect(editor.getByRole('listitem').nth(0)).toHaveTextContent('First');
 	expect(editor.getByRole('listitem').nth(1)).toHaveTextContent('Second');
 });
+
+describe('Visual regression', () => {
+	test.each([
+		{ marker: '-', name: 'Unordered list' },
+		{ marker: '1.', name: 'Ordered list' },
+		{ marker: '- [ ]', name: 'Todo list' },
+	])('Nested items of $name must have indentation', async ({ marker }) => {
+		await renderRichEditorInDOM({
+			value: [
+				`${marker} Level 1 Item 1`,
+				`\t${marker} Level 2 Item 1`,
+				`\t\t${marker} Level 3 Item 1`,
+				`\t${marker} Level 2 Item 2`,
+				`${marker} Level 1 Item 2`,
+			].join('\n'),
+		});
+
+		const editor = page.getByRole('textbox');
+		const getItemIndent = (text: string) =>
+			editor.getByText(text, { exact: true }).element().getBoundingClientRect().x;
+
+		expect(
+			getItemIndent('Level 1 Item 1'),
+			'Indents are equal on the same level',
+		).toBe(getItemIndent('Level 1 Item 2'));
+
+		expect(getItemIndent('Level 2 Item 1')).toBeGreaterThan(
+			getItemIndent('Level 1 Item 1'),
+		);
+		expect(getItemIndent('Level 3 Item 1')).toBeGreaterThan(
+			getItemIndent('Level 2 Item 1'),
+		);
+	});
+});
