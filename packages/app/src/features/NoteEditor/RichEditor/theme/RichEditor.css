@@ -521,8 +521,8 @@
 	}
 }
 
-/* No start padding for nested list, because li already have the one */
-.RichEditor__nestedListItem > .RichEditor__ul {
+/* Checklist have no padding since checkbox is placed inside list item */
+.RichEditor__checklist {
 	padding-inline-start: 0;
 }
 
