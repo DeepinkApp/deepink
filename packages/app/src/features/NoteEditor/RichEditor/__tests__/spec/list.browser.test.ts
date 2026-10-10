@@ -1,5 +1,5 @@
 import { act } from 'react';
-import { page, userEvent } from 'vitest/browser';
+import { page, userEvent, utils } from 'vitest/browser';
 
 import { renderRichEditorInDOM } from '../utils/renderEditorInDOM';
 import { selectContent } from '../utils/utils';
@@ -153,11 +153,29 @@ describe('Regressions', () => {
 			},
 		].forEach(({ name, content, expectedLists }) =>
 			test(name, async () => {
-				await renderRichEditorInDOM({
+				const { render, getMarkdown, getEditor } = await renderRichEditorInDOM({
 					value: content,
 				});
 
-				expect(page.getByRole('list').all()).toHaveLength(expectedLists);
+				expect(
+					page.getByRole('list').all(),
+					'There are expected number of lists',
+				).toHaveLength(expectedLists);
+
+				const rootNode = getEditor().getRootElement();
+				const getHTML = () => utils.prettyDOM(rootNode);
+
+				const htmlV1 = getHTML();
+				const markdownV1 = getMarkdown();
+
+				// Cleanup and re-render
+				await render({ value: '' });
+				await expect.poll(() => rootNode).toHaveTextContent('');
+
+				// Make sure the roundtrip are consistent
+				await render({ value: markdownV1 });
+				expect(getHTML()).toBe(htmlV1);
+				expect(getMarkdown()).toBe(markdownV1);
 			}),
 		);
 	});
