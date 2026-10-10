@@ -111,22 +111,55 @@ test('item nesting can be decreased and empty list will be removed', async () =>
 		.toHaveBeenLastCalledWith('- [ ] 1\n- [ ] 2\n- [ ] 3\n- [ ] 4\n- [ ] 5\n');
 });
 
-export const unjoinedLists = `
-- foo
-- bar
-- baz
-
-
-- [ ] 1
-- [ ] 2
-- [ ] 3
-`.trim();
-
 describe('Regressions', () => {
-	test('a regular list and a checklist separated by blank lines remain separate', async () => {
-		await renderRichEditorInDOM({ value: unjoinedLists });
+	describe('Different lists separated by blank lines remain separate', () => {
+		[
+			{
+				name: 'regular list and checklist',
+				expectedLists: 2,
+				content: [
+					'- foo',
+					'- bar',
+					'- baz',
+					'',
+					'- [ ] 1',
+					'- [ ] 2',
+					'- [ ] 3',
+				].join('\n'),
+			},
+			{
+				name: 'regular list and ordered list',
+				expectedLists: 2,
+				content: ['- foo', '- bar', '- baz', '', '1. 1', '2. 2', '3. 3'].join(
+					'\n',
+				),
+			},
+			{
+				name: 'regular list, ordered list, checkbox list',
+				expectedLists: 3,
+				content: [
+					'- foo',
+					'- bar',
+					'- baz',
+					'',
+					'1. 1',
+					'2. 2',
+					'3. 3',
+					'',
+					'- [ ] 1',
+					'- [ ] 2',
+					'- [ ] 3',
+				].join('\n'),
+			},
+		].forEach(({ name, content, expectedLists }) =>
+			test(name, async () => {
+				await renderRichEditorInDOM({
+					value: content,
+				});
 
-		expect(page.getByRole('list').all()).toHaveLength(2);
+				expect(page.getByRole('list').all()).toHaveLength(expectedLists);
+			}),
+		);
 	});
 
 	test('nested items stay nested when a regular list is followed by a checklist', async () => {
