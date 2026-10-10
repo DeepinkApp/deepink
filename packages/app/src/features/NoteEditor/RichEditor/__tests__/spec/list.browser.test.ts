@@ -188,4 +188,36 @@ describe('Regressions', () => {
 
 		expect(page.getByRole('list').all()).toHaveLength(1);
 	});
+
+	test('list kind changes split items even without a blank line', async () => {
+		await renderRichEditorInDOM({
+			value: '- regular\n- [ ] task\n- regular again',
+		});
+
+		expect(page.getByRole('list').all()).toHaveLength(3);
+		expect(page.getByRole('checkbox')).toHaveLength(1);
+	});
+
+	test('checked and unchecked task items remain in the same checklist', async () => {
+		await renderRichEditorInDOM({
+			value: '- [ ] first\n\n- [x] second\n - [ ] third',
+		});
+
+		expect(page.getByRole('list').all()).toHaveLength(1);
+		expect(page.getByRole('checkbox')).toHaveLength(3);
+	});
+
+	test('ordered list numbering is retained after a task item splits the list', async () => {
+		await renderRichEditorInDOM({
+			value: '3. regular\n4. [ ] task\n5. regular again',
+		});
+
+		const editor = page.getByRole('textbox');
+		const orderedLists = editor.element().querySelectorAll(':scope > ol');
+
+		expect(orderedLists).toHaveLength(2);
+		expect(orderedLists[0].getAttribute('start')).toBe('3');
+		expect(orderedLists[1].getAttribute('start')).toBe('5');
+		expect(editor.getByRole('checkbox')).toHaveLength(1);
+	});
 });
