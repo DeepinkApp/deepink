@@ -110,3 +110,49 @@ test('item nesting can be decreased and empty list will be removed', async () =>
 		.poll(() => onChanged)
 		.toHaveBeenLastCalledWith('- [ ] 1\n- [ ] 2\n- [ ] 3\n- [ ] 4\n- [ ] 5\n');
 });
+
+export const unjoinedLists = `
+- foo
+- bar
+- baz
+
+
+- [ ] 1
+- [ ] 2
+- [ ] 3
+`.trim();
+
+describe('Regressions', () => {
+	test('a regular list and a checklist separated by blank lines remain separate', async () => {
+		await renderRichEditorInDOM({ value: unjoinedLists });
+
+		expect(page.getByRole('list').all()).toHaveLength(2);
+	});
+
+	test('nested items stay nested when a regular list is followed by a checklist', async () => {
+		const value = `
+- foo
+  - bar
+- baz
+
+- [ ] 1
+  - [ ] 2
+    - [ ] 3
+- [ ] 4
+- [ ] 5
+`.trim();
+
+		await renderRichEditorInDOM({ value });
+
+		const editor = page.getByRole('textbox');
+		expect(editor.element().querySelectorAll(':scope > ul')).toHaveLength(2);
+		expect(editor.getByRole('list').all()).toHaveLength(5);
+		expect(editor.getByRole('checkbox')).toHaveLength(5);
+	});
+
+	test('blank-separated sibling items of the same kind remain one list', async () => {
+		await renderRichEditorInDOM({ value: '- foo\n\n- bar' });
+
+		expect(page.getByRole('list').all()).toHaveLength(1);
+	});
+});

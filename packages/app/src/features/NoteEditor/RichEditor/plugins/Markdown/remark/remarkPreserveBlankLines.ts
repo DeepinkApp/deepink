@@ -1,4 +1,4 @@
-import { type Root, RootContent } from 'mdast';
+import { type List, type ListItem, type Root, RootContent } from 'mdast';
 import { Plugin } from 'unified';
 import { CONTINUE, SKIP, visit } from 'unist-util-visit';
 
@@ -7,6 +7,55 @@ const ignoredNodeTypes = new Set<string>([
 	'tableCell',
 	'tableRow',
 ] satisfies RootContent['type'][]);
+
+const isTaskListItem = (item: ListItem) =>
+	item.checked !== null && item.checked !== undefined;
+
+// Lexical represents task lists and regular lists as different list types, but
+// mdast can keep both kinds of item in one list when there is a blank line.
+const splitListAtTaskBoundary = (list: List): List[] => {
+	const groups: { items: ListItem[]; startIndex: number }[] = [];
+	let items: ListItem[] = [];
+	let startIndex = 0;
+
+	for (let i = 0; i < list.children.length; i++) {
+		const item = list.children[i];
+		const previousItem = items.at(-1);
+		const hasBlankLineBefore =
+			previousItem?.position &&
+			item.position &&
+			item.position.start.line > previousItem.position.end.line + 1;
+		const changesTaskStatus =
+			previousItem && isTaskListItem(previousItem) !== isTaskListItem(item);
+
+		if (hasBlankLineBefore && changesTaskStatus) {
+			groups.push({ items, startIndex });
+			items = [];
+			startIndex = i;
+		}
+
+		items.push(item);
+	}
+
+	if (items.length > 0) groups.push({ items, startIndex });
+	if (groups.length <= 1) return [list];
+
+	return groups.map(({ items: groupItems, startIndex: groupStartIndex }) => {
+		const firstItem = groupItems[0];
+		const lastItem = groupItems[groupItems.length - 1];
+		const position =
+			list.position && firstItem.position && lastItem.position
+				? { start: firstItem.position.start, end: lastItem.position.end }
+				: list.position;
+
+		return {
+			...list,
+			...(list.ordered ? { start: (list.start ?? 1) + groupStartIndex } : {}),
+			children: groupItems,
+			position,
+		};
+	});
+};
 
 export const fillGapsWithParagraphs = (tree: Root) => {
 	const skipNodes = new Set<unknown>();
@@ -27,7 +76,11 @@ export const fillGapsWithParagraphs = (tree: Root) => {
 			const next = node.children[i + 1];
 
 			// Collect its own children
-			newChildren.push(current);
+			newChildren.push(
+				...(current.type === 'list'
+					? splitListAtTaskBoundary(current)
+					: [current]),
+			);
 
 			// Add empty lines to preserve
 			if (next && current.position && next.position) {
