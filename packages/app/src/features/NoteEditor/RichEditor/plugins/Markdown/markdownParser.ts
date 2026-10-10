@@ -153,21 +153,32 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 				return [heading];
 			}
 			case 'list': {
-				let listType: ListType = 'bullet';
-				if (
-					node.children.some(
-						(item) => item.checked !== undefined && item.checked !== null,
-					)
-				) {
-					listType = 'check';
-				} else if (node.ordered || typeof node.start === 'number') {
-					listType = 'number';
+				const defaultListType: ListType =
+					node.ordered || typeof node.start === 'number' ? 'number' : 'bullet';
+				const convertedLists: LexicalNode[] = [];
+
+				let currentList: ReturnType<typeof $createListNode> | undefined;
+				let currentListType: ListType | undefined;
+				for (let i = 0; i < node.children.length; i++) {
+					const item = node.children[i];
+					const itemListType: ListType =
+						item.checked !== undefined && item.checked !== null
+							? 'check'
+							: defaultListType;
+
+					if (!currentList || currentListType !== itemListType) {
+						currentListType = itemListType;
+						currentList = $createListNode(
+							itemListType,
+							itemListType === 'number' ? (node.start ?? 1) + i : 1,
+						);
+						convertedLists.push(currentList);
+					}
+
+					currentList.append(...convertToMarkdownNode(item));
 				}
 
-				const list = $createListNode(listType);
-				list.append(...convertToMarkdownNodes(node.children));
-
-				return [list];
+				return convertedLists;
 			}
 			case 'listItem': {
 				const listItem = $createListItemNode(node.checked ?? undefined);
