@@ -36,13 +36,52 @@ import { $createRawNode } from './nodes/RawNode';
 import { liftFormattingNodes } from './remark/remarkLiftFormatting';
 import { fillGapsWithParagraphs } from './remark/remarkPreserveBlankLines';
 
+const emittedListMarkers = new WeakMap<object, WeakMap<object, string>>();
+
 export const markdownProcessor = unified()
 	.use(remarkParse)
 	.use(remarkGfm)
 	.use(remarkStringify, {
 		bullet: '-',
+		bulletOther: '*',
+		bulletOrdered: '.',
 		listItemIndent: 'one',
 		handlers: {
+			list(node, parent, state, info) {
+				let listMarkers = emittedListMarkers.get(state);
+				if (!listMarkers) {
+					listMarkers = new WeakMap();
+					emittedListMarkers.set(state, listMarkers);
+				}
+
+				if (parent) {
+					const currentIndex = state.indexStack[state.indexStack.length - 1];
+
+					for (let i = (currentIndex ?? -1) - 1; i >= 0; i--) {
+						const sibling = parent.children[i];
+
+						if (
+							sibling.type === 'paragraph' &&
+							sibling.children.length === 0
+						) {
+							continue;
+						}
+
+						if (sibling.type === 'list' && sibling.ordered === node.ordered) {
+							const previousMarker = listMarkers.get(sibling);
+							if (previousMarker) state.bulletLastUsed = previousMarker;
+						}
+
+						break;
+					}
+				}
+
+				const markdown = defaultHandlers.list(node, parent, state, info);
+				const marker = state.bulletLastUsed;
+				if (marker) listMarkers.set(node, marker);
+
+				return markdown;
+			},
 			paragraph(node, parent, state, info) {
 				// Empty line will be added after that node anyway
 				// So empty paragraph converts to 1 empty line

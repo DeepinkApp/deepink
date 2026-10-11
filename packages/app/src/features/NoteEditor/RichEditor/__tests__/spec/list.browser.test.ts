@@ -180,6 +180,48 @@ describe('Regressions', () => {
 		);
 	});
 
+	test('3 empty lines splits the lists', async () => {
+		const editor1 = await renderRichEditorInDOM({
+			value: '',
+		});
+
+		const editor1Locator = page
+			.elementLocator(editor1.getEditor().getRootElement()!)
+			.first();
+
+		// Create 2 lists
+		await act(async () => {
+			await editor1Locator.click();
+		});
+		await editor1.insert({ type: 'list', data: { type: 'unordered' } });
+		await act(async () => {
+			await userEvent.keyboard('foo');
+			await userEvent.keyboard('{Enter}'.repeat(3));
+		});
+
+		await editor1.insert({ type: 'list', data: { type: 'unordered' } });
+		await act(async () => {
+			await userEvent.keyboard('bar');
+		});
+
+		expect(editor1Locator.getByRole('list').all()).toHaveLength(2);
+		expect(editor1Locator.getByRole('listitem').all()).toHaveLength(2);
+
+		// Create another editor with serialized content
+		const editor2 = await renderRichEditorInDOM({
+			value: editor1.getMarkdown(),
+		});
+
+		const editor2Locator = page.elementLocator(editor2.getEditor().getRootElement()!);
+		expect(editor2Locator.getByRole('list').all()).toHaveLength(2);
+		expect(editor2Locator.getByRole('listitem').all()).toHaveLength(2);
+
+		// Content must be equal
+		expect(editor1Locator.element()).not.toBe(editor2Locator.element());
+		expect(utils.prettyDOM(editor2Locator)).toBe(utils.prettyDOM(editor1Locator));
+		expect(editor2.getMarkdown()).toBe(editor1.getMarkdown());
+	});
+
 	test('nested items stay nested when a regular list is followed by a checklist', async () => {
 		const value = `
 - foo
