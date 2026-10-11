@@ -1,3 +1,4 @@
+import { List } from 'mdast';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
@@ -27,6 +28,18 @@ test('Must add 8 paragraphs for gap in 10 lines', () => {
 	const tree = markdownProcessor.parse('Hello\n' + '\n'.repeat(10) + 'World');
 	expect(tree.children).toHaveLength(2);
 	expect(fillGapsWithParagraphs(tree).children).toHaveLength(2 + 8);
+});
+
+test('Must not insert paragraphs between list items for large source gaps', () => {
+	const tree = markdownProcessor.parse('- First\n' + '\n'.repeat(10) + '- Second');
+
+	const list = fillGapsWithParagraphs(tree).children[0] as List;
+	expect(list.type).toBe('list');
+
+	expect(list.children).toHaveLength(2);
+	expect(list.children).toStrictEqual(
+		Array(2).fill(expect.objectContaining({ type: 'listItem' })),
+	);
 });
 
 // TODO: implement lines preservation

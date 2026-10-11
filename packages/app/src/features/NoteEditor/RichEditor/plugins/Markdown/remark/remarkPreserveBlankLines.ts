@@ -21,6 +21,10 @@ export const fillGapsWithParagraphs = (tree: Root) => {
 		// Skip already handled nodes
 		if (skipNodes.has(node)) return SKIP;
 
+		// A list may only contain list items. Preserve item-to-item source gaps
+		// as list looseness, rather than inserting paragraphs that become items.
+		if (node.type === 'list') return CONTINUE;
+
 		const newChildren: RootContent[] = [];
 		for (let i = 0; i < node.children.length; i++) {
 			const current = node.children[i];

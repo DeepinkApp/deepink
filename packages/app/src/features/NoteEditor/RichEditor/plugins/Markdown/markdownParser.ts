@@ -36,13 +36,52 @@ import { $createRawNode } from './nodes/RawNode';
 import { liftFormattingNodes } from './remark/remarkLiftFormatting';
 import { fillGapsWithParagraphs } from './remark/remarkPreserveBlankLines';
 
+const emittedListMarkers = new WeakMap<object, WeakMap<object, string>>();
+
 export const markdownProcessor = unified()
 	.use(remarkParse)
 	.use(remarkGfm)
 	.use(remarkStringify, {
 		bullet: '-',
+		bulletOther: '*',
+		bulletOrdered: '.',
 		listItemIndent: 'one',
 		handlers: {
+			list(node, parent, state, info) {
+				let listMarkers = emittedListMarkers.get(state);
+				if (!listMarkers) {
+					listMarkers = new WeakMap();
+					emittedListMarkers.set(state, listMarkers);
+				}
+
+				if (parent) {
+					const currentIndex = state.indexStack[state.indexStack.length - 1];
+
+					for (let i = (currentIndex ?? -1) - 1; i >= 0; i--) {
+						const sibling = parent.children[i];
+
+						if (
+							sibling.type === 'paragraph' &&
+							sibling.children.length === 0
+						) {
+							continue;
+						}
+
+						if (sibling.type === 'list' && sibling.ordered === node.ordered) {
+							const previousMarker = listMarkers.get(sibling);
+							if (previousMarker) state.bulletLastUsed = previousMarker;
+						}
+
+						break;
+					}
+				}
+
+				const markdown = defaultHandlers.list(node, parent, state, info);
+				const marker = state.bulletLastUsed;
+				if (marker) listMarkers.set(node, marker);
+
+				return markdown;
+			},
 			paragraph(node, parent, state, info) {
 				// Empty line will be added after that node anyway
 				// So empty paragraph converts to 1 empty line
@@ -153,21 +192,32 @@ export const $convertFromMarkdownString = (rawMarkdown: string) => {
 				return [heading];
 			}
 			case 'list': {
-				let listType: ListType = 'bullet';
-				if (
-					node.children.some(
-						(item) => item.checked !== undefined && item.checked !== null,
-					)
-				) {
-					listType = 'check';
-				} else if (node.ordered || typeof node.start === 'number') {
-					listType = 'number';
+				const defaultListType: ListType =
+					node.ordered || typeof node.start === 'number' ? 'number' : 'bullet';
+				const convertedLists: LexicalNode[] = [];
+
+				let currentList: ReturnType<typeof $createListNode> | undefined;
+				let currentListType: ListType | undefined;
+				for (let i = 0; i < node.children.length; i++) {
+					const item = node.children[i];
+					const itemListType: ListType =
+						item.checked !== undefined && item.checked !== null
+							? 'check'
+							: defaultListType;
+
+					if (!currentList || currentListType !== itemListType) {
+						currentListType = itemListType;
+						currentList = $createListNode(
+							itemListType,
+							itemListType === 'number' ? (node.start ?? 1) + i : 1,
+						);
+						convertedLists.push(currentList);
+					}
+
+					currentList.append(...convertToMarkdownNode(item));
 				}
 
-				const list = $createListNode(listType);
-				list.append(...convertToMarkdownNodes(node.children));
-
-				return [list];
+				return convertedLists;
 			}
 			case 'listItem': {
 				const listItem = $createListItemNode(node.checked ?? undefined);

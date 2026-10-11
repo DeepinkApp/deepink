@@ -22,6 +22,8 @@ import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEdit
 import { ThemeProvider } from '@features/ThemeProvider';
 import { createTestStore } from '@tests/utils/redux';
 
+import { $convertToMarkdownString } from '../../plugins/Markdown/markdownParser';
+
 // Mock useUrlOpener to avoid importing monaco-editor-core in tests,
 // which causes Vite module resolution errors during test setup
 vi.mock('@hooks/useUrlOpener', () => ({
@@ -73,6 +75,8 @@ export type RichEditorTestAPI = {
 	format: (format: TextFormat) => Promise<void>;
 	command: (format: CommandsPayload) => Promise<void>;
 	getEditor(): LexicalEditor;
+	getMarkdown(): string;
+	render: (props: RichEditorContentProps) => Promise<void>;
 };
 
 export const renderRichEditorInDOM = async ({
@@ -114,7 +118,14 @@ export const renderRichEditorInDOM = async ({
 	document.body.appendChild(container);
 
 	const root = createRoot(container);
-	act(() => root.render(renderEditor({ ...props, editorRef })));
+
+	const render = (props: RichEditorContentProps) => {
+		return act(() =>
+			root.render(renderEditor({ ...props, editorRef })),
+		) as unknown as Promise<void>;
+	};
+
+	render(props);
 
 	const destroy = () => {
 		act(() => {
@@ -163,5 +174,14 @@ export const renderRichEditorInDOM = async ({
 			if (!editor) throw new Error('Error instance is not set');
 			return editor;
 		},
+
+		getMarkdown() {
+			const editor = editorRef.current;
+			if (!editor) throw new Error('Error instance is not set');
+
+			return editor.read(() => $convertToMarkdownString());
+		},
+
+		render,
 	};
 };

@@ -1,7 +1,25 @@
 import { Paragraph } from 'mdast';
 import { u } from 'unist-builder';
 
-import { serializeMarkdownTree } from './markdownParser';
+import { parseMarkdownToAST, serializeMarkdownTree } from './markdownParser';
+
+const createBulletList = (value: string) =>
+	u('list', {
+		ordered: false,
+		start: null,
+		spread: false,
+		children: [
+			u('listItem', {
+				checked: null,
+				spread: false,
+				children: [
+					u('paragraph', {
+						children: [u('text', { value })],
+					}),
+				],
+			}),
+		],
+	});
 
 describe('AST serialization', () => {
 	test('2 paragraphs have 1 empty line', () => {
@@ -45,6 +63,69 @@ describe('AST serialization', () => {
 				}),
 			),
 		).toBe(`Hello${'\n'.repeat(5)}\nWorld\n`);
+	});
+
+	test('Same-kind lists separated by empty paragraphs use distinct markers', () => {
+		const output = serializeMarkdownTree({
+			type: 'root',
+			children: [
+				createBulletList('First'),
+				u('paragraph', { children: [] }),
+				createBulletList('Second'),
+				u('paragraph', { children: [] }),
+				u('paragraph', { children: [] }),
+				createBulletList('Third'),
+			],
+		});
+
+		const listItemMarkers = output
+			.split('\n')
+			.filter(
+				(line) =>
+					line.endsWith('First') ||
+					line.endsWith('Second') ||
+					line.endsWith('Third'),
+			)
+			.map((line) => line[0]);
+
+		expect(listItemMarkers).toEqual(['-', '*', '-']);
+		expect(
+			parseMarkdownToAST(output).children.filter((node) => node.type === 'list'),
+		).toHaveLength(3);
+	});
+
+	test('Ordered lists separated by empty paragraphs use distinct delimiters', () => {
+		const createOrderedList = (start: number, value: string) =>
+			u('list', {
+				ordered: true,
+				start,
+				spread: false,
+				children: [
+					u('listItem', {
+						checked: null,
+						spread: false,
+						children: [
+							u('paragraph', {
+								children: [u('text', { value })],
+							}),
+						],
+					}),
+				],
+			});
+		const output = serializeMarkdownTree({
+			type: 'root',
+			children: [
+				createOrderedList(3, 'First'),
+				u('paragraph', { children: [] }),
+				createOrderedList(4, 'Second'),
+			],
+		});
+
+		expect(output).toContain('3. First');
+		expect(output).toContain('4) Second');
+		expect(
+			parseMarkdownToAST(output).children.filter((node) => node.type === 'list'),
+		).toHaveLength(2);
 	});
 
 	test('Quote with 3 empty paragraphs must contain 5 empty lines', () => {
