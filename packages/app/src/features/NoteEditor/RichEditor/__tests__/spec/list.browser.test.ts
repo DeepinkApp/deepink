@@ -27,6 +27,88 @@ test('one list item may be nested', async () => {
 		.toHaveBeenLastCalledWith('- [ ] 1\n  - [ ] 2\n- [ ] 3\n');
 });
 
+test('unlisting a top-level list creates one paragraph per item', async () => {
+	const richEditor = await renderRichEditorInDOM({
+		value: '- First\n- Second\n- Third',
+	});
+	const editor = page.getByRole('textbox');
+
+	await act(async () => {
+		await editor.getByText('Second', { exact: true }).click();
+		await userEvent.keyboard('{End}');
+	});
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(editor.getByRole('list')).toHaveLength(0);
+	const paragraphs = editor.getByRole('paragraph');
+	expect(paragraphs).toHaveLength(3);
+	expect(paragraphs.nth(0)).toHaveTextContent('First');
+	expect(paragraphs.nth(1)).toHaveTextContent('Second');
+	expect(paragraphs.nth(2)).toHaveTextContent('Third');
+});
+
+test('unlisting a nested list turns its items into lines inside the parent item', async () => {
+	const richEditor = await renderRichEditorInDOM({
+		value: ['- [ ] 1', '  - [ ] 2', '    - [ ] 3', '- [ ] 4', '- [ ] 5'].join('\n'),
+	});
+	const editor = page.getByRole('textbox');
+
+	await act(async () => {
+		await editor.getByText('2', { exact: true }).click();
+		await userEvent.keyboard('{End}');
+	});
+	await richEditor.insert({ type: 'list', data: { type: 'checkbox' } });
+
+	const items = editor.getByRole('checkbox');
+	expect(items).toHaveLength(3);
+	expect(items.nth(0)).toHaveTextContent('1');
+	expect(items.nth(1)).toHaveTextContent('4');
+	expect(items.nth(2)).toHaveTextContent('5');
+
+	const parentItem = items.nth(0);
+	expect(parentItem.getByRole('list')).toHaveLength(0);
+	expect(parentItem.getByRole('paragraph')).toHaveLength(0);
+	expect(parentItem.element().querySelectorAll('br')).toHaveLength(2);
+	expect(parentItem).toHaveTextContent('123');
+
+	const serialized = richEditor.getMarkdown();
+	expect(serialized.indexOf('1')).toBeLessThan(serialized.indexOf('2'));
+	expect(serialized.indexOf('2')).toBeLessThan(serialized.indexOf('3'));
+	await richEditor.render({ value: serialized });
+	expect(richEditor.getMarkdown()).toBe(serialized);
+	expect(page.getByRole('checkbox')).toHaveLength(3);
+	expect(page.getByRole('list')).toHaveLength(1);
+	expect(
+		page.getByRole('checkbox').nth(0).element().querySelectorAll('br'),
+	).toHaveLength(2);
+});
+
+test('a partial selection unlists the whole touched nested list', async () => {
+	const richEditor = await renderRichEditorInDOM({
+		value: ['- Parent', '  - First child', '  - Second child', '- Next'].join('\n'),
+	});
+	const editor = page.getByRole('textbox');
+
+	await act(async () => {
+		selectContent(editor.element() as HTMLElement, 'First child');
+	});
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(editor.getByRole('list')).toHaveLength(1);
+	expect(editor.getByRole('listitem')).toHaveLength(2);
+	expect(
+		editor.getByRole('listitem').nth(0).element().querySelectorAll('br'),
+	).toHaveLength(2);
+	expect(editor.getByRole('listitem').nth(0)).toHaveTextContent(
+		'ParentFirst childSecond child',
+	);
+	const serialized = richEditor.getMarkdown();
+	expect(serialized.indexOf('Parent')).toBeLessThan(serialized.indexOf('First child'));
+	expect(serialized.indexOf('First child')).toBeLessThan(
+		serialized.indexOf('Second child'),
+	);
+});
+
 test('list items may be deeply nested via keyboard shortcuts', async () => {
 	const onChanged = vi.fn();
 

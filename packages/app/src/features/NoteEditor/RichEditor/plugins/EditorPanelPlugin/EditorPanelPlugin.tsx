@@ -36,7 +36,7 @@ import { $getCursorNode } from '../../utils/selection';
 
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
-import { $convertListToParagraphs } from './utils/$convertListToParagraphs';
+import { $convertListToLines } from './utils/$convertListToLines';
 import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
 
 const listTypeMap = {
@@ -105,8 +105,8 @@ export const EditorPanelPlugin = () => {
 					});
 				},
 				list({ type }) {
-					// Check whether all selected lists already have the requested type
-					// If they do, convert them to paragraphs instead of applying the same list type
+					// Check whether all selected lists already have the requested type.
+					// If so, convert their items back to lines instead of toggling the same type.
 					let didConvert = false;
 					editor.update(() => {
 						const selection = $getSelection();
@@ -118,6 +118,18 @@ export const EditorPanelPlugin = () => {
 							if (listParent) listNodes.add(listParent);
 						});
 
+						const targetLists = Array.from(listNodes).filter((list) => {
+							for (
+								let ancestor = list.getParent();
+								ancestor;
+								ancestor = ancestor.getParent()
+							) {
+								if ($isListNode(ancestor) && listNodes.has(ancestor))
+									return false;
+							}
+							return true;
+						});
+
 						const isAlreadyRequestedType =
 							listNodes.size > 0 &&
 							Array.from(listNodes).every(
@@ -126,7 +138,7 @@ export const EditorPanelPlugin = () => {
 
 						if (!isAlreadyRequestedType) return;
 
-						listNodes.forEach($convertListToParagraphs);
+						targetLists.forEach($convertListToLines);
 						didConvert = true;
 					});
 
