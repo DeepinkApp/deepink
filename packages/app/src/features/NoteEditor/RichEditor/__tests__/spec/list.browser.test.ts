@@ -47,6 +47,24 @@ test('unlisting a top-level list creates one paragraph per item', async () => {
 	expect(paragraphs.nth(2)).toHaveTextContent('Third');
 });
 
+test('list command falls through to Lexical when the requested type differs', async () => {
+	const richEditor = await renderRichEditorInDOM({
+		value: '- [ ] First item\n- [ ] Second item',
+	});
+	const editor = page.getByRole('textbox');
+
+	await act(async () => {
+		await editor.getByText('First item', { exact: true }).click();
+		await userEvent.keyboard('{End}');
+	});
+	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	expect(editor.getByRole('list')).toHaveLength(1);
+	expect(editor.getByRole('listitem')).toHaveLength(2);
+	expect(editor.getByRole('checkbox')).toHaveLength(0);
+	expect(editor.getByRole('list').element().tagName).toBe('UL');
+});
+
 test('unlisting a nested list turns its items into lines inside the parent item', async () => {
 	const richEditor = await renderRichEditorInDOM({
 		value: ['- [ ] 1', '  - [ ] 2', '    - [ ] 3', '- [ ] 4', '- [ ] 5'].join('\n'),

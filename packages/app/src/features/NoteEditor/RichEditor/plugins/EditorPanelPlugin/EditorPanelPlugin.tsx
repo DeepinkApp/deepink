@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import {
 	$createParagraphNode,
 	$createTextNode,
-	$findMatchingParent,
 	$getRoot,
 	$getSelection,
 	$insertNodes,
@@ -17,11 +16,9 @@ import {
 import { $createCodeNode } from '@lexical/code-core';
 import { $createLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import {
-	$isListNode,
 	INSERT_CHECK_LIST_COMMAND,
 	INSERT_ORDERED_LIST_COMMAND,
 	INSERT_UNORDERED_LIST_COMMAND,
-	ListNode,
 } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
@@ -36,14 +33,7 @@ import { $getCursorNode } from '../../utils/selection';
 
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode } from '../Image/ImageNode';
-import { $convertListToLines } from './utils/$convertListToLines';
 import { $canInsertElementsToNode, $getNearestSibling, $wrapNodes } from './utils/tree';
-
-const listTypeMap = {
-	checkbox: 'check',
-	ordered: 'number',
-	unordered: 'bullet',
-};
 
 /**
  * Plugin to handle editor panel actions about formatting and nodes insertion
@@ -105,57 +95,6 @@ export const EditorPanelPlugin = () => {
 					});
 				},
 				list({ type }) {
-					// Check whether all selected lists already have the requested type.
-					// If so, convert their items back to lines instead of toggling the same type.
-					let didConvert = false;
-					editor.update(() => {
-						const selection = $getSelection();
-						if (!$isRangeSelection(selection)) return;
-
-						const listNodes = new Set<ListNode>();
-						selection.getNodes().forEach((node) => {
-							const listParent = $findMatchingParent(node, $isListNode);
-							if (listParent) listNodes.add(listParent);
-						});
-
-						const targetLists = Array.from(listNodes).filter((list) => {
-							for (
-								let ancestor = list.getParent();
-								ancestor;
-								ancestor = ancestor.getParent()
-							) {
-								if ($isListNode(ancestor) && listNodes.has(ancestor))
-									return false;
-							}
-							return true;
-						});
-
-						const isAlreadyRequestedType =
-							listNodes.size > 0 &&
-							Array.from(listNodes).every(
-								(list) => list.getListType() === listTypeMap[type],
-							);
-
-						if (!isAlreadyRequestedType) return;
-
-						targetLists.forEach($convertListToLines);
-						didConvert = true;
-					});
-
-					if (didConvert) return;
-
-					// Ensure the editor is not empty
-					editor.update(() => {
-						const target = $getCursorNode();
-						if (!target) return;
-
-						if ($isRootNode(target) && target.getChildren().length === 0) {
-							const paragraph = $createParagraphNode();
-							target.append(paragraph);
-							paragraph.select();
-						}
-					});
-
 					switch (type) {
 						case 'checkbox':
 							editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined);
