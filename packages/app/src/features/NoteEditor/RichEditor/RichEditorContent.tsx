@@ -31,6 +31,7 @@ import { HighlightingPlugin } from './plugins/HighlightingPlugin/HighlightingPlu
 import ImagesPlugin from './plugins/Image/ImagesPlugin';
 import { KeyboardControlsPlugin } from './plugins/KeyboardControlsPlugin/KeyboardControlsPlugin';
 import { LinkClickHandlerPlugin } from './plugins/LinkClickHandlerPlugin';
+import { ListFormattingPlugin } from './plugins/ListFormattingPlugin/ListFormattingPlugin';
 import {
 	MarkdownSerializePlugin,
 	MarkdownSerializePluginProps,
@@ -136,6 +137,7 @@ export const RichEditorContent = ({
 			<DropFilesPlugin />
 			<EditorPanelPlugin />
 			<HistoryPlugin />
+			<ListFormattingPlugin />
 			<ListPlugin />
 			<CheckListPlugin />
 			<TablePlugin />

@@ -95,17 +95,6 @@ export const EditorPanelPlugin = () => {
 					});
 				},
 				list({ type }) {
-					editor.update(() => {
-						const target = $getCursorNode();
-						if (!target) return;
-
-						if ($isRootNode(target)) {
-							const paragraph = $createParagraphNode();
-							target.append(paragraph);
-							paragraph.select();
-						}
-					});
-
 					switch (type) {
 						case 'checkbox':
 							editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined);
