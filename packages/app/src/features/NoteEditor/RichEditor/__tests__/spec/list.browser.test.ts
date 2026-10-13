@@ -280,6 +280,53 @@ describe('Regressions', () => {
 		);
 	});
 
+	test('unlists a keyboard-nested child into its parent item', async () => {
+		const richEditor = await renderRichEditorInDOM({
+			value: '- Parent\n- Child',
+		});
+		const editor = page.getByRole('textbox');
+
+		expect(editor.getByRole('list')).toHaveLength(1);
+
+		await act(async () => {
+			await editor.getByText('Child', { exact: true }).click();
+			await userEvent.keyboard('{End}{Tab}');
+		});
+		expect(editor.getByRole('list')).toHaveLength(2);
+
+		await richEditor.insert({
+			type: 'list',
+			data: { type: 'unordered' },
+		});
+
+		expect(editor.getByRole('list')).toHaveLength(1);
+		const items = editor.getByRole('listitem');
+		expect(items).toHaveLength(1);
+		expect(items.nth(0)).toHaveTextContent('ParentChild');
+		expect(items.nth(0).element().querySelectorAll('br')).toHaveLength(1);
+	});
+
+	test('list-type conversion takes priority over unlisting a mixed-type selection', async () => {
+		const richEditor = await renderRichEditorInDOM({
+			value: '- Parent\n  1. Child',
+		});
+		const editor = page.getByRole('textbox');
+
+		expect(editor.getByRole('list')).toHaveLength(2);
+		expect(editor.getByRole('list').nth(0).element().tagName).toBe('UL');
+		expect(editor.getByRole('list').nth(1).element().tagName).toBe('OL');
+
+		await act(async () => {
+			selectContent(editor.element() as HTMLElement, 'Parent', 'Child');
+		});
+		await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+		expect(editor.getByRole('list')).toHaveLength(2);
+		expect(editor.getByRole('list').nth(0).element().tagName).toBe('UL');
+		expect(editor.getByRole('list').nth(1).element().tagName).toBe('UL');
+		expect(richEditor.getMarkdown()).toBe('- Parent\n  - Child\n');
+	});
+
 	test('3 empty lines splits the lists', async () => {
 		const editor1 = await renderRichEditorInDOM({
 			value: '',
