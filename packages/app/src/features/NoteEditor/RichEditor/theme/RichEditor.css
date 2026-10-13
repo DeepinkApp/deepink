@@ -384,6 +384,39 @@
    flow (same FLOW gap). Items inside a list get only a small
    ITEM gap, small enough to still read as "one group."
    ============================================================ */
+.RichEditor__nestedListItem {
+	position: relative;
+}
+
+/* List nesting highlighting */
+:is(
+	.RichEditor__ol1,
+	.RichEditor__ol2,
+	.RichEditor__ol3,
+	.RichEditor__ol4,
+	.RichEditor__ol5,
+	.RichEditor__ul
+) {
+	.RichEditor__nestedListItem > &::before {
+		content: '';
+		display: block;
+		width: 1px;
+		height: calc(100% - 28px);
+		background-color: var(--chakra-colors-border);
+		position: absolute;
+		top: 28px;
+		left: calc(var(--re-indent) * -0.5);
+	}
+
+	.RichEditor__checklist > .RichEditor__nestedListItem > &::before {
+		left: 9px;
+	}
+
+	.RichEditor__nestedListItem > &:hover::before {
+		background-color: var(--chakra-colors-typography-secondary);
+	}
+}
+
 .RichEditor__ol1,
 .RichEditor__ol2,
 .RichEditor__ol3,
