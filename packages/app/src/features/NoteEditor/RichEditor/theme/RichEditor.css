@@ -384,6 +384,39 @@
    flow (same FLOW gap). Items inside a list get only a small
    ITEM gap, small enough to still read as "one group."
    ============================================================ */
+.RichEditor__nestedListItem {
+	position: relative;
+}
+
+/* List nesting highlighting */
+:is(
+	.RichEditor__ol1,
+	.RichEditor__ol2,
+	.RichEditor__ol3,
+	.RichEditor__ol4,
+	.RichEditor__ol5,
+	.RichEditor__ul
+) {
+	.RichEditor__nestedListItem > &::before {
+		content: '';
+		display: block;
+		width: 1px;
+		height: calc(100% - 28px);
+		background-color: var(--chakra-colors-border);
+		position: absolute;
+		top: 28px;
+		left: calc(var(--re-indent) * -0.5);
+	}
+
+	.RichEditor__checklist > .RichEditor__nestedListItem > &::before {
+		left: 9px;
+	}
+
+	.RichEditor__nestedListItem > &:hover::before {
+		background-color: var(--chakra-colors-typography-secondary);
+	}
+}
+
 .RichEditor__ol1,
 .RichEditor__ol2,
 .RichEditor__ol3,
@@ -426,6 +459,10 @@
 .RichEditor__listItem {
 	margin: 0 0 var(--re-item-gap) 0;
 	line-height: 1.6;
+
+	&::marker {
+		color: var(--chakra-colors-typography-secondary);
+	}
 }
 
 .RichEditor__listItem:last-child {
@@ -436,7 +473,7 @@
 .RichEditor__listItemUnchecked {
 	position: relative;
 	margin: 0 0 var(--re-item-gap) 0;
-	padding-left: var(--re-indent);
+	padding-left: 26px;
 	list-style-type: none;
 	outline: none;
 	line-height: 1.6;
@@ -456,24 +493,28 @@
 .RichEditor__listItemUnchecked::before,
 .RichEditor__listItemChecked::before {
 	content: '';
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 	top: 3px;
-	left: 4px;
+	left: 0;
 	cursor: pointer;
 	display: block;
 	background-size: cover;
 	position: absolute;
+	border-radius: 6px;
+
+	@supports (corner-shape: squircle) {
+		corner-shape: squircle;
+		border-radius: 1.715rem;
+	}
 }
 
 .RichEditor__listItemUnchecked::before {
-	border: 1px solid #999;
-	border-radius: 2px;
+	border: 1px solid var(--chakra-colors-border);
 }
 
 .RichEditor__listItemChecked::before {
 	border: 1px solid var(--chakra-colors-control-action-background);
-	border-radius: 2px;
 	background-color: var(--chakra-colors-control-action-background);
 	background-repeat: no-repeat;
 }
@@ -481,13 +522,13 @@
 .RichEditor__listItemUnchecked[dir='rtl']::before,
 .RichEditor__listItemChecked[dir='rtl']::before {
 	left: auto;
-	right: 4px;
+	right: 0;
 }
 
 .RichEditor__listItemUnchecked:focus::before,
 .RichEditor__listItemChecked:focus::before {
 	box-shadow: var(--chakra-shadows-outline);
-	border-radius: 2px;
+	border-color: transparent;
 }
 
 .RichEditor__listItemChecked::after {
@@ -498,12 +539,18 @@
 	position: absolute;
 	display: block;
 	top: 7px;
-	width: 3px;
-	left: 11px;
+	width: 5px;
+	left: 0;
 	right: 11px;
-	height: 6px;
-	transform: rotate(45deg);
+	height: 10px;
+	transform: translateX(8px) rotate(45deg);
 	border-width: 0 2px 2px 0;
+}
+
+.RichEditor__listItemChecked[dir='rtl']::after {
+	left: auto;
+	right: 0;
+	transform: translateX(-8px) rotate(45deg);
 }
 
 /* Set default marker style for usual list items */
