@@ -426,6 +426,10 @@
 .RichEditor__listItem {
 	margin: 0 0 var(--re-item-gap) 0;
 	line-height: 1.6;
+
+	&::marker {
+		color: var(--chakra-colors-typography-secondary);
+	}
 }
 
 .RichEditor__listItem:last-child {
