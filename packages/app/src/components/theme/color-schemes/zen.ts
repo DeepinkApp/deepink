@@ -61,6 +61,10 @@ export default defineConfig({
 					success: { value: '#2a7042' },
 				},
 			},
+			shadows: {
+				outline: { value: `0 0 0 3px #cc583b` },
+				input: { value: `0 0 0 3px #cc583b` },
+			},
 		},
 		semanticTokens: {
 			colors: {
