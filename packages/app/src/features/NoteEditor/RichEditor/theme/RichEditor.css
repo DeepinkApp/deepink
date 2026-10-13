@@ -547,6 +547,12 @@
 	border-width: 0 2px 2px 0;
 }
 
+.RichEditor__listItemChecked[dir='rtl']::after {
+	left: auto;
+	right: 0;
+	transform: translateX(-8px) rotate(45deg);
+}
+
 /* Set default marker style for usual list items */
 .RichEditor__ul > .RichEditor__listItem:not([role='checkbox']) {
 	list-style: disc;
