@@ -54,7 +54,7 @@ export const defaultSettings = {
 	editor: {
 		mode: 'richtext',
 		fontFamily: '',
-		fontSize: 16,
+		fontSize: 18,
 		lineHeight: 1.6,
 		miniMap: false,
 		lineNumbers: false,
