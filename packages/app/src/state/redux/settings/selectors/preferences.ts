@@ -11,9 +11,7 @@ export const selectEditorConfig = createAppSelector(
 export const selectEditorFontFamily = createAppSelector(
 	selectEditorConfig,
 	({ fontFamily }) => {
-		const fallback =
-			// eslint-disable-next-line @cspell/spellchecker
-			'-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", "Segoe UI Variable", "Noto Sans", "Ubuntu", "Cantarell", "Helvetica Neue", Arial, system-ui, sans-serif';
+		const fallback = '"Source Serif 4", serif';
 
 		const normalizedFontFamily = normalizeFontFamily(fontFamily);
 
