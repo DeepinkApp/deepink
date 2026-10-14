@@ -1,11 +1,5 @@
 import React, { Ref, useEffect, useImperativeHandle, useMemo } from 'react';
-import {
-	$createRangeSelection,
-	$getRoot,
-	$getSelection,
-	$setSelection,
-	LexicalEditor,
-} from 'lexical';
+import { $getRoot, $getSelection, LexicalEditor } from 'lexical';
 import { Box, useSlotRecipe } from '@chakra-ui/react';
 import { CheckListPlugin } from '@lexical/react/LexicalCheckListPlugin';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -79,12 +73,8 @@ export const RichEditorContent = ({
 					// Do not change selection if exists
 					if ($getSelection()) return;
 
-					// Set cursor at content start
-					const rootKey = $getRoot().getKey();
-					const selection = $createRangeSelection();
-					selection.anchor.set(rootKey, 0, 'element');
-					selection.focus.set(rootKey, 0, 'element');
-					$setSelection(selection);
+					// Put the cursor at the start of the first leaf/block
+					$getRoot().selectStart();
 				});
 
 				const rootNode = editor.getRootElement();

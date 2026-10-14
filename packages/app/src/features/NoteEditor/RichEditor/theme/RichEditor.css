@@ -199,7 +199,7 @@
 	white-space: pre;
 }
 
-.RichEditor__code::before {
+.RichEditor__code[data-language][data-highlight-language][data-gutter]::before {
 	display: block;
 	float: left;
 	box-sizing: border-box;
