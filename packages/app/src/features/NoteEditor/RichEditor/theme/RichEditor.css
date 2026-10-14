@@ -156,7 +156,7 @@
 }
 
 .RichEditor__link {
-	display: inline-block;
+	display: inline;
 	color: var(--chakra-colors-link);
 	text-decoration: inherit;
 }
