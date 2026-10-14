@@ -27,6 +27,7 @@ export enum GLOBAL_COMMANDS {
 	RESTORE_NOTE_FROM_BIN = 'Restore note from bin',
 	TOGGLE_NOTE_ARCHIVE = 'Toggle note archive status',
 	TOGGLE_NOTE_BOOKMARK = 'Toggle note bookmark status',
+	TOGGLE_NOTE_PIN = 'Toggle note pin status',
 
 	/**
 	 * Open and close the history for a note
@@ -55,6 +56,7 @@ type CommandsWithPayload = {
 
 	[GLOBAL_COMMANDS.TOGGLE_NOTE_ARCHIVE]: { noteId: string };
 	[GLOBAL_COMMANDS.TOGGLE_NOTE_BOOKMARK]: { noteId: string };
+	[GLOBAL_COMMANDS.TOGGLE_NOTE_PIN]: { noteId: string };
 	[GLOBAL_COMMANDS.TOGGLE_NOTE_HISTORY_PANEL]: { noteId: string };
 
 	[GLOBAL_COMMANDS.EXPORT_NOTE]: { noteId: string };

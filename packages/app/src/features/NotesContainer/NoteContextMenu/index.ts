@@ -5,6 +5,7 @@ export enum NoteActions {
 	DELETE_TO_BIN = 'deleteToBin',
 	DELETE_PERMANENTLY = 'deletePermanently',
 	RESTORE_FROM_BIN = 'restoreFromBin',
+	PIN_NOTE = 'pinNote',
 
 	CLOSE = 'CLOSE',
 	CLOSE_ALL = 'CLOSE_ALL',

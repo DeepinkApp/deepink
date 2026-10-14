@@ -133,7 +133,7 @@ export class NotesExporter {
 			const notes = await notesRegistry.get({
 				limit: this.config.notesFetchLimit ?? 10_000,
 				page,
-				sort: { by: 'createdAt', order: 'asc' },
+				sort: [{ by: 'createdAt', order: 'asc' }],
 			});
 
 			// Complete when no more notes left

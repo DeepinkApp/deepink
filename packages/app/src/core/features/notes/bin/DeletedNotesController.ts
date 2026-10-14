@@ -113,10 +113,12 @@ export class DeletedNotesController {
 		return notes
 			.get({
 				meta: { isDeleted: true },
-				sort: {
-					by: considerModificationTime ? 'updatedAt' : 'deletedAt',
-					order: 'asc',
-				},
+				sort: [
+					{
+						by: considerModificationTime ? 'updatedAt' : 'deletedAt',
+						order: 'asc',
+					},
+				],
 				limit: 1,
 			})
 			.then((notes) => {

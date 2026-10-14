@@ -29,6 +29,7 @@ const RowScheme = z
 		deleted_at: z.coerce.date().nullable(),
 		archived: z.coerce.boolean(),
 		bookmarked: z.coerce.boolean(),
+		pinned_at: z.coerce.date().nullable(),
 	})
 	.transform(
 		({
@@ -42,6 +43,7 @@ const RowScheme = z
 			deleted_at,
 			archived,
 			bookmarked,
+			pinned_at,
 		}): INote => ({
 			id,
 			createdTimestamp: created_at.getTime(),
@@ -52,6 +54,7 @@ const RowScheme = z
 			deletedAt: deleted_at?.getTime(),
 			isArchived: archived,
 			isBookmarked: bookmarked,
+			isPinned: pinned_at !== null,
 			content: { title, text },
 		}),
 	);
@@ -80,6 +83,9 @@ function formatNoteMeta(meta: Partial<NoteMeta>) {
 			case 'isBookmarked':
 				fields['bookmarked'] = Number(value);
 				break;
+			case 'isPinned':
+				fields['pinned_at'] = value ? new Date().getTime() : null;
+				break;
 		}
 	}
 
@@ -98,7 +104,7 @@ function getFetchQuery(
 		limit,
 		page,
 		tags = [],
-		meta: { isDeleted, ...meta } = {},
+		meta: { isDeleted, isPinned, ...meta } = {},
 		deletedAt = {},
 		updatedAt = {},
 		sort,
@@ -112,6 +118,7 @@ function getFetchQuery(
 		createdAt: 'created_at',
 		updatedAt: 'updated_at',
 		deletedAt: 'deleted_at',
+		pinnedAt: 'pinned_at',
 	};
 
 	const withQuery: { name: string; query: Query<DBTypes> }[] = [];
@@ -146,6 +153,11 @@ function getFetchQuery(
 			qb.sql`deleted_at IS ${isDeleted ? qb.sql`NOT NULL` : qb.sql`NULL`}`,
 		);
 	}
+	if (isPinned !== undefined) {
+		filterQuery.push(
+			qb.sql`pinned_at IS ${isPinned ? qb.sql`NOT NULL` : qb.sql`NULL`}`,
+		);
+	}
 
 	if (deletedAt.from) {
 		filterQuery.push(qb.sql`deleted_at >= ${deletedAt.from.getTime()}`);
@@ -164,7 +176,9 @@ function getFetchQuery(
 	// Sort
 	if (sort) {
 		orderQuery.push(
-			qb.line(sortFieldMap[sort.by], sort.order === 'desc' ? 'DESC' : 'ASC'),
+			...sort.map(({ by, order }) =>
+				qb.line(sortFieldMap[by], order === 'desc' ? 'DESC' : 'ASC'),
+			),
 		);
 	}
 
