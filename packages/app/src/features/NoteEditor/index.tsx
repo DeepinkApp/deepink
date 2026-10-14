@@ -43,7 +43,8 @@ import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useCommand } from '@hooks/commands/useCommand';
 import { useWorkspaceCommandCallback } from '@hooks/commands/useWorkspaceCommandCallback';
 import { useImmutableCallback } from '@hooks/useImmutableCallback';
-import { useAppDispatch } from '@state/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@state/redux/hooks';
+import { selectEditorFontFamily } from '@state/redux/settings/selectors/preferences';
 import {
 	useVaultSelector,
 	useWorkspaceData,
@@ -292,6 +293,8 @@ export type NoteEditorProps = {
  */
 export const Note2: FC<NoteEditorProps> = memo(
 	({ note, updateNote, updateMeta, isActive }) => {
+		const fontFamily = useAppSelector(selectEditorFontFamily);
+
 		const { t } = useTranslation(LOCALE_NAMESPACE.features);
 		const telemetry = useTelemetryTracker();
 
@@ -436,6 +439,7 @@ export const Note2: FC<NoteEditorProps> = memo(
 							variant="flushed"
 							size="md"
 							fontSize="22px"
+							fontFamily={fontFamily}
 							value={versionPreview ? versionPreview.title : title}
 							onChange={
 								versionPreview

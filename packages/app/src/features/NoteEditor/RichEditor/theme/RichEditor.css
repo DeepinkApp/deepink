@@ -146,7 +146,7 @@
 	background-color: var(--chakra-colors-dim-100);
 	color: var(--chakra-colors-typography);
 	padding: 0.0625rem 0.25rem;
-	font-family: Menlo, Consolas, Monaco, monospace;
+	font-family: 'Martian Mono', monospace;
 	font-size: 0.9em;
 }
 
@@ -186,7 +186,7 @@
 
 	background-color: var(--chakra-colors-dim-100);
 	color: var(--chakra-colors-typography);
-	font-family: Menlo, Consolas, Monaco, monospace;
+	font-family: 'Martian Mono', monospace;
 	display: block;
 	padding: var(--block-padding);
 	line-height: 1.53;
