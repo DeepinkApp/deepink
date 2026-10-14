@@ -178,7 +178,7 @@ export const EditorPanelPlugin = () => {
 				code() {
 					editor.update(() => {
 						$wrapNodes((nodes) => {
-							const code = $createCodeNode('plaintext');
+							const code = $createCodeNode('plain');
 
 							const textContent = nodes
 								.map(
