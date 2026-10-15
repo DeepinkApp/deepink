@@ -1,6 +1,22 @@
 import { ContextMenu, SimpleMenuItem } from '@electron/requests/contextMenu';
 
-import { AppContextMenu, getMenuItemsMap, MenuPosition } from './AppContextMenu';
+import { AppContextMenu, MenuPosition } from './AppContextMenu';
+
+export const getMenuItemsMap = (menu: ContextMenu) => {
+	const callbacksMap = new Map<string, SimpleMenuItem>();
+	const exploreMenu = (menu: ContextMenu) => {
+		for (const item of menu) {
+			const { id, submenu } = item;
+			if (id) callbacksMap.set(id, item);
+
+			if (submenu) exploreMenu(submenu);
+		}
+	};
+
+	exploreMenu(menu);
+
+	return callbacksMap;
+};
 
 export type MenuItemSelector = (context: {
 	menu: ContextMenu;

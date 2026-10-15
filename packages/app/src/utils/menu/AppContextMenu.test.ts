@@ -1,5 +1,6 @@
 import { ContextMenu } from '@electron/requests/contextMenu';
 
+import { AppContextMenu, createMenuItemIdGenerator } from './AppContextMenu';
 import { createFakeContextMenu } from './mocks';
 
 // TODO: cover events usage
@@ -28,10 +29,9 @@ describe('Item selection', () => {
 		const clickTarget = menuItemsSample[1];
 
 		selector.mockImplementation(async () => clickTarget.id);
-		await expect(menu.open(menuItemsSample, { x: 0, y: 0 })).resolves.toStrictEqual({
-			id: clickTarget.id,
-			menuItem: clickTarget,
-		});
+		await expect(menu.open(menuItemsSample, { x: 0, y: 0 })).resolves.toBe(
+			clickTarget,
+		);
 	});
 
 	test('Item callback must be called for selected item', async () => {
@@ -41,10 +41,33 @@ describe('Item selection', () => {
 		expect(clickTarget.click).toHaveBeenCalledTimes(0);
 
 		selector.mockImplementation(async () => clickTarget.id);
-		await expect(menu.open(menuItemsSample, { x: 0, y: 0 })).resolves.toStrictEqual({
-			id: clickTarget.id,
-			menuItem: clickTarget,
-		});
+		await expect(menu.open(menuItemsSample, { x: 0, y: 0 })).resolves.toBe(
+			clickTarget,
+		);
+		expect(clickTarget.click).toHaveBeenCalledTimes(1);
+	});
+
+	test('Item with no ID can be clicked if id generator is passed', async () => {
+		const { renderer, selector } = createFakeContextMenu();
+
+		const menuIdGenerator = createMenuItemIdGenerator();
+		const menu = new AppContextMenu(renderer.open, menuIdGenerator);
+
+		const menuItemsSample = [
+			{ id: 'foo', label: 'foo', click: vi.fn() },
+			{ label: 'no id', click: vi.fn() },
+		] as const satisfies ContextMenu;
+
+		const clickTarget = menuItemsSample[1];
+		expect(clickTarget.click).toHaveBeenCalledTimes(0);
+
+		selector.mockImplementation(
+			async ({ menu }) =>
+				menu.find((item) => item.label === clickTarget.label)?.id ?? null,
+		);
+		await expect(menu.open(menuItemsSample, { x: 0, y: 0 })).resolves.toBe(
+			clickTarget,
+		);
 		expect(clickTarget.click).toHaveBeenCalledTimes(1);
 	});
 });
@@ -76,10 +99,10 @@ describe('Mocks', () => {
 		expect(selector).toHaveBeenCalledTimes(0);
 
 		const menuItems: ContextMenu = [
-			{ id: 'foo', label: 'foo', click: () => {} },
+			{ id: 'foo', label: 'foo', click: vi.fn() },
 			{ id: 'bar', label: 'bar' },
 			{ label: 'UNLISTED' },
-			{ id: 'baz', label: 'baz', click: () => {} },
+			{ id: 'baz', label: 'baz', click: vi.fn() },
 		];
 
 		await expect(menu.open(menuItems, { x: 0, y: 0 })).resolves.toBe(null);

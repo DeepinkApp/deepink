@@ -173,7 +173,7 @@ export const useNoteContextMenu = (context?: 'tabs' | 'notes-list') => {
 				],
 				point,
 			).then((item) => {
-				if (!item) return;
+				if (!item || !item.id) return;
 
 				telemetry.track(TELEMETRY_EVENT_NAME.NOTE_CONTEXT_MENU_CLICK, {
 					action: item.id,
