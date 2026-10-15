@@ -1,0 +1,25 @@
+import { createContext, useCallback, useContext } from 'react';
+import { ContextMenu } from '@electron/requests/contextMenu';
+import { openContextMenu } from '@electron/requests/contextMenu/renderer';
+import { hasElectronApi } from '@electron/utils/renderer';
+import { AppContextMenu, MenuPosition } from '@utils/menu/AppContextMenu';
+
+const AppContextMenuContext = createContext<AppContextMenu>(
+	new AppContextMenu(
+		hasElectronApi()
+			? (menu, position) => openContextMenu({ menu, ...position })
+			: async (menu, position) => {
+					console.debug('Context menu request', { menu, position });
+					return null;
+				},
+	),
+);
+
+export const useAppContextMenu = () => {
+	const contextMenu = useContext(AppContextMenuContext);
+
+	return useCallback(
+		(menu: ContextMenu, point: MenuPosition) => contextMenu.open(menu, point),
+		[contextMenu],
+	);
+};
