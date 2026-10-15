@@ -38,7 +38,7 @@ export const getMenuItemsMap = (menu: ContextMenu) => {
 	return callbacksMap;
 };
 
-export class AppContextMenu<K extends string> {
+export class AppContextMenu<K extends string = string> {
 	protected readonly onClosed;
 	protected readonly onClicked;
 	constructor(private readonly renderer: MenuRenderer) {
