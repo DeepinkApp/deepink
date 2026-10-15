@@ -4,6 +4,8 @@ import { openContextMenu } from '@electron/requests/contextMenu/renderer';
 import { hasElectronApi } from '@electron/utils/renderer';
 import { AppContextMenu, MenuPosition } from '@utils/menu/AppContextMenu';
 
+// TODO: implement context menu on web technologies and provide renderer
+// TODO: use chakra-ui menu in browser
 const AppContextMenuContext = createContext<AppContextMenu>(
 	new AppContextMenu(
 		hasElectronApi()
