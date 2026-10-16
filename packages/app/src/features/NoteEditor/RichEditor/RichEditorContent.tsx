@@ -16,7 +16,6 @@ import {
 import { setRef } from '@utils/react/setRef';
 
 import { CodeHighlightPlugin } from './plugins/CodeHighlightPlugin';
-import { GenericContextMenu } from './plugins/ContextMenu/components/GenericContextMenu';
 import { ContextMenuPlugin } from './plugins/ContextMenu/ContextMenuPlugin';
 import { EditorPanelPlugin } from './plugins/EditorPanelPlugin/EditorPanelPlugin';
 import { DropFilesPlugin } from './plugins/Files/DropFilesPlugin';
@@ -110,7 +109,7 @@ export const RichEditorContent = ({
 				lineHeight: editorConfig.lineHeight,
 			}}
 		>
-			<ContextMenuPlugin renderer={GenericContextMenu} />
+			<ContextMenuPlugin />
 			<RichTextContainer {...props} placeholder={placeholder} />
 			<MarkdownSerializePlugin
 				value={value}

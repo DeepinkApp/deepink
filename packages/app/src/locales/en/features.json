@@ -285,12 +285,49 @@
 			"urlLabel": "Image url",
 			"altLabel": "Image alt text"
 		},
-		"linkProperties": {
-			"title": "Link properties editor",
-			"urlLabel": "Link URL",
+		"link": {
+			"insert": "Add a link...",
+			"edit": "Edit link...",
+			"remove": "Convert link to text"
+		},
+		"image": {
+			"edit": "Edit image...",
+			"download": "Save image as..."
+		},
+		"linkEditor": {
+			"title": {
+				"add": "Insert a link",
+				"edit": "Edit a link"
+			},
+			"form": {
+				"url": {
+					"label": "Link URL",
+					"placeholder": "e.g., https://example.com"
+				},
+				"title": {
+					"label": "Title",
+					"placeholder": "e.g. Ancient Rome on wiki page"
+				}
+			},
 			"actions": {
-				"update": "Update URL",
-				"remove": "Convert link to text"
+				"insert": "Insert",
+				"update": "Update"
+			}
+		},
+		"imageEditor": {
+			"title": "Edit an image",
+			"form": {
+				"url": {
+					"label": "Image URL",
+					"placeholder": "e.g., https://example.com/image.png"
+				},
+				"altText": {
+					"label": "Image alt text (optional)",
+					"placeholder": "Brief description of the image"
+				}
+			},
+			"actions": {
+				"update": "Update"
 			}
 		}
 	},

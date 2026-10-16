@@ -1,7 +1,8 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
-import { ContextMenuCallback, useContextMenu } from '@hooks/useContextMenu';
+import { useAppContextMenu } from '@hooks/useAppContextMenu';
+import { MenuPosition } from '@utils/menu/AppContextMenu';
 
 export enum TagContextMenu {
 	ADD = 'add',
@@ -21,41 +22,38 @@ export const useTagContextMenu = ({
 	onDelete,
 }: TagContextMenuCallbacks) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.menu, { keyPrefix: 'tag' });
+	const showMenu = useAppContextMenu();
 
-	const noteContextMenuCallback: ContextMenuCallback<TagContextMenu> = useCallback(
-		async ({ id, action }) => {
-			const actionsMap = {
-				[TagContextMenu.ADD]: onAdd,
-				[TagContextMenu.EDIT]: onEdit,
-				[TagContextMenu.DELETE]: onDelete,
-			};
-
-			if (action in actionsMap) {
-				actionsMap[action](id);
-			}
+	return useCallback(
+		(id: string, position: MenuPosition) => {
+			showMenu(
+				[
+					{
+						id: TagContextMenu.ADD,
+						label: t('addNestedTag'),
+						click() {
+							onAdd(id);
+						},
+					},
+					{
+						id: TagContextMenu.EDIT,
+						label: t('edit'),
+						click() {
+							onEdit(id);
+						},
+					},
+					{ type: 'separator' },
+					{
+						id: TagContextMenu.DELETE,
+						label: t('delete'),
+						click() {
+							onDelete(id);
+						},
+					},
+				],
+				position,
+			);
 		},
-		[onAdd, onEdit, onDelete],
-	);
-
-	return useContextMenu(
-		useMemo(
-			() => [
-				{
-					id: TagContextMenu.ADD,
-					label: t('addNestedTag'),
-				},
-				{
-					id: TagContextMenu.EDIT,
-					label: t('edit'),
-				},
-				{ type: 'separator' },
-				{
-					id: TagContextMenu.DELETE,
-					label: t('delete'),
-				},
-			],
-			[t],
-		),
-		noteContextMenuCallback,
+		[onAdd, onDelete, onEdit, showMenu, t],
 	);
 };
