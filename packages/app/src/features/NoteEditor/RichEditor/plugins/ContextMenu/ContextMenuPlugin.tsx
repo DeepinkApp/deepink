@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+	$createTextNode,
 	$findMatchingParent,
 	$getEditor,
 	$getNearestNodeFromDOMNode,
 	$getSelection,
+	$isBlockElementNode,
 	$isInlineFormattable,
 	$isNodeSelection,
 	$isRangeSelection,
 	$setSelection,
+	CONTROLLED_TEXT_INSERTION_COMMAND,
 	FORMAT_TEXT_COMMAND,
 	LexicalEditor,
 	LexicalNode,
@@ -20,12 +23,18 @@ import { ContextMenu } from '@electron/requests/contextMenu';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 import { useAppContextMenu } from '@hooks/useAppContextMenu';
-import { $isCodeNode } from '@lexical/code-core';
+import { useLocalizedDate } from '@hooks/useLocalizedDate';
+import { $createCodeNode, $isCodeNode } from '@lexical/code-core';
 import { CODE_LANGUAGE_FRIENDLY_NAME_MAP } from '@lexical/code-prism';
 import { $isLinkNode, LinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { $isListNode } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
+import { useAppSelector } from '@state/redux/hooks';
+import { selectEditorDateFormat } from '@state/redux/settings/selectors/preferences';
 
+import { $wrapNodes } from '../EditorPanelPlugin/utils/tree';
+import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $isImageNode } from '../Image/ImageNode';
 import { ImageEditorDialog } from './ImageEditorDialog';
 import { LinkEditorDialog } from './LinkEditorDialog';
@@ -67,6 +76,9 @@ export const ContextMenuPlugin = () => {
 
 	const showMenu = useAppContextMenu();
 
+	const localizedDate = useLocalizedDate();
+	const dateFormat = useAppSelector(selectEditorDateFormat);
+
 	// Trigger context menu
 	useEffect(() => {
 		const rootElement = editor.getRootElement();
@@ -81,6 +93,10 @@ export const ContextMenuPlugin = () => {
 
 				const rootElement = editor.getElementByKey(lexicalNode.getKey());
 				if (!rootElement) return;
+
+				const selection = $getSelection();
+				const $restoreSelection = () =>
+					selection && $setSelection(selection.clone());
 
 				const menu: ContextMenu = [];
 
@@ -158,14 +174,82 @@ export const ContextMenuPlugin = () => {
 				menu.push({
 					label: 'Insert',
 					submenu: [
-						{ label: 'Current date' },
-						{ label: 'File...' },
-						{ label: 'Table' },
+						{
+							label: 'Current date',
+							click() {
+								editor.update(() => {
+									$restoreSelection();
+									editor.dispatchCommand(
+										CONTROLLED_TEXT_INSERTION_COMMAND,
+										localizedDate(new Date(), dateFormat),
+									);
+								});
+							},
+						},
+						{
+							label: 'Horizontal rule',
+							click() {
+								editor.dispatchCommand(
+									INSERT_HORIZONTAL_RULE_COMMAND,
+									undefined,
+								);
+							},
+						},
+						{
+							label: 'File...',
+							click() {
+								const input = document.createElement('input');
+								input.type = 'file';
+								input.multiple = true;
+								input.addEventListener(
+									'change',
+									() => {
+										const files = input.files;
+										input.remove();
+
+										if (files) {
+											editor.dispatchCommand(INSERT_FILES_COMMAND, {
+												files: files,
+											});
+										}
+									},
+									{ once: true },
+								);
+
+								input.click();
+							},
+						},
+						{
+							label: 'Code block',
+							click() {
+								editor.update(() => {
+									$restoreSelection();
+									$wrapNodes((nodes) => {
+										const code = $createCodeNode();
+
+										const textContent = nodes
+											.map(
+												(node, index) =>
+													($isBlockElementNode(node) &&
+													index > 0
+														? '\n'
+														: '') + node.getTextContent(),
+											)
+											.join('');
+										nodes.forEach((node) => node.remove());
+
+										code.append($createTextNode(textContent));
+										code.select();
+
+										return code;
+									});
+								});
+							},
+						},
 					],
 				});
 
 				// Formatting
-				const selection = $getSelection();
 				if (
 					// User must select some text
 					selection &&
@@ -179,7 +263,6 @@ export const ContextMenuPlugin = () => {
 								!$findMatchingParent(node, (node) => $isCodeNode(node)),
 						)
 				) {
-					const $restoreSelection = () => $setSelection(selection.clone());
 					const formatSelectedText = (format: TextFormatType) => {
 						editor.update(() => {
 							$restoreSelection();
@@ -301,7 +384,7 @@ export const ContextMenuPlugin = () => {
 				capture: true,
 			});
 		};
-	}, [editor, modal, showMenu, t]);
+	}, [dateFormat, editor, localizedDate, modal, showMenu, t]);
 
 	return null;
 };
