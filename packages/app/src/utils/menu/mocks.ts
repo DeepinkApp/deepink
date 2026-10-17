@@ -76,8 +76,6 @@ export const createMenuItemSelector =
 			return null;
 		}
 
-		console.log('Found item', item.id, item.label);
-
 		return item.id ?? null;
 	};
 

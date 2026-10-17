@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+	$createParagraphNode,
 	$createTextNode,
 	$findMatchingParent,
 	$getEditor,
@@ -9,6 +10,7 @@ import {
 	$isBlockElementNode,
 	$isInlineFormattable,
 	$isNodeSelection,
+	$isParagraphNode,
 	$isRangeSelection,
 	$setSelection,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
@@ -30,6 +32,7 @@ import { $isLinkNode, LinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { $isListNode } from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
+import { $createQuoteNode } from '@lexical/rich-text';
 import { useAppSelector } from '@state/redux/hooks';
 import { selectEditorDateFormat } from '@state/redux/settings/selectors/preferences';
 
@@ -38,6 +41,7 @@ import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $isImageNode } from '../Image/ImageNode';
 import { ImageEditorDialog } from './ImageEditorDialog';
 import { LinkEditorDialog } from './LinkEditorDialog';
+import { CONVERT_TO_PARAGRAPH_COMMAND, ParagraphPlugin } from './ParagraphPlugin';
 
 export type ContextMenuRendererProps = {
 	node: LexicalNode;
@@ -99,8 +103,6 @@ export const ContextMenuPlugin = () => {
 					selection && $setSelection(selection.clone());
 
 				const menu: ContextMenu = [];
-
-				console.log({ lexicalNode, target, evt });
 
 				const linkNode = $findMatchingParent(lexicalNode, $isLinkNode);
 				if (linkNode) {
@@ -219,33 +221,6 @@ export const ContextMenuPlugin = () => {
 								input.click();
 							},
 						},
-						{
-							label: 'Code block',
-							click() {
-								editor.update(() => {
-									$restoreSelection();
-									$wrapNodes((nodes) => {
-										const code = $createCodeNode();
-
-										const textContent = nodes
-											.map(
-												(node, index) =>
-													($isBlockElementNode(node) &&
-													index > 0
-														? '\n'
-														: '') + node.getTextContent(),
-											)
-											.join('');
-										nodes.forEach((node) => node.remove());
-
-										code.append($createTextNode(textContent));
-										code.select();
-
-										return code;
-									});
-								});
-							},
-						},
 					],
 				});
 
@@ -325,9 +300,73 @@ export const ContextMenuPlugin = () => {
 				menu.push({
 					label: 'Block type',
 					submenu: [
-						{ label: 'Paragraph' },
-						{ label: 'Code block' },
-						{ label: 'Quote' },
+						{
+							label: 'Paragraph',
+							click() {
+								editor.update(() => {
+									$restoreSelection();
+									editor.dispatchCommand(CONVERT_TO_PARAGRAPH_COMMAND);
+								});
+							},
+						},
+						{
+							label: 'Quote',
+							click() {
+								editor.update(() => {
+									$restoreSelection();
+									$wrapNodes((nodes) => {
+										const quote = $createQuoteNode();
+
+										if (nodes.length === 0) {
+											const paragraph = $createParagraphNode();
+											quote.append(paragraph);
+											paragraph.select();
+										} else {
+											quote.append(
+												...nodes.map((node) => {
+													if ($isParagraphNode(node))
+														return node;
+
+													const paragraph =
+														$createParagraphNode();
+													paragraph.append(node);
+													return paragraph;
+												}),
+											);
+										}
+
+										return quote;
+									});
+								});
+							},
+						},
+						{
+							label: 'Code block',
+							click() {
+								editor.update(() => {
+									$restoreSelection();
+									$wrapNodes((nodes) => {
+										const code = $createCodeNode();
+
+										const textContent = nodes
+											.map(
+												(node, index) =>
+													($isBlockElementNode(node) &&
+													index > 0
+														? '\n'
+														: '') + node.getTextContent(),
+											)
+											.join('');
+										nodes.forEach((node) => node.remove());
+
+										code.append($createTextNode(textContent));
+										code.select();
+
+										return code;
+									});
+								});
+							},
+						},
 					],
 				});
 
@@ -386,5 +425,9 @@ export const ContextMenuPlugin = () => {
 		};
 	}, [dateFormat, editor, localizedDate, modal, showMenu, t]);
 
-	return null;
+	return (
+		<>
+			<ParagraphPlugin />
+		</>
+	);
 };
