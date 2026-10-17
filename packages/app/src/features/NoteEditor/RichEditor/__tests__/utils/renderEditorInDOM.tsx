@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createEvent } from 'effector';
 import { LexicalEditor } from 'lexical';
 import { LocalesProvider } from 'src/LocalesProvider';
+import { Locator } from 'vitest/browser';
 import { FilesController } from '@core/features/files/FilesController';
 import {
 	FilesRegistryContext,
@@ -82,7 +83,7 @@ export type RichEditorTestAPI = {
 	getEditor(): LexicalEditor;
 	getMarkdown(): string;
 	getMenu(): ReturnType<typeof createFakeContextMenu>;
-	setContextMenuSelector(locator: string[]): void;
+	openContextMenu(locator: Locator, itemLabelsPath: string[]): Promise<void>;
 	render: (props: RichEditorContentProps) => Promise<void>;
 };
 
@@ -184,8 +185,14 @@ export const renderRichEditorInDOM = async ({
 			return fakeContextMenu;
 		},
 
-		setContextMenuSelector(locator: string[]) {
-			fakeContextMenu.selector.mockImplementation(selectMenuByLabel(locator));
+		async openContextMenu(locator: Locator, itemLabelsPath: string[]) {
+			await act(async () => {
+				// TODO: emulate focus change
+				fakeContextMenu.selector.mockImplementation(
+					selectMenuByLabel(itemLabelsPath),
+				);
+				await locator.click({ button: 'right' });
+			});
 		},
 
 		getEditor() {
