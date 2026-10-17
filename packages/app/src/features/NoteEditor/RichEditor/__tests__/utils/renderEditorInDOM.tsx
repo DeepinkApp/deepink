@@ -20,6 +20,7 @@ import {
 import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
 import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEditorContent';
 import { ThemeProvider } from '@features/ThemeProvider';
+import { WorkspaceModalProvider } from '@features/WorkspaceModal/useWorkspaceModal';
 import { createTestStore } from '@tests/utils/redux';
 
 import { $convertToMarkdownString } from '../../plugins/Markdown/markdownParser';
@@ -57,13 +58,15 @@ export const MockWorkspaceProvider = ({ children }: { children: React.ReactNode 
 	};
 
 	return (
-		<NotesContext.Provider value={notesApi}>
-			<FilesRegistryContext.Provider value={filesRegistry}>
-				<NotesRegistryContext.Provider value={notesControl}>
-					{children}
-				</NotesRegistryContext.Provider>
-			</FilesRegistryContext.Provider>
-		</NotesContext.Provider>
+		<WorkspaceModalProvider>
+			<NotesContext.Provider value={notesApi}>
+				<FilesRegistryContext.Provider value={filesRegistry}>
+					<NotesRegistryContext.Provider value={notesControl}>
+						{children}
+					</NotesRegistryContext.Provider>
+				</FilesRegistryContext.Provider>
+			</NotesContext.Provider>
+		</WorkspaceModalProvider>
 	);
 };
 

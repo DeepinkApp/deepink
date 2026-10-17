@@ -6,7 +6,7 @@ import { useWatchSelector } from '@hooks/useWatchSelector';
 import { createAppSelector } from '@state/redux/utils';
 import { selectVaultById } from '@state/redux/vaults/vaults';
 
-import { VaultControls } from '.';
+import { VaultControls } from './useVaultControls';
 
 const vaultStateScheme = z.object({
 	activeWorkspace: z.string().nullable(),

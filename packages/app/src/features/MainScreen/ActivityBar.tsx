@@ -8,7 +8,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { ButtonGroup, VStack } from '@chakra-ui/react';
 import { IconButton } from '@components/IconButton';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
-import { useVaultControls } from '@features/App/Vault';
+import { useVaultControls } from '@features/App/Vault/useVaultControls';
 import { useTelemetryTracker } from '@features/telemetry';
 import { GLOBAL_COMMANDS } from '@hooks/commands';
 import { useCommand } from '@hooks/commands/useCommand';

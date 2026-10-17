@@ -5,7 +5,7 @@ import { useWatchSelector } from '@hooks/useWatchSelector';
 import { createAppSelector } from '@state/redux/utils';
 import { selectVaultById, VaultConfigScheme } from '@state/redux/vaults/vaults';
 
-import { useVaultControls } from '..';
+import { useVaultControls } from '../useVaultControls';
 
 export const useVaultConfigSync = () => {
 	const {

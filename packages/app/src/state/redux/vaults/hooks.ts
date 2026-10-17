@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { isEqual } from 'lodash';
-import { useVaultControls } from '@features/App/Vault';
-import { useWorkspaceContext } from '@features/App/Workspace';
+import { useVaultControls } from '@features/App/Vault/useVaultControls';
+import { useWorkspaceContext } from '@features/App/Workspace/WorkspaceContext';
 import { ActionCreatorWithPayload, Selector } from '@reduxjs/toolkit';
 
 import { useAppSelector, useAppStore } from '../hooks';

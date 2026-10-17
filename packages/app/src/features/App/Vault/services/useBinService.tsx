@@ -9,7 +9,7 @@ import {
 	selectWorkspacesSummary,
 } from '@state/redux/vaults/selectors/vault';
 
-import { useVaultDB } from '..';
+import { useVaultDB } from '../useVaultDB';
 
 export const useBinService = () => {
 	const db = useVaultDB();
