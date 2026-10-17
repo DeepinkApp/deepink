@@ -10,7 +10,7 @@ import {
 
 // TODO: implement context menu on web technologies and provide renderer
 // TODO: use chakra-ui menu in browser
-const AppContextMenuContext = createContext<AppContextMenu>(
+export const AppContextMenuContext = createContext<AppContextMenu>(
 	new AppContextMenu(
 		hasElectronApi()
 			? (menu, position) => openContextMenu({ menu, ...position })

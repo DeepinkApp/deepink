@@ -1,6 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 import { ContextMenu, SimpleMenuItem } from '@electron/requests/contextMenu';
 
-import { AppContextMenu, MenuPosition } from './AppContextMenu';
+import {
+	AppContextMenu,
+	createMenuItemIdGenerator,
+	MenuPosition,
+} from './AppContextMenu';
 
 export const getMenuItemsMap = (menu: ContextMenu) => {
 	const callbacksMap = new Map<string, SimpleMenuItem>();
@@ -36,7 +41,45 @@ export class MockedContextMenu {
 export const createFakeContextMenu = () => {
 	const selector = vi.fn<MenuItemSelector>(async () => null);
 	const renderer = new MockedContextMenu(selector);
-	const menu = new AppContextMenu(renderer.open);
+	const menu = new AppContextMenu(renderer.open, createMenuItemIdGenerator());
 
 	return { selector, renderer, menu };
 };
+
+export const findMenuItemById = (
+	menu: ContextMenu,
+	locator: Partial<SimpleMenuItem>[],
+) => {
+	let currentMenu: SimpleMenuItem | null = null;
+	for (const segment of locator) {
+		const foundItem = (currentMenu?.submenu || menu).find((item) =>
+			Object.entries(segment).every(
+				([key, value]) => item[key as keyof SimpleMenuItem] === value,
+			),
+		) as SimpleMenuItem | undefined;
+
+		if (!foundItem) return null;
+
+		currentMenu = foundItem;
+	}
+
+	return currentMenu;
+};
+
+export const createMenuItemSelector =
+	(locator: Partial<SimpleMenuItem>[]): MenuItemSelector =>
+	async ({ menu }) => {
+		const item = findMenuItemById(menu, locator);
+
+		if (!item) {
+			console.warn(menu);
+			return null;
+		}
+
+		console.log('Found item', item.id, item.label);
+
+		return item.id ?? null;
+	};
+
+export const selectMenuByLabel = (locator: string[]) =>
+	createMenuItemSelector(locator.map((label) => ({ label })));

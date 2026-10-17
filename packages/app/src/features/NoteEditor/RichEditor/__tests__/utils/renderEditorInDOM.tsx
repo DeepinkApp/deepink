@@ -21,7 +21,9 @@ import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
 import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEditorContent';
 import { ThemeProvider } from '@features/ThemeProvider';
 import { WorkspaceModalProvider } from '@features/WorkspaceModal/useWorkspaceModal';
+import { AppContextMenuContext } from '@hooks/useAppContextMenu';
 import { createTestStore } from '@tests/utils/redux';
+import { createFakeContextMenu, selectMenuByLabel } from '@utils/menu/mocks';
 
 import { $convertToMarkdownString } from '../../plugins/Markdown/markdownParser';
 
@@ -79,6 +81,8 @@ export type RichEditorTestAPI = {
 	command: (format: CommandsPayload) => Promise<void>;
 	getEditor(): LexicalEditor;
 	getMarkdown(): string;
+	getMenu(): ReturnType<typeof createFakeContextMenu>;
+	setContextMenuSelector(locator: string[]): void;
 	render: (props: RichEditorContentProps) => Promise<void>;
 };
 
@@ -97,20 +101,24 @@ export const renderRichEditorInDOM = async ({
 
 	const editorRef = createRef<LexicalEditor>();
 
+	const fakeContextMenu = createFakeContextMenu();
+
 	const renderEditor = (props: RichEditorContentProps) => (
 		<Provider store={store}>
 			<ThemeProvider>
 				<LocalesProvider>
 					<MockWorkspaceProvider>
-						<editorPanelContext.Provider
-							value={{ onInserting, onFormatting, onCommand }}
-						>
-							<RichEditor
-								placeholder="Enter text"
-								syncDelay={0}
-								{...props}
-							/>
-						</editorPanelContext.Provider>
+						<AppContextMenuContext value={fakeContextMenu.menu}>
+							<editorPanelContext.Provider
+								value={{ onInserting, onFormatting, onCommand }}
+							>
+								<RichEditor
+									placeholder="Enter text"
+									syncDelay={0}
+									{...props}
+								/>
+							</editorPanelContext.Provider>
+						</AppContextMenuContext>
 					</MockWorkspaceProvider>
 				</LocalesProvider>
 			</ThemeProvider>
@@ -170,6 +178,14 @@ export const renderRichEditorInDOM = async ({
 
 		command: async (format: CommandsPayload) => {
 			await act(async () => onCommand(format));
+		},
+
+		getMenu() {
+			return fakeContextMenu;
+		},
+
+		setContextMenuSelector(locator: string[]) {
+			fakeContextMenu.selector.mockImplementation(selectMenuByLabel(locator));
 		},
 
 		getEditor() {

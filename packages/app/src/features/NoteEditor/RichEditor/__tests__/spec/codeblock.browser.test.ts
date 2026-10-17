@@ -20,7 +20,11 @@ test('insertion into empty editor creates code block on first paragraph', async 
 	await act(async () => {
 		editorApi.current?.focus();
 	});
-	await editor.insert({ type: 'code' });
+
+	editor.setContextMenuSelector(['Block type', 'Code block']);
+	await act(async () => {
+		await editorLocator.getByRole('paragraph').click({ button: 'right' });
+	});
 
 	expect(editorLocator.getByRole('code')).toHaveLength(1);
 	expect(editorLocator.getByRole('paragraph')).toHaveLength(0);
@@ -49,7 +53,10 @@ test('insertion converts paragraph and its content into a code block', async () 
 	expect(editorLocator.getByRole('paragraph')).toHaveTextContent('Some code here');
 
 	// Convert it
-	await editor.insert({ type: 'code' });
+	editor.setContextMenuSelector(['Block type', 'Code block']);
+	await act(async () => {
+		await editorLocator.getByRole('paragraph').click({ button: 'right' });
+	});
 
 	expect(editorLocator.getByRole('code')).toHaveLength(1);
 	expect(editorLocator.getByRole('code')).toHaveTextContent('Some code here');
