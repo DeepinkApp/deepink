@@ -15,7 +15,7 @@ describe('Blocks conversion', () => {
 		const codeLocator = editorLocator.getByRole('code');
 		expect(codeLocator).toHaveLength(1);
 
-		await editor.openContextMenu(codeLocator, ['Block type', 'Paragraph']);
+		await editor.openContextMenu(codeLocator, ['Paragraph', 'Body']);
 
 		expect(editorLocator.getByRole('paragraph')).toHaveLength(1);
 		expect(editorLocator.getByRole('paragraph')).toHaveTextContent(text);
@@ -32,7 +32,7 @@ describe('Blocks conversion', () => {
 		const quoteLocator = editorLocator.getByRole('blockquote');
 		expect(quoteLocator).toHaveLength(1);
 
-		await editor.openContextMenu(quoteLocator, ['Block type', 'Paragraph']);
+		await editor.openContextMenu(quoteLocator, ['Paragraph', 'Body']);
 
 		expect(editorLocator.getByRole('paragraph')).toHaveLength(1);
 		expect(editorLocator.getByRole('paragraph')).toHaveTextContent(text);
@@ -54,7 +54,7 @@ describe('Blocks conversion', () => {
 		const headingLocator = editorLocator.getByRole('heading');
 		expect(headingLocator).toHaveLength(1);
 
-		await editor.openContextMenu(quoteLocator, ['Block type', 'Paragraph']);
+		await editor.openContextMenu(quoteLocator, ['Paragraph', 'Body']);
 
 		expect(headingLocator).toHaveLength(1);
 		expect(editorLocator.getByRole('paragraph')).toHaveLength(2);
@@ -76,7 +76,7 @@ describe('Blocks conversion', () => {
 		const headingLocator = editorLocator.getByRole('heading');
 		expect(headingLocator).toHaveLength(1);
 
-		await editor.openContextMenu(headingLocator, ['Block type', 'Paragraph']);
+		await editor.openContextMenu(headingLocator, ['Paragraph', 'Body']);
 
 		expect(headingLocator).not.toBeInTheDocument();
 		expect(editorLocator.getByRole('paragraph')).toHaveLength(3);
@@ -105,7 +105,7 @@ describe('Blocks conversion', () => {
 				text,
 			);
 		});
-		await editor.openContextMenu(headingLocator, ['Block type', 'Paragraph']);
+		await editor.openContextMenu(headingLocator, ['Paragraph', 'Body']);
 
 		expect(editorLocator.getByRole('paragraph')).toHaveLength(2);
 		expect(quoteLocator).toHaveLength(0);

@@ -6,12 +6,14 @@ import {
 	$findMatchingParent,
 	$getEditor,
 	$getNearestNodeFromDOMNode,
+	$getRoot,
 	$getSelection,
 	$isBlockElementNode,
 	$isInlineFormattable,
 	$isNodeSelection,
 	$isParagraphNode,
 	$isRangeSelection,
+	$isTextNode,
 	$setSelection,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
 	FORMAT_TEXT_COMMAND,
@@ -27,16 +29,28 @@ import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 import { useAppContextMenu } from '@hooks/useAppContextMenu';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
 import { $createCodeNode, $isCodeNode } from '@lexical/code-core';
-import { CODE_LANGUAGE_FRIENDLY_NAME_MAP } from '@lexical/code-prism';
+import { CODE_LANGUAGE_FRIENDLY_NAME_MAP, CODE_LANGUAGE_MAP } from '@lexical/code-prism';
 import { $isLinkNode, LinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
-import { $isListNode } from '@lexical/list';
+import {
+	$isListNode,
+	INSERT_CHECK_LIST_COMMAND,
+	INSERT_ORDERED_LIST_COMMAND,
+	INSERT_UNORDERED_LIST_COMMAND,
+} from '@lexical/list';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontalRuleNode';
-import { $createQuoteNode } from '@lexical/rich-text';
+import {
+	$createHeadingNode,
+	$createQuoteNode,
+	$isHeadingNode,
+	$isQuoteNode,
+} from '@lexical/rich-text';
 import { useAppSelector } from '@state/redux/hooks';
 import { selectEditorDateFormat } from '@state/redux/settings/selectors/preferences';
 
-import { $wrapNodes } from '../EditorPanelPlugin/utils/tree';
+import { $getCursorNode } from '../../utils/selection';
+
+import { $canInsertElementsToNode, $wrapNodes } from '../EditorPanelPlugin/utils/tree';
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $isImageNode } from '../Image/ImageNode';
 import { ImageEditorDialog } from './ImageEditorDialog';
@@ -297,11 +311,101 @@ export const ContextMenuPlugin = () => {
 					});
 				}
 
+				const listNode = $findMatchingParent(lexicalNode, $isListNode);
 				menu.push({
-					label: 'Block type',
+					label: 'Paragraph',
 					submenu: [
 						{
-							label: 'Paragraph',
+							type: 'checkbox',
+							label: 'Unordered list',
+							checked: Boolean(
+								listNode && listNode.getListType() === 'bullet',
+							),
+							click() {
+								editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND);
+							},
+						},
+						{
+							type: 'checkbox',
+							label: 'Ordered list',
+							checked: Boolean(
+								listNode && listNode.getListType() === 'number',
+							),
+							click() {
+								editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND);
+							},
+						},
+						{
+							type: 'checkbox',
+							label: 'Task list',
+							checked: Boolean(
+								listNode && listNode.getListType() === 'check',
+							),
+							click() {
+								editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND);
+							},
+						},
+						{ type: 'separator' },
+						...([1, 2, 3, 4, 5, 6] as const).map((level) => {
+							return {
+								label: `Heading ${level}`,
+								type: 'checkbox',
+								checked:
+									$isHeadingNode(lexicalNode) &&
+									lexicalNode.getTag() === `h${level}`,
+								click() {
+									editor.update(() => {
+										const target = $getCursorNode();
+										if (!target) return;
+
+										const parent = target.getParent();
+										if (parent && !$canInsertElementsToNode(parent))
+											return;
+
+										// Update existing heading (toggle to paragraph or change level)
+										if ($isHeadingNode(parent)) {
+											const currentHeadingLevel = Number(
+												parent.getTag().slice(1),
+											);
+											if (currentHeadingLevel === level) {
+												parent.replace(
+													$createParagraphNode(),
+													true,
+												);
+											} else {
+												parent.replace(
+													$createHeadingNode(`h${level}`),
+													true,
+												);
+											}
+
+											return;
+										}
+
+										// Insert
+										const heading = $createHeadingNode(`h${level}`);
+										if ($isTextNode(target)) {
+											target.replace(heading);
+											heading.append(target);
+											heading.select();
+										} else {
+											// Insert at root
+											if (!parent) {
+												$getRoot().append(heading);
+												heading.select();
+												return;
+											}
+
+											// Insert before
+											target.insertBefore(heading);
+											heading.select();
+										}
+									});
+								},
+							} as const;
+						}),
+						{
+							label: 'Body',
 							click() {
 								editor.update(() => {
 									$restoreSelection();
@@ -309,8 +413,13 @@ export const ContextMenuPlugin = () => {
 								});
 							},
 						},
+						{ type: 'separator' },
 						{
 							label: 'Quote',
+							type: 'checkbox',
+							checked: Boolean(
+								$findMatchingParent(lexicalNode, $isQuoteNode),
+							),
 							click() {
 								editor.update(() => {
 									$restoreSelection();
@@ -342,6 +451,10 @@ export const ContextMenuPlugin = () => {
 						},
 						{
 							label: 'Code block',
+							type: 'checkbox',
+							checked: Boolean(
+								$findMatchingParent(lexicalNode, $isCodeNode),
+							),
 							click() {
 								editor.update(() => {
 									$restoreSelection();
@@ -370,39 +483,34 @@ export const ContextMenuPlugin = () => {
 					],
 				});
 
-				const listNode = $findMatchingParent(lexicalNode, $isListNode);
-				if (listNode)
-					menu.push({
-						label: 'List type',
-						submenu: [
-							{
-								type: 'checkbox',
-								label: 'Unordered list',
-							},
-							{
-								type: 'checkbox',
-								label: 'Ordered list',
-							},
-							{ type: 'checkbox', label: 'Task list' },
-						],
-					});
-
 				const codeNode = $findMatchingParent(lexicalNode, $isCodeNode);
 				if (codeNode) {
-					const currentLanguage = editor.read(() => codeNode.getLanguage());
+					const currentLanguage = editor.read(() =>
+						codeNode.getLanguage()?.toLowerCase(),
+					);
 					menu.push({
 						label: 'Code block language',
 						submenu: Object.entries(CODE_LANGUAGE_FRIENDLY_NAME_MAP).map(
-							([language, label]) => ({
-								type: 'checkbox',
-								label,
-								checked: currentLanguage === language,
-								click() {
-									editor.update(() => {
-										codeNode.setLanguage(language);
-									});
-								},
-							}),
+							([language, label]) => {
+								let checked = false;
+								if (currentLanguage === language) checked = true;
+								else if (
+									currentLanguage &&
+									language === CODE_LANGUAGE_MAP[currentLanguage]
+								)
+									checked = true;
+
+								return {
+									type: 'checkbox',
+									label,
+									checked,
+									click() {
+										editor.update(() => {
+											codeNode.setLanguage(language);
+										});
+									},
+								} as const;
+							},
 						),
 					});
 				}
