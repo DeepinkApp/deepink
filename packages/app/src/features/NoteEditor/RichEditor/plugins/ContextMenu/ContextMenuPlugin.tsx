@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import {
 	$createParagraphNode,
 	$createTextNode,
@@ -53,6 +54,7 @@ import {
 } from '@lexical/rich-text';
 import { useAppSelector } from '@state/redux/hooks';
 import { selectEditorDateFormat } from '@state/redux/settings/selectors/preferences';
+import { useWorkspaceActions } from '@state/redux/vaults/hooks';
 
 import { $getCursorNode } from '../../utils/selection';
 
@@ -102,6 +104,9 @@ export const ContextMenuPlugin = () => {
 
 	const localizedDate = useLocalizedDate();
 	const dateFormat = useAppSelector(selectEditorDateFormat);
+
+	const { setSearch } = useWorkspaceActions();
+	const dispatch = useDispatch();
 
 	// Trigger context menu
 	useEffect(() => {
@@ -230,6 +235,15 @@ export const ContextMenuPlugin = () => {
 						label: t('image.download'),
 					});
 				}
+
+				const searchText = selection?.getTextContent().trim() ?? '';
+				if (searchText.length > 0)
+					menu.push({
+						label: `Search for "${searchText.slice(0, 15)}"`,
+						click() {
+							dispatch(setSearch({ search: searchText }));
+						},
+					});
 
 				// Formatting
 				if (
@@ -598,7 +612,7 @@ export const ContextMenuPlugin = () => {
 				capture: true,
 			});
 		};
-	}, [dateFormat, editor, localizedDate, modal, showMenu, t]);
+	}, [dateFormat, dispatch, editor, localizedDate, modal, setSearch, showMenu, t]);
 
 	return (
 		<>
