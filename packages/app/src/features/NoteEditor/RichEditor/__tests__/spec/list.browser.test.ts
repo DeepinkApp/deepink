@@ -33,11 +33,10 @@ test('unlisting a top-level list creates one paragraph per item', async () => {
 	});
 	const editor = page.getByRole('textbox');
 
-	await act(async () => {
-		await editor.getByText('Second', { exact: true }).click();
-		await userEvent.keyboard('{End}');
-	});
-	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+	await richEditor.openContextMenu(editor.getByText('Second', { exact: true }), [
+		'Paragraph',
+		'Unordered list',
+	]);
 
 	expect(editor.getByRole('list')).toHaveLength(0);
 	const paragraphs = editor.getByRole('paragraph');
@@ -53,11 +52,10 @@ test('list command falls through to Lexical when the requested type differs', as
 	});
 	const editor = page.getByRole('textbox');
 
-	await act(async () => {
-		await editor.getByText('First item', { exact: true }).click();
-		await userEvent.keyboard('{End}');
-	});
-	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+	await richEditor.openContextMenu(editor.getByText('First item', { exact: true }), [
+		'Paragraph',
+		'Unordered list',
+	]);
 
 	expect(editor.getByRole('list')).toHaveLength(1);
 	expect(editor.getByRole('listitem')).toHaveLength(2);
@@ -71,11 +69,10 @@ test('unlisting a nested list turns its items into lines inside the parent item'
 	});
 	const editor = page.getByRole('textbox');
 
-	await act(async () => {
-		await editor.getByText('2', { exact: true }).click();
-		await userEvent.keyboard('{End}');
-	});
-	await richEditor.insert({ type: 'list', data: { type: 'checkbox' } });
+	await richEditor.openContextMenu(editor.getByText('2', { exact: true }), [
+		'Paragraph',
+		'Task list',
+	]);
 
 	const items = editor.getByRole('checkbox');
 	expect(items).toHaveLength(3);
@@ -110,7 +107,8 @@ test('a partial selection unlists the whole touched nested list', async () => {
 	await act(async () => {
 		selectContent(editor.element() as HTMLElement, 'First child');
 	});
-	await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+
+	await richEditor.openContextMenu(['Paragraph', 'Unordered list']);
 
 	expect(editor.getByRole('list')).toHaveLength(1);
 	expect(editor.getByRole('listitem')).toHaveLength(2);
@@ -294,10 +292,7 @@ describe('Regressions', () => {
 		});
 		expect(editor.getByRole('list')).toHaveLength(2);
 
-		await richEditor.insert({
-			type: 'list',
-			data: { type: 'unordered' },
-		});
+		await richEditor.openContextMenu(['Paragraph', 'Unordered list']);
 
 		expect(editor.getByRole('list')).toHaveLength(1);
 		const items = editor.getByRole('listitem');
@@ -319,7 +314,7 @@ describe('Regressions', () => {
 		await act(async () => {
 			selectContent(editor.element() as HTMLElement, 'Parent', 'Child');
 		});
-		await richEditor.insert({ type: 'list', data: { type: 'unordered' } });
+		await richEditor.openContextMenu(['Paragraph', 'Unordered list']);
 
 		expect(editor.getByRole('list')).toHaveLength(2);
 		expect(editor.getByRole('list').nth(0).element().tagName).toBe('UL');
@@ -340,13 +335,13 @@ describe('Regressions', () => {
 		await act(async () => {
 			await editor1Locator.click();
 		});
-		await editor1.insert({ type: 'list', data: { type: 'unordered' } });
+		await editor1.openContextMenu(['Paragraph', 'Unordered list']);
 		await act(async () => {
 			await userEvent.keyboard('foo');
 			await userEvent.keyboard('{Enter}'.repeat(3));
 		});
 
-		await editor1.insert({ type: 'list', data: { type: 'unordered' } });
+		await editor1.openContextMenu(['Paragraph', 'Unordered list']);
 		await act(async () => {
 			await userEvent.keyboard('bar');
 		});
