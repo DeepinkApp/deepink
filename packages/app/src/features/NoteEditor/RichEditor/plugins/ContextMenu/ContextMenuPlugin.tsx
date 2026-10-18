@@ -559,6 +559,29 @@ export const ContextMenuPlugin = () => {
 					});
 				}
 
+				const isTextSelected = (selection?.getTextContent().length ?? 0) > 0;
+				menu.push(
+					{ type: 'separator' },
+					{
+						label: 'Cut',
+						role: 'cut',
+						enabled: isTextSelected,
+					},
+					{
+						label: 'Copy',
+						role: 'copy',
+						enabled: isTextSelected,
+					},
+					{
+						label: 'Paste',
+						role: 'paste',
+					},
+					{
+						label: 'Select all',
+						role: 'selectAll',
+					},
+				);
+
 				return menu;
 			});
 
