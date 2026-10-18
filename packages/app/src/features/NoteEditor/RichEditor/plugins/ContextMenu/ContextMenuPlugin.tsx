@@ -26,10 +26,12 @@ import {
 	TextFormatType,
 } from 'lexical';
 import { LOCALE_NAMESPACE } from 'src/i18n';
+import { isResourceUrl } from '@core/features/links';
 import { ContextMenu } from '@electron/requests/contextMenu';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
 import { useWorkspaceModal } from '@features/WorkspaceModal/useWorkspaceModal';
 import { useAppContextMenu } from '@hooks/useAppContextMenu';
+import { useFileSaver } from '@hooks/useFileSaver';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
 import { $createCodeNode, $isCodeNode } from '@lexical/code-core';
 import { CODE_LANGUAGE_FRIENDLY_NAME_MAP, CODE_LANGUAGE_MAP } from '@lexical/code-prism';
@@ -108,6 +110,8 @@ export const ContextMenuPlugin = () => {
 
 	const { setSearch } = useWorkspaceActions();
 	const dispatch = useDispatch();
+
+	const saveFile = useFileSaver();
 
 	// Trigger context menu
 	useEffect(() => {
@@ -247,13 +251,22 @@ export const ContextMenuPlugin = () => {
 					});
 
 				const imageUrl = imageNode?.getSrc().trim() ?? null;
-				if (imageUrl)
+				if (imageUrl) {
 					menu.push({
 						label: 'Copy Image Link',
 						click() {
 							copy(imageUrl);
 						},
 					});
+
+					if (isResourceUrl(imageUrl))
+						menu.push({
+							label: 'Download image',
+							click() {
+								saveFile(imageUrl);
+							},
+						});
+				}
 
 				const searchText = selection?.getTextContent().trim() ?? '';
 				if (searchText.length > 0)
@@ -631,7 +644,17 @@ export const ContextMenuPlugin = () => {
 				capture: true,
 			});
 		};
-	}, [dateFormat, dispatch, editor, localizedDate, modal, setSearch, showMenu, t]);
+	}, [
+		dateFormat,
+		dispatch,
+		editor,
+		localizedDate,
+		modal,
+		saveFile,
+		setSearch,
+		showMenu,
+		t,
+	]);
 
 	return (
 		<>
