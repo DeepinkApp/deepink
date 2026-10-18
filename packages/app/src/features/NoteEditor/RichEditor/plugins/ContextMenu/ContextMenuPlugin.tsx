@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import copy from 'copy-to-clipboard';
 import {
 	$createParagraphNode,
 	$createTextNode,
@@ -235,6 +236,24 @@ export const ContextMenuPlugin = () => {
 						label: t('image.download'),
 					});
 				}
+
+				const linkUrl = linkNode?.getURL().trim() ?? null;
+				if (linkUrl)
+					menu.push({
+						label: 'Copy Link',
+						click() {
+							copy(linkUrl);
+						},
+					});
+
+				const imageUrl = imageNode?.getSrc().trim() ?? null;
+				if (imageUrl)
+					menu.push({
+						label: 'Copy Image Link',
+						click() {
+							copy(imageUrl);
+						},
+					});
 
 				const searchText = selection?.getTextContent().trim() ?? '';
 				if (searchText.length > 0)

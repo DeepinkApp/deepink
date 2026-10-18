@@ -127,6 +127,7 @@
 		"colord": "^2.9.3",
 		"colorjs.io": "^0.6.1",
 		"comlink": "^4.4.2",
+		"copy-to-clipboard": "^4.0.2",
 		"dayjs": "^1.11.19",
 		"dbus-ts": "^0.0.7",
 		"dotenv": "^17.2.3",
