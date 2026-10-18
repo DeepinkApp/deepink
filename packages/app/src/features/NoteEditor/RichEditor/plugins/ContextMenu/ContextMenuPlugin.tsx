@@ -16,6 +16,7 @@ import {
 	$isNodeSelection,
 	$isParagraphNode,
 	$isRangeSelection,
+	$isRootNode,
 	$isTextNode,
 	$setSelection,
 	CONTROLLED_TEXT_INSERTION_COMMAND,
@@ -61,9 +62,13 @@ import { useWorkspaceActions } from '@state/redux/vaults/hooks';
 
 import { $getCursorNode } from '../../utils/selection';
 
-import { $canInsertElementsToNode, $wrapNodes } from '../EditorPanelPlugin/utils/tree';
+import {
+	$canInsertElementsToNode,
+	$getNearestSibling,
+	$wrapNodes,
+} from '../EditorPanelPlugin/utils/tree';
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
-import { $isImageNode } from '../Image/ImageNode';
+import { $createImageNode, $isImageNode } from '../Image/ImageNode';
 import { ImageEditorDialog } from './ImageEditorDialog';
 import { LinkEditorDialog } from './LinkEditorDialog';
 import { CONVERT_TO_PARAGRAPH_COMMAND, ParagraphPlugin } from './ParagraphPlugin';
@@ -523,10 +528,10 @@ export const ContextMenuPlugin = () => {
 				});
 
 				menu.push({
-					label: 'Insert',
+					label: t('insert.label'),
 					submenu: [
 						{
-							label: 'Current date',
+							label: t('insert.option.date'),
 							click() {
 								editor.update(() => {
 									$restoreSelection();
@@ -538,7 +543,7 @@ export const ContextMenuPlugin = () => {
 							},
 						},
 						{
-							label: 'Horizontal rule',
+							label: t('insert.option.separator'),
 							click() {
 								editor.dispatchCommand(
 									INSERT_HORIZONTAL_RULE_COMMAND,
@@ -546,8 +551,54 @@ export const ContextMenuPlugin = () => {
 								);
 							},
 						},
+
 						{
-							label: 'File...',
+							label: t('insert.option.image'),
+							click() {
+								modal.show({
+									content: () => (
+										<ImageEditorDialog
+											url=""
+											altText=""
+											onSubmit={({ url, altText }) => {
+												editor.update(() => {
+													const cursorNode = $getCursorNode();
+													if (!cursorNode) return;
+
+													const anchorNode =
+														$getNearestSibling(cursorNode);
+													if (!anchorNode) return;
+
+													const imageNode = $createImageNode({
+														src: url,
+														altText,
+													});
+													if ($isBlockElementNode(anchorNode)) {
+														const paragraphNode =
+															$createParagraphNode();
+														paragraphNode.append(imageNode);
+
+														if ($isRootNode(anchorNode)) {
+															anchorNode.append(
+																paragraphNode,
+															);
+														} else {
+															anchorNode.insertAfter(
+																paragraphNode,
+															);
+														}
+													} else {
+														anchorNode.insertAfter(imageNode);
+													}
+												});
+											}}
+										/>
+									),
+								});
+							},
+						},
+						{
+							label: t('insert.option.file'),
 							click() {
 								const input = document.createElement('input');
 								input.type = 'file';

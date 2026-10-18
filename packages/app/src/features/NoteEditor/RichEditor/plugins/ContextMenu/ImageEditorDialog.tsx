@@ -10,10 +10,12 @@ export const ImageEditorDialog = ({
 	url,
 	altText,
 	onSubmit,
+	isInsertionMode,
 }: {
 	url: string;
 	altText: string;
 	onSubmit: (data: { url: string; altText: string }) => void;
+	isInsertionMode?: boolean;
 }) => {
 	const { t } = useTranslation(LOCALE_NAMESPACE.features);
 
@@ -22,7 +24,11 @@ export const ImageEditorDialog = ({
 	return (
 		<>
 			<Dialog.Header>
-				<Dialog.Title>{t('contextMenu.imageEditor.title')}</Dialog.Title>
+				<Dialog.Title>
+					{isInsertionMode
+						? t('contextMenu.imageEditor.add')
+						: t('contextMenu.imageEditor.edit')}
+				</Dialog.Title>
 			</Dialog.Header>
 			<Dialog.CloseTrigger asChild>
 				<CloseButton size="sm" />
@@ -58,9 +64,11 @@ export const ImageEditorDialog = ({
 									onSubmit({ url, altText });
 									onClose();
 								}}
-								submitButtonText={t(
-									'contextMenu.imageEditor.actions.update',
-								)}
+								submitButtonText={
+									isInsertionMode
+										? t('contextMenu.imageEditor.actions.insert')
+										: t('contextMenu.imageEditor.actions.update')
+								}
 								onCancel={onClose}
 							/>
 						</MoveFocusInside>

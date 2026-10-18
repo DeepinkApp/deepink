@@ -280,6 +280,15 @@
 		}
 	},
 	"contextMenu": {
+		"insert": {
+			"label": "Insert",
+			"option": {
+				"date": "Current date",
+				"separator": "Horizontal rule",
+				"file": "File...",
+				"image": "Remote image..."
+			}
+		},
 		"imageProperties": {
 			"title": "Image properties",
 			"urlLabel": "Image url",
@@ -315,7 +324,10 @@
 			}
 		},
 		"imageEditor": {
-			"title": "Edit an image",
+			"title": {
+				"add": "Insert image",
+				"edit": "Edit an image"
+			},
 			"form": {
 				"url": {
 					"label": "Image URL",
@@ -327,6 +339,7 @@
 				}
 			},
 			"actions": {
+				"insert": "Insert",
 				"update": "Update"
 			}
 		}
