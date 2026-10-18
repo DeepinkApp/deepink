@@ -286,7 +286,7 @@
 			"altLabel": "Image alt text"
 		},
 		"link": {
-			"insert": "Add a link...",
+			"insert": "Add link...",
 			"edit": "Edit link...",
 			"remove": "Convert link to text"
 		},

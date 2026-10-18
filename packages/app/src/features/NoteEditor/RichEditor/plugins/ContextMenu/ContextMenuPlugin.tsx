@@ -8,6 +8,7 @@ import {
 	$getNearestNodeFromDOMNode,
 	$getRoot,
 	$getSelection,
+	$insertNodes,
 	$isBlockElementNode,
 	$isInlineFormattable,
 	$isNodeSelection,
@@ -30,7 +31,12 @@ import { useAppContextMenu } from '@hooks/useAppContextMenu';
 import { useLocalizedDate } from '@hooks/useLocalizedDate';
 import { $createCodeNode, $isCodeNode } from '@lexical/code-core';
 import { CODE_LANGUAGE_FRIENDLY_NAME_MAP, CODE_LANGUAGE_MAP } from '@lexical/code-prism';
-import { $isLinkNode, LinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
+import {
+	$createLinkNode,
+	$isLinkNode,
+	LinkNode,
+	TOGGLE_LINK_COMMAND,
+} from '@lexical/link';
 import {
 	$isListNode,
 	INSERT_CHECK_LIST_COMMAND,
@@ -118,6 +124,44 @@ export const ContextMenuPlugin = () => {
 
 				const menu: ContextMenu = [];
 
+				// TODO: add option to mention another note
+				menu.push({
+					label: t('link.insert'),
+					click() {
+						modal.show({
+							content: () => (
+								<LinkEditorDialog
+									isInsertionMode
+									url=""
+									title=""
+									onSubmit={({ url, title }) => {
+										editor.update(() => {
+											const selection = $getSelection();
+											if (!selection) return;
+
+											if (
+												$isRangeSelection(selection) &&
+												selection.isCollapsed()
+											) {
+												const linkNode = $createLinkNode(url, {
+													title,
+												});
+												linkNode.append($createTextNode(url));
+												$insertNodes([linkNode]);
+											} else {
+												editor.dispatchCommand(
+													TOGGLE_LINK_COMMAND,
+													{ url },
+												);
+											}
+										});
+									}}
+								/>
+							),
+						});
+					},
+				});
+
 				const linkNode = $findMatchingParent(lexicalNode, $isLinkNode);
 				if (linkNode) {
 					const linkProps = editor.read(() => ({
@@ -186,57 +230,6 @@ export const ContextMenuPlugin = () => {
 						label: t('image.download'),
 					});
 				}
-
-				menu.push({
-					label: 'Insert',
-					submenu: [
-						{
-							label: 'Current date',
-							click() {
-								editor.update(() => {
-									$restoreSelection();
-									editor.dispatchCommand(
-										CONTROLLED_TEXT_INSERTION_COMMAND,
-										localizedDate(new Date(), dateFormat),
-									);
-								});
-							},
-						},
-						{
-							label: 'Horizontal rule',
-							click() {
-								editor.dispatchCommand(
-									INSERT_HORIZONTAL_RULE_COMMAND,
-									undefined,
-								);
-							},
-						},
-						{
-							label: 'File...',
-							click() {
-								const input = document.createElement('input');
-								input.type = 'file';
-								input.multiple = true;
-								input.addEventListener(
-									'change',
-									() => {
-										const files = input.files;
-										input.remove();
-
-										if (files) {
-											editor.dispatchCommand(INSERT_FILES_COMMAND, {
-												files: files,
-											});
-										}
-									},
-									{ once: true },
-								);
-
-								input.click();
-							},
-						},
-					],
-				});
 
 				// Formatting
 				if (
@@ -478,6 +471,57 @@ export const ContextMenuPlugin = () => {
 										return code;
 									});
 								});
+							},
+						},
+					],
+				});
+
+				menu.push({
+					label: 'Insert',
+					submenu: [
+						{
+							label: 'Current date',
+							click() {
+								editor.update(() => {
+									$restoreSelection();
+									editor.dispatchCommand(
+										CONTROLLED_TEXT_INSERTION_COMMAND,
+										localizedDate(new Date(), dateFormat),
+									);
+								});
+							},
+						},
+						{
+							label: 'Horizontal rule',
+							click() {
+								editor.dispatchCommand(
+									INSERT_HORIZONTAL_RULE_COMMAND,
+									undefined,
+								);
+							},
+						},
+						{
+							label: 'File...',
+							click() {
+								const input = document.createElement('input');
+								input.type = 'file';
+								input.multiple = true;
+								input.addEventListener(
+									'change',
+									() => {
+										const files = input.files;
+										input.remove();
+
+										if (files) {
+											editor.dispatchCommand(INSERT_FILES_COMMAND, {
+												files: files,
+											});
+										}
+									},
+									{ once: true },
+								);
+
+								input.click();
 							},
 						},
 					],
