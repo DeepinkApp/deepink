@@ -22,7 +22,7 @@ test('insertion into empty editor creates code block on first paragraph', async 
 	});
 
 	await editor.openContextMenu(editorLocator.getByRole('paragraph'), [
-		'Block type',
+		'Paragraph',
 		'Code block',
 	]);
 
@@ -54,7 +54,7 @@ test('insertion converts paragraph and its content into a code block', async () 
 
 	// Convert it
 	await editor.openContextMenu(editorLocator.getByRole('paragraph'), [
-		'Block type',
+		'Paragraph',
 		'Code block',
 	]);
 
