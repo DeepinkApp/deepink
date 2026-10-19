@@ -297,7 +297,7 @@
 		"link": {
 			"insert": "Add link...",
 			"edit": "Edit link...",
-			"remove": "Convert link to text"
+			"remove": "Remove link"
 		},
 		"image": {
 			"edit": "Edit image...",

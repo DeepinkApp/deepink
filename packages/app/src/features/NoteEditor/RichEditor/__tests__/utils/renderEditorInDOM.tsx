@@ -64,8 +64,8 @@ export const MockWorkspaceProvider = ({ children }: { children: React.ReactNode 
 	return (
 		<WorkspaceContext
 			value={{
-				workspaceId: 'c3d12f12-a949-4c56-966d-bad2b0080524',
-				vaultId: 'c3d12f12-a949-4c56-966d-bad2b0080524',
+				workspaceId: 'test-workspace-1',
+				vaultId: 'test-vault-1',
 			}}
 		>
 			<WorkspaceModalProvider>
@@ -163,10 +163,19 @@ export const renderRichEditorInDOM = async ({
 	if (destroyHook) destroyHook(destroy);
 
 	const getActiveNodeLocator = () => {
-		const element = document.activeElement;
+		const candidates: Element[] = [];
+
+		if (document.activeElement) candidates.push(document.activeElement);
+		const selection = document.getSelection();
+		if (selection && selection.anchorNode) {
+			if (selection.anchorNode instanceof Element)
+				candidates.push(selection.anchorNode);
+			else if (selection.anchorNode.parentElement)
+				candidates.push(selection.anchorNode.parentElement);
+		}
+
+		const element = candidates.find((element) => container.contains(element));
 		if (!element) throw new Error('No active element found');
-		if (!container.contains(element))
-			throw new Error('Active element is out of editor container');
 
 		return page.elementLocator(element);
 	};
