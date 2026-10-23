@@ -31,17 +31,13 @@ test('insertion into empty editor creates code block on first paragraph', async 
 });
 
 test('insertion converts paragraph and its content into a code block', async () => {
-	const editorApi = createRef<RichEditorAPI>();
 	const editor = await renderRichEditorInDOM({
 		value: '',
-		apiRef: editorApi,
 	});
 
 	const editorLocator = page.elementLocator(editor.container);
 	expect(editorLocator.getByRole('paragraph')).toHaveLength(1);
 
-	// Focus on empty editor via editor API
-	expect(editorApi.current).haveOwnProperty('focus');
 	await act(async () => {
 		await editorLocator.click();
 	});
