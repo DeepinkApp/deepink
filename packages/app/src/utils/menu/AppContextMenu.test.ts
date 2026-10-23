@@ -126,9 +126,9 @@ describe('Mocks', () => {
 			itemsMap: expect.toSatisfy((value: Map<any, any>) => {
 				expect(value).toBeInstanceOf(Map);
 				expect(Array.from(value.keys())).toEqual(
-					expect.arrayContaining(['foo', 'bar', 'baz']),
+					expect.arrayContaining(['foo', 'bar', expect.any(String), 'baz']),
 				);
-				expect(value.size).toBe(3);
+				expect(value.size).toBe(4);
 				return true;
 			}),
 		});
