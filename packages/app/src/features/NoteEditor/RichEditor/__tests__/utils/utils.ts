@@ -22,10 +22,12 @@ const getFirstTextNode = (node: Node): Text | null => {
  * Otherwise, all content from `startText` to the end of `endText` is selected
  */
 export const selectContent = (
-	container: HTMLElement,
+	container: Element,
 	startText: string,
 	endText?: string,
 ) => {
+	if (!(container instanceof HTMLElement)) return;
+
 	const startNode = getFirstTextNode(within(container).getByText(startText));
 	if (!startNode) throw new Error(`Text node not found for "${startText}"`);
 
@@ -43,7 +45,6 @@ export const selectContent = (
 
 	window.getSelection()?.removeAllRanges();
 	window.getSelection()?.addRange(range);
-
 	fireEvent(document, new Event('selectionchange'));
 };
 
@@ -97,6 +98,7 @@ export function selectText(container: Node, text: string): Range {
 	const sel = window.getSelection();
 	sel?.removeAllRanges();
 	sel?.addRange(range);
+	fireEvent(document, new Event('selectionchange'));
 
 	return range;
 }
