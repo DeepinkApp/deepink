@@ -2,7 +2,7 @@ import { act } from 'react';
 import { page, userEvent, utils } from 'vitest/browser';
 
 import { renderRichEditorInDOM } from '../utils/renderEditorInDOM';
-import { selectContent } from '../utils/utils';
+import { selectContent, setCursorPosition } from '../utils/utils';
 
 test('one list item may be nested', async () => {
 	const onChanged = vi.fn();
@@ -105,10 +105,14 @@ test('a partial selection unlists the whole touched nested list', async () => {
 	const editor = page.getByRole('textbox');
 
 	await act(async () => {
+		await editor.click();
 		selectContent(editor.element() as HTMLElement, 'First child');
 	});
 
-	await richEditor.openContextMenu(['Paragraph', 'Unordered list']);
+	await richEditor.openContextMenu(editor.getByText('First child'), [
+		'Paragraph',
+		'Unordered list',
+	]);
 
 	expect(editor.getByRole('list')).toHaveLength(1);
 	expect(editor.getByRole('listitem')).toHaveLength(2);
@@ -287,12 +291,17 @@ describe('Regressions', () => {
 		expect(editor.getByRole('list')).toHaveLength(1);
 
 		await act(async () => {
-			await editor.getByText('Child', { exact: true }).click();
-			await userEvent.keyboard('{End}{Tab}');
+			const child = editor.getByText('Child', { exact: true });
+			await child.click();
+			setCursorPosition(child.element(), 0);
+			await userEvent.keyboard('{Tab}');
 		});
 		expect(editor.getByRole('list')).toHaveLength(2);
 
-		await richEditor.openContextMenu(['Paragraph', 'Unordered list']);
+		await richEditor.openContextMenu(editor.getByText('Child', { exact: true }), [
+			'Paragraph',
+			'Unordered list',
+		]);
 
 		expect(editor.getByRole('list')).toHaveLength(1);
 		const items = editor.getByRole('listitem');
@@ -312,9 +321,13 @@ describe('Regressions', () => {
 		expect(editor.getByRole('list').nth(1).element().tagName).toBe('OL');
 
 		await act(async () => {
+			await editor.click();
 			selectContent(editor.element() as HTMLElement, 'Parent', 'Child');
 		});
-		await richEditor.openContextMenu(['Paragraph', 'Unordered list']);
+		await richEditor.openContextMenu(editor.getByText('Parent'), [
+			'Paragraph',
+			'Unordered list',
+		]);
 
 		expect(editor.getByRole('list')).toHaveLength(2);
 		expect(editor.getByRole('list').nth(0).element().tagName).toBe('UL');
@@ -335,13 +348,13 @@ describe('Regressions', () => {
 		await act(async () => {
 			await editor1Locator.click();
 		});
-		await editor1.openContextMenu(['Paragraph', 'Unordered list']);
+		await editor1.openContextMenu(editor1Locator, ['Paragraph', 'Unordered list']);
 		await act(async () => {
 			await userEvent.keyboard('foo');
 			await userEvent.keyboard('{Enter}'.repeat(3));
 		});
 
-		await editor1.openContextMenu(['Paragraph', 'Unordered list']);
+		await editor1.openContextMenu(editor1Locator, ['Paragraph', 'Unordered list']);
 		await act(async () => {
 			await userEvent.keyboard('bar');
 		});
