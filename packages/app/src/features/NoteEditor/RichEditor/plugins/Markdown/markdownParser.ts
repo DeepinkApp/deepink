@@ -16,7 +16,6 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import { Processor, unified } from 'unified';
 import { u } from 'unist-builder';
-import { TextFormat } from '@features/NoteEditor/EditorPanel';
 import { $createCodeNode } from '@lexical/code-core';
 import { $createLinkNode } from '@lexical/link';
 import { $createListItemNode, $createListNode, ListType } from '@lexical/list';
@@ -37,6 +36,8 @@ import { liftFormattingNodes } from './remark/remarkLiftFormatting';
 import { fillGapsWithParagraphs } from './remark/remarkPreserveBlankLines';
 
 const emittedListMarkers = new WeakMap<object, WeakMap<object, string>>();
+
+export type TextFormat = 'bold' | 'italic' | 'strikethrough';
 
 export const markdownProcessor = unified()
 	.use(remarkParse)

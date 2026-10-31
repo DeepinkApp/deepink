@@ -61,12 +61,12 @@ import { selectEditorDateFormat } from '@state/redux/settings/selectors/preferen
 import { useWorkspaceActions } from '@state/redux/vaults/hooks';
 
 import { $getCursorNode } from '../../utils/selection';
-
 import {
 	$canInsertElementsToNode,
 	$getNearestSibling,
 	$wrapNodes,
-} from '../EditorPanelPlugin/utils/tree';
+} from '../../utils/tree';
+
 import { INSERT_FILES_COMMAND } from '../Files/FilesPlugin';
 import { $createImageNode, $isImageNode } from '../Image/ImageNode';
 import { ImageEditorDialog } from './ImageEditorDialog';

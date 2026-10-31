@@ -2,7 +2,6 @@
 import React, { act, createRef } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createEvent } from 'effector';
 import { LexicalEditor } from 'lexical';
 import { LocalesProvider } from 'src/LocalesProvider';
 import { Locator, page } from 'vitest/browser';
@@ -13,12 +12,6 @@ import {
 	NotesContext,
 	NotesRegistryContext,
 } from '@features/App/Workspace/WorkspaceProvider';
-import {
-	CommandsPayload,
-	editorPanelContext,
-	InsertingPayload,
-	TextFormat,
-} from '@features/NoteEditor/EditorPanel';
 import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
 import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEditorContent';
 import { ThemeProvider } from '@features/ThemeProvider';
@@ -85,7 +78,6 @@ export type RichEditorTestAPI = {
 	root: Root;
 	container: HTMLDivElement;
 	destroy(): void;
-	command: (format: CommandsPayload) => Promise<void>;
 	getEditor(): LexicalEditor;
 	getMarkdown(): string;
 	getMenu(): ReturnType<typeof createFakeContextMenu>;
@@ -103,9 +95,6 @@ export const renderRichEditorInDOM = async ({
 	destroyHook?: ((cb: () => void) => void) | null;
 }): Promise<RichEditorTestAPI> => {
 	const { store } = createTestStore();
-	const onFormatting = createEvent<TextFormat>();
-	const onInserting = createEvent<InsertingPayload>();
-	const onCommand = createEvent<CommandsPayload>();
 
 	const editorRef = createRef<LexicalEditor>();
 
@@ -117,15 +106,11 @@ export const renderRichEditorInDOM = async ({
 				<LocalesProvider>
 					<MockWorkspaceProvider>
 						<AppContextMenuContext value={fakeContextMenu.menu}>
-							<editorPanelContext.Provider
-								value={{ onInserting, onFormatting, onCommand }}
-							>
-								<RichEditor
-									placeholder="Enter text"
-									syncDelay={0}
-									{...props}
-								/>
-							</editorPanelContext.Provider>
+							<RichEditor
+								placeholder="Enter text"
+								syncDelay={0}
+								{...props}
+							/>
 						</AppContextMenuContext>
 					</MockWorkspaceProvider>
 				</LocalesProvider>
@@ -185,10 +170,6 @@ export const renderRichEditorInDOM = async ({
 		container,
 
 		destroy,
-
-		command: async (format: CommandsPayload) => {
-			await act(async () => onCommand(format));
-		},
 
 		getMenu() {
 			return fakeContextMenu;

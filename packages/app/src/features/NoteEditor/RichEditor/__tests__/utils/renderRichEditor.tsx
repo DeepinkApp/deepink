@@ -2,7 +2,6 @@
 import React, { act, createRef } from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
-import { createEvent } from 'effector';
 import i18n from 'i18next';
 import { LexicalEditor } from 'lexical';
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
@@ -12,12 +11,6 @@ import {
 	NotesContext,
 	NotesRegistryContext,
 } from '@features/App/Workspace/WorkspaceProvider';
-import {
-	CommandsPayload,
-	editorPanelContext,
-	InsertingPayload,
-	TextFormat,
-} from '@features/NoteEditor/EditorPanel';
 import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
 import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEditorContent';
 import { render } from '@testing-library/react';
@@ -77,11 +70,9 @@ const MockWorkspaceProvider = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
+// TODO: remove it if it unnecessary anymore
 export const renderRichEditor = async (props: RichEditorContentProps) => {
 	const { store } = createTestStore();
-	const onFormatting = createEvent<TextFormat>();
-	const onInserting = createEvent<InsertingPayload>();
-	const onCommand = createEvent<CommandsPayload>();
 
 	const editorRef = createRef<LexicalEditor>();
 
@@ -106,11 +97,7 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 			<ChakraProvider value={defaultSystem}>
 				<I18nextProvider i18n={i18n}>
 					<MockWorkspaceProvider>
-						<editorPanelContext.Provider
-							value={{ onInserting, onFormatting, onCommand }}
-						>
-							<RichEditor placeholder="Enter text" {...props} />
-						</editorPanelContext.Provider>
+						<RichEditor placeholder="Enter text" {...props} />
 					</MockWorkspaceProvider>
 				</I18nextProvider>
 			</ChakraProvider>
@@ -124,22 +111,6 @@ export const renderRichEditor = async (props: RichEditorContentProps) => {
 
 		rerender: async (next: RichEditorContentProps) => {
 			await act(async () => result.rerender(renderEditor(next)));
-		},
-
-		/**
-		 * Simulates an editor panel action like inserting image
-		 */
-		insert: async (payload: InsertingPayload) => {
-			// Wrap editor actions in act() so React flushes all state updates
-			// before assertions are executed
-			await act(async () => onInserting(payload));
-		},
-
-		/**
-		 * Simulates an editor panel formatting action like bold, italic and etc
-		 */
-		format: async (format: TextFormat) => {
-			await act(async () => onFormatting(format));
 		},
 
 		getEditor() {

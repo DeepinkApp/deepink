@@ -17,7 +17,6 @@ import { setRef } from '@utils/react/setRef';
 
 import { CodeHighlightPlugin } from './plugins/CodeHighlightPlugin';
 import { ContextMenuPlugin } from './plugins/ContextMenu/ContextMenuPlugin';
-import { EditorPanelPlugin } from './plugins/EditorPanelPlugin/EditorPanelPlugin';
 import { DropFilesPlugin } from './plugins/Files/DropFilesPlugin';
 import { FilesPlugin } from './plugins/Files/FilesPlugin';
 import { HighlightingPlugin } from './plugins/HighlightingPlugin/HighlightingPlugin';
@@ -124,7 +123,6 @@ export const RichEditorContent = ({
 			<LinkClickHandlerPlugin />
 			<FilesPlugin />
 			<DropFilesPlugin />
-			<EditorPanelPlugin />
 			<HistoryPlugin />
 			<ListFormattingPlugin />
 			<ListPlugin />
