@@ -19,6 +19,7 @@ import { RelaxedInput } from '@components/RelaxedInput';
 import { FilesIntegrityController } from '@core/features/integrity/FilesIntegrityController';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
+import { useVaultDB } from '@features/App/Vault/useVaultDB';
 import { useVaultStorage } from '@features/files';
 import { getWorkspacePath } from '@features/files/paths';
 import { useWorkspacesList } from '@features/MainScreen/WorkspacesPanel/useWorkspacesList';
@@ -41,7 +42,6 @@ import {
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
 
-import { useVaultDB } from '../../Vault';
 import {
 	useAttachmentsController,
 	useFilesController,

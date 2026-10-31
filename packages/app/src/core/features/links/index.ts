@@ -94,3 +94,8 @@ export const getResourceIdInUrl = (url: URL | Uri | string) => {
 	if (!resourceData || resourceData.type !== 'resource') return null;
 	return resourceData.id;
 };
+
+export const isResourceUrl = (url: URL | Uri | string) => {
+	const resourceData = getAppResourceDataInUrl(url);
+	return resourceData !== null && resourceData.type === 'resource';
+};

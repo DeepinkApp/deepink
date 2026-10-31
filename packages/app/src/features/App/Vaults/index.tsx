@@ -4,7 +4,8 @@ import { useAppDispatch } from '@state/redux/hooks';
 import { workspacesApi } from '@state/redux/vaults/vaults';
 import { DisposableBox } from '@utils/disposable';
 
-import { Vault, VaultControls, VaultControlsContext } from '../Vault';
+import { Vault } from '../Vault';
+import { VaultControls, VaultControlsContext } from '../Vault/useVaultControls';
 import { VaultErrorProvider } from '../Vault/VaultErrorProvider';
 import { VaultContainer, VaultsApi } from './hooks/useVaultContainers';
 

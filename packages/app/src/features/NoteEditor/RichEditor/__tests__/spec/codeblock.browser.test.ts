@@ -20,24 +20,24 @@ test('insertion into empty editor creates code block on first paragraph', async 
 	await act(async () => {
 		editorApi.current?.focus();
 	});
-	await editor.insert({ type: 'code' });
+
+	await editor.openContextMenu(editorLocator.getByRole('paragraph'), [
+		'Paragraph',
+		'Code block',
+	]);
 
 	expect(editorLocator.getByRole('code')).toHaveLength(1);
 	expect(editorLocator.getByRole('paragraph')).toHaveLength(0);
 });
 
 test('insertion converts paragraph and its content into a code block', async () => {
-	const editorApi = createRef<RichEditorAPI>();
 	const editor = await renderRichEditorInDOM({
 		value: '',
-		apiRef: editorApi,
 	});
 
 	const editorLocator = page.elementLocator(editor.container);
 	expect(editorLocator.getByRole('paragraph')).toHaveLength(1);
 
-	// Focus on empty editor via editor API
-	expect(editorApi.current).haveOwnProperty('focus');
 	await act(async () => {
 		await editorLocator.click();
 	});
@@ -49,7 +49,10 @@ test('insertion converts paragraph and its content into a code block', async () 
 	expect(editorLocator.getByRole('paragraph')).toHaveTextContent('Some code here');
 
 	// Convert it
-	await editor.insert({ type: 'code' });
+	await editor.openContextMenu(editorLocator.getByRole('paragraph'), [
+		'Paragraph',
+		'Code block',
+	]);
 
 	expect(editorLocator.getByRole('code')).toHaveLength(1);
 	expect(editorLocator.getByRole('code')).toHaveTextContent('Some code here');

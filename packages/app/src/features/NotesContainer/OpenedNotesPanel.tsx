@@ -12,7 +12,7 @@ import { useImmutableCallback } from '@hooks/useImmutableCallback';
 import { useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectPreviewTabId } from '@state/redux/vaults/selectors/notes';
 
-import { useNoteContextMenu } from './NoteContextMenu/useNoteContextMenu';
+import { useNoteContextMenu } from './useNoteContextMenu';
 
 export type TopBarProps = {
 	tabs: NoteId[];

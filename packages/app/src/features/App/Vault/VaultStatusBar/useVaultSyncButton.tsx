@@ -6,7 +6,7 @@ import { useDebounce } from 'use-debounce';
 import { Box } from '@chakra-ui/react';
 import { useStatusBarManager } from '@features/MainScreen/StatusBar/StatusBarProvider';
 
-import { useVaultControls } from '..';
+import { useVaultControls } from '../useVaultControls';
 
 import styles from './VaultStatusBar.module.css';
 

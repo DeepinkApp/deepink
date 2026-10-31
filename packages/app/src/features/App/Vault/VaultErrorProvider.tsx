@@ -6,7 +6,7 @@ import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { useTelemetryTracker } from '@features/telemetry';
 import { createContextGetterHook } from '@utils/react/createContextGetterHook';
 
-import { VaultControls } from '.';
+import { VaultControls } from './useVaultControls';
 
 export const VaultErrorContext = createContext<((error: Error) => void) | null>(null);
 export const useVaultError = createContextGetterHook(VaultErrorContext);

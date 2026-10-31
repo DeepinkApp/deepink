@@ -311,6 +311,7 @@ test('Alt+ArrowDown removes empty source lists when moving the last deep child',
 	const deepOnly = page.getByText('Deep only', { exact: true });
 	await act(async () => {
 		await deepOnly.click();
+		setCursorPosition(deepOnly.element(), 0);
 	});
 	await moveSelection('down');
 

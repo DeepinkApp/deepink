@@ -2,13 +2,7 @@ import { getZoomFactor } from '@utils/os/zoom';
 
 import { ipcRendererFetcher } from '../../utils/ipc/ipcRendererFetcher';
 
-import { ContextMenu, contextMenuChannel } from '.';
-
-export type ContextMenuRequestProps = {
-	menu: ContextMenu;
-	x: number;
-	y: number;
-};
+import { contextMenuChannel } from '.';
 
 export const { open: openContextMenu } = contextMenuChannel.client(ipcRendererFetcher);
 

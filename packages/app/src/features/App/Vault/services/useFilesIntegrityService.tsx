@@ -14,7 +14,8 @@ import {
 } from '@state/redux/vaults/selectors/vault';
 import { wait } from '@utils/time';
 
-import { useVaultControls, useVaultDB } from '..';
+import { useVaultControls } from '../useVaultControls';
+import { useVaultDB } from '../useVaultDB';
 
 export const useFilesIntegrityService = () => {
 	const {
