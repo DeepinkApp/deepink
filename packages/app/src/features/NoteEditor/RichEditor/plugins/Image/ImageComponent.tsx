@@ -28,6 +28,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection';
 import { mergeRegister } from '@lexical/utils';
 
+import { DownloadableContent } from './DownloadableContent';
 import { $isImageNode } from './ImageNode';
 
 const imageCache = new Map<string, string | null>();
@@ -256,15 +257,17 @@ export default function ImageComponent({
 				{isLoadError ? (
 					<BrokenImage />
 				) : (
-					<LazyImage
-						src={src}
-						altText={altText}
-						width={width}
-						height={height}
-						maxWidth={maxWidth}
-						onError={() => setIsLoadError(true)}
-						onLoad={markDirty}
-					/>
+					<DownloadableContent src={src}>
+						<LazyImage
+							src={src}
+							altText={altText}
+							width={width}
+							height={height}
+							maxWidth={maxWidth}
+							onError={() => setIsLoadError(true)}
+							onLoad={markDirty}
+						/>
+					</DownloadableContent>
 				)}
 			</Suspense>
 		</div>

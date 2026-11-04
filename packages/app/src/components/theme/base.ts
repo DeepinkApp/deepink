@@ -255,6 +255,14 @@ export default defineConfig({
 								backgroundColor: '{colors.scheme.alert}',
 							},
 						},
+						floating: {
+							color: 'control.floating.foreground',
+							backgroundColor: {
+								base: 'control.floating.background',
+								_hover: 'control.floating.hover.background',
+							},
+							backdropFilter: 'blur(10px)',
+						},
 					},
 				},
 				defaultVariants: {
