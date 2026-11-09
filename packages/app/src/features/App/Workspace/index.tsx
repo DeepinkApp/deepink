@@ -1,4 +1,4 @@
-import React, { createContext, FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { INote } from '@core/features/notes';
 import { MainScreen } from '@features/MainScreen';
@@ -8,7 +8,6 @@ import { useAppDispatch } from '@state/redux/hooks';
 import { useWorkspaceActions, useWorkspaceSelector } from '@state/redux/vaults/hooks';
 import { selectIsWorkspaceLoaded } from '@state/redux/vaults/selectors/workspaceLoadingStatus';
 import { selectWorkspaceName } from '@state/redux/vaults/vaults';
-import { createContextGetterHook } from '@utils/react/createContextGetterHook';
 
 import { SettingsWindow } from '../Settings/SettingsWindow';
 import { VaultContainer } from '../Vaults/hooks/useVaultContainers';
@@ -17,12 +16,6 @@ import { useWorkspace } from './useWorkspace';
 import { WorkspaceProvider } from './WorkspaceProvider';
 import { WorkspaceStateInitializer } from './WorkspaceStateInitializer';
 import { WorkspaceStatusBarItems } from './WorkspaceStatusBarItems';
-
-export const WorkspaceContext = createContext<{
-	workspaceId: string;
-	vaultId: string;
-} | null>(null);
-export const useWorkspaceContext = createContextGetterHook(WorkspaceContext);
 
 export interface WorkspaceProps {
 	vault: VaultContainer;

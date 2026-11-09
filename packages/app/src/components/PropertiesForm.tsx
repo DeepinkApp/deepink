@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { DefaultValues, Path, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 import { isEqual } from 'lodash';
@@ -14,8 +14,10 @@ export type OptionObject = {
 	label: string;
 	placeholder?: string;
 	error?: string;
-	suggests?: string[];
+	suggests?: string[] | ((query: string) => Promise<string[]>);
 };
+
+const SUGGESTIONS_DEBOUNCE_MS = 300;
 
 type SchemaFromOptions<T extends OptionObject[]> = z.ZodObject<
 	Record<T[number]['value'], z.ZodString>
@@ -74,6 +76,22 @@ export const PropertiesForm = <T extends OptionObject[]>({
 		defaultValues: optionsValues,
 		resolver: validatorScheme ? zodResolver(validatorScheme) : undefined,
 	});
+	const [asyncSuggestions, setAsyncSuggestions] = useState<Record<string, string[]>>(
+		{},
+	);
+	const suggestionTimers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
+	const suggestionRequestIds = useRef(new Map<string, number>());
+
+	useEffect(
+		() => () => {
+			suggestionTimers.current.forEach((timer) => clearTimeout(timer));
+			suggestionTimers.current.clear();
+			suggestionRequestIds.current.forEach((requestId, id) => {
+				suggestionRequestIds.current.set(id, requestId + 1);
+			});
+		},
+		[],
+	);
 
 	useEffect(() => {
 		if (isPending) return;
@@ -96,20 +114,72 @@ export const PropertiesForm = <T extends OptionObject[]>({
 							{ message?: string } | undefined
 						>;
 						const errorMessage = error || fieldErrors[id]?.message;
+						const registeredInput = register(
+							// Cast id to Path<FormValues<T>> — safe because options are always derived from the same schema shape
+							id as Path<FormValues<T>>,
+						);
+						const fieldSuggestions = Array.isArray(suggests)
+							? suggests
+							: asyncSuggestions[id];
 
 						return (
 							<VStack key={id} align="start" w="100%" gap="0" asChild>
 								<label>
 									<Text marginBottom="0.5rem">{label}</Text>
 									<Input
-										{...register(
-											// Cast id to Path<FormValues<T>> — safe because options are always derived from the same schema shape
-											id as Path<FormValues<T>>,
-										)}
+										{...registeredInput}
+										onChange={(event) => {
+											void registeredInput.onChange(event);
+											if (typeof suggests !== 'function') return;
+
+											const query = event.target.value;
+											const requestId =
+												(suggestionRequestIds.current.get(id) ??
+													0) + 1;
+											suggestionRequestIds.current.set(
+												id,
+												requestId,
+											);
+											const timer =
+												suggestionTimers.current.get(id);
+											if (timer) clearTimeout(timer);
+											suggestionTimers.current.delete(id);
+											setAsyncSuggestions((previous) => ({
+												...previous,
+												[id]: [],
+											}));
+
+											if (!query) return;
+
+											suggestionTimers.current.set(
+												id,
+												setTimeout(() => {
+													suggestionTimers.current.delete(id);
+													void Promise.resolve()
+														.then(() => suggests(query))
+														.then((results) => {
+															if (
+																suggestionRequestIds.current.get(
+																	id,
+																) !== requestId
+															)
+																return;
+
+															setAsyncSuggestions(
+																(previous) => ({
+																	...previous,
+																	[id]: results,
+																}),
+															);
+														})
+														.catch(() => undefined);
+												}, SUGGESTIONS_DEBOUNCE_MS),
+											);
+										}}
 										placeholder={placeholder}
 										disabled={isPending}
 									/>
-									{suggests && suggests.length > 0 && (
+									{fieldSuggestions && fieldSuggestions.length > 0 && (
 										<Box marginTop="0.6rem">
 											<Trans
 												t={t}
@@ -117,7 +187,7 @@ export const PropertiesForm = <T extends OptionObject[]>({
 												components={{
 													suggests: (
 														<>
-															{suggests.map(
+															{fieldSuggestions.map(
 																(suggest, i) => (
 																	<React.Fragment
 																		key={i}

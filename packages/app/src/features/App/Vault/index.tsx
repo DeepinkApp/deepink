@@ -1,17 +1,8 @@
-import React, {
-	createContext,
-	FC,
-	useCallback,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { isEqual } from 'lodash';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useDebounce } from 'use-debounce';
-import { ManagedDatabase } from '@core/database/ManagedDatabase';
-import { SQLiteDB } from '@core/database/sqlite';
 import { FileController } from '@core/features/files/FileController';
 import { StateFile } from '@core/features/files/StateFile';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
@@ -34,32 +25,17 @@ import {
 	VaultConfigScheme,
 	workspacesApi,
 } from '@state/redux/vaults/vaults';
-import { createContextGetterHook } from '@utils/react/createContextGetterHook';
 
 import { VaultContainer } from '../Vaults/hooks/useVaultContainers';
-import { Workspace, WorkspaceContext } from '../Workspace';
+import { Workspace } from '../Workspace';
+import { WorkspaceContext } from '../Workspace/WorkspaceContext';
 import { WorkspaceErrorProvider } from '../Workspace/WorkspaceErrorProvider';
 import { WorkspaceErrorScreen } from '../Workspace/WorkspaceErrorScreen';
 import { VaultServices } from './services';
+import { VaultControls, VaultControlsContext } from './useVaultControls';
 import { useVaultState } from './useVaultState';
 import { useVaultError } from './VaultErrorProvider';
 import { VaultStatusBar } from './VaultStatusBar/VaultStatusBar';
-
-export type VaultControls = {
-	vault: VaultContainer;
-	close: () => void;
-};
-
-export const VaultControlsContext = createContext<VaultControls | null>(null);
-export const useVaultControls = createContextGetterHook(VaultControlsContext);
-
-export function useVaultDB(managed: true): ManagedDatabase<SQLiteDB>;
-export function useVaultDB(managed: false): SQLiteDB;
-export function useVaultDB(): SQLiteDB;
-export function useVaultDB(managed = false): SQLiteDB | ManagedDatabase<SQLiteDB> {
-	const db = useVaultControls().vault.db;
-	return managed ? db : db.get();
-}
 
 export type VaultProps = {
 	vault: VaultContainer;

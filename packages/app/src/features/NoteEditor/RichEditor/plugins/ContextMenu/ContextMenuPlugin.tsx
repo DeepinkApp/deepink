@@ -1,115 +1,57 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import { $getNearestNodeFromDOMNode, LexicalEditor, LexicalNode } from 'lexical';
-import { BoxProps, Portal } from '@chakra-ui/react';
-import { Popper } from '@components/Popper';
+import React, { useMemo } from 'react';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { mergeRegister } from '@lexical/utils';
 
-export type ContextMenuRendererProps = {
-	node: LexicalNode;
-	element: Element;
-	editor: LexicalEditor;
-	close: () => void;
-};
+import { ParagraphPlugin } from './ParagraphPlugin';
+import { useBlockMenu } from './useBlockMenu';
+import { useClipboardMenu } from './useClipboardMenu';
+import { useCodeLanguageMenu } from './useCodeLanguageMenu';
+import { useContextMenuListener } from './useContextMenuListener';
+import { useFormattingMenu } from './useFormattingMenu';
+import { useInsertMenu } from './useInsertMenu';
+import { useLinkMenu } from './useLinkMenu';
+import { useMediaMenu } from './useMediaMenu';
+import { useResourceMenu } from './useResourceMenu';
+import { useSelectionMenu } from './useSelectionMenu';
 
-export type ContextMenuProps = BoxProps & {
-	renderer: FC<ContextMenuRendererProps>;
-};
-
-export const ContextMenuPlugin = ({
-	renderer: RendererComponent,
-	...props
-}: ContextMenuProps) => {
+export const ContextMenuPlugin = () => {
 	const [editor] = useLexicalComposerContext();
 
-	const [menuContext, setMenuContext] = useState<{
-		node: LexicalNode;
-		element: HTMLElement;
-	} | null>(null);
+	const linkMenu = useLinkMenu(editor);
+	const mediaMenu = useMediaMenu(editor);
+	const resourceMenu = useResourceMenu();
+	const selectionMenu = useSelectionMenu();
+	const formattingMenu = useFormattingMenu(editor);
+	const blockMenu = useBlockMenu(editor);
+	const insertMenu = useInsertMenu(editor);
+	const codeLanguageMenu = useCodeLanguageMenu(editor);
+	const clipboardMenu = useClipboardMenu();
 
-	const close = useCallback(() => {
-		setMenuContext(null);
-		editor.focus();
-	}, [editor]);
+	const builders = useMemo(
+		() => [
+			linkMenu,
+			mediaMenu,
+			resourceMenu,
+			selectionMenu,
+			formattingMenu,
+			blockMenu,
+			insertMenu,
+			codeLanguageMenu,
+			clipboardMenu,
+		],
+		[
+			linkMenu,
+			mediaMenu,
+			resourceMenu,
+			selectionMenu,
+			formattingMenu,
+			blockMenu,
+			insertMenu,
+			codeLanguageMenu,
+			clipboardMenu,
+		],
+	);
 
-	// Trigger context menu
-	useEffect(() => {
-		const rootElement = editor.getRootElement();
-		if (!rootElement) return;
+	useContextMenuListener(builders);
 
-		const onContextMenu = (evt: MouseEvent) => {
-			editor.read(() => {
-				const target = evt.target as HTMLElement;
-
-				const lexicalNode = $getNearestNodeFromDOMNode(target);
-				if (!lexicalNode) return;
-
-				const rootElement = editor.getElementByKey(lexicalNode.getKey());
-				if (!rootElement) return;
-
-				evt.preventDefault();
-				setMenuContext({
-					node: lexicalNode,
-					element: rootElement,
-				});
-			});
-		};
-
-		rootElement.addEventListener('contextmenu', onContextMenu, { capture: true });
-		return () => {
-			rootElement.removeEventListener('contextmenu', onContextMenu, {
-				capture: true,
-			});
-		};
-	}, [editor, setMenuContext]);
-
-	// Maintain context data
-	useEffect(() => {
-		if (!menuContext) return;
-
-		const currentNode = menuContext.node;
-		const currentElement = menuContext.element;
-		return mergeRegister(
-			// Close context menu by remove node from tree
-			editor.registerUpdateListener(() => {
-				const isAttached = editor.read(() => currentNode.isAttached());
-				if (!isAttached) {
-					close();
-				}
-			}),
-			// Update DOM element in current context, bu changes in Lexical node
-			editor.registerUpdateListener((_node) => {
-				const newElement = editor.getElementByKey(menuContext.node.getKey());
-				if (!newElement) {
-					close();
-					return;
-				}
-
-				if (newElement === currentElement) return;
-
-				setMenuContext({
-					...menuContext,
-					element: newElement,
-				});
-			}),
-		);
-	}, [close, editor, menuContext]);
-
-	const children = menuContext ? (
-		<RendererComponent {...{ ...menuContext, editor, close }} />
-	) : null;
-
-	return children ? (
-		<Portal>
-			<Popper
-				referenceRef={menuContext?.element}
-				onClose={close}
-				allowedPlacements={['bottom', 'top']}
-				boundary={editor.getRootElement() ?? undefined}
-				{...props}
-			>
-				{children}
-			</Popper>
-		</Portal>
-	) : null;
+	return <ParagraphPlugin />;
 };

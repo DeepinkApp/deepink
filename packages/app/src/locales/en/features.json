@@ -280,17 +280,67 @@
 		}
 	},
 	"contextMenu": {
+		"insert": {
+			"label": "Insert",
+			"option": {
+				"date": "Current date",
+				"separator": "Horizontal rule",
+				"file": "File...",
+				"image": "Remote image..."
+			}
+		},
 		"imageProperties": {
 			"title": "Image properties",
 			"urlLabel": "Image url",
 			"altLabel": "Image alt text"
 		},
-		"linkProperties": {
-			"title": "Link properties editor",
-			"urlLabel": "Link URL",
+		"link": {
+			"insert": "Add link...",
+			"edit": "Edit link...",
+			"remove": "Remove link"
+		},
+		"image": {
+			"edit": "Edit image...",
+			"download": "Save image as..."
+		},
+		"linkEditor": {
+			"title": {
+				"add": "Insert a link",
+				"edit": "Edit a link"
+			},
+			"form": {
+				"url": {
+					"label": "Link URL",
+					"placeholder": "e.g., https://example.com"
+				},
+				"title": {
+					"label": "Title",
+					"placeholder": "e.g. Ancient Rome on wiki page"
+				}
+			},
 			"actions": {
-				"update": "Update URL",
-				"remove": "Convert link to text"
+				"insert": "Insert",
+				"update": "Update"
+			}
+		},
+		"imageEditor": {
+			"title": {
+				"add": "Insert image",
+				"edit": "Edit an image"
+			},
+			"form": {
+				"url": {
+					"label": "Image URL",
+					"placeholder": "e.g., https://example.com/image.png"
+				},
+				"altText": {
+					"label": "Image alt text (optional)",
+					"placeholder": "Brief description of the image"
+				}
+			},
+			"actions": {
+				"insert": "Insert",
+				"update": "Update"
 			}
 		}
 	},

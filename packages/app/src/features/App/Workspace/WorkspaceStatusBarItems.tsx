@@ -6,7 +6,7 @@ import { LOCALE_NAMESPACE } from 'src/i18n';
 import { useStatusBarManager } from '@features/MainScreen/StatusBar/StatusBarProvider';
 import { workspacesApi } from '@state/redux/vaults/vaults';
 
-import { useVaultControls } from '../Vault';
+import { useVaultControls } from '../Vault/useVaultControls';
 import { useActiveNoteHistoryButton } from './useActiveNoteHistoryButton';
 
 export const WorkspaceStatusBarItems = () => {

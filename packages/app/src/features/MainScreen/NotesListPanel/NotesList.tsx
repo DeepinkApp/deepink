@@ -7,7 +7,7 @@ import { NotePreview } from '@components/NotePreview/NotePreview';
 import { getNoteTitle } from '@core/features/notes/utils';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { getContextMenuCoords } from '@electron/requests/contextMenu/renderer';
-import { useNoteContextMenu } from '@features/NotesContainer/NoteContextMenu/useNoteContextMenu';
+import { useNoteContextMenu } from '@features/NotesContainer/useNoteContextMenu';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useCreateNote } from '@hooks/notes/useCreateNote';
 import { useNoteActions } from '@hooks/notes/useNoteActions';

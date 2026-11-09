@@ -7,7 +7,7 @@ import { Box, CloseButton, Dialog, Text, VStack } from '@chakra-ui/react';
 import { PropertiesForm } from '@components/PropertiesForm';
 import { TELEMETRY_EVENT_NAME } from '@core/features/telemetry';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
-import { useVaultDB } from '@features/App/Vault';
+import { useVaultDB } from '@features/App/Vault/useVaultDB';
 import { useTelemetryTracker } from '@features/telemetry';
 import { useModalApi } from '@features/WorkspaceModal/useWorkspaceModal';
 import { useStandaloneToast } from '@hooks/useStandaloneToast';

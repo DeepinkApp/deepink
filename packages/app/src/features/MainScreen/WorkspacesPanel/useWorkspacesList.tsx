@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LOCALE_NAMESPACE } from 'src/i18n';
 import { WorkspacesController } from '@core/features/workspaces/WorkspacesController';
-import { useVaultDB } from '@features/App/Vault';
+import { useVaultDB } from '@features/App/Vault/useVaultDB';
 import { useAppDispatch, useAppSelector } from '@state/redux/hooks';
 import { useWorkspaceData } from '@state/redux/vaults/hooks';
 import { selectWorkspaces, workspacesApi } from '@state/redux/vaults/vaults';

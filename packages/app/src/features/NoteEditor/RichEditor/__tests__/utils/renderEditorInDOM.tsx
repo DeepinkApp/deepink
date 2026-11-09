@@ -2,25 +2,23 @@
 import React, { act, createRef } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createEvent } from 'effector';
 import { LexicalEditor } from 'lexical';
 import { LocalesProvider } from 'src/LocalesProvider';
+import { Locator, page } from 'vitest/browser';
 import { FilesController } from '@core/features/files/FilesController';
+import { WorkspaceContext } from '@features/App/Workspace/WorkspaceContext';
 import {
 	FilesRegistryContext,
 	NotesContext,
 	NotesRegistryContext,
 } from '@features/App/Workspace/WorkspaceProvider';
-import {
-	CommandsPayload,
-	editorPanelContext,
-	InsertingPayload,
-	TextFormat,
-} from '@features/NoteEditor/EditorPanel';
 import { RichEditor } from '@features/NoteEditor/RichEditor/RichEditor';
 import { RichEditorContentProps } from '@features/NoteEditor/RichEditor/RichEditorContent';
 import { ThemeProvider } from '@features/ThemeProvider';
+import { WorkspaceModalProvider } from '@features/WorkspaceModal/useWorkspaceModal';
+import { AppContextMenuContext } from '@hooks/useAppContextMenu';
 import { createTestStore } from '@tests/utils/redux';
+import { createFakeContextMenu, selectMenuByLabel } from '@utils/menu/mocks';
 
 import { $convertToMarkdownString } from '../../plugins/Markdown/markdownParser';
 
@@ -57,13 +55,22 @@ export const MockWorkspaceProvider = ({ children }: { children: React.ReactNode 
 	};
 
 	return (
-		<NotesContext.Provider value={notesApi}>
-			<FilesRegistryContext.Provider value={filesRegistry}>
-				<NotesRegistryContext.Provider value={notesControl}>
-					{children}
-				</NotesRegistryContext.Provider>
-			</FilesRegistryContext.Provider>
-		</NotesContext.Provider>
+		<WorkspaceContext
+			value={{
+				workspaceId: 'test-workspace-1',
+				vaultId: 'test-vault-1',
+			}}
+		>
+			<WorkspaceModalProvider>
+				<NotesContext.Provider value={notesApi}>
+					<FilesRegistryContext.Provider value={filesRegistry}>
+						<NotesRegistryContext.Provider value={notesControl}>
+							{children}
+						</NotesRegistryContext.Provider>
+					</FilesRegistryContext.Provider>
+				</NotesContext.Provider>
+			</WorkspaceModalProvider>
+		</WorkspaceContext>
 	);
 };
 
@@ -71,11 +78,11 @@ export type RichEditorTestAPI = {
 	root: Root;
 	container: HTMLDivElement;
 	destroy(): void;
-	insert: (payload: InsertingPayload) => Promise<void>;
-	format: (format: TextFormat) => Promise<void>;
-	command: (format: CommandsPayload) => Promise<void>;
 	getEditor(): LexicalEditor;
 	getMarkdown(): string;
+	getMenu(): ReturnType<typeof createFakeContextMenu>;
+	openContextMenu(itemLabelsPath: string[]): Promise<void>;
+	openContextMenu(locator: Locator, itemLabelsPath: string[]): Promise<void>;
 	render: (props: RichEditorContentProps) => Promise<void>;
 };
 
@@ -88,26 +95,23 @@ export const renderRichEditorInDOM = async ({
 	destroyHook?: ((cb: () => void) => void) | null;
 }): Promise<RichEditorTestAPI> => {
 	const { store } = createTestStore();
-	const onFormatting = createEvent<TextFormat>();
-	const onInserting = createEvent<InsertingPayload>();
-	const onCommand = createEvent<CommandsPayload>();
 
 	const editorRef = createRef<LexicalEditor>();
+
+	const fakeContextMenu = createFakeContextMenu();
 
 	const renderEditor = (props: RichEditorContentProps) => (
 		<Provider store={store}>
 			<ThemeProvider>
 				<LocalesProvider>
 					<MockWorkspaceProvider>
-						<editorPanelContext.Provider
-							value={{ onInserting, onFormatting, onCommand }}
-						>
+						<AppContextMenuContext value={fakeContextMenu.menu}>
 							<RichEditor
 								placeholder="Enter text"
 								syncDelay={0}
 								{...props}
 							/>
-						</editorPanelContext.Provider>
+						</AppContextMenuContext>
 					</MockWorkspaceProvider>
 				</LocalesProvider>
 			</ThemeProvider>
@@ -143,31 +147,48 @@ export const renderRichEditorInDOM = async ({
 
 	if (destroyHook) destroyHook(destroy);
 
+	const getActiveNodeLocator = () => {
+		const candidates: Element[] = [];
+
+		if (document.activeElement) candidates.push(document.activeElement);
+		const selection = document.getSelection();
+		if (selection && selection.anchorNode) {
+			if (selection.anchorNode instanceof Element)
+				candidates.push(selection.anchorNode);
+			else if (selection.anchorNode.parentElement)
+				candidates.push(selection.anchorNode.parentElement);
+		}
+
+		const element = candidates.find((element) => container.contains(element));
+		if (!element) throw new Error('No active element found');
+
+		return page.elementLocator(element);
+	};
+
 	return {
 		root,
 		container,
 
 		destroy,
 
-		/**
-		 * Simulates an editor panel action like inserting image
-		 */
-		insert: async (payload: InsertingPayload) => {
-			// Wrap editor actions in act() so React flushes all state updates
-			// before assertions are executed
-			await act(async () => onInserting(payload));
+		getMenu() {
+			return fakeContextMenu;
 		},
 
-		/**
-		 * Simulates an editor panel formatting action like bold, italic and etc
-		 */
-		format: async (format: TextFormat) => {
-			await act(async () => onFormatting(format));
-		},
+		openContextMenu: (async (...params: [Locator, string[]] | [string[]]) => {
+			const [locator, itemLabelsPath] =
+				params.length === 2
+					? params
+					: ([getActiveNodeLocator(), params[0]] as const);
 
-		command: async (format: CommandsPayload) => {
-			await act(async () => onCommand(format));
-		},
+			await act(async () => {
+				// TODO: emulate focus change
+				fakeContextMenu.selector.mockImplementation(
+					selectMenuByLabel(itemLabelsPath),
+				);
+				await locator.click({ button: 'right' });
+			});
+		}) satisfies RichEditorTestAPI['openContextMenu'],
 
 		getEditor() {
 			const editor = editorRef.current;

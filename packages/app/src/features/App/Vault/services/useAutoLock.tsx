@@ -4,7 +4,7 @@ import { onLockScreenChanged } from '@electron/requests/screenLock/renderer';
 import { useAppSelector } from '@state/redux/hooks';
 import { selectVaultLockConfig } from '@state/redux/settings/selectors/preferences';
 
-import { useVaultControls } from '..';
+import { useVaultControls } from '../useVaultControls';
 
 export const useAutoLock = () => {
 	const {

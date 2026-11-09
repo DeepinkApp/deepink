@@ -21,7 +21,7 @@ import {
 } from '@state/redux/vaults/vaults';
 
 import { CenterBox } from '../CenterBox';
-import { useVaultControls } from '../Vault';
+import { useVaultControls } from '../Vault/useVaultControls';
 
 export const WorkspaceErrorScreen = ({
 	onWorkspaceErrorReset,
