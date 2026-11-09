@@ -5,6 +5,7 @@ import { useAppContextMenu } from '@hooks/useAppContextMenu';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
 import { $collectContextMenuContext } from './collectContext';
+import { normalizeMenu } from './normalizeMenu';
 import { ContextMenuBuilder } from './types';
 
 export const useContextMenuListener = (builders: readonly ContextMenuBuilder[]) => {
@@ -24,7 +25,7 @@ export const useContextMenuListener = (builders: readonly ContextMenuBuilder[]) 
 				if (!targetElement) return null;
 
 				const context = $collectContextMenuContext(targetNode);
-				return builders.flatMap((build) => build(context));
+				return normalizeMenu(builders.flatMap((build) => build(context)));
 			});
 
 			if (!menu) return;
