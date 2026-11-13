@@ -99,7 +99,10 @@ export const useScrollToActiveNote = ({
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, onNoteUpdated),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId, reason }) => {
+				if (reason === 'pin') return;
+				onNoteUpdated(noteId);
+			}),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
 	}, [activeNoteId, activeNoteRef, eventBus]);

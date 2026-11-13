@@ -117,7 +117,7 @@ describe('Base notes import cases', () => {
 		const notesRegistry = new NotesController(db, workspaceId);
 
 		await expect(
-			notesRegistry.get({ sort: { by: 'createdAt', order: 'asc' } }),
+			notesRegistry.get({ sort: [{ by: 'createdAt', order: 'asc' }] }),
 		).resolves.toEqual([
 			expect.objectContaining({
 				// TODO: fix unnecessary new line
@@ -823,7 +823,7 @@ describe('Import respects meta info', () => {
 		const { notesRegistry } = deps;
 		await expect(
 			notesRegistry
-				.query({ sort: { by: 'createdAt' } })
+				.query({ sort: [{ by: 'createdAt' }] })
 				.then((ids) => notesRegistry.getById(ids)),
 		).resolves.toMatchObject([
 			{

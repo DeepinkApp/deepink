@@ -50,7 +50,9 @@ export const useNotesData = ({ noteIds }: { noteIds: NoteId[] }) => {
 		};
 
 		return joinCallbacks(
-			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, onNoteUpdated),
+			eventBus.listen(WorkspaceEvents.NOTE_UPDATED, ({ noteId }) =>
+				onNoteUpdated(noteId),
+			),
 			eventBus.listen(WorkspaceEvents.NOTE_EDITED, onNoteUpdated),
 		);
 	}, [eventBus, loadNotesData, notesData]);
